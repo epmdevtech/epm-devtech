@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { Code2 } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -14,10 +13,9 @@ const Footer = () => {
             animate={{ opacity: 1 }}
             className="flex items-center gap-2"
           >
-            <div className="w-8 h-8 rounded-lg bg-gradient-accent flex items-center justify-center">
-              <Code2 className="w-4 h-4 text-primary-foreground" />
+            <div className="bg-gray-900 dark:bg-transparent rounded-md px-2 py-0.5 transition-colors duration-300">
+              <img src="/logo-emp-dev-tech.png" alt="EPM DEVTECH" className="h-8 object-contain" />
             </div>
-            <span className="font-semibold">EPM DEVTECH</span>
           </motion.div>
 
           {/* Copyright */}
@@ -26,7 +24,7 @@ const Footer = () => {
             animate={{ opacity: 1 }}
             className="text-sm text-muted-foreground text-center"
           >
-            © {currentYear} Elessandro Prestes Macedo Desenvolvimento de Software LTDA
+            © {currentYear} EPM DEVTECH. Todos os direitos reservados.
           </motion.p>
 
           {/* Links */}
