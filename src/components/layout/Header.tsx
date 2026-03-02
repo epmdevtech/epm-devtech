@@ -1,27 +1,48 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Code2 } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTheme } from "@/components/theme-provider";
+import { Typewriter } from "@/components/ui/typewriter";
+
+const navLinks = [
+  { href: "#sobre", label: "Sobre" },
+  { href: "#servicos", label: "Serviços" },
+  { href: "#tecnologias", label: "Tecnologias" },
+  { href: "#diferenciais", label: "Diferenciais" },
+  { href: "#contato", label: "Contato" },
+];
+
+function ThemeToggle() {
+  const { theme, setTheme } = useTheme();
+  return (
+    <Button
+      variant="ghost"
+      size="icon"
+      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      className="text-foreground"
+      aria-label="Alternar tema"
+    >
+      <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+      <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+    </Button>
+  );
+}
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+  const handleScroll = useCallback(() => {
+    setIsScrolled(window.scrollY > 20);
   }, []);
 
-  const navLinks = [
-    { href: "#sobre", label: "Sobre" },
-    { href: "#servicos", label: "Serviços" },
-    { href: "#tecnologias", label: "Tecnologias" },
-    { href: "#diferenciais", label: "Diferenciais" },
-    { href: "#contato", label: "Contato" },
-  ];
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
+
+  const closeMobileMenu = useCallback(() => setIsMobileMenuOpen(false), []);
 
   return (
     <motion.header
@@ -29,8 +50,8 @@ const Header = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? "py-3 glass border-b border-border/50" 
+        isScrolled
+          ? "py-3 glass border-b border-border/50"
           : "py-5 bg-transparent"
       }`}
     >
@@ -38,12 +59,19 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <a href="#" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-accent flex items-center justify-center shadow-glow transition-transform group-hover:scale-105">
-              <Code2 className="w-5 h-5 text-primary-foreground" />
-            </div>
-            <div className="hidden sm:block">
-              <div className="font-bold text-lg leading-tight">EPM DEVTECH</div>
-              <div className="text-xs text-muted-foreground">Engenharia de Software</div>
+            <div>
+              <div className="font-bold text-lg leading-tight mb-0.5">
+                <div className="bg-gray-900 dark:bg-transparent rounded-md px-2 py-0.5 transition-colors duration-300">
+                  <img
+                    src="/logo-emp-dev-tech.png"
+                    alt="EPM DEVTECH"
+                    className="h-8 object-contain"
+                  />
+                </div>
+              </div>
+              <div className="text-xs text-muted-foreground">
+                <Typewriter text="Software House" speed={50} delay={200} cursor={false} />
+              </div>
             </div>
           </a>
 
@@ -61,24 +89,29 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
-            <Button 
-              className="bg-gradient-accent text-primary-foreground hover:opacity-90 transition-all shadow-glow"
+          {/* Desktop CTA */}
+          <div className="hidden md:flex items-center gap-4">
+            <ThemeToggle />
+            <Button
+              className="bg-gradient-accent text-white hover:opacity-90 hover:scale-105 transition-all shadow-glow"
               asChild
             >
               <a href="#contato">Fale Comigo</a>
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-foreground"
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          {/* Mobile Controls */}
+          <div className="flex items-center gap-2 md:hidden">
+            <ThemeToggle />
+            <button
+              onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+              className="p-2 text-foreground"
+              aria-label={isMobileMenuOpen ? "Fechar menu" : "Abrir menu"}
+              aria-expanded={isMobileMenuOpen}
+            >
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -97,17 +130,17 @@ const Header = () => {
                 <a
                   key={link.href}
                   href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={closeMobileMenu}
                   className="text-lg font-medium text-muted-foreground hover:text-foreground transition-colors py-2"
                 >
                   {link.label}
                 </a>
               ))}
-              <Button 
-                className="mt-4 bg-gradient-accent text-primary-foreground w-full"
+              <Button
+                className="mt-4 bg-gradient-accent text-white w-full hover:scale-105 transition-all"
                 asChild
               >
-                <a href="#contato" onClick={() => setIsMobileMenuOpen(false)}>
+                <a href="#contato" onClick={closeMobileMenu}>
                   Fale Comigo
                 </a>
               </Button>
