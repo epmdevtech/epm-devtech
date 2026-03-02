@@ -20,6 +20,7 @@ const Technologies = () => {
     {
       title: "Frontend",
       items: [
+        { name: "React", highlight: true },
         { name: "Angular", highlight: true },
         { name: "Vue.js", highlight: true },
         { name: "JavaScript" },
