@@ -180,6 +180,7 @@ const Contact = () => {
                   <Input
                     id="name"
                     placeholder="Seu nome"
+                    autoComplete="name"
                     {...register("name")}
                     aria-invalid={!!errors.name}
                     className={errors.name ? "border-destructive focus-visible:ring-destructive" : ""}
@@ -197,6 +198,7 @@ const Contact = () => {
                     id="email"
                     type="email"
                     placeholder="seu@email.com"
+                    autoComplete="email"
                     {...register("email")}
                     aria-invalid={!!errors.email}
                     className={errors.email ? "border-destructive focus-visible:ring-destructive" : ""}
@@ -215,6 +217,7 @@ const Contact = () => {
                     id="phone"
                     type="tel"
                     placeholder="+55 (11) 99999-9999"
+                    autoComplete="tel"
                     {...register("phone")}
                   />
                 </div>
@@ -224,6 +227,7 @@ const Contact = () => {
                     Tipo de projeto <span className="text-destructive">*</span>
                   </Label>
                   <Select
+                    name="projectType"
                     onValueChange={(val) =>
                       setValue("projectType", val, { shouldValidate: true })
                     }
