@@ -3,31 +3,133 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
+    <!--
+      IMPORTANTE: Substitua "https://epmdevtech.com.br" pelo seu domínio real
+      em todas as ocorrências abaixo antes de ir para produção.
+    -->
+
+    <!-- Canonical URL — evita conteúdo duplicado -->
+    <link rel="canonical" href="https://epmdevtech.com.br" />
+
     <!-- Primary Meta Tags -->
-    <title>EPM DEVTECH | Engenharia de Software & Soluções Digitais Sob Medida</title>
-    <meta name="description" content="Desenvolvimento de software profissional com +9 anos de experiência. APIs escaláveis, sistemas web, arquitetura sólida e cloud. PHP, Laravel, Node.js, AWS." />
-    <meta name="author" content="Elessandro Prestes Macedo" />
+    <title>EPM DEVTECH | Software House — Desenvolvimento de Software Sob Medida</title>
+    <meta name="description" content="Software house especializada em desenvolvimento web, APIs escaláveis e arquitetura de sistemas. +9 anos de experiência. PHP, Laravel, Node.js, React, AWS, Docker. Solicite um orçamento." />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="author" content="Elessandro Prestes Macedo — EPM DEVTECH" />
+    <meta name="keywords" content="software house, desenvolvimento de software, sistemas web, API REST, PHP, Laravel, Node.js, React, AWS, Docker, arquitetura de software, full stack, Brasil" />
+    <meta name="geo.region" content="BR" />
+    <meta name="language" content="pt-BR" />
 
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="EPM DEVTECH | Engenharia de Software" />
-    <meta property="og:description" content="Soluções digitais sob medida com qualidade técnica e entrega profissional. +9 anos de experiência em projetos de médio e grande porte." />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta property="og:url" content="https://epmdevtech.com.br" />
+    <meta property="og:site_name" content="EPM DEVTECH" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:title" content="EPM DEVTECH | Software House — Desenvolvimento de Software Sob Medida" />
+    <meta property="og:description" content="Software house especializada em APIs escaláveis, sistemas web e arquitetura sólida. +9 anos de experiência em projetos de médio e grande porte." />
+    <meta property="og:image" content="https://epmdevtech.com.br/android-chrome-512x512.png" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta property="og:image:alt" content="EPM DEVTECH — Software House" />
 
-    <!-- Twitter -->
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="EPM DEVTECH | Engenharia de Software" />
-    <meta name="twitter:description" content="Soluções digitais sob medida com qualidade técnica e entrega profissional." />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    
-    <!-- Theme Color -->
-    <meta name="theme-color" content="#0a0d14" />
+    <meta name="twitter:title" content="EPM DEVTECH | Software House — Desenvolvimento de Software Sob Medida" />
+    <meta name="twitter:description" content="Software house especializada em APIs escaláveis, sistemas web e arquitetura sólida. +9 anos de experiência em projetos de médio e grande porte." />
+    <meta name="twitter:image" content="https://epmdevtech.com.br/android-chrome-512x512.png" />
+    <meta name="twitter:image:alt" content="EPM DEVTECH — Software House" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Theme Color (dark e light mode) -->
+    <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+
+    <!-- Performance: preconexão com fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- JSON-LD Structured Data (Google Rich Results) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://epmdevtech.com.br/#website",
+          "url": "https://epmdevtech.com.br",
+          "name": "EPM DEVTECH",
+          "description": "Software house especializada em desenvolvimento de software, APIs escaláveis e arquitetura de sistemas.",
+          "inLanguage": "pt-BR",
+          "publisher": { "@id": "https://epmdevtech.com.br/#organization" }
+        },
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://epmdevtech.com.br/#organization",
+          "name": "EPM DEVTECH",
+          "alternateName": "EPM Dev Tech",
+          "url": "https://epmdevtech.com.br",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://epmdevtech.com.br/logo-emp-dev-tech.png",
+            "width": 964,
+            "height": 326
+          },
+          "image": "https://epmdevtech.com.br/android-chrome-512x512.png",
+          "description": "Software house especializada em desenvolvimento web, APIs escaláveis, arquitetura de sistemas e soluções digitais sob medida para empresas.",
+          "foundingDate": "2015",
+          "email": "elessandrodev@gmail.com",
+          "priceRange": "$$",
+          "currenciesAccepted": "BRL",
+          "paymentAccepted": "Transferência Bancária, PIX",
+          "areaServed": {
+            "@type": "Country",
+            "name": "Brasil"
+          },
+          "founder": { "@id": "https://epmdevtech.com.br/#person" },
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Serviços de Desenvolvimento de Software",
+            "itemListElement": [
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Desenvolvimento de Sistemas Web" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "APIs e Backends Escaláveis" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Arquitetura de Software" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Integrações de Sistemas" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Consultoria Técnica" } }
+            ]
+          },
+          "sameAs": [
+            "https://github.com/ElessandroPrestes",
+            "https://www.linkedin.com/in/elessandro-prestes-macedo/"
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://epmdevtech.com.br/#person",
+          "name": "Elessandro Prestes Macedo",
+          "url": "https://epmdevtech.com.br",
+          "jobTitle": "Engenheiro de Software Full Stack Sênior",
+          "description": "Desenvolvedor Full Stack com +9 anos de experiência em projetos de médio e grande porte. Especialista em PHP, Laravel, Node.js, React e AWS.",
+          "worksFor": { "@id": "https://epmdevtech.com.br/#organization" },
+          "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "Unipar — Universidade Paranaense"
+          },
+          "knowsAbout": ["PHP", "Laravel", "Node.js", "React", "Angular", "AWS", "PostgreSQL", "Docker", "RabbitMQ", "Kafka", "TypeScript"]
+        }
+      ]
+    }
+    </script>
   </head>
 
   <body>
