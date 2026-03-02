@@ -11,8 +11,12 @@ import Footer from "@/components/sections/Footer";
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      {/* Skip-to-content: acessibilidade e SEO — visível apenas ao navegar por teclado */}
+      <a href="#conteudo-principal" className="skip-to-content">
+        Pular para o conteúdo
+      </a>
       <Header />
-      <main>
+      <main id="conteudo-principal" aria-label="Conteúdo principal">
         <Hero />
         <About />
         <Services />
