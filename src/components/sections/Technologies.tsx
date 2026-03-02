@@ -96,7 +96,7 @@ const Technologies = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
-              className="p-6 rounded-xl bg-card border border-border shadow-card"
+              className="p-6 rounded-xl bg-card border border-border shadow-card hover:border-primary/50 transition-all duration-300 hover:-translate-y-1"
             >
               <h3 className="font-semibold mb-4 text-lg">{category.title}</h3>
               <div className="flex flex-wrap gap-2">
@@ -116,26 +116,6 @@ const Technologies = () => {
             </motion.div>
           ))}
         </div>
-
-        {/* AWS Services Detail */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          className="mt-12 p-6 rounded-xl bg-gradient-card border border-border"
-        >
-          <h4 className="font-semibold mb-3 text-center">Serviços AWS em Destaque</h4>
-          <div className="flex flex-wrap justify-center gap-3">
-            {["EC2", "ECS", "Lambda", "SQS", "SNS", "S3", "RDS", "CloudWatch"].map((service) => (
-              <span
-                key={service}
-                className="px-3 py-1 rounded-full text-xs font-mono bg-secondary text-muted-foreground border border-border"
-              >
-                {service}
-              </span>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   );

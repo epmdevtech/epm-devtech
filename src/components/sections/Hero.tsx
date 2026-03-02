@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Code2, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Typewriter } from "@/components/ui/typewriter";
 
 const Hero = () => {
   return (
@@ -34,10 +35,14 @@ const Hero = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight mb-6"
           >
-            Soluções Digitais{" "}
-            <span className="text-gradient">Sob Medida</span>
+            <Typewriter text="Soluções Digitais " speed={50} />
+            <span className="text-gradient">
+              <Typewriter text="Sob Medida" speed={50} delay={900} />
+            </span>
             <br />
-            <span className="text-muted-foreground">Para Sua Empresa</span>
+            <span className="text-muted-foreground">
+              <Typewriter text="Para Sua Empresa" speed={50} delay={1400} />
+            </span>
           </motion.h1>
 
           {/* Subtitle */}
@@ -45,10 +50,13 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed"
+            className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed min-h-[5rem]"
           >
-            Arquitetura de software robusta, APIs escaláveis e sistemas web de alta performance.
-            Transformamos desafios técnicos em soluções elegantes e eficientes.
+            <Typewriter 
+              text="Arquitetura de software robusta, APIs escaláveis e sistemas web de alta performance. Transformamos desafios técnicos em soluções elegantes e eficientes."
+              speed={20}
+              delay={2200}
+            />
           </motion.p>
 
           {/* CTAs */}
@@ -60,7 +68,7 @@ const Hero = () => {
           >
             <Button 
               size="lg" 
-              className="group bg-gradient-accent text-primary-foreground hover:opacity-90 transition-all duration-300 shadow-glow px-8 py-6 text-base font-semibold"
+              className="group bg-gradient-accent text-white hover:opacity-90 hover:scale-105 transition-all duration-300 shadow-glow px-8 py-6 text-base font-semibold"
               asChild
             >
               <a href="#contato">
@@ -71,7 +79,7 @@ const Hero = () => {
             <Button 
               variant="outline" 
               size="lg"
-              className="border-border hover:bg-secondary hover:border-primary/50 transition-all duration-300 px-8 py-6 text-base"
+              className="border-border hover:bg-secondary hover:border-primary/50 hover:scale-105 transition-all duration-300 px-8 py-6 text-base"
               asChild
             >
               <a href="#servicos">
@@ -79,29 +87,6 @@ const Hero = () => {
                 Conheça os Serviços
               </a>
             </Button>
-          </motion.div>
-
-          {/* Tech stack preview */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="mt-16 pt-8 border-t border-border/50"
-          >
-            <p className="text-sm text-muted-foreground mb-4">Tecnologias principais</p>
-            <div className="flex flex-wrap items-center justify-center gap-6 text-muted-foreground/60">
-              {["PHP", "Laravel", "Node.js", "TypeScript", "Docker", "AWS"].map((tech, index) => (
-                <motion.span
-                  key={tech}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: 0.6 + index * 0.1 }}
-                  className="text-sm font-mono hover:text-primary transition-colors cursor-default"
-                >
-                  {tech}
-                </motion.span>
-              ))}
-            </div>
           </motion.div>
         </div>
       </div>
