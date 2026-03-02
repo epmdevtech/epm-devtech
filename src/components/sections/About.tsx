@@ -65,7 +65,7 @@ const About = () => {
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-6 mt-10 pt-10 border-t border-border">
+            <div className="grid grid-cols-3 gap-4 sm:gap-6 mt-10 pt-10 border-t border-border">
               <div>
                 <div className="text-3xl font-bold text-gradient">+9</div>
                 <div className="text-sm text-muted-foreground mt-1">Anos de Experiência</div>
