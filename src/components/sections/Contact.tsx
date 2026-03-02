@@ -1,46 +1,109 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
-import { Mail, Linkedin, Github, ArrowUpRight } from "lucide-react";
+import { useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import emailjs from "@emailjs/browser";
+import { toast } from "sonner";
+import { Mail, Phone, Clock, Send, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+const formSchema = z.object({
+  name: z.string().min(2, "Nome deve ter ao menos 2 caracteres"),
+  email: z.string().email("E-mail inválido"),
+  phone: z.string().optional(),
+  projectType: z.string().min(1, "Selecione o tipo de projeto"),
+  message: z.string().min(20, "Descreva seu projeto em ao menos 20 caracteres"),
+});
+
+type FormValues = z.infer<typeof formSchema>;
+
+const PROJECT_TYPES = [
+  "Site / Landing Page",
+  "Sistema Web",
+  "Aplicativo Mobile",
+  "API / Back-end",
+  "Consultoria",
+  "Outro",
+];
+
+const contactInfo = [
+  {
+    icon: Mail,
+    label: "E-mail",
+    value: "elessandrodev@gmail.com",
+    href: "mailto:elessandrodev@gmail.com",
+  },
+  {
+    icon: Phone,
+    label: "WhatsApp",
+    value: "+55 (XX) XXXXX-XXXX",
+    href: "https://wa.me/55XXXXXXXXXXX",
+  },
+  {
+    icon: Clock,
+    label: "Tempo de resposta",
+    value: "Até 24 horas úteis",
+    href: null,
+  },
+];
 
 const Contact = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [isSending, setIsSending] = useState(false);
 
-  const socialLinks = [
-    {
-      icon: Linkedin,
-      label: "LinkedIn",
-      href: "https://www.linkedin.com/in/elessandro-prestes-macedo/",
-      description: "Perfil profissional",
-    },
-    {
-      icon: Github,
-      label: "GitHub",
-      href: "https://github.com/ElessandroPrestes",
-      description: "Projetos open-source",
-    },
-    {
-      icon: () => (
-        <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-          <path d="M22.65 14.39L12 22.13 1.35 14.39a.84.84 0 0 1-.3-.94l1.22-3.78 2.44-7.51A.42.42 0 0 1 4.82 2a.43.43 0 0 1 .58 0 .42.42 0 0 1 .11.18l2.44 7.49h8.1l2.44-7.51A.42.42 0 0 1 18.6 2a.43.43 0 0 1 .58 0 .42.42 0 0 1 .11.18l2.44 7.51L23 13.45a.84.84 0 0 1-.35.94z"/>
-        </svg>
-      ),
-      label: "GitLab",
-      href: "https://gitlab.com/elessandrodev",
-      description: "Projetos profissionais",
-    },
-  ];
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    reset,
+    formState: { errors },
+  } = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+  });
+
+  const onSubmit = async (data: FormValues) => {
+    setIsSending(true);
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          from_name: data.name,
+          from_email: data.email,
+          phone: data.phone || "Não informado",
+          project_type: data.projectType,
+          message: data.message,
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+      );
+      toast.success("Mensagem enviada! Retornarei em breve.");
+      reset();
+    } catch {
+      toast.error("Falha ao enviar. Tente novamente ou use o e-mail direto.");
+    } finally {
+      setIsSending(false);
+    }
+  };
 
   return (
     <section id="contato" className="relative py-24 bg-secondary/30" ref={ref}>
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-      
-      {/* Background decoration */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[128px]" />
-      
+
       <div className="container px-6 relative z-10">
+        {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -55,56 +118,174 @@ const Contact = () => {
             <span className="text-gradient">Juntos</span>
           </h2>
           <p className="text-muted-foreground">
-            Pronto para transformar sua ideia em realidade? Entre em contato para 
-            discutirmos seu projeto.
+            Pronto para transformar sua ideia em realidade? Preencha o formulário
+            e retornarei em até 24 horas úteis.
           </p>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="max-w-xl mx-auto"
-        >
-          {/* Main CTA */}
-          <div className="text-center mb-12">
-            <Button 
-              size="lg"
-              className="group bg-gradient-accent text-primary-foreground hover:opacity-90 transition-all duration-300 shadow-glow px-10 py-7 text-lg font-semibold"
-              asChild
-            >
-              <a href="mailto:elessandrodev@gmail.com">
-                <Mail className="mr-3 w-5 h-5" />
-                elessandrodev@gmail.com
-                <ArrowUpRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
-            </Button>
-          </div>
+        <div className="max-w-5xl mx-auto grid lg:grid-cols-5 gap-8 items-start">
+          {/* Contact info */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="lg:col-span-2 flex flex-col gap-5"
+          >
+            <div>
+              <h3 className="text-xl font-semibold mb-2">Fale comigo</h3>
+              <p className="text-sm text-muted-foreground">
+                Tem um projeto em mente? Adoraria ouvir sobre ele e entender como posso ajudar.
+              </p>
+            </div>
 
-          {/* Social Links */}
-          <div className="grid sm:grid-cols-3 gap-4">
-            {socialLinks.map((link, index) => (
-              <motion.a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                className="group flex flex-col items-center p-6 rounded-xl bg-card border border-border hover:border-primary/50 transition-all duration-300 shadow-card"
+            {contactInfo.map((item) => (
+              <div
+                key={item.label}
+                className="flex items-start gap-4 p-4 rounded-xl bg-card border border-border hover:border-primary/40 transition-colors duration-300"
               >
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
-                  <link.icon className="w-6 h-6 text-primary" />
+                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                  <item.icon className="w-5 h-5 text-primary" />
                 </div>
-                <span className="font-medium mb-1 group-hover:text-primary transition-colors">
-                  {link.label}
-                </span>
-                <span className="text-xs text-muted-foreground">{link.description}</span>
-              </motion.a>
+                <div>
+                  <p className="text-xs text-muted-foreground mb-0.5">{item.label}</p>
+                  {item.href ? (
+                    <a
+                      href={item.href}
+                      className="text-sm font-medium hover:text-primary transition-colors"
+                    >
+                      {item.value}
+                    </a>
+                  ) : (
+                    <p className="text-sm font-medium">{item.value}</p>
+                  )}
+                </div>
+              </div>
             ))}
-          </div>
-        </motion.div>
+          </motion.div>
+
+          {/* Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="lg:col-span-3 bg-card border border-border rounded-2xl p-5 sm:p-8"
+          >
+            <form onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col gap-5">
+              {/* Name + Email */}
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div className="flex flex-col gap-1.5">
+                  <Label htmlFor="name">
+                    Nome completo <span className="text-destructive">*</span>
+                  </Label>
+                  <Input
+                    id="name"
+                    placeholder="Seu nome"
+                    {...register("name")}
+                    aria-invalid={!!errors.name}
+                    className={errors.name ? "border-destructive focus-visible:ring-destructive" : ""}
+                  />
+                  {errors.name && (
+                    <p className="text-xs text-destructive">{errors.name.message}</p>
+                  )}
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <Label htmlFor="email">
+                    E-mail <span className="text-destructive">*</span>
+                  </Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="seu@email.com"
+                    {...register("email")}
+                    aria-invalid={!!errors.email}
+                    className={errors.email ? "border-destructive focus-visible:ring-destructive" : ""}
+                  />
+                  {errors.email && (
+                    <p className="text-xs text-destructive">{errors.email.message}</p>
+                  )}
+                </div>
+              </div>
+
+              {/* Phone + Project type */}
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div className="flex flex-col gap-1.5">
+                  <Label htmlFor="phone">WhatsApp / Telefone</Label>
+                  <Input
+                    id="phone"
+                    type="tel"
+                    placeholder="+55 (11) 99999-9999"
+                    {...register("phone")}
+                  />
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <Label htmlFor="projectType">
+                    Tipo de projeto <span className="text-destructive">*</span>
+                  </Label>
+                  <Select
+                    onValueChange={(val) =>
+                      setValue("projectType", val, { shouldValidate: true })
+                    }
+                  >
+                    <SelectTrigger
+                      id="projectType"
+                      className={errors.projectType ? "border-destructive focus-visible:ring-destructive" : ""}
+                    >
+                      <SelectValue placeholder="Selecione..." />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {PROJECT_TYPES.map((type) => (
+                        <SelectItem key={type} value={type}>
+                          {type}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  {errors.projectType && (
+                    <p className="text-xs text-destructive">{errors.projectType.message}</p>
+                  )}
+                </div>
+              </div>
+
+              {/* Message */}
+              <div className="flex flex-col gap-1.5">
+                <Label htmlFor="message">
+                  Mensagem <span className="text-destructive">*</span>
+                </Label>
+                <Textarea
+                  id="message"
+                  placeholder="Descreva seu projeto, prazo estimado e informações relevantes..."
+                  rows={5}
+                  {...register("message")}
+                  aria-invalid={!!errors.message}
+                  className={`resize-none ${errors.message ? "border-destructive focus-visible:ring-destructive" : ""}`}
+                />
+                {errors.message && (
+                  <p className="text-xs text-destructive">{errors.message.message}</p>
+                )}
+              </div>
+
+              <Button
+                type="submit"
+                disabled={isSending}
+                className="w-full bg-gradient-accent text-white hover:opacity-90 transition-all duration-300 py-6 text-base font-semibold"
+              >
+                {isSending ? (
+                  <>
+                    <Loader2 className="mr-2 w-4 h-4 animate-spin" />
+                    Enviando...
+                  </>
+                ) : (
+                  <>
+                    <Send className="mr-2 w-4 h-4" />
+                    Enviar Mensagem
+                  </>
+                )}
+              </Button>
+            </form>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
