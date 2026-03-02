@@ -38,7 +38,9 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+    // passive: true informa ao browser que não usamos preventDefault(),
+    // permitindo otimização do scroll sem esperar execução do JS
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
