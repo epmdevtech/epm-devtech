@@ -1,0 +1,19 @@
+{
+  // Desativa o validador CSS nativo do VS Code, que não entende
+  // diretivas do Tailwind CSS (@tailwind, @apply, @layer, @theme).
+  // A validação real é feita pelo Tailwind CSS IntelliSense.
+  "css.validate": false,
+  "scss.validate": false,
+  "less.validate": false,
+
+  // Garante que arquivos CSS com Tailwind sejam tratados como PostCSS
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+
+  // Ativa autocomplete do Tailwind em className de arquivos TSX/JSX
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
+  "tailwindCSS.experimental.classRegex": []
+}
