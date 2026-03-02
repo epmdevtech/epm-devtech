@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, startTransition } from "react";
 
 interface UseTypewriterProps {
   text: string;
@@ -23,7 +23,9 @@ export const useTypewriter = ({ text, speed = 50, delay = 0 }: UseTypewriterProp
       let i = 0;
       intervalId = setInterval(() => {
         if (i < text.length) {
-          setDisplayText(text.slice(0, i + 1));
+          // startTransition marca como baixa prioridade — o browser pode
+          // adiar este render se houver atualizações mais urgentes na fila
+          startTransition(() => setDisplayText(text.slice(0, i + 1)));
           i++;
         } else {
           clearInterval(intervalId);
