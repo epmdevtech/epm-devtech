@@ -14,6 +14,15 @@ html {
   scroll-padding-top: 80px;
 }
 
+/* Oculta o cursor nativo em dispositivos com mouse (pointer: fine)
+   para que apenas o CursorOrb customizado seja exibido */
+@media (pointer: fine) {
+  html, * {
+    cursor: none !important;
+  }
+}
+
+
 /* Skip-to-content: visível apenas ao navegar por teclado (acessibilidade/SEO) */
 .skip-to-content {
   position: absolute;

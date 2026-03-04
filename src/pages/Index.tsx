@@ -7,10 +7,14 @@ import Differentials from "@/components/sections/Differentials";
 import Authority from "@/components/sections/Authority";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
+import CursorOrb from "@/components/CursorOrb";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      {/* Cursor orb personalizado — segue o mouse em todo o site */}
+      <CursorOrb />
+
       {/* Skip-to-content: acessibilidade e SEO — visível apenas ao navegar por teclado */}
       <a href="#conteudo-principal" className="skip-to-content">
         Pular para o conteúdo
@@ -31,3 +35,4 @@ const Index = () => {
 };
 
 export default Index;
+
