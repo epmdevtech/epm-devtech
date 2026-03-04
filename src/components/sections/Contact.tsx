@@ -110,14 +110,14 @@ const Contact = () => {
           transition={{ duration: 0.5 }}
           className="text-center max-w-2xl mx-auto mb-16"
         >
-          <span className="text-primary font-mono text-sm tracking-wider uppercase mb-4 block">
+          <span className="text-primary font-mono text-xs uppercase tracking-widest mb-4 block">
             Contato
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+          <h2 className="text-3xl sm:text-4xl font-light tracking-tight mb-4">
             Vamos Construir{" "}
             <span className="text-gradient">Juntos</span>
           </h2>
-          <p className="text-muted-foreground">
+          <p className="font-mono text-sm text-muted-foreground leading-relaxed">
             Pronto para transformar sua ideia em realidade? Preencha o formulário
             e retornarei em até 24 horas úteis.
           </p>
@@ -132,8 +132,8 @@ const Contact = () => {
             className="lg:col-span-2 flex flex-col gap-5"
           >
             <div>
-              <h3 className="text-xl font-semibold mb-2">Fale comigo</h3>
-              <p className="text-sm text-muted-foreground">
+              <h3 className="font-mono font-semibold uppercase tracking-wide text-xs mb-2">Fale comigo</h3>
+              <p className="font-mono text-xs text-muted-foreground leading-relaxed">
                 Tem um projeto em mente? Adoraria ouvir sobre ele e entender como posso ajudar.
               </p>
             </div>
@@ -270,23 +270,56 @@ const Contact = () => {
                 )}
               </div>
 
-              <Button
+              <button
                 type="submit"
                 disabled={isSending}
-                className="w-full bg-gradient-accent text-white hover:opacity-90 transition-all duration-300 py-6 text-base font-semibold"
+                style={{
+                  width: "100%",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "0.5rem",
+                  padding: "0.875rem 1.5rem",
+                  borderRadius: "0.5rem",
+                  fontWeight: 700,
+                  fontSize: "1rem",
+                  color: "#ffffff",
+                  background: "linear-gradient(135deg, #2979FF 0%, #A855F7 50%, #0EA5E9 100%)",
+                  boxShadow: "0 0 20px 0 rgba(41,121,255,0.4)",
+                  border: "none",
+                  cursor: isSending ? "not-allowed" : "pointer",
+                  opacity: isSending ? 0.7 : 1,
+                  transition: "box-shadow 0.4s ease, transform 0.35s ease, opacity 0.3s ease",
+                }}
+                onMouseEnter={(e) => {
+                  if (!isSending) {
+                    (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 0 28px 4px rgba(168,85,247,0.4)";
+                    (e.currentTarget as HTMLButtonElement).style.transform = "scale(1.02)";
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 0 20px 0 rgba(41,121,255,0.4)";
+                  (e.currentTarget as HTMLButtonElement).style.transform = "scale(1)";
+                }}
+                onMouseDown={(e) => {
+                  if (!isSending) (e.currentTarget as HTMLButtonElement).style.transform = "scale(0.98)";
+                }}
+                onMouseUp={(e) => {
+                  if (!isSending) (e.currentTarget as HTMLButtonElement).style.transform = "scale(1.02)";
+                }}
               >
                 {isSending ? (
                   <>
-                    <Loader2 className="mr-2 w-4 h-4 animate-spin" />
+                    <Loader2 className="w-4 h-4 animate-spin" />
                     Enviando...
                   </>
                 ) : (
                   <>
-                    <Send className="mr-2 w-4 h-4" />
+                    <Send className="w-4 h-4" />
                     Enviar Mensagem
                   </>
                 )}
-              </Button>
+              </button>
             </form>
           </motion.div>
         </div>
