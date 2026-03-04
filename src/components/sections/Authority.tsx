@@ -1,7 +1,13 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { GraduationCap, Briefcase, Code2, Star } from "lucide-react";
+import {
+  Briefcase,
+  Code2,
+  Star,
+  GitBranch,
+  ShieldCheck,
+} from "lucide-react";
 
 const Authority = () => {
   const ref = useRef(null);
@@ -10,132 +16,163 @@ const Authority = () => {
   const credentials = [
     {
       icon: Briefcase,
-      value: "+9 anos",
       label: "Experiência Profissional",
       handle: "GRANDES PROJETOS",
       description:
-        "Atuação contínua em projetos de médio e grande porte, entregando soluções robustas em ambientes corporativos exigentes.",
-    },
-    {
-      icon: GraduationCap,
-      value: "Graduado",
-      label: "Análise e Desenvolvimento de Sistemas",
-      handle: "UNIPAR",
-      description:
-        "Formação acadêmica sólida em Análise e Desenvolvimento de Sistemas pela Universidade Paranaense — base técnica e teórica.",
+        "Atuação contínua em projetos de médio e grande porte, entregando soluções robustas em ambientes corporativos exigentes — da concepção à produção.",
     },
     {
       icon: Code2,
-      value: "Full Stack",
-      label: "Perfil Técnico Sênior",
+      label: "Perfil Full Stack Sênior",
       handle: "BACKEND · FRONTEND · INFRA",
       description:
-        "Domínio completo da stack: backend, frontend e infraestrutura — capaz de assumir qualquer camada de uma aplicação.",
+        "Domínio completo da stack: backend, frontend e infraestrutura. Capaz de assumir qualquer camada de uma aplicação com proeficiência técnica.",
     },
     {
       icon: Star,
-      value: "4 Setores",
-      label: "Experiência Diversificada",
+      label: "Experiência Multi-Setor",
       handle: "INDÚSTRIA · VAREJO · EDTECH · ENERGIA",
       description:
-        "Vivência em indústria, varejo, educação e energia permite adaptar soluções aos contextos mais variados com rapidez.",
+        "Vivência em indústria, varejo, educação e energia permite adaptar soluções a contextos variados com rapidez, maturidade e clareza de decisão.",
+    },
+    {
+      icon: GitBranch,
+      label: "Práticas de Engenharia",
+      handle: "CLEAN CODE · CI/CD · TDD",
+      description:
+        "Aplicação rigorosa de Clean Code, Test-Driven Development e pipelines automatizados — garantindo código de alta qualidade e entrega confiável.",
+    },
+    {
+      icon: ShieldCheck,
+      label: "Compromisso com Resultados",
+      handle: "PRAZO · QUALIDADE · TRANSPARÊNCIA",
+      description:
+        "Projetos entregues dentro do prazo, com comunicação clara, documentação adequada e foco em valor real para o negócio — sem atalhos técnicos.",
     },
   ];
 
-  const achievements = [
-    "Arquitetura de sistemas escaláveis para alto volume de requisições",
-    "Integrações complexas com sistemas internos e externos",
-    "Implementação de pipelines CI/CD e práticas DevOps",
-    "Mentoria técnica e liderança em squads de desenvolvimento",
-    "Modernização de sistemas legados para arquiteturas modernas",
-    "Contribuições em projetos open-source (Arctic Code Vault Contributor)",
-  ];
-
   return (
-    <section id="autoridade" className="relative py-24 bg-background" ref={ref}>
-      <div className="container px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
-          className="text-center max-w-2xl mx-auto mb-16"
-        >
-          <span className="text-primary font-mono text-xs uppercase tracking-widest mb-4 block">
-            Credenciais
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-light tracking-tight mb-4">
-            Autoridade <span className="text-gradient">Técnica</span>
-          </h2>
-          <p className="font-mono text-sm text-muted-foreground leading-relaxed">
-            Anos de experiência traduzidos em resultados concretos para empresas de diversos setores.
-          </p>
-        </motion.div>
+    <>
+      <style>{`
+        /* ══════════════════════════════════════════════════
+           AUTHORITY / CREDENTIALS SECTION
+        ══════════════════════════════════════════════════ */
 
-        {/* Credentials Grid — testimonial card style */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border rounded-2xl overflow-hidden border border-border mb-16">
-          {credentials.map((item, index) => (
-            <motion.div
-              key={item.label}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group flex flex-col justify-between p-6 bg-card hover:bg-primary/5 transition-colors duration-300"
-            >
-              {/* Body — large value + description */}
-              <div className="mb-6">
-                <div className="text-3xl font-bold text-gradient mb-3">{item.value}</div>
-                <p className="font-mono text-sm text-muted-foreground leading-relaxed">
-                  {item.description}
-                </p>
-              </div>
+        .cred-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 2.5rem 3rem;
+        }
+        @media (max-width: 1023px) {
+          .cred-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+        }
+        @media (max-width: 639px) {
+          .cred-grid { grid-template-columns: 1fr; gap: 1.75rem; }
+        }
 
-              {/* Bottom row — separator + icon + label/handle */}
-              <div className="pt-4 border-t border-border flex items-center gap-3">
-                <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
-                  <item.icon className="w-5 h-5 text-primary" />
-                </div>
-                <div className="min-w-0">
-                  <div className="font-mono font-semibold text-sm leading-tight truncate">
-                    {item.label}
-                  </div>
-                  <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground truncate">
-                    {item.handle}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        .cred-card {
+          display: flex;
+          flex-direction: column;
+          gap: 0.75rem;
+          padding: 0;
+          position: relative;
+        }
 
-        {/* Achievements */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="max-w-3xl mx-auto"
-        >
-          <h3 className="font-mono font-semibold uppercase tracking-widest text-xs text-center mb-8">
-            Realizações em Destaque
-          </h3>
-          <div className="grid sm:grid-cols-2 gap-4">
-            {achievements.map((achievement, index) => (
+        /* icon */
+        .cred-icon-wrap {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 38px; height: 38px;
+          border-radius: 10px;
+          background: hsl(var(--primary) / 0.1);
+          border: 1px solid hsl(var(--primary) / 0.18);
+          color: hsl(var(--primary));
+          transition: background 0.3s, border-color 0.3s;
+          margin-bottom: 0.35rem;
+        }
+        .cred-card:hover .cred-icon-wrap {
+          background: hsl(var(--primary) / 0.18);
+          border-color: hsl(var(--primary) / 0.35);
+        }
+
+        /* title */
+        .cred-title {
+          font-size: 1rem;
+          font-weight: 500;
+          color: hsl(var(--foreground));
+          letter-spacing: -0.01em;
+          line-height: 1.3;
+        }
+
+        /* handle */
+        .cred-handle {
+          font-family: ui-monospace, monospace;
+          font-size: 0.62rem;
+          text-transform: uppercase;
+          letter-spacing: 0.07em;
+          color: hsl(var(--primary));
+          opacity: 0.75;
+        }
+
+        /* description */
+        .cred-desc {
+          font-family: ui-monospace, monospace;
+          font-size: 0.78rem;
+          color: hsl(var(--muted-foreground));
+          line-height: 1.75;
+        }
+      `}</style>
+
+      <section id="autoridade" className="relative py-24 bg-background" ref={ref}>
+        <div className="container px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5 }}
+            className="max-w-2xl mb-16"
+          >
+            <span className="text-primary font-mono text-xs uppercase tracking-widest mb-4 block">
+              Credenciais
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-light tracking-tight mb-4 leading-tight">
+              Autoridade <span className="text-gradient">Técnica</span> que{" "}
+              <span className="text-gradient">Gera Resultados</span>
+            </h2>
+            <p className="font-mono text-sm text-muted-foreground leading-relaxed">
+              Anos de experiência em projetos reais, traduzidos em competência técnica aplicada e entrega consistente.
+            </p>
+          </motion.div>
+
+          {/* Credentials Feature Grid */}
+          <div className="cred-grid">
+            {credentials.map((item, index) => (
               <motion.div
-                key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
-                className="flex items-start gap-3 p-4 rounded-lg bg-secondary/50 border border-border"
+                key={item.label}
+                className="cred-card"
+                initial={{ opacity: 0, y: 28 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.1 + index * 0.09 }}
               >
-                <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                <p className="font-mono text-xs text-muted-foreground leading-relaxed">
-                  {achievement}
-                </p>
+                {/* Icon */}
+                <div className="cred-icon-wrap">
+                  <item.icon size={18} />
+                </div>
+
+                {/* Title */}
+                <div className="cred-title">{item.label}.</div>
+
+                {/* Handle */}
+                <div className="cred-handle">{item.handle}</div>
+
+                {/* Description */}
+                <p className="cred-desc">{item.description}</p>
               </motion.div>
             ))}
           </div>
-        </motion.div>
-      </div>
-    </section>
+        </div>
+      </section>
+    </>
   );
 };
 
