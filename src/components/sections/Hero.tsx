@@ -72,17 +72,16 @@ const Hero = () => {
                 fontWeight: 700,
                 fontSize: "1rem",
                 color: "#ffffff",
-                background: "linear-gradient(135deg, #2979FF 0%, #A855F7 50%, #0EA5E9 100%)",
-                backgroundSize: "200% 200%",
-                boxShadow: "0 0 20px 0 rgba(41,121,255,0.4)",
+                background: "hsl(var(--primary))",
+                boxShadow: "0 4px 14px 0 hsl(var(--primary) / 0.35)",
                 textDecoration: "none",
               }}
               whileHover={{
-                scale: 1.03,
-                boxShadow: "0 0 28px 4px rgba(168,85,247,0.4)",
+                scale: 1.04,
+                boxShadow: "0 6px 20px 0 hsl(var(--primary) / 0.5)",
               }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ type: "spring", stiffness: 160, damping: 24 }}
+              whileTap={{ scale: 0.95, boxShadow: "0 2px 8px 0 hsl(var(--primary) / 0.25)" }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
             >
               <Code2 size={18} strokeWidth={2} />
               Conheça os Serviços

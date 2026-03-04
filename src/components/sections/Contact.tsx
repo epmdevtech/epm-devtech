@@ -284,28 +284,34 @@ const Contact = () => {
                   fontWeight: 700,
                   fontSize: "1rem",
                   color: "#ffffff",
-                  background: "linear-gradient(135deg, #2979FF 0%, #A855F7 50%, #0EA5E9 100%)",
-                  boxShadow: "0 0 20px 0 rgba(41,121,255,0.4)",
+                  background: "hsl(var(--primary))",
+                  boxShadow: "0 4px 14px 0 hsl(var(--primary) / 0.35)",
                   border: "none",
                   cursor: isSending ? "not-allowed" : "pointer",
                   opacity: isSending ? 0.7 : 1,
-                  transition: "box-shadow 0.4s ease, transform 0.35s ease, opacity 0.3s ease",
+                  transition: "box-shadow 0.25s ease, transform 0.2s ease, opacity 0.3s ease",
                 }}
                 onMouseEnter={(e) => {
                   if (!isSending) {
-                    (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 0 28px 4px rgba(168,85,247,0.4)";
-                    (e.currentTarget as HTMLButtonElement).style.transform = "scale(1.02)";
+                    (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 6px 20px 0 hsl(var(--primary) / 0.5)";
+                    (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)";
                   }
                 }}
                 onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 0 20px 0 rgba(41,121,255,0.4)";
-                  (e.currentTarget as HTMLButtonElement).style.transform = "scale(1)";
+                  (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 4px 14px 0 hsl(var(--primary) / 0.35)";
+                  (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)";
                 }}
                 onMouseDown={(e) => {
-                  if (!isSending) (e.currentTarget as HTMLButtonElement).style.transform = "scale(0.98)";
+                  if (!isSending) {
+                    (e.currentTarget as HTMLButtonElement).style.transform = "translateY(1px) scale(0.98)";
+                    (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 2px 8px 0 hsl(var(--primary) / 0.25)";
+                  }
                 }}
                 onMouseUp={(e) => {
-                  if (!isSending) (e.currentTarget as HTMLButtonElement).style.transform = "scale(1.02)";
+                  if (!isSending) {
+                    (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)";
+                    (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 6px 20px 0 hsl(var(--primary) / 0.5)";
+                  }
                 }}
               >
                 {isSending ? (

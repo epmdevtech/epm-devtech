@@ -86,22 +86,22 @@ const Header = () => {
                 borderRadius: "0.5rem",
                 fontWeight: 600,
                 fontSize: "0.875rem",
-                color: "inherit",
-                border: "1.5px solid rgba(255,255,255,0.18)",
+                color: "hsl(var(--foreground))",
+                border: "1.5px solid hsl(var(--border))",
                 background: "transparent",
                 textDecoration: "none",
                 position: "relative",
                 overflow: "hidden",
               }}
               whileHover={{
-                scale: 1.03,
+                scale: 1.04,
                 color: "#ffffff",
-                boxShadow: "0 0 20px 3px rgba(168,85,247,0.35)",
-                background: "linear-gradient(135deg, #2979FF 0%, #A855F7 50%, #0EA5E9 100%)",
-                borderColor: "transparent",
+                background: "hsl(var(--primary))",
+                borderColor: "hsl(var(--primary))",
+                boxShadow: "0 4px 16px 0 hsl(var(--primary) / 0.35)",
               }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ type: "spring", stiffness: 160, damping: 24 }}
+              whileTap={{ scale: 0.95, boxShadow: "0 1px 6px 0 hsl(var(--primary) / 0.2)" }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
             >
               <motion.span
                 animate={{
@@ -170,20 +170,20 @@ const Header = () => {
                   borderRadius: "0.5rem",
                   fontWeight: 600,
                   fontSize: "0.875rem",
-                  color: "inherit",
-                  border: "1.5px solid rgba(255,255,255,0.18)",
+                  color: "hsl(var(--foreground))",
+                  border: "1.5px solid hsl(var(--border))",
                   background: "transparent",
                   textDecoration: "none",
                   marginTop: "1rem",
                   width: "100%",
                 }}
                 whileTap={{
-                  scale: 0.97,
-                  background: "linear-gradient(135deg, #2979FF 0%, #A855F7 50%, #0EA5E9 100%)",
-                  borderColor: "transparent",
+                  scale: 0.95,
+                  background: "hsl(var(--primary))",
+                  borderColor: "hsl(var(--primary))",
                   color: "#ffffff",
                 }}
-                transition={{ type: "spring", stiffness: 160, damping: 24 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
               >
                 <motion.span
                   animate={{
