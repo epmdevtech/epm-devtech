@@ -52,13 +52,13 @@ const Authority = () => {
           transition={{ duration: 0.5 }}
           className="text-center max-w-2xl mx-auto mb-16"
         >
-          <span className="text-primary font-mono text-sm tracking-wider uppercase mb-4 block">
+          <span className="text-primary font-mono text-xs uppercase tracking-widest mb-4 block">
             Credenciais
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+          <h2 className="text-3xl sm:text-4xl font-light tracking-tight mb-4">
             Autoridade <span className="text-gradient">Técnica</span>
           </h2>
-          <p className="text-muted-foreground">
+          <p className="font-mono text-sm text-muted-foreground leading-relaxed">
             Anos de experiência traduzidos em resultados concretos para empresas de diversos setores.
           </p>
         </motion.div>
@@ -77,8 +77,8 @@ const Authority = () => {
                 <item.icon className="w-7 h-7 text-primary" />
               </div>
               <div className="text-2xl font-bold text-gradient mb-1">{item.value}</div>
-              <div className="font-medium text-sm mb-1">{item.label}</div>
-              <div className="text-xs text-muted-foreground">{item.description}</div>
+              <div className="font-mono font-medium text-xs uppercase tracking-wide mb-1">{item.label}</div>
+              <div className="font-mono text-xs text-muted-foreground">{item.description}</div>
             </motion.div>
           ))}
         </div>
@@ -90,7 +90,7 @@ const Authority = () => {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="max-w-3xl mx-auto"
         >
-          <h3 className="text-xl font-semibold text-center mb-8">Realizações em Destaque</h3>
+          <h3 className="font-mono font-semibold uppercase tracking-widest text-xs text-center mb-8">Realizações em Destaque</h3>
           <div className="grid sm:grid-cols-2 gap-4">
             {achievements.map((achievement, index) => (
               <motion.div
@@ -101,7 +101,7 @@ const Authority = () => {
                 className="flex items-start gap-3 p-4 rounded-lg bg-secondary/50 border border-border"
               >
                 <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                <p className="text-sm text-muted-foreground">{achievement}</p>
+                <p className="font-mono text-xs text-muted-foreground leading-relaxed">{achievement}</p>
               </motion.div>
             ))}
           </div>

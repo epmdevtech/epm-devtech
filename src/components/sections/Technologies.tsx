@@ -78,14 +78,14 @@ const Technologies = () => {
           transition={{ duration: 0.5 }}
           className="text-center max-w-2xl mx-auto mb-16"
         >
-          <span className="text-primary font-mono text-sm tracking-wider uppercase mb-4 block">
+          <span className="text-primary font-mono text-xs uppercase tracking-widest mb-4 block">
             Stack Tecnológica
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+          <h2 className="text-3xl sm:text-4xl font-light tracking-tight mb-4">
             Tecnologias <span className="text-gradient">Modernas</span>
           </h2>
-          <p className="text-muted-foreground">
-            Utilizamos as melhores ferramentas do mercado para entregar soluções 
+          <p className="font-mono text-sm text-muted-foreground leading-relaxed">
+            Utilizamos as melhores ferramentas do mercado para entregar soluções
             robustas, escaláveis e de fácil manutenção.
           </p>
         </motion.div>
@@ -97,18 +97,17 @@ const Technologies = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
-              className="p-6 rounded-xl bg-card border border-border shadow-card hover:border-primary/50 transition-all duration-300 hover:-translate-y-1"
+              className="p-6 rounded-xl bg-card border border-border shadow-card hover:border-primary/50 transition-all duration-500 hover:-translate-y-1"
             >
-              <h3 className="font-semibold mb-4 text-lg">{category.title}</h3>
+              <h3 className="font-mono font-semibold uppercase tracking-widest text-xs mb-4 text-foreground">{category.title}</h3>
               <div className="flex flex-wrap gap-2">
                 {category.items.map((item) => (
                   <span
                     key={item.name}
-                    className={`px-3 py-1.5 rounded-lg text-sm font-mono transition-colors ${
-                      item.highlight
-                        ? "bg-primary/10 text-primary border border-primary/20"
-                        : "bg-secondary text-muted-foreground border border-border hover:border-primary/30"
-                    }`}
+                    className={`px-3 py-1.5 rounded-lg text-sm font-mono transition-colors ${item.highlight
+                      ? "bg-primary/10 text-primary border border-primary/20"
+                      : "bg-secondary text-muted-foreground border border-border hover:border-primary/30"
+                      }`}
                   >
                     {item.name}
                   </span>

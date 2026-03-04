@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { 
-  CheckCircle2, 
-  Shield, 
-  GitMerge, 
-  MessageCircle, 
-  Clock, 
-  Sparkles 
+import {
+  CheckCircle2,
+  Shield,
+  GitMerge,
+  MessageCircle,
+  Clock,
+  Sparkles
 } from "lucide-react";
 
 const Differentials = () => {
@@ -50,7 +50,7 @@ const Differentials = () => {
   return (
     <section id="diferenciais" className="relative py-24 bg-secondary/30" ref={ref}>
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-      
+
       <div className="container px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -58,14 +58,14 @@ const Differentials = () => {
           transition={{ duration: 0.5 }}
           className="text-center max-w-2xl mx-auto mb-16"
         >
-          <span className="text-primary font-mono text-sm tracking-wider uppercase mb-4 block">
+          <span className="text-primary font-mono text-xs uppercase tracking-widest mb-4 block">
             Diferenciais
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+          <h2 className="text-3xl sm:text-4xl font-light tracking-tight mb-4">
             Por Que Escolher a{" "}
             <span className="text-gradient">EPM DEVTECH</span>
           </h2>
-          <p className="text-muted-foreground">
+          <p className="font-mono text-sm text-muted-foreground leading-relaxed">
             Qualidade técnica e profissionalismo em cada linha de código.
           </p>
         </motion.div>
@@ -83,8 +83,8 @@ const Differentials = () => {
                 <item.icon className="w-6 h-6 text-primary" />
               </div>
               <div>
-                <h3 className="font-semibold mb-2">{item.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <h3 className="font-mono font-semibold uppercase tracking-wide text-xs mb-2">{item.title}</h3>
+                <p className="font-mono text-xs text-muted-foreground leading-relaxed">
                   {item.description}
                 </p>
               </div>
