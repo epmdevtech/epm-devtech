@@ -18,18 +18,18 @@ import {
 const MockupIndustria = () => (
   <div className="about-mockup">
     <div className="mockup-row">
-      <span className="mockup-badge manufacturing">ERP</span>
+      <span className="mockup-badge">ERP</span>
       <span className="mockup-line" />
     </div>
-    <div className="mockup-row mt-2">
-      <span className="mockup-badge secondary">Automação</span>
+    <div className="mockup-row mt-3">
+      <span className="mockup-badge">Automação</span>
       <span className="mockup-bar" style={{ "--fill": "72%" } as React.CSSProperties} />
     </div>
     <div className="mockup-row mt-2">
-      <span className="mockup-badge secondary">Produção</span>
+      <span className="mockup-badge">Produção</span>
       <span className="mockup-bar" style={{ "--fill": "55%" } as React.CSSProperties} />
     </div>
-    <div className="mockup-chip-row mt-3">
+    <div className="mockup-chip-row">
       <BarChart2 size={12} className="mockup-chip-icon" />
       <span className="mockup-chip-label">Controle de Produção</span>
     </div>
@@ -39,18 +39,18 @@ const MockupIndustria = () => (
 const MockupVarejo = () => (
   <div className="about-mockup">
     <div className="mockup-row">
-      <span className="mockup-badge ecommerce">E-Commerce</span>
+      <span className="mockup-badge">E-Commerce</span>
       <span className="mockup-line" />
     </div>
-    <div className="mockup-row mt-2">
-      <span className="mockup-badge secondary">Checkout</span>
+    <div className="mockup-row mt-3">
+      <span className="mockup-badge">Checkout</span>
       <span className="mockup-bar" style={{ "--fill": "88%" } as React.CSSProperties} />
     </div>
     <div className="mockup-row mt-2">
-      <span className="mockup-badge secondary">Estoque</span>
+      <span className="mockup-badge">Estoque</span>
       <span className="mockup-bar" style={{ "--fill": "64%" } as React.CSSProperties} />
     </div>
-    <div className="mockup-chip-row mt-3">
+    <div className="mockup-chip-row">
       <ShieldCheck size={12} className="mockup-chip-icon" />
       <span className="mockup-chip-label">Gestão de Estoque</span>
     </div>
@@ -60,20 +60,20 @@ const MockupVarejo = () => (
 const MockupEducacao = () => (
   <div className="about-mockup">
     <div className="mockup-row">
-      <span className="mockup-badge governo">CAPES · MEC</span>
+      <span className="mockup-badge">CAPES · MEC</span>
       <span className="mockup-line" />
     </div>
-    <div className="mockup-row mt-2">
-      <span className="mockup-badge secondary">Gestão Acadêmica</span>
+    <div className="mockup-row mt-3">
+      <span className="mockup-badge">Gestão</span>
       <span className="mockup-bar" style={{ "--fill": "100%" } as React.CSSProperties} />
     </div>
     <div className="mockup-row mt-2">
-      <span className="mockup-badge secondary">Publicações</span>
+      <span className="mockup-badge">Publicações</span>
       <span className="mockup-bar" style={{ "--fill": "83%" } as React.CSSProperties} />
     </div>
-    <div className="mockup-chip-row mt-3">
+    <div className="mockup-chip-row">
       <BookOpen size={12} className="mockup-chip-icon" />
-      <span className="mockup-chip-label">Alto Impacto Institucional</span>
+      <span className="mockup-chip-label">Impacto Institucional</span>
     </div>
   </div>
 );
@@ -81,20 +81,20 @@ const MockupEducacao = () => (
 const MockupEnergia = () => (
   <div className="about-mockup">
     <div className="mockup-row">
-      <span className="mockup-badge energia">ONS</span>
+      <span className="mockup-badge">ONS</span>
       <span className="mockup-line" />
     </div>
-    <div className="mockup-row mt-2">
-      <span className="mockup-badge secondary">Monitoramento</span>
+    <div className="mockup-row mt-3">
+      <span className="mockup-badge">Monitoramento</span>
       <span className="mockup-bar" style={{ "--fill": "96%" } as React.CSSProperties} />
     </div>
     <div className="mockup-row mt-2">
-      <span className="mockup-badge secondary">Operação</span>
+      <span className="mockup-badge">Operação</span>
       <span className="mockup-bar" style={{ "--fill": "79%" } as React.CSSProperties} />
     </div>
-    <div className="mockup-chip-row mt-3">
+    <div className="mockup-chip-row">
       <Zap size={12} className="mockup-chip-icon" />
-      <span className="mockup-chip-label">Sistema Elétrico Crítico</span>
+      <span className="mockup-chip-label">Sistema Crítico</span>
     </div>
   </div>
 );
@@ -106,9 +106,8 @@ const highlights = [
     title: "Indústria",
     handle: "MANUFATURA",
     description:
-      "Sistemas robustos para automação de processos, controle de produção e integração com ERPs em ambientes de manufatura.",
+      "Sistemas robustos para automação de processos, controle de produção e integração com ERPs.",
     Mockup: MockupIndustria,
-    accent: "manufacturing",
   },
   {
     num: "02",
@@ -118,7 +117,6 @@ const highlights = [
     description:
       "Plataformas de e-commerce, gestão de estoque e soluções de checkout que escalam com o crescimento do negócio.",
     Mockup: MockupVarejo,
-    accent: "ecommerce",
   },
   {
     num: "03",
@@ -126,9 +124,8 @@ const highlights = [
     title: "Educação",
     handle: "CAPES · MEC · GOVERNO FEDERAL",
     description:
-      "Projetos para a CAPES — órgão do Ministério da Educação do Governo Federal — com soluções de gestão acadêmica de alto impacto institucional.",
+      "Projetos para a CAPES e MEC com soluções de gestão acadêmica de alto impacto.",
     Mockup: MockupEducacao,
-    accent: "governo",
   },
   {
     num: "04",
@@ -136,9 +133,8 @@ const highlights = [
     title: "Energia",
     handle: "ONS · ENERGIA PECÉM",
     description:
-      "Projetos para o Operador Nacional do Sistema Elétrico (ONS) e Energia Pecém — sistemas críticos de monitoramento e operação no setor elétrico brasileiro.",
+      "Projetos para o Operador Nacional do Sistema Elétrico (ONS) e Energia Pecém — sistemas críticos de monitoramento.",
     Mockup: MockupEnergia,
-    accent: "energia",
   },
 ];
 
@@ -149,210 +145,257 @@ const About = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
-  // Split into 2 pairs
+  // Split into 2 pairs for the 2-column Desktop stagger
   const pairs = [highlights.slice(0, 2), highlights.slice(2, 4)];
 
   return (
     <>
       <style>{`
         /* ══════════════════════════════════════════════════
-           ABOUT CARD — raised box style
+           ABOUT CARD — 3D Block Style (Reference Image)
         ══════════════════════════════════════════════════ */
-
-        /* outer pair container — two pairs stacked */
+        
         .about-pairs-wrap {
           display: flex;
           flex-direction: column;
-          gap: 1.25rem;
+          gap: 5rem;
+          padding-top: 1rem;
         }
 
-        /* each pair: two cards side by side */
         .about-pair {
-          display: flex;
-          align-items: flex-end;   /* bottom-aligned so stagger reads as height diff */
-          gap: 1rem;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 2.5rem;
+          align-items: start;
         }
+        
+        /* Mobile: always stacked */
         @media (max-width: 639px) {
-          .about-pair { flex-direction: column; align-items: stretch; gap: 0.75rem; }
+          .about-pair { 
+            grid-template-columns: 1fr; 
+            gap: 4.5rem; 
+          }
         }
 
-        /* CARD BASE */
+        /* ── STAGGER EFFECT FOR PAIRS ── */
+        @media (min-width: 640px) {
+          .about-pair .about-card-wrapper:nth-child(2) {
+            transform: translateY(-50px);
+          }
+        }
+
+        .about-card-wrapper {
+          position: relative;
+          z-index: 1;
+        }
+        .about-card-wrapper:hover {
+          z-index: 10;
+        }
+
+        /* CARD BASE: Front face of the 3D block */
         .about-card {
-          flex: 1;
-          border-radius: 16px;
-          border: 1px solid hsl(var(--border));
+          --depth: 22px;
+          position: relative;
           background: hsl(var(--card));
-          padding: 1.4rem;
+          border-left: 1px solid hsl(var(--border) / 0.3);
+          padding: 2.2rem 1.8rem;
           display: flex;
           flex-direction: column;
-          position: relative;
-          overflow: hidden;
-          transition: transform 0.35s cubic-bezier(.22,.68,0,1.2),
-                      box-shadow 0.35s ease,
-                      border-color 0.3s;
-          /* raised box shadow — light mode */
-          box-shadow:
-            0 2px 4px  rgba(0,0,0,0.06),
-            0 8px 16px rgba(0,0,0,0.08),
-            0 20px 40px rgba(0,0,0,0.06);
+          margin-top: var(--depth);
+          margin-right: var(--depth);
+          border-radius: 4px;
+          box-shadow: 20px 20px 40px rgba(0,0,0,0.08);
+          transition: transform 0.4s cubic-bezier(.22,.68,0,1);
+          height: 100%;
         }
-
-        /* dark mode: deeper, more dramatic shadow */
         .dark .about-card {
-          box-shadow:
-            0 2px 4px   rgba(0,0,0,0.4),
-            0 8px 20px  rgba(0,0,0,0.35),
-            0 24px 48px rgba(0,0,0,0.3),
-            inset 0 1px 0 rgba(255,255,255,0.04);
+          box-shadow: 20px 20px 50px rgba(0,0,0,0.8);
         }
 
-        .about-card:hover {
-          transform: translateY(-4px);
-          border-color: hsl(var(--primary) / 0.45);
-          box-shadow:
-            0 4px 8px   rgba(0,0,0,0.08),
-            0 16px 32px rgba(0,0,0,0.12),
-            0 32px 64px rgba(0,0,0,0.08),
-            0 0 0 1px   hsl(var(--primary) / 0.15);
-        }
-        .dark .about-card:hover {
-          box-shadow:
-            0 4px 8px   rgba(0,0,0,0.45),
-            0 16px 32px rgba(0,0,0,0.4),
-            0 32px 64px rgba(0,0,0,0.35),
-            inset 0 1px 0 rgba(255,255,255,0.06),
-            0 0 0 1px   hsl(var(--primary) / 0.25);
-        }
-
-        /* ── STAGGER: first card in each pair is pushed down (appears lower/shorter) */
-        .about-pair .about-card:first-child {
-          margin-bottom: 28px;   /* pushed down relative to bottom-aligned flex */
-        }
-        @media (max-width: 639px) {
-          .about-pair .about-card:first-child { margin-bottom: 0; }
-        }
-
-        /* top-left radial glow */
+        /* 3D TOP FACE */
         .about-card::before {
           content: '';
           position: absolute;
-          top: -40px; left: -40px;
-          width: 150px; height: 150px;
-          border-radius: 50%;
-          background: radial-gradient(circle, hsl(var(--primary) / 0.09) 0%, transparent 70%);
-          pointer-events: none;
+          height: var(--depth);
+          left: 0;
+          right: 0;
+          top: calc(-1 * var(--depth));
+          background: hsl(var(--card));
+          filter: brightness(0.95);
+          transform-origin: bottom;
+          transform: skewX(-45deg);
+          border-top: 1px solid hsl(var(--border) / 0.5);
+          border-left: 1px solid hsl(var(--border) / 0.2);
+          border-top-left-radius: 3px;
+        }
+        .dark .about-card::before {
+          filter: brightness(1.5);
+          border-top: 1px solid rgba(255,255,255,0.06);
+          border-left: 1px solid rgba(255,255,255,0.03);
+        }
+
+        /* 3D RIGHT FACE */
+        .about-card::after {
+          content: '';
+          position: absolute;
+          width: var(--depth);
+          top: 0;
+          bottom: 0;
+          right: calc(-1 * var(--depth));
+          background: hsl(var(--card));
+          filter: brightness(0.85);
+          transform-origin: left;
+          transform: skewY(-45deg);
+          border-right: 1px solid rgba(0,0,0,0.05);
+          border-bottom: 1px solid rgba(0,0,0,0.05);
+          border-bottom-right-radius: 3px;
+        }
+        .dark .about-card::after {
+          filter: brightness(0.6);
+          border-right: 1px solid rgba(0,0,0,0.8);
+          border-bottom: 1px solid rgba(0,0,0,0.8);
+        }
+
+        .about-card:hover {
+          transform: translateY(-8px) translateX(-4px);
+        }
+
+        /* Hover Glow */
+        .about-card-glow {
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(circle at 50% 10%, hsl(var(--primary) / 0.08), transparent 70%);
           opacity: 0;
           transition: opacity 0.4s;
+          pointer-events: none;
         }
-        .about-card:hover::before { opacity: 1; }
+        .about-card:hover .about-card-glow {
+          opacity: 1;
+        }
 
-        /* ─── number badge ─── */
+        /* ─── NUMBER BADGE ─── */
         .about-num {
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          width: 28px; height: 28px;
-          border-radius: 8px;
-          font-size: 0.63rem;
+          width: 24px; height: 24px;
+          border-radius: 4px;
+          font-size: 0.65rem;
           font-family: ui-monospace, monospace;
           font-weight: 700;
-          letter-spacing: 0.04em;
-          margin-bottom: 1rem;
-          flex-shrink: 0;
+          background: hsl(var(--primary));
+          color: hsl(var(--primary-foreground));
+          margin-bottom: 1.25rem;
+          box-shadow: inset 0 1px 1px rgba(255,255,255,0.3), 0 2px 8px hsl(var(--primary) / 0.3);
+          position: relative;
+          z-index: 2;
         }
-        .num-manufacturing { background: hsl(218 100% 58% / 0.18); color: hsl(218 100% 70%); }
-        .num-ecommerce     { background: hsl(160 60%  45% / 0.18); color: hsl(160 60%  62%); }
-        .num-governo       { background: hsl(48  95%  50% / 0.18); color: hsl(48  95%  58%); }
-        .num-energia       { background: hsl(280 65%  60% / 0.18); color: hsl(280 65%  72%); }
 
-        /* ─── title ─── */
+        /* ─── TITLE ─── */
         .about-title {
           display: flex;
-          align-items: flex-start;
-          gap: 5px;
-          font-size: 1.1rem;
+          align-items: center;
+          gap: 8px;
+          font-size: 1.2rem;
           font-weight: 500;
-          letter-spacing: -0.02em;
-          line-height: 1.25;
+          letter-spacing: -0.01em;
           color: hsl(var(--foreground));
-          margin-bottom: 0.35rem;
+          margin-bottom: 0.5rem;
           transition: gap 0.25s;
+          position: relative;
+          z-index: 2;
         }
-        .about-card:hover .about-title { gap: 9px; }
+        .about-card:hover .about-title { gap: 12px; }
         .about-arrow {
-          margin-top: 4px;
-          opacity: 0.38;
-          flex-shrink: 0;
+          opacity: 0.5;
           transition: opacity 0.25s, transform 0.25s;
         }
         .about-card:hover .about-arrow {
           opacity: 1;
-          transform: translate(3px, -2px);
         }
 
-        /* ─── mockup panel ─── */
+        /* SECTOR HANDLE */
+        .about-handle {
+          font-family: ui-monospace, monospace;
+          font-size: 0.65rem;
+          text-transform: uppercase;
+          letter-spacing: 0.08em;
+          color: hsl(var(--primary));
+          margin-bottom: 1rem;
+          position: relative;
+          z-index: 2;
+        }
+
+        /* ─── DESC ─── */
+        .about-card-desc {
+          font-size: 0.85rem;
+          color: hsl(var(--muted-foreground));
+          line-height: 1.6;
+          margin-bottom: 2rem;
+          position: relative;
+          z-index: 2;
+        }
+
+        /* ─── MOCKUP PANEL ─── */
         .about-mockup-panel {
           margin-top: auto;
-          padding-top: 0.9rem;
-          border-top: 1px solid hsl(var(--border));
+          position: relative;
+          z-index: 2;
+          background: hsl(var(--secondary) / 0.4);
+          border: 1px solid hsl(var(--border));
+          border-radius: 10px;
+          padding: 1.25rem;
+          box-shadow: inset 0 2px 10px rgba(0,0,0,0.03);
         }
-        .about-mockup { font-family: ui-monospace, monospace; }
-        .mockup-row   { display: flex; align-items: center; gap: 7px; }
-
+        .dark .about-mockup-panel {
+          box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
+          background: rgba(0,0,0,0.2);
+        }
+        .mockup-row { display: flex; align-items: center; gap: 8px; }
         .mockup-badge {
-          font-size: 0.58rem;
+          font-size: 0.6rem;
           font-weight: 600;
-          letter-spacing: 0.04em;
-          padding: 2px 7px;
+          padding: 2px 8px;
           border-radius: 999px;
           white-space: nowrap;
-          flex-shrink: 0;
-        }
-        .mockup-badge.secondary {
-          background: hsl(var(--secondary));
-          color: hsl(var(--muted-foreground));
+          color: hsl(var(--foreground));
+          background: hsl(var(--background) / 0.5);
           border: 1px solid hsl(var(--border));
         }
-        .mockup-badge.manufacturing { background: hsl(218 100% 58% / 0.18); color: hsl(218 100% 70%); border: 1px solid hsl(218 100% 58% / 0.3); }
-        .mockup-badge.ecommerce     { background: hsl(160 60%  45% / 0.18); color: hsl(160 60%  62%); border: 1px solid hsl(160 60%  45% / 0.3); }
-        .mockup-badge.governo       { background: hsl(48  95%  50% / 0.18); color: hsl(48  95%  58%); border: 1px solid hsl(48  95%  50% / 0.3); }
-        .mockup-badge.energia       { background: hsl(280 65%  60% / 0.18); color: hsl(280 65%  72%); border: 1px solid hsl(280 65%  60% / 0.3); }
-
         .mockup-line {
           flex: 1;
           height: 1px;
           background: hsl(var(--border));
-          max-width: 60px;
         }
         .mockup-bar {
           flex: 1;
-          height: 5px;
+          height: 4px;
           border-radius: 999px;
           background: hsl(var(--border));
           position: relative;
           overflow: hidden;
-          max-width: 110px;
         }
         .mockup-bar::after {
           content: '';
           position: absolute;
           inset: 0;
           width: var(--fill, 50%);
+          background: hsl(var(--primary));
           border-radius: inherit;
-          background: hsl(var(--primary) / 0.55);
         }
         .mockup-chip-row {
           display: flex;
           align-items: center;
-          gap: 5px;
-          padding: 3px 8px;
-          border-radius: 8px;
+          gap: 6px;
+          padding: 4px 10px;
+          border-radius: 6px;
+          background: hsl(var(--background) / 0.5);
           border: 1px solid hsl(var(--border));
-          background: hsl(var(--secondary));
           width: fit-content;
+          margin-top: 14px;
         }
-        .mockup-chip-icon  { color: hsl(var(--primary)); flex-shrink: 0; }
-        .mockup-chip-label { font-size: 0.58rem; color: hsl(var(--muted-foreground)); white-space: nowrap; }
+        .mockup-chip-icon { color: hsl(var(--primary)); }
+        .mockup-chip-label { font-size: 0.65rem; color: hsl(var(--muted-foreground)); }
       `}</style>
 
       <section id="sobre" className="relative py-24 bg-background" ref={ref}>
@@ -423,40 +466,44 @@ const About = () => {
               {pairs.map((pair, pairIdx) => (
                 <div key={pairIdx} className="about-pair">
                   {pair.map((item, cardIdx) => (
-                    <motion.div
-                      key={item.num}
-                      className="about-card"
-                      initial={{ opacity: 0, y: 24 }}
-                      animate={isInView ? { opacity: 1, y: 0 } : {}}
-                      transition={{
-                        duration: 0.45,
-                        delay: 0.25 + pairIdx * 0.15 + cardIdx * 0.08,
-                      }}
-                    >
-                      {/* Number badge */}
-                      <div className={`about-num num-${item.accent}`}>{item.num}</div>
+                    <div key={item.num} className="about-card-wrapper">
+                      <motion.div
+                        className="about-card"
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={isInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{
+                          duration: 0.5,
+                          delay: 0.25 + pairIdx * 0.15 + cardIdx * 0.1,
+                          ease: [0.22, 0.68, 0, 1.1]
+                        }}
+                      >
+                        <div className="about-card-glow" />
 
-                      {/* Title + arrow */}
-                      <div className="about-title">
-                        <span>{item.title}</span>
-                        <ArrowRight className="about-arrow" size={15} />
-                      </div>
+                        {/* Number badge */}
+                        <div className="about-num">{item.num}</div>
 
-                      {/* Sector handle */}
-                      <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-3 block">
-                        {item.handle}
-                      </span>
+                        {/* Title + arrow */}
+                        <div className="about-title">
+                          <span>{item.title}</span>
+                          <ArrowRight className="about-arrow" size={17} strokeWidth={2.5} />
+                        </div>
 
-                      {/* Description */}
-                      <p className="font-mono text-xs text-muted-foreground leading-relaxed mb-4">
-                        {item.description}
-                      </p>
+                        {/* Sector handle */}
+                        <span className="about-handle">
+                          {item.handle}
+                        </span>
 
-                      {/* Mockup panel */}
-                      <div className="about-mockup-panel">
-                        <item.Mockup />
-                      </div>
-                    </motion.div>
+                        {/* Description */}
+                        <p className="about-card-desc">
+                          {item.description}
+                        </p>
+
+                        {/* Mockup panel */}
+                        <div className="about-mockup-panel">
+                          <item.Mockup />
+                        </div>
+                      </motion.div>
+                    </div>
                   ))}
                 </div>
               ))}

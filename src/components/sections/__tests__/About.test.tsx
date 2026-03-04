@@ -51,8 +51,8 @@ describe('About Component', () => {
         render(<About />);
 
         expect(screen.getByText('Controle de Produção')).toBeInTheDocument(); // MockupIndustria
-        expect(screen.getByText('Gestão de Estoque')).toBeInTheDocument();      // MockupVarejo
-        expect(screen.getByText('Alto Impacto Institucional')).toBeInTheDocument(); // MockupEducacao
-        expect(screen.getByText('Sistema Elétrico Crítico')).toBeInTheDocument();  // MockupEnergia
+        expect(screen.getByText('Gestão de Estoque')).toBeInTheDocument();
+        expect(screen.getByText('Impacto Institucional')).toBeInTheDocument();
+        expect(screen.getByText('Sistema Crítico')).toBeInTheDocument();  // MockupEnergia
     });
 });
