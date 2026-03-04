@@ -1,39 +1,33 @@
-import { motion } from "framer-motion";
-import { ArrowRight, Code2, Zap } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Code2 } from "lucide-react";
 import { Typewriter } from "@/components/ui/typewriter";
 
 const Hero = () => {
+  const { scrollY } = useScroll();
+  const heroOpacity = useTransform(scrollY, [0, 300], [1, 0]);
+  const heroScale = useTransform(scrollY, [0, 300], [1, 0.9]);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-hero noise">
       {/* Background grid pattern */}
       <div className="absolute inset-0 bg-grid-pattern bg-grid opacity-[0.03]" />
-      
+
       {/* Gradient orbs */}
       <div className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/10 rounded-full blur-[128px]" />
       <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-accent/10 rounded-full blur-[128px]" />
-      
-      <div className="container relative z-10 px-6 py-24">
+
+      <motion.div
+        style={{ opacity: heroOpacity, scale: heroScale }}
+        className="container relative z-10 px-6 py-24"
+      >
         <div className="max-w-4xl mx-auto text-center">
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full border border-border bg-secondary/50 backdrop-blur-sm"
-          >
-            <Zap className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium text-muted-foreground">
-              +9 anos de experiência em Engenharia de Software
-            </span>
-          </motion.div>
 
           {/* Headline */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight mb-6"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tight leading-tight mb-6"
           >
             <Typewriter text="Soluções Digitais " speed={50} />
             <span className="text-gradient">
@@ -50,61 +44,51 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed min-h-[5rem]"
+            className="font-mono text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed min-h-[5rem]"
           >
-            <Typewriter 
+            <Typewriter
               text="Arquitetura de software robusta, APIs escaláveis e sistemas web de alta performance. Transformamos desafios técnicos em soluções elegantes e eficientes."
               speed={20}
               delay={2200}
             />
           </motion.p>
 
-          {/* CTAs */}
+          {/* CTA */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            className="flex items-center justify-center"
           >
-            <Button 
-              size="lg" 
-              className="group bg-gradient-accent text-white hover:opacity-90 hover:scale-105 transition-all duration-300 shadow-glow px-8 py-6 text-base font-semibold"
-              asChild
+            <motion.a
+              href="#servicos"
+              aria-label="Conheça os serviços da EPM DEVTECH"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.5rem",
+                padding: "0.875rem 2rem",
+                borderRadius: "0.5rem",
+                fontWeight: 700,
+                fontSize: "1rem",
+                color: "#ffffff",
+                background: "linear-gradient(135deg, #2979FF 0%, #A855F7 50%, #0EA5E9 100%)",
+                backgroundSize: "200% 200%",
+                boxShadow: "0 0 20px 0 rgba(41,121,255,0.4)",
+                textDecoration: "none",
+              }}
+              whileHover={{
+                scale: 1.03,
+                boxShadow: "0 0 28px 4px rgba(168,85,247,0.4)",
+              }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 160, damping: 24 }}
             >
-              <a href="#contato">
-                Solicitar Orçamento
-                <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </a>
-            </Button>
-            <Button 
-              variant="outline" 
-              size="lg"
-              className="border-border hover:bg-secondary hover:border-primary/50 hover:scale-105 transition-all duration-300 px-8 py-6 text-base"
-              asChild
-            >
-              <a href="#servicos">
-                <Code2 className="mr-2 w-4 h-4" />
-                Conheça os Serviços
-              </a>
-            </Button>
+              <Code2 size={18} strokeWidth={2} />
+              Conheça os Serviços
+            </motion.a>
           </motion.div>
         </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 0.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="w-6 h-10 border-2 border-border rounded-full flex items-start justify-center p-2"
-        >
-          <div className="w-1 h-2 bg-primary rounded-full" />
-        </motion.div>
       </motion.div>
     </section>
   );
