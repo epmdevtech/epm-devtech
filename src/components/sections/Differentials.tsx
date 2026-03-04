@@ -7,7 +7,7 @@ import {
   GitMerge,
   MessageCircle,
   Clock,
-  Sparkles
+  Sparkles,
 } from "lucide-react";
 
 const Differentials = () => {
@@ -18,32 +18,44 @@ const Differentials = () => {
     {
       icon: CheckCircle2,
       title: "Código Limpo & Testável",
-      description: "Seguimos princípios SOLID, Clean Code e TDD para garantir código de alta qualidade e fácil manutenção.",
+      handle: "CLEAN CODE · TDD",
+      description:
+        "Seguimos princípios SOLID, Clean Code e TDD para garantir código de alta qualidade, fácil manutenção e evolução segura ao longo do tempo.",
     },
     {
       icon: Shield,
       title: "Arquitetura Bem Definida",
-      description: "Projetos com arquitetura clara desde o início: hexagonal, microserviços ou monolitos bem estruturados.",
+      handle: "HEXAGONAL · MICROSERVIÇOS",
+      description:
+        "Projetos com arquitetura clara desde o início — hexagonal, microserviços ou monolitos bem estruturados — reduzindo dívida técnica desde o day one.",
     },
     {
       icon: GitMerge,
       title: "Versionamento & CI/CD",
-      description: "Git flow rigoroso, pipelines automatizados e deploys seguros com rollback disponível.",
+      handle: "GIT FLOW · DEPLOY",
+      description:
+        "Git flow rigoroso, pipelines automatizados e deploys seguros com rollback disponível para garantir estabilidade em produção.",
     },
     {
       icon: MessageCircle,
       title: "Comunicação Profissional",
-      description: "Atualizações regulares, documentação clara e alinhamento constante sobre entregas e prazos.",
+      handle: "TRANSPARÊNCIA · ALINHAMENTO",
+      description:
+        "Atualizações regulares, documentação clara e alinhamento constante sobre entregas e prazos para que você nunca fique no escuro.",
     },
     {
       icon: Clock,
       title: "Entrega Responsável",
-      description: "Compromisso com prazos realistas, qualidade técnica e transparência em cada etapa do projeto.",
+      handle: "PRAZO · QUALIDADE",
+      description:
+        "Comprometimento com prazos realistas, qualidade técnica e transparência em cada etapa — sem surpresas, sem atalhos.",
     },
     {
       icon: Sparkles,
       title: "Boas Práticas",
-      description: "Code review, testes automatizados, análise estática com SonarQube e monitoramento contínuo.",
+      handle: "SONARQUBE · REVIEW",
+      description:
+        "Code review, testes automatizados, análise estática com SonarQube e monitoramento contínuo para manter a saúde do projeto.",
     },
   ];
 
@@ -70,23 +82,34 @@ const Differentials = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Testimonial-style card grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border rounded-2xl overflow-hidden border border-border">
           {differentials.map((item, index) => (
             <motion.div
               key={item.title}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="flex gap-4"
+              transition={{ duration: 0.5, delay: index * 0.08 }}
+              className="group flex flex-col justify-between p-6 bg-card hover:bg-primary/5 transition-colors duration-300"
             >
-              <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                <item.icon className="w-6 h-6 text-primary" />
-              </div>
-              <div>
-                <h3 className="font-mono font-semibold uppercase tracking-wide text-xs mb-2">{item.title}</h3>
-                <p className="font-mono text-xs text-muted-foreground leading-relaxed">
-                  {item.description}
-                </p>
+              {/* Body — description fills upper area */}
+              <p className="font-mono text-sm text-muted-foreground leading-relaxed mb-6">
+                {item.description}
+              </p>
+
+              {/* Bottom row — separator + icon + title/handle */}
+              <div className="pt-4 border-t border-border flex items-center gap-3">
+                <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
+                  <item.icon className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <div className="font-mono font-semibold text-sm leading-tight">
+                    {item.title}
+                  </div>
+                  <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                    {item.handle}
+                  </div>
+                </div>
               </div>
             </motion.div>
           ))}
