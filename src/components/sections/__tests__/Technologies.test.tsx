@@ -5,8 +5,8 @@ import Technologies from '../Technologies';
 // Mock framer-motion and useInView to execute immediately
 vi.mock('framer-motion', () => ({
     motion: {
-        div: ({ children, className }: any) => <div className={className} data-testid="motion-div">{children}</div>,
-        p: ({ children, className }: any) => <p className={className}>{children}</p>,
+        div: ({ children, className }: React.HTMLAttributes<HTMLDivElement>) => <div className={className} data-testid="motion-div">{children}</div>,
+        p: ({ children, className }: React.HTMLAttributes<HTMLParagraphElement>) => <p className={className}>{children}</p>,
     },
     useInView: () => true,
 }));

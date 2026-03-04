@@ -5,9 +5,9 @@ import About from '../About';
 // Mock framer-motion and useInView to trigger animations immediately
 vi.mock('framer-motion', () => ({
     motion: {
-        div: ({ children, className }: any) => <div className={className} data-testid="motion-div">{children}</div>,
-        h2: ({ children, className }: any) => <h2 className={className}>{children}</h2>,
-        p: ({ children, className }: any) => <p className={className}>{children}</p>,
+        div: ({ children, className }: React.HTMLAttributes<HTMLDivElement>) => <div className={className} data-testid="motion-div">{children}</div>,
+        h2: ({ children, className }: React.HTMLAttributes<HTMLHeadingElement>) => <h2 className={className}>{children}</h2>,
+        p: ({ children, className }: React.HTMLAttributes<HTMLParagraphElement>) => <p className={className}>{children}</p>,
     },
     useInView: () => true,
 }));

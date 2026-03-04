@@ -5,7 +5,7 @@ import Differentials from '../Differentials';
 // Mock framer-motion and useInView to execute immediately
 vi.mock('framer-motion', () => ({
     motion: {
-        div: ({ children, className }: any) => <div className={className} data-testid="motion-div">{children}</div>,
+        div: ({ children, className }: React.HTMLAttributes<HTMLDivElement>) => <div className={className} data-testid="motion-div">{children}</div>,
     },
     useInView: () => true,
 }));
