@@ -1,73 +1,81 @@
-# Welcome to your Lovable project
+# EPM DEVTECH - Landing Page
 
-## Project info
+Bem-vindo ao repositório oficial da EPM DEVTECH, uma vitrine digital de excelência em Engenharia de Software focada em soluções robustas, escaláveis e de alta performance. Desenvolvido para apresentar serviços, metodologias ágeis e atuação em áreas críticas como Indústria, E-commerce, Educação (CAPES/MEC) e Energia (ONS).
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+![EPM DEVTECH Preview](./public/vite.svg)
 
-## How can I edit this code?
+## 🚀 Tecnologias e Stack
 
-There are several ways of editing your application.
+Este projeto é desenvolvido com um ecossistema moderno focado em performance, tipagem forte e manutenibilidade. A interface foi construída seguindo as diretrizes do **Clean Code** e **Mobile First**.
 
-**Use Lovable**
+- **React 18** (Interface declarativa e componentes reutilizáveis)
+- **TypeScript** (Tipagem estática para maior segurança e previsibilidade)
+- **Vite** (Build tool veloz para empacotamento)
+- **Tailwind CSS** (Estilização via utilitários com suporte nativo a Dark/Light Mode)
+- **shadcn/ui & Radix UI** (Componentes acessíveis, primitivos e altamente customizáveis)
+- **Framer Motion** (Animações fluidas e baseadas em scroll)
+- **Vitest & React Testing Library** (Testes unitários superando 90% de cobertura)
+- **Docker & Docker Compose** (Containerização do ambiente de setup e portabilidade)
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## 📦 Como Executar o Projeto Localmente
 
-Changes made via Lovable will be committed automatically to this repo.
+Existem duas formas de rodar a aplicação na sua máquina: utilizando o gerenciador de pacotes local `npm` ou de forma totalmente isolada via **Docker**.
 
-**Use your preferred IDE**
+### Opção 1: Via Gerenciador de Pacotes (Node.js Local)
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+**Pré-requisitos:** Node.js (versão 18+) e NPM instalados.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+1. **Clone do Repositório:**
+   ```bash
+   git clone <URL_DO_REPOSITORIO> epm-devtech-solutions
+   cd epm-devtech-solutions
+   ```
 
-Follow these steps:
+2. **Instale as Dependências:**
+   ```bash
+   npm install
+   ```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+3. **Inicie o Servidor de Desenvolvimento:**
+   ```bash
+   npm run dev
+   ```
+   *Acesse `http://localhost:8080` no seu navegador.*
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### Opção 2: Via Docker (Recomendado)
 
-# Step 3: Install the necessary dependencies.
-npm i
+O projeto conta com um `docker-compose.yml` pré-configurado com a imagem `node:20-alpine` lidando com toda a orquestração. Não é necessário ter o Node instalado em sua máquina bare-metal, apenas o Docker Engine.
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+**Pré-requisitos:** Docker e Docker Compose instalados.
+
+1. **No diretório raiz da aplicação, basta executar:**
+   ```bash
+   docker-compose up -d
+   ```
+
+2. **Acessando a aplicação:**  
+   O Docker cuidará de instalar as dependências automaticamente durante a compilação do container base, amarrando no diretório `app` e mapeando a porta padrão do repositório.
+   Abra seu navegador e acesse: `http://localhost:8070`
+
+> **Nota:** Para parar a execução do container, use: `docker-compose down`
+
+## 🧪 Testes Unitários
+
+O projeto conta com uma suíte de testes ponta a ponta construída com **Vitest** rodando no ambiente virtual nativo (**v8** engine de coverage). 
+
+Para rodar todos os testes na sua máquina e validar os relatórios de coverage:
+
+```bash
+npm run test:coverage
 ```
 
-**Edit a file directly in GitHub**
+Isso processará o script configurado gerando o report via terminal constatando que os principais componentes da Home Page rodam perfeitamente, mantendo o índice acima de >90%.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 📜 Licença  e Direitos Autorais
 
-**Use GitHub Codespaces**
+Desenvolvido orgulhosamente por **Elessandro Prestes Macedo**.
+Contato: [elessandro.prestes@gmail.com](mailto:elessandro.prestes@gmail.com)
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+---
 
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+> *“Trabalhamos com metodologias ágeis, versionamento rigoroso e integração contínua (CI/CD), garantindo transparência e previsibilidade em cada projeto.”*
