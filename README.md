@@ -27,7 +27,7 @@ Existem duas formas de rodar a aplicação na sua máquina: utilizando o gerenci
 
 1. **Clone do Repositório:**
    ```bash
-   git clone <URL_DO_REPOSITORIO> epm-devtech-solutions
+   git clone https://github.com/ElessandroPrestes/epm-devtech-solutions.git
    cd epm-devtech-solutions
    ```
 
@@ -40,7 +40,7 @@ Existem duas formas de rodar a aplicação na sua máquina: utilizando o gerenci
    ```bash
    npm run dev
    ```
-   *Acesse `http://localhost:8080` no seu navegador.*
+   *Acesse `http://localhost:8070` no seu navegador.*
 
 ### Opção 2: Via Docker (Recomendado)
 
