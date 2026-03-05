@@ -40,16 +40,16 @@ const Header = () => {
         }`}
     >
       <div className="container px-6">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-2">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-3 group">
-            <div>
+          <a href="#" className="flex items-center gap-3 group min-w-0 shrink-0">
+            <div className="min-w-0">
               <div className="font-bold text-lg leading-tight mb-0.5">
                 <div className="bg-gray-900 dark:bg-transparent rounded-md px-2 py-0.5 transition-colors duration-300">
                   <img
                     src="/logo-emp-dev-tech.png"
                     alt="EPM DEVTECH"
-                    className="h-8 object-contain"
+                    className="h-7 sm:h-8 w-auto object-contain"
                   />
                 </div>
               </div>
@@ -123,10 +123,10 @@ const Header = () => {
           </div>
 
           {/* Mobile Controls */}
-          <div className="flex items-center gap-2 md:hidden">
+          <div className="flex items-center gap-2 md:hidden shrink-0">
             <button
               onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-              className="p-2 text-foreground"
+              className="p-2 text-foreground rounded-md hover:bg-white/10 transition-colors"
               aria-label={isMobileMenuOpen ? "Fechar menu" : "Abrir menu"}
               aria-expanded={isMobileMenuOpen}
             >

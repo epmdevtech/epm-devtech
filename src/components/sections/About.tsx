@@ -169,11 +169,15 @@ const About = () => {
           align-items: start;
         }
         
-        /* Mobile: always stacked */
+        /* Mobile: always stacked, reduce 3D depth to prevent overflow */
         @media (max-width: 639px) {
-          .about-pair { 
-            grid-template-columns: 1fr; 
-            gap: 4.5rem; 
+          .about-pair {
+            grid-template-columns: 1fr;
+            gap: 4rem;
+          }
+          .about-card {
+            --depth: 10px;
+            margin-right: var(--depth);
           }
         }
 
@@ -398,7 +402,7 @@ const About = () => {
         .mockup-chip-label { font-size: 0.65rem; color: hsl(var(--muted-foreground)); }
       `}</style>
 
-      <section id="sobre" className="relative py-24 bg-background" ref={ref}>
+      <section id="sobre" className="relative py-24 bg-background overflow-hidden" ref={ref}>
         <div className="container px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
 

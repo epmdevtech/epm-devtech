@@ -3,15 +3,18 @@
 @tailwind utilities;
 
 html {
-  /* Reserva espaço para o scrollbar sempre — impede layout shift quando
-     overlays do Radix UI (Select, Dialog...) trancam o scroll do body */
-  scrollbar-gutter: stable;
-  /* Evita overflow horizontal em mobile causado por elementos decorativos */
-  overflow-x: hidden;
   /* Navegação suave para links âncora (SEO + usabilidade) */
   scroll-behavior: smooth;
   /* Compensa a altura do header fixo ao navegar para âncoras */
   scroll-padding-top: 80px;
+}
+
+body {
+  /* overflow-x: clip bloqueia o overflow horizontal visualmente
+     sem criar novo scroll container — preserva a navegação por âncoras.
+     overflow-x: hidden quebraria href="#secao" em mobile. */
+  overflow-x: clip;
+  max-width: 100%;
 }
 
 /* Oculta o cursor nativo em dispositivos com mouse (pointer: fine)
