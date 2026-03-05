@@ -82,24 +82,39 @@ const Contact = () => {
   });
 
   const onSubmit = async (data: FormValues) => {
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      toast.error("Configuração de e-mail incompleta. Use o contato direto.");
+      console.error("[EmailJS] Variáveis de ambiente não definidas:", { serviceId, templateId, publicKey });
+      return;
+    }
+
     setIsSending(true);
     try {
-      await emailjs.send(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-        {
-          from_name: data.name,
-          from_email: data.email,
-          phone: data.phone || "Não informado",
-          project_type: data.projectType,
-          message: data.message,
-        },
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
-      );
+      // Nomes das variáveis devem coincidir exatamente com o template no EmailJS
+      const templateParams = {
+        name: data.name,                                         // {{name}}
+        email: data.email,                                       // {{email}} → Reply To
+        title: `${data.projectType} — ${data.name}`,            // {{title}} → Subject
+        message: `${data.message}\n\nTelefone: ${data.phone || "Não informado"}\nTipo: ${data.projectType}`, // {{message}}
+        time: new Date().toLocaleString("pt-BR"),                // {{time}}
+      };
+
+      const result = await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      console.info("[EmailJS] Enviado com sucesso:", result.status, result.text);
       toast.success("Mensagem enviada! Retornarei em breve.");
       reset();
-    } catch {
-      toast.error("Falha ao enviar. Tente novamente ou use o e-mail direto.");
+    } catch (err: unknown) {
+      const error = err as { status?: number; text?: string };
+      console.error("[EmailJS] Erro ao enviar:", error);
+      toast.error(
+        error?.status === 400
+          ? "Erro de configuração do e-mail (400). Verifique o template no EmailJS."
+          : "Falha ao enviar. Tente novamente ou use o e-mail direto.",
+      );
     } finally {
       setIsSending(false);
     }
