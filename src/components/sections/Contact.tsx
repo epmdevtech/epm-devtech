@@ -94,27 +94,27 @@ const Contact = () => {
 
     setIsSending(true);
     try {
+      // Inicializa com a public key antes de enviar (mais confiável que passar como 4º arg)
+      emailjs.init({ publicKey });
+
       // Nomes das variáveis devem coincidir exatamente com o template no EmailJS
       const templateParams = {
-        name: data.name,                                         // {{name}}
-        email: data.email,                                       // {{email}} → Reply To
-        title: `${data.projectType} — ${data.name}`,            // {{title}} → Subject
-        message: `${data.message}\n\nTelefone: ${data.phone || "Não informado"}\nTipo: ${data.projectType}`, // {{message}}
-        time: new Date().toLocaleString("pt-BR"),                // {{time}}
+        name: data.name,
+        email: data.email,
+        title: `${data.projectType} — ${data.name}`,
+        message: `${data.message}\n\nTelefone: ${data.phone || "Não informado"}\nTipo: ${data.projectType}`,
+        time: new Date().toLocaleString("pt-BR"),
       };
 
-      const result = await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      const result = await emailjs.send(serviceId, templateId, templateParams);
       console.info("[EmailJS] Enviado com sucesso:", result.status, result.text);
       toast.success("Mensagem enviada! Retornarei em breve.");
       reset();
     } catch (err: unknown) {
       const error = err as { status?: number; text?: string };
-      console.error("[EmailJS] Erro ao enviar:", error);
-      toast.error(
-        error?.status === 400
-          ? "Erro de configuração do e-mail (400). Verifique o template no EmailJS."
-          : "Falha ao enviar. Tente novamente ou use o e-mail direto.",
-      );
+      console.error("[EmailJS] Erro —", "status:", error?.status, "| text:", error?.text, "| raw:", err);
+      const msg = error?.text ?? "erro desconhecido";
+      toast.error(`Falha ao enviar (${error?.status ?? "?"}): ${msg}. Use o e-mail direto se persistir.`);
     } finally {
       setIsSending(false);
     }
