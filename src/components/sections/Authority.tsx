@@ -130,7 +130,7 @@ const Authority = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
-            className="max-w-2xl mb-16"
+            className="text-center max-w-2xl mx-auto mb-16"
           >
             <span className="text-primary font-mono text-xs uppercase tracking-widest mb-4 block">
               Credenciais

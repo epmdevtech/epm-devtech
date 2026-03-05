@@ -278,7 +278,7 @@ const Differentials = () => {
             initial={{ opacity: 0, y: 24 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.55 }}
-            className="max-w-2xl"
+            className="text-center max-w-2xl mx-auto mb-12"
           >
             <span className="text-primary font-mono text-xs uppercase tracking-widest mb-4 block">
               Diferenciais
