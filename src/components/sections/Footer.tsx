@@ -202,6 +202,7 @@ const Footer = () => {
                     href={s.href}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={`Visite nosso perfil no ${s.label}`}
                     className="font-mono text-xs text-muted-foreground transition-colors duration-200 hover:text-primary relative group flex items-center gap-1.5">
                     <s.icon className="w-3.5 h-3.5" />
                     {s.label}
