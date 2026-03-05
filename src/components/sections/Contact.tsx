@@ -5,11 +5,19 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
-import { Mail, Phone, Clock, Send, Loader2 } from "lucide-react";
+import { Mail, Phone, Clock, Send, Loader2, Maximize2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import {
   Select,
   SelectContent,
@@ -41,14 +49,14 @@ const contactInfo = [
   {
     icon: Mail,
     label: "E-mail",
-    value: "elessandrodev@gmail.com",
-    href: "mailto:elessandrodev@gmail.com",
+    value: "elessandro@epmdevtech.com.br",
+    href: "mailto:elessandro@epmdevtech.com.br",
   },
   {
     icon: Phone,
     label: "WhatsApp",
-    value: "+55 (XX) XXXXX-XXXX",
-    href: "https://wa.me/55XXXXXXXXXXX",
+    value: "(45) 99917-8290",
+    href: "https://wa.me/5545999178290",
   },
   {
     icon: Clock,
@@ -253,10 +261,47 @@ const Contact = () => {
               </div>
 
               {/* Message */}
-              <div className="flex flex-col gap-1.5">
-                <Label htmlFor="message">
-                  Mensagem <span className="text-destructive">*</span>
-                </Label>
+              <div className="flex flex-col gap-1.5 relative">
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="message">
+                    Mensagem <span className="text-destructive">*</span>
+                  </Label>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        className="h-6 px-2 text-xs text-muted-foreground hover:text-foreground"
+                        aria-label="Expandir mensagem"
+                        title="Abrir bloco de notas para texto longo"
+                      >
+                        <Maximize2 className="w-3 h-3 mr-1.5" />
+                        Expandir
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-[90vw] w-[800px] h-[80vh] flex flex-col p-6">
+                      <DialogHeader>
+                        <DialogTitle className="text-2xl font-light">Detalhe seu Projeto</DialogTitle>
+                        <DialogDescription>
+                          Use este espaço amplo para descrever com conforto todos os requisitos,
+                          prazos e informações relevantes do seu projeto.
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="flex-1 min-h-0 mt-4 relative">
+                        <Textarea
+                          placeholder="Digite as informações do seu projeto aqui..."
+                          className="h-full resize-none text-base p-4 border-muted-foreground/20 focus-visible:ring-primary/50"
+                          {...register("message")}
+                          onChange={(e) => {
+                            // Update the main form value
+                            setValue("message", e.target.value, { shouldValidate: true });
+                          }}
+                        />
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+                </div>
                 <Textarea
                   id="message"
                   placeholder="Descreva seu projeto, prazo estimado e informações relevantes..."
