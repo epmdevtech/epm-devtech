@@ -8,6 +8,7 @@ import Authority from "@/components/sections/Authority";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 import CursorOrb from "@/components/CursorOrb";
+import ScrollToTop from "@/components/ui/ScrollToTop";
 import { Helmet } from "react-helmet-async";
 
 const Index = () => {
@@ -40,6 +41,7 @@ const Index = () => {
           <Contact />
         </main>
         <Footer />
+        <ScrollToTop />
       </div>
     </>
   );
