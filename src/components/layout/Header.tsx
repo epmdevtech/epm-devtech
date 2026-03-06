@@ -35,7 +35,7 @@ const Header = () => {
 
     // Aguarda a animação do menu fechar (300ms) para calcular e rolar corretamente  
     setTimeout(() => {
-      const targetId = href.replace(/.*\#/, "");
+      const targetId = href.replace(/.*#/, "");
       const elem = document.getElementById(targetId);
       if (elem) {
         const top = elem.getBoundingClientRect().top + window.scrollY - 80; // 80px de compensação do fixed header
@@ -177,7 +177,7 @@ const Header = () => {
               ))}
               <motion.a
                 href="#contato"
-                onClick={(e: any) => handleNavClick(e, "#contato")}
+                onClick={(e: React.MouseEvent<HTMLAnchorElement>) => handleNavClick(e, "#contato")}
                 aria-label="Fale Comigo — ir para seção de contato"
                 style={{
                   display: "inline-flex",
