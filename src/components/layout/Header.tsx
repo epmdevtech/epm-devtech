@@ -29,6 +29,24 @@ const Header = () => {
 
   const closeMobileMenu = useCallback(() => setIsMobileMenuOpen(false), []);
 
+  const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    closeMobileMenu();
+
+    // Aguarda a animação do menu fechar (300ms) para calcular e rolar corretamente  
+    setTimeout(() => {
+      const targetId = href.replace(/.*\#/, "");
+      const elem = document.getElementById(targetId);
+      if (elem) {
+        const top = elem.getBoundingClientRect().top + window.scrollY - 80; // 80px de compensação do fixed header
+        window.scrollTo({
+          top,
+          behavior: "smooth"
+        });
+      }
+    }, 350);
+  }, [closeMobileMenu]);
+
   return (
     <motion.header
       initial={{ y: -100 }}
@@ -151,7 +169,7 @@ const Header = () => {
                 <a
                   key={link.href}
                   href={link.href}
-                  onClick={closeMobileMenu}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   className="text-sm font-mono font-medium uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors py-2"
                 >
                   {link.label}
@@ -159,7 +177,7 @@ const Header = () => {
               ))}
               <motion.a
                 href="#contato"
-                onClick={closeMobileMenu}
+                onClick={(e: any) => handleNavClick(e, "#contato")}
                 aria-label="Fale Comigo — ir para seção de contato"
                 style={{
                   display: "inline-flex",
