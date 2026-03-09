@@ -18,8 +18,6 @@ vi.mock('lucide-react', () => ({
     MapPin: () => <span>MapPinIcon</span>,
     Instagram: () => <span>InstagramIcon</span>,
     Linkedin: () => <span>LinkedinIcon</span>,
-    Twitter: () => <span>TwitterIcon</span>,
-    Github: () => <span>GithubIcon</span>,
     ArrowUpRight: () => <span>ArrowIcon</span>,
     Moon: () => <span>MoonIcon</span>,
     Sun: () => <span>SunIcon</span>,
@@ -47,9 +45,8 @@ describe('Footer Component', () => {
 
     it('renders social links', () => {
         render(<Footer />);
-        expect(screen.getByText('X (Twitter)')).toBeInTheDocument();
         expect(screen.getByText('LinkedIn')).toBeInTheDocument();
-        expect(screen.getByText('GitHub')).toBeInTheDocument();
+        expect(screen.getByText('Instagram')).toBeInTheDocument();
     });
 
     it('renders the theme switcher options', () => {

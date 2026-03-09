@@ -1,5 +1,5 @@
 import { motion, Variants } from "framer-motion";
-import { Github, Linkedin, Twitter, Moon, Sun, Monitor } from "lucide-react";
+import { Linkedin, Instagram, Moon, Sun, Monitor } from "lucide-react";
 import { useTheme } from "@/components/theme-provider";
 
 // Using `Variants` type explicitly to satisfy Framer Motion's strict typing
@@ -49,9 +49,8 @@ const NAV_COLUMNS = [
 ];
 
 const SOCIAL_LINKS = [
-  { label: "X (Twitter)", href: "https://x.com", icon: Twitter },
   { label: "LinkedIn", href: "https://linkedin.com", icon: Linkedin },
-  { label: "GitHub", href: "https://github.com", icon: Github },
+  { label: "Instagram", href: "https://instagram.com", icon: Instagram },
 ];
 
 const THEME_OPTIONS = [
