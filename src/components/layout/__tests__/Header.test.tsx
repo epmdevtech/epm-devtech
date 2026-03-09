@@ -9,16 +9,16 @@ vi.mock('@/components/ui/typewriter', () => ({
 
 // Mock framer-motion to avoid animation delays in tests
 vi.mock('framer-motion', async () => {
-  const actual = await vi.importActual('framer-motion') as any;
+  const actual = await vi.importActual('framer-motion') as Record<string, unknown>;
   return {
     ...actual,
-    AnimatePresence: ({ children }: any) => <>{children}</>,
+    AnimatePresence: ({ children }: { children: React.ReactNode }) => <>{children}</>,
     motion: {
-      ...actual.motion,
-      header: (props: any) => <header {...props} />,
-      div: (props: any) => <div {...props} />,
-      a: (props: any) => <a {...props} />,
-      span: (props: any) => <span {...props} />,
+      ...(actual.motion as Record<string, unknown>),
+      header: (props: React.ComponentPropsWithoutRef<'header'>) => <header {...props} />,
+      div: (props: React.ComponentPropsWithoutRef<'div'>) => <div {...props} />,
+      a: (props: React.ComponentPropsWithoutRef<'a'>) => <a {...props} />,
+      span: (props: React.ComponentPropsWithoutRef<'span'>) => <span {...props} />,
     },
   };
 });
