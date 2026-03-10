@@ -12,7 +12,7 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
-      include: ['src/components/sections/**', 'src/components/layout/**'],
+      include: ['src/components/sections/**', 'src/components/layout/**', 'src/pages/**'],
       exclude: ['src/components/ui/**', 'src/lib/**', 'src/hooks/**'],
       all: true,
     },
