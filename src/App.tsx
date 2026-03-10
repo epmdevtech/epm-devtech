@@ -21,6 +21,8 @@ const App = () => (
           <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
             <Routes>
               <Route path="/" element={<Index />} />
+              {/* Rotas de seção — ex: /contato, /servicos — renderizam a mesma página e a rolagem é feita via useEffect */}
+              <Route path="/:section" element={<Index />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

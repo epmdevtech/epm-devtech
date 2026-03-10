@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageCircle, X } from "lucide-react";
+import { X } from "lucide-react";
 import { Typewriter } from "@/components/ui/typewriter";
 
 const navLinks = [
@@ -13,6 +14,7 @@ const navLinks = [
 
 
 const Header = () => {
+  const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -33,19 +35,20 @@ const Header = () => {
     e.preventDefault();
     closeMobileMenu();
 
-    // Aguarda a animação do menu fechar (300ms) para calcular e rolar corretamente  
+    const targetId = href.replace(/.*#/, "");
+
+    // Navega via React Router — atualiza a URL e dispara useLocation() em Index
+    navigate(`/${targetId}`);
+
+    // Aguarda a animação do menu fechar (300ms) para calcular e rolar corretamente
     setTimeout(() => {
-      const targetId = href.replace(/.*#/, "");
       const elem = document.getElementById(targetId);
       if (elem) {
         const top = elem.getBoundingClientRect().top + window.scrollY - 80; // 80px de compensação do fixed header
-        window.scrollTo({
-          top,
-          behavior: "smooth"
-        });
+        window.scrollTo({ top, behavior: "smooth" });
       }
     }, 350);
-  }, [closeMobileMenu]);
+  }, [closeMobileMenu, navigate]);
 
   return (
     <>
@@ -84,6 +87,7 @@ const Header = () => {
               <a
                 key={link.href}
                 href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
                 className="text-xs font-mono font-medium uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors relative group"
               >
                 {link.label}
