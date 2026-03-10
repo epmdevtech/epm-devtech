@@ -1,8 +1,17 @@
-import { render, screen } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import React from 'react';
 import Footer from '../Footer';
 
+// ─── Theme Provider ───────────────────────────────────────────────────────────
+const mockSetTheme = vi.fn();
+let mockTheme = 'dark';
+
+vi.mock('@/components/theme-provider', () => ({
+    useTheme: () => ({ theme: mockTheme, setTheme: mockSetTheme }),
+}));
+
+// ─── Framer Motion ────────────────────────────────────────────────────────────
 vi.mock('framer-motion', () => ({
     motion: {
         div: ({ children, className }: React.HTMLAttributes<HTMLDivElement>) => <div className={className}>{children}</div>,
@@ -12,6 +21,7 @@ vi.mock('framer-motion', () => ({
     },
 }));
 
+// ─── Lucide Icons ─────────────────────────────────────────────────────────────
 vi.mock('lucide-react', () => ({
     Mail: () => <span>MailIcon</span>,
     Phone: () => <span>PhoneIcon</span>,
@@ -24,7 +34,14 @@ vi.mock('lucide-react', () => ({
     Monitor: () => <span>MonitorIcon</span>,
 }));
 
+// ─────────────────────────────────────────────────────────────────────────────
+
 describe('Footer Component', () => {
+    beforeEach(() => {
+        vi.clearAllMocks();
+        mockTheme = 'dark';
+    });
+
     it('renders the branding and tagline', () => {
         render(<Footer />);
         expect(screen.getByAltText('EPM DEVTECH')).toBeInTheDocument();
@@ -49,16 +66,53 @@ describe('Footer Component', () => {
         expect(screen.getByText('Instagram')).toBeInTheDocument();
     });
 
-    it('renders the theme switcher options', () => {
+    it('renders copyright text', () => {
         render(<Footer />);
+        const currentYear = new Date().getFullYear();
+        expect(screen.getByText(new RegExp(`@EPM DEVTECH ${currentYear}. Todos os direitos reservados.`, 'i'))).toBeInTheDocument();
+    });
+
+    // ── ThemeSwitcher ─────────────────────────────────────────────────────────
+
+    it('renders the theme switcher with all 3 options', () => {
+        render(<Footer />);
+        expect(screen.getByRole('radiogroup', { name: /Selecionar tema/i })).toBeInTheDocument();
         expect(screen.getByText('Dark')).toBeInTheDocument();
         expect(screen.getByText('Light')).toBeInTheDocument();
         expect(screen.getByText('System')).toBeInTheDocument();
     });
 
-    it('renders copyright text', () => {
+    it('marca o tema ativo (dark) com aria-checked="true"', () => {
+        mockTheme = 'dark';
         render(<Footer />);
-        const currentYear = new Date().getFullYear();
-        expect(screen.getByText(new RegExp(`@EPM DEVTECH ${currentYear}. Todos os direitos reservados.`, 'i'))).toBeInTheDocument();
+        expect(screen.getByTitle('Tema Dark')).toHaveAttribute('aria-checked', 'true');
+        expect(screen.getByTitle('Tema Light')).toHaveAttribute('aria-checked', 'false');
+        expect(screen.getByTitle('Tema System')).toHaveAttribute('aria-checked', 'false');
+    });
+
+    it('marca o tema ativo (light) com aria-checked="true"', () => {
+        mockTheme = 'light';
+        render(<Footer />);
+        expect(screen.getByTitle('Tema Light')).toHaveAttribute('aria-checked', 'true');
+        expect(screen.getByTitle('Tema Dark')).toHaveAttribute('aria-checked', 'false');
+    });
+
+    it('chama setTheme("light") ao clicar no botão Light', () => {
+        render(<Footer />);
+        fireEvent.click(screen.getByTitle('Tema Light'));
+        expect(mockSetTheme).toHaveBeenCalledWith('light');
+    });
+
+    it('chama setTheme("system") ao clicar no botão System', () => {
+        render(<Footer />);
+        fireEvent.click(screen.getByTitle('Tema System'));
+        expect(mockSetTheme).toHaveBeenCalledWith('system');
+    });
+
+    it('chama setTheme("dark") ao clicar no botão Dark', () => {
+        mockTheme = 'light';
+        render(<Footer />);
+        fireEvent.click(screen.getByTitle('Tema Dark'));
+        expect(mockSetTheme).toHaveBeenCalledWith('dark');
     });
 });
