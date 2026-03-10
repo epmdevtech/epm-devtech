@@ -50,7 +50,7 @@ const NAV_COLUMNS = [
 
 const SOCIAL_LINKS = [
   { label: "LinkedIn", href: "https://linkedin.com/company/epm-devtech", icon: Linkedin },
-  { label: "Instagram", href: "https://instagram.com", icon: Instagram },
+  { label: "Instagram", href: "https://www.instagram.com/epmdevtech/", icon: Instagram },
 ];
 
 const THEME_OPTIONS = [
