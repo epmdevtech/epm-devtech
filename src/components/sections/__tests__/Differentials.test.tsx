@@ -1,13 +1,16 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
+import React from 'react';
 import Differentials from '../Differentials';
+
+const mockUseInView = vi.fn().mockReturnValue(true);
 
 // Mock framer-motion and useInView to execute immediately
 vi.mock('framer-motion', () => ({
     motion: {
         div: ({ children, className }: React.HTMLAttributes<HTMLDivElement>) => <div className={className} data-testid="motion-div">{children}</div>,
     },
-    useInView: () => true,
+    useInView: (...args: unknown[]) => mockUseInView(...args),
 }));
 
 describe('Differentials Component', () => {
@@ -46,5 +49,12 @@ describe('Differentials Component', () => {
         stepNums.forEach(num => {
             expect(screen.getByText(num)).toBeInTheDocument();
         });
+    });
+
+    it('renderiza corretamente quando useInView retorna false (antes de entrar no viewport)', () => {
+        mockUseInView.mockReturnValueOnce(false);
+        render(<Differentials />);
+        expect(screen.getByText(/Por Que Escolher a/i)).toBeInTheDocument();
+        expect(screen.getByText('Código Limpo & Testável')).toBeInTheDocument();
     });
 });

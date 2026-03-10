@@ -1,6 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
+import React from 'react';
 import Authority from '../Authority';
+
+const mockUseInView = vi.fn().mockReturnValue(true);
 
 vi.mock('framer-motion', () => ({
     motion: {
@@ -8,7 +11,7 @@ vi.mock('framer-motion', () => ({
             <div className={className} data-testid="motion-div">{children}</div>
         ),
     },
-    useInView: () => true,
+    useInView: (...args: unknown[]) => mockUseInView(...args),
 }));
 
 describe('Authority / Credentials Component', () => {
@@ -45,5 +48,12 @@ describe('Authority / Credentials Component', () => {
         render(<Authority />);
         expect(screen.getByText(/projetos de médio e grande porte/i)).toBeInTheDocument();
         expect(screen.getByText(/entregues dentro do prazo/i)).toBeInTheDocument();
+    });
+
+    it('renderiza corretamente quando useInView retorna false (antes de entrar no viewport)', () => {
+        mockUseInView.mockReturnValueOnce(false);
+        render(<Authority />);
+        expect(screen.getByText(/Credenciais/i)).toBeInTheDocument();
+        expect(screen.getByText('Experiência Profissional.')).toBeInTheDocument();
     });
 });

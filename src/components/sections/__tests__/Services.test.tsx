@@ -1,6 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
+import React from 'react';
 import Services from '../Services';
+
+const mockUseInView = vi.fn().mockReturnValue(true);
 
 vi.mock('framer-motion', () => ({
     motion: {
@@ -8,7 +11,7 @@ vi.mock('framer-motion', () => ({
             <div className={className} data-testid="motion-div">{children}</div>
         ),
     },
-    useInView: () => true,
+    useInView: (...args: unknown[]) => mockUseInView(...args),
 }));
 
 describe('Services Component', () => {
@@ -52,5 +55,12 @@ describe('Services Component', () => {
         // Maintenance mockup
         expect(screen.getByText('legacy')).toBeInTheDocument();
         expect(screen.getByText('refactored')).toBeInTheDocument();
+    });
+
+    it('renderiza corretamente quando useInView retorna false (antes de entrar no viewport)', () => {
+        mockUseInView.mockReturnValueOnce(false);
+        render(<Services />);
+        expect(screen.getByText(/Soluções/i)).toBeInTheDocument();
+        expect(screen.getByText('Desenvolvimento de Sistemas Web')).toBeInTheDocument();
     });
 });

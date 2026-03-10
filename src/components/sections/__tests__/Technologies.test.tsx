@@ -1,6 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
+import React from 'react';
 import Technologies from '../Technologies';
+
+const mockUseInView = vi.fn().mockReturnValue(true);
 
 // Mock framer-motion and useInView to execute immediately
 vi.mock('framer-motion', () => ({
@@ -8,7 +11,7 @@ vi.mock('framer-motion', () => ({
         div: ({ children, className }: React.HTMLAttributes<HTMLDivElement>) => <div className={className} data-testid="motion-div">{children}</div>,
         p: ({ children, className }: React.HTMLAttributes<HTMLParagraphElement>) => <p className={className}>{children}</p>,
     },
-    useInView: () => true,
+    useInView: (...args: unknown[]) => mockUseInView(...args),
 }));
 
 describe('Technologies Component', () => {
@@ -44,5 +47,12 @@ describe('Technologies Component', () => {
 
         const dockerImages = screen.getAllByAltText('Docker');
         expect(dockerImages.length).toBeGreaterThan(0);
+    });
+
+    it('renderiza corretamente quando useInView retorna false (antes de entrar no viewport)', () => {
+        mockUseInView.mockReturnValueOnce(false);
+        render(<Technologies />);
+        expect(screen.getByText(/Stack Tecnológica/i)).toBeInTheDocument();
+        expect(screen.getByText('Backend')).toBeInTheDocument();
     });
 });

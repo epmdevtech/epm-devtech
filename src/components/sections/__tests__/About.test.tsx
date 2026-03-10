@@ -1,15 +1,18 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
+import React from 'react';
 import About from '../About';
 
 // Mock framer-motion and useInView to trigger animations immediately
+const mockUseInView = vi.fn().mockReturnValue(true);
+
 vi.mock('framer-motion', () => ({
     motion: {
         div: ({ children, className }: React.HTMLAttributes<HTMLDivElement>) => <div className={className} data-testid="motion-div">{children}</div>,
         h2: ({ children, className }: React.HTMLAttributes<HTMLHeadingElement>) => <h2 className={className}>{children}</h2>,
         p: ({ children, className }: React.HTMLAttributes<HTMLParagraphElement>) => <p className={className}>{children}</p>,
     },
-    useInView: () => true,
+    useInView: (...args: unknown[]) => mockUseInView(...args),
 }));
 
 describe('About Component', () => {
@@ -54,5 +57,13 @@ describe('About Component', () => {
         expect(screen.getByText('Gestão de Estoque')).toBeInTheDocument();
         expect(screen.getByText('Impacto Institucional')).toBeInTheDocument();
         expect(screen.getByText('Sistema Crítico')).toBeInTheDocument();  // MockupEnergia
+    });
+
+    it('renderiza corretamente quando useInView retorna false (antes de entrar no viewport)', () => {
+        mockUseInView.mockReturnValueOnce(false);
+        render(<About />);
+        // Conteúdo sempre presente no DOM — apenas estado de animação muda
+        expect(screen.getByText(/Sobre a EPM DEVTECH/i)).toBeInTheDocument();
+        expect(screen.getByText(/Engenharia de Software com/i)).toBeInTheDocument();
     });
 });
