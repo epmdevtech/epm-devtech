@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, Variants } from "framer-motion";
 import {
   Building2,
   Target,
@@ -73,7 +73,7 @@ const AnimatedStat = ({
 
   const letters = Array.from(label);
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -83,7 +83,7 @@ const AnimatedStat = ({
       },
     },
   };
-  const letterVariants = {
+  const letterVariants: Variants = {
     hidden: { opacity: 0, filter: "blur(4px)", y: 2 },
     visible: { opacity: 1, filter: "blur(0px)", y: 0, transition: { type: "tween", ease: "easeOut", duration: 0.3 } },
   };
@@ -108,12 +108,12 @@ const AnimatedStat = ({
       </div>
       <motion.div
         className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.15em] text-muted-foreground/80 flex flex-wrap"
-        variants={containerVariants as any}
+        variants={containerVariants}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
       >
         {letters.map((char, index) => (
-          <motion.span key={index} variants={letterVariants as any}>
+          <motion.span key={index} variants={letterVariants}>
             {char === " " ? "\u00A0" : char}
           </motion.span>
         ))}
