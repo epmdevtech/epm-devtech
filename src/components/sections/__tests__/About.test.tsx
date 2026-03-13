@@ -11,6 +11,7 @@ vi.mock('framer-motion', () => ({
         div: ({ children, className }: React.HTMLAttributes<HTMLDivElement>) => <div className={className} data-testid="motion-div">{children}</div>,
         h2: ({ children, className }: React.HTMLAttributes<HTMLHeadingElement>) => <h2 className={className}>{children}</h2>,
         p: ({ children, className }: React.HTMLAttributes<HTMLParagraphElement>) => <p className={className}>{children}</p>,
+        span: ({ children, className }: React.HTMLAttributes<HTMLSpanElement>) => <span className={className}>{children}</span>,
     },
     useInView: (...args: unknown[]) => mockUseInView(...args),
 }));
@@ -26,12 +27,19 @@ describe('About Component', () => {
     it('renders the company stats', () => {
         render(<About />);
 
-        expect(screen.getByText('+9')).toBeInTheDocument();
-        expect(screen.getAllByText(/Anos de Experiência/i)[0]).toBeInTheDocument();
-        expect(screen.getByText('4')).toBeInTheDocument();
-        expect(screen.getByText(/Setores Atendidos/i)).toBeInTheDocument();
-        expect(screen.getByText('100%')).toBeInTheDocument();
-        expect(screen.getByText(/Comprometimento/i)).toBeInTheDocument();
+        const matchText = (text: string) => (content: string, element: Element | null) => {
+            const hasText = (node: Element) => node.textContent === text;
+            const elementHasText = element ? hasText(element) : false;
+            const childrenDontHaveText = element ? Array.from(element.children).every(child => !hasText(child)) : true;
+            return elementHasText && childrenDontHaveText;
+        };
+
+        expect(screen.getByText(matchText('+9'))).toBeInTheDocument();
+        expect(screen.getAllByText((content, element) => element?.textContent === 'Anos de Experiência' || element?.textContent === 'Anos de Experiência')[0]).toBeInTheDocument();
+        expect(screen.getByText(matchText('4'))).toBeInTheDocument();
+        expect(screen.getByText((content, element) => element?.textContent === 'Setores Atendidos' || element?.textContent === 'Setores Atendidos')).toBeInTheDocument();
+        expect(screen.getByText(matchText('100%'))).toBeInTheDocument();
+        expect(screen.getByText((content, element) => element?.textContent === 'Comprometimento')).toBeInTheDocument();
     });
 
     it('renders the 4 featured cards', () => {

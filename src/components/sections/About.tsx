@@ -1,5 +1,5 @@
+import React, { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
 import {
   Building2,
   Target,
@@ -11,6 +11,116 @@ import {
   BookOpen,
   Zap,
 } from "lucide-react";
+
+/* ─────────────────────────────────────────────────────────────
+   ANIMATED STAT & COUNT UP
+───────────────────────────────────────────────────────────── */
+// CountUp component interno simples usando requestAnimationFrame e React State
+const CountUp = ({ isCounting, end, duration }: { isCounting: boolean, end: number, duration: number }) => {
+  const [count, setCount] = useState(0);
+  
+  useEffect(() => {
+    if (!isCounting) return;
+    
+    let startTime: number | null = null;
+    let animationFrame: number;
+    
+    // Se for ambiente de testes, bypassa
+    if (process.env.NODE_ENV === 'test') {
+      setCount(end);
+      return;
+    }
+    
+    const step = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const progress = timestamp - startTime;
+      const ratio = Math.min(progress / (duration * 1000), 1);
+      
+      // Easing out quad
+      const easeOut = 1 - (1 - ratio) * (1 - ratio);
+      setCount(Math.floor(easeOut * end));
+      
+      if (progress < duration * 1000) {
+        animationFrame = requestAnimationFrame(step);
+      } else {
+        setCount(end);
+      }
+    };
+    
+    animationFrame = requestAnimationFrame(step);
+    
+    return () => cancelAnimationFrame(animationFrame);
+  }, [isCounting, end, duration]);
+  
+  return <>{count}</>;
+};
+
+const AnimatedStat = ({
+  value,
+  prefix = "",
+  suffix = "",
+  label,
+  delay = 0,
+}: {
+  value: number;
+  prefix?: string;
+  suffix?: string;
+  label: string;
+  delay?: number;
+}) => {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, amount: 0.1, margin: "0px" });
+
+  const letters = Array.from(label);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.02,
+        delayChildren: delay, // Iniciam quase com o número
+      },
+    },
+  };
+  const letterVariants = {
+    hidden: { opacity: 0, filter: "blur(4px)", y: 2 },
+    visible: { opacity: 1, filter: "blur(0px)", y: 0, transition: { type: "tween", ease: "easeOut", duration: 0.3 } },
+  };
+
+  return (
+    <div ref={ref} className="flex flex-col-reverse justify-end gap-3 group" data-testid="animated-stat">
+      <div className="text-4xl sm:text-5xl font-bold text-primary flex items-baseline leading-none shadow-primary/20 drop-shadow-lg">
+        {prefix}
+        <motion.span
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={inView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ duration: 0.5, delay: delay }}
+        >
+          {/* Anima do 0 ao value em 1.5s */}
+          <CountUp
+            isCounting={inView}
+            end={value}
+            duration={2}
+          />
+        </motion.span>
+        {suffix}
+      </div>
+      <motion.div
+        className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.15em] text-muted-foreground/80 flex flex-wrap"
+        variants={containerVariants as any}
+        initial="hidden"
+        animate={inView ? "visible" : "hidden"}
+      >
+        {letters.map((char, index) => (
+          <motion.span key={index} variants={letterVariants as any}>
+            {char === " " ? "\u00A0" : char}
+          </motion.span>
+        ))}
+      </motion.div>
+    </div>
+  );
+};
 
 /* ─────────────────────────────────────────────────────────────
    MOCKUP PANELS
@@ -404,14 +514,14 @@ const About = () => {
 
       <section id="sobre" className="relative py-24 bg-background overflow-hidden" ref={ref}>
         <div className="container px-6">
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
 
             {/* ── Left: company text ── */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6 }}
-              className="lg:sticky lg:top-28"
+              className="flex flex-col justify-center"
             >
               <span className="text-primary font-mono text-xs uppercase tracking-widest mb-4 block">
                 Sobre a EPM DEVTECH
@@ -438,25 +548,10 @@ const About = () => {
               </div>
 
               {/* Stats */}
-              <div className="grid grid-cols-3 gap-4 sm:gap-6 mt-10 pt-10 border-t border-border">
-                <div>
-                  <div className="text-3xl font-bold text-gradient">+9</div>
-                  <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground mt-1">
-                    Anos de Experiência
-                  </div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-gradient">4</div>
-                  <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground mt-1">
-                    Setores Atendidos
-                  </div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-gradient">100%</div>
-                  <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground mt-1">
-                    Comprometimento
-                  </div>
-                </div>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 sm:gap-6 mt-12 pt-10 border-t border-border/40">
+                <AnimatedStat value={9} prefix="+" label="Anos de Experiência" delay={0.1} />
+                <AnimatedStat value={4} label="Setores Atendidos" delay={0.2} />
+                <AnimatedStat value={100} suffix="%" label="Comprometimento" delay={0.3} />
               </div>
             </motion.div>
 
