@@ -33,23 +33,26 @@ const ScrollToTop = () => {
     };
 
     return (
+        <>
+            <style>{`
+                @keyframes scroll-top-pulse {
+                    0%, 100% { opacity: 0.4; transform: scale(1); }
+                    50% { opacity: 0.8; transform: scale(1.05); }
+                }
+                .scroll-top-glow {
+                    animation: scroll-top-pulse 2s ease-in-out infinite;
+                }
+            `}</style>
         <AnimatePresence>
             {isVisible && (
                 <div className="fixed bottom-6 right-6 z-50 md:bottom-8 md:right-8 group">
-                    {/* Ring Glow Animation Background (matches CursorOrb style) */}
+                    {/* Ring Glow Animation Background — CSS animation (off JS thread) */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{
-                            opacity: [0.4, 0.8, 0.4],
-                            scale: [1, 1.05, 1],
-                        }}
+                        animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.8 }}
-                        transition={{
-                            duration: 2,
-                            repeat: Infinity,
-                            ease: "easeInOut"
-                        }}
-                        className="absolute inset-0 rounded-full blur-[8px] -z-10"
+                        transition={{ duration: 0.3 }}
+                        className="absolute inset-0 rounded-full blur-[8px] -z-10 scroll-top-glow"
                         style={{
                             background: isDark ? "hsla(218, 100%, 58%, 0.5)" : "hsla(222, 47%, 11%, 0.25)",
                             boxShadow: isDark ? "0 0 14px 4px hsla(218, 100%, 65%, 0.45)" : "none",
@@ -100,6 +103,7 @@ const ScrollToTop = () => {
                 </div>
             )}
         </AnimatePresence>
+        </>
     );
 };
 

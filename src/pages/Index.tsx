@@ -1,17 +1,18 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, lazy, Suspense } from "react";
 import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Header from "@/components/layout/Header";
 import Hero from "@/components/sections/Hero";
-import About from "@/components/sections/About";
-import Services from "@/components/sections/Services";
-import Technologies from "@/components/sections/Technologies";
-import Differentials from "@/components/sections/Differentials";
-import Authority from "@/components/sections/Authority";
-import Contact from "@/components/sections/Contact";
-import Footer from "@/components/sections/Footer";
-import CursorOrb from "@/components/CursorOrb";
-import ScrollToTop from "@/components/ui/ScrollToTop";
+
+const CursorOrb    = lazy(() => import("@/components/CursorOrb"));
+const ScrollToTop  = lazy(() => import("@/components/ui/ScrollToTop"));
+const About        = lazy(() => import("@/components/sections/About"));
+const Services     = lazy(() => import("@/components/sections/Services"));
+const Technologies = lazy(() => import("@/components/sections/Technologies"));
+const Differentials= lazy(() => import("@/components/sections/Differentials"));
+const Authority    = lazy(() => import("@/components/sections/Authority"));
+const Contact      = lazy(() => import("@/components/sections/Contact"));
+const Footer       = lazy(() => import("@/components/sections/Footer"));
 
 const BASE_URL = "https://epmdevtech.com.br";
 
@@ -163,9 +164,6 @@ const Index = () => {
       </Helmet>
 
       <div className="min-h-screen bg-background">
-        {/* Cursor orb personalizado — segue o mouse em todo o site */}
-        <CursorOrb />
-
         {/* Skip-to-content: acessibilidade e SEO — visível apenas ao navegar por teclado */}
         <a href="#conteudo-principal" className="skip-to-content">
           Pular para o conteúdo
@@ -173,15 +171,23 @@ const Index = () => {
         <Header />
         <main id="conteudo-principal" aria-label="Conteúdo principal">
           <Hero />
-          <About />
-          <Services />
-          <Technologies />
-          <Differentials />
-          <Authority />
-          <Contact />
+          <Suspense fallback={null}>
+            <About />
+            <Services />
+            <Technologies />
+            <Differentials />
+            <Authority />
+            <Contact />
+          </Suspense>
         </main>
-        <Footer />
-        <ScrollToTop />
+        <Suspense fallback={null}>
+          <Footer />
+        </Suspense>
+        {/* CursorOrb e ScrollToTop carregam após o bundle principal */}
+        <Suspense fallback={null}>
+          <CursorOrb />
+          <ScrollToTop />
+        </Suspense>
       </div>
     </>
   );

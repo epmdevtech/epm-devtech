@@ -19,6 +19,7 @@ vi.mock('framer-motion', () => ({
         a: ({ children, className, href }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => <a className={className} href={href}>{children}</a>,
         li: ({ children, className }: React.LiHTMLAttributes<HTMLLIElement>) => <li className={className}>{children}</li>,
     },
+    useInView: () => true,
 }));
 
 // ─── Lucide Icons ─────────────────────────────────────────────────────────────

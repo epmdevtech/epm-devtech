@@ -1,24 +1,7 @@
-import { motion, Variants } from "framer-motion";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { Linkedin, Instagram, Moon, Sun, Monitor } from "lucide-react";
 import { useTheme } from "@/components/theme-provider";
-
-// Using `Variants` type explicitly to satisfy Framer Motion's strict typing
-const itemVariants: Variants = {
-  hidden: { y: 12, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: { duration: 0.5, ease: "easeOut" as const },
-  },
-};
-
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.07, delayChildren: 0.1 },
-  },
-};
 
 const NAV_COLUMNS = [
   {
@@ -120,21 +103,22 @@ function ThemeSwitcher() {
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-5%" });
 
   return (
     <footer className="bg-background border-t border-border pt-20 pb-8">
-      <div className="container px-6">
+      <div className="container px-6" ref={ref}>
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-5%" }}
+          initial={{ opacity: 0, y: 12 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, ease: "easeOut" }}
           className="flex flex-col gap-16"
         >
           {/* Main row: logo left, nav columns right */}
           <div className="flex flex-col lg:flex-row justify-between gap-12">
             {/* Logo + tagline */}
-            <motion.div variants={itemVariants} className="flex flex-col gap-4 max-w-xs">
+            <div className="flex flex-col gap-4 max-w-xs">
               <motion.div
                 className="flex items-center gap-2 w-fit cursor-pointer"
                 whileHover={{ scale: 1.05 }}
@@ -156,14 +140,13 @@ const Footer = () => {
                 Arquitetura de software robusta, APIs escaláveis e sistemas web
                 de alta performance.
               </p>
-            </motion.div>
+            </div>
 
             {/* Nav columns */}
             <div className="flex flex-wrap gap-12 lg:gap-20">
               {NAV_COLUMNS.map((col) => (
-                <motion.div
+                <div
                   key={col.title}
-                  variants={itemVariants}
                   className="flex flex-col gap-3 min-w-[110px]"
                 >
                   <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-1">
@@ -177,23 +160,19 @@ const Footer = () => {
                           className="font-mono text-xs text-muted-foreground transition-colors duration-200 hover:text-primary relative group w-fit flex items-center"
                         >
                           {link.label}
-                          {/* factory.ai-style animated underline */}
                           <span className="absolute -bottom-px left-0 h-px w-0 bg-primary transition-all duration-300 group-hover:w-full" />
                         </a>
                       </li>
                     ))}
                   </ul>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
 
           {/* Bottom row: socials left, theme switcher center, copyright right */}
-          <motion.div
-            variants={itemVariants}
-            className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 pt-6 border-t border-border"
-          >
-            {/* Social links  */}
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 pt-6 border-t border-border">
+            {/* Social links */}
             <ul className="flex gap-1 flex-wrap">
               {SOCIAL_LINKS.map((s, i) => (
                 <li key={s.label} className="inline-flex items-center">
@@ -221,7 +200,7 @@ const Footer = () => {
             <p className="font-mono text-xs text-muted-foreground">
               @EPM DEVTECH {currentYear}. Todos os direitos reservados.
             </p>
-          </motion.div>
+          </div>
         </motion.div>
       </div>
     </footer>

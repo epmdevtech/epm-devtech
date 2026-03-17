@@ -84,10 +84,14 @@ describe('Index Page', () => {
 
   // ── Renderização ─────────────────────────────────────────────────────────
   describe('Renderização', () => {
-    it('renderiza todas as seções e layout principal', () => {
+    it('renderiza todas as seções e layout principal', async () => {
       renderIndex();
       expect(screen.getByTestId('header')).toBeInTheDocument();
       expect(screen.getByTestId('hero')).toBeInTheDocument();
+
+      // Flush lazy import promises (React.lazy usa dynamic import)
+      await act(async () => {});
+
       expect(screen.getByTestId('about')).toBeInTheDocument();
       expect(screen.getByTestId('services')).toBeInTheDocument();
       expect(screen.getByTestId('technologies')).toBeInTheDocument();

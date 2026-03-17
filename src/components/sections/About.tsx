@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import { motion, useInView, Variants } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import {
   Building2,
   Target,
@@ -70,23 +70,6 @@ const AnimatedStat = ({
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, amount: 0.1, margin: "0px" });
 
-  const letters = Array.from(label);
-
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.02,
-        delayChildren: delay, // Iniciam quase com o número
-      },
-    },
-  };
-  const letterVariants: Variants = {
-    hidden: { opacity: 0, filter: "blur(4px)", y: 2 },
-    visible: { opacity: 1, filter: "blur(0px)", y: 0, transition: { type: "tween", ease: "easeOut", duration: 0.3 } },
-  };
-
   return (
     <div ref={ref} className="flex flex-col-reverse justify-end gap-3 group" data-testid="animated-stat">
       <div className="text-4xl sm:text-5xl font-bold text-primary flex items-baseline leading-none shadow-primary/20 drop-shadow-lg">
@@ -96,26 +79,17 @@ const AnimatedStat = ({
           animate={inView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 0.5, delay: delay }}
         >
-          {/* Anima do 0 ao value em 1.5s */}
-          <CountUp
-            isCounting={inView}
-            end={value}
-            duration={2}
-          />
+          <CountUp isCounting={inView} end={value} duration={2} />
         </motion.span>
         {suffix}
       </div>
       <motion.div
-        className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.15em] text-muted-foreground/80 flex flex-wrap"
-        variants={containerVariants}
-        initial="hidden"
-        animate={inView ? "visible" : "hidden"}
+        className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.15em] text-muted-foreground/80"
+        initial={{ opacity: 0, y: 4 }}
+        animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 4 }}
+        transition={{ type: "tween", ease: "easeOut", duration: 0.4, delay }}
       >
-        {letters.map((char, index) => (
-          <motion.span key={index} variants={letterVariants}>
-            {char === " " ? "\u00A0" : char}
-          </motion.span>
-        ))}
+        {label}
       </motion.div>
     </div>
   );
