@@ -1,11 +1,3 @@
 {
-  "redirects": [
-    {
-      "source": "/(.*)",
-      "has": [{ "type": "host", "value": "www.epmdevtech.com.br" }],
-      "destination": "https://epmdevtech.com.br/$1",
-      "statusCode": 301
-    }
-  ],
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
