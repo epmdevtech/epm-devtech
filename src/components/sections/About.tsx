@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import { motion, useInView, Variants } from "framer-motion";
 import {
   Building2,
@@ -15,44 +15,43 @@ import {
 /* ─────────────────────────────────────────────────────────────
    ANIMATED STAT & COUNT UP
 ───────────────────────────────────────────────────────────── */
-// CountUp component interno simples usando requestAnimationFrame e React State
+// CountUp component — atualiza o DOM diretamente via ref para evitar re-renders por frame
 const CountUp = ({ isCounting, end, duration }: { isCounting: boolean, end: number, duration: number }) => {
-  const [count, setCount] = useState(0);
-  
+  const spanRef = useRef<HTMLSpanElement>(null);
+
   useEffect(() => {
     if (!isCounting) return;
-    
-    let startTime: number | null = null;
-    let animationFrame: number;
-    
-    // Se for ambiente de testes, bypassa
+
     if (process.env.NODE_ENV === 'test') {
-      setCount(end);
+      if (spanRef.current) spanRef.current.textContent = String(end);
       return;
     }
-    
+
+    let startTime: number | null = null;
+    let animationFrame: number;
+
     const step = (timestamp: number) => {
       if (!startTime) startTime = timestamp;
       const progress = timestamp - startTime;
       const ratio = Math.min(progress / (duration * 1000), 1);
-      
-      // Easing out quad
       const easeOut = 1 - (1 - ratio) * (1 - ratio);
-      setCount(Math.floor(easeOut * end));
-      
+
+      if (spanRef.current) {
+        spanRef.current.textContent = String(Math.floor(easeOut * end));
+      }
+
       if (progress < duration * 1000) {
         animationFrame = requestAnimationFrame(step);
       } else {
-        setCount(end);
+        if (spanRef.current) spanRef.current.textContent = String(end);
       }
     };
-    
+
     animationFrame = requestAnimationFrame(step);
-    
     return () => cancelAnimationFrame(animationFrame);
   }, [isCounting, end, duration]);
-  
-  return <>{count}</>;
+
+  return <span ref={spanRef}>0</span>;
 };
 
 const AnimatedStat = ({

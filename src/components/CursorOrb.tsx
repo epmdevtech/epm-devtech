@@ -37,7 +37,11 @@ const CursorOrb = () => {
         const onMove = (e: MouseEvent) => {
             rawX.set(e.clientX);
             rawY.set(e.clientY);
-            if (!visible) setVisible(true);
+            setVisible(true);
+
+            const target = e.target as HTMLElement;
+            const interactive = target.closest("a, button, [role='button'], input, textarea, select, label");
+            setHovering(!!interactive);
         };
 
         const onLeave = () => setVisible(false);
@@ -45,15 +49,7 @@ const CursorOrb = () => {
         const onDown = () => setClicking(true);
         const onUp = () => setClicking(false);
 
-        // Detecta hover em elementos interativos para expandir o anel
-        const onHoverStart = (e: MouseEvent) => {
-            const target = e.target as HTMLElement;
-            const interactive = target.closest("a, button, [role='button'], input, textarea, select, label");
-            setHovering(!!interactive);
-        };
-
         window.addEventListener("mousemove", onMove);
-        window.addEventListener("mousemove", onHoverStart);
         window.addEventListener("mouseleave", onLeave);
         window.addEventListener("mouseenter", onEnter);
         window.addEventListener("mousedown", onDown);
@@ -61,13 +57,12 @@ const CursorOrb = () => {
 
         return () => {
             window.removeEventListener("mousemove", onMove);
-            window.removeEventListener("mousemove", onHoverStart);
             window.removeEventListener("mouseleave", onLeave);
             window.removeEventListener("mouseenter", onEnter);
             window.removeEventListener("mousedown", onDown);
             window.removeEventListener("mouseup", onUp);
         };
-    }, [rawX, rawY, visible]);
+    }, [rawX, rawY]);
 
     // Esconde em dispositivos touch
     if (window.matchMedia("(pointer: coarse)").matches) return null;

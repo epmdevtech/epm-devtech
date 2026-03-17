@@ -122,6 +122,19 @@ const Contact = () => {
 
   return (
     <section id="contato" className="relative py-24 bg-secondary/30 overflow-hidden" ref={ref}>
+      <style>{`
+        .btn-submit {
+          transition: box-shadow 0.25s ease, transform 0.2s ease, opacity 0.3s ease;
+        }
+        .btn-submit:not(:disabled):hover {
+          box-shadow: 0 6px 20px 0 hsl(var(--primary) / 0.5);
+          transform: translateY(-2px);
+        }
+        .btn-submit:not(:disabled):active {
+          box-shadow: 0 2px 8px 0 hsl(var(--primary) / 0.25);
+          transform: translateY(1px) scale(0.98);
+        }
+      `}</style>
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[128px]" />
 
@@ -333,6 +346,7 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={isSending}
+                className="btn-submit"
                 style={{
                   width: "100%",
                   display: "inline-flex",
@@ -349,29 +363,6 @@ const Contact = () => {
                   border: "none",
                   cursor: isSending ? "not-allowed" : "pointer",
                   opacity: isSending ? 0.7 : 1,
-                  transition: "box-shadow 0.25s ease, transform 0.2s ease, opacity 0.3s ease",
-                }}
-                onMouseEnter={(e) => {
-                  if (!isSending) {
-                    (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 6px 20px 0 hsl(var(--primary) / 0.5)";
-                    (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)";
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 4px 14px 0 hsl(var(--primary) / 0.35)";
-                  (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)";
-                }}
-                onMouseDown={(e) => {
-                  if (!isSending) {
-                    (e.currentTarget as HTMLButtonElement).style.transform = "translateY(1px) scale(0.98)";
-                    (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 2px 8px 0 hsl(var(--primary) / 0.25)";
-                  }
-                }}
-                onMouseUp={(e) => {
-                  if (!isSending) {
-                    (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)";
-                    (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 6px 20px 0 hsl(var(--primary) / 0.5)";
-                  }
                 }}
               >
                 {isSending ? (
