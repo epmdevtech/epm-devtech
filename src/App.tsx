@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import { ThemeProvider } from "@/components/theme-provider";
 import { CookieBanner } from "@/components/cookie-banner";
+import { Analytics } from "@vercel/analytics/react";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const App = () => (
             </Routes>
           </BrowserRouter>
           <CookieBanner />
+          <Analytics />
         </TooltipProvider>
       </ThemeProvider>
     </QueryClientProvider>
