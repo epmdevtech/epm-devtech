@@ -10,6 +10,20 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 ## [Unreleased]
 
 ### Adicionado
+- `public/llms.txt` seguindo spec llmstxt.org — corrige Lighthouse Agentic Navigation 2/3 → 3/3
+- Preconnect + dns-prefetch para `cdn.jsdelivr.net` e `cdn.simpleicons.org` (ícones de tecnologias)
+- `content-visibility: auto` nas 6 seções below-the-fold (melhora Speed Index e LCP)
+- `will-change: transform` no `.tech-band-track` (animação no compositor GPU)
+- `@media (prefers-reduced-motion)` para desativar carrossel de tecnologias
+- SPEC-001, TASK-001 e QA-001 (framework SDD aplicado)
+
+### Corrigido
+- Contraste `muted-foreground` em light mode: 46.9% → 38% lightness (WCAG AA 4.5:1)
+- `font-display` da fonte Geist: `optional` → `swap` (reduz FCP)
+
+## [0.0.1-sdd] — 2026-08-28
+
+### Adicionado
 - Estrutura do Universal SDD aplicada ao projeto
 - `PROJECT.md` — documento canônico do estado do projeto
 - `AGENTS.md` — protocolo para agentes de IA e colaboradores
