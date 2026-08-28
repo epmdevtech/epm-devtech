@@ -63,7 +63,7 @@ body {
     --secondary-foreground: 222.2 47.4% 11.2%;
 
     --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted-foreground: 215.4 16.3% 38%; /* Aumentado de 46.9% → 38% para atingir contraste WCAG AA 4.5:1 */
 
     --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
@@ -131,5 +131,41 @@ body {
   }
   .noise {
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   PERFORMANCE: content-visibility para seções below-the-fold
+   Adia o trabalho de layout/paint, reduzindo Speed Index e LCP.
+   contain-intrinsic-size evita CLS ao reservar o espaço antes
+   do conteúdo ser renderizado.
+───────────────────────────────────────────────────────────── */
+#sobre,
+#servicos,
+#tecnologias,
+#diferenciais,
+#autoridade,
+#contato {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   PERFORMANCE: will-change para a faixa animada de tecnologias
+   Promove o elemento à camada do compositor, eliminando o warning
+   "Avoid non-composited animations" do Lighthouse.
+───────────────────────────────────────────────────────────── */
+.tech-band-track {
+  will-change: transform;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   ACESSIBILIDADE: respeitar prefers-reduced-motion nas
+   animações de scroll infinito da seção de tecnologias.
+───────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .tech-band-track {
+    animation: none !important;
+    will-change: auto;
   }
 }
