@@ -1,0 +1,44 @@
+# EPM DEVTECH — llms.txt
+# https://llmstxt.org
+
+# Site: https://epmdevtech.com.br
+# Language: pt-BR
+# Last updated: 2026-08-28
+
+> EPM DEVTECH is a Brazilian software house specialized in custom software development, scalable REST/GraphQL APIs, system architecture, and high-performance web solutions. Founded and led by Elessandro Prestes Macedo, a senior full-stack engineer with 9+ years of experience.
+
+## Services
+
+- Custom software development (web systems, SPAs, PWAs)
+- Scalable REST and GraphQL APIs
+- Software architecture (hexagonal, microservices, modular monolith)
+- System integration (ERP, CRM, third-party APIs)
+- Technical consulting and code review
+- CI/CD pipeline setup and DevOps
+
+## Sectors of expertise
+
+- Industry and manufacturing (ERP, production automation)
+- E-commerce and retail (checkout, inventory, scaling)
+- Education (CAPES/MEC government projects)
+- Energy (ONS — Brazilian grid operator, mission-critical systems)
+
+## Tech stack
+
+Backend: PHP, Laravel, Symfony, Node.js, TypeScript
+Frontend: React, Angular, Vue.js, TypeScript
+Databases: PostgreSQL, MySQL, Oracle, MongoDB, Redis
+Cloud: AWS, Azure, Docker, Kubernetes
+Messaging: RabbitMQ, Kafka, AWS SQS
+Observability: Prometheus, Grafana, SonarQube
+
+## Contact
+
+- Email: elessandrodev@gmail.com
+- GitHub: https://github.com/ElessandroPrestes
+- LinkedIn: https://www.linkedin.com/in/elessandro-prestes-macedo/
+
+## Optional
+
+- Sitemap: https://epmdevtech.com.br/sitemap.xml
+- Robots: https://epmdevtech.com.br/robots.txt
