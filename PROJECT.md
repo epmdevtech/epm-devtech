@@ -144,15 +144,16 @@ src/
 | Hero              | ✅ Implementado  | —                                          |
 | About             | ✅ Implementado  | —                                          |
 | Services          | ✅ Implementado  | —                                          |
-| Technologies      | ✅ Implementado  | —                                          |
+| Technologies      | ✅ Implementado  | Otimizado com will-change e preconnect CDNs|
 | Differentials     | ✅ Implementado  | —                                          |
 | Authority         | ✅ Implementado  | —                                          |
 | Contact           | ✅ Implementado  | Via EmailJS                                |
 | Footer            | ✅ Implementado  | —                                          |
 | Cookie Banner     | ✅ Implementado  | —                                          |
-| SEO               | ✅ Implementado  | Meta tags dinâmicas por seção              |
-| Testes unitários  | 🔄 Em progresso  | Cobertura >90% nos componentes principais  |
-| Acessibilidade    | 🔄 Em progresso  | WCAG 2.1 AA (revisão pendente)             |
+| SEO & Agêntico    | ✅ Implementado  | Meta tags dinâmicas + public/llms.txt      |
+| Testes unitários  | ✅ Implementado  | 12/12 suites, 80/80 testes passando        |
+| Acessibilidade    | ✅ Implementado  | WCAG 2.1 AA (contraste ajustado no CSS)    |
+| Performance       | ✅ Otimizado     | content-visibility, font swap, preconnects |
 | i18n              | ❌ Não iniciado  | Não planejado na versão atual              |
 
 ---
