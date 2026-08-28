@@ -4,6 +4,8 @@ import { Helmet } from "react-helmet-async";
 import Header from "@/components/layout/Header";
 import Hero from "@/components/sections/Hero";
 
+import LazySection from "@/components/LazySection";
+
 const CursorOrb    = lazy(() => import("@/components/CursorOrb"));
 const ScrollToTop  = lazy(() => import("@/components/ui/ScrollToTop"));
 const About        = lazy(() => import("@/components/sections/About"));
@@ -171,18 +173,47 @@ const Index = () => {
         <Header />
         <main id="conteudo-principal" aria-label="Conteúdo principal">
           <Hero />
-          <Suspense fallback={null}>
-            <About />
-            <Services />
-            <Technologies />
-            <Differentials />
-            <Authority />
-            <Contact />
-          </Suspense>
+          <LazySection id="sobre" minHeight="500px">
+            <Suspense fallback={null}>
+              <About />
+            </Suspense>
+          </LazySection>
+
+          <LazySection id="servicos" minHeight="500px">
+            <Suspense fallback={null}>
+              <Services />
+            </Suspense>
+          </LazySection>
+
+          <LazySection id="tecnologias" minHeight="400px">
+            <Suspense fallback={null}>
+              <Technologies />
+            </Suspense>
+          </LazySection>
+
+          <LazySection id="diferenciais" minHeight="500px">
+            <Suspense fallback={null}>
+              <Differentials />
+            </Suspense>
+          </LazySection>
+
+          <LazySection id="autoridade" minHeight="400px">
+            <Suspense fallback={null}>
+              <Authority />
+            </Suspense>
+          </LazySection>
+
+          <LazySection id="contato" minHeight="600px">
+            <Suspense fallback={null}>
+              <Contact />
+            </Suspense>
+          </LazySection>
         </main>
-        <Suspense fallback={null}>
-          <Footer />
-        </Suspense>
+        <LazySection id="rodape" minHeight="300px">
+          <Suspense fallback={null}>
+            <Footer />
+          </Suspense>
+        </LazySection>
         {/* CursorOrb e ScrollToTop carregam após o bundle principal */}
         <Suspense fallback={null}>
           <CursorOrb />
