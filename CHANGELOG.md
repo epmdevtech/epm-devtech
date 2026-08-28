@@ -10,16 +10,28 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 ## [Unreleased]
 
 ### Adicionado
-- `public/llms.txt` seguindo spec llmstxt.org — corrige Lighthouse Agentic Navigation 2/3 → 3/3
-- Preconnect + dns-prefetch para `cdn.jsdelivr.net` e `cdn.simpleicons.org` (ícones de tecnologias)
-- `content-visibility: auto` nas 6 seções below-the-fold (melhora Speed Index e LCP)
-- `will-change: transform` no `.tech-band-track` (animação no compositor GPU)
-- `@media (prefers-reduced-motion)` para desativar carrossel de tecnologias
-- SPEC-001, TASK-001 e QA-001 (framework SDD aplicado)
+- Otimização do logo para WebP (`public/logo-emp-dev-tech-sm.webp` de 9.5 KB contra 134 KB original — economia de 93%)
+- Atributos `width={145}` e `height={49}` explícitos nas tags `<img>` do Header e Footer
+- Formato Markdown com links canônicos `[Título](URL)` no `public/llms.txt` (Lighthouse Agentic Navigation 3/3)
+- SPEC-002, TASK-002 e QA-002 registrados no framework SDD
 
 ### Corrigido
-- Contraste `muted-foreground` em light mode: 46.9% → 38% lightness (WCAG AA 4.5:1)
-- `font-display` da fonte Geist: `optional` → `swap` (reduz FCP)
+- CLS no Hero eliminado (0.155 → 0.00) com renderização de texto estável e aceleração do LCP
+- Contraste de botões primários (`--primary`): ajustado para HSL(221.2, 83.2%, 48%) garantindo taxa de contraste 5.22:1 (WCAG AA) com texto branco
+- Animação de estatísticas no componente About otimizada para a thread do compositor
+
+## [0.0.2-perf] — 2026-08-28
+
+### Adicionado
+- `public/llms.txt` seguindo spec llmstxt.org
+- Preconnect + dns-prefetch para `cdn.jsdelivr.net` e `cdn.simpleicons.org`
+- `content-visibility: auto` nas seções below-the-fold
+- `will-change: transform` no `.tech-band-track` e `@media (prefers-reduced-motion)`
+- SPEC-001, TASK-001 e QA-001
+
+### Corrigido
+- Contraste `muted-foreground` em light mode: 46.9% → 38% lightness
+- `font-display` da fonte Geist: `optional` → `swap`
 
 ## [0.0.1-sdd] — 2026-08-28
 

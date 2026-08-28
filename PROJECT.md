@@ -141,19 +141,19 @@ src/
 | Área              | Status           | Notas                                      |
 |-------------------|------------------|--------------------------------------------|
 | Design            | ✅ Implementado  | Dark mode padrão, Light mode disponível    |
-| Hero              | ✅ Implementado  | —                                          |
-| About             | ✅ Implementado  | —                                          |
+| Hero              | ✅ Otimizado     | Texto estável sem CLS e LCP acelerado      |
+| About             | ✅ Implementado  | Animação na thread do compositor (GPU)     |
 | Services          | ✅ Implementado  | —                                          |
-| Technologies      | ✅ Implementado  | Otimizado com will-change e preconnect CDNs|
+| Technologies      | ✅ Otimizado     | will-change e preconnects CDNs             |
 | Differentials     | ✅ Implementado  | —                                          |
 | Authority         | ✅ Implementado  | —                                          |
 | Contact           | ✅ Implementado  | Via EmailJS                                |
-| Footer            | ✅ Implementado  | —                                          |
-| Cookie Banner     | ✅ Implementado  | —                                          |
-| SEO & Agêntico    | ✅ Implementado  | Meta tags dinâmicas + public/llms.txt      |
+| Footer            | ✅ Otimizado     | Logo WebP de 9.5 KB com width/height       |
+| Cookie Banner     | ✅ Implementado  | Botão com contraste WCAG AA 4.5:1          |
+| SEO & Agêntico    | ✅ Otimizado     | Meta tags dinâmicas + llms.txt com links   |
 | Testes unitários  | ✅ Implementado  | 12/12 suites, 80/80 testes passando        |
-| Acessibilidade    | ✅ Implementado  | WCAG 2.1 AA (contraste ajustado no CSS)    |
-| Performance       | ✅ Otimizado     | content-visibility, font swap, preconnects |
+| Acessibilidade    | ✅ 100% WCAG AA  | Contraste de texto e botões >= 4.5:1       |
+| Performance       | ✅ Otimizado     | CLS 0.00, WebP logos, font swap            |
 | i18n              | ❌ Não iniciado  | Não planejado na versão atual              |
 
 ---
