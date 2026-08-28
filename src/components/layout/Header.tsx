@@ -73,6 +73,9 @@ const Header = () => {
                     alt="EPM DEVTECH"
                     width={145}
                     height={49}
+                    loading="eager"
+                    decoding="async"
+                    {...{ fetchpriority: "high" }}
                     className="h-7 sm:h-8 w-auto object-contain"
                   />
                 </div>

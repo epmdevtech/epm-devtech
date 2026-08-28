@@ -47,9 +47,22 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
-    <!-- Theme Color (dark e light mode) -->
-    <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)" />
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <!-- Critical inline styles: immediate dark canvas on frame 1 to eliminate FOUC and boost FCP -->
+    <style>
+      html {
+        background-color: #121212;
+        color: #ffffff;
+        color-scheme: dark light;
+      }
+      body {
+        background-color: #121212;
+        color: #ffffff;
+        margin: 0;
+        font-family: Geist, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      }
+    </style>
+
+    <link rel="modulepreload" href="/src/main.tsx" />
 
     <!-- Preconnect: tech icon CDNs used in the Technologies carousel -->
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
