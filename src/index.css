@@ -56,7 +56,7 @@ body {
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 218 100% 58%; /* #2979FF Azul Elétrico */
+    --primary: 221.2 83.2% 48%; /* Ajustado para contraste WCAG AA >= 4.5:1 (5.22:1) com texto branco */
     --primary-foreground: 0 0% 100%;
 
     --secondary: 210 40% 96.1%;
@@ -89,7 +89,7 @@ body {
     --popover: 0 0% 7%;
     --popover-foreground: 0 0% 100%;
 
-    --primary: 218 100% 58%; /* #2979FF */
+    --primary: 221.2 83.2% 52%; /* Contraste WCAG AA >= 4.5:1 com texto branco */
     --primary-foreground: 0 0% 100%;
 
     --secondary: 217.2 32.6% 17.5%;

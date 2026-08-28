@@ -69,8 +69,10 @@ const Header = () => {
               <div className="font-bold text-lg leading-tight mb-0.5">
                 <div className="bg-gray-900 dark:bg-transparent rounded-md px-2 py-0.5 transition-colors duration-300">
                   <img
-                    src="/logo-emp-dev-tech.png"
+                    src="/logo-emp-dev-tech-sm.webp"
                     alt="EPM DEVTECH"
+                    width={145}
+                    height={49}
                     className="h-7 sm:h-8 w-auto object-contain"
                   />
                 </div>

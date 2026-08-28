@@ -1,44 +1,29 @@
-# EPM DEVTECH — llms.txt
-# https://llmstxt.org
+# EPM DEVTECH
 
-# Site: https://epmdevtech.com.br
-# Language: pt-BR
-# Last updated: 2026-08-28
+> Software house especializada em desenvolvimento de software sob medida, APIs escaláveis e arquitetura de sistemas de alta performance.
 
-> EPM DEVTECH is a Brazilian software house specialized in custom software development, scalable REST/GraphQL APIs, system architecture, and high-performance web solutions. Founded and led by Elessandro Prestes Macedo, a senior full-stack engineer with 9+ years of experience.
+Fundada e liderada por Elessandro Prestes Macedo, Engenheiro de Software Full Stack Sênior com mais de 9 anos de experiência em projetos corporativos de grande porte.
 
-## Services
+## Serviços e Especialidades
 
-- Custom software development (web systems, SPAs, PWAs)
-- Scalable REST and GraphQL APIs
-- Software architecture (hexagonal, microservices, modular monolith)
-- System integration (ERP, CRM, third-party APIs)
-- Technical consulting and code review
-- CI/CD pipeline setup and DevOps
+- [Desenvolvimento de Sistemas Web](https://epmdevtech.com.br/#servicos): Aplicações web modernas, SPAs e plataformas digitais com foco em performance e Clean Code.
+- [APIs e Back-ends Escaláveis](https://epmdevtech.com.br/#servicos): Desenvolvimento e integração de APIs RESTful e GraphQL robustas e de alta disponibilidade.
+- [Arquitetura de Software](https://epmdevtech.com.br/#servicos): Design de soluções modulares, arquitetura hexagonal, microsserviços e padrões SOLID.
+- [DevOps e Cloud Computing](https://epmdevtech.com.br/#servicos): Implantação de pipelines CI/CD automatizados e infraestrutura em nuvem na AWS e Docker.
+- [Projetos e Autoridade Técnica](https://epmdevtech.com.br/#autoridade): Atuação em setores críticos como Indústria, Varejo/E-commerce, Educação (CAPES/MEC) e Energia (ONS).
 
-## Sectors of expertise
+## Tecnologias
 
-- Industry and manufacturing (ERP, production automation)
-- E-commerce and retail (checkout, inventory, scaling)
-- Education (CAPES/MEC government projects)
-- Energy (ONS — Brazilian grid operator, mission-critical systems)
+- [Stack Tecnológica](https://epmdevtech.com.br/#tecnologias): PHP, Laravel, Symfony, Node.js, TypeScript, React, PostgreSQL, Docker, Kubernetes, AWS.
 
-## Tech stack
+## Contato e Perfis Oficiais
 
-Backend: PHP, Laravel, Symfony, Node.js, TypeScript
-Frontend: React, Angular, Vue.js, TypeScript
-Databases: PostgreSQL, MySQL, Oracle, MongoDB, Redis
-Cloud: AWS, Azure, Docker, Kubernetes
-Messaging: RabbitMQ, Kafka, AWS SQS
-Observability: Prometheus, Grafana, SonarQube
+- [Website Principal](https://epmdevtech.com.br): Página inicial institucional da EPM DEVTECH.
+- [Formulário de Contato](https://epmdevtech.com.br/#contato): Canal direto para solicitações de projetos, orçamentos e consultoria técnica.
+- [GitHub](https://github.com/ElessandroPrestes): Perfil profissional com repositórios e contribuições de código aberto.
+- [LinkedIn](https://www.linkedin.com/in/elessandro-prestes-macedo/): Perfil profissional no LinkedIn de Elessandro Prestes Macedo.
 
-## Contact
+## Recursos e Metadados
 
-- Email: elessandrodev@gmail.com
-- GitHub: https://github.com/ElessandroPrestes
-- LinkedIn: https://www.linkedin.com/in/elessandro-prestes-macedo/
-
-## Optional
-
-- Sitemap: https://epmdevtech.com.br/sitemap.xml
-- Robots: https://epmdevtech.com.br/robots.txt
+- [Sitemap XML](https://epmdevtech.com.br/sitemap.xml): Mapa completo do site para rastreamento e indexação.
+- [Robots TXT](https://epmdevtech.com.br/robots.txt): Regras e diretrizes para robôs de busca e agentes de inteligência artificial.

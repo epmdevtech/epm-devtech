@@ -1,6 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Code2 } from "lucide-react";
-import { Typewriter } from "@/components/ui/typewriter";
 
 const Hero = () => {
   const { scrollY } = useScroll();
@@ -22,20 +21,20 @@ const Hero = () => {
       >
         <div className="max-w-4xl mx-auto text-center">
 
-          {/* Headline */}
+          {/* Headline — renderizado de forma estável para zero CLS e LCP instantâneo */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tight leading-tight mb-6"
           >
-            <Typewriter text="Soluções Digitais " speed={50} />
-            <span className="text-gradient">
-              <Typewriter text="Sob Medida" speed={50} delay={900} />
+            <span>Soluções Digitais </span>
+            <span className="text-gradient font-normal">
+              Sob Medida
             </span>
             <br />
             <span className="text-muted-foreground">
-              <Typewriter text="Para Sua Empresa" speed={50} delay={1400} />
+              Para Sua Empresa
             </span>
           </motion.h1>
 
@@ -44,13 +43,9 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="font-mono text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed min-h-[5rem]"
+            className="font-mono text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed"
           >
-            <Typewriter
-              text="Arquitetura de software robusta, APIs escaláveis e sistemas web de alta performance. Transformamos desafios técnicos em soluções elegantes e eficientes."
-              speed={20}
-              delay={2200}
-            />
+            Arquitetura de software robusta, APIs escaláveis e sistemas web de alta performance. Transformamos desafios técnicos em soluções elegantes e eficientes.
           </motion.p>
 
           {/* CTA */}
@@ -63,24 +58,9 @@ const Hero = () => {
             <motion.a
               href="#servicos"
               aria-label="Conheça os serviços da EPM DEVTECH"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "0.5rem",
-                padding: "0.875rem 2rem",
-                borderRadius: "0.5rem",
-                fontWeight: 700,
-                fontSize: "1rem",
-                color: "#ffffff",
-                background: "hsl(var(--primary))",
-                boxShadow: "0 4px 14px 0 hsl(var(--primary) / 0.35)",
-                textDecoration: "none",
-              }}
-              whileHover={{
-                scale: 1.04,
-                boxShadow: "0 6px 20px 0 hsl(var(--primary) / 0.5)",
-              }}
-              whileTap={{ scale: 0.95, boxShadow: "0 2px 8px 0 hsl(var(--primary) / 0.25)" }}
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-lg font-bold text-base text-white bg-primary shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-shadow no-underline"
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.2, ease: "easeOut" }}
             >
               <Code2 size={18} strokeWidth={2} />

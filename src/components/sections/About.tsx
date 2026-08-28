@@ -87,7 +87,7 @@ const AnimatedStat = ({
         className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.15em] text-muted-foreground/80"
         initial={{ opacity: 0, y: 4 }}
         animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 4 }}
-        transition={{ type: "tween", ease: "easeOut", duration: 0.4, delay }}
+        transition={{ duration: 0.4 }}
       >
         {label}
       </motion.div>

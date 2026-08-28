@@ -130,9 +130,11 @@ const Footer = () => {
                   whileHover={{ boxShadow: "0 0 16px 2px hsl(var(--primary) / 0.3)" }}
                 >
                   <img
-                    src="/logo-emp-dev-tech.png"
+                    src="/logo-emp-dev-tech-sm.webp"
                     alt="EPM DEVTECH"
-                    className="h-7 object-contain"
+                    width={145}
+                    height={49}
+                    className="h-7 w-auto object-contain"
                   />
                 </motion.div>
               </motion.div>
