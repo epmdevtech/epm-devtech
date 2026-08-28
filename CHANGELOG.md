@@ -10,6 +10,19 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 ## [Unreleased]
 
 ### Adicionado
+- Critical inline CSS no `<head>` do `index.html` para renderização imediata do tema escuro no frame 1 (FCP acelerado)
+- `<link rel="modulepreload" href="/src/main.tsx" />` para parsing JS prioritário
+- Desacoplamento assíncrono com `React.lazy` + `Suspense` em `App.tsx` para `CookieBanner`, `Toaster`, `Sonner`, `Analytics` e `SpeedInsights`
+- Redução de 67% no tamanho do chunk inicial `index.js` (101 KB → 32.8 KB)
+- SPEC-003, TASK-003 e QA-003
+
+### Corrigido
+- Postergação da inicialização do `CookieBanner` para 3.5s evitando colisão de métrica com o LCP do Hero
+- Adição de `fetchpriority="high"` e `loading="eager"` no logo do Header
+
+## [0.0.3-perf] — 2026-08-28
+
+### Adicionado
 - Otimização do logo para WebP (`public/logo-emp-dev-tech-sm.webp` de 9.5 KB contra 134 KB original — economia de 93%)
 - Atributos `width={145}` e `height={49}` explícitos nas tags `<img>` do Header e Footer
 - Formato Markdown com links canônicos `[Título](URL)` no `public/llms.txt` (Lighthouse Agentic Navigation 3/3)

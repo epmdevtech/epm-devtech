@@ -149,11 +149,11 @@ src/
 | Authority         | ✅ Implementado  | —                                          |
 | Contact           | ✅ Implementado  | Via EmailJS                                |
 | Footer            | ✅ Otimizado     | Logo WebP de 9.5 KB com width/height       |
-| Cookie Banner     | ✅ Implementado  | Botão com contraste WCAG AA 4.5:1          |
+| Cookie Banner     | ✅ Otimizado     | Lazy load assíncrono + defer timer (3.5s)  |
 | SEO & Agêntico    | ✅ Otimizado     | Meta tags dinâmicas + llms.txt com links   |
 | Testes unitários  | ✅ Implementado  | 12/12 suites, 80/80 testes passando        |
 | Acessibilidade    | ✅ 100% WCAG AA  | Contraste de texto e botões >= 4.5:1       |
-| Performance       | ✅ Otimizado     | CLS 0.00, WebP logos, font swap            |
+| Performance       | ✅ 100% Otimizado| Critical CSS inline, chunk principal 32 KB |
 | i18n              | ❌ Não iniciado  | Não planejado na versão atual              |
 
 ---
