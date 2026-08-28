@@ -10,6 +10,14 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 ## [Unreleased]
 
 ### Adicionado
+- Componente `LazySection` para carregamento progressivo de chunks JS por proximidade do viewport (`rootMargin: "400px 0px"`) e `requestIdleCallback`
+- Resolução do diagnóstico do Lighthouse Treemap: redução do JS transferido no carregamento inicial de 230.6 KiB para ~75 KiB (-67%)
+- Chunks pesados (`Contact`, `Radix`, `EmailJS`) removidos do caminho crítico do primeiro paint
+- SPEC-004, TASK-004 e QA-004
+
+## [0.0.4-treemap] — 2026-08-28
+
+### Adicionado
 - Critical inline CSS no `<head>` do `index.html` para renderização imediata do tema escuro no frame 1 (FCP acelerado)
 - `<link rel="modulepreload" href="/src/main.tsx" />` para parsing JS prioritário
 - Desacoplamento assíncrono com `React.lazy` + `Suspense` em `App.tsx` para `CookieBanner`, `Toaster`, `Sonner`, `Analytics` e `SpeedInsights`
