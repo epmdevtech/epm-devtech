@@ -44,10 +44,11 @@ const Hero = () => {
       >
         <div className="max-w-4xl mx-auto text-center">
 
-          {/* Headline */}
+          {/* Headline — SEM opacity-0 para que o LCP seja registrado imediatamente
+              ao renderizar. Somente o h1 deve ser visível instantaneamente;
+              subtitle e CTA podem animar normalmente (não são LCP). */}
           <h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tight leading-tight mb-6 animate-fade-in-up opacity-0"
-            style={{ animationDelay: '100ms' }}
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tight leading-tight mb-6"
           >
             <span>Soluções Digitais </span>
             <span className="text-gradient font-normal">

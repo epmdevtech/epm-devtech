@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- LCP Preload para o logo (xs.webp sendo o principal em mobile) -->
+    <link rel="preload" as="image" href="/logo-emp-dev-tech-xs.webp" fetchpriority="high" />
+
     <!--
       IMPORTANTE: Substitua "https://epmdevtech.com.br" pelo seu domínio real
       em todas as ocorrências abaixo antes de ir para produção.
@@ -208,7 +211,16 @@
   </head>
 
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- FCP / LCP Skeleton antes do JS carregar -->
+      <section style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background-color: #121212; padding: 6rem 1.5rem;">
+        <div style="text-align: center; max-width: 56rem; margin: 0 auto;">
+          <h1 style="font-size: 2.25rem; font-weight: 300; line-height: 1.2; margin-bottom: 1.5rem; color: #ffffff;">
+            Soluções Digitais <span style="color: #2979FF;">Sob Medida</span><br/><span style="color: #a3a3a3;">Para Sua Empresa</span>
+          </h1>
+        </div>
+      </section>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -68,7 +68,8 @@ const Header = () => {
                 <div className="bg-gray-900 dark:bg-transparent rounded-md px-2 py-0.5 transition-colors duration-300">
                   <img
                     src="/logo-emp-dev-tech-xs.webp"
-                    srcSet="/logo-emp-dev-tech-xs.webp 1x, /logo-emp-dev-tech-sm.webp 2x"
+                    srcSet="/logo-emp-dev-tech-xs.webp 149w, /logo-emp-dev-tech-sm.webp 300w"
+                    sizes="(max-width: 640px) 83px, 95px"
                     alt="EPM DEVTECH"
                     width={149}
                     height={50}
