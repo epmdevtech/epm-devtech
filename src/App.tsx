@@ -1,5 +1,5 @@
+import { LazyRender } from "./components/LazyRender";
 import { lazy, Suspense } from "react";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HelmetProvider } from "react-helmet-async";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -20,16 +20,16 @@ const App = () => (
   <HelmetProvider>
     <QueryClientProvider client={queryClient}>
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-        <TooltipProvider>
-          <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              {/* Rotas de seção — ex: /contato, /servicos — renderizam a mesma página e a rolagem é feita via useEffect */}
-              <Route path="/:section" element={<Index />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
+        <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            {/* Rotas de seção — ex: /contato, /servicos — renderizam a mesma página e a rolagem é feita via useEffect */}
+            <Route path="/:section" element={<Index />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+        <LazyRender delay={2500}>
           <Suspense fallback={null}>
             <Toaster />
             <Sonner />
@@ -37,7 +37,7 @@ const App = () => (
             <Analytics />
             <SpeedInsights />
           </Suspense>
-        </TooltipProvider>
+        </LazyRender>
       </ThemeProvider>
     </QueryClientProvider>
   </HelmetProvider>

@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { Typewriter } from "@/components/ui/typewriter";
 
@@ -12,19 +11,18 @@ const navLinks = [
   { href: "#contato", label: "Contato" },
 ];
 
-
 const Header = () => {
   const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   const handleScroll = useCallback(() => {
     setIsScrolled(window.scrollY > 20);
   }, []);
 
   useEffect(() => {
-    // passive: true informa ao browser que não usamos preventDefault(),
-    // permitindo otimização do scroll sem esperar execução do JS
+    setMounted(true);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
@@ -52,14 +50,14 @@ const Header = () => {
 
   return (
     <>
-      <motion.header
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-          ? "py-3 glass border-b border-border/50"
-          : "py-5 bg-transparent"
-          }`}
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          mounted ? "translate-y-0" : "-translate-y-full"
+        } ${
+          isScrolled
+            ? "py-3 glass border-b border-border/50"
+            : "py-5 bg-transparent"
+        }`}
       >
         <div className="container px-6">
         <div className="flex items-center justify-between gap-2">
@@ -69,7 +67,8 @@ const Header = () => {
               <div className="font-bold text-lg leading-tight mb-0.5">
                 <div className="bg-gray-900 dark:bg-transparent rounded-md px-2 py-0.5 transition-colors duration-300">
                   <img
-                    src="/logo-emp-dev-tech-sm.webp"
+                    src="/logo-emp-dev-tech-xs.webp"
+                    srcSet="/logo-emp-dev-tech-xs.webp 1x, /logo-emp-dev-tech-sm.webp 2x"
                     alt="EPM DEVTECH"
                     width={145}
                     height={49}
@@ -118,61 +117,47 @@ const Header = () => {
           </div>
         </div>
         </div>
-      </motion.header>
+      </header>
 
       {/* Mobile Menu Backdrop */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-background/80 backdrop-blur-sm md:hidden"
-            onClick={closeMobileMenu}
-          />
-        )}
-      </AnimatePresence>
+      {isMobileMenuOpen && (
+        <div
+          className="fixed inset-0 z-40 bg-background/80 backdrop-blur-sm md:hidden animate-fade-in"
+          onClick={closeMobileMenu}
+        />
+      )}
 
       {/* Mobile Menu Sidebar */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ type: "spring", bounce: 0, duration: 0.4 }}
-            className="fixed top-0 right-0 bottom-0 w-64 md:hidden glass border-l border-border/50 shadow-2xl z-50 overflow-y-auto"
-          >
-            <div className="flex flex-col h-full pt-6 px-6 pb-6 relative">
-              <button
-                onClick={closeMobileMenu}
-                className="absolute top-4 right-4 p-2 w-10 h-10 flex items-center justify-center text-foreground hover:bg-white/10 rounded-full transition-colors outline-none focus:outline-none [-webkit-tap-highlight-color:transparent] z-50"
-                aria-label="Fechar menu"
-              >
-                <X className="w-6 h-6" />
-              </button>
-              
-              <nav className="flex flex-col gap-6 mt-14">
-                {navLinks.map((link, i) => (
-                  <motion.a
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.1 + (i * 0.05), duration: 0.3 }}
-                    key={link.href}
-                    href={link.href}
-                    onClick={(e) => handleNavClick(e, link.href)}
-                    className="relative group text-lg font-mono font-medium uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors py-3 border-b border-white/5"
-                  >
-                    <span className="relative z-10">{link.label}</span>
-                    <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-primary transition-all duration-300 group-hover:w-full" />
-                  </motion.a>
-                ))}
-              </nav>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {isMobileMenuOpen && (
+        <div
+          className="fixed top-0 right-0 bottom-0 w-64 md:hidden glass border-l border-border/50 shadow-2xl z-50 overflow-y-auto animate-slide-in-right"
+        >
+          <div className="flex flex-col h-full pt-6 px-6 pb-6 relative">
+            <button
+              onClick={closeMobileMenu}
+              className="absolute top-4 right-4 p-2 w-10 h-10 flex items-center justify-center text-foreground hover:bg-white/10 rounded-full transition-colors outline-none focus:outline-none [-webkit-tap-highlight-color:transparent] z-50"
+              aria-label="Fechar menu"
+            >
+              <X className="w-6 h-6" />
+            </button>
+            
+            <nav className="flex flex-col gap-6 mt-14">
+              {navLinks.map((link, i) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className="relative group text-lg font-mono font-medium uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors py-3 border-b border-white/5 opacity-0 animate-fade-in-up"
+                  style={{ animationDelay: `${100 + i * 50}ms`, animationFillMode: 'forwards' }}
+                >
+                  <span className="relative z-10">{link.label}</span>
+                  <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-primary transition-all duration-300 group-hover:w-full" />
+                </a>
+              ))}
+            </nav>
+          </div>
+        </div>
+      )}
     </>
   );
 };

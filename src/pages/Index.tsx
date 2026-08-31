@@ -1,3 +1,4 @@
+import { LazyRender } from "@/components/LazyRender";
 import { useEffect, useRef, useState, lazy, Suspense } from "react";
 import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -215,10 +216,12 @@ const Index = () => {
           </Suspense>
         </LazySection>
         {/* CursorOrb e ScrollToTop carregam após o bundle principal */}
-        <Suspense fallback={null}>
-          <CursorOrb />
-          <ScrollToTop />
-        </Suspense>
+        <LazyRender delay={3000}>
+          <Suspense fallback={null}>
+            <CursorOrb />
+            <ScrollToTop />
+          </Suspense>
+        </LazyRender>
       </div>
     </>
   );

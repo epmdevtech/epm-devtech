@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Rocket } from "lucide-react";
 import { useTheme } from "@/components/theme-provider";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from "@/components/ui/tooltip";
 
 const ScrollToTop = () => {
     const [isVisible, setIsVisible] = useState(false);
@@ -59,6 +59,7 @@ const ScrollToTop = () => {
                         }}
                     />
 
+                    <TooltipProvider>
                     <Tooltip delayDuration={300}>
                         <TooltipTrigger asChild>
                             <motion.button
@@ -100,6 +101,7 @@ const ScrollToTop = () => {
                             <p>Voltar ao topo</p>
                         </TooltipContent>
                     </Tooltip>
+                    </TooltipProvider>
                 </div>
             )}
         </AnimatePresence>
