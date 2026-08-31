@@ -9,7 +9,7 @@ export function useIdle(delay = 2000) {
     const handleIdle = () => setIsIdle(true);
 
     if ("requestIdleCallback" in window) {
-      // @ts-expect-error
+      // @ts-expect-error requestIdleCallback is not strictly typed
       window.requestIdleCallback(() => {
         timeoutId = window.setTimeout(handleIdle, 500); // Wait a bit more even after idle
       });
