@@ -47,22 +47,73 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
-    <!-- Critical inline styles: immediate dark canvas on frame 1 to eliminate FOUC and boost FCP -->
+    <!-- CSS crítico inline: pinta o canvas escuro e garante FCP imediato no frame 1.
+         Contém APENAS o estritamente necessário para above-the-fold (header + hero).
+         O restante das variáveis e utilitários é carregado de forma não-bloqueante abaixo. -->
     <style>
+      /* Variáveis de tema escuro (padrão do site) */
+      :root {
+        --background: 0 0% 7%;
+        --foreground: 0 0% 100%;
+        --primary: 221.2 83.2% 52%;
+        --primary-foreground: 0 0% 100%;
+        --muted-foreground: 215 20.2% 65.1%;
+        --border: 217.2 32.6% 17.5%;
+        --radius: 0.5rem;
+      }
       html {
         background-color: #121212;
-        color: #ffffff;
+        color: #fff;
         color-scheme: dark light;
+        scroll-behavior: smooth;
+        scroll-padding-top: 80px;
       }
       body {
         background-color: #121212;
-        color: #ffffff;
+        color: #fff;
         margin: 0;
+        overflow-x: clip;
+        max-width: 100%;
         font-family: Geist, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
+      /* Header fixo visível imediatamente */
+      header { position: fixed; top: 0; left: 0; right: 0; z-index: 50; }
+      /* Hero: canvas escuro ocupa a tela antes do JS renderizar */
+      .hero-placeholder {
+        min-height: 100vh;
+        background: radial-gradient(circle at 50% 0%, rgba(41,121,255,0.1), transparent 60%);
+        display: flex; align-items: center; justify-content: center;
+      }
+      /* Keyframe das animações CSS nativas usadas no Hero e Header */
+      @keyframes fade-in-up {
+        from { opacity: 0; transform: translateY(20px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      .animate-fade-in-up { animation: fade-in-up 0.6s ease-out forwards; }
+      @keyframes fade-in {
+        from { opacity: 0; transform: translateY(10px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      .animate-fade-in { animation: fade-in 0.5s ease-out forwards; }
+      /* Gradiente de texto usado no Hero */
+      .text-gradient {
+        background-clip: text; -webkit-background-clip: text;
+        color: transparent; -webkit-text-fill-color: transparent;
+        background-image: linear-gradient(to right, #2979FF, #0EA5E9);
+      }
+      /* Glass effect do header */
+      .glass { background: rgba(18,18,18,0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+      /* Skip-to-content acessível */
+      .skip-to-content { position: absolute; top: -100%; left: 1rem; z-index: 9999; padding: 0.75rem 1.5rem; background: hsl(221.2 83.2% 52%); color: #fff; border-radius: 0.5rem; font-weight: 600; text-decoration: none; transition: top 0.2s; }
+      .skip-to-content:focus { top: 1rem; }
     </style>
 
-    <link rel="modulepreload" href="/src/main.tsx" />
+    <!-- CSS gerado pelo Vite: o plugin viteDeferCss em vite.config.ts converte
+         automaticamente o <link rel="stylesheet"> injetado pelo Vite em preload
+         não-bloqueante (media="print" → "all"), eliminando o CSS render-blocking.
+         Em dev este bloco não existe, o Vite injeta normalmente. -->
 
     <!-- Preconnect: tech icon CDNs used in the Technologies carousel -->
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />

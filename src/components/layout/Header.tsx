@@ -70,8 +70,8 @@ const Header = () => {
                     src="/logo-emp-dev-tech-xs.webp"
                     srcSet="/logo-emp-dev-tech-xs.webp 1x, /logo-emp-dev-tech-sm.webp 2x"
                     alt="EPM DEVTECH"
-                    width={145}
-                    height={49}
+                    width={149}
+                    height={50}
                     loading="eager"
                     decoding="async"
                     {...{ fetchpriority: "high" }}
