@@ -32,4 +32,7 @@ dist-ssr
 # Testing
 coverage/
 coverage-new/
+coverage-report/
+test-results/
+playwright-report/
 .vercel

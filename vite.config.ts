@@ -37,6 +37,20 @@ export default defineConfig(({ mode }) => ({
       clientPort: 8070,
       overlay: false,
     },
+    watch: {
+      ignored: [
+        '**/coverage/**',
+        '**/coverage-report/**',
+        '**/coverage-new/**',
+        '**/.git/**',
+        '**/tasks/**',
+        '**/specs/**',
+        '**/reviews/**',
+        '**/test-results/**',
+        '**/playwright-report/**',
+        '**/*.log',
+      ],
+    },
   },
   plugins: [react(), viteDeferCss(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {

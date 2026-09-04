@@ -1,0 +1,98 @@
+import { test, expect } from '@playwright/test';
+
+test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
+
+  test('Carregamento inicial estável sem duplicação de título nem recarga em loop', async ({ page }) => {
+    let reloadCount = 0;
+    page.on('load', () => {
+      reloadCount++;
+    });
+
+    await page.goto('/');
+    await page.waitForLoadState('domcontentloaded');
+
+    // Verifica que o H1 do Hero está visível e correto
+    const heroH1 = page.locator('#hero h1, section h1').first();
+    await expect(heroH1).toBeVisible();
+    await expect(heroH1).toContainText('Soluções Digitais');
+    await expect(heroH1).toContainText('Sob Medida');
+
+    // Aguarda 3 segundos para confirmar que não há re-renderização ou reload disparado
+    await page.waitForTimeout(3000);
+
+    expect(reloadCount).toBe(1);
+
+    // O scroll inicial deve estar no topo (Hero)
+    const scrollY = await page.evaluate(() => window.scrollY);
+    expect(scrollY).toBeLessThan(150);
+  });
+
+  test('Títulos de todas as seções são rigorosamente monocromáticos (sem text-gradient)', async ({ page }) => {
+    await page.goto('/');
+    await page.waitForLoadState('domcontentloaded');
+
+    // Garante que nenhuma classe de gradiente em texto existe no DOM
+    const gradientElements = page.locator('.text-gradient');
+    const count = await gradientElements.count();
+    expect(count).toBe(0);
+
+    // Verifica que os headings de cada seção existem e contêm os textos padronizados
+    const expectedHeadings = [
+      { id: 'hero', text: 'Soluções Digitais' },
+      { id: 'sobre', text: 'Engenharia de Software com' },
+      { id: 'servicos', text: 'Soluções' },
+      { id: 'tecnologias', text: 'Tecnologias' },
+      { id: 'diferenciais', text: 'Por Que Escolher a' },
+      { id: 'autoridade', text: 'Autoridade Técnica que' },
+      { id: 'contato', text: 'Vamos Construir' },
+    ];
+
+    for (const item of expectedHeadings) {
+      // Rola até a seção para lazy loading montar
+      await page.evaluate((id) => {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: 'instant' });
+      }, item.id);
+
+      await page.waitForTimeout(500);
+
+      const heading = page.locator(`#${item.id} h1, #${item.id} h2`).first();
+      await expect(heading).toBeVisible();
+      await expect(heading).toContainText(item.text);
+    }
+  });
+
+  test('Cor principal de destaque utiliza o verde da marca EPM DEVTECH (#10b981 / emerald)', async ({ page }) => {
+    await page.goto('/');
+    await page.waitForLoadState('domcontentloaded');
+
+    // CTA principal do Hero
+    const ctaButton = page.locator('a[href="#servicos"]').filter({ hasText: /Conheça os Serviços/i });
+    await expect(ctaButton).toBeVisible();
+
+    const ctaBgColor = await ctaButton.evaluate((el) => {
+      return window.getComputedStyle(el).backgroundColor;
+    });
+
+    // Verde esmeralda oficial (#10B981 / hsl(158 64% 42%)) — formato rgb(39, 176, 125) ou rgb(16, 185, 129)
+    expect(ctaBgColor).toMatch(/rgb\((16|24|26|39),\s*(185|155|160|176),\s*(129|107|112|125)\)/);
+  });
+
+  test('Navegação e rolagem fluida por âncoras sem salto para o Hero', async ({ page }) => {
+    await page.goto('/');
+    await page.waitForLoadState('domcontentloaded');
+
+    // Clica no CTA "Conheça os Serviços"
+    const ctaButton = page.locator('a[href="#servicos"]').filter({ hasText: /Conheça os Serviços/i });
+    await ctaButton.click();
+
+    await page.waitForTimeout(1000);
+
+    const scrollY = await page.evaluate(() => window.scrollY);
+    expect(scrollY).toBeGreaterThan(400);
+
+    const servicosSection = page.locator('#servicos');
+    await expect(servicosSection).toBeVisible();
+  });
+
+});
