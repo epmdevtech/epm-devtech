@@ -95,4 +95,35 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     await expect(servicosSection).toBeVisible();
   });
 
+  test('TechConstellation renderiza grafo de tecnologias com interação de hover e foco', async ({ page }) => {
+    await page.goto('/');
+    await page.waitForLoadState('domcontentloaded');
+
+    // Rola até a seção de tecnologias
+    await page.evaluate(() => {
+      const el = document.getElementById('tecnologias');
+      if (el) el.scrollIntoView({ behavior: 'instant' });
+    });
+
+    await page.waitForTimeout(600);
+
+    const constellation = page.locator('[data-testid="tech-constellation"]');
+    await expect(constellation).toBeVisible();
+
+    // Valida a presença de nós chaves da constelação
+    const reactNode = page.locator('[data-testid="tech-node-React"]');
+    await expect(reactNode).toBeVisible();
+
+    // Valida ativação por foco via teclado (acessibilidade)
+    await reactNode.focus();
+    await page.waitForTimeout(200);
+    await expect(reactNode).toHaveAttribute('data-active', 'true');
+
+    // Valida foco e ativação em outro nó do cluster
+    const nodejsNode = page.locator('[data-testid="tech-node-Node.js"]');
+    await nodejsNode.focus();
+    await page.waitForTimeout(200);
+    await expect(nodejsNode).toHaveAttribute('data-active', 'true');
+  });
+
 });
