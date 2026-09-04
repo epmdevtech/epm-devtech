@@ -7,52 +7,51 @@ const mockUseInView = vi.fn().mockReturnValue(true);
 
 // Mock framer-motion and useInView to execute immediately
 vi.mock('framer-motion', () => ({
-    motion: {
-        div: ({ children, className }: React.HTMLAttributes<HTMLDivElement>) => <div className={className} data-testid="motion-div">{children}</div>,
-        p: ({ children, className }: React.HTMLAttributes<HTMLParagraphElement>) => <p className={className}>{children}</p>,
-    },
-    useInView: (...args: unknown[]) => mockUseInView(...args),
+  motion: {
+    div: ({ children, className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
+      <div className={className} {...props}>{children}</div>
+    ),
+    path: ({ d, className, ...props }: React.SVGProps<SVGPathElement>) => (
+      <path d={d} className={className} {...props} />
+    ),
+  },
+  useInView: (...args: unknown[]) => mockUseInView(...args),
+  useReducedMotion: () => false,
 }));
 
 describe('Technologies Component', () => {
-    it('renders section title and description', () => {
-        render(<Technologies />);
-        expect(screen.getByText(/Stack Tecnológica/i)).toBeInTheDocument();
-        expect(screen.getByText(/Tecnologias/i)).toBeInTheDocument();
-    });
+  it('renders section title, subtitle and TechConstellation', () => {
+    render(<Technologies />);
+    expect(screen.getByText(/Stack Tecnológica/i)).toBeInTheDocument();
+    expect(screen.getByText(/Tecnologias/i)).toBeInTheDocument();
+    expect(screen.getByTestId('tech-constellation')).toBeInTheDocument();
+  });
 
-    it('renders category pills', () => {
-        render(<Technologies />);
+  it('renders constellation categories', () => {
+    render(<Technologies />);
 
-        // Check main categories
-        expect(screen.getByText('Backend')).toBeInTheDocument();
-        expect(screen.getByText('Frontend')).toBeInTheDocument();
-        expect(screen.getByText('Cloud & DevOps')).toBeInTheDocument();
+    // Check main categories in the constellation
+    expect(screen.getByText('Backend')).toBeInTheDocument();
+    expect(screen.getByText('Frontend')).toBeInTheDocument();
+    expect(screen.getByText('Banco de Dados')).toBeInTheDocument();
+    expect(screen.getByText('Cloud & DevOps')).toBeInTheDocument();
+    expect(screen.getByText('Mensageria')).toBeInTheDocument();
+    expect(screen.getByText('Observabilidade')).toBeInTheDocument();
+  });
 
-        // Check some items in the pills
-        expect(screen.getAllByText('React')[0]).toBeInTheDocument();
-        expect(screen.getAllByText('Kubernetes')[0]).toBeInTheDocument();
-    });
+  it('renders technology nodes inside the constellation', () => {
+    render(<Technologies />);
 
-    it('renders the infinite scroll bands with technologies', () => {
-        const { container } = render(<Technologies />);
+    expect(screen.getByTestId('tech-node-React')).toBeInTheDocument();
+    expect(screen.getByTestId('tech-node-Node.js')).toBeInTheDocument();
+    expect(screen.getByTestId('tech-node-Docker')).toBeInTheDocument();
+    expect(screen.getByTestId('tech-node-Kubernetes')).toBeInTheDocument();
+  });
 
-        // Check that we have two scroll tracks (ScrollBand components)
-        const tracks = container.querySelectorAll('.tech-band-track');
-        expect(tracks.length).toBe(2);
-
-        // Check if some technologies are present in the DOM (images/labels)
-        const reactImages = screen.getAllByAltText('React');
-        expect(reactImages.length).toBeGreaterThan(0);
-
-        const dockerImages = screen.getAllByAltText('Docker');
-        expect(dockerImages.length).toBeGreaterThan(0);
-    });
-
-    it('renderiza corretamente quando useInView retorna false (antes de entrar no viewport)', () => {
-        mockUseInView.mockReturnValueOnce(false);
-        render(<Technologies />);
-        expect(screen.getByText(/Stack Tecnológica/i)).toBeInTheDocument();
-        expect(screen.getByText('Backend')).toBeInTheDocument();
-    });
+  it('renderiza corretamente quando useInView retorna false (antes de entrar no viewport)', () => {
+    mockUseInView.mockReturnValueOnce(false);
+    render(<Technologies />);
+    expect(screen.getByText(/Stack Tecnológica/i)).toBeInTheDocument();
+    expect(screen.getByTestId('tech-constellation')).toBeInTheDocument();
+  });
 });
