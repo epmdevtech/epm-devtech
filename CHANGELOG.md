@@ -9,11 +9,23 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.8-design-system] — 2026-09-04
+
 ### Adicionado
-- Componente `LazySection` para carregamento progressivo de chunks JS por proximidade do viewport (`rootMargin: "400px 0px"`) e `requestIdleCallback`
-- Resolução do diagnóstico do Lighthouse Treemap: redução do JS transferido no carregamento inicial de 230.6 KiB para ~75 KiB (-67%)
-- Chunks pesados (`Contact`, `Radix`, `EmailJS`) removidos do caminho crítico do primeiro paint
-- SPEC-004, TASK-004 e QA-004
+- Automação de testes End-to-End (E2E) com **Playwright** (`@playwright/test`) validando estabilidade, ausência de flickers, conformidade de monocromatismo e navegação
+- Script `npm run test:e2e` integrado ao `package.json`
+- SPEC-008, TASK-008 e QA-008 documentados e aprovados pelo PO
+
+### Alterado
+- **Design System & Identidade Visual**: Substituição integral da cor primária azul pelo **Verde Oficial da EPM DEVTECH** (`#10B981` / Emerald 500, HSL `158 64% 42%` no Dark Mode e `158 75% 36%` no Light Mode) com contraste WCAG AA >= 4.5:1
+- **Títulos 100% Monocromáticos**: Removidos `text-gradient` e estilos multicolores de todos os headings (`Hero`, `About`, `Services`, `Technologies`, `Differentials`, `Authority`, `Contact`). Contraste aplicado estritamente através do peso tipográfico (`font-light` vs `font-semibold`) em `text-foreground`
+- **Harmonização Tipográfica**: Textos corridos e parágrafos padronizados em `Geist Sans`, reservando `Geist Mono` para dados técnicos, números e código
+- Atualização das variáveis e gradientes de destaque para o verde esmeralda em `src/index.css` e `index.html`
+
+### Corrigido
+- Eliminado o bug de flicker / duplicação de título no Hero causado por skeleton estático concorrente no `index.html`
+- Resolvida duplicação de ID `#servicos` e normalizado o ciclo de vida dos nós no `LazySection` e fallbacks do `Suspense`
+
 
 ## [0.0.4-treemap] — 2026-08-28
 

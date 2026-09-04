@@ -65,6 +65,7 @@ A página apresenta serviços, tecnologias, diferenciais, projetos de autoridade
 | React Testing Library  | ^16.0.0    | Testes de componentes            |
 | @vitest/coverage-v8    | ^3.2.4     | Coverage (meta: >90%)            |
 | ESLint                 | ^9.32.0    | Linting e qualidade de código    |
+| @playwright/test       | ^1.58.2    | Testes ponta a ponta (E2E)       |
 
 ---
 
@@ -140,7 +141,7 @@ src/
 
 | Área              | Status           | Notas                                      |
 |-------------------|------------------|--------------------------------------------|
-| Design            | ✅ Implementado  | Dark mode padrão, Light mode disponível    |
+| Design            | ✅ Padronizado   | Design System Verde EPM DEVTECH (#10B981), títulos monocromáticos e tipografia Geist |
 | Hero              | ✅ Otimizado     | Texto estável sem CLS e LCP acelerado      |
 | About             | ✅ Lazy Loaded   | Carregamento progressivo via LazySection   |
 | Services          | ✅ Lazy Loaded   | Carregamento progressivo via LazySection   |
@@ -152,6 +153,7 @@ src/
 | Cookie Banner     | ✅ Otimizado     | Lazy load assíncrono + defer timer (3.5s)  |
 | SEO & Agêntico    | ✅ Otimizado     | Meta tags dinâmicas + llms.txt com links   |
 | Testes unitários  | ✅ Implementado  | 12/12 suites, 80/80 testes passando        |
+| Testes E2E        | ✅ Implementado  | Suíte Playwright (4/4 testes passando)     |
 | Acessibilidade    | ✅ 100% WCAG AA  | Contraste de texto e botões >= 4.5:1       |
 | Performance       | ✅ 100% Otimizado| JS inicial < 80 KB, FCP/LCP instantâneo    |
 | i18n              | ❌ Não iniciado  | Não planejado na versão atual              |
@@ -180,4 +182,4 @@ src/
 
 ---
 
-_Última atualização: 2026-08-28 | Maintainer: Elessandro Prestes Macedo_
+_Última atualização: 2026-09-04 | Maintainer: Elessandro Prestes Macedo_
