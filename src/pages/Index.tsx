@@ -113,11 +113,12 @@ const Index = () => {
 
         for (const entry of entries) {
           // Detecta retorno ao Hero: "sobre" saiu da zona de detecção pela parte de baixo,
-          // ou seja, o usuário rolou para cima e está de volta à seção inicial.
+          // ou seja, o usuário rolou para cima e está de volta à seção inicial (scrollY < 100).
           if (
             !entry.isIntersecting &&
             entry.target.id === "sobre" &&
-            entry.boundingClientRect.top > 0
+            entry.boundingClientRect.top > 0 &&
+            (typeof window !== "undefined" && window.scrollY < 100)
           ) {
             setActiveSection("");
             window.history.replaceState(null, "", "/");
@@ -144,11 +145,28 @@ const Index = () => {
       }
     );
 
-    document
-      .querySelectorAll("section[id]")
-      .forEach((el) => observer.observe(el));
+    const observeAllSections = () => {
+      document
+        .querySelectorAll("section[id]")
+        .forEach((el) => observer.observe(el));
+    };
 
-    return () => observer.disconnect();
+    observeAllSections();
+
+    let mutationObserver: MutationObserver | null = null;
+    if (typeof MutationObserver !== "undefined") {
+      mutationObserver = new MutationObserver(() => {
+        observeAllSections();
+      });
+      mutationObserver.observe(document.body, { childList: true, subtree: true });
+    }
+
+    return () => {
+      observer.disconnect();
+      if (mutationObserver) {
+        mutationObserver.disconnect();
+      }
+    };
   }, []);
 
   const meta = SEO_META[activeSection] ?? SEO_META[""];
@@ -175,43 +193,43 @@ const Index = () => {
         <main id="conteudo-principal" aria-label="Conteúdo principal">
           <Hero />
           <LazySection id="sobre" minHeight="500px">
-            <Suspense fallback={null}>
+            <Suspense fallback={<div id="sobre" style={{ minHeight: "500px" }} className="w-full" />}>
               <About />
             </Suspense>
           </LazySection>
 
           <LazySection id="servicos" minHeight="500px">
-            <Suspense fallback={null}>
+            <Suspense fallback={<div id="servicos" style={{ minHeight: "500px" }} className="w-full" />}>
               <Services />
             </Suspense>
           </LazySection>
 
           <LazySection id="tecnologias" minHeight="400px">
-            <Suspense fallback={null}>
+            <Suspense fallback={<div id="tecnologias" style={{ minHeight: "400px" }} className="w-full" />}>
               <Technologies />
             </Suspense>
           </LazySection>
 
           <LazySection id="diferenciais" minHeight="500px">
-            <Suspense fallback={null}>
+            <Suspense fallback={<div id="diferenciais" style={{ minHeight: "500px" }} className="w-full" />}>
               <Differentials />
             </Suspense>
           </LazySection>
 
           <LazySection id="autoridade" minHeight="400px">
-            <Suspense fallback={null}>
+            <Suspense fallback={<div id="autoridade" style={{ minHeight: "400px" }} className="w-full" />}>
               <Authority />
             </Suspense>
           </LazySection>
 
           <LazySection id="contato" minHeight="600px">
-            <Suspense fallback={null}>
+            <Suspense fallback={<div id="contato" style={{ minHeight: "600px" }} className="w-full" />}>
               <Contact />
             </Suspense>
           </LazySection>
         </main>
         <LazySection id="rodape" minHeight="300px">
-          <Suspense fallback={null}>
+          <Suspense fallback={<div id="rodape" style={{ minHeight: "300px" }} className="w-full" />}>
             <Footer />
           </Suspense>
         </LazySection>

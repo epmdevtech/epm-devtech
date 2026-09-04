@@ -27,6 +27,19 @@ export const LazySection: React.FC<LazySectionProps> = ({
   useEffect(() => {
     if (shouldRender) return;
 
+    const checkTarget = () => {
+      if (typeof window === "undefined") return;
+      const hash = window.location.hash.replace("#", "");
+      const pathname = window.location.pathname.replace("/", "");
+      if (hash === id || pathname === id) {
+        setShouldRender(true);
+      }
+    };
+
+    checkTarget();
+    window.addEventListener("hashchange", checkTarget);
+    window.addEventListener("popstate", checkTarget);
+
     if (!placeholderRef.current || typeof IntersectionObserver === "undefined") {
       setShouldRender(true);
       return;
@@ -58,6 +71,8 @@ export const LazySection: React.FC<LazySectionProps> = ({
 
     return () => {
       observer.disconnect();
+      window.removeEventListener("hashchange", checkTarget);
+      window.removeEventListener("popstate", checkTarget);
       if (typeof window !== "undefined" && "cancelIdleCallback" in window && typeof idleId === "number") {
         (window as unknown as { cancelIdleCallback: (id: number) => void }).cancelIdleCallback(idleId);
       } else {
@@ -67,11 +82,15 @@ export const LazySection: React.FC<LazySectionProps> = ({
   }, [id, rootMargin, shouldRender]);
 
   if (shouldRender) {
-    return <>{children}</>;
+    return (
+      <div style={{ minHeight }} className="w-full">
+        {children}
+      </div>
+    );
   }
 
   return (
-    <section
+    <div
       id={id}
       ref={placeholderRef}
       style={{ minHeight }}
