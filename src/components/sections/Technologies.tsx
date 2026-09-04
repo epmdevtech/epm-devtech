@@ -250,10 +250,10 @@ const Technologies = () => {
             <span className="text-primary font-mono text-xs uppercase tracking-widest mb-4 block">
               Stack Tecnológica
             </span>
-            <h2 className="text-3xl sm:text-4xl font-light tracking-tight mb-4">
-              Tecnologias <span className="text-gradient">Modernas</span>
+            <h2 className="text-3xl sm:text-4xl font-light tracking-tight mb-4 text-foreground">
+              Tecnologias <span className="font-semibold text-foreground">Modernas</span>
             </h2>
-            <p className="font-mono text-sm text-muted-foreground leading-relaxed">
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed font-normal">
               Utilizamos as melhores ferramentas do mercado para entregar soluções
               robustas, escaláveis e de fácil manutenção.
             </p>

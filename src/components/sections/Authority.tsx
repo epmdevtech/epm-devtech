@@ -135,11 +135,11 @@ const Authority = () => {
             <span className="text-primary font-mono text-xs uppercase tracking-widest mb-4 block">
               Credenciais
             </span>
-            <h2 className="text-3xl sm:text-4xl font-light tracking-tight mb-4 leading-tight">
-              Autoridade <span className="text-gradient">Técnica</span> que{" "}
-              <span className="text-gradient">Gera Resultados</span>
+            <h2 className="text-3xl sm:text-4xl font-light tracking-tight mb-4 leading-tight text-foreground">
+              Autoridade Técnica que{" "}
+              <span className="font-semibold text-foreground">Gera Resultados</span>
             </h2>
-            <p className="font-mono text-sm text-muted-foreground leading-relaxed">
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed font-normal">
               Anos de experiência em projetos reais, traduzidos em competência técnica aplicada e entrega consistente.
             </p>
           </motion.div>

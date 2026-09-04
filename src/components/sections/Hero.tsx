@@ -24,13 +24,13 @@ const Hero = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Calculate opacity and scale based on scroll position (max 300px)
-  const progress = Math.min(scrollY / 300, 1);
-  const opacity = 1 - progress;
-  const scale = 1 - (progress * 0.1); // scale from 1 to 0.9
+  // Calculate opacity and scale based on scroll position (max 600px with opacity floor)
+  const progress = Math.min(scrollY / 600, 1);
+  const opacity = Math.max(0.15, 1 - progress);
+  const scale = 1 - (progress * 0.08); // scale from 1 to 0.92
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-hero noise">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-hero noise">
       {/* Background grid pattern */}
       <div className="absolute inset-0 bg-grid-pattern bg-grid opacity-[0.03]" />
 
@@ -44,25 +44,23 @@ const Hero = () => {
       >
         <div className="max-w-4xl mx-auto text-center">
 
-          {/* Headline — SEM opacity-0 para que o LCP seja registrado imediatamente
-              ao renderizar. Somente o h1 deve ser visível instantaneamente;
-              subtitle e CTA podem animar normalmente (não são LCP). */}
+          {/* Headline — Monocromático, sem gradiente, contraste por peso tipográfico */}
           <h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tight leading-tight mb-6"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tight leading-tight mb-6 text-foreground"
           >
             <span>Soluções Digitais </span>
-            <span className="text-gradient font-normal">
+            <span className="font-semibold text-foreground">
               Sob Medida
             </span>
             <br />
-            <span className="text-muted-foreground">
+            <span className="text-muted-foreground font-light text-2xl sm:text-3xl md:text-4xl lg:text-5xl block mt-2">
               Para Sua Empresa
             </span>
           </h1>
 
           {/* Subtitle */}
           <p
-            className="font-mono text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed animate-fade-in-up opacity-0"
+            className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed animate-fade-in-up opacity-0 font-normal"
             style={{ animationDelay: '200ms' }}
           >
             Arquitetura de software robusta, APIs escaláveis e sistemas web de alta performance. Transformamos desafios técnicos em soluções elegantes e eficientes.
@@ -76,9 +74,9 @@ const Hero = () => {
             <a
               href="#servicos"
               aria-label="Conheça os serviços da EPM DEVTECH"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-lg font-bold text-base text-white bg-primary shadow-lg shadow-primary/30 hover:shadow-primary/50 hover:scale-[1.04] active:scale-95 transition-all duration-200 ease-out no-underline"
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-lg font-semibold text-base text-white bg-primary shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:scale-[1.03] active:scale-95 transition-all duration-200 ease-out no-underline"
             >
-              <Code2 size={18} strokeWidth={2} />
+              <Code2 size={18} strokeWidth={2.2} />
               Conheça os Serviços
             </a>
           </div>

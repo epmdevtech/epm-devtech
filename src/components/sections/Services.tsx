@@ -24,7 +24,7 @@ function MockBrowser() {
       <div className="svc-block" style={{ padding: "10px 12px", marginBottom: 8 }}>
         <div className="svc-bar" style={{ width: "55%", height: 7, borderRadius: 3, marginBottom: 5 }} />
         <div className="svc-bar" style={{ width: "40%", height: 5, borderRadius: 3, marginBottom: 8 }} />
-        <div style={{ width: 60, height: 20, background: "linear-gradient(135deg,#2979FF,#A855F7)", borderRadius: 4 }} />
+        <div style={{ width: 60, height: 20, background: "linear-gradient(135deg,#10b981,#059669)", borderRadius: 4 }} />
       </div>
       {/* 3 card blocks */}
       <div style={{ display: "flex", gap: 6 }}>
@@ -47,7 +47,7 @@ function MockAPI() {
   return (
     <div className="svc-mockup" style={{ fontSize: 9, lineHeight: 1.8 }}>
       <div style={{ display: "flex", gap: 5, marginBottom: 10 }}>
-        <div style={{ padding: "2px 8px", borderRadius: 4, background: "rgba(41,121,255,0.18)", color: "#2979FF", fontSize: 8, fontWeight: 700 }}>GET</div>
+        <div style={{ padding: "2px 8px", borderRadius: 4, background: "rgba(16,185,129,0.18)", color: "#10b981", fontSize: 8, fontWeight: 700 }}>GET</div>
         <div className="svc-bar" style={{ flex: 1, height: 18, borderRadius: 4, display: "flex", alignItems: "center", paddingLeft: 8, fontSize: 8 }}>/api/v1/users</div>
       </div>
       {lines.map((l, i) => (
@@ -68,13 +68,13 @@ function MockIntegration() {
   return (
     <div className="svc-mockup" style={{ display: "flex", flexDirection: "column", gap: 8 }}>
       <div style={{ display: "flex", justifyContent: "center", marginBottom: 4 }}>
-        <div style={{ padding: "4px 14px", borderRadius: 6, background: "rgba(14,165,233,0.18)", border: "1px solid rgba(14,165,233,0.35)", color: "#0EA5E9", fontSize: 9, fontWeight: 700 }}>API Hub</div>
+        <div style={{ padding: "4px 14px", borderRadius: 6, background: "rgba(16,185,129,0.18)", border: "1px solid rgba(16,185,129,0.35)", color: "#10b981", fontSize: 9, fontWeight: 700 }}>API Hub</div>
       </div>
       <div style={{ display: "flex", justifyContent: "center", height: 14, alignItems: "center" }}>
         <div style={{ width: "80%", height: 1, background: "linear-gradient(90deg, transparent, rgba(168,85,247,0.4), transparent)" }} />
       </div>
       <div style={{ display: "flex", justifyContent: "space-around" }}>
-        {[{ label: "CRM", color: "#2979FF" }, { label: "ERP", color: "#A855F7" }, { label: "Email", color: "#10b981" }, { label: "DB", color: "#f59e0b" }].map(n => (
+        {[{ label: "CRM", color: "#10b981" }, { label: "ERP", color: "#A855F7" }, { label: "Email", color: "#10b981" }, { label: "DB", color: "#f59e0b" }].map(n => (
           <div key={n.label} style={{ padding: "3px 8px", borderRadius: 5, background: `${n.color}18`, border: `1px solid ${n.color}40`, color: n.color, fontSize: 8 }}>{n.label}</div>
         ))}
       </div>
@@ -88,9 +88,9 @@ function MockIntegration() {
 
 function MockArchitecture() {
   const layers = [
-    { label: "Presentation Layer", color: "#2979FF" },
+    { label: "Presentation Layer", color: "#10b981" },
     { label: "Application / Use Cases", color: "#A855F7" },
-    { label: "Domain / Business Logic", color: "#0EA5E9" },
+    { label: "Domain / Business Logic", color: "#34d399" },
     { label: "Infrastructure / DB / Queue", color: "#6b7280" },
   ];
   return (
@@ -128,7 +128,7 @@ function MockMaintenance() {
 
 function MockConsulting() {
   const comments = [
-    { user: "E", msg: "Revisei a arquitetura — 3 pontos críticos", color: "#2979FF" },
+    { user: "E", msg: "Revisei a arquitetura — 3 pontos críticos", color: "#10b981" },
     { user: "C", msg: "N+1 query detectado em UserService.ts:42", color: "#f59e0b" },
     { user: "E", msg: "✓ Solução: eager loading com joinQuery()", color: "#16a34a" },
   ];
@@ -151,7 +151,7 @@ const services = [
     visual: <MockBrowser />,
     title: "Desenvolvimento de Sistemas Web",
     description: "Aplicações web modernas, responsivas e otimizadas para performance. SPAs com Angular, Vue.js e React.",
-    accent: "#2979FF",
+    accent: "#10b981",
   },
   {
     visual: <MockAPI />,
@@ -163,7 +163,7 @@ const services = [
     visual: <MockIntegration />,
     title: "Integrações de Sistemas",
     description: "Conexão entre sistemas internos e externos, mensageria com RabbitMQ e Kafka, webhooks e sincronização.",
-    accent: "#0EA5E9",
+    accent: "#10b981",
   },
   {
     visual: <MockArchitecture />,
@@ -326,10 +326,10 @@ const Services = () => {
             <span className="text-primary font-mono text-xs uppercase tracking-widest mb-4 block">
               Serviços
             </span>
-            <h2 className="text-3xl sm:text-4xl font-light tracking-tight mb-4">
-              Soluções <span className="text-gradient">End-to-End</span>
+            <h2 className="text-3xl sm:text-4xl font-light tracking-tight mb-4 text-foreground">
+              Soluções <span className="font-semibold text-foreground">End-to-End</span>
             </h2>
-            <p className="font-mono text-sm text-muted-foreground leading-relaxed">
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed font-normal">
               Do planejamento à entrega, oferecemos serviços completos de desenvolvimento
               de software com foco em qualidade e resultados.
             </p>

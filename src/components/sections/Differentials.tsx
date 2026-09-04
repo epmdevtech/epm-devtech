@@ -283,11 +283,11 @@ const Differentials = () => {
             <span className="text-primary font-mono text-xs uppercase tracking-widest mb-4 block">
               Diferenciais
             </span>
-            <h2 className="text-3xl sm:text-4xl font-light tracking-tight mb-3 leading-tight">
+            <h2 className="text-3xl sm:text-4xl font-light tracking-tight mb-3 leading-tight text-foreground">
               Por Que Escolher a{" "}
-              <span className="text-gradient">EPM DEVTECH</span>
+              <span className="font-semibold text-foreground">EPM DEVTECH</span>
             </h2>
-            <p className="font-mono text-sm text-muted-foreground leading-relaxed">
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed font-normal">
               Qualidade técnica e profissionalismo em cada linha de código.
             </p>
           </motion.div>

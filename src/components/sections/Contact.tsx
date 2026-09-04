@@ -149,11 +149,11 @@ const Contact = () => {
           <span className="text-primary font-mono text-xs uppercase tracking-widest mb-4 block">
             Contato
           </span>
-          <h2 className="text-3xl sm:text-4xl font-light tracking-tight mb-4">
+          <h2 className="text-3xl sm:text-4xl font-light tracking-tight mb-4 text-foreground">
             Vamos Construir{" "}
-            <span className="text-gradient">Juntos</span>
+            <span className="font-semibold text-foreground">Juntos</span>
           </h2>
-          <p className="font-mono text-sm text-muted-foreground leading-relaxed">
+          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed font-normal">
             Pronto para transformar sua ideia em realidade? Preencha o formulário
             e retornarei em até 24 horas úteis.
           </p>

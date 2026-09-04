@@ -499,22 +499,22 @@ const About = () => {
               <span className="text-primary font-mono text-xs uppercase tracking-widest mb-4 block">
                 Sobre a EPM DEVTECH
               </span>
-              <h2 className="text-3xl sm:text-4xl font-light tracking-tight mb-6 leading-tight">
+              <h2 className="text-3xl sm:text-4xl font-light tracking-tight mb-6 leading-tight text-foreground">
                 Engenharia de Software com{" "}
-                <span className="text-gradient">Excelência Técnica</span>
+                <span className="font-semibold text-foreground">Excelência Técnica</span>
               </h2>
               <div className="space-y-4">
-                <p className="font-mono text-sm text-muted-foreground leading-relaxed">
+                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed font-normal">
                   A EPM DEVTECH é uma empresa especializada em desenvolvimento de software,
                   fundada por Elessandro Prestes Macedo, desenvolvedor Full Stack com mais de
                   9 anos de experiência em projetos de médio e grande porte.
                 </p>
-                <p className="font-mono text-sm text-muted-foreground leading-relaxed">
+                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed font-normal">
                   Nossa atuação abrange desde o design de arquiteturas escaláveis até a
                   implementação de sistemas complexos, sempre com foco em qualidade de código,
                   boas práticas e entrega profissional.
                 </p>
-                <p className="font-mono text-sm text-muted-foreground leading-relaxed">
+                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed font-normal">
                   Trabalhamos com metodologias ágeis, versionamento rigoroso e integração
                   contínua (CI/CD), garantindo transparência e previsibilidade em cada projeto.
                 </p>
