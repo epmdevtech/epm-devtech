@@ -9,7 +9,18 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
-## [0.0.8-design-system] — 2026-09-04
+## [0.0.9-tech-constellation] — 2026-09-04
+
+### Adicionado
+- Novo componente **`TechConstellation`** (`src/components/sections/TechConstellation.tsx`) substituindo o marquee tradicional da seção "Stack Tecnológica"
+- Visual de grafo de tecnologias organizado por categorias conectadas por trilhas estilo circuito impresso (PCB) com pulsos animados de fluxo de dados
+- Interação *Focus & Context*: destaque visual do nó selecionado e conexões diretas via hover, foco por teclado e clique/touch, esmaecendo nós não relacionados
+- Integração com `Tooltip` do shadcn/ui (`@/components/ui/tooltip`) informando dados de tecnologia, categoria e interconexões
+- Utilitário desacoplado de cálculo geométrico determinístico `src/lib/buildConstellationLayout.ts` com suporte a layout responsivo Desktop e Mobile
+- Suíte de testes unitários (`buildConstellationLayout.test.ts` e `TechConstellation.test.tsx`) mantendo cobertura em 98.1%
+- Teste ponta a ponta Playwright para o TechConstellation (5/5 testes passando)
+- Documentação SDD: SPEC-009, TASK-009 e QA-009
+
 
 ### Adicionado
 - Automação de testes End-to-End (E2E) com **Playwright** (`@playwright/test`) validando estabilidade, ausência de flickers, conformidade de monocromatismo e navegação
