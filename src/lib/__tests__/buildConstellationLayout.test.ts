@@ -44,8 +44,8 @@ describe("buildConstellationLayout", () => {
   it("deve calcular o layout desktop por padrão mantendo nós dentro dos limites", () => {
     const layout = buildConstellationLayout(sampleCategories, sampleConnections);
 
-    expect(layout.width).toBe(1000);
-    expect(layout.height).toBe(620);
+    expect(layout.width).toBe(1100);
+    expect(layout.height).toBe(680);
     expect(layout.nodes.length).toBe(4);
     expect(layout.categoryCentroids.length).toBe(3);
 
@@ -58,9 +58,9 @@ describe("buildConstellationLayout", () => {
     // Valida que todos os nós estão dentro dos limites
     layout.nodes.forEach((node) => {
       expect(node.x).toBeGreaterThanOrEqual(35);
-      expect(node.x).toBeLessThanOrEqual(1000 - 35);
+      expect(node.x).toBeLessThanOrEqual(1100 - 35);
       expect(node.y).toBeGreaterThanOrEqual(35);
-      expect(node.y).toBeLessThanOrEqual(620 - 35);
+      expect(node.y).toBeLessThanOrEqual(680 - 35);
     });
   });
 

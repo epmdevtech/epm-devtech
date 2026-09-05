@@ -74,6 +74,18 @@ export const TechConstellation: React.FC<TechConstellationProps> = ({
     return new Set([activeTech, ...Array.from(neighbors)]);
   }, [activeTech, adjacencyMap]);
 
+  // Objeto do nó ativo selecionado
+  const activeNode = useMemo(() => {
+    if (!activeTech) return null;
+    return layout.nodes.find((n) => n.name === activeTech) ?? null;
+  }, [activeTech, layout.nodes]);
+
+  // Lista de vizinhos conectados ao nó ativo
+  const activeNeighborsList = useMemo(() => {
+    if (!activeTech) return [];
+    return Array.from(adjacencyMap.get(activeTech) ?? []);
+  }, [activeTech, adjacencyMap]);
+
   // Fecha o estado ativo ao pressionar Escape
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -85,9 +97,11 @@ export const TechConstellation: React.FC<TechConstellationProps> = ({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  // Configurações de dimensão dos cards dos nós
-  const nodeSize = isMobile ? 48 : 54;
-  const halfNode = nodeSize / 2;
+  // Configurações de dimensão dos cards dos nós (acomoda ícone + nome)
+  const nodeWidth = isMobile ? 54 : 66;
+  const nodeHeight = isMobile ? 48 : 56;
+  const halfWidth = nodeWidth / 2;
+  const halfHeight = nodeHeight / 2;
 
   return (
     <TooltipProvider delayDuration={150}>
@@ -100,7 +114,7 @@ export const TechConstellation: React.FC<TechConstellationProps> = ({
         )}
       >
         {/* SVG responsivo da Constelação e trilhas PCB */}
-        <div className="relative w-full aspect-[380/860] md:aspect-[1000/620] overflow-hidden rounded-2xl border border-border/40 bg-card/20 backdrop-blur-sm shadow-inner">
+        <div className="relative w-full aspect-[380/860] md:aspect-[1100/680] overflow-hidden rounded-2xl border border-border/40 bg-card/20 backdrop-blur-sm shadow-inner">
           <svg
             viewBox={`0 0 ${layout.width} ${layout.height}`}
             className="w-full h-full cursor-default"
@@ -124,18 +138,30 @@ export const TechConstellation: React.FC<TechConstellationProps> = ({
               </filter>
             </defs>
 
-            {/* ─── Rótulos e centróides de cada Categoria ─── */}
+            {/* ─── Rótulos e centróides de cada Categoria (posicionados sem colisão) ─── */}
             <g className="category-labels pointer-events-none">
               {layout.categoryCentroids.map((cat) => (
-                <text
-                  key={cat.id}
-                  x={cat.x}
-                  y={cat.y - (isMobile ? 54 : 64)}
-                  textAnchor="middle"
-                  className="fill-muted-foreground/60 text-[10px] md:text-[11px] font-mono uppercase tracking-widest font-medium"
-                >
-                  {cat.label}
-                </text>
+                <g key={cat.id} transform={`translate(${cat.labelX}, ${cat.labelY})`}>
+                  <rect
+                    x={isMobile ? "-54" : "-65"}
+                    y={isMobile ? "-12" : "-14"}
+                    width={isMobile ? "108" : "130"}
+                    height={isMobile ? "24" : "28"}
+                    rx={isMobile ? "12" : "14"}
+                    fill="hsl(var(--card))"
+                    stroke="hsl(var(--border))"
+                    strokeWidth="1"
+                    className="opacity-95 shadow-sm"
+                  />
+                  <text
+                    x="0"
+                    y={isMobile ? "3" : "4"}
+                    textAnchor="middle"
+                    className="fill-foreground text-[9px] md:text-[11px] font-mono uppercase tracking-wider font-semibold"
+                  >
+                    {cat.label}
+                  </text>
+                </g>
               ))}
             </g>
 
@@ -225,10 +251,10 @@ export const TechConstellation: React.FC<TechConstellationProps> = ({
                 return (
                   <foreignObject
                     key={node.id}
-                    x={node.x - halfNode}
-                    y={node.y - halfNode}
-                    width={nodeSize}
-                    height={nodeSize}
+                    x={node.x - halfWidth}
+                    y={node.y - halfHeight}
+                    width={nodeWidth}
+                    height={nodeHeight}
                     className="overflow-visible"
                   >
                     <Tooltip>
@@ -240,7 +266,7 @@ export const TechConstellation: React.FC<TechConstellationProps> = ({
                           data-testid={`tech-node-${node.name}`}
                           data-active={isNodeActive ? "true" : "false"}
                           className={cn(
-                            "relative w-full h-full rounded-xl border bg-card/90 flex flex-col items-center justify-center p-1.5 cursor-pointer shadow-sm select-none transition-all duration-300",
+                            "group relative w-full h-full rounded-xl border bg-card/95 flex flex-col items-center justify-center p-1 cursor-pointer shadow-sm select-none transition-all duration-300",
                             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
                             isNodeActive
                               ? "border-primary ring-2 ring-primary/40 shadow-lg shadow-primary/20 scale-110 z-30"
@@ -261,9 +287,7 @@ export const TechConstellation: React.FC<TechConstellationProps> = ({
                                     : isDimmed
                                     ? 0.95
                                     : 1,
-                                  y: shouldReduceMotion
-                                    ? 0
-                                    : [0, -3, 0],
+                                  y: shouldReduceMotion ? 0 : [0, -2, 0],
                                 }
                               : {}
                           }
@@ -289,14 +313,17 @@ export const TechConstellation: React.FC<TechConstellationProps> = ({
                           <img
                             src={node.icon}
                             alt={node.name}
-                            width={isMobile ? 24 : 28}
-                            height={isMobile ? 24 : 28}
+                            width={isMobile ? 20 : 24}
+                            height={isMobile ? 20 : 24}
                             loading="lazy"
                             className={cn(
-                              "w-6 h-6 md:w-7 md:h-7 object-contain transition-transform duration-300",
+                              "w-5 h-5 md:w-6 md:h-6 object-contain transition-transform duration-300",
                               node.name === "GitHub" && "dark:invert dark:brightness-150"
                             )}
                           />
+                          <span className="hidden sm:block text-[9px] md:text-[10px] font-mono leading-none tracking-tight text-muted-foreground group-hover:text-foreground font-semibold truncate max-w-[58px] mt-1">
+                            {node.name}
+                          </span>
                         </motion.div>
                       </TooltipTrigger>
 
@@ -315,9 +342,12 @@ export const TechConstellation: React.FC<TechConstellationProps> = ({
                               {node.categoryLabel}
                             </span>
                           </div>
+                          <p className="text-[11px] text-muted-foreground leading-snug">
+                            {node.description}
+                          </p>
                           {connectedNames.length > 0 && (
-                            <p className="text-[11px] text-muted-foreground leading-tight">
-                              Interage com:{" "}
+                            <p className="text-[10px] text-muted-foreground/80 leading-tight pt-0.5 border-t border-border/50">
+                              Conexões:{" "}
                               <span className="text-foreground/90 font-medium">
                                 {connectedNames.slice(0, 4).join(", ")}
                                 {connectedNames.length > 4 ? "..." : ""}
@@ -334,11 +364,85 @@ export const TechConstellation: React.FC<TechConstellationProps> = ({
           </svg>
         </div>
 
+        {/* ─── Painel de Detalhes da Arquitetura / Descrição Dedicada ─── */}
+        <div
+          data-testid="tech-details-panel"
+          className="w-full mt-4 rounded-xl border border-border/60 bg-card/60 backdrop-blur-md p-4 transition-all duration-300 min-h-[96px] flex items-center shadow-sm"
+        >
+          {activeNode ? (
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 w-full">
+              <div className="flex items-center gap-3.5">
+                <div className="w-11 h-11 rounded-lg border border-primary/40 bg-primary/10 flex items-center justify-center p-2 shrink-0 shadow-inner">
+                  <img
+                    src={activeNode.icon}
+                    alt={activeNode.name}
+                    className={cn(
+                      "w-7 h-7 object-contain",
+                      activeNode.name === "GitHub" && "dark:invert dark:brightness-150"
+                    )}
+                  />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-sm sm:text-base font-semibold text-foreground tracking-tight">
+                      {activeNode.name}
+                    </h3>
+                    <span className="text-[10px] font-mono text-primary px-2 py-0.5 rounded-full bg-primary/10 border border-primary/25 uppercase font-medium">
+                      {activeNode.categoryLabel}
+                    </span>
+                  </div>
+                  <p className="text-xs sm:text-sm text-muted-foreground mt-0.5 leading-relaxed">
+                    {activeNode.description}
+                  </p>
+                </div>
+              </div>
+
+              {activeNeighborsList.length > 0 && (
+                <div className="text-xs font-mono text-muted-foreground sm:text-right shrink-0">
+                  <span className="text-muted-foreground/70 block text-[10px] uppercase tracking-wider mb-1">
+                    Fluxo de Conexão:
+                  </span>
+                  <div className="flex flex-wrap sm:justify-end gap-1">
+                    {activeNeighborsList.map((target) => (
+                      <span
+                        key={target}
+                        className="px-1.5 py-0.5 rounded bg-secondary/80 border border-border text-[10px] text-foreground"
+                      >
+                        {target}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="flex items-center justify-between gap-4 w-full text-muted-foreground">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg border border-border/50 bg-secondary/40 flex items-center justify-center text-primary shrink-0">
+                  <span className="text-base font-mono font-bold">⚡</span>
+                </div>
+                <div>
+                  <p className="text-xs sm:text-sm text-foreground/90 font-medium">
+                    Exploração Interativa do Grafo de Engenharia
+                  </p>
+                  <p className="text-xs text-muted-foreground/80 leading-relaxed">
+                    Passe o mouse ou toque em qualquer nó da constelação para visualizar o papel arquitetural, dependências e fluxos de dados de cada tecnologia.
+                  </p>
+                </div>
+              </div>
+              <div className="hidden md:flex items-center gap-2 font-mono text-xs text-primary/80 shrink-0">
+                <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                24 Tecnologias • 6 Camadas
+              </div>
+            </div>
+          )}
+        </div>
+
         {/* Guia sutil de interação para mobile e desktop */}
-        <p className="font-mono text-xs text-muted-foreground/60 mt-4 tracking-widest text-center">
+        <p className="font-mono text-xs text-muted-foreground/50 mt-3 tracking-widest text-center">
           {isMobile
-            ? "toque em um nó para visualizar conexões"
-            : "passe o mouse ou navegue com tab para inspecionar fluxos de dados"}
+            ? "toque em um nó para inspecionar conexões e detalhes"
+            : "passe o mouse ou use tab para inspecionar a arquitetura"}
         </p>
       </div>
     </TooltipProvider>

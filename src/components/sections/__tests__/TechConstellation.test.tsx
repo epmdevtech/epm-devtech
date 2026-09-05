@@ -137,4 +137,24 @@ describe("TechConstellation Component", () => {
     if (svg) fireEvent.click(svg);
     expect(reactNode).toHaveAttribute("data-active", "false");
   });
+
+  it("deve exibir o painel de detalhes com orientações em repouso e detalhes da tecnologia quando ativa", () => {
+    render(
+      <TechConstellation
+        categories={mockCategories}
+        connections={mockConnections}
+      />
+    );
+
+    const panel = screen.getByTestId("tech-details-panel");
+    expect(panel).toBeInTheDocument();
+    expect(screen.getByText(/Exploração Interativa do Grafo/i)).toBeInTheDocument();
+
+    const reactNode = screen.getByTestId("tech-node-React");
+    fireEvent.click(reactNode);
+
+    expect(screen.getByRole("heading", { name: "React" })).toBeInTheDocument();
+    expect(panel).toHaveTextContent("Frontend");
+  });
 });
+

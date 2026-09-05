@@ -9,17 +9,21 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
-## [0.0.9-tech-constellation] — 2026-09-04
+## [0.0.9-tech-constellation] — 2026-09-05
 
 ### Adicionado
 - Novo componente **`TechConstellation`** (`src/components/sections/TechConstellation.tsx`) substituindo o marquee tradicional da seção "Stack Tecnológica"
 - Visual de grafo de tecnologias organizado por categorias conectadas por trilhas estilo circuito impresso (PCB) com pulsos animados de fluxo de dados
 - Interação *Focus & Context*: destaque visual do nó selecionado e conexões diretas via hover, foco por teclado e clique/touch, esmaecendo nós não relacionados
-- Integração com `Tooltip` do shadcn/ui (`@/components/ui/tooltip`) informando dados de tecnologia, categoria e interconexões
+- **Painel Interativo de Arquitetura (`tech-details-panel`)**: Exibição detalhada no rodapé da constelação contendo papel arquitetural, categoria e fluxo de conexões de cada tecnologia
+- Rótulos de categoria desacoplados e centralizados em pills de alto contraste, eliminando qualquer oclusão com os nós ou circuitos
+- Nomes das tecnologias integrados nos nós em desktop e layout clean touch-first otimizado em mobile
+- Descrições arquiteturais para todas as 24 tecnologias em `buildConstellationLayout.ts`
+- Integração com `Tooltip` do shadcn/ui (`@/components/ui/tooltip`)
 - Utilitário desacoplado de cálculo geométrico determinístico `src/lib/buildConstellationLayout.ts` com suporte a layout responsivo Desktop e Mobile
-- Suíte de testes unitários (`buildConstellationLayout.test.ts` e `TechConstellation.test.tsx`) mantendo cobertura em 98.1%
-- Teste ponta a ponta Playwright para o TechConstellation (5/5 testes passando)
-- Documentação SDD: SPEC-009, TASK-009 e QA-009
+- Suíte de testes unitários (`buildConstellationLayout.test.ts` e `TechConstellation.test.tsx`) mantendo cobertura em 98.13% (91/91 testes passando)
+- Testes ponta a ponta Playwright para grafo e painel de detalhes (6/6 testes passando)
+- Documentação SDD: SPEC-009, TASK-009 e QA-009 atualizados
 
 
 ### Adicionado

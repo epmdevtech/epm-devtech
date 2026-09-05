@@ -147,15 +147,15 @@ src/
 | Hero              | ✅ Otimizado     | Texto estável sem CLS e LCP acelerado      |
 | About             | ✅ Lazy Loaded   | Carregamento progressivo via LazySection   |
 | Services          | ✅ Lazy Loaded   | Carregamento progressivo via LazySection   |
-| Technologies      | ✅ Constellation | TechConstellation interativo com trilhas PCB e Focus & Context |
+| Technologies      | ✅ Constellation | TechConstellation interativo com trilhas PCB, Focus & Context e Painel Arquitetural |
 | Differentials     | ✅ Lazy Loaded   | Carregamento progressivo via LazySection   |
 | Authority         | ✅ Lazy Loaded   | Carregamento progressivo via LazySection   |
 | Contact           | ✅ Lazy Loaded   | Radix/EmailJS fora do caminho crítico      |
 | Footer            | ✅ Lazy Loaded   | Logo WebP de 9.5 KB com width/height       |
 | Cookie Banner     | ✅ Otimizado     | Lazy load assíncrono + defer timer (3.5s)  |
 | SEO & Agêntico    | ✅ Otimizado     | Meta tags dinâmicas + llms.txt com links   |
-| Testes unitários  | ✅ Implementado  | 14/14 suites, 90/90 testes passando (98.1% coverage) |
-| Testes E2E        | ✅ Implementado  | Suíte Playwright (5/5 testes passando)     |
+| Testes unitários  | ✅ Implementado  | 14/14 suites, 91/91 testes passando (98.13% coverage) |
+| Testes E2E        | ✅ Implementado  | Suíte Playwright (6/6 testes passando)     |
 | Acessibilidade    | ✅ 100% WCAG AA  | Contraste de texto e botões >= 4.5:1       |
 | Performance       | ✅ 100% Otimizado| JS inicial < 80 KB, FCP/LCP instantâneo    |
 | i18n              | ❌ Não iniciado  | Não planejado na versão atual              |
@@ -184,4 +184,4 @@ src/
 
 ---
 
-_Última atualização: 2026-09-04 | Maintainer: Elessandro Prestes Macedo_
+_Última atualização: 2026-09-05 | Maintainer: Elessandro Prestes Macedo_

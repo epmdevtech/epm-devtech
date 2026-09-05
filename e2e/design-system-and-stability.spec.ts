@@ -126,4 +126,31 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     await expect(nodejsNode).toHaveAttribute('data-active', 'true');
   });
 
+  test('TechConstellation exibe painel de detalhes interativo com nome e conexões ao interagir com nós', async ({ page }) => {
+    await page.goto('/');
+    await page.waitForLoadState('domcontentloaded');
+
+    // Rola até a seção de tecnologias
+    await page.evaluate(() => {
+      const el = document.getElementById('tecnologias');
+      if (el) el.scrollIntoView({ behavior: 'instant' });
+    });
+
+    const constellation = page.locator('[data-testid="tech-constellation"]');
+    await expect(constellation).toBeVisible();
+
+    const detailsPanel = page.locator('[data-testid="tech-details-panel"]');
+    await expect(detailsPanel).toBeVisible();
+    await expect(detailsPanel).toContainText('Exploração Interativa do Grafo');
+
+    // Clica no nó React (com force: true devido à animação de flutuação contínua)
+    const reactNode = page.locator('[data-testid="tech-node-React"]');
+    await reactNode.click({ force: true });
+
+    await expect(detailsPanel).toContainText('React');
+    await expect(detailsPanel).toContainText('Frontend');
+    await expect(detailsPanel).toContainText('Node.js');
+  });
+
 });
+

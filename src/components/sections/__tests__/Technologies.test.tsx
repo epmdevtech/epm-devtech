@@ -23,7 +23,7 @@ describe('Technologies Component', () => {
   it('renders section title, subtitle and TechConstellation', () => {
     render(<Technologies />);
     expect(screen.getByText(/Stack Tecnológica/i)).toBeInTheDocument();
-    expect(screen.getByText(/Tecnologias/i)).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /Tecnologias/i })).toBeInTheDocument();
     expect(screen.getByTestId('tech-constellation')).toBeInTheDocument();
   });
 

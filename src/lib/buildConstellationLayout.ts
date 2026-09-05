@@ -9,6 +9,7 @@
 export interface Technology {
   name: string;
   icon: string;
+  description?: string;
 }
 
 export interface Category {
@@ -24,6 +25,7 @@ export interface NodePosition {
   id: string;
   name: string;
   icon: string;
+  description: string;
   categoryId: string;
   categoryLabel: string;
   colorVar: string;
@@ -48,6 +50,8 @@ export interface CategoryCentroid {
   colorVar: string;
   x: number;
   y: number;
+  labelX: number;
+  labelY: number;
 }
 
 export interface ConstellationLayout {
@@ -99,29 +103,34 @@ export function generatePcbPath(
 }
 
 /**
- * Centróides padrão das 6 categorias no layout Desktop (viewBox 1000 x 620).
- * Disposição reflete a arquitetura: Frontend -> Backend -> Banco/Mensageria -> Cloud -> Observabilidade.
+ * Centróides e posições dos rótulos de categoria no layout Desktop (viewBox 1100 x 680).
+ * Os rótulos de categoria ficam posicionados fora da órbita dos nós para evitar qualquer colisão.
  */
-const DESKTOP_CATEGORY_CENTROIDS: Record<string, { x: number; y: number }> = {
-  frontend: { x: 130, y: 220 },
-  backend: { x: 380, y: 190 },
-  database: { x: 370, y: 460 },
-  messaging: { x: 640, y: 440 },
-  cloud: { x: 670, y: 180 },
-  observability: { x: 880, y: 310 },
+const DESKTOP_CATEGORY_CONFIG: Record<
+  string,
+  { x: number; y: number; labelX: number; labelY: number; radiusX: number; radiusY: number }
+> = {
+  frontend: { x: 170, y: 260, labelX: 170, labelY: 135, radiusX: 74, radiusY: 58 },
+  backend: { x: 460, y: 220, labelX: 460, labelY: 95, radiusX: 78, radiusY: 60 },
+  cloud: { x: 770, y: 210, labelX: 770, labelY: 85, radiusX: 95, radiusY: 64 },
+  database: { x: 360, y: 530, labelX: 360, labelY: 410, radiusX: 84, radiusY: 60 },
+  messaging: { x: 660, y: 530, labelX: 660, labelY: 420, radiusX: 68, radiusY: 50 },
+  observability: { x: 950, y: 380, labelX: 950, labelY: 250, radiusX: 72, radiusY: 56 },
 };
 
 /**
  * Centróides no layout Mobile (viewBox 380 x 860).
- * Disposição em fluxo vertical de fácil visualização em colunas duplas.
  */
-const MOBILE_CATEGORY_CENTROIDS: Record<string, { x: number; y: number }> = {
-  frontend: { x: 110, y: 120 },
-  backend: { x: 270, y: 170 },
-  database: { x: 110, y: 390 },
-  messaging: { x: 270, y: 430 },
-  cloud: { x: 120, y: 650 },
-  observability: { x: 260, y: 700 },
+const MOBILE_CATEGORY_CONFIG: Record<
+  string,
+  { x: number; y: number; labelX: number; labelY: number; radiusX: number; radiusY: number }
+> = {
+  frontend: { x: 110, y: 130, labelX: 110, labelY: 60, radiusX: 42, radiusY: 36 },
+  backend: { x: 270, y: 180, labelX: 270, labelY: 110, radiusX: 42, radiusY: 36 },
+  database: { x: 110, y: 400, labelX: 110, labelY: 330, radiusX: 46, radiusY: 38 },
+  messaging: { x: 270, y: 440, labelX: 270, labelY: 370, radiusX: 38, radiusY: 32 },
+  cloud: { x: 120, y: 660, labelX: 120, labelY: 590, radiusX: 48, radiusY: 38 },
+  observability: { x: 260, y: 710, labelX: 260, labelY: 640, radiusX: 40, radiusY: 34 },
 };
 
 /**
@@ -133,39 +142,34 @@ export function buildConstellationLayout(
   options: LayoutOptions = {}
 ): ConstellationLayout {
   const isMobile = options.isMobile ?? false;
-  const width = options.width ?? (isMobile ? 380 : 1000);
-  const height = options.height ?? (isMobile ? 860 : 620);
+  const width = options.width ?? (isMobile ? 380 : 1100);
+  const height = options.height ?? (isMobile ? 860 : 680);
 
-  const defaultCentroids = isMobile
-    ? MOBILE_CATEGORY_CENTROIDS
-    : DESKTOP_CATEGORY_CENTROIDS;
+  const defaultConfigs = isMobile ? MOBILE_CATEGORY_CONFIG : DESKTOP_CATEGORY_CONFIG;
 
   const nodes: NodePosition[] = [];
   const nodesByName = new Map<string, NodePosition>();
   const categoryCentroids: CategoryCentroid[] = [];
 
   categories.forEach((category, catIdx) => {
-    // Busca o centróide pré-definido ou calcula uma posição radial fallback
     const key = category.id.toLowerCase();
-    let centroid = defaultCentroids[key];
-
-    if (!centroid) {
-      // Fallback determinístico
-      const angle = (catIdx / Math.max(categories.length, 1)) * Math.PI * 2;
-      const rx = width * 0.35;
-      const ry = height * 0.32;
-      centroid = {
-        x: width * 0.5 + Math.cos(angle) * rx,
-        y: height * 0.5 + Math.sin(angle) * ry,
-      };
-    }
+    const config = defaultConfigs[key] ?? {
+      x: width * 0.5,
+      y: height * 0.5,
+      labelX: width * 0.5,
+      labelY: height * 0.5 - 70,
+      radiusX: 65,
+      radiusY: 55,
+    };
 
     categoryCentroids.push({
       id: category.id,
       label: category.label,
       colorVar: category.colorVar,
-      x: centroid.x,
-      y: centroid.y,
+      x: config.x,
+      y: config.y,
+      labelX: config.labelX,
+      labelY: config.labelY,
     });
 
     const techCount = category.technologies.length;
@@ -175,25 +179,16 @@ export function buildConstellationLayout(
       let nodeY: number;
 
       if (techCount === 1) {
-        nodeX = centroid.x;
-        nodeY = centroid.y;
-      } else if (isMobile) {
-        // No mobile: arranjo compacto ao redor do centróide
-        const angle = (techIdx / techCount) * Math.PI * 2 - Math.PI / 2;
-        const radius = Math.min(38, 20 + techCount * 3.5);
-        nodeX = centroid.x + Math.cos(angle) * radius;
-        nodeY = centroid.y + Math.sin(angle) * radius;
+        nodeX = config.x;
+        nodeY = config.y;
       } else {
-        // No desktop: dispersão em anel elíptico com leve variação orgânica
         const angle = (techIdx / techCount) * Math.PI * 2 - Math.PI / 2;
-        const radiusX = Math.min(75, 45 + techCount * 5.5);
-        const radiusY = Math.min(65, 40 + techCount * 4.5);
-        nodeX = centroid.x + Math.cos(angle) * radiusX;
-        nodeY = centroid.y + Math.sin(angle) * radiusY;
+        nodeX = config.x + Math.cos(angle) * config.radiusX;
+        nodeY = config.y + Math.sin(angle) * config.radiusY;
       }
 
       // Garante que o nó permaneça dentro dos limites do viewport
-      const padding = isMobile ? 24 : 35;
+      const padding = isMobile ? 26 : 42;
       nodeX = Math.max(padding, Math.min(width - padding, nodeX));
       nodeY = Math.max(padding, Math.min(height - padding, nodeY));
 
@@ -201,6 +196,9 @@ export function buildConstellationLayout(
         id: tech.name,
         name: tech.name,
         icon: tech.icon,
+        description:
+          tech.description ??
+          `Tecnologia integrada na camada de ${category.label} da arquitetura EPM DEVTECH.`,
         categoryId: category.id,
         categoryLabel: category.label,
         colorVar: category.colorVar,
@@ -253,10 +251,26 @@ export const DEFAULT_CONSTELLATION_CATEGORIES: Category[] = [
     label: "Frontend",
     colorVar: "--primary",
     technologies: [
-      { name: "React", icon: `${DI}/react/react-original.svg` },
-      { name: "Angular", icon: `${DI}/angular/angular-original.svg` },
-      { name: "Vue.js", icon: `${DI}/vuejs/vuejs-original.svg` },
-      { name: "TypeScript", icon: `${DI}/typescript/typescript-original.svg` },
+      {
+        name: "React",
+        icon: `${DI}/react/react-original.svg`,
+        description: "Construção de interfaces componentizadas, dinâmicas e de alta performance.",
+      },
+      {
+        name: "Angular",
+        icon: `${DI}/angular/angular-original.svg`,
+        description: "Framework robusto para aplicações corporativas com arquitetura opinada.",
+      },
+      {
+        name: "Vue.js",
+        icon: `${DI}/vuejs/vuejs-original.svg`,
+        description: "Ecossistema progressivo e ágil para interfaces interativas e reativas.",
+      },
+      {
+        name: "TypeScript",
+        icon: `${DI}/typescript/typescript-original.svg`,
+        description: "Tipagem estática estrita para código confiável, seguro e de fácil manutenção.",
+      },
     ],
   },
   {
@@ -264,10 +278,26 @@ export const DEFAULT_CONSTELLATION_CATEGORIES: Category[] = [
     label: "Backend",
     colorVar: "--primary",
     technologies: [
-      { name: "Node.js", icon: `${DI}/nodejs/nodejs-original.svg` },
-      { name: "PHP", icon: `${DI}/php/php-original.svg` },
-      { name: "Laravel", icon: `${DI}/laravel/laravel-original.svg` },
-      { name: "Symfony", icon: `${DI}/symfony/symfony-original-wordmark.svg` },
+      {
+        name: "Node.js",
+        icon: `${DI}/nodejs/nodejs-original.svg`,
+        description: "Runtime assíncrono e não-bloqueante para APIs REST/GraphQL de alto throughput.",
+      },
+      {
+        name: "PHP",
+        icon: `${DI}/php/php-original.svg`,
+        description: "Back-end corporativo moderno com forte tipagem e vasto ecossistema maduro.",
+      },
+      {
+        name: "Laravel",
+        icon: `${DI}/laravel/laravel-original.svg`,
+        description: "Framework PHP de excelência para desenvolvimento ágil de sistemas escaláveis.",
+      },
+      {
+        name: "Symfony",
+        icon: `${DI}/symfony/symfony-original-wordmark.svg`,
+        description: "Conjunto desacoplado de componentes corporativos de alto desempenho e precisão.",
+      },
     ],
   },
   {
@@ -275,11 +305,31 @@ export const DEFAULT_CONSTELLATION_CATEGORIES: Category[] = [
     label: "Banco de Dados",
     colorVar: "--primary",
     technologies: [
-      { name: "PostgreSQL", icon: `${DI}/postgresql/postgresql-original.svg` },
-      { name: "MySQL", icon: `${DI}/mysql/mysql-original.svg` },
-      { name: "Oracle", icon: `${DI}/oracle/oracle-original.svg` },
-      { name: "MongoDB", icon: `${DI}/mongodb/mongodb-original.svg` },
-      { name: "Redis", icon: `${DI}/redis/redis-original.svg` },
+      {
+        name: "PostgreSQL",
+        icon: `${DI}/postgresql/postgresql-original.svg`,
+        description: "SGBD relacional avançado com integridade transacional ACID estrita e extensões geo/JSON.",
+      },
+      {
+        name: "MySQL",
+        icon: `${DI}/mysql/mysql-original.svg`,
+        description: "Banco relacional amplamente testado para operações transacionais rápidas e confiáveis.",
+      },
+      {
+        name: "Oracle",
+        icon: `${DI}/oracle/oracle-original.svg`,
+        description: "Banco de dados enterprise para cargas críticas corporativas e processamento intensivo.",
+      },
+      {
+        name: "MongoDB",
+        icon: `${DI}/mongodb/mongodb-original.svg`,
+        description: "Armazenamento NoSQL baseado em documentos flexíveis com alta capacidade de escala horizontal.",
+      },
+      {
+        name: "Redis",
+        icon: `${DI}/redis/redis-original.svg`,
+        description: "Estrutura de dados em memória para cache ultrarrápido, filas efêmeras e controle de sessões.",
+      },
     ],
   },
   {
@@ -287,8 +337,16 @@ export const DEFAULT_CONSTELLATION_CATEGORIES: Category[] = [
     label: "Mensageria",
     colorVar: "--primary",
     technologies: [
-      { name: "RabbitMQ", icon: `${DI}/rabbitmq/rabbitmq-original.svg` },
-      { name: "Kafka", icon: `${DI}/apachekafka/apachekafka-original-wordmark.svg` },
+      {
+        name: "RabbitMQ",
+        icon: `${DI}/rabbitmq/rabbitmq-original.svg`,
+        description: "Message broker confiável com roteamento flexível para desacoplamento de serviços assíncronos.",
+      },
+      {
+        name: "Kafka",
+        icon: `${DI}/apachekafka/apachekafka-original-wordmark.svg`,
+        description: "Plataforma distribuída de streaming de eventos para ingestão e telemetria em tempo real.",
+      },
     ],
   },
   {
@@ -296,12 +354,36 @@ export const DEFAULT_CONSTELLATION_CATEGORIES: Category[] = [
     label: "Cloud & DevOps",
     colorVar: "--primary",
     technologies: [
-      { name: "AWS", icon: `${DI}/amazonwebservices/amazonwebservices-original-wordmark.svg` },
-      { name: "Azure", icon: `${DI}/azure/azure-original.svg` },
-      { name: "Docker", icon: `${DI}/docker/docker-original.svg` },
-      { name: "Kubernetes", icon: `${DI}/kubernetes/kubernetes-plain.svg` },
-      { name: "Terraform", icon: `${DI}/terraform/terraform-original-wordmark.svg` },
-      { name: "GitHub Actions", icon: "https://cdn.simpleicons.org/githubactions/2088FF" },
+      {
+        name: "AWS",
+        icon: `${DI}/amazonwebservices/amazonwebservices-original-wordmark.svg`,
+        description: "Nuvem líder com alta disponibilidade, computação distribuída, SQS e infraestrutura resiliente.",
+      },
+      {
+        name: "Azure",
+        icon: `${DI}/azure/azure-original.svg`,
+        description: "Serviços em nuvem integrados para cargas corporativas híbridas e alta conformidade.",
+      },
+      {
+        name: "Docker",
+        icon: `${DI}/docker/docker-original.svg`,
+        description: "Isolamento e containerização de aplicações garantindo paridade entre desenvolvimento e produção.",
+      },
+      {
+        name: "Kubernetes",
+        icon: `${DI}/kubernetes/kubernetes-plain.svg`,
+        description: "Orquestração de microsserviços em larga escala com autorrecuperação e balanceamento de carga.",
+      },
+      {
+        name: "Terraform",
+        icon: `${DI}/terraform/terraform-original-wordmark.svg`,
+        description: "Infraestrutura como código (IaC) para provisionamento consistente e versionado em múltiplas nuvens.",
+      },
+      {
+        name: "GitHub Actions",
+        icon: "https://cdn.simpleicons.org/githubactions/2088FF",
+        description: "Automação contínua de CI/CD para pipelines de build, testes automatizados e deploy seguro.",
+      },
     ],
   },
   {
@@ -309,9 +391,21 @@ export const DEFAULT_CONSTELLATION_CATEGORIES: Category[] = [
     label: "Observabilidade",
     colorVar: "--primary",
     technologies: [
-      { name: "Prometheus", icon: `${DI}/prometheus/prometheus-original.svg` },
-      { name: "Grafana", icon: `${DI}/grafana/grafana-original.svg` },
-      { name: "SonarQube", icon: `${DI}/sonarqube/sonarqube-original.svg` },
+      {
+        name: "Prometheus",
+        icon: `${DI}/prometheus/prometheus-original.svg`,
+        description: "Monitoramento e coleta de métricas de séries temporais com alertas proativos para incidentes.",
+      },
+      {
+        name: "Grafana",
+        icon: `${DI}/grafana/grafana-original.svg`,
+        description: "Dashboards visuais analíticos em tempo real para monitoramento de saúde operacional e métricas.",
+      },
+      {
+        name: "SonarQube",
+        icon: `${DI}/sonarqube/sonarqube-original.svg`,
+        description: "Auditoria estática contínua de código para inspeção de segurança, dívida técnica e bugs.",
+      },
     ],
   },
 ];

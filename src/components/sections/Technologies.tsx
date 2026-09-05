@@ -8,7 +8,7 @@ import {
 
 const Technologies = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isInView = useInView(ref, { once: true, margin: "100px 0px" });
 
   return (
     <section id="tecnologias" className="relative py-24 bg-background overflow-hidden" ref={ref}>

@@ -53,10 +53,14 @@
 
 ## Validações e Quality Gates
 
-- [x] Playwright E2E: 5/5 testes passando no Chromium (`npm run test:e2e`).
-- [x] Vitest: 90/90 testes unitários passando em 14 suítes (`npm test`).
-- [x] Cobertura: 98.1% de linhas cobertas (`npm run test:coverage` >= 90%).
+- [x] Playwright E2E: 6/6 testes passando no Chromium (`npm run test:e2e`).
+- [x] Vitest: 91/91 testes unitários passando em 14 suítes (`npm test`).
+- [x] Cobertura: 98.13% de linhas cobertas (`npm run test:coverage` >= 90%).
 - [x] ESLint: 0 erros e 0 warnings (`npm run lint`).
-- [x] Build: chunk de Technologies com 11.69 KB (< 600 KB) (`npm run build`).
+- [x] Build: chunk de Technologies com 17.97 KB (< 600 KB) (`npm run build`).
+- [x] Resolução do feedback de UX/legibilidade:
+  - Rótulos de categorias com posições desacopladas fora da órbita dos nós e pills estilizados com contraste.
+  - Painel dedicado de detalhes arquiteturais (`tech-details-panel`) exibindo descrição completa e fluxo de conexão.
+  - Ocultação de rótulos truncados no mobile para preservar limpeza visual e nitidez dos ícones.
 - [x] QA registrado em `reviews/QA-009.md`.
 
