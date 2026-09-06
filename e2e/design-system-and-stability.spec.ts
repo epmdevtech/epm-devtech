@@ -152,5 +152,47 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     await expect(detailsPanel).toContainText('Node.js');
   });
 
+  test('Logotipo adapta-se perfeitamente entre Dark e Light Mode sem container escuro artificial', async ({ page }) => {
+    await page.goto('/');
+    await page.waitForLoadState('domcontentloaded');
+
+    // 1. Valida estado inicial (Dark Mode por padrão)
+    const headerLogoDark = page.locator('header img[src*="logo-emp-dev-tech-xs.webp"]');
+    const headerLogoLight = page.locator('header img[src*="logo-epm-devtech-light-xs.webp"]');
+
+    await expect(headerLogoDark).toBeVisible();
+    await expect(headerLogoLight).toBeHidden();
+
+    // Rola até o Footer para interagir com o Theme Switcher
+    await page.evaluate(() => {
+      window.scrollTo(0, document.body.scrollHeight);
+    });
+    await page.waitForTimeout(600);
+
+    const lightThemeButton = page.locator('button[title="Tema Light"]');
+    await expect(lightThemeButton).toBeVisible();
+    await lightThemeButton.click();
+
+    // Aguarda aplicação da classe no <html>
+    await page.waitForTimeout(400);
+
+    // 2. Valida estado em Light Mode: logo light visível, logo dark oculto
+    await expect(headerLogoLight).toBeVisible();
+    await expect(headerLogoDark).toBeHidden();
+
+    // Garante ausência total da classe bg-gray-900 no container do logo no header
+    const logoContainer = page.locator('header a div div div').first();
+    const containerClasses = await logoContainer.getAttribute('class');
+    expect(containerClasses).not.toContain('bg-gray-900');
+
+    // 3. Retorna para Dark Mode
+    const darkThemeButton = page.locator('button[title="Tema Dark"]');
+    await darkThemeButton.click();
+    await page.waitForTimeout(400);
+
+    await expect(headerLogoDark).toBeVisible();
+    await expect(headerLogoLight).toBeHidden();
+  });
+
 });
 
