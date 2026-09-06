@@ -29,20 +29,34 @@ vi.mock('@/components/ui/typewriter', () => ({
 }));
 
 describe('Hero Component', () => {
-    it('renders correctly with primary headings', () => {
+    it('renders correctly with primary headings and tagline', () => {
         render(<Hero />);
 
-        expect(screen.getByText(/Soluções Digitais/i)).toBeInTheDocument();
-        expect(screen.getByText(/Sob Medida/i)).toBeInTheDocument();
-        expect(screen.getByText(/Para Sua Empresa/i)).toBeInTheDocument();
-        expect(screen.getByText(/Arquitetura de software robusta/i)).toBeInTheDocument();
+        expect(screen.getByText(/Engenharia de Software & Modernização/i)).toBeInTheDocument();
+        expect(screen.getByText(/Software sob medida/i)).toBeInTheDocument();
+        expect(screen.getByText(/construído para escalar/i)).toBeInTheDocument();
+        expect(screen.getByText(/o seu negócio/i)).toBeInTheDocument();
+        expect(screen.getByText(/Da concepção à infraestrutura/i)).toBeInTheDocument();
     });
 
-    it('renders CTAs with correct links', () => {
+    it('renders dual CTAs with correct links and accessible labels', () => {
         render(<Hero />);
 
-        const cta = screen.getByRole('link', { name: /Conheça os serviços da EPM DEVTECH/i });
-        expect(cta).toHaveAttribute('href', '#servicos');
-        expect(cta).toHaveTextContent(/Conheça os Serviços/i);
+        const primaryCta = screen.getByRole('link', { name: /Falar sobre meu projeto com a EPM DEVTECH/i });
+        expect(primaryCta).toHaveAttribute('href', '#contato');
+        expect(primaryCta).toHaveTextContent(/Falar sobre meu projeto/i);
+
+        const secondaryCta = screen.getByRole('link', { name: /Conhecer serviços da EPM DEVTECH/i });
+        expect(secondaryCta).toHaveAttribute('href', '#servicos');
+        expect(secondaryCta).toHaveTextContent(/Conhecer serviços/i);
+    });
+
+    it('renders social proof and technical credentials', () => {
+        render(<Hero />);
+
+        expect(screen.getByText(/\+9 anos de experiência em sistemas críticos/i)).toBeInTheDocument();
+        expect(screen.getByText(/Arquiteturas cloud-native/i)).toBeInTheDocument();
+        expect(screen.getAllByText(/APIs resilientes/i).length).toBeGreaterThanOrEqual(1);
+        expect(screen.getByText(/Código limpo/i)).toBeInTheDocument();
     });
 });

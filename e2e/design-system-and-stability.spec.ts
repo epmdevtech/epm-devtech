@@ -14,8 +14,8 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     // Verifica que o H1 do Hero está visível e correto
     const heroH1 = page.locator('#hero h1, section h1').first();
     await expect(heroH1).toBeVisible();
-    await expect(heroH1).toContainText('Soluções Digitais');
-    await expect(heroH1).toContainText('Sob Medida');
+    await expect(heroH1).toContainText('Software sob medida');
+    await expect(heroH1).toContainText('construído para escalar');
 
     // Aguarda 3 segundos para confirmar que não há re-renderização ou reload disparado
     await page.waitForTimeout(3000);
@@ -38,7 +38,7 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
 
     // Verifica que os headings de cada seção existem e contêm os textos padronizados
     const expectedHeadings = [
-      { id: 'hero', text: 'Soluções Digitais' },
+      { id: 'hero', text: 'Software sob medida' },
       { id: 'sobre', text: 'Engenharia de Software com' },
       { id: 'servicos', text: 'Soluções' },
       { id: 'tecnologias', text: 'Tecnologias' },
@@ -67,7 +67,7 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     await page.waitForLoadState('domcontentloaded');
 
     // CTA principal do Hero
-    const ctaButton = page.locator('a[href="#servicos"]').filter({ hasText: /Conheça os Serviços/i });
+    const ctaButton = page.locator('a[href="#contato"]').filter({ hasText: /Falar sobre meu projeto/i });
     await expect(ctaButton).toBeVisible();
 
     const ctaBgColor = await ctaButton.evaluate((el) => {
@@ -82,8 +82,8 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     await page.goto('/');
     await page.waitForLoadState('domcontentloaded');
 
-    // Clica no CTA "Conheça os Serviços"
-    const ctaButton = page.locator('a[href="#servicos"]').filter({ hasText: /Conheça os Serviços/i });
+    // Clica no CTA secundário "Conhecer serviços"
+    const ctaButton = page.locator('a[href="#servicos"]').filter({ hasText: /Conhecer serviços/i });
     await ctaButton.click();
 
     await page.waitForTimeout(1000);
