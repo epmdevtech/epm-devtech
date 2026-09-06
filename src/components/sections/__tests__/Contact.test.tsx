@@ -127,22 +127,39 @@ describe('Contact Component', () => {
     expect(screen.getByText(/Não precisa ter todos os requisitos definidos/i)).toBeInTheDocument();
   });
 
-  it('renders contact information items in unified card', () => {
+  it('renders next steps and guarantees in dark side of unified card', () => {
     render(<Contact />);
-    expect(screen.getByText('Canais de Atendimento')).toBeInTheDocument();
-    expect(screen.getByText('Envie sua mensagem')).toBeInTheDocument();
-    expect(screen.getByText('Localização')).toBeInTheDocument();
-    expect(screen.getByText('Toledo, Paraná')).toBeInTheDocument();
-    expect(screen.getByText('elessandro@epmdevtech.com.br')).toBeInTheDocument();
-    expect(screen.getByText('(45) 99917-8290')).toBeInTheDocument();
-    expect(screen.getByText('Retorno em até 24 horas úteis')).toBeInTheDocument();
-    expect(screen.getByText('E-mail corporativo')).toBeInTheDocument();
-    expect(screen.getByText('WhatsApp direto')).toBeInTheDocument();
-    expect(screen.getByText('Tempo de resposta')).toBeInTheDocument();
+    expect(screen.getByText('O que acontece a seguir?')).toBeInTheDocument();
+    expect(
+      screen.getByText(/Nosso processo é direto com a engenharia, sem intermediários comerciais:/i)
+    ).toBeInTheDocument();
+
+    // 3 Blocos de valor
+    expect(screen.getByText('Diagnóstico Técnico')).toBeInTheDocument();
+    expect(
+      screen.getByText(/Avaliamos seu cenário, gargalos e viabilidade arquitetural logo no primeiro contato/i)
+    ).toBeInTheDocument();
+
+    expect(screen.getByText('Retorno em até 24 Horas')).toBeInTheDocument();
+    expect(
+      screen.getByText(/Resposta rápida para agendarmos uma conversa técnica sem enrolação/i)
+    ).toBeInTheDocument();
+
+    expect(screen.getByText('Sigilo e Segurança')).toBeInTheDocument();
+    expect(
+      screen.getByText(/Suas ideias, dados e regras de negócio tratados com absoluta confidencialidade/i)
+    ).toBeInTheDocument();
+
+    // Chamada de ação rápida WhatsApp
+    expect(screen.getByText('Prefere atendimento imediato?')).toBeInTheDocument();
+    const whatsappLink = screen.getByRole('link', { name: /Chamar no WhatsApp direto →/i });
+    expect(whatsappLink).toBeInTheDocument();
+    expect(whatsappLink).toHaveAttribute('href', 'https://wa.me/5545999178290');
   });
 
-  it('renders the form fields', () => {
+  it('renders the form fields with internal heading', () => {
     render(<Contact />);
+    expect(screen.getByText('Envie sua mensagem')).toBeInTheDocument();
     expect(screen.getByLabelText(/Nome completo/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/E-mail profissional/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/WhatsApp \/ Telefone/i)).toBeInTheDocument();
