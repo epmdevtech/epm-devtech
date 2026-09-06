@@ -8,6 +8,7 @@ import {
   GitBranch,
   ShieldCheck,
 } from "lucide-react";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 const Authority = () => {
   const ref = useRef(null);
@@ -19,14 +20,14 @@ const Authority = () => {
       label: "Experiência Profissional",
       handle: "GRANDES PROJETOS",
       description:
-        "Atuação contínua em projetos de médio e grande porte, entregando soluções robustas em ambientes corporativos exigentes — da concepção à produção.",
+        "Atuação contínua em projetos de médio e grande porte, entregando soluções robustas em ambientes corporativos exigentes, da concepção à produção.",
     },
     {
       icon: Code2,
       label: "Perfil Full Stack Sênior",
       handle: "BACKEND · FRONTEND · INFRA",
       description:
-        "Domínio completo da stack: backend, frontend e infraestrutura. Capaz de assumir qualquer camada de uma aplicação com proeficiência técnica.",
+        "Domínio completo da stack: backend, frontend e infraestrutura. Capaz de assumir qualquer camada de uma aplicação com proficiência técnica.",
     },
     {
       icon: Star,
@@ -40,14 +41,14 @@ const Authority = () => {
       label: "Práticas de Engenharia",
       handle: "CLEAN CODE · CI/CD · TDD",
       description:
-        "Aplicação rigorosa de Clean Code, Test-Driven Development e pipelines automatizados — garantindo código de alta qualidade e entrega confiável.",
+        "Aplicação rigorosa de Clean Code, Test-Driven Development e pipelines automatizados, garantindo código de alta qualidade e entrega confiável.",
     },
     {
       icon: ShieldCheck,
       label: "Compromisso com Resultados",
       handle: "PRAZO · QUALIDADE · TRANSPARÊNCIA",
       description:
-        "Projetos entregues dentro do prazo, com comunicação clara, documentação adequada e foco em valor real para o negócio — sem atalhos técnicos.",
+        "Projetos entregues dentro do prazo, com comunicação clara, documentação adequada e foco em valor real para o negócio, sem atalhos técnicos.",
     },
   ];
 
@@ -130,18 +131,20 @@ const Authority = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
-            className="text-center max-w-2xl mx-auto mb-16"
+            className="mb-16"
           >
-            <span className="text-primary font-mono text-xs uppercase tracking-widest mb-4 block">
-              Credenciais
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-light tracking-tight mb-4 leading-tight text-foreground">
-              Autoridade Técnica que{" "}
-              <span className="font-semibold text-foreground">Gera Resultados</span>
-            </h2>
-            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed font-normal">
-              Anos de experiência em projetos reais, traduzidos em competência técnica aplicada e entrega consistente.
-            </p>
+            <SectionHeader
+              tagline="Credenciais"
+              title={
+                <>
+                  Autoridade Técnica que{" "}
+                  <span className="text-emerald-600 dark:text-emerald-400">
+                    Gera Resultados
+                  </span>
+                </>
+              }
+              subtitle="Anos de experiência em projetos reais, traduzidos em competência técnica aplicada e entrega consistente."
+            />
           </motion.div>
 
           {/* Credentials Feature Grid */}

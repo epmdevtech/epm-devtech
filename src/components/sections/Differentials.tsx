@@ -8,6 +8,7 @@ import {
   Clock,
   Sparkles,
 } from "lucide-react";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 const differentials = [
   {
@@ -22,7 +23,7 @@ const differentials = [
     step: "02",
     title: "Arquitetura Bem Definida",
     handle: "HEXAGONAL · MICROSERVIÇOS",
-    description: "Projetos com arquitetura clara desde o início — hexagonal, microserviços ou monolitos bem estruturados — reduzindo dívida técnica desde o day one.",
+    description: "Projetos com arquitetura clara desde o início (hexagonal, microsserviços ou monolitos bem estruturados), reduzindo a dívida técnica desde o primeiro dia.",
   },
   {
     icon: CheckCircle2,
@@ -50,7 +51,7 @@ const differentials = [
     step: "06",
     title: "Entrega Responsável",
     handle: "PRAZO · QUALIDADE",
-    description: "Comprometimento com prazos realistas, qualidade técnica e transparência em cada etapa — sem surpresas, sem atalhos.",
+    description: "Comprometimento com prazos realistas, qualidade técnica e transparência em cada etapa, sem surpresas e sem atalhos técnicos.",
   },
 ];
 
@@ -278,18 +279,20 @@ const Differentials = () => {
             initial={{ opacity: 0, y: 24 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.55 }}
-            className="text-center max-w-2xl mx-auto mb-12"
+            className="mb-12"
           >
-            <span className="text-primary font-mono text-xs uppercase tracking-widest mb-4 block">
-              Diferenciais
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-light tracking-tight mb-3 leading-tight text-foreground">
-              Por Que Escolher a{" "}
-              <span className="font-semibold text-foreground">EPM DEVTECH</span>
-            </h2>
-            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed font-normal">
-              Qualidade técnica e profissionalismo em cada linha de código.
-            </p>
+            <SectionHeader
+              tagline="Diferenciais"
+              title={
+                <>
+                  Por Que Escolher a{" "}
+                  <span className="text-emerald-600 dark:text-emerald-400">
+                    EPM DEVTECH
+                  </span>
+                </>
+              }
+              subtitle="Qualidade técnica, arquitetura sólida e compromisso profissional em cada linha de código."
+            />
           </motion.div>
 
           {/* ── Pipeline Line ── */}

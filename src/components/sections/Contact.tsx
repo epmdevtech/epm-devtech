@@ -7,6 +7,7 @@ import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
 import { Mail, Phone, Clock, Send, Loader2, Maximize2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import SectionHeader from "@/components/ui/SectionHeader";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -101,7 +102,7 @@ const Contact = () => {
       const templateParams = {
         name: data.name,
         email: data.email,
-        title: `${data.projectType} — ${data.name}`,
+        title: `${data.projectType}: ${data.name}`,
         message: `${data.message}\n\nTelefone: ${data.phone || "Não informado"}\nTipo: ${data.projectType}`,
         time: new Date().toLocaleString("pt-BR"),
       };
@@ -112,7 +113,7 @@ const Contact = () => {
       reset();
     } catch (err: unknown) {
       const error = err as { status?: number; text?: string };
-      console.error("[EmailJS] Erro —", "status:", error?.status, "| text:", error?.text, "| raw:", err);
+      console.error("[EmailJS] Erro:", "status:", error?.status, "| text:", error?.text, "| raw:", err);
       const msg = error?.text ?? "erro desconhecido";
       toast.error(`Falha ao enviar (${error?.status ?? "?"}): ${msg}. Use o e-mail direto se persistir.`);
     } finally {
@@ -144,19 +145,20 @@ const Contact = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
-          className="text-center max-w-2xl mx-auto mb-16"
+          className="mb-16"
         >
-          <span className="text-primary font-mono text-xs uppercase tracking-widest mb-4 block">
-            Contato
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-light tracking-tight mb-4 text-foreground">
-            Vamos Construir{" "}
-            <span className="font-semibold text-foreground">Juntos</span>
-          </h2>
-          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed font-normal">
-            Pronto para transformar sua ideia em realidade? Preencha o formulário
-            e retornarei em até 24 horas úteis.
-          </p>
+          <SectionHeader
+            tagline="Contato"
+            title={
+              <>
+                Vamos Construir{" "}
+                <span className="text-emerald-600 dark:text-emerald-400">
+                  Juntos
+                </span>
+              </>
+            }
+            subtitle="Pronto para transformar sua ideia em realidade? Preencha o formulário e receba um retorno em até 24 horas úteis."
+          />
         </motion.div>
 
         <div className="max-w-5xl mx-auto grid lg:grid-cols-5 gap-8 items-start">

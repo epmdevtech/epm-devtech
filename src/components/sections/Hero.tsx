@@ -41,50 +41,43 @@ const Hero = () => {
         <div className="max-w-4xl mx-auto text-center">
 
           {/* Tagline superior */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 mb-8 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-mono font-medium uppercase tracking-[0.2em]">
-            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-            Engenharia de Software & Modernização
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 mb-8 rounded-full uppercase tracking-wider font-semibold text-xs sm:text-sm bg-emerald-50 border border-emerald-200/70 text-emerald-700 dark:bg-emerald-950/50 dark:border-emerald-800/60 dark:text-emerald-400">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 dark:bg-emerald-400 animate-pulse" aria-hidden="true" />
+            <span>Engenharia de Software & Modernização</span>
           </div>
 
-          {/* Headline — Monocromático, sem gradiente, contraste por peso tipográfico */}
-          <h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tight leading-[1.15] mb-6 text-foreground"
-          >
-            <span>Software sob medida </span>
-            <br className="hidden sm:inline" />
-            <span className="font-semibold text-foreground">
+          {/* Headline: Rigorosamente linear, peso consistente font-bold */}
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.15] mb-6 text-zinc-900 dark:text-white">
+            Software sob medida{" "}
+            <span className="text-emerald-600 dark:text-emerald-400">
               construído para escalar
             </span>{" "}
-            <span className="text-muted-foreground font-light block sm:inline">
-              o seu negócio.
-            </span>
+            o seu negócio.
           </h1>
 
           {/* Subtitle */}
-          <p
-            className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-3xl mx-auto mb-10 leading-relaxed font-normal"
-          >
+          <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 max-w-3xl mx-auto mb-10 leading-relaxed font-normal">
             Da concepção à infraestrutura: desenvolvemos sistemas web, APIs resilientes e arquiteturas de alta performance preparadas para acompanhar o crescimento da sua empresa.
           </p>
 
-          {/* Dual CTA */}
+          {/* Dual CTA: Microcopy direto */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
             <a
               href="#contato"
-              aria-label="Falar sobre meu projeto com a EPM DEVTECH"
+              aria-label="Falar com especialista da EPM DEVTECH"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-lg font-semibold text-base text-white bg-primary shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:scale-[1.03] active:scale-95 transition-all duration-200 ease-out no-underline"
             >
-              <span>Falar sobre meu projeto</span>
+              <span>Falar com especialista</span>
               <ArrowRight size={18} strokeWidth={2.2} />
             </a>
 
             <a
               href="#servicos"
-              aria-label="Conhecer serviços da EPM DEVTECH"
+              aria-label="Ver serviços da EPM DEVTECH"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg font-semibold text-base text-foreground border border-border/80 bg-background/50 hover:bg-muted/50 hover:border-border hover:scale-[1.03] active:scale-95 transition-all duration-200 ease-out no-underline"
             >
               <Code2 size={18} strokeWidth={2.2} className="text-primary" />
-              <span>Conhecer serviços</span>
+              <span>Ver serviços</span>
             </a>
           </div>
 

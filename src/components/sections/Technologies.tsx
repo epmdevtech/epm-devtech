@@ -1,5 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import SectionHeader from "@/components/ui/SectionHeader";
 import TechConstellation from "./TechConstellation";
 import {
   DEFAULT_CONSTELLATION_CATEGORIES,
@@ -18,17 +19,20 @@ const Technologies = () => {
           initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.55 }}
-          className="text-center max-w-2xl mx-auto mb-12"
+          className="mb-12"
         >
-          <span className="text-primary font-mono text-xs uppercase tracking-widest mb-4 block">
-            Stack Tecnológica
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-light tracking-tight mb-4 text-foreground">
-            Tecnologias <span className="font-semibold text-foreground">Modernas</span>
-          </h2>
-          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed font-normal">
-            Arquitetura interconectada com as melhores ferramentas e padrões da engenharia de software contemporânea.
-          </p>
+          <SectionHeader
+            tagline="Stack Tecnológica"
+            title={
+              <>
+                Tecnologias{" "}
+                <span className="text-emerald-600 dark:text-emerald-400">
+                  Modernas
+                </span>
+              </>
+            }
+            subtitle="Arquitetura interconectada com padrões sólidos de engenharia, ferramentas consolidadas e foco em alta disponibilidade."
+          />
         </motion.div>
 
         {/* ── Tech Constellation Component ── */}

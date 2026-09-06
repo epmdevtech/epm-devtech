@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 /* ─── Visual Mockups ─────────────────────────────────────────── */
 
@@ -58,7 +59,7 @@ function MockAPI() {
         </div>
       ))}
       <div className="svc-success-badge" style={{ marginTop: 8 }}>
-        ✓ 200 OK — 42ms
+        ✓ 200 OK (42ms)
       </div>
     </div>
   );
@@ -128,7 +129,7 @@ function MockMaintenance() {
 
 function MockConsulting() {
   const comments = [
-    { user: "E", msg: "Revisei a arquitetura — 3 pontos críticos", color: "#10b981" },
+    { user: "E", msg: "Revisei a arquitetura: 3 pontos críticos", color: "#10b981" },
     { user: "C", msg: "N+1 query detectado em UserService.ts:42", color: "#f59e0b" },
     { user: "E", msg: "✓ Solução: eager loading com joinQuery()", color: "#16a34a" },
   ];
@@ -321,18 +322,20 @@ const Services = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
-            className="text-center max-w-2xl mx-auto mb-16"
+            className="mb-16"
           >
-            <span className="text-primary font-mono text-xs uppercase tracking-widest mb-4 block">
-              Serviços
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-light tracking-tight mb-4 text-foreground">
-              Soluções <span className="font-semibold text-foreground">End-to-End</span>
-            </h2>
-            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed font-normal">
-              Do planejamento à entrega, oferecemos serviços completos de desenvolvimento
-              de software com foco em qualidade e resultados.
-            </p>
+            <SectionHeader
+              tagline="Serviços"
+              title={
+                <>
+                  Soluções{" "}
+                  <span className="text-emerald-600 dark:text-emerald-400">
+                    End-to-End
+                  </span>
+                </>
+              }
+              subtitle="Do planejamento à entrega: desenvolvemos software com excelência arquitetural, testes rigorosos e foco em resultados para o seu negócio."
+            />
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">

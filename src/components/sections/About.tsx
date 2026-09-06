@@ -11,6 +11,7 @@ import {
   BookOpen,
   Zap,
 } from "lucide-react";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 /* ─────────────────────────────────────────────────────────────
    ANIMATED STAT & COUNT UP
@@ -216,7 +217,7 @@ const highlights = [
     title: "Energia",
     handle: "ONS · ENERGIA PECÉM",
     description:
-      "Projetos para o Operador Nacional do Sistema Elétrico (ONS) e Energia Pecém — sistemas críticos de monitoramento.",
+      "Projetos para o Operador Nacional do Sistema Elétrico (ONS) e Energia Pecém, com foco em sistemas críticos de monitoramento.",
     Mockup: MockupEnergia,
   },
 ];
@@ -496,25 +497,31 @@ const About = () => {
               transition={{ duration: 0.6 }}
               className="flex flex-col justify-center"
             >
-              <span className="text-primary font-mono text-xs uppercase tracking-widest mb-4 block">
-                Sobre a EPM DEVTECH
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-light tracking-tight mb-6 leading-tight text-foreground">
-                Engenharia de Software com{" "}
-                <span className="font-semibold text-foreground">Excelência Técnica</span>
-              </h2>
+              <SectionHeader
+                align="left"
+                tagline="Sobre a EPM DEVTECH"
+                title={
+                  <>
+                    Engenharia de Software com{" "}
+                    <span className="text-emerald-600 dark:text-emerald-400">
+                      Excelência Técnica
+                    </span>
+                  </>
+                }
+                className="mb-6"
+              />
               <div className="space-y-4">
-                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed font-normal">
+                <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal">
                   A EPM DEVTECH é uma empresa especializada em desenvolvimento de software,
                   fundada por Elessandro Prestes Macedo, desenvolvedor Full Stack com mais de
                   9 anos de experiência em projetos de médio e grande porte.
                 </p>
-                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed font-normal">
+                <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal">
                   Nossa atuação abrange desde o design de arquiteturas escaláveis até a
                   implementação de sistemas complexos, sempre com foco em qualidade de código,
                   boas práticas e entrega profissional.
                 </p>
-                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed font-normal">
+                <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal">
                   Trabalhamos com metodologias ágeis, versionamento rigoroso e integração
                   contínua (CI/CD), garantindo transparência e previsibilidade em cada projeto.
                 </p>
