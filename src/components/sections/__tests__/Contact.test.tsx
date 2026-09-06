@@ -94,7 +94,7 @@ const fillValidForm = () => {
     simulateInput('name', 'João Silva');
     simulateInput('email', 'joao@example.com');
     fireEvent.change(screen.getByTestId('project-type-select'), {
-      target: { value: 'Aplicativo Mobile' },
+      target: { value: 'Novo Sistema ou Aplicação Web' },
     });
     simulateInput('message', 'Preciso de um sistema web com integração de API e autenticação.');
   });
@@ -123,22 +123,26 @@ describe('Contact Component', () => {
   it('renders the contact header', () => {
     render(<Contact />);
     expect(screen.getByText('Contato')).toBeInTheDocument();
-    expect(screen.getByText(/Vamos Construir/i)).toBeInTheDocument();
+    expect(screen.getByText('Vamos entender o seu desafio')).toBeInTheDocument();
+    expect(screen.getByText(/Não precisa ter todos os requisitos definidos/i)).toBeInTheDocument();
   });
 
   it('renders contact information items', () => {
     render(<Contact />);
     expect(screen.getByText('elessandro@epmdevtech.com.br')).toBeInTheDocument();
     expect(screen.getByText('(45) 99917-8290')).toBeInTheDocument();
-    expect(screen.getByText('Até 24 horas úteis')).toBeInTheDocument();
+    expect(screen.getByText('Retorno técnico em até 24 horas úteis')).toBeInTheDocument();
+    expect(screen.getByText('E-mail direto')).toBeInTheDocument();
+    expect(screen.getByText('WhatsApp direto')).toBeInTheDocument();
+    expect(screen.getByText('Tempo de resposta')).toBeInTheDocument();
   });
 
   it('renders the form fields', () => {
     render(<Contact />);
     expect(screen.getByLabelText(/Nome completo/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/E-mail/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/E-mail profissional/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/WhatsApp \/ Telefone/i)).toBeInTheDocument();
-    expect(screen.getByText(/Tipo de projeto/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/Tipo de projeto/i).length).toBeGreaterThan(0);
     expect(screen.getAllByLabelText(/Mensagem/i).length).toBeGreaterThan(0);
     expect(screen.getByRole('button', { name: /Enviar Mensagem/i })).toBeInTheDocument();
   });
