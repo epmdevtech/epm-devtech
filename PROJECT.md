@@ -107,7 +107,7 @@ src/
 │   │   ├── Authority.tsx
 │   │   ├── Contact.tsx
 │   │   └── Footer.tsx
-│   ├── ui/                     # Componentes shadcn/ui
+│   ├── ui/                     # Componentes shadcn/ui e SectionHeader.tsx
 │   ├── CursorOrb.tsx
 │   ├── NavLink.tsx
 │   ├── cookie-banner.tsx
@@ -144,6 +144,7 @@ src/
 | Área              | Status           | Notas                                      |
 |-------------------|------------------|--------------------------------------------|
 | Design            | ✅ Padronizado   | Design System Verde EPM DEVTECH (#10B981), títulos monocromáticos e tipografia Geist |
+| Tipografia / Copy | ✅ Linear & Direto | `SectionHeader` reutilizável, linearidade font-bold, eliminação total de travessões e microcopy direto PT-BR |
 | Branding / Logo   | ✅ Adaptativo    | Logo 100% transparente em Dark e Light Mode, tipografia invertida sem moldura escura |
 | Hero              | ✅ Atualizado    | Posicionamento comercial sênior, Tagline, Dual CTA, microprova e sem gradientes |
 | About             | ✅ Lazy Loaded   | Carregamento progressivo via LazySection   |
@@ -156,7 +157,7 @@ src/
 | ScrollToTop       | ✅ Adaptativo    | Elevação dinâmica no rodapé, tooltip superior e prevenção de oclusão |
 | Cookie Banner     | ✅ Otimizado     | Lazy load assíncrono + defer timer (3.5s)  |
 | SEO & Agêntico    | ✅ Otimizado     | Meta tags dinâmicas + llms.txt com links   |
-| Testes unitários  | ✅ Implementado  | 15/15 suites, 96/96 testes passando (98.17% coverage) |
+| Testes unitários  | ✅ Implementado  | 16/16 suites, 99/99 testes passando (98.24% coverage) |
 | Testes E2E        | ✅ Implementado  | Suíte Playwright (8/8 testes passando)     |
 | Acessibilidade    | ✅ 100% WCAG AA  | Contraste de texto e botões >= 4.5:1 (Logotipo WCAG AAA >= 17:1) |
 | Performance       | ✅ 100% Otimizado| JS inicial < 80 KB, FCP/LCP instantâneo    |

@@ -9,6 +9,23 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.13-typography-and-copywriting] — 2026-09-06
+
+### Adicionado
+- **Componente Reutilizável `SectionHeader` (`src/components/ui/SectionHeader.tsx`)**: Centralização do contrato de design tipográfico de seções com suporte nativo a tags `h1`/`h2`, alinhamento `center`/`left`, badges responsivas com classes dinâmicas para Dark e Light mode, e subtítulos fluidos
+- **Suíte de Testes Unitários de Tipografia (`SectionHeader.test.tsx`)**: 100% de cobertura com validação de renderização semântica, alinhamento, classes de tema claro/escuro e badges
+- **Documentação SDD Completa**: Registro formal de SPEC-013, TASK-013 e QA-013 com evidências de qualidade
+
+### Alterado
+- **Linearidade Tipográfica Rigorosa**:
+  - Remoção de inconsistências visuais de pesos mistos (`font-light` vs `font-semibold`) em títulos de todas as seções (Hero H1, Serviços H2, Tecnologias H2, Diferenciais H2, Contato H2, Sobre H2, Autoridade H2), adotando `font-bold` homogêneo com destaques em verde esmeralda institucional (`text-emerald-600 dark:text-emerald-400`)
+  - Padronização de badges de overline: `uppercase tracking-wider font-semibold text-xs sm:text-sm` com contraste verificado em Dark (`emerald-950/50` / `emerald-800/60` / `emerald-400`) e Light (`emerald-50` / `emerald-200/70` / `emerald-700`)
+  - Padronização dos subtítulos e corpos de texto: `font-normal text-base sm:text-lg leading-relaxed text-zinc-600 dark:text-zinc-400`
+- **Erradicação Total de Travessões (`—` / `–`)**:
+  - Eliminação de travessões de IA em mockups de serviços, cards de diferenciais, formulário de contato, projetos de autoridade e metatags SEO em `index.html` e `Index.tsx`, substituindo por pontuação natural de PT-BR (dois-pontos, vírgulas, parênteses e pontos finais)
+- **Microcopy Direto & B2B**:
+  - Botões de conversão e chamadas atualizados com imperativos claros ("Falar com especialista", "Ver serviços", "Enviar mensagem")
+
 ## [0.0.12-scroll-to-top-ux] — 2026-09-06
 
 ### Adicionado
