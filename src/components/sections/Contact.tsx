@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
-import { Mail, Phone, Clock, Send, Loader2, Maximize2 } from "lucide-react";
+import { Mail, Phone, Clock, MapPin, Send, Loader2, Maximize2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { Input } from "@/components/ui/input";
@@ -45,12 +45,12 @@ const PROJECT_TYPES = [
   "Outro Desafio",
 ];
 
-const contactInfo = [
+const directChannels = [
   {
-    icon: Mail,
-    label: "E-mail direto",
-    value: "elessandro@epmdevtech.com.br",
-    href: "mailto:elessandro@epmdevtech.com.br",
+    icon: MapPin,
+    label: "Localização",
+    value: "Toledo, Paraná",
+    href: null,
   },
   {
     icon: Phone,
@@ -59,9 +59,15 @@ const contactInfo = [
     href: "https://wa.me/5545999178290",
   },
   {
+    icon: Mail,
+    label: "E-mail corporativo",
+    value: "elessandro@epmdevtech.com.br",
+    href: "mailto:elessandro@epmdevtech.com.br",
+  },
+  {
     icon: Clock,
     label: "Tempo de resposta",
-    value: "Retorno técnico em até 24 horas úteis",
+    value: "Retorno em até 24 horas úteis",
     href: null,
   },
 ];
@@ -94,10 +100,8 @@ const Contact = () => {
 
     setIsSending(true);
     try {
-      // Inicializa com a public key antes de enviar
       emailjs.init({ publicKey });
 
-      // Nomes das variáveis coincidem com o template no EmailJS
       const templateParams = {
         name: data.name,
         email: data.email,
@@ -126,7 +130,7 @@ const Contact = () => {
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[128px]" />
 
       <div className="container px-6 relative z-10">
-        {/* Section header */}
+        {/* Cabeçalho Externo da Seção */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -136,228 +140,267 @@ const Contact = () => {
           <SectionHeader
             tagline="Contato"
             title="Vamos entender o seu desafio"
-            subtitle="Não precisa ter todos os requisitos definidos. Conte-nos o que está acontecendo, qual processo precisa melhorar ou o que você gostaria de construir. A partir disso, podemos entender a sua necessidade e avaliar o melhor caminho técnico."
+            subtitle="Não precisa ter todos os requisitos definidos. Conte-nos o que está acontecendo, qual processo precisa melhorar ou o que você gostaria de construir. Avaliaremos o melhor caminho técnico."
           />
         </motion.div>
 
-        <div className="max-w-5xl mx-auto grid lg:grid-cols-5 gap-8 items-start">
-          {/* Contact info - Left Column */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="lg:col-span-2 flex flex-col gap-4"
-          >
-            <div className="mb-1">
-              <h3 className="font-semibold text-zinc-900 dark:text-white text-sm mb-1 tracking-tight">
-                Canais diretos
+        {/* Container Principal: Split Card Unificado */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-xl border border-zinc-200/80 dark:border-zinc-800 grid grid-cols-1 lg:grid-cols-12 bg-card"
+        >
+          {/* Lado Esquerdo: Formulário Minimalista Underline */}
+          <div className="lg:col-span-7 bg-white dark:bg-zinc-900 p-8 sm:p-10 flex flex-col justify-between">
+            <div>
+              <h3 className="text-xl font-bold text-zinc-900 dark:text-white tracking-tight mb-6">
+                Envie sua mensagem
               </h3>
-              <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                Prefere um contato mais ágil? Fale diretamente com a liderança técnica por e-mail ou WhatsApp.
+
+              <form onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col gap-6">
+                {/* Linha 1: Nome + Email */}
+                <div className="grid sm:grid-cols-2 gap-6">
+                  {/* Nome Completo */}
+                  <div className="flex flex-col">
+                    <Label
+                      htmlFor="name"
+                      className="text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mb-1"
+                    >
+                      Nome completo <span className="text-destructive">*</span>
+                    </Label>
+                    <Input
+                      id="name"
+                      placeholder="Seu nome completo"
+                      autoComplete="name"
+                      {...register("name")}
+                      aria-invalid={!!errors.name}
+                      className={`h-auto border-0 border-b bg-transparent rounded-none px-0 py-2.5 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus-visible:ring-0 focus-visible:border-emerald-500 transition-colors shadow-none ${
+                        errors.name
+                          ? "border-destructive focus-visible:border-destructive"
+                          : "border-zinc-300 dark:border-zinc-700"
+                      }`}
+                    />
+                    {errors.name && (
+                      <p className="text-xs text-destructive mt-1.5">{errors.name.message}</p>
+                    )}
+                  </div>
+
+                  {/* E-mail Profissional */}
+                  <div className="flex flex-col">
+                    <Label
+                      htmlFor="email"
+                      className="text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mb-1"
+                    >
+                      E-mail profissional <span className="text-destructive">*</span>
+                    </Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="seu.email@empresa.com"
+                      autoComplete="email"
+                      {...register("email")}
+                      aria-invalid={!!errors.email}
+                      className={`h-auto border-0 border-b bg-transparent rounded-none px-0 py-2.5 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus-visible:ring-0 focus-visible:border-emerald-500 transition-colors shadow-none ${
+                        errors.email
+                          ? "border-destructive focus-visible:border-destructive"
+                          : "border-zinc-300 dark:border-zinc-700"
+                      }`}
+                    />
+                    {errors.email && (
+                      <p className="text-xs text-destructive mt-1.5">{errors.email.message}</p>
+                    )}
+                  </div>
+                </div>
+
+                {/* Linha 2: Telefone + Tipo de Projeto */}
+                <div className="grid sm:grid-cols-2 gap-6">
+                  {/* WhatsApp / Telefone */}
+                  <div className="flex flex-col">
+                    <Label
+                      htmlFor="phone"
+                      className="text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mb-1"
+                    >
+                      WhatsApp / Telefone
+                    </Label>
+                    <Input
+                      id="phone"
+                      type="tel"
+                      placeholder="+55 (45) 99999-9999"
+                      autoComplete="tel"
+                      {...register("phone")}
+                      className="h-auto border-0 border-b border-zinc-300 dark:border-zinc-700 bg-transparent rounded-none px-0 py-2.5 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus-visible:ring-0 focus-visible:border-emerald-500 transition-colors shadow-none"
+                    />
+                  </div>
+
+                  {/* Desafio ou Tipo de Projeto */}
+                  <div className="flex flex-col">
+                    <Label
+                      htmlFor="projectType"
+                      className="text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mb-1"
+                    >
+                      Desafio ou Tipo de Projeto <span className="text-destructive">*</span>
+                    </Label>
+                    <Select
+                      name="projectType"
+                      onValueChange={(val) =>
+                        setValue("projectType", val, { shouldValidate: true })
+                      }
+                    >
+                      <SelectTrigger
+                        id="projectType"
+                        className={`h-auto border-0 border-b bg-transparent rounded-none px-0 py-2.5 text-sm text-zinc-900 dark:text-zinc-100 focus:ring-0 focus:border-emerald-500 transition-colors shadow-none ${
+                          errors.projectType
+                            ? "border-destructive"
+                            : "border-zinc-300 dark:border-zinc-700"
+                        }`}
+                      >
+                        <SelectValue placeholder="Selecione o tipo de projeto..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {PROJECT_TYPES.map((type) => (
+                          <SelectItem key={type} value={type}>
+                            {type}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    {errors.projectType && (
+                      <p className="text-xs text-destructive mt-1.5">{errors.projectType.message}</p>
+                    )}
+                  </div>
+                </div>
+
+                {/* Linha 3: Mensagem */}
+                <div className="flex flex-col relative">
+                  <div className="flex items-center justify-between mb-1">
+                    <Label
+                      htmlFor="message"
+                      className="text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider"
+                    >
+                      Mensagem <span className="text-destructive">*</span>
+                    </Label>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="sm"
+                          className="h-6 px-2 text-xs text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100"
+                          aria-label="Expandir mensagem"
+                          title="Abrir bloco de notas para texto longo"
+                        >
+                          <Maximize2 className="w-3 h-3 mr-1.5" />
+                          Expandir
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-[90vw] w-[800px] h-[80vh] flex flex-col p-6">
+                        <DialogHeader>
+                          <DialogTitle className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">
+                            Detalhe seu Desafio
+                          </DialogTitle>
+                          <DialogDescription>
+                            Use este espaço amplo para descrever com conforto o processo que quer otimizar ou o sistema que pretende construir.
+                          </DialogDescription>
+                        </DialogHeader>
+                        <div className="flex-1 min-h-0 mt-4 relative">
+                          <Textarea
+                            placeholder="Conte resumidamente qual processo quer otimizar ou qual sistema pretende construir..."
+                            className="h-full resize-none text-base p-4 border-muted-foreground/20 focus-visible:ring-emerald-500/20 focus-visible:border-emerald-500"
+                            {...register("message")}
+                            onChange={(e) => {
+                              setValue("message", e.target.value, { shouldValidate: true });
+                            }}
+                          />
+                        </div>
+                      </DialogContent>
+                    </Dialog>
+                  </div>
+                  <Textarea
+                    id="message"
+                    placeholder="Conte resumidamente qual processo quer otimizar ou qual sistema pretende construir..."
+                    rows={4}
+                    {...register("message")}
+                    aria-invalid={!!errors.message}
+                    className={`border-0 border-b bg-transparent rounded-none px-0 py-2.5 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus-visible:ring-0 focus-visible:border-emerald-500 transition-colors shadow-none resize-none ${
+                      errors.message
+                        ? "border-destructive focus-visible:border-destructive"
+                        : "border-zinc-300 dark:border-zinc-700"
+                    }`}
+                  />
+                  {errors.message && (
+                    <p className="text-xs text-destructive mt-1.5">{errors.message.message}</p>
+                  )}
+                </div>
+
+                {/* Botão de Envio (Slim CTA alinhado à esquerda) */}
+                <div className="pt-2">
+                  <button
+                    type="submit"
+                    disabled={isSending}
+                    className="btn-submit group inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg font-medium text-sm text-white bg-emerald-600 hover:bg-emerald-500 active:scale-[0.99] shadow-sm hover:shadow-emerald-500/20 hover:shadow-md transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed border-none w-full sm:w-auto"
+                  >
+                    {isSending ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <span>Enviando...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+                        <span>Enviar Mensagem</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          {/* Lado Direito: Informações de Contato (Bloco Escuro Contrastante) */}
+          <div className="lg:col-span-5 bg-zinc-900 text-white dark:bg-zinc-950 p-8 sm:p-10 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-zinc-800">
+            <div>
+              <h3 className="text-xl font-bold text-white tracking-tight mb-2">
+                Canais de Atendimento
+              </h3>
+              <p className="text-xs text-zinc-400 leading-relaxed mb-8">
+                Estamos à disposição para entender o momento do seu sistema ou estruturar uma nova solução.
               </p>
+
+              {/* Lista de Canais */}
+              <div className="flex flex-col gap-6">
+                {directChannels.map((item) => (
+                  <div key={item.label} className="flex items-center gap-4 group">
+                    <div className="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center text-emerald-400 shrink-0 group-hover:bg-zinc-700/80 transition-colors">
+                      <item.icon className="w-5 h-5" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-0.5">
+                        {item.label}
+                      </p>
+                      {item.href ? (
+                        <a
+                          href={item.href}
+                          className="text-sm font-medium text-white hover:text-emerald-400 transition-colors truncate block"
+                        >
+                          {item.value}
+                        </a>
+                      ) : (
+                        <p className="text-sm font-medium text-white truncate">{item.value}</p>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            {contactInfo.map((item) => (
-              <div
-                key={item.label}
-                className="flex items-center gap-3.5 p-3.5 rounded-xl bg-white/60 dark:bg-zinc-900/40 backdrop-blur-sm border border-zinc-200/60 dark:border-zinc-800/60 hover:border-emerald-500/30 dark:hover:border-emerald-500/30 transition-all duration-200"
-              >
-                <div className="p-2.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 shrink-0">
-                  <item.icon className="w-4 h-4" />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <p className="text-xs text-zinc-500 dark:text-zinc-400 mb-0.5 font-medium">{item.label}</p>
-                  {item.href ? (
-                    <a
-                      href={item.href}
-                      className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors truncate block"
-                    >
-                      {item.value}
-                    </a>
-                  ) : (
-                    <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 truncate">{item.value}</p>
-                  )}
-                </div>
-              </div>
-            ))}
-          </motion.div>
-
-          {/* Form - Right Column (Tech Slim Card) */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="lg:col-span-3 bg-white/70 dark:bg-zinc-900/60 backdrop-blur-md border border-zinc-200/80 dark:border-zinc-800/80 rounded-2xl p-6 sm:p-7 shadow-sm hover:shadow-md transition-shadow"
-          >
-            <form onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col gap-4">
-              {/* Name + Email */}
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="flex flex-col gap-1.5">
-                  <Label htmlFor="name" className="text-xs font-medium text-zinc-600 dark:text-zinc-400">
-                    Nome completo <span className="text-destructive">*</span>
-                  </Label>
-                  <Input
-                    id="name"
-                    placeholder="Seu nome completo"
-                    autoComplete="name"
-                    {...register("name")}
-                    aria-invalid={!!errors.name}
-                    className={`h-10 text-sm bg-zinc-50/60 dark:bg-zinc-950/50 border-zinc-200 dark:border-zinc-800 rounded-lg placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus-visible:ring-2 focus-visible:ring-emerald-500/20 focus-visible:border-emerald-500 dark:focus-visible:border-emerald-400 transition-all ${
-                      errors.name ? "border-destructive focus-visible:ring-destructive" : ""
-                    }`}
-                  />
-                  {errors.name && (
-                    <p className="text-xs text-destructive">{errors.name.message}</p>
-                  )}
-                </div>
-
-                <div className="flex flex-col gap-1.5">
-                  <Label htmlFor="email" className="text-xs font-medium text-zinc-600 dark:text-zinc-400">
-                    E-mail profissional <span className="text-destructive">*</span>
-                  </Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="seu.email@empresa.com"
-                    autoComplete="email"
-                    {...register("email")}
-                    aria-invalid={!!errors.email}
-                    className={`h-10 text-sm bg-zinc-50/60 dark:bg-zinc-950/50 border-zinc-200 dark:border-zinc-800 rounded-lg placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus-visible:ring-2 focus-visible:ring-emerald-500/20 focus-visible:border-emerald-500 dark:focus-visible:border-emerald-400 transition-all ${
-                      errors.email ? "border-destructive focus-visible:ring-destructive" : ""
-                    }`}
-                  />
-                  {errors.email && (
-                    <p className="text-xs text-destructive">{errors.email.message}</p>
-                  )}
-                </div>
-              </div>
-
-              {/* Phone + Project type */}
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="flex flex-col gap-1.5">
-                  <Label htmlFor="phone" className="text-xs font-medium text-zinc-600 dark:text-zinc-400">
-                    WhatsApp / Telefone
-                  </Label>
-                  <Input
-                    id="phone"
-                    type="tel"
-                    placeholder="+55 (45) 99999-9999"
-                    autoComplete="tel"
-                    {...register("phone")}
-                    className="h-10 text-sm bg-zinc-50/60 dark:bg-zinc-950/50 border-zinc-200 dark:border-zinc-800 rounded-lg placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus-visible:ring-2 focus-visible:ring-emerald-500/20 focus-visible:border-emerald-500 dark:focus-visible:border-emerald-400 transition-all"
-                  />
-                </div>
-
-                <div className="flex flex-col gap-1.5">
-                  <Label htmlFor="projectType" className="text-xs font-medium text-zinc-600 dark:text-zinc-400">
-                    Tipo de projeto <span className="text-destructive">*</span>
-                  </Label>
-                  <Select
-                    name="projectType"
-                    onValueChange={(val) =>
-                      setValue("projectType", val, { shouldValidate: true })
-                    }
-                  >
-                    <SelectTrigger
-                      id="projectType"
-                      className={`h-10 text-sm bg-zinc-50/60 dark:bg-zinc-950/50 border-zinc-200 dark:border-zinc-800 rounded-lg focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 dark:focus:border-emerald-400 transition-all ${
-                        errors.projectType ? "border-destructive focus-visible:ring-destructive" : ""
-                      }`}
-                    >
-                      <SelectValue placeholder="Selecione o tipo de projeto..." />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {PROJECT_TYPES.map((type) => (
-                        <SelectItem key={type} value={type}>
-                          {type}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  {errors.projectType && (
-                    <p className="text-xs text-destructive">{errors.projectType.message}</p>
-                  )}
-                </div>
-              </div>
-
-              {/* Message */}
-              <div className="flex flex-col gap-1.5 relative">
-                <div className="flex items-center justify-between">
-                  <Label htmlFor="message" className="text-xs font-medium text-zinc-600 dark:text-zinc-400">
-                    Mensagem <span className="text-destructive">*</span>
-                  </Label>
-                  <Dialog>
-                    <DialogTrigger asChild>
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        size="sm"
-                        className="h-6 px-2 text-xs text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100"
-                        aria-label="Expandir mensagem"
-                        title="Abrir bloco de notas para texto longo"
-                      >
-                        <Maximize2 className="w-3 h-3 mr-1.5" />
-                        Expandir
-                      </Button>
-                    </DialogTrigger>
-                    <DialogContent className="max-w-[90vw] w-[800px] h-[80vh] flex flex-col p-6">
-                      <DialogHeader>
-                        <DialogTitle className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">
-                          Detalhe seu Desafio
-                        </DialogTitle>
-                        <DialogDescription>
-                          Use este espaço amplo para descrever com conforto o processo que quer otimizar ou o sistema que pretende construir.
-                        </DialogDescription>
-                      </DialogHeader>
-                      <div className="flex-1 min-h-0 mt-4 relative">
-                        <Textarea
-                          placeholder="Conte resumidamente qual processo quer otimizar ou qual sistema pretende construir..."
-                          className="h-full resize-none text-base p-4 border-muted-foreground/20 focus-visible:ring-emerald-500/20 focus-visible:border-emerald-500"
-                          {...register("message")}
-                          onChange={(e) => {
-                            setValue("message", e.target.value, { shouldValidate: true });
-                          }}
-                        />
-                      </div>
-                    </DialogContent>
-                  </Dialog>
-                </div>
-                <Textarea
-                  id="message"
-                  placeholder="Conte resumidamente qual processo quer otimizar ou qual sistema pretende construir..."
-                  rows={4}
-                  {...register("message")}
-                  aria-invalid={!!errors.message}
-                  className={`text-sm bg-zinc-50/60 dark:bg-zinc-950/50 border-zinc-200 dark:border-zinc-800 rounded-lg placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus-visible:ring-2 focus-visible:ring-emerald-500/20 focus-visible:border-emerald-500 dark:focus-visible:border-emerald-400 resize-none transition-all ${
-                    errors.message ? "border-destructive focus-visible:ring-destructive" : ""
-                  }`}
-                />
-                {errors.message && (
-                  <p className="text-xs text-destructive">{errors.message.message}</p>
-                )}
-              </div>
-
-              {/* Botão de Envio (Slim Tech CTA) */}
-              <button
-                type="submit"
-                disabled={isSending}
-                className="btn-submit group h-11 w-full inline-flex items-center justify-center gap-2 px-6 rounded-lg font-medium text-sm text-white bg-emerald-600 hover:bg-emerald-500 active:scale-[0.99] shadow-sm hover:shadow-emerald-500/20 hover:shadow-md transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed border-none"
-              >
-                {isSending ? (
-                  <>
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    <span>Enviando...</span>
-                  </>
-                ) : (
-                  <>
-                    <Send className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-                    <span>Enviar Mensagem</span>
-                  </>
-                )}
-              </button>
-            </form>
-          </motion.div>
-        </div>
+            <div className="pt-8 mt-8 border-t border-zinc-800/80">
+              <p className="text-xs text-zinc-500 leading-relaxed">
+                Consultoria técnica e engenharia direta com a liderança técnica da EPM DEVTECH.
+              </p>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
