@@ -208,8 +208,8 @@ const Footer = () => {
             {/* Theme Switcher */}
             <ThemeSwitcher />
 
-            {/* Copyright */}
-            <p className="font-mono text-xs text-muted-foreground">
+            {/* Copyright com safe-area para respiro do botão flutuante */}
+            <p className="font-mono text-xs text-muted-foreground lg:pr-14">
               @EPM DEVTECH {currentYear}. Todos os direitos reservados.
             </p>
           </div>
