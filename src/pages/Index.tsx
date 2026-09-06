@@ -27,7 +27,7 @@ interface SeoMeta {
 
 const SEO_META: Record<string, SeoMeta> = {
   "": {
-    title: "EPM DEVTECH | Software House — Desenvolvimento de Software Sob Medida",
+    title: "EPM DEVTECH | Software House: Desenvolvimento de Software Sob Medida",
     description:
       "Software house especializada em desenvolvimento web, APIs escaláveis e arquitetura de sistemas. +9 anos de experiência. PHP, Laravel, Node.js, React, AWS, Docker.",
     ogTitle: "EPM DEVTECH | Software House",
