@@ -9,6 +9,27 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.18-differentials-technical-authority] — 2026-09-06
+
+### Adicionado
+- **Documentação SDD Completa**: Registro formal de `SPEC-018`, `TASK-018` e `QA-018` com rastreabilidade de requisitos e matriz de conformidade
+
+### Alterado
+- **Copywriting Técnico Sênior da Seção Diferenciais (`Differentials.tsx`)**:
+  - `Card 01`: "Comunicação Transparente" (Tags: `ALINHAMENTO • PREVISIBILIDADE`), foco em alinhamento direto com quem executa a engenharia
+  - `Card 02`: "Arquitetura Planejada" (Tags: `MICROSSERVIÇOS • CLEAN ARCHITECTURE`), escolhas arquiteturais sólidas para eliminar gargalos técnicos
+  - `Card 03`: "Código Limpo e Testável" (Tags: `SOLID • TESTES AUTOMATIZADOS`), esteiras de testes rigorosas e estabilidade operacional
+  - `Card 04`: "Padrões de Engenharia" (Tags: `SONARQUBE • CODE REVIEW`), análise estática de vulnerabilidades e observabilidade
+  - `Card 05`: "Esteira DevOps e CI/CD" (Tags: `DEPLOY SEGURO • ROLLBACK`), pipelines automatizados e rollback imediato
+  - `Card 06`: "Entregas Previsíveis" (Tags: `PRAZOS REAIS • QUALIDADE`), estimativas realistas sem atalhos técnicos
+- **Semântica e Acessibilidade**:
+  - Títulos dos cards elevados para a tag semântica `<h3>` mantendo a classe de estilo `.diff-card-title`
+  - Subtítulo da seção atualizado com foco em rigor de engenharia, arquitetura escalável e entregas previsíveis
+- **Preservação Rígida de Layout e Animações**:
+  - Linha do tempo horizontal (pipeline animado), dots numerados de 01 a 06, setas indicadoras e ícones no rodapé mantidos 100% intactos
+- **Atualização da Suíte de Testes**:
+  - Atualização dos testes unitários em `Differentials.test.tsx` com 100% de cobertura
+
 ## [0.0.17-trust-bar-social-proof] — 2026-09-06
 
 ### Adicionado
