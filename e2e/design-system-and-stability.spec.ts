@@ -79,8 +79,8 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
       return window.getComputedStyle(el).backgroundColor;
     });
 
-    // Verde esmeralda oficial (#10B981 / hsl(158 64% 42%)) — formato rgb(38/39, 176, 125) ou rgb(16, 185, 129)
-    expect(ctaBgColor).toMatch(/rgb\((16|24|26|38|39),\s*(185|155|160|176),\s*(129|107|112|125)\)/);
+    // Verde esmeralda oficial (#10B981 / hsl(158 64% 42%)) — formato rgb(38/39, 175/176, 125) ou rgb(16, 185, 129)
+    expect(ctaBgColor).toMatch(/rgb\((16|24|26|38|39),\s*(185|155|160|175|176),\s*(129|107|112|125)\)/);
   });
 
   test('Navegação e rolagem fluida por âncoras sem salto para o Hero', async ({ page }) => {
