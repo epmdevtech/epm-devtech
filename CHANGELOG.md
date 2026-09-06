@@ -9,6 +9,29 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.16-services-technical-copywriting] — 2026-09-06
+
+### Adicionado
+- **Documentação SDD Completa**: Registro formal de `SPEC-016`, `TASK-016` e `QA-016` com rastreabilidade de requisitos, matriz de conformidade e evidências de qualidade
+
+### Alterado
+- **Cabeçalho da Seção Serviços (`Services.tsx`)**:
+  - Título H2 100% monocromático via `SectionHeader`: "Soluções de engenharia de ponta a ponta" (`text-zinc-900` / `dark:text-white`)
+  - Subtítulo refinado com foco em rigor arquitetural, testes automatizados e performance de negócios
+- **Copywriting Técnico Sênior dos 6 Cards de Serviços**:
+  - `Card 1`: "Desenvolvimento Web e Aplicações SPA" com foco em interfaces performáticas em Angular, Vue.js e React
+  - `Card 2`: "APIs e Backends Escaláveis" com foco em APIs REST e arquiteturas orientadas a eventos em PHP (Laravel) e Node.js
+  - `Card 3`: "Integrações e Microsserviços" com mensageria via RabbitMQ, Kafka e webhooks assíncronos
+  - `Card 4`: "Arquitetura de Software" com Clean Architecture, DDD, padrões Hexagonal e BFF
+  - `Card 5`: "Modernização e Evolução de Legados" com migração sem downtime via Strangler Fig Pattern
+  - `Card 6`: "Consultoria Técnica e Code Review" com diagnóstico de gargalos, análise estática e auditoria
+- **Padronização Tipográfica dos Cards**:
+  - Títulos H3 padronizados em `font-semibold` (`fontWeight: 600`), tracking compacto e cor monocromática alinhada ao design system
+- **Preservação Rígida de Layout e Mockups**:
+  - Estrutura de grid 3x2, containers `.svc-card`, efeitos glow e as 6 ilustrações em código/diagramas mantidos 100% intactos
+- **Atualização das Suítes de Testes**:
+  - Atualização dos testes unitários em `Services.test.tsx` (100% de cobertura) e do teste E2E do Playwright em `design-system-and-stability.spec.ts`
+
 ## [0.0.15-about-authority-and-metrics] — 2026-09-06
 
 ### Adicionado

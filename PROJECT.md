@@ -148,7 +148,7 @@ src/
 | Branding / Logo   | ✅ Adaptativo    | Logo 100% transparente em Dark e Light Mode, tipografia invertida sem moldura escura |
 | Hero              | ✅ Atualizado    | Posicionamento comercial sênior, Tagline, Dual CTA, microprova e sem gradientes |
 | About             | ✅ Atualizado    | Autoridade técnica (Tech Lead/fundador), métricas (+9 anos, 4 setores, 99,9% uptime) e preservação total dos cards 3D |
-| Services          | ✅ Lazy Loaded   | Carregamento progressivo via LazySection   |
+| Services          | ✅ Atualizado    | Copywriting técnico sênior nos 6 cards, H2 monocromático, H3 font-semibold e mockups técnicos preservados |
 | Technologies      | ✅ Constellation | TechConstellation interativo com trilhas PCB, Focus & Context e Painel Arquitetural |
 | Differentials     | ✅ Lazy Loaded   | Carregamento progressivo via LazySection   |
 | Authority         | ✅ Lazy Loaded   | Carregamento progressivo via LazySection   |
