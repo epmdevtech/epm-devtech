@@ -65,7 +65,8 @@ const Header = () => {
           <a href="#" className="flex items-center gap-3 group min-w-0 shrink-0">
             <div className="min-w-0">
               <div className="font-bold text-lg leading-tight mb-0.5">
-                <div className="bg-gray-900 dark:bg-transparent rounded-md px-2 py-0.5 transition-colors duration-300">
+                <div className="rounded-md py-0.5 transition-colors duration-300">
+                  {/* Dark mode logo */}
                   <img
                     src="/logo-emp-dev-tech-xs.webp"
                     srcSet="/logo-emp-dev-tech-xs.webp 149w, /logo-emp-dev-tech-sm.webp 300w"
@@ -76,7 +77,21 @@ const Header = () => {
                     loading="eager"
                     decoding="async"
                     {...{ fetchpriority: "high" }}
-                    className="h-7 sm:h-8 w-auto object-contain"
+                    className="h-7 sm:h-8 w-auto object-contain hidden dark:block"
+                  />
+                  {/* Light mode logo */}
+                  <img
+                    src="/logo-epm-devtech-light-xs.webp"
+                    srcSet="/logo-epm-devtech-light-xs.webp 149w, /logo-epm-devtech-light-sm.webp 300w"
+                    sizes="(max-width: 640px) 83px, 95px"
+                    alt=""
+                    aria-hidden="true"
+                    width={149}
+                    height={50}
+                    loading="eager"
+                    decoding="async"
+                    {...{ fetchpriority: "high" }}
+                    className="h-7 sm:h-8 w-auto object-contain block dark:hidden"
                   />
                 </div>
               </div>

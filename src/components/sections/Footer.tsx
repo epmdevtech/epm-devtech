@@ -126,15 +126,25 @@ const Footer = () => {
                 transition={{ type: "spring", stiffness: 160, damping: 24 }}
               >
                 <motion.div
-                  className="bg-gray-900 dark:bg-transparent rounded-md px-2 py-0.5 ring-0 hover:ring-2 hover:ring-primary/50 transition-all duration-300"
+                  className="rounded-md py-0.5 ring-0 hover:ring-2 hover:ring-primary/50 transition-all duration-300"
                   whileHover={{ boxShadow: "0 0 16px 2px hsl(var(--primary) / 0.3)" }}
                 >
+                  {/* Dark mode logo */}
                   <img
                     src="/logo-emp-dev-tech-sm.webp"
                     alt="EPM DEVTECH"
                     width={145}
                     height={49}
-                    className="h-7 w-auto object-contain"
+                    className="h-7 w-auto object-contain hidden dark:block"
+                  />
+                  {/* Light mode logo */}
+                  <img
+                    src="/logo-epm-devtech-light-sm.webp"
+                    alt=""
+                    aria-hidden="true"
+                    width={145}
+                    height={49}
+                    className="h-7 w-auto object-contain block dark:hidden"
                   />
                 </motion.div>
               </motion.div>
