@@ -22,7 +22,7 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
   - `Card 1`: "Desenvolvimento Web e Aplicações SPA" com foco em interfaces performáticas em Angular, Vue.js e React
   - `Card 2`: "APIs e Backends Escaláveis" com foco em APIs REST e arquiteturas orientadas a eventos em PHP (Laravel) e Node.js
   - `Card 3`: "Integrações e Microsserviços" com mensageria via RabbitMQ, Kafka e webhooks assíncronos
-  - `Card 4`: "Arquitetura de Software" com Clean Architecture, DDD, padrões Hexagonal e BFF
+  - `Card 4`: "Arquitetura de Software" com microsserviços e monólitos modulares, Clean Architecture, DDD, padrões Hexagonal e BFF
   - `Card 5`: "Modernização e Evolução de Legados" com migração sem downtime via Strangler Fig Pattern
   - `Card 6`: "Consultoria Técnica e Code Review" com diagnóstico de gargalos, análise estática e auditoria
 - **Padronização Tipográfica dos Cards**:

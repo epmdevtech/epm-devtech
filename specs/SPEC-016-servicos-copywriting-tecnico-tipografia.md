@@ -71,7 +71,7 @@ Além disso, a tipografia deve manter conformidade estrita com o Design System: 
 
 4. **Card 4 (Visual: `MockArchitecture`)**:
    - **Título (H3)**: `Arquitetura de Software`
-   - **Descrição**: `Design de arquiteturas desacopladas com Clean Architecture, DDD, padrões Hexagonal e BFF, preparadas para crescimento contínuo e manutenibilidade.`
+   - **Descrição**: `Design de microsserviços e monólitos modulares com Clean Architecture, DDD, padrões Hexagonal e BFF, preparados para crescimento contínuo e manutenibilidade.`
    - **Accent Glow**: `#A855F7`
 
 5. **Card 5 (Visual: `MockMaintenance`)**:
