@@ -9,6 +9,31 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.15-about-authority-and-metrics] — 2026-09-06
+
+### Adicionado
+- **Suporte a Decimais em Animações Numéricas (`CountUp` / `AnimatedStat`)**: Implementada prop `decimals` com formatação PT-BR (vírgula decimal) para animação fluida do `99,9% Uptime em Produção` tanto em runtime quanto em ambiente de testes
+- **Documentação SDD Completa**: Registro formal de `SPEC-015`, `TASK-015` e `QA-015` com evidências completas de cobertura e validação
+
+### Alterado
+- **Autoridade Técnica e Storytelling Institucional (`About.tsx`)**:
+  - Redação reconstruída com foco na trajetória sênior e de Tech Lead do fundador, destacando governança de sistemas complexos, APIs resilientes e arquitetura orientada a microsserviços
+  - Integração de IA assistida sob Spec-Driven Development (SDD) para produtividade e previsibilidade
+- **Novas Métricas de Alto Impacto**:
+  - `+9 Anos de Experiência` (fundação e liderança técnica sólida)
+  - `4 Setores Críticos` (conexão direta com os 4 cases de destaque)
+  - `99,9% Uptime em Produção` (indicador quantitativo de confiabilidade operacional)
+- **Alinhamento dos 4 Cards de Setores Estratégicos**:
+  - `01 Indústria`: Sistemas de chão de fábrica, rastreabilidade IoT e integração direta com ERPs legados
+  - `02 Varejo`: Motores de recomendação, pipelines de checkout resilientes e e-commerces de alto tráfego
+  - `03 Educação`: Plataformas distribuídas de alta concorrência para programas federais (CAPES/MEC)
+  - `04 Energia`: Telemetria em tempo real, monitoramento crítico de ativos e dados regulatórios (ONS/Pecém)
+- **Preservação Rígida de Layout & CSS 3D**:
+  - Estrutura de grid/flex, classes de posicionamento staggered, cartões 3D com efeito flutuante (`about-card`) e gradientes de borda preservados 100% intactos
+- **Tipografia e Copywriting PT-BR**:
+  - Título H2 100% monocromático via `SectionHeader` ("Engenharia de software com excelência técnica comprovada")
+  - Eliminação absoluta de travessões (`—` / `–`) e vícios de IA
+
 ## [0.0.14-monochromatic-titles] — 2026-09-06
 
 ### Adicionado
