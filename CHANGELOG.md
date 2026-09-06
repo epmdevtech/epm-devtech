@@ -9,6 +9,19 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.10-adaptive-logo] — 2026-09-06
+
+### Adicionado
+- Assets vetoriais e rasterizados de alta fidelidade para o logotipo em Modo Claro: `logo-epm-devtech-light-xs.webp` (149x50 px, ~5.2 KB), `logo-epm-devtech-light-sm.webp` (300x101 px, ~12.4 KB) e PNGs correspondentes
+- Preload condicional com `media="(prefers-color-scheme: ...)"` em `index.html` para LCP instantâneo em ambos os temas
+- Teste E2E no Playwright (`e2e/design-system-and-stability.spec.ts`) validando comutação dinâmica do logotipo entre Dark e Light Mode e ausência de moldura escura
+
+### Alterado
+- **Header (`src/components/layout/Header.tsx`)**: Remoção completa da classe paliativa `bg-gray-900` e introdução de renderização adaptativa CSS com variantes dark/light
+- **Footer (`src/components/sections/Footer.tsx`)**: Remoção da moldura `bg-gray-900` e suporte nativo ao tema claro com fundo 100% transparente
+- Preservação da árvore de acessibilidade com `alt="EPM DEVTECH"` único e `aria-hidden="true"` na variante do tema oposto, evitando anúncios duplicados em leitores de tela
+- Documentação do ciclo SDD: SPEC-010, TASK-010 e QA-010 devidamente registrados
+
 ## [0.0.9-tech-constellation] — 2026-09-05
 
 ### Adicionado
