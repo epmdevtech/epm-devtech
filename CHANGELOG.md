@@ -9,6 +9,23 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.17-trust-bar-social-proof] — 2026-09-06
+
+### Adicionado
+- **Trust Bar / Faixa de Prova Social e Autoridade Técnica (`Authority.tsx`)**:
+  - Substituição dos 5 cards verticais pesados por um componente compacto, leve e fluido posicionado estrategicamente antes da seção de Contato
+  - **Bloco 1 (Métricas de Missão Crítica)**: `99,9%` Uptime em ambientes de produção, `2.500+ RPS` Throughput em arquiteturas distribuídas, `+448 IES e 650 Escolas` em plataformas educacionais e federais, e `Zero Perda` em integridade regulatória
+  - **Bloco 2 (Validação Institucional)**: Selos tipográficos corporativos refinados com microinteração de hover para `CAPES • MEC`, `ONS (Operador Nacional do Sistema Elétrico)`, `Energia Pecém`, `Governo do MT (SEDUC)` e `Indústria e Manufatura (IoT Industrial e ERP)`
+- **Documentação SDD Completa**: Registro formal de `SPEC-017`, `TASK-017` e `QA-017`
+
+### Alterado
+- **Título da Seção de Autoridade**:
+  - Título H2 100% monocromático: "Autoridade técnica e impacto em missão crítica" (`text-zinc-900` / `dark:text-white`) com badge pill superior "Prova Social & Autoridade"
+- **Otimização de Performance**:
+  - Redução do tamanho de bundle do componente de 4.51 kB para 3.50 kB (gzip: 1.48 kB)
+- **Atualização das Suítes de Testes**:
+  - Atualização dos testes unitários em `Authority.test.tsx` (100% de cobertura) e sincronização da asserção de heading no Playwright E2E
+
 ## [0.0.16-services-technical-copywriting] — 2026-09-06
 
 ### Adicionado
