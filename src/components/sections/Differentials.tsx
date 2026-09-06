@@ -283,14 +283,7 @@ const Differentials = () => {
           >
             <SectionHeader
               tagline="Diferenciais"
-              title={
-                <>
-                  Por Que Escolher a{" "}
-                  <span className="text-emerald-600 dark:text-emerald-400">
-                    EPM DEVTECH
-                  </span>
-                </>
-              }
+              title="Por Que Escolher a EPM DEVTECH"
               subtitle="Qualidade técnica, arquitetura sólida e compromisso profissional em cada linha de código."
             />
           </motion.div>

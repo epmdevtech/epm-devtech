@@ -149,14 +149,7 @@ const Contact = () => {
         >
           <SectionHeader
             tagline="Contato"
-            title={
-              <>
-                Vamos Construir{" "}
-                <span className="text-emerald-600 dark:text-emerald-400">
-                  Juntos
-                </span>
-              </>
-            }
+            title="Vamos Construir Juntos"
             subtitle="Pronto para transformar sua ideia em realidade? Preencha o formulário e receba um retorno em até 24 horas úteis."
           />
         </motion.div>

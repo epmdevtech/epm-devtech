@@ -135,14 +135,7 @@ const Authority = () => {
           >
             <SectionHeader
               tagline="Credenciais"
-              title={
-                <>
-                  Autoridade Técnica que{" "}
-                  <span className="text-emerald-600 dark:text-emerald-400">
-                    Gera Resultados
-                  </span>
-                </>
-              }
+              title="Autoridade Técnica que Gera Resultados"
               subtitle="Anos de experiência em projetos reais, traduzidos em competência técnica aplicada e entrega consistente."
             />
           </motion.div>

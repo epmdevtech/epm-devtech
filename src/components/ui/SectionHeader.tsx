@@ -41,9 +41,9 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
       {tagline && (
         <div
           className={cn(
-            "inline-flex items-center gap-2 px-3.5 py-1.5 mb-4 rounded-full uppercase tracking-wider font-semibold text-xs sm:text-sm",
-            "bg-emerald-50 border border-emerald-200/70 text-emerald-700",
-            "dark:bg-emerald-950/50 dark:border-emerald-800/60 dark:text-emerald-400",
+            "inline-flex items-center gap-2 px-3 py-1 mb-4 rounded-full uppercase tracking-wider font-semibold text-xs",
+            "bg-emerald-50 text-emerald-700 border border-emerald-200/70",
+            "dark:bg-emerald-950/50 dark:text-emerald-400 dark:border-emerald-800/60",
             taglineClassName
           )}
         >
@@ -73,7 +73,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
         <p
           className={cn(
             "font-normal text-base sm:text-lg leading-relaxed text-zinc-600 dark:text-zinc-400",
-            isCenter && "mx-auto",
+            isCenter ? "max-w-2xl mx-auto" : "max-w-2xl",
             subtitleClassName
           )}
         >

@@ -500,14 +500,7 @@ const About = () => {
               <SectionHeader
                 align="left"
                 tagline="Sobre a EPM DEVTECH"
-                title={
-                  <>
-                    Engenharia de Software com{" "}
-                    <span className="text-emerald-600 dark:text-emerald-400">
-                      Excelência Técnica
-                    </span>
-                  </>
-                }
+                title="Engenharia de Software com Excelência Técnica"
                 className="mb-6"
               />
               <div className="space-y-4">

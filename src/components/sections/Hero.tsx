@@ -40,23 +40,19 @@ const Hero = () => {
       >
         <div className="max-w-4xl mx-auto text-center">
 
-          {/* Tagline superior */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 mb-8 rounded-full uppercase tracking-wider font-semibold text-xs sm:text-sm bg-emerald-50 border border-emerald-200/70 text-emerald-700 dark:bg-emerald-950/50 dark:border-emerald-800/60 dark:text-emerald-400">
+          {/* Tagline superior: Ponto único de cor na badge */}
+          <div className="inline-flex items-center gap-2 px-3 py-1 mb-8 rounded-full uppercase tracking-wider font-semibold text-xs bg-emerald-50 border border-emerald-200/70 text-emerald-700 dark:bg-emerald-950/50 dark:border-emerald-800/60 dark:text-emerald-400">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 dark:bg-emerald-400 animate-pulse" aria-hidden="true" />
             <span>Engenharia de Software & Modernização</span>
           </div>
 
-          {/* Headline: Rigorosamente linear, peso consistente font-bold */}
+          {/* Headline: Rigorosamente linear, 100% monocromático e sem divisões cromáticas */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.15] mb-6 text-zinc-900 dark:text-white">
-            Software sob medida{" "}
-            <span className="text-emerald-600 dark:text-emerald-400">
-              construído para escalar
-            </span>{" "}
-            o seu negócio.
+            Software sob medida construído para escalar o seu negócio.
           </h1>
 
           {/* Subtitle */}
-          <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 max-w-3xl mx-auto mb-10 leading-relaxed font-normal">
+          <p className="text-base sm:text-lg leading-relaxed text-zinc-600 dark:text-zinc-400 font-normal max-w-2xl sm:max-w-3xl mx-auto mb-10">
             Da concepção à infraestrutura: desenvolvemos sistemas web, APIs resilientes e arquiteturas de alta performance preparadas para acompanhar o crescimento da sua empresa.
           </p>
 

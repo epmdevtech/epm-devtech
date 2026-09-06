@@ -326,14 +326,7 @@ const Services = () => {
           >
             <SectionHeader
               tagline="Serviços"
-              title={
-                <>
-                  Soluções{" "}
-                  <span className="text-emerald-600 dark:text-emerald-400">
-                    End-to-End
-                  </span>
-                </>
-              }
+              title="Soluções End-to-End"
               subtitle="Do planejamento à entrega: desenvolvemos software com excelência arquitetural, testes rigorosos e foco em resultados para o seu negócio."
             />
           </motion.div>

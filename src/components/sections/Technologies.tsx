@@ -23,14 +23,7 @@ const Technologies = () => {
         >
           <SectionHeader
             tagline="Stack Tecnológica"
-            title={
-              <>
-                Tecnologias{" "}
-                <span className="text-emerald-600 dark:text-emerald-400">
-                  Modernas
-                </span>
-              </>
-            }
+            title="Tecnologias Modernas"
             subtitle="Arquitetura interconectada com padrões sólidos de engenharia, ferramentas consolidadas e foco em alta disponibilidade."
           />
         </motion.div>
