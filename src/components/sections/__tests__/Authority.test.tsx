@@ -14,46 +14,47 @@ vi.mock('framer-motion', () => ({
     useInView: (...args: unknown[]) => mockUseInView(...args),
 }));
 
-describe('Authority / Credentials Component', () => {
-    it('renders section header', () => {
+describe('Authority / Trust Bar Component', () => {
+    it('renders section header with badge and monochromatic title', () => {
         render(<Authority />);
-        expect(screen.getByText(/Credenciais/i)).toBeInTheDocument();
-        expect(screen.getByText(/Gera Resultados/i)).toBeInTheDocument();
-        // 'Técnica' appears in the h2 gradient span — verify it's rendered
-        expect(screen.getAllByText(/Técnica/i).length).toBeGreaterThan(0);
+        expect(screen.getByText(/Prova Social & Autoridade/i)).toBeInTheDocument();
+        expect(screen.getByText('Autoridade técnica e impacto em missão crítica')).toBeInTheDocument();
+        expect(screen.getByText(/Resultados comprovados na linha de frente/i)).toBeInTheDocument();
     });
 
-    it('renders all credential card titles', () => {
+    it('renders all 4 mission-critical metrics and their labels', () => {
         render(<Authority />);
-        const titles = [
-            'Experiência Profissional.',
-            'Perfil Full Stack Sênior.',
-            'Experiência Multi-Setor.',
-            'Práticas de Engenharia.',
-            'Compromisso com Resultados.',
-        ];
-        titles.forEach(title => {
-            expect(screen.getByText(title)).toBeInTheDocument();
-        });
+        expect(screen.getByText('99,9%')).toBeInTheDocument();
+        expect(screen.getByText('Uptime em ambientes de produção')).toBeInTheDocument();
+
+        expect(screen.getByText('2.500+ RPS')).toBeInTheDocument();
+        expect(screen.getByText('Throughput suportado em arquiteturas distribuídas')).toBeInTheDocument();
+
+        expect(screen.getByText('+448 IES e 650 Escolas')).toBeInTheDocument();
+        expect(screen.getByText('Impacto em plataformas educacionais e federais')).toBeInTheDocument();
+
+        expect(screen.getByText('Zero Perda')).toBeInTheDocument();
+        expect(screen.getByText('Integridade em dados regulatórios e integrações críticas')).toBeInTheDocument();
     });
 
-    it('renders credential handles', () => {
+    it('renders support text and all institutional badges', () => {
         render(<Authority />);
-        expect(screen.getByText('GRANDES PROJETOS')).toBeInTheDocument();
-        expect(screen.getByText('BACKEND · FRONTEND · INFRA')).toBeInTheDocument();
-        expect(screen.getByText('CLEAN CODE · CI/CD · TDD')).toBeInTheDocument();
-    });
+        expect(screen.getByText(/Engenharia comprovada em projetos e sistemas/i)).toBeInTheDocument();
 
-    it('renders credential descriptions', () => {
-        render(<Authority />);
-        expect(screen.getByText(/projetos de médio e grande porte/i)).toBeInTheDocument();
-        expect(screen.getByText(/entregues dentro do prazo/i)).toBeInTheDocument();
+        expect(screen.getByText('CAPES • MEC')).toBeInTheDocument();
+        expect(screen.getByText('ONS')).toBeInTheDocument();
+        expect(screen.getByText('(Operador Nacional do Sistema Elétrico)')).toBeInTheDocument();
+        expect(screen.getByText('Energia Pecém')).toBeInTheDocument();
+        expect(screen.getByText('Governo do MT')).toBeInTheDocument();
+        expect(screen.getByText('(SEDUC)')).toBeInTheDocument();
+        expect(screen.getByText('Indústria e Manufatura')).toBeInTheDocument();
+        expect(screen.getByText('(IoT Industrial e ERP)')).toBeInTheDocument();
     });
 
     it('renderiza corretamente quando useInView retorna false (antes de entrar no viewport)', () => {
         mockUseInView.mockReturnValueOnce(false);
         render(<Authority />);
-        expect(screen.getByText(/Credenciais/i)).toBeInTheDocument();
-        expect(screen.getByText('Experiência Profissional.')).toBeInTheDocument();
+        expect(screen.getByText('Autoridade técnica e impacto em missão crítica')).toBeInTheDocument();
+        expect(screen.getByText('99,9%')).toBeInTheDocument();
     });
 });

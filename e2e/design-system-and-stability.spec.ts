@@ -43,7 +43,7 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
       { id: 'servicos', text: 'Soluções de engenharia de ponta a ponta' },
       { id: 'tecnologias', text: 'Tecnologias Modernas' },
       { id: 'diferenciais', text: 'Por Que Escolher a EPM DEVTECH' },
-      { id: 'autoridade', text: 'Autoridade Técnica que Gera Resultados' },
+      { id: 'autoridade', text: 'Autoridade técnica e impacto em missão crítica' },
       { id: 'contato', text: 'Vamos Construir Juntos' },
     ];
 
