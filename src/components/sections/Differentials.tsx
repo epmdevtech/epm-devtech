@@ -14,44 +14,44 @@ const differentials = [
   {
     icon: MessageCircle,
     step: "01",
-    title: "Comunicação Profissional",
-    handle: "TRANSPARÊNCIA · ALINHAMENTO",
-    description: "Atualizações regulares, documentação clara e alinhamento constante sobre entregas e prazos para que você nunca fique no escuro.",
+    title: "Comunicação Transparente",
+    handle: "ALINHAMENTO • PREVISIBILIDADE",
+    description: "Acompanhamento constante, relatórios claros de progresso e alinhamento direto com quem realmente executa a engenharia, eliminando ruídos e surpresas.",
   },
   {
     icon: Shield,
     step: "02",
-    title: "Arquitetura Bem Definida",
-    handle: "HEXAGONAL · MICROSERVIÇOS",
-    description: "Projetos com arquitetura clara desde o início (hexagonal, microsserviços ou monolitos bem estruturados), reduzindo a dívida técnica desde o primeiro dia.",
+    title: "Arquitetura Planejada",
+    handle: "MICROSSERVIÇOS • CLEAN ARCHITECTURE",
+    description: "Sistemas projetados para crescer sem criar gargalos técnicos. Escolhas arquiteturais sólidas desde o primeiro dia para facilitar manutenções futuras.",
   },
   {
     icon: CheckCircle2,
     step: "03",
-    title: "Código Limpo & Testável",
-    handle: "CLEAN CODE · TDD",
-    description: "Seguimos princípios SOLID, Clean Code e TDD para garantir código de alta qualidade, fácil manutenção e evolução segura ao longo do tempo.",
+    title: "Código Limpo e Testável",
+    handle: "SOLID • TESTES AUTOMATIZADOS",
+    description: "Aplicação de boas práticas consolidadas e esteiras de testes rigorosas para garantir estabilidade operacional e evolução contínua da aplicação.",
   },
   {
     icon: Sparkles,
     step: "04",
-    title: "Boas Práticas",
-    handle: "SONARQUBE · REVIEW",
-    description: "Code review, testes automatizados, análise estática com SonarQube e monitoramento contínuo para manter a saúde do projeto.",
+    title: "Padrões de Engenharia",
+    handle: "SONARQUBE • CODE REVIEW",
+    description: "Revisões sistemáticas de código, análise estática de vulnerabilidades e observabilidade em produção para manter a saúde do ecossistema.",
   },
   {
     icon: GitMerge,
     step: "05",
-    title: "Versionamento & CI/CD",
-    handle: "GIT FLOW · DEPLOY",
-    description: "Git flow rigoroso, pipelines automatizados e deploys seguros com rollback disponível para garantir estabilidade em produção.",
+    title: "Esteira DevOps e CI/CD",
+    handle: "DEPLOY SEGURO • ROLLBACK",
+    description: "Pipelines automatizados com validações estritas antes de cada publicação, minimizando riscos de falhas em produção e permitindo rollback imediato.",
   },
   {
     icon: Clock,
     step: "06",
-    title: "Entrega Responsável",
-    handle: "PRAZO · QUALIDADE",
-    description: "Comprometimento com prazos realistas, qualidade técnica e transparência em cada etapa, sem surpresas e sem atalhos técnicos.",
+    title: "Entregas Previsíveis",
+    handle: "PRAZOS REAIS • QUALIDADE",
+    description: "Estimativas realistas baseadas em complexidade técnica real, sem atalhos que comprometam a segurança e a longevidade do seu software.",
   },
 ];
 
@@ -284,7 +284,7 @@ const Differentials = () => {
             <SectionHeader
               tagline="Diferenciais"
               title="Por Que Escolher a EPM DEVTECH"
-              subtitle="Qualidade técnica, arquitetura sólida e compromisso profissional em cada linha de código."
+              subtitle="Rigor de engenharia, arquitetura escalável e compromisso com entregas previsíveis em cada linha de código."
             />
           </motion.div>
 
@@ -343,10 +343,10 @@ const Differentials = () => {
                 </div>
 
                 {/* title with arrow */}
-                <div className="diff-card-title">
+                <h3 className="diff-card-title">
                   <span>{item.title}</span>
                   <span className="diff-card-arrow">→</span>
-                </div>
+                </h3>
 
                 {/* handle */}
                 <div className="diff-card-handle">{item.handle}</div>
