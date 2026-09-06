@@ -9,6 +9,26 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.20-footer-4-columns-redesign] — 2026-09-06
+
+### Adicionado
+- **Documentação SDD Completa**: Registro formal de `SPEC-020`, `TASK-020` e `QA-020` com rastreabilidade de requisitos, evidências de quality gates e matriz de conformidade
+- **Layout de 4 Colunas Monocromático no Rodapé (`Footer.tsx`)**:
+  - `Coluna 1 (Identidade e Posicionamento)`: Logotipo adaptativo WebP (dark e light), texto de apoio técnico, localização em Toledo-PR com ícone `MapPin` e links discretos para GitHub e LinkedIn
+  - `Coluna 2 (Soluções)`: Título monocromático "SOLUÇÕES" e 5 links para os serviços reais da empresa
+  - `Coluna 3 (Navegação)`: Título monocromático "NAVEGAÇÃO" e 5 links para as âncoras da página institucional
+  - `Coluna 4 (Contato)`: Título monocromático "CONTATO", e-mail direto, WhatsApp e SLA de resposta técnica em até 24 horas úteis
+  - `Barra Inferior (Sub-footer)`: Divisor de 1px com copyright à esquerda, seletor de tema (`ThemeSwitcher`) ao centro e frase de autoridade à direita com respiro lateral para compatibilidade com o botão `ScrollToTop`
+
+### Alterado
+- **Padronização Tipográfica do Rodapé**:
+  - Títulos das colunas em caixa alta com peso firme e tracking amplo (`text-xs font-semibold uppercase tracking-wider text-zinc-900 dark:text-zinc-100`)
+  - Ausência total de spans bicolores e gradientes
+  - Redação em PT-BR sem uso de travessões (`—` ou `–`)
+- **Atualização das Suítes de Testes**:
+  - Testes unitários atualizados em `Footer.test.tsx` com 100% de cobertura
+  - Suíte E2E em `design-system-and-stability.spec.ts` 100% aprovada (8/8 testes)
+
 ## [0.0.19-contact-tech-slim-redesign] — 2026-09-06
 
 ### Adicionado
