@@ -9,6 +9,19 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.24-layout-shift-header-dropdown-fix] — 2026-09-06
+
+### Corrigido
+- **Eliminação de Layout Shift do Menu Superior / Header ao Abrir Dropdowns (`index.css`)**:
+  - Resolução do salto horizontal e estufamento do Header fixo para a direita causado pelo bloqueio forçado de scroll do Radix UI (`react-remove-scroll`)
+  - Adição de `scrollbar-gutter: stable;` no elemento `html`, garantindo reserva perpétua da calha de rolagem do navegador
+  - Inserção de regra de contenção em `body[data-scroll-locked]`, preservando `overflow: visible !important` e zerando margens espúrias introduzidas pelo script de remoção de scrollbar
+  - Garantia de estabilidade espacial milimétrica (variação $0\text{px}$) no Header, logotipo e links de navegação
+
+### Adicionado
+- **Documentação SDD Completa**: Registro formal de `SPEC-024`, `TASK-024` e `QA-024`
+- **Teste Automatizado de Estabilidade Visual (E2E)**: Validação no Playwright (`design-system-and-stability.spec.ts`) assegurando zero layout shift e conformidade visual contínua
+
 ## [0.0.23-contact-dropdown-overflow-fix] — 2026-09-06
 
 ### Corrigido
