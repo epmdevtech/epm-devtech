@@ -17,14 +17,31 @@ import SectionHeader from "@/components/ui/SectionHeader";
    ANIMATED STAT & COUNT UP
 ───────────────────────────────────────────────────────────── */
 // CountUp component — atualiza o DOM diretamente via ref para evitar re-renders por frame
-const CountUp = ({ isCounting, end, duration }: { isCounting: boolean, end: number, duration: number }) => {
+const CountUp = ({
+  isCounting,
+  end,
+  duration,
+  decimals = 0,
+}: {
+  isCounting: boolean;
+  end: number;
+  duration: number;
+  decimals?: number;
+}) => {
   const spanRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     if (!isCounting) return;
 
+    const formatVal = (v: number) => {
+      if (decimals > 0) {
+        return v.toFixed(decimals).replace(".", ",");
+      }
+      return String(Math.floor(v));
+    };
+
     if (process.env.NODE_ENV === 'test') {
-      if (spanRef.current) spanRef.current.textContent = String(end);
+      if (spanRef.current) spanRef.current.textContent = formatVal(end);
       return;
     }
 
@@ -38,19 +55,19 @@ const CountUp = ({ isCounting, end, duration }: { isCounting: boolean, end: numb
       const easeOut = 1 - (1 - ratio) * (1 - ratio);
 
       if (spanRef.current) {
-        spanRef.current.textContent = String(Math.floor(easeOut * end));
+        spanRef.current.textContent = formatVal(easeOut * end);
       }
 
       if (progress < duration * 1000) {
         animationFrame = requestAnimationFrame(step);
       } else {
-        if (spanRef.current) spanRef.current.textContent = String(end);
+        if (spanRef.current) spanRef.current.textContent = formatVal(end);
       }
     };
 
     animationFrame = requestAnimationFrame(step);
     return () => cancelAnimationFrame(animationFrame);
-  }, [isCounting, end, duration]);
+  }, [isCounting, end, duration, decimals]);
 
   return <span ref={spanRef}>0</span>;
 };
@@ -60,12 +77,14 @@ const AnimatedStat = ({
   prefix = "",
   suffix = "",
   label,
+  decimals = 0,
   delay = 0,
 }: {
   value: number;
   prefix?: string;
   suffix?: string;
   label: string;
+  decimals?: number;
   delay?: number;
 }) => {
   const ref = useRef(null);
@@ -80,7 +99,7 @@ const AnimatedStat = ({
           animate={inView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 0.5, delay: delay }}
         >
-          <CountUp isCounting={inView} end={value} duration={2} />
+          <CountUp isCounting={inView} end={value} duration={2} decimals={decimals} />
         </motion.span>
         {suffix}
       </div>
@@ -190,7 +209,7 @@ const highlights = [
     title: "Indústria",
     handle: "MANUFATURA",
     description:
-      "Sistemas robustos para automação de processos, controle de produção e integração com ERPs.",
+      "Sistemas robustos para automação de processos, IoT industrial, controle de produção e integração com ERP corporativo.",
     Mockup: MockupIndustria,
   },
   {
@@ -199,7 +218,7 @@ const highlights = [
     title: "Varejo",
     handle: "E-COMMERCE",
     description:
-      "Plataformas de e-commerce, gestão de estoque e soluções de checkout que escalam com o crescimento do negócio.",
+      "Plataformas de e-commerce de alta conversão, gestão de estoque em tempo real e checkouts escaláveis.",
     Mockup: MockupVarejo,
   },
   {
@@ -208,7 +227,7 @@ const highlights = [
     title: "Educação",
     handle: "CAPES · MEC · GOVERNO FEDERAL",
     description:
-      "Projetos para a CAPES e MEC com soluções de gestão acadêmica de alto impacto.",
+      "Sistemas acadêmicos governamentais, modernização de legados e microsserviços de alto throughput para CAPES e MEC.",
     Mockup: MockupEducacao,
   },
   {
@@ -217,7 +236,7 @@ const highlights = [
     title: "Energia",
     handle: "ONS · ENERGIA PECÉM",
     description:
-      "Projetos para o Operador Nacional do Sistema Elétrico (ONS) e Energia Pecém, com foco em sistemas críticos de monitoramento.",
+      "Projetos para o Operador Nacional do Sistema Elétrico (ONS) e Energia Pecém, desenvolvendo sistemas de monitoramento crítico em tempo real.",
     Mockup: MockupEnergia,
   },
 ];
@@ -500,31 +519,26 @@ const About = () => {
               <SectionHeader
                 align="left"
                 tagline="Sobre a EPM DEVTECH"
-                title="Engenharia de Software com Excelência Técnica"
+                title="Engenharia de software com excelência técnica comprovada"
                 className="mb-6"
               />
               <div className="space-y-4">
                 <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal">
-                  A EPM DEVTECH é uma empresa especializada em desenvolvimento de software,
-                  fundada por Elessandro Prestes Macedo, desenvolvedor Full Stack com mais de
-                  9 anos de experiência em projetos de médio e grande porte.
+                  A EPM DEVTECH é uma software house fundada por Elessandro Prestes Macedo, engenheiro de software sênior e tech lead com mais de 9 anos de experiência na concepção e evolução de sistemas complexos.
                 </p>
                 <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal">
-                  Nossa atuação abrange desde o design de arquiteturas escaláveis até a
-                  implementação de sistemas complexos, sempre com foco em qualidade de código,
-                  boas práticas e entrega profissional.
+                  Nossa bagagem técnica foi construída na linha de frente de operações críticas, desenvolvendo arquiteturas escaláveis, microsserviços e modernizações de legado sem interrupção para grandes instituições e indústrias.
                 </p>
                 <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal">
-                  Trabalhamos com metodologias ágeis, versionamento rigoroso e integração
-                  contínua (CI/CD), garantindo transparência e previsibilidade em cada projeto.
+                  Aliamos rigor de engenharia com testes automatizados, CI/CD e Spec-Driven Development (SDD) assistido por IA, garantindo máxima previsibilidade, alta disponibilidade e código sustentável para cada entrega.
                 </p>
               </div>
 
               {/* Stats */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 sm:gap-6 mt-12 pt-10 border-t border-border/40">
                 <AnimatedStat value={9} prefix="+" label="Anos de Experiência" delay={0.1} />
-                <AnimatedStat value={4} label="Setores Atendidos" delay={0.2} />
-                <AnimatedStat value={100} suffix="%" label="Comprometimento" delay={0.3} />
+                <AnimatedStat value={4} label="Setores Críticos" delay={0.2} />
+                <AnimatedStat value={99.9} decimals={1} suffix="%" label="Uptime em Produção" delay={0.3} />
               </div>
             </motion.div>
 
