@@ -150,38 +150,38 @@ function MockConsulting() {
 const services = [
   {
     visual: <MockBrowser />,
-    title: "Desenvolvimento de Sistemas Web",
-    description: "Aplicações web modernas, responsivas e otimizadas para performance. SPAs com Angular, Vue.js e React.",
+    title: "Desenvolvimento Web e Aplicações SPA",
+    description: "Interfaces modernas, responsivas e performáticas com Angular, Vue.js e React, integradas a ecossistemas com alta taxa de conversão e usabilidade fluida.",
     accent: "#10b981",
   },
   {
     visual: <MockAPI />,
-    title: "APIs & Backends Robustos",
-    description: "APIs REST e SOAP escaláveis com PHP/Laravel e Node.js. Arquitetura preparada para alto volume de requisições.",
+    title: "APIs e Backends Escaláveis",
+    description: "Desenvolvimento de APIs REST e arquiteturas orientadas a eventos em PHP (Laravel) e Node.js, dimensionadas para alto throughput e baixa latência.",
     accent: "#A855F7",
   },
   {
     visual: <MockIntegration />,
-    title: "Integrações de Sistemas",
-    description: "Conexão entre sistemas internos e externos, mensageria com RabbitMQ e Kafka, webhooks e sincronização.",
+    title: "Integrações e Microsserviços",
+    description: "Conexão de ecossistemas corporativos via RabbitMQ, Kafka e webhooks, garantindo comunicação assíncrona, tolerância a falhas e sincronização em tempo real.",
     accent: "#10b981",
   },
   {
     visual: <MockArchitecture />,
     title: "Arquitetura de Software",
-    description: "Design de arquiteturas sólidas: microserviços, monolitos bem estruturados, hexagonal e BFF.",
+    description: "Design de arquiteturas desacopladas com Clean Architecture, DDD, padrões Hexagonal e BFF, preparadas para crescimento contínuo e manutenibilidade.",
     accent: "#A855F7",
   },
   {
     visual: <MockMaintenance />,
-    title: "Manutenção & Evolução",
-    description: "Suporte contínuo, correção de bugs, melhorias de performance e modernização de sistemas legados.",
+    title: "Modernização e Evolução de Legados",
+    description: "Migração incremental sem parada operacional aplicando Strangler Fig Pattern, refatoração de código com testes automatizados e ganho expressivo de performance.",
     accent: "#10b981",
   },
   {
     visual: <MockConsulting />,
-    title: "Consultoria Técnica",
-    description: "Análise de viabilidade, revisão de código, mentoria técnica e apoio em decisões de arquitetura.",
+    title: "Consultoria Técnica e Code Review",
+    description: "Diagnóstico de gargalos, análise estática de vulnerabilidades, mentoria técnica e auditoria de arquitetura para elevar a maturidade do seu time.",
     accent: "#f59e0b",
   },
 ];
@@ -326,8 +326,8 @@ const Services = () => {
           >
             <SectionHeader
               tagline="Serviços"
-              title="Soluções End-to-End"
-              subtitle="Do planejamento à entrega: desenvolvemos software com excelência arquitetural, testes rigorosos e foco em resultados para o seu negócio."
+              title="Soluções de engenharia de ponta a ponta"
+              subtitle="Do planejamento à entrega em produção: desenvolvemos software com rigor arquitetural, testes automatizados e foco em performance para o seu negócio."
             />
           </motion.div>
 
@@ -358,10 +358,10 @@ const Services = () => {
                 <div style={{ padding: "18px 22px 22px" }}>
                   <h3 style={{
                     fontFamily: "'Geist', sans-serif",
-                    fontSize: "0.875rem",
-                    fontWeight: 500,
-                    letterSpacing: "-0.01em",
-                    marginBottom: 6,
+                    fontSize: "0.95rem",
+                    fontWeight: 600,
+                    letterSpacing: "-0.015em",
+                    marginBottom: 8,
                     color: "hsl(var(--foreground))",
                     lineHeight: 1.3,
                   }}>
@@ -369,7 +369,7 @@ const Services = () => {
                   </h3>
                   <p style={{
                     fontFamily: "'Geist Mono', monospace",
-                    fontSize: "0.7rem",
+                    fontSize: "0.75rem",
                     color: "hsl(var(--muted-foreground))",
                     lineHeight: 1.7,
                   }}>
