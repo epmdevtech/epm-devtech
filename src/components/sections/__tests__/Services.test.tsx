@@ -17,19 +17,19 @@ vi.mock('framer-motion', () => ({
 describe('Services Component', () => {
     it('renders section title', () => {
         render(<Services />);
-        expect(screen.getByText(/Soluções/i)).toBeInTheDocument();
-        expect(screen.getByText(/End-to-End/i)).toBeInTheDocument();
+        expect(screen.getByText('Soluções de engenharia de ponta a ponta')).toBeInTheDocument();
+        expect(screen.getByText(/Do planejamento à entrega em produção/i)).toBeInTheDocument();
     });
 
     it('renders all 6 service cards with titles', () => {
         render(<Services />);
         const titles = [
-            'Desenvolvimento de Sistemas Web',
-            'APIs & Backends Robustos',
-            'Integrações de Sistemas',
+            'Desenvolvimento Web e Aplicações SPA',
+            'APIs e Backends Escaláveis',
+            'Integrações e Microsserviços',
             'Arquitetura de Software',
-            'Manutenção & Evolução',
-            'Consultoria Técnica',
+            'Modernização e Evolução de Legados',
+            'Consultoria Técnica e Code Review',
         ];
         titles.forEach(title => {
             expect(screen.getByText(title)).toBeInTheDocument();
@@ -38,9 +38,9 @@ describe('Services Component', () => {
 
     it('renders service descriptions', () => {
         render(<Services />);
-        expect(screen.getByText(/SPAs com Angular/i)).toBeInTheDocument();
-        expect(screen.getByText(/APIs REST e SOAP/i)).toBeInTheDocument();
-        expect(screen.getByText(/Suporte contínuo/i)).toBeInTheDocument();
+        expect(screen.getByText(/Interfaces modernas, responsivas e performáticas com Angular/i)).toBeInTheDocument();
+        expect(screen.getByText(/arquiteturas orientadas a eventos em PHP/i)).toBeInTheDocument();
+        expect(screen.getByText(/Strangler Fig Pattern/i)).toBeInTheDocument();
     });
 
     it('renders mock visual elements inside cards', () => {
@@ -60,7 +60,7 @@ describe('Services Component', () => {
     it('renderiza corretamente quando useInView retorna false (antes de entrar no viewport)', () => {
         mockUseInView.mockReturnValueOnce(false);
         render(<Services />);
-        expect(screen.getByText(/Soluções/i)).toBeInTheDocument();
-        expect(screen.getByText('Desenvolvimento de Sistemas Web')).toBeInTheDocument();
+        expect(screen.getByText('Soluções de engenharia de ponta a ponta')).toBeInTheDocument();
+        expect(screen.getByText('Desenvolvimento Web e Aplicações SPA')).toBeInTheDocument();
     });
 });
