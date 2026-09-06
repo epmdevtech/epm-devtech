@@ -228,7 +228,7 @@ const Contact = () => {
                   </div>
 
                   {/* Desafio ou Tipo de Projeto */}
-                  <div className="flex flex-col">
+                  <div className="flex flex-col relative w-full">
                     <Label
                       htmlFor="projectType"
                       className="text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mb-1"
@@ -243,7 +243,7 @@ const Contact = () => {
                     >
                       <SelectTrigger
                         id="projectType"
-                        className={`h-auto border-0 border-b bg-transparent rounded-none px-0 py-2.5 text-sm text-zinc-900 dark:text-zinc-100 focus:ring-0 focus:border-emerald-500 transition-colors shadow-none ${
+                        className={`w-full h-auto border-0 border-b bg-transparent rounded-none px-0 py-2.5 text-sm text-zinc-900 dark:text-zinc-100 focus:ring-0 focus:border-emerald-500 transition-colors shadow-none ${
                           errors.projectType
                             ? "border-destructive"
                             : "border-zinc-300 dark:border-zinc-700"
@@ -251,9 +251,16 @@ const Contact = () => {
                       >
                         <SelectValue placeholder="Selecione o tipo de projeto..." />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent
+                        position="popper"
+                        className="w-[var(--radix-select-trigger-width)] min-w-[var(--radix-select-trigger-width)] max-w-[var(--radix-select-trigger-width)] z-50 shadow-lg rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 overflow-hidden p-1"
+                      >
                         {PROJECT_TYPES.map((type) => (
-                          <SelectItem key={type} value={type}>
+                          <SelectItem
+                            key={type}
+                            value={type}
+                            className="text-left px-3 py-2 text-sm truncate rounded-md cursor-pointer focus:bg-zinc-100 dark:focus:bg-zinc-800 focus:text-zinc-900 dark:focus:text-zinc-100"
+                          >
                             {type}
                           </SelectItem>
                         ))}
