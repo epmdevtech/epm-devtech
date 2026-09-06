@@ -152,12 +152,12 @@ src/
 | Technologies      | ✅ Constellation | TechConstellation interativo com trilhas PCB, Focus & Context e Painel Arquitetural |
 | Differentials     | ✅ Atualizado    | Copywriting sênior nos 6 cards, tags técnicas, timeline preservada e H3 semântico |
 | Authority         | ✅ Atualizado    | Trust Bar compacto de Prova Social, métricas reais de missão crítica e selos corporativos |
-| Contact           | ✅ Lazy Loaded   | Radix/EmailJS fora do caminho crítico      |
+| Contact           | ✅ Tech Slim     | Redesign consultivo e acolhedor, layout Tech Slim, inputs compactos e canais diretos |
 | Footer            | ✅ Lazy Loaded   | Logo WebP adaptativo com width/height e safe area no copyright |
 | ScrollToTop       | ✅ Adaptativo    | Elevação dinâmica no rodapé, tooltip superior e prevenção de oclusão |
 | Cookie Banner     | ✅ Otimizado     | Lazy load assíncrono + defer timer (3.5s)  |
 | SEO & Agêntico    | ✅ Otimizado     | Meta tags dinâmicas + llms.txt com links   |
-| Testes unitários  | ✅ Implementado  | 16/16 suites, 99/99 testes passando (98.19% coverage) |
+| Testes unitários  | ✅ Implementado  | 16/16 suites, 99/99 testes passando (98.23% coverage) |
 | Testes E2E        | ✅ Implementado  | Suíte Playwright (8/8 testes passando)     |
 | Acessibilidade    | ✅ 100% WCAG AA  | Contraste de texto e botões >= 4.5:1 (Logotipo WCAG AAA >= 17:1) |
 | Performance       | ✅ 100% Otimizado| JS inicial < 80 KB, FCP/LCP instantâneo    |

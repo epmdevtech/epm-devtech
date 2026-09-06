@@ -9,6 +9,35 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.19-contact-tech-slim-redesign] — 2026-09-06
+
+### Adicionado
+- **Documentação SDD Completa**: Registro formal de `SPEC-019`, `TASK-019` e `QA-019` com rastreabilidade de requisitos, evidências de quality gates e matriz de conformidade
+- **Abordagem Consultiva no Cabeçalho de Contato**: Subtítulo que acolhe clientes em diferentes estágios de maturidade técnica, incentivando o diálogo preliminar
+
+### Alterado
+- **Redesign Tech Slim da Seção Contato (`Contact.tsx`)**:
+  - Título H2 100% monocromático via `SectionHeader`: "Vamos entender o seu desafio" (`text-zinc-900` / `dark:text-white`)
+  - Subtítulo humanizado e consultivo focado em entender necessidades e avaliar o melhor caminho técnico
+  - Card principal refinado com efeito glass/backdrop (`bg-white/70 dark:bg-zinc-900/60 backdrop-blur-md`), bordas ultrafinas (`border-zinc-200/80 dark:border-zinc-800/80`), `rounded-2xl` e padding equilibrado (`p-6 sm:p-7`)
+  - Inputs e Select compactos (`h-10`, `rounded-lg`, fundo sutil `bg-zinc-50/60 dark:bg-zinc-950/50`), foco suave com anel esmeralda (`focus-visible:ring-emerald-500/20 focus-visible:border-emerald-500`)
+  - Textarea com `rows={4}` compacto no fluxo normal, preservando o modal expansivo de mensagem para descrições detalhadas
+  - Botão de envio compacto (`h-11`, `bg-emerald-600 hover:bg-emerald-500`), animação de spinner com `Loader2` e microinteração de hover no ícone de envio
+- **Canais Diretos de Contato**:
+  - Mini-cards com ícones em containers esmeralda discretos (`bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400`)
+  - "E-mail direto": `elessandro@epmdevtech.com.br`
+  - "WhatsApp direto": `(45) 99917-8290`
+  - "Tempo de resposta": `Retorno técnico em até 24 horas úteis`
+- **Padronização das Opções de Tipo de Projeto (`PROJECT_TYPES`)**:
+  - "Novo Sistema ou Aplicação Web"
+  - "Modernização de Sistema Legado"
+  - "APIs, Microsserviços e Integrações"
+  - "Consultoria Técnica e Arquitetura"
+  - "Outro Desafio"
+- **Atualização das Suítes de Testes**:
+  - Testes unitários atualizados em `Contact.test.tsx` (100% dos testes passando, 99.19% de cobertura)
+  - Teste ponta a ponta em `e2e/design-system-and-stability.spec.ts` sincronizado com o novo heading (8/8 testes E2E passando)
+
 ## [0.0.18-differentials-technical-authority] — 2026-09-06
 
 ### Adicionado
