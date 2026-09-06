@@ -21,10 +21,11 @@ describe('About Component', () => {
         render(<About />);
 
         expect(screen.getByText(/Sobre a EPM DEVTECH/i)).toBeInTheDocument();
-        expect(screen.getByText(/Engenharia de Software com/i)).toBeInTheDocument();
+        expect(screen.getByText(/Engenharia de software com excelência técnica comprovada/i)).toBeInTheDocument();
+        expect(screen.getByText(/fundada por Elessandro Prestes Macedo/i)).toBeInTheDocument();
     });
 
-    it('renders the company stats', () => {
+    it('renders the company stats with +9, 4 and 99,9% uptime', () => {
         render(<About />);
 
         const matchText = (text: string) => (content: string, element: Element | null) => {
@@ -35,14 +36,14 @@ describe('About Component', () => {
         };
 
         expect(screen.getByText(matchText('+9'))).toBeInTheDocument();
-        expect(screen.getAllByText((content, element) => element?.textContent === 'Anos de Experiência' || element?.textContent === 'Anos de Experiência')[0]).toBeInTheDocument();
+        expect(screen.getAllByText((content, element) => element?.textContent === 'Anos de Experiência' || element?.textContent === 'Anos de Experiência')[0]).toBeInTheDocument();
         expect(screen.getByText(matchText('4'))).toBeInTheDocument();
-        expect(screen.getByText((content, element) => element?.textContent === 'Setores Atendidos' || element?.textContent === 'Setores Atendidos')).toBeInTheDocument();
-        expect(screen.getByText(matchText('100%'))).toBeInTheDocument();
-        expect(screen.getByText((content, element) => element?.textContent === 'Comprometimento')).toBeInTheDocument();
+        expect(screen.getByText((content, element) => element?.textContent === 'Setores Críticos' || element?.textContent === 'Setores Críticos')).toBeInTheDocument();
+        expect(screen.getByText(matchText('99,9%'))).toBeInTheDocument();
+        expect(screen.getByText((content, element) => element?.textContent === 'Uptime em Produção' || element?.textContent === 'Uptime em Produção')).toBeInTheDocument();
     });
 
-    it('renders the 4 featured cards', () => {
+    it('renders the 4 featured cards with updated technical copy', () => {
         render(<About />);
 
         // Check titles
@@ -56,6 +57,12 @@ describe('About Component', () => {
         expect(screen.getByText('E-COMMERCE')).toBeInTheDocument();
         expect(screen.getByText('CAPES · MEC · GOVERNO FEDERAL')).toBeInTheDocument();
         expect(screen.getByText('ONS · ENERGIA PECÉM')).toBeInTheDocument();
+
+        // Check technical descriptions
+        expect(screen.getByText(/IoT industrial/i)).toBeInTheDocument();
+        expect(screen.getByText(/checkouts escaláveis/i)).toBeInTheDocument();
+        expect(screen.getByText(/microsserviços de alto throughput/i)).toBeInTheDocument();
+        expect(screen.getByText(/monitoramento crítico em tempo real/i)).toBeInTheDocument();
     });
 
     it('renders the mockup components inside the cards', () => {
@@ -72,6 +79,6 @@ describe('About Component', () => {
         render(<About />);
         // Conteúdo sempre presente no DOM — apenas estado de animação muda
         expect(screen.getByText(/Sobre a EPM DEVTECH/i)).toBeInTheDocument();
-        expect(screen.getByText(/Engenharia de Software com/i)).toBeInTheDocument();
+        expect(screen.getByText(/Engenharia de software com excelência técnica comprovada/i)).toBeInTheDocument();
     });
 });

@@ -39,7 +39,7 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     // Verifica que os headings de cada seção existem, contêm os textos padronizados e são 100% monocromáticos
     const expectedHeadings = [
       { id: 'hero', text: 'Software sob medida construído para escalar o seu negócio.' },
-      { id: 'sobre', text: 'Engenharia de Software com Excelência Técnica' },
+      { id: 'sobre', text: 'Engenharia de software com excelência técnica comprovada' },
       { id: 'servicos', text: 'Soluções End-to-End' },
       { id: 'tecnologias', text: 'Tecnologias Modernas' },
       { id: 'diferenciais', text: 'Por Que Escolher a EPM DEVTECH' },
@@ -148,8 +148,9 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     await expect(detailsPanel).toBeVisible();
     await expect(detailsPanel).toContainText('Exploração Interativa do Grafo');
 
-    // Clica no nó React (com force: true devido à animação de flutuação contínua)
+    // Interage com o nó React via foco e clique
     const reactNode = page.locator('[data-testid="tech-node-React"]');
+    await reactNode.focus();
     await reactNode.click({ force: true });
 
     await expect(detailsPanel).toContainText('React');
