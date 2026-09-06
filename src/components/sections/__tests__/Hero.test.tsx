@@ -42,13 +42,13 @@ describe('Hero Component', () => {
     it('renders dual CTAs with correct links and accessible labels', () => {
         render(<Hero />);
 
-        const primaryCta = screen.getByRole('link', { name: /Falar sobre meu projeto com a EPM DEVTECH/i });
+        const primaryCta = screen.getByRole('link', { name: /Falar com especialista da EPM DEVTECH/i });
         expect(primaryCta).toHaveAttribute('href', '#contato');
-        expect(primaryCta).toHaveTextContent(/Falar sobre meu projeto/i);
+        expect(primaryCta).toHaveTextContent(/Falar com especialista/i);
 
-        const secondaryCta = screen.getByRole('link', { name: /Conhecer serviços da EPM DEVTECH/i });
+        const secondaryCta = screen.getByRole('link', { name: /Ver serviços da EPM DEVTECH/i });
         expect(secondaryCta).toHaveAttribute('href', '#servicos');
-        expect(secondaryCta).toHaveTextContent(/Conhecer serviços/i);
+        expect(secondaryCta).toHaveTextContent(/Ver serviços/i);
     });
 
     it('renders social proof and technical credentials', () => {

@@ -128,7 +128,7 @@ describe('Index Page', () => {
     it('define título correto para / (home)', () => {
       renderAndFlush('/');
       expect(document.title).toBe(
-        'EPM DEVTECH | Software House — Desenvolvimento de Software Sob Medida',
+        'EPM DEVTECH | Software House: Desenvolvimento de Software Sob Medida',
       );
     });
 
@@ -160,7 +160,7 @@ describe('Index Page', () => {
     it('usa título padrão (home) para rota desconhecida', () => {
       renderAndFlush('/rota-inexistente');
       expect(document.title).toBe(
-        'EPM DEVTECH | Software House — Desenvolvimento de Software Sob Medida',
+        'EPM DEVTECH | Software House: Desenvolvimento de Software Sob Medida',
       );
     });
   });

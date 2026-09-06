@@ -67,7 +67,7 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     await page.waitForLoadState('domcontentloaded');
 
     // CTA principal do Hero
-    const ctaButton = page.locator('a[href="#contato"]').filter({ hasText: /Falar sobre meu projeto/i });
+    const ctaButton = page.locator('a[href="#contato"]').filter({ hasText: /Falar (com especialista|sobre meu projeto)/i });
     await expect(ctaButton).toBeVisible();
 
     const ctaBgColor = await ctaButton.evaluate((el) => {
@@ -82,8 +82,8 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     await page.goto('/');
     await page.waitForLoadState('domcontentloaded');
 
-    // Clica no CTA secundário "Conhecer serviços"
-    const ctaButton = page.locator('a[href="#servicos"]').filter({ hasText: /Conhecer serviços/i });
+    // Clica no CTA secundário ("Ver serviços" / "Conhecer serviços")
+    const ctaButton = page.locator('a[href="#servicos"]').filter({ hasText: /(Ver|Conhecer) serviços/i });
     await ctaButton.click();
 
     await page.waitForTimeout(1000);
