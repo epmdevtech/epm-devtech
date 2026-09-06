@@ -9,6 +9,21 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.14-monochromatic-titles] — 2026-09-06
+
+### Adicionado
+- **Asserção Automatizada de Títulos Monocromáticos no E2E**: Novo teste ponta a ponta no Playwright garantindo que nenhum título `h1`, `h2` ou `h3` contenha classes coloridas de verde (`text-emerald-*`, `text-green-*`, `text-teal-*`, `text-primary`) ou elementos de gradiente
+- **Documentação SDD Completa**: Registro formal de SPEC-014, TASK-014 e QA-014
+
+### Alterado
+- **Eliminação Definitiva de Títulos Bicolores**:
+  - Remoção de tags `<span>` verdes (`text-emerald-600 dark:text-emerald-400`) de todos os títulos em Hero, Serviços, Tecnologias, Diferenciais, Contato, Sobre e Autoridade
+  - Adoção estrita de monocromatismo puro nos títulos: `text-zinc-900` em Light Mode e `dark:text-white` em Dark Mode do início ao fim
+  - Restrição da cor primária de destaque (verde esmeralda) exclusivamente a badges superiores, CTAs primários e estados de foco/pulso
+- **Refinamento da Badge do Cabeçalho (`SectionHeader` e `Hero`)**:
+  - Ajuste de dimensões para `px-3 py-1 mb-4 rounded-full uppercase tracking-wider font-semibold text-xs`
+  - Subtítulos consolidados em `max-w-2xl text-zinc-600 dark:text-zinc-400 font-normal leading-relaxed`
+
 ## [0.0.13-typography-and-copywriting] — 2026-09-06
 
 ### Adicionado
