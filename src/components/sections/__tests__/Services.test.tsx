@@ -40,6 +40,7 @@ describe('Services Component', () => {
         render(<Services />);
         expect(screen.getByText(/Interfaces modernas, responsivas e performáticas com Angular/i)).toBeInTheDocument();
         expect(screen.getByText(/arquiteturas orientadas a eventos em PHP/i)).toBeInTheDocument();
+        expect(screen.getByText(/microsserviços e monólitos modulares com Clean Architecture/i)).toBeInTheDocument();
         expect(screen.getByText(/Strangler Fig Pattern/i)).toBeInTheDocument();
     });
 

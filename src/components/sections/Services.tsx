@@ -169,7 +169,7 @@ const services = [
   {
     visual: <MockArchitecture />,
     title: "Arquitetura de Software",
-    description: "Design de arquiteturas desacopladas com Clean Architecture, DDD, padrões Hexagonal e BFF, preparadas para crescimento contínuo e manutenibilidade.",
+    description: "Design de microsserviços e monólitos modulares com Clean Architecture, DDD, padrões Hexagonal e BFF, preparados para crescimento contínuo e manutenibilidade.",
     accent: "#A855F7",
   },
   {
