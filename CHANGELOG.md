@@ -9,6 +9,19 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.23-contact-dropdown-overflow-fix] — 2026-09-06
+
+### Corrigido
+- **Confinamento Estrutural e Resolução de Overflow do Dropdown de Contato (`Contact.tsx` & `select.tsx`)**:
+  - Correção do menu flutuante (dropdown) do campo "Desafio ou Tipo de Projeto" que invadia o bloco escuro ao lado quando expandido
+  - Adição de `relative` e `w-full` no container pai da coluna esquerda
+  - Configuração de `w-[var(--radix-select-trigger-width)] max-w-[var(--radix-select-trigger-width)]` no `SelectContent` e `SelectViewport` (modo `popper`), travando milimetricamente a largura do painel suspenso na largura exata do trigger
+  - Aplicação de `truncate` nas opções do `SelectItem` para evitar que textos extensos causem expansão horizontal
+  - Preservação da elevação e do Radix Portal (`z-50 shadow-lg`), sem corte por containers ancestrais
+
+### Adicionado
+- **Documentação SDD Completa**: Registro de `SPEC-023`, `TASK-023` e `QA-023` com validação de Quality Gates e matriz de conformidade
+
 ## [0.0.22-contact-next-steps-guarantees] — 2026-09-06
 
 ### Adicionado
