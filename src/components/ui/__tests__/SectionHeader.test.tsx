@@ -7,14 +7,7 @@ describe("SectionHeader Component", () => {
     render(
       <SectionHeader
         tagline="Serviços"
-        title={
-          <>
-            Soluções{" "}
-            <span className="text-emerald-600 dark:text-emerald-400">
-              End-to-End
-            </span>
-          </>
-        }
+        title="Soluções End-to-End"
         subtitle="Do planejamento à sustentação técnica do seu software."
       />
     );

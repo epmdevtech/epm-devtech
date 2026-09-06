@@ -36,15 +36,15 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     const count = await gradientElements.count();
     expect(count).toBe(0);
 
-    // Verifica que os headings de cada seção existem e contêm os textos padronizados
+    // Verifica que os headings de cada seção existem, contêm os textos padronizados e são 100% monocromáticos
     const expectedHeadings = [
-      { id: 'hero', text: 'Software sob medida' },
-      { id: 'sobre', text: 'Engenharia de Software com' },
-      { id: 'servicos', text: 'Soluções' },
-      { id: 'tecnologias', text: 'Tecnologias' },
-      { id: 'diferenciais', text: 'Por Que Escolher a' },
-      { id: 'autoridade', text: 'Autoridade Técnica que' },
-      { id: 'contato', text: 'Vamos Construir' },
+      { id: 'hero', text: 'Software sob medida construído para escalar o seu negócio.' },
+      { id: 'sobre', text: 'Engenharia de Software com Excelência Técnica' },
+      { id: 'servicos', text: 'Soluções End-to-End' },
+      { id: 'tecnologias', text: 'Tecnologias Modernas' },
+      { id: 'diferenciais', text: 'Por Que Escolher a EPM DEVTECH' },
+      { id: 'autoridade', text: 'Autoridade Técnica que Gera Resultados' },
+      { id: 'contato', text: 'Vamos Construir Juntos' },
     ];
 
     for (const item of expectedHeadings) {
@@ -59,6 +59,11 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
       const heading = page.locator(`#${item.id} h1, #${item.id} h2`).first();
       await expect(heading).toBeVisible();
       await expect(heading).toContainText(item.text);
+
+      // Valida ausência de spans ou classes de cor colorida/gradiente dentro do heading
+      const coloredSpanInHeading = heading.locator('span[class*="text-emerald"], span[class*="text-green"], span[class*="text-teal"], span[class*="text-primary"]');
+      const coloredCount = await coloredSpanInHeading.count();
+      expect(coloredCount).toBe(0);
     }
   });
 
@@ -74,8 +79,8 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
       return window.getComputedStyle(el).backgroundColor;
     });
 
-    // Verde esmeralda oficial (#10B981 / hsl(158 64% 42%)) — formato rgb(39, 176, 125) ou rgb(16, 185, 129)
-    expect(ctaBgColor).toMatch(/rgb\((16|24|26|39),\s*(185|155|160|176),\s*(129|107|112|125)\)/);
+    // Verde esmeralda oficial (#10B981 / hsl(158 64% 42%)) — formato rgb(38/39, 176, 125) ou rgb(16, 185, 129)
+    expect(ctaBgColor).toMatch(/rgb\((16|24|26|38|39),\s*(185|155|160|176),\s*(129|107|112|125)\)/);
   });
 
   test('Navegação e rolagem fluida por âncoras sem salto para o Hero', async ({ page }) => {

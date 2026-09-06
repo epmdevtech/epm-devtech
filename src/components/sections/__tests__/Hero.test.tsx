@@ -33,9 +33,8 @@ describe('Hero Component', () => {
         render(<Hero />);
 
         expect(screen.getByText(/Engenharia de Software & Modernização/i)).toBeInTheDocument();
-        expect(screen.getByText(/Software sob medida/i)).toBeInTheDocument();
-        expect(screen.getByText(/construído para escalar/i)).toBeInTheDocument();
-        expect(screen.getByText(/o seu negócio/i)).toBeInTheDocument();
+        const heading = screen.getByRole('heading', { level: 1 });
+        expect(heading).toHaveTextContent('Software sob medida construído para escalar o seu negócio.');
         expect(screen.getByText(/Da concepção à infraestrutura/i)).toBeInTheDocument();
     });
 
