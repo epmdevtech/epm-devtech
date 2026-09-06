@@ -9,6 +9,26 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.21-contact-split-card-underline] — 2026-09-06
+
+### Adicionado
+- **Documentação SDD Completa**: Registro formal de `SPEC-021`, `TASK-021` e `QA-021` com matriz de conformidade e evidências de quality gates
+- **Layout em Card Duplo Unificado (Split Card) na Seção Contato (`Contact.tsx`)**:
+  - Container integrado de duas colunas no desktop (`lg:grid-cols-12`) com acabamento arredondado (`rounded-2xl`) e sombra suave (`shadow-xl`)
+  - `Lado Esquerdo (Formulário, 7 colunas)`: Fundo refinado (`bg-white dark:bg-zinc-900`), título interno "Envie sua mensagem", inputs minimalistas de linha inferior (underline style) sem bordas laterais ou superiores e foco em verde esmeralda institucional
+  - `Lado Direito (Canais, 5 colunas)`: Bloco contrastante de tom escuro (`bg-zinc-900 text-white dark:bg-zinc-950`), título interno "Canais de Atendimento", texto de apoio e lista de 4 canais com ícones circulares discretos em fundo escuro (`w-10 h-10 rounded-full bg-zinc-800 text-emerald-400`)
+- **Canais Completos com Ícones Circulares**:
+  - Localização: Toledo, Paraná (ícone `MapPin`)
+  - WhatsApp direto: (45) 99917-8290 (ícone `Phone`)
+  - E-mail corporativo: elessandro@epmdevtech.com.br (ícone `Mail`)
+  - Tempo de resposta: Retorno em até 24 horas úteis (ícone `Clock`)
+- **Botão de Envio (Slim CTA)**: Posicionado e alinhado à esquerda na base do formulário com estado de carregamento e microinteração de hover
+
+### Alterado
+- **Atualização das Suítes de Testes**:
+  - Testes unitários de `Contact.test.tsx` atualizados para validar o Card Duplo Unificado e os canais de atendimento (100% de sucesso, 99.27% de cobertura)
+  - Suíte E2E em `design-system-and-stability.spec.ts` 100% aprovada (8/8 testes) com calibração de canal de cor esmeralda
+
 ## [0.0.20-footer-4-columns-redesign] — 2026-09-06
 
 ### Adicionado
