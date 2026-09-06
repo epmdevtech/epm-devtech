@@ -194,5 +194,37 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     await expect(headerLogoLight).toBeHidden();
   });
 
+  test('Botão Voltar ao Topo eleva-se dinamicamente no rodapé sem ocluir o copyright', async ({ page }) => {
+    await page.goto('/');
+    await page.waitForLoadState('domcontentloaded');
+
+    // Aguarda montagem deferred pelo LazyRender (delay de 3000ms)
+    await page.waitForTimeout(3500);
+
+    // 1. No topo da página, o botão de voltar ao topo não deve estar visível
+    const scrollTopBtn = page.locator('button[aria-label="Voltar ao topo"]');
+    await expect(scrollTopBtn).toBeHidden();
+
+    // 2. Rola até o meio da página (> 500px)
+    await page.evaluate(() => window.scrollTo(0, 800));
+    await page.waitForTimeout(500);
+
+    // O botão deve aparecer
+    await expect(scrollTopBtn).toBeVisible();
+
+    // 3. Rola até o final da página (rodapé visível no viewport)
+    await page.locator('footer').scrollIntoViewIfNeeded();
+    await page.waitForTimeout(400);
+
+    // O container do botão deve receber o atributo data-elevated="true"
+    const container = page.locator('[data-testid="scroll-to-top-container"]');
+    await expect(container).toHaveAttribute('data-elevated', 'true');
+
+    // 4. Valida que o copyright está visível e legível
+    const copyright = page.locator('footer p:has-text("Todos os direitos reservados")');
+    await expect(copyright).toBeVisible();
+  });
+
 });
+
 
