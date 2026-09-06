@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
-import { Mail, Phone, Clock, MapPin, Send, Loader2, Maximize2 } from "lucide-react";
+import { CheckCircle2, Clock, ShieldCheck, Send, Loader2, Maximize2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { Input } from "@/components/ui/input";
@@ -45,30 +45,24 @@ const PROJECT_TYPES = [
   "Outro Desafio",
 ];
 
-const directChannels = [
+const nextSteps = [
   {
-    icon: MapPin,
-    label: "Localização",
-    value: "Toledo, Paraná",
-    href: null,
-  },
-  {
-    icon: Phone,
-    label: "WhatsApp direto",
-    value: "(45) 99917-8290",
-    href: "https://wa.me/5545999178290",
-  },
-  {
-    icon: Mail,
-    label: "E-mail corporativo",
-    value: "elessandro@epmdevtech.com.br",
-    href: "mailto:elessandro@epmdevtech.com.br",
+    icon: CheckCircle2,
+    title: "Diagnóstico Técnico",
+    description:
+      "Avaliamos seu cenário, gargalos e viabilidade arquitetural logo no primeiro contato.",
   },
   {
     icon: Clock,
-    label: "Tempo de resposta",
-    value: "Retorno em até 24 horas úteis",
-    href: null,
+    title: "Retorno em até 24 Horas",
+    description:
+      "Resposta rápida para agendarmos uma conversa técnica sem enrolação.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Sigilo e Segurança",
+    description:
+      "Suas ideias, dados e regras de negócio tratados com absoluta confidencialidade.",
   },
 ];
 
@@ -357,47 +351,49 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Lado Direito: Informações de Contato (Bloco Escuro Contrastante) */}
+          {/* Lado Direito: Próximos Passos & Garantias (Bloco Escuro Contrastante) */}
           <div className="lg:col-span-5 bg-zinc-900 text-white dark:bg-zinc-950 p-8 sm:p-10 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-zinc-800">
             <div>
               <h3 className="text-xl font-bold text-white tracking-tight mb-2">
-                Canais de Atendimento
+                O que acontece a seguir?
               </h3>
               <p className="text-xs text-zinc-400 leading-relaxed mb-8">
-                Estamos à disposição para entender o momento do seu sistema ou estruturar uma nova solução.
+                Nosso processo é direto com a engenharia, sem intermediários comerciais:
               </p>
 
-              {/* Lista de Canais */}
+              {/* Lista de Próximos Passos e Garantias */}
               <div className="flex flex-col gap-6">
-                {directChannels.map((item) => (
-                  <div key={item.label} className="flex items-center gap-4 group">
+                {nextSteps.map((item) => (
+                  <div key={item.title} className="flex items-start gap-4 group">
                     <div className="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center text-emerald-400 shrink-0 group-hover:bg-zinc-700/80 transition-colors">
                       <item.icon className="w-5 h-5" />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-0.5">
-                        {item.label}
+                      <h4 className="text-sm font-semibold text-white mb-1">
+                        {item.title}
+                      </h4>
+                      <p className="text-xs text-zinc-400 leading-relaxed">
+                        {item.description}
                       </p>
-                      {item.href ? (
-                        <a
-                          href={item.href}
-                          className="text-sm font-medium text-white hover:text-emerald-400 transition-colors truncate block"
-                        >
-                          {item.value}
-                        </a>
-                      ) : (
-                        <p className="text-sm font-medium text-white truncate">{item.value}</p>
-                      )}
                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="pt-8 mt-8 border-t border-zinc-800/80">
-              <p className="text-xs text-zinc-500 leading-relaxed">
-                Consultoria técnica e engenharia direta com a liderança técnica da EPM DEVTECH.
+            {/* Chamada de Ação Rápida (Rodapé do Card Escuro) */}
+            <div className="pt-6 mt-8 border-t border-zinc-800/80 flex flex-col gap-1.5">
+              <p className="text-xs text-zinc-400">
+                Prefere atendimento imediato?
               </p>
+              <a
+                href="https://wa.me/5545999178290"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors inline-flex items-center gap-1 group w-fit"
+              >
+                <span>Chamar no WhatsApp direto →</span>
+              </a>
             </div>
           </div>
         </motion.div>
