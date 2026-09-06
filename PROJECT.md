@@ -152,12 +152,12 @@ src/
 | Technologies      | ✅ Constellation | TechConstellation interativo com trilhas PCB, Focus & Context e Painel Arquitetural |
 | Differentials     | ✅ Atualizado    | Copywriting sênior nos 6 cards, tags técnicas, timeline preservada e H3 semântico |
 | Authority         | ✅ Atualizado    | Trust Bar compacto de Prova Social, métricas reais de missão crítica e selos corporativos |
-| Contact           | ✅ Split Card    | Layout em Card Duplo Unificado, inputs minimalistas underline e bloco escuro contrastante |
+| Contact           | ✅ Próximos Passos | Split Card com formulário underline e bloco escuro de Próximos Passos & Garantias (sem duplicidade com Footer) |
 | Footer            | ✅ 4 Colunas     | Layout moderno de 4 colunas monocromáticas, serviços reais, canais diretos e sub-footer |
 | ScrollToTop       | ✅ Adaptativo    | Elevação dinâmica no rodapé, tooltip superior e prevenção de oclusão |
 | Cookie Banner     | ✅ Otimizado     | Lazy load assíncrono + defer timer (3.5s)  |
 | SEO & Agêntico    | ✅ Otimizado     | Meta tags dinâmicas + llms.txt com links   |
-| Testes unitários  | ✅ Implementado  | 16/16 suites, 99/99 testes passando (98.25% coverage) |
+| Testes unitários  | ✅ Implementado  | 16/16 suites, 99/99 testes passando (98.24% coverage) |
 | Testes E2E        | ✅ Implementado  | Suíte Playwright (8/8 testes passando)     |
 | Acessibilidade    | ✅ 100% WCAG AA  | Contraste de texto e botões >= 4.5:1 (Logotipo WCAG AAA >= 17:1) |
 | Performance       | ✅ 100% Otimizado| JS inicial < 80 KB, FCP/LCP instantâneo    |

@@ -9,6 +9,26 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.22-contact-next-steps-guarantees] — 2026-09-06
+
+### Adicionado
+- **Documentação SDD Completa**: Registro formal de `SPEC-022`, `TASK-022` e `QA-022` com matriz de conformidade de requisitos e evidências de quality gates
+- **Fluxo de Próximos Passos & Garantias no Card de Contato (`Contact.tsx`)**:
+  - Substituição da lista redundante de canais pelo fluxo de alinhamento de expectativas
+  - Título interno monocromático: "O que acontece a seguir?"
+  - Texto de apoio: "Nosso processo é direto com a engenharia, sem intermediários comerciais:"
+  - `Bloco 1 (Diagnóstico Técnico)`: Ícone `CheckCircle2` com avaliação de cenário, gargalos e viabilidade arquitetural
+  - `Bloco 2 (Retorno em até 24 Horas)`: Ícone `Clock` com resposta rápida para agendamento de conversa técnica
+  - `Bloco 3 (Sigilo e Segurança)`: Ícone `ShieldCheck` com garantia de confidencialidade de ideias e regras de negócio
+  - `Chamada Rápida WhatsApp`: Divisor inferior com pergunta "Prefere atendimento imediato?" e link direto "Chamar no WhatsApp direto →"
+- **Centralização Institucional no Rodapé**:
+  - Manutenção dos canais institucionais e localização exclusivamente no Footer, eliminando duplicidade visual no site
+
+### Alterado
+- **Atualização das Suítes de Testes**:
+  - Testes unitários atualizados em `Contact.test.tsx` com 99.26% de cobertura e 100% de sucesso
+  - Suíte Playwright E2E 100% aprovada (8/8 testes)
+
 ## [0.0.21-contact-split-card-underline] — 2026-09-06
 
 ### Adicionado
