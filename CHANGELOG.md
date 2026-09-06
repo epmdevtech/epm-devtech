@@ -9,6 +9,19 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.11-hero-commercial-positioning] — 2026-09-06
+
+### Adicionado
+- **Tagline Superior no Hero**: "ENGENHARIA DE SOFTWARE & MODERNIZAÇÃO" com badge minimalista e indicador pulsante na cor primária da marca
+- **Dual CTA (Ações de Alta Conversão)**: Botão primário "Falar sobre meu projeto" direcionando para `#contato` e botão secundário "Conhecer serviços" direcionando para `#servicos`
+- **Microprova Social e Credenciais Técnicas**: "+9 anos de experiência em sistemas críticos • Arquiteturas cloud-native • APIs resilientes • Código limpo" com ícone `ShieldCheck`
+
+### Alterado
+- **Headline (H1)**: Atualizado para "Software sob medida construído para escalar o seu negócio." mantendo sofisticação monocromática e contraste por peso
+- **Subtítulo**: Atualizado para "Da concepção à infraestrutura: desenvolvemos sistemas web, APIs resilientes e arquiteturas de alta performance preparadas para acompanhar o crescimento da sua empresa."
+- **Remoção Completa de Gradientes**: Eliminado `bg-gradient-hero` e os orbs coloridos desfocados (`blur-[128px]`) em ambos os modos (Dark e Light), adotando fundo sóbrio e limpo `bg-background noise`
+- Documentação do ciclo SDD: SPEC-011, TASK-011 e QA-011 registrados
+
 ## [0.0.10-adaptive-logo] — 2026-09-06
 
 ### Adicionado

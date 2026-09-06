@@ -145,7 +145,7 @@ src/
 |-------------------|------------------|--------------------------------------------|
 | Design            | ✅ Padronizado   | Design System Verde EPM DEVTECH (#10B981), títulos monocromáticos e tipografia Geist |
 | Branding / Logo   | ✅ Adaptativo    | Logo 100% transparente em Dark e Light Mode, tipografia invertida sem moldura escura |
-| Hero              | ✅ Otimizado     | Texto estável sem CLS e LCP acelerado      |
+| Hero              | ✅ Atualizado    | Posicionamento comercial sênior, Tagline, Dual CTA, microprova e sem gradientes |
 | About             | ✅ Lazy Loaded   | Carregamento progressivo via LazySection   |
 | Services          | ✅ Lazy Loaded   | Carregamento progressivo via LazySection   |
 | Technologies      | ✅ Constellation | TechConstellation interativo com trilhas PCB, Focus & Context e Painel Arquitetural |
@@ -155,7 +155,7 @@ src/
 | Footer            | ✅ Lazy Loaded   | Logo WebP adaptativo com width/height      |
 | Cookie Banner     | ✅ Otimizado     | Lazy load assíncrono + defer timer (3.5s)  |
 | SEO & Agêntico    | ✅ Otimizado     | Meta tags dinâmicas + llms.txt com links   |
-| Testes unitários  | ✅ Implementado  | 14/14 suites, 91/91 testes passando (98.15% coverage) |
+| Testes unitários  | ✅ Implementado  | 14/14 suites, 92/92 testes passando (98.17% coverage) |
 | Testes E2E        | ✅ Implementado  | Suíte Playwright (7/7 testes passando)     |
 | Acessibilidade    | ✅ 100% WCAG AA  | Contraste de texto e botões >= 4.5:1 (Logotipo WCAG AAA >= 17:1) |
 | Performance       | ✅ 100% Otimizado| JS inicial < 80 KB, FCP/LCP instantâneo    |
