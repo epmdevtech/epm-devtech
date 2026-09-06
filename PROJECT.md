@@ -187,4 +187,12 @@ src/
 
 ---
 
+## Próximas Tarefas Agendadas
+
+| Tarefa | Descrição | Data Agendada | Status |
+|---|---|---|---|
+| **TASK-025** | Refinamento Visual e Alinhamento Estrito do Dropdown de Contato | 2026-09-07 | ⏳ Agendada |
+
+---
+
 _Última atualização: 2026-09-06 | Maintainer: Elessandro Prestes Macedo_
