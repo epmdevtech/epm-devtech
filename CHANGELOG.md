@@ -9,6 +9,19 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.12-scroll-to-top-ux] — 2026-09-06
+
+### Adicionado
+- **Elevação Dinâmica no Rodapé (Smart Docking)**: Detecção automática da visibilidade do rodapé (`IntersectionObserver` com observação de mutações e rolagem) elevando o botão de `bottom-6 md:bottom-8` (24-32px) para `bottom-20 md:bottom-24` (80-96px)
+- **Ajuste de Safe Area no Rodapé**: Margem de respiro `lg:pr-14` adicionada na linha de copyright para blindagem total contra sobreposições
+- **Testes Unitários Dedicados**: Criação de `ScrollToTop.test.tsx` com 100% de aprovação (testando visibilidade ao rolar, acionamento do clique suave e docking do footer)
+- **Teste End-to-End no Playwright**: Validação automatizada em navegador real garantindo ausência de colisão com o copyright
+- Documentação do ciclo SDD: SPEC-012, TASK-012 e QA-012 registrados
+
+### Alterado
+- **Reorientação da Tooltip**: Tooltip alterada de `side="left"` para `side="top"`, abrindo verticalmente para a área livre acima do botão em vez de cruzar horizontalmente a linha de texto
+- **Harmonização Visual da Marca**: Atualização das cores e sombras do botão para a paleta primária verde esmeralda institucional (`hsl(var(--primary))`)
+
 ## [0.0.11-hero-commercial-positioning] — 2026-09-06
 
 ### Adicionado

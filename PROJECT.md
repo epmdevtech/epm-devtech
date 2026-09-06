@@ -152,11 +152,12 @@ src/
 | Differentials     | ✅ Lazy Loaded   | Carregamento progressivo via LazySection   |
 | Authority         | ✅ Lazy Loaded   | Carregamento progressivo via LazySection   |
 | Contact           | ✅ Lazy Loaded   | Radix/EmailJS fora do caminho crítico      |
-| Footer            | ✅ Lazy Loaded   | Logo WebP adaptativo com width/height      |
+| Footer            | ✅ Lazy Loaded   | Logo WebP adaptativo com width/height e safe area no copyright |
+| ScrollToTop       | ✅ Adaptativo    | Elevação dinâmica no rodapé, tooltip superior e prevenção de oclusão |
 | Cookie Banner     | ✅ Otimizado     | Lazy load assíncrono + defer timer (3.5s)  |
 | SEO & Agêntico    | ✅ Otimizado     | Meta tags dinâmicas + llms.txt com links   |
-| Testes unitários  | ✅ Implementado  | 14/14 suites, 92/92 testes passando (98.17% coverage) |
-| Testes E2E        | ✅ Implementado  | Suíte Playwright (7/7 testes passando)     |
+| Testes unitários  | ✅ Implementado  | 15/15 suites, 96/96 testes passando (98.17% coverage) |
+| Testes E2E        | ✅ Implementado  | Suíte Playwright (8/8 testes passando)     |
 | Acessibilidade    | ✅ 100% WCAG AA  | Contraste de texto e botões >= 4.5:1 (Logotipo WCAG AAA >= 17:1) |
 | Performance       | ✅ 100% Otimizado| JS inicial < 80 KB, FCP/LCP instantâneo    |
 | i18n              | ❌ Não iniciado  | Não planejado na versão atual              |
