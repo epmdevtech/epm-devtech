@@ -231,6 +231,54 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     await expect(copyright).toBeVisible();
   });
 
+  test('Abertura do dropdown de tipo de projeto não causa layout shift no menu superior (Header fixo)', async ({ page }) => {
+    await page.setViewportSize({ width: 1920, height: 1080 });
+    await page.goto('/#contato');
+    await page.waitForLoadState('domcontentloaded');
+    await page.waitForTimeout(600);
+
+    const header = page.locator('header');
+    const contatoLink = page.locator('header nav a[href="#contato"]');
+    const trigger = page.locator('#projectType');
+
+    // Medições antes do clique
+    const headerBefore = await header.boundingBox();
+    const contatoBefore = await contatoLink.boundingBox();
+    expect(headerBefore).not.toBeNull();
+    expect(contatoBefore).not.toBeNull();
+
+    // Abre o dropdown
+    await trigger.click();
+    const selectContent = page.locator('[role="listbox"]');
+    await expect(selectContent).toBeVisible();
+
+    // Medições após a abertura do dropdown
+    const headerAfter = await header.boundingBox();
+    const contatoAfter = await contatoLink.boundingBox();
+    const contentBox = await selectContent.boundingBox();
+    const triggerBox = await trigger.boundingBox();
+
+    expect(headerAfter).not.toBeNull();
+    expect(contatoAfter).not.toBeNull();
+    expect(contentBox).not.toBeNull();
+    expect(triggerBox).not.toBeNull();
+
+    // Valida imunidade contra Layout Shift (Zero horizontal shift)
+    expect(Math.abs(headerAfter!.x - headerBefore!.x)).toBeLessThanOrEqual(0.5);
+    expect(Math.abs(headerAfter!.width - headerBefore!.width)).toBeLessThanOrEqual(0.5);
+    expect(Math.abs(contatoAfter!.x - contatoBefore!.x)).toBeLessThanOrEqual(0.5);
+
+    // Valida confinamento do dropdown à largura do trigger
+    expect(contentBox!.width).toBeLessThanOrEqual(triggerBox!.width + 1);
+
+    // Fecha o dropdown via Escape e valida estabilidade contínua
+    await page.keyboard.press('Escape');
+    await expect(selectContent).toBeHidden();
+
+    const headerClosed = await header.boundingBox();
+    expect(Math.abs(headerClosed!.x - headerBefore!.x)).toBeLessThanOrEqual(0.5);
+  });
+
 });
 
 

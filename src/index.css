@@ -7,6 +7,8 @@ html {
   scroll-behavior: smooth;
   /* Compensa a altura do header fixo ao navegar para âncoras */
   scroll-padding-top: 80px;
+  /* Previne layout shift mantendo a calha de rolagem sempre reservada */
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -15,6 +17,13 @@ body {
      overflow-x: hidden quebraria href="#secao" em mobile. */
   overflow-x: clip;
   max-width: 100%;
+}
+
+/* Previne que bibliotecas como Radix/react-remove-scroll ocultem a barra de rolagem e desloquem elementos fixos */
+body[data-scroll-locked] {
+  overflow: visible !important;
+  margin-right: 0px !important;
+  padding-right: 0px !important;
 }
 
 /* Oculta o cursor nativo em dispositivos com mouse (pointer: fine)
