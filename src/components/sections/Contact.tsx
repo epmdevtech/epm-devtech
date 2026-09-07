@@ -70,6 +70,7 @@ const Contact = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [isSending, setIsSending] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const {
     register,
@@ -106,7 +107,11 @@ const Contact = () => {
 
       await emailjs.send(serviceId, templateId, templateParams);
       toast.success("Mensagem enviada! Retornarei em breve.");
+      setIsSuccess(true);
       reset();
+      setTimeout(() => {
+        setIsSuccess(false);
+      }, 4000);
     } catch (err: unknown) {
       const error = err as { status?: number; text?: string };
       console.error("[EmailJS] Falha no disparo:", "status:", error?.status, "| text:", error?.text, "| raw:", err);
@@ -344,13 +349,22 @@ const Contact = () => {
                 <div className="pt-2">
                   <button
                     type="submit"
-                    disabled={isSending}
-                    className="btn-submit group inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg font-medium text-sm text-white bg-emerald-600 hover:bg-emerald-500 active:scale-[0.99] shadow-sm hover:shadow-emerald-500/20 hover:shadow-md transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed border-none w-full sm:w-auto"
+                    disabled={isSending || isSuccess}
+                    className={`btn-submit group inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg font-medium text-sm text-white transition-all duration-200 cursor-pointer disabled:opacity-80 disabled:cursor-not-allowed border-none w-full sm:w-auto shadow-sm ${
+                      isSuccess
+                        ? "bg-emerald-600 shadow-emerald-500/20"
+                        : "bg-emerald-600 hover:bg-emerald-500 active:scale-[0.99] hover:shadow-emerald-500/20 hover:shadow-md"
+                    }`}
                   >
                     {isSending ? (
                       <>
                         <Loader2 className="w-4 h-4 animate-spin" />
                         <span>Enviando...</span>
+                      </>
+                    ) : isSuccess ? (
+                      <>
+                        <CheckCircle2 className="w-4 h-4 text-white animate-in zoom-in-50 duration-200" />
+                        <span>Mensagem Enviada!</span>
                       </>
                     ) : (
                       <>

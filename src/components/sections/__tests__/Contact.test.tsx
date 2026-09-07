@@ -209,6 +209,7 @@ describe('Contact Component', () => {
       expect(mockToastSuccess).toHaveBeenCalledWith(
         expect.stringContaining('Mensagem enviada!')
       );
+      expect(screen.getByRole('button', { name: /Mensagem Enviada!/i })).toBeInTheDocument();
     });
   });
 
