@@ -227,7 +227,10 @@ describe('Contact Component', () => {
 
     await waitFor(() => {
       expect(mockToastError).toHaveBeenCalledWith(
-        expect.stringContaining('Falha ao enviar')
+        expect.stringContaining('Falha ao enviar mensagem no momento'),
+        expect.objectContaining({
+          action: expect.objectContaining({ label: 'Chamar no WhatsApp' }),
+        })
       );
     });
   });

@@ -110,9 +110,15 @@ const Contact = () => {
       reset();
     } catch (err: unknown) {
       const error = err as { status?: number; text?: string };
-      console.error("[EmailJS] Erro:", "status:", error?.status, "| text:", error?.text, "| raw:", err);
-      const msg = error?.text ?? "erro desconhecido";
-      toast.error(`Falha ao enviar (${error?.status ?? "?"}): ${msg}. Use o e-mail direto se persistir.`);
+      console.error("[EmailJS] Falha no disparo:", "status:", error?.status, "| text:", error?.text, "| raw:", err);
+      toast.error("Falha ao enviar mensagem no momento. Por favor, utilize o contato direto pelo WhatsApp.", {
+        description: "Seu atendimento será realizado com a mesma prioridade diretamente pela engenharia.",
+        action: {
+          label: "Chamar no WhatsApp",
+          onClick: () => window.open("https://wa.me/5545999178290", "_blank", "noopener,noreferrer"),
+        },
+        duration: 8000,
+      });
     } finally {
       setIsSending(false);
     }
