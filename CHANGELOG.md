@@ -9,6 +9,19 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.26-header-layout-shift-specificity-fix] — 2026-09-07
+
+### Corrigido
+- **Eliminação Definitiva do Layout Shift no Header ao Abrir Dropdowns via Especificidade CSS (`index.css`)**:
+  - Resolução da regressão onde o menu superior sofria estufamento para a direita ao abrir o seletor "Desafio ou Tipo de Projeto"
+  - Diagnóstico: a biblioteca `react-remove-scroll-bar` injetava dinamicamente no `<head>` via `styleSingleton` uma regra `body[data-scroll-locked] { margin-right: 15px !important; overflow: hidden !important; }`, que vencia a regra CSS estática por ordem de cascata
+  - Solução: aumento da especificidade para `(0, 1, 2)` usando `html body[data-scroll-locked]` e blindagem adicional `html body[data-scroll-locked] header { right: 0px !important; margin-right: 0px !important; }` com especificidade `(0, 1, 3)`
+  - Resultado: o body mantém `margin-right: 0px` e `overflow: visible`, preservando 100% da estabilidade visual do Header e da página
+
+### Adicionado
+- **Documentação SDD Completa**: Registro formal de `SPEC-026`, `TASK-026` e `QA-026` com validação de Quality Gates
+- **Aprimoramento de Teste E2E (`design-system-and-stability.spec.ts`)**: Validação ponta a ponta dos estilos computados do `body` e do `header` durante a abertura do dropdown
+
 ## [0.0.25-contact-dropdown-alignment-refinement] — 2026-09-07
 
 ### Corrigido
