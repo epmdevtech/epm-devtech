@@ -152,13 +152,13 @@ src/
 | Technologies      | ✅ Constellation | TechConstellation interativo com trilhas PCB, Focus & Context e Painel Arquitetural |
 | Differentials     | ✅ Atualizado    | Copywriting sênior nos 6 cards, tags técnicas, timeline preservada e H3 semântico |
 | Authority         | ✅ Atualizado    | Trust Bar compacto de Prova Social, métricas reais de missão crítica e selos corporativos |
-| Contact           | ✅ Refinado      | Split Card com formulário underline, dropdown milimétrico (gap=0px), microinteração no botão e toast centralizado no topo (top-center) |
+| Contact           | ✅ Blindado      | Split Card com formulário underline, dropdown milimétrico (gap=0px), máscara dinâmica de telefone, validação estrita Zod (rejeição de letras e DDDs inválidos), microinteração no botão e toast centralizado no topo (top-center) |
 | Footer            | ✅ 4 Colunas     | Layout moderno de 4 colunas monocromáticas, serviços reais, canais diretos e sub-footer |
 | ScrollToTop       | ✅ Adaptativo    | Elevação dinâmica no rodapé, tooltip superior e prevenção de oclusão |
 | Cookie Banner     | ✅ Otimizado     | Lazy load assíncrono + defer timer (3.5s)  |
 | SEO & Agêntico    | ✅ Otimizado     | Meta tags dinâmicas + llms.txt com links   |
-| Testes unitários  | ✅ Implementado  | 17/17 suites, 105/105 testes passando (98.21% coverage) |
-| Testes E2E        | ✅ Implementado  | Suíte Playwright (9/9 testes passando, com validação estrita de zero layout shift e inspeção de computed styles) |
+| Testes unitários  | ✅ Implementado  | 18/18 suites, 124/124 testes passando (98.28% coverage) |
+| Testes E2E        | ✅ Implementado  | Suíte Playwright (10/10 testes passando, incluindo teste E2E de validação e máscara de telefone, layout shift zero e computed styles) |
 | Acessibilidade    | ✅ 100% WCAG AA  | Contraste de texto e botões >= 4.5:1 (Logotipo WCAG AAA >= 17:1) |
 | Performance       | ✅ 100% Otimizado| JS inicial < 80 KB, FCP/LCP instantâneo    |
 | i18n              | ❌ Não iniciado  | Não planejado na versão atual              |

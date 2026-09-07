@@ -173,8 +173,38 @@ describe('Contact Component', () => {
     fireEvent.submit(screen.getByRole('button', { name: /Enviar Mensagem/i }));
 
     await waitFor(() => {
-      expect(screen.getByText(/Nome deve ter ao menos 2 caracteres/i)).toBeInTheDocument();
-      expect(screen.getByText(/E-mail inválido/i)).toBeInTheDocument();
+      expect(screen.getByText(/Informe seu nome completo/i)).toBeInTheDocument();
+      expect(screen.getByText(/Informe um e-mail corporativo válido/i)).toBeInTheDocument();
+    });
+  });
+
+  it('rejeita caracteres alfabéticos no campo de WhatsApp/Telefone', async () => {
+    render(<Contact />);
+    const phoneInput = screen.getByLabelText(/WhatsApp \/ Telefone/i);
+    fireEvent.change(phoneInput, { target: { value: 'wewqewqeq' } });
+    fireEvent.blur(phoneInput);
+
+    await waitFor(() => {
+      expect(
+        screen.getByText(/Informe um número de WhatsApp\/Telefone válido com DDD/i)
+      ).toBeInTheDocument();
+    });
+  });
+
+  it('aplica máscara dinâmica no campo de telefone e permite envio válido', async () => {
+    setEnvVars();
+    render(<Contact />);
+    fillValidForm();
+
+    const phoneInput = screen.getByLabelText(/WhatsApp \/ Telefone/i) as HTMLInputElement;
+    fireEvent.change(phoneInput, { target: { value: '11999998888' } });
+
+    expect(phoneInput.value).toBe('(11) 99999-8888');
+
+    fireEvent.submit(screen.getByRole('button', { name: /Enviar Mensagem/i }));
+
+    await waitFor(() => {
+      expect(emailjs.send).toHaveBeenCalledTimes(1);
     });
   });
 

@@ -25,6 +25,7 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { formatBrazilianPhone, validateBrazilianPhone } from "@/lib/phone";
 
 export const PROJECT_TYPES = [
   "Novo Sistema ou Aplicação Web",
@@ -38,7 +39,7 @@ export const contactFormSchema = z.object({
   name: z
     .string({ required_error: "Informe seu nome completo" })
     .trim()
-    .min(3, "Informe seu nome completo (mínimo de 3 caracteres)"),
+    .min(3, "Informe seu nome completo"),
   email: z
     .string({ required_error: "Informe um e-mail corporativo válido" })
     .trim()
@@ -47,21 +48,16 @@ export const contactFormSchema = z.object({
     .string()
     .trim()
     .optional()
-    .refine(
-      (val) => {
-        if (!val || val.length === 0) return true;
-        const digits = val.replace(/\D/g, "");
-        return digits.length >= 10 && digits.length <= 13;
-      },
-      { message: "Informe um telefone válido com DDD (mínimo de 10 dígitos)" }
-    ),
+    .refine(validateBrazilianPhone, {
+      message: "Informe um número de WhatsApp/Telefone válido com DDD (ex: 11 99999-9999)",
+    }),
   projectType: z
     .string({ required_error: "Selecione o tipo de projeto ou desafio" })
     .min(1, "Selecione o tipo de projeto ou desafio"),
   message: z
-    .string({ required_error: "Descreva brevemente o seu desafio" })
+    .string({ required_error: "Descreva seu projeto com pelo menos 15 caracteres" })
     .trim()
-    .min(10, "Descreva brevemente o seu desafio (mínimo de 10 caracteres)"),
+    .min(15, "Descreva seu projeto com pelo menos 15 caracteres"),
 });
 
 export type ContactFormData = z.infer<typeof contactFormSchema>;
@@ -79,6 +75,8 @@ export const ContactForm: React.FC<ContactFormProps> = ({
 
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
+    mode: "onBlur",
+    reValidateMode: "onChange",
     defaultValues: {
       name: "",
       email: "",
@@ -208,10 +206,14 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                 <FormControl>
                   <Input
                     type="tel"
-                    placeholder="+55 (45) 99999-9999"
+                    placeholder="(11) 99999-9999"
                     autoComplete="tel"
                     disabled={isSubmitting}
                     {...field}
+                    onChange={(e) => {
+                      const formatted = formatBrazilianPhone(e.target.value);
+                      field.onChange(formatted);
+                    }}
                   />
                 </FormControl>
                 <FormMessage />

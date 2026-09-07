@@ -298,6 +298,35 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     expect(Math.abs(headerClosed!.x - headerBefore!.x)).toBeLessThanOrEqual(0.5);
   });
 
+  test('Formulário de Contato: Máscara dinâmica e validação estrita de WhatsApp/Telefone', async ({ page }) => {
+    await page.goto('/#contato');
+    await page.waitForLoadState('domcontentloaded');
+    await page.waitForTimeout(600);
+
+    const phoneInput = page.locator('#phone');
+    await expect(phoneInput).toBeVisible();
+
+    // 1. Digita texto aleatório ("wewqewqeq")
+    await phoneInput.fill('wewqewqeq');
+    await phoneInput.blur();
+
+    // Mensagem de erro deve ser exibida logo abaixo em vermelho
+    const errorMessage = page.locator('p.text-destructive', {
+      hasText: /Informe um número de WhatsApp\/Telefone válido com DDD/i,
+    });
+    await expect(errorMessage).toBeVisible();
+
+    // 2. Corrige para um número brasileiro válido com 11 dígitos
+    await phoneInput.fill('11999998888');
+    await phoneInput.blur();
+
+    // O valor do input deve estar formatado com a máscara dinâmica
+    await expect(phoneInput).toHaveValue('(11) 99999-8888');
+
+    // A mensagem de erro deve desaparecer
+    await expect(errorMessage).toBeHidden();
+  });
+
 });
 
 

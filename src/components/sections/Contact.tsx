@@ -26,13 +26,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { formatBrazilianPhone, validateBrazilianPhone } from "@/lib/phone";
 
 const formSchema = z.object({
-  name: z.string().min(2, "Nome deve ter ao menos 2 caracteres"),
-  email: z.string().email("E-mail inválido"),
-  phone: z.string().optional(),
+  name: z.string().trim().min(3, "Informe seu nome completo"),
+  email: z.string().trim().email("Informe um e-mail corporativo válido"),
+  phone: z.string().trim().optional().refine(validateBrazilianPhone, {
+    message: "Informe um número de WhatsApp/Telefone válido com DDD (ex: 11 99999-9999)",
+  }),
   projectType: z.string().min(1, "Selecione o tipo de projeto"),
-  message: z.string().min(20, "Descreva seu projeto em ao menos 20 caracteres"),
+  message: z.string().trim().min(15, "Descreva seu projeto com pelo menos 15 caracteres"),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -80,6 +83,8 @@ const Contact = () => {
     formState: { errors },
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
+    mode: "onBlur",
+    reValidateMode: "onChange",
   });
 
   const onSubmit = async (data: FormValues) => {
@@ -230,11 +235,24 @@ const Contact = () => {
                     <Input
                       id="phone"
                       type="tel"
-                      placeholder="+55 (45) 99999-9999"
+                      placeholder="(11) 99999-9999"
                       autoComplete="tel"
                       {...register("phone")}
-                      className="h-auto border-0 border-b border-zinc-300 dark:border-zinc-700 bg-transparent rounded-none px-0 py-2.5 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus-visible:ring-0 focus-visible:border-emerald-500 transition-colors shadow-none"
+                      onChange={(e) => {
+                        const formatted = formatBrazilianPhone(e.target.value);
+                        e.target.value = formatted;
+                        setValue("phone", formatted, { shouldValidate: true });
+                      }}
+                      aria-invalid={!!errors.phone}
+                      className={`h-auto border-0 border-b bg-transparent rounded-none px-0 py-2.5 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus-visible:ring-0 focus-visible:border-emerald-500 transition-colors shadow-none ${
+                        errors.phone
+                          ? "border-destructive focus-visible:border-destructive"
+                          : "border-zinc-300 dark:border-zinc-700"
+                      }`}
                     />
+                    {errors.phone && (
+                      <p className="text-xs text-destructive mt-1.5">{errors.phone.message}</p>
+                    )}
                   </div>
 
                   {/* Desafio ou Tipo de Projeto */}

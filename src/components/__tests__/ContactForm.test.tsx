@@ -104,24 +104,51 @@ describe('ContactForm Component', () => {
       expect(screen.getByText(/Informe seu nome completo/i)).toBeInTheDocument();
       expect(screen.getByText(/Informe um e-mail corporativo válido/i)).toBeInTheDocument();
       expect(screen.getByText(/Selecione o tipo de projeto ou desafio/i)).toBeInTheDocument();
-      expect(screen.getByText(/Descreva brevemente o seu desafio/i)).toBeInTheDocument();
+      expect(screen.getByText(/Descreva seu projeto com pelo menos 15 caracteres/i)).toBeInTheDocument();
     });
 
     expect(emailjs.send).not.toHaveBeenCalled();
   });
 
-  it('valida formato inválido de telefone caso preenchido com menos de 10 dígitos', async () => {
+  it('rejeita caracteres alfabéticos aleatórios no campo de WhatsApp/Telefone', async () => {
     render(<ContactForm />);
 
-    fireEvent.change(screen.getByLabelText(/WhatsApp \/ Telefone/i), {
-      target: { value: '123' },
+    const phoneInput = screen.getByLabelText(/WhatsApp \/ Telefone/i);
+    fireEvent.change(phoneInput, {
+      target: { value: 'wewqewqeq' },
     });
-
-    fireEvent.submit(screen.getByRole('button', { name: /Enviar Mensagem/i }));
+    fireEvent.blur(phoneInput);
 
     await waitFor(() => {
       expect(
-        screen.getByText(/Informe um telefone válido com DDD/i)
+        screen.getByText(/Informe um número de WhatsApp\/Telefone válido com DDD/i)
+      ).toBeInTheDocument();
+    });
+  });
+
+  it('formata dinamicamente o número digitado com máscara brasileira', async () => {
+    render(<ContactForm />);
+
+    const phoneInput = screen.getByLabelText(/WhatsApp \/ Telefone/i) as HTMLInputElement;
+    fireEvent.change(phoneInput, {
+      target: { value: '11999998888' },
+    });
+
+    expect(phoneInput.value).toBe('(11) 99999-8888');
+  });
+
+  it('valida formato inválido de telefone caso preenchido com menos de 10 dígitos ou DDD inválido', async () => {
+    render(<ContactForm />);
+
+    const phoneInput = screen.getByLabelText(/WhatsApp \/ Telefone/i);
+    fireEvent.change(phoneInput, {
+      target: { value: '123' },
+    });
+    fireEvent.blur(phoneInput);
+
+    await waitFor(() => {
+      expect(
+        screen.getByText(/Informe um número de WhatsApp\/Telefone válido com DDD/i)
       ).toBeInTheDocument();
     });
   });

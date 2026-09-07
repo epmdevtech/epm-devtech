@@ -9,6 +9,29 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.31-strict-phone-validation-and-mask] — 2026-09-07
+
+### Adicionado & Blindado
+- **Validação Estrita de WhatsApp / Telefone com Zod (`src/lib/phone.ts`)**:
+  - Rejeição expressa de caracteres alfabéticos ou texto aleatório ("wewqewqeq...")
+  - Validação de DDDs legítimos de todo o Brasil (11 a 99) via `VALID_BRAZILIAN_DDDS`
+  - Validação de comprimento e estrutura: 10 dígitos (fixo: DDD + 8 dígitos) ou 11 dígitos (celular: DDD + 9 dígitos iniciando com 9)
+  - Rejeição de números formados por dígitos repetidos (`11111111111`)
+  - Mensagem de erro clara padronizada: `"Informe um número de WhatsApp/Telefone válido com DDD (ex: 11 99999-9999)"`
+  - Suporte resiliente a números precedidos por `+55`
+- **Máscara de Entrada Dinâmica em Tempo Real (`formatBrazilianPhone`)**:
+  - Autoformatação enquanto o usuário digita nos padrões `(99) 9999-9999` e `(99) 99999-9999`
+  - Preservação de texto alfabético para permitir que o validador Zod forneça feedback explícito e visual imediato
+- **Atualização dos Formulários (`ContactForm.tsx` e `Contact.tsx`)**:
+  - Configuração do `useForm` com `mode: "onBlur"` e `reValidateMode: "onChange"` para retorno instantâneo
+  - Exibição de mensagem de erro em vermelho (`text-destructive` / `<FormMessage />`)
+  - Harmonização das regras dos demais campos: `name` ($\ge 3$ caracteres), `email` corporativo válido, `projectType` obrigatório, `message` ($\ge 15$ caracteres)
+- **Qualidade & Testes**:
+  - Nova suíte de testes unitários para o utilitário de telefone (`src/lib/__tests__/phone.test.ts`) com 15 testes aprovados
+  - Atualização dos testes unitários de `ContactForm` e `Contact` (totalizando 124 testes unitários e 98.28% de cobertura de código)
+  - Novo teste E2E no Playwright (`e2e/design-system-and-stability.spec.ts`) validando a máscara e o fluxo de erro/correção no navegador real (10/10 E2E aprovados)
+- **Documentação SDD**: Registro de `SPEC-031`, `TASK-031` e `QA-031` com conformidade aos quality gates
+
 ## [0.0.30-modular-contact-form-shadcn] — 2026-09-07
 
 ### Adicionado
