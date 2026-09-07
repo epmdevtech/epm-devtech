@@ -9,6 +9,19 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.30-modular-contact-form-shadcn] — 2026-09-07
+
+### Adicionado
+- **Componente Modular `ContactForm` com Shadcn/UI (`ContactForm.tsx`)**:
+  - Implementação robusta e autocontida utilizando os wrappers oficiais do design system: `<Form>`, `<FormField>`, `<FormItem>`, `<FormLabel>`, `<FormControl>` e `<FormMessage>`
+  - Validação estrita via schema Zod (`contactFormSchema`) com mensagens claras em português e inferência de tipos (`ContactFormData`)
+  - Suporte aos 5 campos especificados: nome completo ($\ge 3$ caracteres), e-mail corporativo válido, telefone brasileiro flexível ($\ge 10$ dígitos numéricos), tipo de projeto via `<Select>` e mensagem detalhada ($\ge 10$ caracteres)
+  - Microinterações de loading com spinner (`Loader2`) e estado de sucesso `"✓ Mensagem Enviada!"` (`CheckCircle2`)
+  - Notificações visuais elegantes com `toast.success` e `toast.error` via Sonner
+  - Suporte opcional a callback customizado `onSubmitSuccess` ou integração direta e resiliente com EmailJS
+- **Suíte de Testes Unitários (`ContactForm.test.tsx`)**: 6 testes cobrindo renderização, validações de erro, submissão com sucesso, callback customizado e fallback de erro
+- **Documentação SDD**: Registro formal de `SPEC-030`, `TASK-030` e `QA-030` com 100% dos quality gates aprovados
+
 ## [0.0.29-toast-positioning-and-contact-feedback] — 2026-09-07
 
 ### Otimização & UX/UI

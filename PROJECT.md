@@ -157,7 +157,7 @@ src/
 | ScrollToTop       | ✅ Adaptativo    | Elevação dinâmica no rodapé, tooltip superior e prevenção de oclusão |
 | Cookie Banner     | ✅ Otimizado     | Lazy load assíncrono + defer timer (3.5s)  |
 | SEO & Agêntico    | ✅ Otimizado     | Meta tags dinâmicas + llms.txt com links   |
-| Testes unitários  | ✅ Implementado  | 16/16 suites, 99/99 testes passando (98.25% coverage) |
+| Testes unitários  | ✅ Implementado  | 17/17 suites, 105/105 testes passando (98.21% coverage) |
 | Testes E2E        | ✅ Implementado  | Suíte Playwright (9/9 testes passando, com validação estrita de zero layout shift e inspeção de computed styles) |
 | Acessibilidade    | ✅ 100% WCAG AA  | Contraste de texto e botões >= 4.5:1 (Logotipo WCAG AAA >= 17:1) |
 | Performance       | ✅ 100% Otimizado| JS inicial < 80 KB, FCP/LCP instantâneo    |
