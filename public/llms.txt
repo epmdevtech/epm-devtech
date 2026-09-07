@@ -1,29 +1,123 @@
 # EPM DEVTECH
 
-> Software house especializada em desenvolvimento de software sob medida, APIs escaláveis e arquitetura de sistemas de alta performance.
+> Software house brasileira especializada em engenharia de software sob medida, APIs escaláveis,
+> arquitetura de sistemas de alta performance e modernização de plataformas corporativas.
 
-Fundada e liderada por Elessandro Prestes Macedo, Engenheiro de Software Full Stack Sênior com mais de 9 anos de experiência em projetos corporativos de grande porte.
+Fundada e liderada por **Elessandro Prestes Macedo** — Engenheiro de Software Full Stack Sênior
+e Tech Lead com mais de **9 anos de experiência** na concepção e evolução de sistemas críticos.
 
-## Serviços e Especialidades
+Localização: **Toledo, Paraná, Brasil**
+Contato: elessandro@epmdevtech.com.br | WhatsApp: (45) 99917-8290
 
-- [Desenvolvimento de Sistemas Web](https://epmdevtech.com.br/#servicos): Aplicações web modernas, SPAs e plataformas digitais com foco em performance e Clean Code.
-- [APIs e Back-ends Escaláveis](https://epmdevtech.com.br/#servicos): Desenvolvimento e integração de APIs RESTful e GraphQL robustas e de alta disponibilidade.
-- [Arquitetura de Software](https://epmdevtech.com.br/#servicos): Design de soluções modulares, arquitetura hexagonal, microsserviços e padrões SOLID.
-- [DevOps e Cloud Computing](https://epmdevtech.com.br/#servicos): Implantação de pipelines CI/CD automatizados e infraestrutura em nuvem na AWS e Docker.
-- [Projetos e Autoridade Técnica](https://epmdevtech.com.br/#autoridade): Atuação em setores críticos como Indústria, Varejo/E-commerce, Educação (CAPES/MEC) e Energia (ONS).
+---
 
-## Tecnologias
+## Proposta de Valor
 
-- [Stack Tecnológica](https://epmdevtech.com.br/#tecnologias): PHP, Laravel, Symfony, Node.js, TypeScript, React, PostgreSQL, Docker, Kubernetes, AWS.
+A EPM DEVTECH entrega sistemas que escalam. Do MVP à arquitetura distribuída, cada linha de código
+é construída com foco em qualidade, performance e baixo custo de manutenção futuro.
 
-## Contato e Perfis Oficiais
+Atuamos em projetos de **médio e grande porte** para empresas que precisam de soluções robustas,
+desde o desenho da arquitetura até o deploy em produção com monitoramento.
 
-- [Website Principal](https://epmdevtech.com.br): Página inicial institucional da EPM DEVTECH.
-- [Formulário de Contato](https://epmdevtech.com.br/#contato): Canal direto para solicitações de projetos, orçamentos e consultoria técnica.
-- [GitHub](https://github.com/ElessandroPrestes): Perfil profissional com repositórios e contribuições de código aberto.
-- [LinkedIn](https://www.linkedin.com/in/elessandro-prestes-macedo/): Perfil profissional no LinkedIn de Elessandro Prestes Macedo.
+---
 
-## Recursos e Metadados
+## Serviços Principais
 
-- [Sitemap XML](https://epmdevtech.com.br/sitemap.xml): Mapa completo do site para rastreamento e indexação.
-- [Robots TXT](https://epmdevtech.com.br/robots.txt): Regras e diretrizes para robôs de busca e agentes de inteligência artificial.
+- **[Desenvolvimento de Sistemas Web e SPAs](https://epmdevtech.com.br/servicos):** Aplicações web
+  modernas, Single Page Applications (SPAs), plataformas digitais e sistemas corporativos com foco
+  em Clean Code, acessibilidade e alta performance.
+
+- **[APIs REST e Backends Escaláveis](https://epmdevtech.com.br/servicos):** Desenvolvimento e
+  integração de APIs RESTful e GraphQL robustas, de alta disponibilidade, com autenticação segura,
+  versionamento e documentação Swagger/OpenAPI.
+
+- **[Modernização de Sistemas Legados](https://epmdevtech.com.br/servicos):** Migração e
+  refatoração de sistemas legados (monolitos → microsserviços), com preservação de regras de
+  negócio críticas e zero downtime.
+
+- **[Arquitetura de Software](https://epmdevtech.com.br/servicos):** Design de soluções modulares,
+  arquitetura hexagonal, Clean Architecture, microsserviços e padrões SOLID. Decisões técnicas
+  documentadas e revisadas para garantir evolução sustentável.
+
+- **[DevOps e Cloud Computing](https://epmdevtech.com.br/servicos):** Pipelines CI/CD
+  automatizados (GitHub Actions, GitLab CI), infraestrutura como código na AWS (EC2, RDS, S3,
+  Lambda), Docker e Kubernetes.
+
+- **[Consultoria Técnica e Code Review](https://epmdevtech.com.br/servicos):** Revisão de
+  arquitetura, análise estática com SonarQube, identificação de gargalos de performance e
+  orientação de times de desenvolvimento.
+
+- **[Integrações de Sistemas](https://epmdevtech.com.br/servicos):** Integração com ERPs, CRMs,
+  gateways de pagamento, sistemas governamentais e plataformas externas via APIs e mensageria
+  (RabbitMQ, Kafka).
+
+---
+
+## Stack Tecnológica
+
+**Backend:** PHP, Laravel, Symfony, Node.js, TypeScript, Python
+**Frontend:** React, TypeScript, Vite, Tailwind CSS, Next.js
+**Banco de Dados:** PostgreSQL, MySQL, Redis, MongoDB
+**Infraestrutura:** AWS (EC2, RDS, S3, CloudFront, Lambda), Docker, Kubernetes
+**Mensageria:** RabbitMQ, Kafka
+**Qualidade:** SonarQube, PHPStan, ESLint, Vitest, PHPUnit, Playwright
+
+---
+
+## Diferenciais Competitivos
+
+- **Comunicação transparente:** relatórios claros, alinhamento direto com quem executa
+- **Arquitetura planejada desde o início:** sem dívida técnica acumulada
+- **Código limpo e testável:** cobertura de testes rigorosa, SOLID, DRY
+- **Esteira CI/CD:** deploy seguro com rollback imediato
+- **Padrões de engenharia:** code review sistemático, análise estática de vulnerabilidades
+- **Prazos cumpridos:** sem surpresas no prazo ou no orçamento
+
+---
+
+## Autoridade e Prova Social
+
+**Métricas reais de missão crítica:**
+- 99,9% de uptime em ambientes de produção
+- 2.500+ RPS (Requests Per Second) suportados em arquiteturas distribuídas
+- +448 IES (Instituições de Ensino Superior) e 650 escolas impactadas em plataformas educacionais
+- Zero perda de dados em integrações regulatórias e sistemas críticos
+
+**Setores e organizações atendidos:**
+- CAPES e MEC (plataformas de educação superior federal)
+- ONS — Operador Nacional do Sistema Elétrico
+- Energia Pecém (geração de energia)
+- Governo do Mato Grosso — SEDUC
+- Indústria e Manufatura (IoT Industrial e ERP)
+- E-commerce e Varejo
+
+---
+
+## Público-Alvo
+
+Empresas de médio e grande porte que precisam de:
+- Sistemas web robustos e escaláveis
+- APIs confiáveis para integrações críticas
+- Modernização de sistemas legados
+- Arquitetura de software planejada
+- Times de desenvolvimento com orientação técnica sênior
+
+---
+
+## Contato e Canais Oficiais
+
+- [Website Principal](https://epmdevtech.com.br): Página institucional da EPM DEVTECH
+- [Formulário de Contato](https://epmdevtech.com.br/contato): Solicitações de projetos e orçamentos
+- [GitHub](https://github.com/ElessandroPrestes): Repositórios e contribuições
+- [LinkedIn](https://www.linkedin.com/in/elessandro-prestes-macedo/): Perfil profissional do fundador
+- E-mail: elessandro@epmdevtech.com.br
+- WhatsApp: +55 (45) 99917-8290
+- Retorno técnico em até 24 horas úteis
+
+---
+
+## Metadados do Site
+
+- [Sitemap XML](https://epmdevtech.com.br/sitemap.xml): Mapa completo para indexação
+- [Robots TXT](https://epmdevtech.com.br/robots.txt): Regras para robôs e agentes de IA
+- [llms-full.txt](https://epmdevtech.com.br/llms-full.txt): Versão completa e detalhada para LLMs

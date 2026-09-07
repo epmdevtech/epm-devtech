@@ -9,6 +9,46 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.32-geo-seo-auditoria-e-otimizacao] — 2026-09-07
+
+### Adicionado
+- **`public/llms-full.txt`** — Novo arquivo de contexto completo para LLMs com: stack detalhada,
+  todos os serviços com descrição, métricas reais (99,9% uptime, 2.500+ RPS), setores atendidos
+  (CAPES/MEC, ONS, Indústria, Governo), FAQ com 7 perguntas, diferenciais e links oficiais.
+
+### Modificado
+- **`public/robots.txt`** — Adicionados blocos explícitos para crawlers de IA: `GPTBot`,
+  `OAI-SearchBot`, `ChatGPT-User`, `PerplexityBot`, `ClaudeBot`, `anthropic-ai`, `Google-Extended`,
+  `Googlebot`, `FacebookBot` e `Bingbot`. Removida regra genérica `Disallow: /*.json$`.
+- **`public/llms.txt`** — Expandido com métricas reais, setores atendidos, stack completa (incluindo
+  Symfony, RabbitMQ, Kafka, Kubernetes), localização (Toledo/PR/Brasil), diferenciais técnicos e link
+  para `llms-full.txt`.
+- **`public/site.webmanifest`** — Corrigido `theme_color` de `#2979FF` (azul) para `#10B981`
+  (verde oficial EPM DEVTECH), alinhando branding do PWA com o design system.
+- **`public/sitemap.xml`** — `lastmod` atualizado de `2026-03-10` para `2026-09-07` em todas as
+  URLs. Prioridade de `/servicos` ajustada de `0.8` para `0.9`.
+- **`index.html` — JSON-LD (`<script type="application/ld+json">`):**
+  - E-mail corrigido de `elessandrodev@gmail.com` para `elessandro@epmdevtech.com.br`
+  - `telephone` adicionado: `+55-45-99917-8290`
+  - `address` adicionado: Toledo, PR, Brasil
+  - `@type: Service` individuais com `description` rica para cada um dos 6 serviços
+  - `@type: FAQPage` adicionado com 7 perguntas frequentes relevantes ao negócio
+  - `jobTitle` e `description` do `Person` enriquecidos
+  - `knowsAbout` expandido (Symfony, Kubernetes, Clean Architecture, DDD, Microsserviços)
+- **`index.html` — Meta tags Twitter:**
+  - Adicionados `twitter:site` e `twitter:creator`
+- **`src/pages/Index.tsx`** — Meta descriptions enriquecidas para todas as rotas:
+  - `/sobre` — menciona o fundador, CAPES, ONS, Governo e Indústria
+  - `/servicos` — menciona modernização de legados, microsserviços, DevOps e setores atendidos
+  - `/tecnologias` — stack completa incluindo Symfony, PostgreSQL, Kubernetes, RabbitMQ e Kafka
+  - `/diferenciais` — menciona CI/CD, arquitetura planejada e prazos cumpridos
+  - `/contato` — inclui e-mail e WhatsApp corporativos
+
+### Qualidade
+- ESLint: 0 erros
+- Vitest: 18/18 suites, 124/124 testes, 98.28% cobertura global
+- Build: todos os chunks < 600KB (maior: react 142.26 KB)
+
 ## [0.0.31-strict-phone-validation-and-mask] — 2026-09-07
 
 ### Adicionado & Blindado

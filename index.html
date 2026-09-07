@@ -39,6 +39,8 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@epmdevtech" />
+    <meta name="twitter:creator" content="@elessandrodev" />
     <meta name="twitter:title" content="EPM DEVTECH | Software House: Desenvolvimento de Software Sob Medida" />
     <meta name="twitter:description" content="Software house especializada em APIs escaláveis, sistemas web e arquitetura sólida. +9 anos de experiência em projetos de médio e grande porte." />
     <meta name="twitter:image" content="https://epmdevtech.com.br/android-chrome-512x512.png" />
@@ -137,7 +139,7 @@
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&display=swap" />
     </noscript>
 
-    <!-- JSON-LD Structured Data (Google Rich Results) -->
+    <!-- JSON-LD Structured Data (Google Rich Results + GEO) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -164,12 +166,19 @@
             "height": 326
           },
           "image": "https://epmdevtech.com.br/android-chrome-512x512.png",
-          "description": "Software house especializada em desenvolvimento web, APIs escaláveis, arquitetura de sistemas e soluções digitais sob medida para empresas.",
+          "description": "Software house especializada em desenvolvimento web, APIs escaláveis, arquitetura de sistemas e soluções digitais sob medida para empresas de médio e grande porte.",
           "foundingDate": "2015",
-          "email": "elessandrodev@gmail.com",
+          "email": "elessandro@epmdevtech.com.br",
+          "telephone": "+55-45-99917-8290",
           "priceRange": "$$",
           "currenciesAccepted": "BRL",
           "paymentAccepted": "Transferência Bancária, PIX",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Toledo",
+            "addressRegion": "PR",
+            "addressCountry": "BR"
+          },
           "areaServed": {
             "@type": "Country",
             "name": "Brasil"
@@ -177,13 +186,68 @@
           "founder": { "@id": "https://epmdevtech.com.br/#person" },
           "hasOfferCatalog": {
             "@type": "OfferCatalog",
-            "name": "Serviços de Desenvolvimento de Software",
+            "name": "Serviços de Engenharia de Software",
             "itemListElement": [
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Desenvolvimento de Sistemas Web" } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "APIs e Backends Escaláveis" } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Arquitetura de Software" } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Integrações de Sistemas" } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Consultoria Técnica" } }
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "@id": "https://epmdevtech.com.br/servicos#web",
+                  "name": "Desenvolvimento de Sistemas Web e SPAs",
+                  "description": "Construção de aplicações web modernas, Single Page Applications e plataformas digitais com React, TypeScript e Vite. Foco em performance, acessibilidade (WCAG 2.1 AA) e Clean Code.",
+                  "provider": { "@id": "https://epmdevtech.com.br/#organization" }
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "@id": "https://epmdevtech.com.br/servicos#apis",
+                  "name": "APIs REST e Backends Escaláveis",
+                  "description": "Desenvolvimento e documentação de APIs RESTful e GraphQL de alta disponibilidade com autenticação segura, versionamento e Swagger/OpenAPI. Stack: PHP/Laravel, Node.js, TypeScript.",
+                  "provider": { "@id": "https://epmdevtech.com.br/#organization" }
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "@id": "https://epmdevtech.com.br/servicos#legado",
+                  "name": "Modernização de Sistemas Legados",
+                  "description": "Migração e refatoração de sistemas legados para arquiteturas modernas (monolito para microsserviços) com zero downtime e preservação rigorosa das regras de negócio críticas.",
+                  "provider": { "@id": "https://epmdevtech.com.br/#organization" }
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "@id": "https://epmdevtech.com.br/servicos#arquitetura",
+                  "name": "Arquitetura de Software",
+                  "description": "Design de soluções modulares com Clean Architecture, Domain-Driven Design (DDD), microsserviços e Event-Driven Architecture. Decisões técnicas documentadas em ADRs.",
+                  "provider": { "@id": "https://epmdevtech.com.br/#organization" }
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "@id": "https://epmdevtech.com.br/servicos#devops",
+                  "name": "DevOps e Cloud Computing",
+                  "description": "Pipelines CI/CD automatizados com GitHub Actions, infraestrutura na AWS (EC2, RDS, S3, Lambda), Docker, Kubernetes e rollback automático em caso de falha.",
+                  "provider": { "@id": "https://epmdevtech.com.br/#organization" }
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "@id": "https://epmdevtech.com.br/servicos#consultoria",
+                  "name": "Consultoria Técnica e Code Review",
+                  "description": "Revisão de arquitetura existente, análise estática com SonarQube, identificação de gargalos de performance, auditoria OWASP e orientação de times de desenvolvimento.",
+                  "provider": { "@id": "https://epmdevtech.com.br/#organization" }
+                }
+              }
             ]
           },
           "sameAs": [
@@ -196,18 +260,81 @@
           "@id": "https://epmdevtech.com.br/#person",
           "name": "Elessandro Prestes Macedo",
           "url": "https://epmdevtech.com.br",
-          "jobTitle": "Engenheiro de Software Full Stack Sênior",
-          "description": "Desenvolvedor Full Stack com +9 anos de experiência em projetos de médio e grande porte. Especialista em PHP, Laravel, Node.js, React e AWS.",
+          "jobTitle": "Engenheiro de Software Full Stack Sênior e Tech Lead",
+          "description": "Fundador da EPM DEVTECH. +9 anos de experiência em projetos de médio e grande porte nos setores de Educação (CAPES/MEC), Energia (ONS), Indústria e E-commerce. Especialista em PHP, Laravel, Node.js, React, AWS e arquitetura de microsserviços.",
           "worksFor": { "@id": "https://epmdevtech.com.br/#organization" },
           "alumniOf": {
             "@type": "CollegeOrUniversity",
             "name": "Unipar (Universidade Paranaense)"
           },
-          "knowsAbout": ["PHP", "Laravel", "Node.js", "React", "Angular", "AWS", "PostgreSQL", "Docker", "RabbitMQ", "Kafka", "TypeScript"]
+          "knowsAbout": ["PHP", "Laravel", "Symfony", "Node.js", "React", "TypeScript", "Angular", "AWS", "PostgreSQL", "Docker", "Kubernetes", "RabbitMQ", "Kafka", "Clean Architecture", "DDD", "Microsserviços"]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://epmdevtech.com.br/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "O que é a EPM DEVTECH?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "A EPM DEVTECH é uma software house brasileira fundada por Elessandro Prestes Macedo, Engenheiro de Software Sênior com mais de 9 anos de experiência. É especializada em desenvolvimento de software sob medida, APIs escaláveis, arquitetura de sistemas e modernização de plataformas corporativas."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Quais serviços a EPM DEVTECH oferece?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "A EPM DEVTECH oferece: desenvolvimento de sistemas web e SPAs, APIs REST e backends escaláveis com PHP/Laravel e Node.js, modernização de sistemas legados, arquitetura de software (Clean Architecture, microsserviços), DevOps e Cloud na AWS, consultoria técnica com code review e integrações de sistemas (ERPs, CRMs, gateways de pagamento)."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Qual é a stack tecnológica da EPM DEVTECH?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Backend: PHP, Laravel, Symfony, Node.js, TypeScript. Frontend: React, TypeScript, Next.js, Tailwind CSS. Banco de dados: PostgreSQL, MySQL, Redis. Infraestrutura: AWS, Docker, Kubernetes. Mensageria: RabbitMQ, Kafka. Qualidade: PHPUnit, Vitest, Playwright, SonarQube."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Quais setores a EPM DEVTECH já atendeu?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "A EPM DEVTECH tem experiência comprovada em: Educação Federal (CAPES e MEC — +448 IES e 650 escolas), Energia Elétrica (ONS — Operador Nacional do Sistema Elétrico, Energia Pecém), Indústria e Manufatura (IoT Industrial e ERP), Governo (SEDUC/MT) e E-commerce e Varejo."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Como contratar a EPM DEVTECH?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Entre em contato pelo formulário em epmdevtech.com.br/contato, pelo e-mail elessandro@epmdevtech.com.br ou pelo WhatsApp +55 (45) 99917-8290. O retorno técnico ocorre em até 24 horas úteis."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "A EPM DEVTECH trabalha com empresas de qualquer tamanho?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "A EPM DEVTECH foca em projetos de médio e grande porte que exigem arquitetura planejada e código de qualidade enterprise. Trabalhamos com escopo fechado (projeto com preço fixo e prazo definido) ou alocação dedicada (horas/mês), conforme o perfil do projeto."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "A EPM DEVTECH atende clientes fora de Toledo-PR?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sim, 100% remoto. A EPM DEVTECH atende clientes em todo o Brasil e também no exterior. A sede física é em Toledo, Paraná, mas todos os projetos são gerenciados e executados remotamente com comunicação diária e relatórios de progresso semanais."
+              }
+            }
+          ]
         }
       ]
     }
     </script>
+
   </head>
 
   <body>

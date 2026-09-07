@@ -1,0 +1,296 @@
+# EPM DEVTECH — Contexto Completo para Agentes de IA e LLMs
+
+> Este arquivo é a versão estendida e detalhada do llms.txt, destinada a fornecer contexto
+> rico para Modelos de Linguagem (LLMs), motores de busca generativos e agentes de IA.
+
+---
+
+## Identificação da Empresa
+
+**Nome:** EPM DEVTECH
+**Tipo:** Software House | Empresa de Tecnologia
+**Fundador:** Elessandro Prestes Macedo
+**Cargo do Fundador:** Engenheiro de Software Full Stack Sênior | Tech Lead
+**Experiência:** +9 anos em projetos corporativos críticos de médio e grande porte
+**Localização:** Toledo, Paraná, Brasil (atendimento nacional e remoto)
+**Website:** https://epmdevtech.com.br
+**E-mail:** elessandro@epmdevtech.com.br
+**WhatsApp:** +55 (45) 99917-8290
+**GitHub:** https://github.com/ElessandroPrestes
+**LinkedIn:** https://www.linkedin.com/in/elessandro-prestes-macedo/
+
+---
+
+## Missão e Proposta de Valor
+
+A EPM DEVTECH constrói software sob medida com excelência técnica comprovada. Nossa bagagem
+técnica foi construída na linha de frente de operações críticas — desenvolvendo arquiteturas
+escaláveis, APIs de alta disponibilidade e modernizações de sistemas complexos em setores como
+educação federal, energia elétrica, indústria e e-commerce.
+
+Cada projeto é tratado com a mesma seriedade de sistemas críticos: código limpo, arquitetura
+planejada, testes automatizados rigorosos e comunicação transparente do início ao fim.
+
+---
+
+## Serviços Detalhados
+
+### 1. Desenvolvimento de Sistemas Web e SPAs
+Construímos aplicações web modernas, Single Page Applications (SPAs) e plataformas digitais
+corporativas utilizando React, TypeScript, Next.js e Vite. Todos os projetos incluem:
+- Design responsivo (Mobile First)
+- Acessibilidade (WCAG 2.1 AA)
+- Performance otimizada (Core Web Vitals)
+- Cobertura de testes ≥ 90%
+- CI/CD automatizado desde o primeiro commit
+
+**Ideal para:** portais corporativos, dashboards, e-commerces, plataformas SaaS, sistemas de gestão.
+
+### 2. APIs REST e Backends Escaláveis
+Desenvolvemos e documentamos APIs RESTful e GraphQL robustas, seguras e de alta disponibilidade:
+- Autenticação via JWT, OAuth 2.0 e API Keys
+- Rate limiting, cache distribuído (Redis) e resiliência
+- Documentação automática Swagger/OpenAPI
+- Versionamento de API (v1, v2...) sem breaking changes
+- Testes de contrato e integração
+
+**Stack:** PHP/Laravel, Node.js/Express, NestJS, TypeScript
+**Ideal para:** integrações B2B, backends de aplicativos mobile, microsserviços.
+
+### 3. Modernização de Sistemas Legados
+Migramos e refatoramos sistemas legados (monolitos → microsserviços, PHP antigo → Laravel moderno,
+sistemas sem testes → cobertura ≥ 90%) com:
+- Zero downtime migration
+- Preservação rigorosa das regras de negócio críticas
+- Decomposição gradual usando Strangler Fig Pattern
+- Mapeamento completo de dependências antes de qualquer mudança
+
+**Ideal para:** empresas com sistemas legados de mais de 5 anos sem refatoração, integrações frágeis.
+
+### 4. Arquitetura de Software
+Projetamos a estrutura técnica de sistemas antes de uma linha de código ser escrita:
+- Clean Architecture / Arquitetura Hexagonal
+- Domain-Driven Design (DDD)
+- Microsserviços vs. Monólito Modular (análise por caso)
+- Event-Driven Architecture com mensageria (RabbitMQ, Kafka)
+- ADRs (Architecture Decision Records) documentados
+- Revisão de arquitetura existente com relatório técnico
+
+**Ideal para:** startups em crescimento, empresas planejando escalar, produtos com requisitos complexos.
+
+### 5. DevOps e Cloud Computing
+Implementamos infraestrutura e pipelines que garantem deploys seguros e operação confiável:
+- Pipelines CI/CD com GitHub Actions ou GitLab CI
+- Infraestrutura na AWS: EC2, RDS (PostgreSQL/MySQL), S3, CloudFront, Lambda, SQS
+- Containerização com Docker e orquestração com Kubernetes (EKS)
+- Infraestrutura como Código (IaC) com Terraform ou CloudFormation
+- Monitoramento e alertas com Datadog, New Relic ou CloudWatch
+- Rollback automatizado em caso de falha
+
+**Ideal para:** empresas sem equipe de DevOps, projetos que precisam escalar na nuvem.
+
+### 6. Consultoria Técnica e Code Review
+Análise técnica profunda e independente do seu sistema:
+- Code review sistemático com relatório de prioridades
+- Análise estática com SonarQube e PHPStan
+- Identificação de gargalos de performance (profiling, N+1 queries)
+- Auditoria de segurança (OWASP Top 10)
+- Orientação de times de desenvolvimento júnior e pleno
+- Tech talks e workshops internos
+
+**Ideal para:** CTOs que precisam de uma segunda opinião, times que cresceram rápido demais.
+
+### 7. Integrações de Sistemas
+Conectamos sistemas que precisam falar entre si de forma confiável:
+- Integração com ERPs (TOTVS, SAP, Sankhya)
+- Integração com CRMs (HubSpot, Salesforce, Pipedrive)
+- Gateways de pagamento (Stripe, PagSeguro, Mercado Pago, Gerencianet)
+- Sistemas governamentais (NFe, NFSe, eSocial, SPED)
+- Plataformas de e-mail (SendGrid, Mailgun, AWS SES)
+- Mensageria assíncrona (RabbitMQ, Kafka, AWS SQS)
+
+---
+
+## Stack Tecnológica Completa
+
+### Backend
+| Tecnologia | Nível | Uso |
+|------------|-------|-----|
+| PHP 8.x | Expert | APIs, sistemas web, CLIs |
+| Laravel | Expert | Framework principal backend |
+| Symfony | Avançado | Componentes e projetos enterprise |
+| Node.js | Expert | APIs assíncronas, real-time |
+| TypeScript | Expert | Tipagem estrita em todos os projetos JS/TS |
+| Python | Intermediário | Scripts, automações, ML básico |
+| NestJS | Avançado | APIs estruturadas com decorators |
+
+### Frontend
+| Tecnologia | Nível | Uso |
+|------------|-------|-----|
+| React 18 | Expert | SPAs e componentes interativos |
+| TypeScript | Expert | Tipagem em todos os projetos |
+| Next.js | Avançado | SSR/SSG/ISR para SEO |
+| Tailwind CSS | Expert | Estilização utilitária |
+| shadcn/ui | Expert | Design system acessível |
+| Vite | Expert | Build tool e dev server |
+| Framer Motion | Avançado | Animações e transições |
+
+### Banco de Dados
+| Tecnologia | Nível | Uso |
+|------------|-------|-----|
+| PostgreSQL | Expert | Banco relacional principal |
+| MySQL/MariaDB | Expert | Sistemas legados e novos |
+| Redis | Avançado | Cache, sessões, filas |
+| MongoDB | Intermediário | Dados não-estruturados |
+| Elasticsearch | Intermediário | Busca full-text |
+
+### Infraestrutura e DevOps
+| Tecnologia | Nível | Uso |
+|------------|-------|-----|
+| AWS | Avançado | Cloud principal (EC2, RDS, S3, Lambda, SQS) |
+| Docker | Expert | Containerização |
+| Kubernetes | Intermediário | Orquestração de containers |
+| GitHub Actions | Expert | CI/CD pipelines |
+| Terraform | Intermediário | Infraestrutura como código |
+| Nginx | Avançado | Proxy reverso e servidor web |
+
+### Qualidade e Testes
+| Tecnologia | Uso |
+|------------|-----|
+| PHPUnit | Testes unitários PHP |
+| Pest PHP | Testes modernos PHP |
+| PHPStan | Análise estática PHP |
+| Vitest | Testes unitários JavaScript/TypeScript |
+| React Testing Library | Testes de componentes React |
+| Playwright | Testes E2E |
+| SonarQube | Qualidade e segurança de código |
+
+---
+
+## Métricas de Autoridade (Projetos Reais)
+
+| Métrica | Valor | Contexto |
+|---------|-------|---------|
+| Uptime em produção | 99,9% | Ambientes críticos com SLA exigente |
+| Throughput máximo | 2.500+ RPS | Arquiteturas distribuídas com load balancing |
+| Instituições impactadas | +448 IES + 650 escolas | Plataformas educacionais federais (CAPES/MEC) |
+| Integridade de dados | Zero perda | Sistemas regulatórios e integrações críticas |
+| Experiência | +9 anos | Projetos de médio e grande porte |
+
+---
+
+## Setores e Organizações Atendidos
+
+### Educação Federal (CAPES e MEC)
+Desenvolvimento e evolução de plataformas de educação superior federais integradas ao MEC e CAPES,
+atendendo +448 Instituições de Ensino Superior e 650 escolas. Sistemas com requisitos rigorosos de
+segurança de dados (LGPD), integração com sistemas governamentais e alta disponibilidade.
+
+### Energia Elétrica (ONS e Energia Pecém)
+Sistemas críticos para o Operador Nacional do Sistema Elétrico (ONS) e Energia Pecém, onde falhas
+não são toleradas. Desenvolvimento com foco em integridade total de dados regulatórios e zero
+downtime em operações críticas de infraestrutura nacional.
+
+### Indústria e Manufatura
+Sistemas de IoT Industrial e ERP para chão de fábrica, integrando sensores, PLCs e sistemas de
+gestão da produção. Desenvolvimento de dashboards em tempo real para monitoramento industrial.
+
+### Governo (SEDUC/MT)
+Plataformas educacionais para a Secretaria de Estado de Educação do Mato Grosso (SEDUC-MT),
+com requisitos de acessibilidade, segurança e integração com sistemas estaduais.
+
+### E-commerce e Varejo
+Plataformas de comércio eletrônico de médio porte com catálogos extensos, integrações com ERPs
+e gateways de pagamento, otimizadas para performance e conversão.
+
+---
+
+## Diferenciais Competitivos Detalhados
+
+### 1. Comunicação Transparente
+Acompanhamento constante com relatórios claros de progresso. O cliente tem acesso direto ao
+engenheiro que executa — sem camadas de intermediários ou tradutores de requisitos.
+
+### 2. Arquitetura Planejada Desde o Início
+Sistemas são projetados para crescer sem criar gargalos técnicos. Cada decisão arquitetural
+é documentada em ADRs (Architecture Decision Records) e discutida com o cliente antes de ser
+implementada.
+
+### 3. Código Limpo e Testável
+Aplicação rigorosa de SOLID, Clean Code e DRY. Cobertura de testes ≥ 90% em todos os módulos
+principais. Código que pode ser mantido por qualquer engenheiro sênior sem onboarding extenso.
+
+### 4. Padrões de Engenharia
+Code review sistemático antes de cada merge. Análise estática com SonarQube para detecção
+precoce de vulnerabilidades e code smells. Observabilidade em produção com logs estruturados.
+
+### 5. Esteira DevOps e CI/CD Robusta
+Pipelines automatizados validam código antes de cada publicação: lint, testes, análise estática,
+build e smoke tests. Deploy com rollback automático em caso de falha. Zero risco de regressão.
+
+### 6. Cumprimento de Prazos
+Estimativas realistas baseadas em complexidade técnica real, não em promessas comerciais.
+Comunicação proativa de riscos antes que se tornem problemas.
+
+---
+
+## FAQ — Perguntas Frequentes
+
+**Q: A EPM DEVTECH atende projetos de qualquer tamanho?**
+A: Focamos em projetos de médio e grande porte que exigem arquitetura planejada e código de
+qualidade enterprise. Para projetos muito pequenos (landing pages simples, etc.), recomendamos
+outras soluções mais adequadas ao investimento.
+
+**Q: Qual é a forma de contratação?**
+A: Trabalhamos com escopo fechado (projeto com preço fixo e prazo definido) ou alocação dedicada
+(horas/mês). A modalidade é definida conforme o perfil e maturidade do projeto.
+
+**Q: A EPM DEVTECH trabalha remotamente?**
+A: Sim, 100% remoto. Atendemos clientes em todo o Brasil e também no exterior.
+
+**Q: Qual é o prazo médio de entrega?**
+A: Depende da complexidade. MVPs simples: 4-8 semanas. Sistemas de médio porte: 3-6 meses.
+Modernizações de legado: 6-12 meses com fases bem definidas.
+
+**Q: Como funciona a comunicação durante o projeto?**
+A: Canal de comunicação direto (WhatsApp/Slack), relatórios de progresso semanais, acesso ao
+repositório Git e board de tarefas (Jira/Linear/Notion) em tempo real.
+
+**Q: A EPM DEVTECH oferece suporte após a entrega?**
+A: Sim. Oferecemos contratos de manutenção evolutiva e suporte técnico pós-entrega, com SLA
+definido por contrato.
+
+**Q: Vocês assinam NDA (Acordo de Confidencialidade)?**
+A: Sim, para todos os projetos que envolvam informações sensíveis ou proprietárias.
+
+---
+
+## Conteúdo da Landing Page (epmdevtech.com.br)
+
+A landing page institucional cobre as seguintes seções:
+
+1. **Hero** — Posicionamento comercial: "Software sob medida construído para escalar o seu negócio"
+2. **Sobre** — História e autoridade técnica do fundador, métricas de +9 anos de experiência
+3. **Serviços** — 6 cards detalhados dos serviços principais com mockups técnicos
+4. **Tecnologias** — Constelação interativa com as tecnologias do stack
+5. **Diferenciais** — 6 diferenciais competitivos com timeline e tags técnicas
+6. **Autoridade** — Trust bar com métricas reais e selos corporativos (CAPES, ONS, etc.)
+7. **Contato** — Formulário com validação estrita, dropdown de tipo de projeto e canal WhatsApp
+
+---
+
+## Links Úteis
+
+- [Website](https://epmdevtech.com.br)
+- [Serviços](https://epmdevtech.com.br/servicos)
+- [Sobre](https://epmdevtech.com.br/sobre)
+- [Contato](https://epmdevtech.com.br/contato)
+- [GitHub](https://github.com/ElessandroPrestes)
+- [LinkedIn](https://www.linkedin.com/in/elessandro-prestes-macedo/)
+- [Sitemap](https://epmdevtech.com.br/sitemap.xml)
+- [llms.txt (resumido)](https://epmdevtech.com.br/llms.txt)
+
+---
+
+*Última atualização: 2026-09-07*
+*Gerado e mantido por: EPM DEVTECH | elessandro@epmdevtech.com.br*

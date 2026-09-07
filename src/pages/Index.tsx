@@ -35,27 +35,27 @@ const SEO_META: Record<string, SeoMeta> = {
   sobre: {
     title: "Sobre | EPM DEVTECH",
     description:
-      "Conheça a EPM DEVTECH: +9 anos construindo soluções de software sob medida com foco em qualidade, performance e arquitetura sólida.",
+      "Conheça a EPM DEVTECH: fundada por Elessandro Prestes Macedo, Engenheiro de Software Sênior com +9 anos construindo sistemas críticos para CAPES, ONS, Governo e Indústria. Arquitetura sólida, código limpo.",
   },
   servicos: {
     title: "Serviços | EPM DEVTECH",
     description:
-      "Desenvolvimento web, APIs REST escaláveis, aplicativos mobile e arquitetura de sistemas. Conheça os serviços da EPM DEVTECH.",
+      "Desenvolvimento web, APIs REST escaláveis, modernização de legados, arquitetura de microsserviços, DevOps/AWS e consultoria técnica. Atendemos Educação, Energia, Indústria e E-commerce.",
   },
   tecnologias: {
     title: "Tecnologias | EPM DEVTECH",
     description:
-      "PHP, Laravel, Node.js, React, TypeScript, AWS, Docker e muito mais. Veja o stack tecnológico utilizado pela EPM DEVTECH.",
+      "PHP, Laravel, Symfony, Node.js, React, TypeScript, PostgreSQL, AWS, Docker, Kubernetes, RabbitMQ e Kafka. Stack completo de engenharia de software da EPM DEVTECH.",
   },
   diferenciais: {
     title: "Diferenciais | EPM DEVTECH",
     description:
-      "Código limpo, entrega ágil, comunicação transparente e soluções que escalam. Descubra os diferenciais da EPM DEVTECH.",
+      "Código limpo, arquitetura planejada, CI/CD robusto, comunicação transparente e prazos cumpridos. Descubra os diferenciais técnicos da EPM DEVTECH.",
   },
   contato: {
     title: "Contato | EPM DEVTECH",
     description:
-      "Tem um projeto em mente? Entre em contato com a EPM DEVTECH e descubra como podemos transformar sua ideia em realidade.",
+      "Tem um projeto em mente? Fale com a EPM DEVTECH: elessandro@epmdevtech.com.br ou WhatsApp (45) 99917-8290. Retorno em até 24h úteis.",
   },
 };
 
