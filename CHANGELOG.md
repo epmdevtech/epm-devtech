@@ -9,7 +9,19 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
-## [0.0.24-layout-shift-header-dropdown-fix] — 2026-09-06
+## [0.0.25-contact-dropdown-alignment-refinement] — 2026-09-07
+
+### Corrigido
+- **Refinamento de Alinhamento Vertical do Dropdown de Contato (`Contact.tsx`)**:
+  - Eliminação do gap de 4px entre o underline do campo "Desafio ou Tipo de Projeto" e a borda superior do menu flutuante de opções
+  - Causa raiz: o componente base `select.tsx` aplica `data-[side=bottom]:translate-y-1` em modo `position="popper"`, criando o afastamento indesejado
+  - Solução cirúrgica em `Contact.tsx`: adição de `sideOffset={0}` (API Radix Popper) e sobrescrita `data-[side=bottom]:translate-y-0` no `SelectContent`, sem modificar o arquivo base compartilhado
+  - Alinhamento milimétrico confirmado: borda superior do dropdown encosta diretamente no underline do trigger com gap = 0px
+
+### Adicionado
+- **Documentação SDD Completa**: Registro formal de `SPEC-025`, `TASK-025` e `QA-025` com matriz de conformidade e evidências de quality gates
+
+
 
 ### Corrigido
 - **Eliminação de Layout Shift do Menu Superior / Header ao Abrir Dropdowns (`index.css`)**:
