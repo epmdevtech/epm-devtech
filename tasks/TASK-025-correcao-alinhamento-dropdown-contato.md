@@ -27,7 +27,7 @@ O objetivo é o refinamento final de alinhamento e dimensionamento do menu dropd
 - [x] Executar Quality Gates: `npx playwright test`
 - [x] Gerar relatório de evidências em `reviews/QA-025.md`
 - [x] Atualizar `PROJECT.md` e `CHANGELOG.md`
-- [ ] Realizar commits semânticos no git
+- [x] Realizar commits semânticos no git
 
 ---
 
