@@ -9,6 +9,21 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.29-toast-positioning-and-contact-feedback] — 2026-09-07
+
+### Otimização & UX/UI
+- **Posicionamento Superior Central de Notificações Toast (`sonner.tsx`)**:
+  - Reconfiguração do `Toaster` do Sonner para `position="top-center"` no desktop e mobile, eliminando a renderização na base da tela sobre o Rodapé e a colisão com o botão de ScrollToTop
+  - Configuração de offset superior inteligente: `offset={{ top: "84px" }}` no desktop e `mobileOffset={{ top: "76px", left: "16px", right: "16px" }}` no mobile para garantir afastamento harmônico abaixo do Header fixo
+  - Habilitação de botão de fechamento rápido (`closeButton`)
+- **Microinteração de Confirmação Imediata no Botão de Envio (`Contact.tsx`)**:
+  - Adicionado estado transitório `isSuccess` com temporizador de 4 segundos: ao confirmar o envio, o botão transiciona suavemente para `"✓ Mensagem Enviada!"` com ícone `CheckCircle2`
+  - Fornece feedback instantâneo sob o cursor/toque do usuário no momento da submissão
+
+### Adicionado
+- **Documentação SDD**: Registro formal de `SPEC-029`, `TASK-029` e `QA-029` com validação de todos os Quality Gates
+- **Testes Unitários Atualizados (`Contact.test.tsx`)**: Validação do estado e rótulo `"Mensagem Enviada!"` no botão
+
 ## [0.0.28-contact-emailjs-success-log-removal] — 2026-09-07
 
 ### Limpeza & Otimização
