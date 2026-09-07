@@ -152,7 +152,7 @@ src/
 | Technologies      | ✅ Constellation | TechConstellation interativo com trilhas PCB, Focus & Context e Painel Arquitetural |
 | Differentials     | ✅ Atualizado    | Copywriting sênior nos 6 cards, tags técnicas, timeline preservada e H3 semântico |
 | Authority         | ✅ Atualizado    | Trust Bar compacto de Prova Social, métricas reais de missão crítica e selos corporativos |
-| Contact           | ✅ Refinado      | Split Card com formulário underline, dropdown com alinhamento milimétrico (gap=0px) ao underline do trigger e zero layout shift no menu superior |
+| Contact           | ✅ Refinado      | Split Card com formulário underline, dropdown com alinhamento milimétrico (gap=0px), resiliência de envio com toast amigável e console limpo em produção |
 | Footer            | ✅ 4 Colunas     | Layout moderno de 4 colunas monocromáticas, serviços reais, canais diretos e sub-footer |
 | ScrollToTop       | ✅ Adaptativo    | Elevação dinâmica no rodapé, tooltip superior e prevenção de oclusão |
 | Cookie Banner     | ✅ Otimizado     | Lazy load assíncrono + defer timer (3.5s)  |

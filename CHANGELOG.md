@@ -9,6 +9,29 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.28-contact-emailjs-success-log-removal] — 2026-09-07
+
+### Limpeza & Otimização
+- **Remoção de Log de Sucesso do EmailJS no Console (`Contact.tsx`)**:
+  - Eliminação do log informativo `console.info("[EmailJS] Enviado com sucesso:", result.status, result.text);` executado após envio bem-sucedido
+  - Redução de ruído no DevTools e eliminação de vazamento de detalhes internos da infraestrutura em produção
+  - Preservação integral do feedback visual amigável (`toast.success`), limpeza do formulário (`reset()`) e rastreabilidade técnica de falhas (`console.error`)
+
+### Adicionado
+- **Documentação SDD**: Registro de `SPEC-028`, `TASK-028` e `QA-028` com evidências de qualidade (100% testes e E2E aprovados)
+
+## [0.0.27-contact-resilience-and-autofill] — 2026-09-07
+
+### Corrigido
+- **Mensagem Amigável no Toast de Falha de Envio e Fallback para WhatsApp (`Contact.tsx`)**:
+  - Substituição da mensagem técnica crua da API (`error.text`) por aviso institucional polido com botão direto "Chamar no WhatsApp"
+  - Detalhes técnicos da falha restritos ao `console.error` para auditoria do time de engenharia
+- **Normalização Visual de Autofill do Navegador (`index.css`)**:
+  - Neutralização do fundo sólido do WebKit/Blink em campos com preenchimento automático mantendo fundo transparente e cor de texto consistentes
+
+### Adicionado
+- **Documentação SDD**: Registro formal de `SPEC-027`, `TASK-027` e `QA-027`
+
 ## [0.0.26-header-layout-shift-specificity-fix] — 2026-09-07
 
 ### Corrigido
