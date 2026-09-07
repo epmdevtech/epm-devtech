@@ -191,7 +191,7 @@ src/
 
 | Tarefa | Descrição | Data Agendada | Status |
 |---|---|---|---|
-| — | Nenhuma tarefa agendada no momento | — | — |
+| VERIF-001 | 1. Verificar indexação e status de Sucesso do `sitemap.xml` no Google Search Console (janela de 24h)<br>2. Avaliar necessidade de inclusão explícita da tag `<meta name="theme-color">` no `<head>` do `index.html` | 2026-09-08 | ⏳ Agendado |
 
 ---
 
