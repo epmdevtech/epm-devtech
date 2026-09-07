@@ -253,7 +253,8 @@ const Contact = () => {
                       </SelectTrigger>
                       <SelectContent
                         position="popper"
-                        className="w-[var(--radix-select-trigger-width)] min-w-[var(--radix-select-trigger-width)] max-w-[var(--radix-select-trigger-width)] z-50 shadow-lg rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 overflow-hidden p-1"
+                        sideOffset={0}
+                        className="w-[var(--radix-select-trigger-width)] min-w-[var(--radix-select-trigger-width)] max-w-[var(--radix-select-trigger-width)] data-[side=bottom]:translate-y-0 z-50 shadow-lg rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 overflow-hidden p-1"
                       >
                         {PROJECT_TYPES.map((type) => (
                           <SelectItem
