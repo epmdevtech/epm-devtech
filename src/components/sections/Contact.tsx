@@ -104,8 +104,7 @@ const Contact = () => {
         time: new Date().toLocaleString("pt-BR"),
       };
 
-      const result = await emailjs.send(serviceId, templateId, templateParams);
-      console.info("[EmailJS] Enviado com sucesso:", result.status, result.text);
+      await emailjs.send(serviceId, templateId, templateParams);
       toast.success("Mensagem enviada! Retornarei em breve.");
       reset();
     } catch (err: unknown) {
