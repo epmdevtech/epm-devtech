@@ -271,6 +271,25 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     // Valida confinamento do dropdown à largura do trigger
     expect(contentBox!.width).toBeLessThanOrEqual(triggerBox!.width + 1);
 
+    // Valida que body NÃO recebeu margin-right ou overflow-hidden da biblioteca
+    // (verifica que nossa regra CSS de alta especificidade está vencendo)
+    const bodyStyles = await page.evaluate(() => {
+      const body = document.body;
+      const computed = window.getComputedStyle(body);
+      return {
+        marginRight: computed.marginRight,
+        overflow: computed.overflow,
+        hasScrollLocked: body.hasAttribute('data-scroll-locked'),
+      };
+    });
+
+    // body[data-scroll-locked] deve estar presente (a biblioteca aplica o atributo)
+    expect(bodyStyles.hasScrollLocked).toBe(true);
+    // mas o margin-right deve ser 0 (nossa CSS de especificidade elevada vence)
+    expect(bodyStyles.marginRight).toBe('0px');
+    // e o overflow deve ser visible (não hidden da biblioteca)
+    expect(bodyStyles.overflow).toBe('visible');
+
     // Fecha o dropdown via Escape e valida estabilidade contínua
     await page.keyboard.press('Escape');
     await expect(selectContent).toBeHidden();

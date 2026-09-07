@@ -19,11 +19,19 @@ body {
   max-width: 100%;
 }
 
-/* Previne que bibliotecas como Radix/react-remove-scroll ocultem a barra de rolagem e desloquem elementos fixos */
-body[data-scroll-locked] {
+/* Previne que bibliotecas como Radix/react-remove-scroll ocultem a barra de rolagem e desloquem elementos fixos.
+   Especificidade: html body[attr] = (0,1,2) > body[attr] = (0,1,1) da biblioteca.
+   Como a react-remove-scroll-bar injeta estilos via styleSingleton APÓS o CSS estático,
+   o aumento de especificidade garante que nossa regra sempre vença, independentemente da ordem. */
+html body[data-scroll-locked] {
   overflow: visible !important;
   margin-right: 0px !important;
   padding-right: 0px !important;
+}
+
+html body[data-scroll-locked] header {
+  right: 0px !important;
+  margin-right: 0px !important;
 }
 
 /* Oculta o cursor nativo em dispositivos com mouse (pointer: fine)
