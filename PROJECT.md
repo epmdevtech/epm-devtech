@@ -82,6 +82,7 @@ Single Page Application (SPA) com roteamento client-side simulando seções via 
 | `/servicos`     | Services            |
 | `/tecnologias`  | Technologies        |
 | `/diferenciais` | Differentials       |
+| `/faq`          | FAQ                 |
 | `/contato`      | Contact             |
 | `/*`            | NotFound (404)      |
 
@@ -104,6 +105,7 @@ src/
 │   │   ├── Technologies.tsx
 │   │   ├── TechConstellation.tsx
 │   │   ├── Differentials.tsx
+│   │   ├── FAQ.tsx
 │   │   ├── Authority.tsx
 │   │   ├── Contact.tsx
 │   │   └── Footer.tsx
@@ -151,13 +153,14 @@ src/
 | Services          | ✅ Atualizado    | Copywriting técnico sênior nos 6 cards, H2 monocromático, H3 font-semibold e mockups técnicos preservados |
 | Technologies      | ✅ Constellation | TechConstellation interativo com trilhas PCB, Focus & Context e Painel Arquitetural |
 | Differentials     | ✅ Atualizado    | Copywriting sênior nos 6 cards, tags técnicas, timeline preservada e H3 semântico |
+| FAQ               | ✅ Implementado  | Seção visual interativa em Accordion (shadcn/ui), 10 perguntas categorizadas em 3 grupos (badges coloridos), redação natural pt-BR e sincronizada com JSON-LD |
 | Authority         | ✅ Atualizado    | Trust Bar compacto de Prova Social, métricas reais de missão crítica e selos corporativos |
 | Contact           | ✅ Blindado      | Split Card com formulário underline, dropdown milimétrico (gap=0px), máscara dinâmica de telefone, validação estrita Zod (rejeição de letras e DDDs inválidos), microinteração no botão e toast centralizado no topo (top-center) |
 | Footer            | ✅ 4 Colunas     | Layout moderno de 4 colunas monocromáticas, serviços reais, canais diretos e sub-footer |
 | ScrollToTop       | ✅ Adaptativo    | Elevação dinâmica no rodapé, tooltip superior e prevenção de oclusão |
 | Cookie Banner     | ✅ Otimizado     | Lazy load assíncrono + defer timer (3.5s)  |
-| SEO & Agêntico    | ✅ GEO Otimizado | `robots.txt` com blocos para 10 crawlers de IA (GPTBot, PerplexityBot, ClaudeBot, Google-Extended...), `llms.txt` expandido com métricas/setores/stack, `llms-full.txt` criado, JSON-LD com FAQPage + Services individuais + email corporativo, meta descriptions enriquecidas por rota, `<meta name="theme-color">` e iOS meta tags explícitas no `<head>` (frame 1, antes do manifesto) |
-| Testes unitários  | ✅ Implementado  | 18/18 suites, 124/124 testes passando (98.28% coverage) |
+| SEO & Agêntico    | ✅ GEO Otimizado | `robots.txt` com blocos para 10 crawlers de IA, `llms.txt` expandido com métricas/setores/stack, `llms-full.txt` criado, JSON-LD com FAQPage (10 perguntas com métricas comprovadas) + Services individuais enriquecidos com resultados reais (CAPES 2.500 RPS, ONS 99,9% uptime, deploy -60%, Pecém +50% proc, Governo MT 650 escolas) + email corporativo, meta descriptions reescritas com foco em conversão e prova social por rota, `<meta name="theme-color">` e iOS meta tags no `<head>` |
+| Testes unitários  | ✅ Implementado  | 18/18 suites, 124/124 testes passando (98.38% coverage, FAQ.tsx 100%) |
 | Testes E2E        | ✅ Implementado  | Suíte Playwright (10/10 testes passando, incluindo teste E2E de validação e máscara de telefone, layout shift zero e computed styles) |
 | Acessibilidade    | ✅ 100% WCAG AA  | Contraste de texto e botões >= 4.5:1 (Logotipo WCAG AAA >= 17:1) |
 | Performance       | ✅ 100% Otimizado| JS inicial < 80 KB, FCP/LCP instantâneo    |

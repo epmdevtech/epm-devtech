@@ -9,7 +9,29 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
-## [0.0.33-theme-color-meta-tag] — 2026-09-08
+## [0.0.34-geo-rich-snippets-faqpage-e-servicos] — 2026-09-08
+
+### Adicionado
+- **`src/components/sections/FAQ.tsx`** — Nova seção visual interativa de Perguntas Frequentes (FAQ) com:
+  - 10 perguntas estratégicas divididas em 3 categorias: Credibilidade & Autoridade, Serviços & Stack, Processo & Contratação
+  - Badges coloridos por categoria
+  - Componente Accordion acessível (shadcn/ui, WCAG AA, navegação completa por teclado)
+  - Animação suave com Framer Motion e suporte a `prefers-reduced-motion`
+  - Redação em pt-BR natural (sem travessões ou artificialismos)
+  - CTA ao final com link direto para `/contato`
+- **Rota `/faq`** — Suporte a rota de scroll spy e metadados dedicados em `src/pages/Index.tsx`
+
+### Modificado
+- **`index.html` (JSON-LD / Schema.org)**:
+  - Schema `FAQPage` expandido de 7 perguntas genéricas para 10 perguntas altamente detalhadas com dados reais de projetos
+  - Schemas de `Service` enriquecidos com métricas comprovadas por serviço: SIPREC/CAPES (10.000 usuários simultâneos, 2.500 RPS, <300ms latência, 448 IES), GENIN/ONS (100% integridade, deploy -60%, 99,9% uptime), SIGMA/Energia Pecém (+50% processamento, -35% falhas), Governo MT (650 escolas, 141 municípios, MTTR -50%), modernização de legado (56.400 linhas removidas, 2.399 testes automatizados)
+  - Atributos `serviceOutput` adicionados para cada um dos 6 serviços catalogados
+  - Schemas `ProfessionalService` e `Person` atualizados com competências técnicas completas (Oracle, Azure, Pest, SDD, SonarQube, IA aplicada)
+- **`src/pages/Index.tsx`**:
+  - 6 meta descriptions reescritas com foco em alta conversão utilizando o framework [Proposta de Valor] + [Métrica Real / Prova Social] + [CTA Claro]
+  - Import dinâmico (lazy load) de `FAQ.tsx`
+  - Entrada de metadados SEO para a rota `/faq`
+
 
 ### Adicionado
 - **`index.html`** — Meta tags explícitas no `<head>` para garantir cor correta da barra de navegação

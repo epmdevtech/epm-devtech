@@ -13,6 +13,7 @@ const About        = lazy(() => import("@/components/sections/About"));
 const Services     = lazy(() => import("@/components/sections/Services"));
 const Technologies = lazy(() => import("@/components/sections/Technologies"));
 const Differentials= lazy(() => import("@/components/sections/Differentials"));
+const FAQ          = lazy(() => import("@/components/sections/FAQ"));
 const Authority    = lazy(() => import("@/components/sections/Authority"));
 const Contact      = lazy(() => import("@/components/sections/Contact"));
 const Footer       = lazy(() => import("@/components/sections/Footer"));
@@ -29,33 +30,38 @@ const SEO_META: Record<string, SeoMeta> = {
   "": {
     title: "EPM DEVTECH | Software House: Desenvolvimento de Software Sob Medida",
     description:
-      "Software house especializada em desenvolvimento web, APIs escaláveis e arquitetura de sistemas. +9 anos de experiência. PHP, Laravel, Node.js, React, AWS, Docker.",
+      "Software house que entregou sistemas para CAPES, ONS e Energia Pecém: 2.500 RPS, 10.000 usuários e 99,9% uptime. PHP, Laravel, Node.js, AWS. Solicite seu orçamento.",
     ogTitle: "EPM DEVTECH | Software House",
   },
   sobre: {
     title: "Sobre | EPM DEVTECH",
     description:
-      "Conheça a EPM DEVTECH: fundada por Elessandro Prestes Macedo, Engenheiro de Software Sênior com +9 anos construindo sistemas críticos para CAPES, ONS, Governo e Indústria. Arquitetura sólida, código limpo.",
+      "Tech Lead com +9 anos em sistemas críticos para CAPES, ONS e Indústria. 56.400 linhas de legado eliminadas, 2.399 testes automatizados, retrabalho -40%. Conheça nossa história.",
   },
   servicos: {
     title: "Serviços | EPM DEVTECH",
     description:
-      "Desenvolvimento web, APIs REST escaláveis, modernização de legados, arquitetura de microsserviços, DevOps/AWS e consultoria técnica. Atendemos Educação, Energia, Indústria e E-commerce.",
+      "APIs a 2.500 RPS, legados modernizados com Strangler Fig, DevOps AWS com 99,9% uptime. Projetos reais para CAPES, ONS, Governo e Indústria. Veja nossos serviços.",
   },
   tecnologias: {
     title: "Tecnologias | EPM DEVTECH",
     description:
-      "PHP, Laravel, Symfony, Node.js, React, TypeScript, PostgreSQL, AWS, Docker, Kubernetes, RabbitMQ e Kafka. Stack completo de engenharia de software da EPM DEVTECH.",
+      "Stack enterprise comprovada em produção: PHP/Laravel, Node.js, React, PostgreSQL, AWS, RabbitMQ e Kafka. Mesma tecnologia dos sistemas do ONS e CAPES. Explore nossa stack.",
   },
   diferenciais: {
     title: "Diferenciais | EPM DEVTECH",
     description:
-      "Código limpo, arquitetura planejada, CI/CD robusto, comunicação transparente e prazos cumpridos. Descubra os diferenciais técnicos da EPM DEVTECH.",
+      "Qualidade de código +45% via SonarQube, entrega +25% com IA aplicada, deploy automatizado com rollback. Não vendemos promessas — entregamos métricas. Veja nossos diferenciais.",
   },
   contato: {
     title: "Contato | EPM DEVTECH",
     description:
-      "Tem um projeto em mente? Fale com a EPM DEVTECH: elessandro@epmdevtech.com.br ou WhatsApp (45) 99917-8290. Retorno em até 24h úteis.",
+      "Sistema crítico para construir ou modernizar? Retorno técnico em até 24h úteis. E-mail: elessandro@epmdevtech.com.br · WhatsApp: (45) 99917-8290. Solicite um orçamento.",
+  },
+  faq: {
+    title: "FAQ | EPM DEVTECH",
+    description:
+      "Perguntas frequentes sobre serviços, projetos (CAPES, ONS, Energia Pecém), métricas reais (2.500 RPS, 99,9% uptime) e contratação da EPM DEVTECH. Encontre sua resposta.",
   },
 };
 
@@ -213,6 +219,12 @@ const Index = () => {
           <LazySection id="diferenciais" minHeight="500px">
             <Suspense fallback={<div id="diferenciais" style={{ minHeight: "500px" }} className="w-full" />}>
               <Differentials />
+            </Suspense>
+          </LazySection>
+
+          <LazySection id="faq" minHeight="600px">
+            <Suspense fallback={<div id="faq" style={{ minHeight: "600px" }} className="w-full" />}>
+              <FAQ />
             </Suspense>
           </LazySection>
 
