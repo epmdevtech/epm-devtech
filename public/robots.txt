@@ -1,9 +1,9 @@
-# Rastreadores Padrão
+# Rastreadores Padrao
 User-agent: *
 Allow: /
 Disallow: /src/
 
-# ─── Crawlers de IA — Permissão Explícita ───────────────────────────────────
+# Crawlers de IA - Permissao Explicita
 
 # OpenAI (ChatGPT / SearchGPT)
 User-agent: GPTBot
@@ -23,24 +23,58 @@ Allow: /
 User-agent: ClaudeBot
 Allow: /
 
+User-agent: Claude-Web
+Allow: /
+
 User-agent: anthropic-ai
 Allow: /
 
-# Google (Gemini / AI Overviews)
+# Google (Gemini / AI Overviews / Search)
 User-agent: Google-Extended
 Allow: /
 
 User-agent: Googlebot
 Allow: /
 
-# Meta AI
-User-agent: FacebookBot
-Allow: /
-
 # Microsoft Bing / Copilot
 User-agent: Bingbot
 Allow: /
 
-# ─── Sitemap e llms.txt ───────────────────────────────────────────────────────
+# Meta AI
+User-agent: FacebookBot
+Allow: /
 
+# Apple (Apple Intelligence / Siri)
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# ByteDance
+User-agent: Bytespider
+Allow: /
+
+# Common Crawl (Base de treinamento para multiplos LLMs)
+User-agent: CCBot
+Allow: /
+
+# Diffbot
+User-agent: Diffbot
+Allow: /
+
+# Cohere AI
+User-agent: cohere-ai
+Allow: /
+
+# Arquivos de contexto e documentacao para agentes
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /sitemap.xml
+
+# Sitemap e Metadados para IA
 Sitemap: https://epmdevtech.com.br/sitemap.xml
+
+# Contexto semantico para LLMs:
+# https://epmdevtech.com.br/llms.txt
+# https://epmdevtech.com.br/llms-full.txt

@@ -9,6 +9,20 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.36-robots-txt-llms-txt-ai-crawlers] — 2026-09-08
+
+### Adicionado
+- **Tags de Auto-descoberta LLM em `index.html`**: Inclusão de `<link rel="alternate" type="text/plain" href="/llms.txt" />` e `/llms-full.txt` no `<head>` para indexadores e agentes autônomos.
+- **Rotas `/setores` e `/faq` no `public/sitemap.xml`**: Inclusão das novas rotas com prioridades 0.8 e 0.7 e atualização da data `lastmod` para `2026-09-08`.
+
+### Modificado
+- **`public/robots.txt`**: Formalização de permissão explícita para 16 rastreadores de IA generativa e busca semântica (`GPTBot`, `OAI-SearchBot`, `ChatGPT-User`, `PerplexityBot`, `ClaudeBot`, `Claude-Web`, `anthropic-ai`, `Google-Extended`, `Googlebot`, `Bingbot`, `FacebookBot`, `Applebot-Extended`, `Applebot`, `Bytespider`, `CCBot`, `Diffbot`, `cohere-ai`), regras de `Allow` para `llms.txt`, `llms-full.txt` e `sitemap.xml`, e remoção de caracteres de travessão.
+- **`public/llms.txt`**: Reestruturação alinhada à narrativa de 10 seções do site, resumo dos 4 setores de atuação, 6 serviços principais focados no problema real, relação das 10 perguntas da FAQ e consolidação das métricas factuais reais em pt-BR natural sem travessões.
+- **`public/llms-full.txt`**: Expansão com alta densidade semântica para RAG, detalhamento da tríade operacional dos 4 setores, especificações dos 6 serviços, matriz de proficiência técnica da stack, íntegra das 10 perguntas do FAQ e diretrizes de engenharia com zero travessões.
+- **`public/site.webmanifest`**: Padronização do nome para `EPM DEVTECH | Software House` (substituição de travessão).
+- **`index.html` (JSON-LD)**: Sincronização do schema `FAQPage` com as 10 perguntas reais de quebra de objeções da FAQ e remoção de travessões de IA em todo o cabeçalho e dados estruturados.
+
+
 ## [0.0.35-reorganizacao-ux-ui-arquitetura-informacao] — 2026-09-08
 
 ### Adicionado

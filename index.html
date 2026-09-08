@@ -13,7 +13,7 @@
       em todas as ocorrências abaixo antes de ir para produção.
     -->
 
-    <!-- Canonical URL — evita conteúdo duplicado -->
+    <!-- Canonical URL: evita conteudo duplicado -->
     <link rel="canonical" href="https://epmdevtech.com.br/" />
 
     <!-- Primary Meta Tags -->
@@ -52,6 +52,10 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- LLM Discovery Links -->
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="EPM DEVTECH Contexto LLM" />
+    <link rel="alternate" type="text/plain" href="/llms-full.txt" title="EPM DEVTECH Contexto LLM Completo" />
 
     <!-- Theme Color: aplicado no frame 1 (antes do manifesto ser lido pelo browser).
          Garante a cor correta da barra de navegação no Chrome/Android desde a primeira visita.
@@ -176,7 +180,7 @@
             "height": 326
           },
           "image": "https://epmdevtech.com.br/android-chrome-512x512.png",
-          "description": "Software house especializada em desenvolvimento web, APIs escaláveis, arquitetura de sistemas e soluções digitais sob medida. Portfólio comprovado: CAPES/MEC (10.000 usuários simultâneos, 2.500 RPS, 448 IES), ONS — Operador Nacional do Sistema Elétrico (99,9% uptime, deploy -60%), Energia Pecém (processamento +50%, falhas -35%) e Governo do MT (650 escolas, 141 municípios).",
+          "description": "Software house especializada em desenvolvimento web, APIs escaláveis, arquitetura de sistemas e soluções digitais sob medida. Portfólio comprovado: CAPES/MEC (10.000 usuários simultâneos, 2.500 RPS, 448 IES), ONS (Operador Nacional do Sistema Elétrico: 99,9% uptime, deploy -60%), Energia Pecém (processamento +50%, falhas -35%) e Governo do MT (650 escolas, 141 municípios).",
           "foundingDate": "2015",
           "email": "elessandro@epmdevtech.com.br",
           "telephone": "+55-45-99917-8290",
@@ -226,7 +230,7 @@
                   "@type": "Service",
                   "@id": "https://epmdevtech.com.br/servicos#legado",
                   "name": "Modernização de Sistemas Legados",
-                  "description": "Migração e refatoração de sistemas legados para arquiteturas modernas (monolito para microsserviços) com zero downtime e preservação rigorosa das regras de negócio críticas, aplicando o Strangler Fig Pattern. Referências: EPM DEVTECH — eliminação de 56.400 linhas de código legado, 2.399 testes automatizados criados, retrabalho reduzido em 40%; Grupo Paraíso — redução de 40% nos custos de manutenção e aumento de 30% na eficiência operacional.",
+                  "description": "Migração e refatoração de sistemas legados para arquiteturas modernas (monolito para microsserviços) com zero downtime e preservação rigorosa das regras de negócio críticas, aplicando o Strangler Fig Pattern. Referências: EPM DEVTECH: eliminação de 56.400 linhas de código legado, 2.399 testes automatizados criados, retrabalho reduzido em 40%; Grupo Paraíso: redução de 40% nos custos de manutenção e aumento de 30% na eficiência operacional.",
                   "serviceOutput": "Sistema modernizado com arquitetura documentada em ADRs, cobertura de testes ≥90% e rollback automatizado.",
                   "provider": { "@id": "https://epmdevtech.com.br/#organization" }
                 }
@@ -248,7 +252,7 @@
                   "@type": "Service",
                   "@id": "https://epmdevtech.com.br/servicos#devops",
                   "name": "DevOps e Cloud Computing",
-                  "description": "Pipelines CI/CD automatizados com GitHub Actions e GitLab CI, infraestrutura na AWS (EC2, RDS, S3, Lambda, CodeBuild, API Gateway, CloudWatch) e Azure (Monitor, Functions, IoT), Docker, Kubernetes e rollback automático. Referências: Projeto GENIN/ONS na AWS — tempo de deploy reduzido em 60%, 99,9% de disponibilidade; Energia Pecém no Azure — incidentes críticos reduzidos em 45%, MTTR acelerado; Xadrez Online/Governo MT — arquitetura Serverless (AWS Lambda, SQS, SNS) reduzindo custos em 35%.",
+                  "description": "Pipelines CI/CD automatizados com GitHub Actions e GitLab CI, infraestrutura na AWS (EC2, RDS, S3, Lambda, CodeBuild, API Gateway, CloudWatch) e Azure (Monitor, Functions, IoT), Docker, Kubernetes e rollback automático. Referências: Projeto GENIN/ONS na AWS: tempo de deploy reduzido em 60%, 99,9% de disponibilidade; Energia Pecém no Azure: incidentes críticos reduzidos em 45%, MTTR acelerado; Xadrez Online/Governo MT: arquitetura Serverless (AWS Lambda, SQS, SNS) reduzindo custos em 35%.",
                   "serviceOutput": "Pipeline CI/CD funcional, infraestrutura como código (IaC), dashboards de monitoramento e SLA de disponibilidade documentado.",
                   "provider": { "@id": "https://epmdevtech.com.br/#organization" }
                 }
@@ -259,7 +263,7 @@
                   "@type": "Service",
                   "@id": "https://epmdevtech.com.br/servicos#consultoria",
                   "name": "Consultoria Técnica e Code Review",
-                  "description": "Revisão de arquitetura existente, análise estática contínua com SonarQube, identificação de gargalos de performance, auditoria OWASP e orientação de times de desenvolvimento. Referências: Datainfo/CAPES — elevação de 45% nos indicadores de qualidade de código e redução de vulnerabilidades críticas via SonarQube; implementação de GitHub Copilot com metodologia SDD aumentando a entrega de features por sprint em 25%; ELK Stack no Governo MT reduzindo MTTR em 50%.",
+                  "description": "Revisão de arquitetura existente, análise estática contínua com SonarQube, identificação de gargalos de performance, auditoria OWASP e orientação de times de desenvolvimento. Referências: Datainfo/CAPES: elevação de 45% nos indicadores de qualidade de código e redução de vulnerabilidades críticas via SonarQube; implementação de GitHub Copilot com metodologia SDD aumentando a entrega de features por sprint em 25%; ELK Stack no Governo MT reduzindo MTTR em 50%.",
                   "serviceOutput": "Relatório de auditoria técnica, plano de ação priorizado, configuração de ferramentas de qualidade e capacitação do time.",
                   "provider": { "@id": "https://epmdevtech.com.br/#organization" }
                 }
@@ -277,7 +281,7 @@
           "name": "Elessandro Prestes Macedo",
           "url": "https://epmdevtech.com.br",
           "jobTitle": "Engenheiro de Software Full Stack Sênior e Tech Lead",
-          "description": "Fundador da EPM DEVTECH. +9 anos de experiência em projetos de missão crítica para CAPES/MEC (448 IES, 10.000 usuários simultâneos, 2.500 RPS), ONS — Operador Nacional do Sistema Elétrico (99,9% uptime, deploy -60%), Energia Pecém (processamento +50%) e Governo do MT (650 escolas, 141 municípios). Especialista em PHP, Laravel, Node.js, React, AWS, Azure e arquitetura de microsserviços com Strangler Fig Pattern. Praticante de Spec-Driven Development (SDD) e Engenharia de Software Assistida por IA.",
+          "description": "Fundador da EPM DEVTECH. +9 anos de experiência em projetos de missão crítica para CAPES/MEC (448 IES, 10.000 usuários simultâneos, 2.500 RPS), ONS (Operador Nacional do Sistema Elétrico: 99,9% uptime, deploy -60%), Energia Pecém (processamento +50%) e Governo do MT (650 escolas, 141 municípios). Especialista em PHP, Laravel, Node.js, React, AWS, Azure e arquitetura de microsserviços com Strangler Fig Pattern. Praticante de Spec-Driven Development (SDD) e Engenharia de Software Assistida por IA.",
           "worksFor": { "@id": "https://epmdevtech.com.br/#organization" },
           "alumniOf": {
             "@type": "CollegeOrUniversity",
@@ -291,82 +295,82 @@
           "mainEntity": [
             {
               "@type": "Question",
-              "name": "O que é a EPM DEVTECH e qual é sua especialidade?",
+              "name": "Preciso ter o projeto totalmente especificado para iniciar o contato?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "A EPM DEVTECH é uma software house brasileira fundada por Elessandro Prestes Macedo, Engenheiro de Software Sênior com mais de 9 anos de experiência. É especializada em desenvolvimento de software sob medida, APIs REST escaláveis (2.500+ RPS), arquitetura de microsserviços, modernização de sistemas legados com Strangler Fig Pattern e DevOps em Cloud (AWS e Azure). Atua em projetos de médio e grande porte com foco em alta disponibilidade (99,9% uptime), performance e qualidade enterprise."
+                "text": "Não. Você não precisa ter documentação técnica pronta nem lista fechada de requisitos. Basta compartilhar conosco o contexto do seu negócio, o problema operacional que você enfrenta ou o objetivo que deseja atingir. Durante o diagnóstico técnico, nós ajudamos a mapear o cenário e desenhar a arquitetura recomendada."
               }
             },
             {
               "@type": "Question",
-              "name": "Quais projetos de grande porte a EPM DEVTECH já entregou?",
+              "name": "Como funciona o primeiro contato e qual é o tempo de retorno?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "A EPM DEVTECH possui portfólio comprovado em projetos de missão crítica: (1) SIPREC para CAPES/MEC — modernização arquitetural suportando 10.000 usuários simultâneos, 2.500 RPS e latência abaixo de 300ms em 448 Instituições de Ensino Superior; (2) SISCAD para CAPES — automação de milhares de processos de cobrança com RabbitMQ e Laravel; (3) SIGMA para Energia Pecém — rastreabilidade operacional +40%, falhas -35%, uptime 99,9%; (4) Projeto GENIN para ONS — 100% de integridade de dados em consolidação regulatória nacional, deploy -60%; (5) Xadrez Online para Governo MT — plataforma Serverless para 650 escolas em 141 municípios, MTTR -50%."
+                "text": "Nosso retorno técnico ocorre em até 24 horas úteis após o envio da sua mensagem por formulário, e-mail ou WhatsApp. Agendamos uma conversa inicial focada em engenharia para entender seu contexto, avaliar a viabilidade técnica e esclarecer dúvidas sem compromisso."
               }
             },
             {
               "@type": "Question",
-              "name": "Quais setores a EPM DEVTECH já atendeu?",
+              "name": "Como é definido o orçamento e o modelo de trabalho?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "A EPM DEVTECH tem experiência comprovada em: Educação Federal (CAPES/MEC — SIPREC e SISCAD para +448 IES e programas UAB e AUXPE); Energia Elétrica (ONS — Operador Nacional do Sistema Elétrico, viabilizando o cálculo da bandeira tarifária nacional; Energia Pecém — termelétrica de referência no Ceará); Governo (SEDUC/MT — plataforma para 650 escolas estaduais em 141 municípios de Mato Grosso); Indústria e Manufatura (Grupo Paraíso — ERP corporativo com IoT Industrial na Azure, eficiência +30%); e desenvolvimento de plataformas SaaS com arquitetura cloud-native."
+                "text": "Trabalhamos com dois modelos flexíveis, conforme a necessidade do projeto: (1) Escopo fechado: ideal para projetos com requisitos claros, oferecendo investimento fixo e cronograma planejado; (2) Alocação técnica dedicada: modalidade ágil de horas mensais, recomendada para modernização contínua, arquiteturas em evolução e demandas de alta complexidade."
               }
             },
             {
               "@type": "Question",
-              "name": "Quais são as métricas e resultados comprovados da EPM DEVTECH?",
+              "name": "A EPM DEVTECH atende clientes fora de Toledo no Paraná ou no exterior?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Resultados verificáveis entregues em projetos reais: 10.000 usuários simultâneos e 2.500 RPS no SIPREC/CAPES; 99,9% de uptime nos projetos ONS, Energia Pecém e Governo MT; deploy automatizado com redução de 60% no tempo de entrega; qualidade de código elevada em 45% via SonarQube; capacidade de processamento aumentada em 50% com arquitetura Event-Driven; rastreabilidade operacional aumentada em 40%; incidentes críticos reduzidos em 45%; MTTR reduzido em 50% com ELK Stack; entrega de features por sprint aumentada em 25% com GitHub Copilot e SDD; 56.400 linhas de código legado eliminadas com 2.399 testes automatizados e retrabalho reduzido em 40%."
+                "text": "Sim, atuamos 100% de forma remota. Já construímos plataformas de missão crítica para clientes em Brasília (CAPES e MEC), Ceará (Energia Pecém), Santa Catarina (ONS via AMcom) e Mato Grosso (Governo MT). Mantemos comunicação diária, reuniões semanais de alinhamento e relatórios periódicos de progresso."
               }
             },
             {
               "@type": "Question",
-              "name": "Quais serviços de desenvolvimento de software a EPM DEVTECH oferece?",
+              "name": "Vocês conseguem assumir ou evoluir um sistema desenvolvido por outra empresa?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "A EPM DEVTECH oferece: (1) Desenvolvimento de sistemas web e SPAs com React, TypeScript e Vite; (2) APIs REST e backends escaláveis com PHP/Laravel e Node.js — throughput de até 2.500 RPS comprovado; (3) Modernização de sistemas legados com Strangler Fig Pattern e zero downtime; (4) Arquitetura de software com Clean Architecture, DDD e Event-Driven Architecture; (5) DevOps e Cloud Computing na AWS e Azure com CI/CD automatizado; (6) Consultoria técnica com code review, SonarQube e mentoria de times; (7) Integrações de sistemas — ERPs, CRMs, gateways de pagamento, IoT Industrial e APIs de terceiros."
+                "text": "Sim. Iniciamos com uma auditoria técnica na base de código existente para mapear a arquitetura, identificar gargalos de performance, vulnerabilidades de segurança e dependências críticas. A partir desse diagnóstico, estabelecemos um plano seguro de estabilização, refatoração e evolução sem sobressaltos."
               }
             },
             {
               "@type": "Question",
-              "name": "Qual é a stack tecnológica da EPM DEVTECH?",
+              "name": "É possível modernizar um sistema legado sem interromper a operação da empresa?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Backend: PHP (Laravel, Symfony), Node.js (Express), TypeScript — comprovados em produção em sistemas de missão crítica para CAPES e ONS. Frontend: React, TypeScript, Next.js, Angular, Vue.js, Tailwind CSS. Banco de dados: PostgreSQL, Oracle (PL/SQL), MySQL, Redis, MongoDB, SQL Server. Cloud: AWS (Lambda, ECS, SQS, CodeBuild, CloudWatch, API Gateway), Azure (Monitor, Functions, IoT). DevOps: Docker, Kubernetes, GitHub Actions, GitLab CI/CD. Mensageria: RabbitMQ, Kafka, Amazon MQ. Qualidade: PHPUnit, Pest, Vitest, Playwright, SonarQube. Arquitetura: Microsserviços, BFF, Serverless, Event-Driven, Strangler Fig Pattern. IA Aplicada: GitHub Copilot, Claude Code, Spec-Driven Development (SDD), RAG, MCP."
+                "text": "Sim. Aplicamos o padrão Strangler Fig Pattern, que viabiliza a migração incremental do sistema. Módulos modernos são desenvolvidos e colocados em produção em paralelo com o sistema legado, assumindo rotas gradativamente e garantindo zero paralisação nas operações diárias da sua empresa."
               }
             },
             {
               "@type": "Question",
-              "name": "A EPM DEVTECH trabalha com modernização de sistemas legados?",
+              "name": "Vocês trabalham com estabilização e manutenção de sistemas em produção?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Sim, a modernização de legados é um dos serviços centrais da EPM DEVTECH. Aplicamos o Strangler Fig Pattern para migrar sistemas monolíticos legados de forma incremental para microsserviços, BFF e sistemas distribuídos — sem interrupções e com preservação total das regras de negócio. Resultados comprovados: EPM DEVTECH (56.400 linhas de código legado eliminadas, retrabalho -40%, 2.399 testes automatizados); Grupo Paraíso (custos de manutenção -40%, eficiência operacional +30%); SIPREC/CAPES (migração para suportar 10.000 usuários simultâneos e 2.500 RPS)."
+                "text": "Sim. Além de projetos novos, atuamos na resolução de gargalos operacionais em plataformas ativas que sofrem com lentidão, instabilidade em horários de pico ou falhas de sincronização de banco de dados, aplicando testes automatizados e esteiras seguras de deploy."
               }
             },
             {
               "@type": "Question",
-              "name": "A EPM DEVTECH oferece DevOps e infraestrutura Cloud?",
+              "name": "Como funciona o diagnóstico técnico inicial?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Sim. A EPM DEVTECH entrega pipelines CI/CD completos com GitHub Actions e GitLab CI, infraestrutura na AWS (EC2, RDS, S3, Lambda, CodeBuild, API Gateway, CloudWatch) e Azure (Monitor, Functions, IoT), containerização com Docker e Kubernetes, e rollback automático em caso de falha. Resultados: Projeto GENIN/ONS — tempo de deploy reduzido em 60%, disponibilidade 99,9%; Energia Pecém — incidentes críticos -45%, MTTR acelerado via Azure Monitor; Xadrez Online/Governo MT — arquitetura Serverless com AWS Lambda, SQS e SNS reduzindo custos em 35% e garantindo 99,9% de disponibilidade."
+                "text": "Avaliamos o volume de acessos esperado, a complexidade das regras de negócio, as integrações necessárias e a infraestrutura atual. Apresentamos uma visão transparente sobre viabilidade, riscos e opções de arquitetura antes de qualquer contratação definitiva."
               }
             },
             {
               "@type": "Question",
-              "name": "Como funciona o processo de contratação da EPM DEVTECH?",
+              "name": "A comunicação durante o projeto é diretamente com quem desenvolve?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "O processo é simples e transparente: (1) Envie seu projeto pelo formulário em epmdevtech.com.br/contato, e-mail elessandro@epmdevtech.com.br ou WhatsApp +55 (45) 99917-8290; (2) Retorno técnico em até 24 horas úteis com análise preliminar do escopo; (3) Reunião de alinhamento para entender requisitos, prazos e restrições técnicas; (4) Proposta técnica detalhada com arquitetura sugerida, cronograma e investimento; (5) Início da implementação com Spec-Driven Development (SDD) — cada funcionalidade começa por uma especificação aprovada. Trabalhamos com escopo fechado (projeto com preço fixo e prazo definido) ou alocação dedicada (horas/mês)."
+                "text": "Sim. Você conversa diretamente com o Tech Lead e com os engenheiros responsáveis pela implementação da sua aplicação. Eliminamos intermediários comerciais para garantir alinhamento técnico preciso, respostas rápidas e decisões assertivas."
               }
             },
             {
               "@type": "Question",
-              "name": "A EPM DEVTECH atende clientes fora de Toledo-PR?",
+              "name": "Como funciona o início do projeto com a metodologia Spec-Driven Development?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Sim, 100% remoto. A EPM DEVTECH atende clientes em todo o Brasil e também no exterior. A sede física é em Toledo, Paraná, mas todos os projetos são gerenciados e executados remotamente — com comunicação diária, reuniões de alinhamento semanais e relatórios de progresso. Já entregamos projetos para clientes em Brasília (CAPES), Ceará (Energia Pecém), Santa Catarina (ONS via AMcom) e Mato Grosso do Sul (Governo MT)."
+                "text": "Antes de escrever código, detalhamos uma especificação técnica aprovada em conjunto com você. Esse processo assegura que o escopo seja claro, previne retrabalho e garante que cada entrega seja validada por testes automatizados antes de ir para o ambiente de produção."
               }
             }
           ]

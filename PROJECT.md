@@ -162,8 +162,8 @@ src/
 | Footer            | ✅ Alinhado      | Layout de 4 colunas monocromáticas espelhando simetricamente a navegação do menu superior (incluindo Setores de Atuação e Dúvidas Frequentes) |
 | ScrollToTop       | ✅ Adaptativo    | Elevação dinâmica no rodapé, tooltip superior e prevenção de oclusão |
 | Cookie Banner     | ✅ Otimizado     | Lazy load assíncrono + defer timer (3.5s)  |
-| SEO & Agêntico    | ✅ GEO Otimizado | `robots.txt` com blocos para 10 crawlers de IA, `llms.txt` expandido com métricas/setores/stack, `llms-full.txt` criado, JSON-LD com FAQPage + Services individuais com dados de missão crítica + email corporativo, meta descriptions reescritas por rota com prova social e CTA |
-| Testes unitários  | ✅ Implementado  | 20/20 suites, 134/134 testes passando (98.5% coverage geral, Sectors 100%, FAQ 100%, Services 100%) |
+| SEO & Agêntico    | ✅ Formalizado   | `robots.txt` formalizado para 16 crawlers de IA (OpenAI, Anthropic, Perplexity, Google, Apple, Meta, ByteDance, etc.), `llms.txt` e `llms-full.txt` enriquecidos com a narrativa de 10 seções, setores, serviços, 10 perguntas do FAQ e métricas reais, `sitemap.xml` atualizado com `/setores` e `/faq`, links de auto-descoberta no `index.html` e eliminação de travessões artificiais |
+| Testes unitários  | ✅ Implementado  | 20/20 suites, 134/134 testes passando (98.51% coverage geral, Sectors 100%, FAQ 100%, Services 100%) |
 | Testes E2E        | ✅ Implementado  | Suíte Playwright (10/10 testes passando, incluindo teste E2E de validação e máscara de telefone, layout shift zero e computed styles) |
 | Acessibilidade    | ✅ 100% WCAG AA  | Contraste de texto e botões >= 4.5:1 (Logotipo WCAG AAA >= 17:1) |
 | Performance       | ✅ 100% Otimizado| JS inicial < 80 KB, FCP/LCP instantâneo    |

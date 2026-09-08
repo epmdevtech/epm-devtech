@@ -4,7 +4,7 @@
 
   <url>
     <loc>https://epmdevtech.com.br/</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://epmdevtech.com.br/" />
@@ -12,15 +12,23 @@
 
   <url>
     <loc>https://epmdevtech.com.br/sobre</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://epmdevtech.com.br/sobre" />
   </url>
 
   <url>
+    <loc>https://epmdevtech.com.br/setores</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://epmdevtech.com.br/setores" />
+  </url>
+
+  <url>
     <loc>https://epmdevtech.com.br/servicos</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://epmdevtech.com.br/servicos" />
@@ -28,7 +36,7 @@
 
   <url>
     <loc>https://epmdevtech.com.br/tecnologias</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://epmdevtech.com.br/tecnologias" />
@@ -36,15 +44,23 @@
 
   <url>
     <loc>https://epmdevtech.com.br/diferenciais</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://epmdevtech.com.br/diferenciais" />
   </url>
 
   <url>
+    <loc>https://epmdevtech.com.br/faq</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://epmdevtech.com.br/faq" />
+  </url>
+
+  <url>
     <loc>https://epmdevtech.com.br/contato</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://epmdevtech.com.br/contato" />
