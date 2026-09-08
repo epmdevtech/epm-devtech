@@ -23,9 +23,11 @@ const SOLUTIONS_LINKS = [
 
 const NAVIGATION_LINKS = [
   { label: "Sobre a Empresa", href: "#sobre" },
+  { label: "Setores de Atuação", href: "#setores" },
   { label: "Serviços", href: "#servicos" },
   { label: "Tecnologias", href: "#tecnologias" },
   { label: "Diferenciais", href: "#diferenciais" },
+  { label: "Dúvidas Frequentes", href: "#faq" },
   { label: "Fale Conosco", href: "#contato" },
 ];
 

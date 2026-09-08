@@ -9,12 +9,13 @@ import LazySection from "@/components/LazySection";
 
 const CursorOrb    = lazy(() => import("@/components/CursorOrb"));
 const ScrollToTop  = lazy(() => import("@/components/ui/ScrollToTop"));
+const Authority    = lazy(() => import("@/components/sections/Authority"));
 const About        = lazy(() => import("@/components/sections/About"));
+const Sectors      = lazy(() => import("@/components/sections/Sectors"));
 const Services     = lazy(() => import("@/components/sections/Services"));
 const Technologies = lazy(() => import("@/components/sections/Technologies"));
 const Differentials= lazy(() => import("@/components/sections/Differentials"));
 const FAQ          = lazy(() => import("@/components/sections/FAQ"));
-const Authority    = lazy(() => import("@/components/sections/Authority"));
 const Contact      = lazy(() => import("@/components/sections/Contact"));
 const Footer       = lazy(() => import("@/components/sections/Footer"));
 
@@ -38,6 +39,11 @@ const SEO_META: Record<string, SeoMeta> = {
     description:
       "Tech Lead com +9 anos em sistemas críticos para CAPES, ONS e Indústria. 56.400 linhas de legado eliminadas, 2.399 testes automatizados, retrabalho -40%. Conheça nossa história.",
   },
+  setores: {
+    title: "Setores de Atuação | EPM DEVTECH",
+    description:
+      "Experiência comprovada em Indústria, Varejo, Educação (CAPES/MEC) e Energia (ONS). Soluções sob medida para operações complexas. Conheça nossos setores.",
+  },
   servicos: {
     title: "Serviços | EPM DEVTECH",
     description:
@@ -53,15 +59,15 @@ const SEO_META: Record<string, SeoMeta> = {
     description:
       "Qualidade de código +45% via SonarQube, entrega +25% com IA aplicada, deploy automatizado com rollback. Não vendemos promessas — entregamos métricas. Veja nossos diferenciais.",
   },
+  faq: {
+    title: "FAQ | EPM DEVTECH",
+    description:
+      "Perguntas frequentes sobre contratação, sistemas existentes, processo de engenharia com SDD e modelos de trabalho da EPM DEVTECH. Tire suas dúvidas.",
+  },
   contato: {
     title: "Contato | EPM DEVTECH",
     description:
       "Sistema crítico para construir ou modernizar? Retorno técnico em até 24h úteis. E-mail: elessandro@epmdevtech.com.br · WhatsApp: (45) 99917-8290. Solicite um orçamento.",
-  },
-  faq: {
-    title: "FAQ | EPM DEVTECH",
-    description:
-      "Perguntas frequentes sobre serviços, projetos (CAPES, ONS, Energia Pecém), métricas reais (2.500 RPS, 99,9% uptime) e contratação da EPM DEVTECH. Encontre sua resposta.",
   },
 };
 
@@ -118,11 +124,11 @@ const Index = () => {
         if (isProgrammaticScrollRef.current) return;
 
         for (const entry of entries) {
-          // Detecta retorno ao Hero: "sobre" saiu da zona de detecção pela parte de baixo,
+          // Detecta retorno ao Hero: primeira seção saiu da zona de detecção pela parte de baixo,
           // ou seja, o usuário rolou para cima e está de volta à seção inicial (scrollY < 100).
           if (
             !entry.isIntersecting &&
-            entry.target.id === "sobre" &&
+            (entry.target.id === "autoridade" || entry.target.id === "sobre") &&
             entry.boundingClientRect.top > 0 &&
             (typeof window !== "undefined" && window.scrollY < 100)
           ) {
@@ -198,9 +204,22 @@ const Index = () => {
         <Header />
         <main id="conteudo-principal" aria-label="Conteúdo principal">
           <Hero />
+
+          <LazySection id="autoridade" minHeight="300px">
+            <Suspense fallback={<div id="autoridade" style={{ minHeight: "300px" }} className="w-full" />}>
+              <Authority />
+            </Suspense>
+          </LazySection>
+
           <LazySection id="sobre" minHeight="500px">
             <Suspense fallback={<div id="sobre" style={{ minHeight: "500px" }} className="w-full" />}>
               <About />
+            </Suspense>
+          </LazySection>
+
+          <LazySection id="setores" minHeight="500px">
+            <Suspense fallback={<div id="setores" style={{ minHeight: "500px" }} className="w-full" />}>
+              <Sectors />
             </Suspense>
           </LazySection>
 
@@ -225,12 +244,6 @@ const Index = () => {
           <LazySection id="faq" minHeight="600px">
             <Suspense fallback={<div id="faq" style={{ minHeight: "600px" }} className="w-full" />}>
               <FAQ />
-            </Suspense>
-          </LazySection>
-
-          <LazySection id="autoridade" minHeight="400px">
-            <Suspense fallback={<div id="autoridade" style={{ minHeight: "400px" }} className="w-full" />}>
-              <Authority />
             </Suspense>
           </LazySection>
 

@@ -10,6 +10,8 @@ vi.mock('framer-motion', () => ({
     motion: {
         div: ({ children, className }: React.HTMLAttributes<HTMLDivElement>) => <div className={className} data-testid="motion-div">{children}</div>,
         h2: ({ children, className }: React.HTMLAttributes<HTMLHeadingElement>) => <h2 className={className}>{children}</h2>,
+        h3: ({ children, className }: React.HTMLAttributes<HTMLHeadingElement>) => <h3 className={className}>{children}</h3>,
+        h4: ({ children, className }: React.HTMLAttributes<HTMLHeadingElement>) => <h4 className={className}>{children}</h4>,
         p: ({ children, className }: React.HTMLAttributes<HTMLParagraphElement>) => <p className={className}>{children}</p>,
         span: ({ children, className }: React.HTMLAttributes<HTMLSpanElement>) => <span className={className}>{children}</span>,
     },
@@ -43,35 +45,15 @@ describe('About Component', () => {
         expect(screen.getByText((content, element) => element?.textContent === 'Uptime em Produção' || element?.textContent === 'Uptime em Produção')).toBeInTheDocument();
     });
 
-    it('renders the 4 featured cards with updated technical copy', () => {
+    it('renders the engineering pillars and technical leadership card', () => {
         render(<About />);
 
-        // Check titles
-        expect(screen.getByText('Indústria')).toBeInTheDocument();
-        expect(screen.getByText('Varejo')).toBeInTheDocument();
-        expect(screen.getByText('Educação')).toBeInTheDocument();
-        expect(screen.getByText('Energia')).toBeInTheDocument();
+        expect(screen.getByText(/Liderança Técnica/i)).toBeInTheDocument();
+        expect(screen.getByText(/Compromisso com arquitetura sólida/i)).toBeInTheDocument();
 
-        // Check handles / subtitle tags
-        expect(screen.getByText('MANUFATURA')).toBeInTheDocument();
-        expect(screen.getByText('E-COMMERCE')).toBeInTheDocument();
-        expect(screen.getByText('CAPES · MEC · GOVERNO FEDERAL')).toBeInTheDocument();
-        expect(screen.getByText('ONS · ENERGIA PECÉM')).toBeInTheDocument();
-
-        // Check technical descriptions
-        expect(screen.getByText(/IoT industrial/i)).toBeInTheDocument();
-        expect(screen.getByText(/checkouts escaláveis/i)).toBeInTheDocument();
-        expect(screen.getByText(/microsserviços de alto throughput/i)).toBeInTheDocument();
-        expect(screen.getByText(/monitoramento crítico em tempo real/i)).toBeInTheDocument();
-    });
-
-    it('renders the mockup components inside the cards', () => {
-        render(<About />);
-
-        expect(screen.getByText('Controle de Produção')).toBeInTheDocument(); // MockupIndustria
-        expect(screen.getByText('Gestão de Estoque')).toBeInTheDocument();
-        expect(screen.getByText('Impacto Institucional')).toBeInTheDocument();
-        expect(screen.getByText('Sistema Crítico')).toBeInTheDocument();  // MockupEnergia
+        expect(screen.getByText('Arquitetura para Escala')).toBeInTheDocument();
+        expect(screen.getByText('Engenharia de Qualidade')).toBeInTheDocument();
+        expect(screen.getByText('Governança e Previsibilidade')).toBeInTheDocument();
     });
 
     it('renderiza corretamente quando useInView retorna false (antes de entrar no viewport)', () => {

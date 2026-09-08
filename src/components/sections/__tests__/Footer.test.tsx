@@ -74,9 +74,11 @@ describe('Footer Component', () => {
     // Coluna 3: Navegação
     expect(screen.getByRole('heading', { name: /Navegação/i })).toBeInTheDocument();
     expect(screen.getByText('Sobre a Empresa')).toBeInTheDocument();
+    expect(screen.getByText('Setores de Atuação')).toBeInTheDocument();
     expect(screen.getByText('Serviços')).toBeInTheDocument();
     expect(screen.getByText('Tecnologias')).toBeInTheDocument();
     expect(screen.getByText('Diferenciais')).toBeInTheDocument();
+    expect(screen.getByText('Dúvidas Frequentes')).toBeInTheDocument();
     expect(screen.getByText('Fale Conosco')).toBeInTheDocument();
 
     // Coluna 4: Contato

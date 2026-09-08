@@ -60,10 +60,10 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
             <a
               href="#contato"
-              aria-label="Falar com especialista da EPM DEVTECH"
+              aria-label="Falar com a engenharia da EPM DEVTECH"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-lg font-semibold text-base text-white bg-primary shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:scale-[1.03] active:scale-95 transition-all duration-200 ease-out no-underline"
             >
-              <span>Falar com especialista</span>
+              <span>Falar com a engenharia</span>
               <ArrowRight size={18} strokeWidth={2.2} />
             </a>
 

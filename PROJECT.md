@@ -79,6 +79,7 @@ Single Page Application (SPA) com roteamento client-side simulando seções via 
 |-----------------|---------------------|
 | `/`             | Hero                |
 | `/sobre`        | About               |
+| `/setores`      | Sectors             |
 | `/servicos`     | Services            |
 | `/tecnologias`  | Technologies        |
 | `/diferenciais` | Differentials       |
@@ -100,13 +101,14 @@ src/
 │   │   └── Header.tsx          # Navegação principal
 │   ├── sections/
 │   │   ├── Hero.tsx
+│   │   ├── Authority.tsx
 │   │   ├── About.tsx
+│   │   ├── Sectors.tsx
 │   │   ├── Services.tsx
 │   │   ├── Technologies.tsx
 │   │   ├── TechConstellation.tsx
 │   │   ├── Differentials.tsx
 │   │   ├── FAQ.tsx
-│   │   ├── Authority.tsx
 │   │   ├── Contact.tsx
 │   │   └── Footer.tsx
 │   ├── ui/                     # Componentes shadcn/ui e SectionHeader.tsx
@@ -148,19 +150,20 @@ src/
 | Design            | ✅ Padronizado   | Design System Verde EPM DEVTECH (#10B981), títulos monocromáticos e tipografia Geist |
 | Tipografia / Títulos | ✅ 100% Monocromático | Títulos 100% monocromáticos sem divisões bicolores, cor primária verde restrita a badges, CTAs e foco interativo |
 | Branding / Logo   | ✅ Adaptativo    | Logo 100% transparente em Dark e Light Mode, tipografia invertida sem moldura escura |
-| Hero              | ✅ Atualizado    | Posicionamento comercial sênior, Tagline, Dual CTA, microprova e sem gradientes |
-| About             | ✅ Atualizado    | Autoridade técnica (Tech Lead/fundador), métricas (+9 anos, 4 setores, 99,9% uptime) e preservação total dos cards 3D |
-| Services          | ✅ Atualizado    | Copywriting técnico sênior nos 6 cards, H2 monocromático, H3 font-semibold e mockups técnicos preservados |
+| Hero              | ✅ Atualizado    | Posicionamento comercial sênior, Tagline, Dual CTA ("Falar com a engenharia" / "Ver serviços"), microprova e sem gradientes |
+| Authority         | ✅ Reposicionado | Trust Bar compacto de Prova Social logo após o Hero (posição 2 da narrativa), métricas reais de missão crítica e selos corporativos |
+| About             | ✅ Atualizado    | Autoridade técnica (Tech Lead/fundador Elessandro Prestes Macedo), métricas (+9 anos, 4 setores, 99,9% uptime) e pilares de engenharia |
+| Sectors           | ✅ Modularizado  | Seção 4 dedicada com os 4 cards 3D isomórficos 100% preservados (Indústria, Varejo, Educação, Energia), mockups interativos e tríade contexto + problema + experiência |
+| Services          | ✅ Atualizado    | Copywriting sênior com destaque ao problema resolvido nos 6 cards, H2 monocromático, H3 font-semibold e mockups técnicos preservados |
 | Technologies      | ✅ Constellation | TechConstellation interativo com trilhas PCB, Focus & Context e Painel Arquitetural |
-| Differentials     | ✅ Atualizado    | Copywriting sênior nos 6 cards, tags técnicas, timeline preservada e H3 semântico |
-| FAQ               | ✅ Implementado  | Seção visual interativa em Accordion (shadcn/ui), 10 perguntas categorizadas em 3 grupos (badges coloridos), redação natural pt-BR e sincronizada com JSON-LD |
-| Authority         | ✅ Atualizado    | Trust Bar compacto de Prova Social, métricas reais de missão crítica e selos corporativos |
+| Differentials     | ✅ Atualizado    | Copywriting focado em benefícios nos 6 cards, tags técnicas, timeline preservada e H3 semântico |
+| FAQ               | ✅ Otimizado     | Acordeão interativo (shadcn/ui), 10 perguntas estritamente focadas em remoção de objeções reais (sem redundância de catálogo), contraste WCAG AAA no Light e Dark Mode |
 | Contact           | ✅ Blindado      | Split Card com formulário underline, dropdown milimétrico (gap=0px), máscara dinâmica de telefone, validação estrita Zod (rejeição de letras e DDDs inválidos), microinteração no botão e toast centralizado no topo (top-center) |
-| Footer            | ✅ 4 Colunas     | Layout moderno de 4 colunas monocromáticas, serviços reais, canais diretos e sub-footer |
+| Footer            | ✅ Alinhado      | Layout de 4 colunas monocromáticas espelhando simetricamente a navegação do menu superior (incluindo Setores de Atuação e Dúvidas Frequentes) |
 | ScrollToTop       | ✅ Adaptativo    | Elevação dinâmica no rodapé, tooltip superior e prevenção de oclusão |
 | Cookie Banner     | ✅ Otimizado     | Lazy load assíncrono + defer timer (3.5s)  |
-| SEO & Agêntico    | ✅ GEO Otimizado | `robots.txt` com blocos para 10 crawlers de IA, `llms.txt` expandido com métricas/setores/stack, `llms-full.txt` criado, JSON-LD com FAQPage (10 perguntas com métricas comprovadas) + Services individuais enriquecidos com resultados reais (CAPES 2.500 RPS, ONS 99,9% uptime, deploy -60%, Pecém +50% proc, Governo MT 650 escolas) + email corporativo, meta descriptions reescritas com foco em conversão e prova social por rota, `<meta name="theme-color">` e iOS meta tags no `<head>` |
-| Testes unitários  | ✅ Implementado  | 18/18 suites, 124/124 testes passando (98.38% coverage, FAQ.tsx 100%) |
+| SEO & Agêntico    | ✅ GEO Otimizado | `robots.txt` com blocos para 10 crawlers de IA, `llms.txt` expandido com métricas/setores/stack, `llms-full.txt` criado, JSON-LD com FAQPage + Services individuais com dados de missão crítica + email corporativo, meta descriptions reescritas por rota com prova social e CTA |
+| Testes unitários  | ✅ Implementado  | 20/20 suites, 134/134 testes passando (98.5% coverage geral, Sectors 100%, FAQ 100%, Services 100%) |
 | Testes E2E        | ✅ Implementado  | Suíte Playwright (10/10 testes passando, incluindo teste E2E de validação e máscara de telefone, layout shift zero e computed styles) |
 | Acessibilidade    | ✅ 100% WCAG AA  | Contraste de texto e botões >= 4.5:1 (Logotipo WCAG AAA >= 17:1) |
 | Performance       | ✅ 100% Otimizado| JS inicial < 80 KB, FCP/LCP instantâneo    |

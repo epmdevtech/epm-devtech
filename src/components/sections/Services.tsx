@@ -151,36 +151,54 @@ const services = [
   {
     visual: <MockBrowser />,
     title: "Desenvolvimento Web e Aplicações SPA",
-    description: "Interfaces modernas, responsivas e performáticas com Angular, Vue.js e React, integradas a ecossistemas com alta taxa de conversão e usabilidade fluida.",
+    what: "Interfaces modernas, responsivas e performáticas com Angular, Vue.js e React.",
+    problem: "Sistemas lentos, designs desatualizados e interfaces que frustram o usuário.",
+    how: "Desenvolvimento componentizado, Clean Code e integração fluida a APIs corporativas.",
+    description: "Interfaces modernas, responsivas e performáticas com Angular, Vue.js e React. Resolve lentidão e baixa conversão através de arquitetura fluida e usabilidade centrada no usuário.",
     accent: "#10b981",
   },
   {
     visual: <MockAPI />,
     title: "APIs e Backends Escaláveis",
-    description: "Desenvolvimento de APIs REST e arquiteturas orientadas a eventos em PHP (Laravel) e Node.js, dimensionadas para alto throughput e baixa latência.",
+    what: "Desenvolvimento de APIs REST e arquiteturas orientadas a eventos em PHP (Laravel) e Node.js.",
+    problem: "Sobrecarga de servidores em horários de pico e respostas demoradas do banco.",
+    how: "Dimensionamento para alto throughput, baixa latência e cache distribuído com Redis.",
+    description: "Desenvolvimento de APIs REST e arquiteturas orientadas a eventos em PHP (Laravel) e Node.js, dimensionadas para alto throughput e baixa latência sob carga intensa.",
     accent: "#A855F7",
   },
   {
     visual: <MockIntegration />,
     title: "Integrações e Microsserviços",
+    what: "Conexão de ecossistemas corporativos via RabbitMQ, Kafka e webhooks.",
+    problem: "Sistemas isolados que exigem retrabalho manual e geram dados inconsistentes.",
+    how: "Comunicação assíncrona, tolerância a falhas e sincronização de dados em tempo real.",
     description: "Conexão de ecossistemas corporativos via RabbitMQ, Kafka e webhooks, garantindo comunicação assíncrona, tolerância a falhas e sincronização em tempo real.",
     accent: "#10b981",
   },
   {
     visual: <MockArchitecture />,
     title: "Arquitetura de Software",
+    what: "Design de microsserviços e monólitos modulares com Clean Architecture, DDD e BFF.",
+    problem: "Código espaguete, custos astronômicos de manutenção e medo de mexer no sistema.",
+    how: "Separação de responsabilidades em camadas, decisões em ADRs e manutenibilidade contínua.",
     description: "Design de microsserviços e monólitos modulares com Clean Architecture, DDD, padrões Hexagonal e BFF, preparados para crescimento contínuo e manutenibilidade.",
     accent: "#A855F7",
   },
   {
     visual: <MockMaintenance />,
     title: "Modernização e Evolução de Legados",
+    what: "Migração incremental de sistemas legados aplicando o Strangler Fig Pattern.",
+    problem: "Risco e custo proibitivo de tentar reconstruir todo o sistema do zero.",
+    how: "Substituição gradual módulo a módulo sem parada operacional e com testes automatizados.",
     description: "Migração incremental sem parada operacional aplicando Strangler Fig Pattern, refatoração de código com testes automatizados e ganho expressivo de performance.",
     accent: "#10b981",
   },
   {
     visual: <MockConsulting />,
     title: "Consultoria Técnica e Code Review",
+    what: "Diagnóstico profundo de arquitetura, análise de vulnerabilidades e mentoria.",
+    problem: "Insegurança técnica em entregas críticas e débitos acumulados na esteira.",
+    how: "Auditoria de código, plano de refatoração priorizado e implantação de SDD com IA.",
     description: "Diagnóstico de gargalos, análise estática de vulnerabilidades, mentoria técnica e auditoria de arquitetura para elevar a maturidade do seu time.",
     accent: "#f59e0b",
   },
@@ -371,10 +389,15 @@ const Services = () => {
                     fontFamily: "'Geist Mono', monospace",
                     fontSize: "0.75rem",
                     color: "hsl(var(--muted-foreground))",
-                    lineHeight: 1.7,
+                    lineHeight: 1.65,
+                    marginBottom: 10,
                   }}>
                     {service.description}
                   </p>
+                  <div className="pt-2.5 border-t border-border/40 flex items-start gap-1.5 text-[11px] font-mono text-muted-foreground/90">
+                    <span className="text-primary font-semibold shrink-0">Problema:</span>
+                    <span className="line-clamp-2">{service.problem}</span>
+                  </div>
                 </div>
               </motion.div>
             ))}

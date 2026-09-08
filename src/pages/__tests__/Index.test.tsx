@@ -12,11 +12,13 @@ vi.mock('react-router-dom', () => ({
 // ─── Seções: rendem elementos com IDs reais para o IntersectionObserver ───────
 vi.mock('@/components/layout/Header', () => ({ default: () => <header data-testid="header" /> }));
 vi.mock('@/components/sections/Hero', () => ({ default: () => <section data-testid="hero" /> }));
+vi.mock('@/components/sections/Authority', () => ({ default: () => <section id="autoridade" data-testid="authority" /> }));
 vi.mock('@/components/sections/About', () => ({ default: () => <section id="sobre" data-testid="about" /> }));
+vi.mock('@/components/sections/Sectors', () => ({ default: () => <section id="setores" data-testid="sectors" /> }));
 vi.mock('@/components/sections/Services', () => ({ default: () => <section id="servicos" data-testid="services" /> }));
 vi.mock('@/components/sections/Technologies', () => ({ default: () => <section id="tecnologias" data-testid="technologies" /> }));
 vi.mock('@/components/sections/Differentials', () => ({ default: () => <section id="diferenciais" data-testid="differentials" /> }));
-vi.mock('@/components/sections/Authority', () => ({ default: () => <section id="autoridade" data-testid="authority" /> }));
+vi.mock('@/components/sections/FAQ', () => ({ default: () => <section id="faq" data-testid="faq" /> }));
 vi.mock('@/components/sections/Contact', () => ({ default: () => <section id="contato" data-testid="contact" /> }));
 vi.mock('@/components/sections/Footer', () => ({ default: () => <footer data-testid="footer" /> }));
 vi.mock('@/components/CursorOrb', () => ({ default: () => null }));
@@ -92,11 +94,13 @@ describe('Index Page', () => {
       // Flush lazy import promises (React.lazy usa dynamic import)
       await act(async () => {});
 
+      expect(screen.getByTestId('authority')).toBeInTheDocument();
       expect(screen.getByTestId('about')).toBeInTheDocument();
+      expect(screen.getByTestId('sectors')).toBeInTheDocument();
       expect(screen.getByTestId('services')).toBeInTheDocument();
       expect(screen.getByTestId('technologies')).toBeInTheDocument();
       expect(screen.getByTestId('differentials')).toBeInTheDocument();
-      expect(screen.getByTestId('authority')).toBeInTheDocument();
+      expect(screen.getByTestId('faq')).toBeInTheDocument();
       expect(screen.getByTestId('contact')).toBeInTheDocument();
       expect(screen.getByTestId('footer')).toBeInTheDocument();
     });

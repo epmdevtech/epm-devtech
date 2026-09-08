@@ -41,9 +41,9 @@ describe('Hero Component', () => {
     it('renders dual CTAs with correct links and accessible labels', () => {
         render(<Hero />);
 
-        const primaryCta = screen.getByRole('link', { name: /Falar com especialista da EPM DEVTECH/i });
+        const primaryCta = screen.getByRole('link', { name: /Falar com a engenharia da EPM DEVTECH/i });
         expect(primaryCta).toHaveAttribute('href', '#contato');
-        expect(primaryCta).toHaveTextContent(/Falar com especialista/i);
+        expect(primaryCta).toHaveTextContent(/Falar com a engenharia/i);
 
         const secondaryCta = screen.getByRole('link', { name: /Ver serviços da EPM DEVTECH/i });
         expect(secondaryCta).toHaveAttribute('href', '#servicos');

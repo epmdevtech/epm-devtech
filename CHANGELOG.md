@@ -9,7 +9,26 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
-## [0.0.34-geo-rich-snippets-faqpage-e-servicos] — 2026-09-08
+## [0.0.35-reorganizacao-ux-ui-arquitetura-informacao] — 2026-09-08
+
+### Adicionado
+- **`src/components/sections/Sectors.tsx`** — Seção 4 dedicada ("Experiência por Setor") modularizada, preservando integralmente os 4 cards 3D isomórficos (`Indústria`, `Varejo`, `Educação`, `Energia`), seus mockups internos interativos (`MockupIndustria`, `MockupVarejo`, `MockupEducacao`, `MockupEnergia`) e animações escalonadas, com copywriting refinado na tríade *Contexto + Problema + Experiência*.
+- **Rota `/setores`** — Suporte dedicado a scroll spy via `IntersectionObserver` e metadados SEO específicos em `src/pages/Index.tsx`.
+- **Suíte de Testes `src/components/sections/__tests__/Sectors.test.tsx`** — 5 testes unitários cobrindo cards 3D, mockups, badges e renderização.
+- **Suíte de Testes `src/components/sections/__tests__/FAQ.test.tsx`** — 6 testes unitários cobrindo perguntas de objeção, acordeão, categorias e acessibilidade.
+
+### Modificado
+- **Nova Narrativa Comercial da Página (10 Etapas)**:
+  1. `Hero` → 2. `Autoridade` (reposicionada logo após Hero) → 3. `Sobre` → 4. `Setores` → 5. `Serviços` → 6. `Tecnologias` → 7. `Diferenciais` → 8. `FAQ` → 9. `Contato` → 10. `Rodapé`.
+- **`src/components/sections/Hero.tsx`**: CTA primário atualizado para *"Falar com a engenharia"* (`#contato`), com acessibilidade e microprova social preservadas.
+- **`src/components/sections/About.tsx`**: Narrativa focada em apresentação institucional, fundador Elessandro Prestes Macedo (+9 anos de experiência em sistemas críticos), liderança técnica e pilares de engenharia, com indicadores animados `CountUp`.
+- **`src/components/sections/Services.tsx`**: Destaque explícito para o problema resolvido no rodapé de cada card e copywriting sênior.
+- **`src/components/sections/FAQ.tsx`**: 10 perguntas estritamente focadas na remoção de objeções reais (Contratação, Sistemas Legados, Processo com SDD), eliminação de redundâncias com listas de serviços/stack/setores, e correção de contraste para padrão WCAG AAA em Light e Dark Mode.
+- **`src/components/layout/Header.tsx`**: Menu de navegação atualizado com links para `Setores` e `FAQ`.
+- **`src/components/sections/Footer.tsx`**: Coluna "Navegação" atualizada com `Setores de Atuação` e `Dúvidas Frequentes`, espelhando simetricamente a navegação do topo.
+- **`src/pages/Index.tsx`**: Ordem DOM atualizada, rota `/setores` e scroll spy sincronizado.
+- **Suíte de Testes Geral**: Expandida para 20 suítes e 134 testes passando, com 98.5% de cobertura total de código.
+
 
 ### Adicionado
 - **`src/components/sections/FAQ.tsx`** — Nova seção visual interativa de Perguntas Frequentes (FAQ) com:
