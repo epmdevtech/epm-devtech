@@ -9,6 +9,21 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.33-theme-color-meta-tag] — 2026-09-08
+
+### Adicionado
+- **`index.html`** — Meta tags explícitas no `<head>` para garantir cor correta da barra de navegação
+  no Chrome/Android desde o frame 1 da primeira visita (antes do `.webmanifest` ser lido pelo browser):
+  - `<meta name="theme-color" content="#10B981" media="(prefers-color-scheme: dark)">` — barra verde em dark mode
+  - `<meta name="theme-color" content="#10B981" media="(prefers-color-scheme: light)">` — barra verde em light mode
+  - `<meta name="apple-mobile-web-app-capable" content="yes">` — habilita modo standalone no iOS Safari
+  - `<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">` — status bar translúcida no iOS
+
+### Contexto
+- **VERIF-001 concluída:** `sitemap.xml` indexado com sucesso pelo Google (confirmado pelo PO em 2026-09-08)
+- `theme_color` já existia no `site.webmanifest` (`#10B981`), mas o manifesto só é lido após o parse completo
+  do HTML. As meta tags no `<head>` garantem aplicação imediata, eliminando possível flash de cor no mobile.
+
 ## [0.0.32-geo-seo-auditoria-e-otimizacao] — 2026-09-07
 
 ### Adicionado

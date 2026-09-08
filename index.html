@@ -53,6 +53,16 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
+    <!-- Theme Color: aplicado no frame 1 (antes do manifesto ser lido pelo browser).
+         Garante a cor correta da barra de navegação no Chrome/Android desde a primeira visita.
+         Valor idêntico ao "theme_color" do site.webmanifest para consistência. -->
+    <meta name="theme-color" content="#10B981" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#10B981" media="(prefers-color-scheme: light)" />
+
+    <!-- iOS Safari: habilita modo standalone e status bar translúcida (dark design) -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
     <!-- CSS crítico inline: pinta o canvas escuro e garante FCP imediato no frame 1.
          Contém APENAS o estritamente necessário para above-the-fold (header + hero).
          O restante das variáveis e utilitários é carregado de forma não-bloqueante abaixo. -->

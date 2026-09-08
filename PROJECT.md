@@ -156,7 +156,7 @@ src/
 | Footer            | ✅ 4 Colunas     | Layout moderno de 4 colunas monocromáticas, serviços reais, canais diretos e sub-footer |
 | ScrollToTop       | ✅ Adaptativo    | Elevação dinâmica no rodapé, tooltip superior e prevenção de oclusão |
 | Cookie Banner     | ✅ Otimizado     | Lazy load assíncrono + defer timer (3.5s)  |
-| SEO & Agêntico    | ✅ GEO Otimizado | `robots.txt` com blocos para 10 crawlers de IA (GPTBot, PerplexityBot, ClaudeBot, Google-Extended...), `llms.txt` expandido com métricas/setores/stack, `llms-full.txt` criado, JSON-LD com FAQPage + Services individuais + email corporativo, meta descriptions enriquecidas por rota |
+| SEO & Agêntico    | ✅ GEO Otimizado | `robots.txt` com blocos para 10 crawlers de IA (GPTBot, PerplexityBot, ClaudeBot, Google-Extended...), `llms.txt` expandido com métricas/setores/stack, `llms-full.txt` criado, JSON-LD com FAQPage + Services individuais + email corporativo, meta descriptions enriquecidas por rota, `<meta name="theme-color">` e iOS meta tags explícitas no `<head>` (frame 1, antes do manifesto) |
 | Testes unitários  | ✅ Implementado  | 18/18 suites, 124/124 testes passando (98.28% coverage) |
 | Testes E2E        | ✅ Implementado  | Suíte Playwright (10/10 testes passando, incluindo teste E2E de validação e máscara de telefone, layout shift zero e computed styles) |
 | Acessibilidade    | ✅ 100% WCAG AA  | Contraste de texto e botões >= 4.5:1 (Logotipo WCAG AAA >= 17:1) |
@@ -191,8 +191,8 @@ src/
 
 | Tarefa | Descrição | Data Agendada | Status |
 |---|---|---|---|
-| VERIF-001 | 1. Verificar indexação e status de Sucesso do `sitemap.xml` no Google Search Console (janela de 24h)<br>2. Avaliar necessidade de inclusão explícita da tag `<meta name="theme-color">` no `<head>` do `index.html` | 2026-09-08 | ⏳ Agendado |
+| VERIF-001 | 1. Verificar indexação e status de Sucesso do `sitemap.xml` no Google Search Console (janela de 24h)<br>2. Avaliar necessidade de inclusão explícita da tag `<meta name="theme-color">` no `<head>` do `index.html` | 2026-09-08 | ✅ Concluído |
 
 ---
 
-_Última atualização: 2026-09-07 | Maintainer: Elessandro Prestes Macedo_
+_Última atualização: 2026-09-08 | Maintainer: Elessandro Prestes Macedo_
