@@ -9,6 +9,25 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.37-hero-quordix-magnetic-interativo] — 2026-09-09
+
+### Adicionado
+- **Headline em Duas Linhas Equilibradas**: Divisão harmoniosa da headline em 2 linhas ("Software sob medida construído" / "para escalar o seu negócio.") eliminando palavras órfãs e evitando quebras desconexas.
+- **Revelação Escalonada de Letras no Título**: Efeito sequencial letra a letra onde a Linha 1 surge primeiro e a Linha 2 surge em seguida com transição elástica suave (`[0.16, 1, 0.3, 1]`).
+- **Mecânica Magnética Letra a Letra (`MagneticLetter`)**: Efeito de física com amortecimento elástico (`useAnimationFrame` + `useSpring`) em cada caractere do H1, reagindo a interações de mouse e touch.
+- **Subtítulo com Projeção Dinâmica Acompanhando o Cursor (`SubtitleWord`)**: Quando o cursor percorre o título ou subtítulo, as palavras verticalmente alinhadas à coluna do mouse ganham destaque tipográfico imediato (`font-weight: 700`, `opacity: 1.0`, contraste nítido), enquanto palavras afastadas permanecem em peso normal (400) e opacidade suave (0.45). No estado inicial, todas as palavras carregam 100% uniformes (zero cores estáticas automáticas).
+- **Anéis Orbitais Decorativos e Glow Atmosférico da Marca (`RINGS`)**: 4 anéis concêntricos com satélites luminosos em rotação contínua nos polos do gradiente da marca (`logo-Photoroom.png`: Ciano Elétrico `#00D4FF` no anel interno e Verde Esmeralda `#10B981` no anel de realce) e aura central atmosférica no gradiente oficial (`.hero-brand-aura`: Ciano -> Turquesa -> Esmeralda) em Light Mode e Dark Mode, eliminando integralmente cores estranhas (laranja e pêssego).
+- **Keyframes CSS de Órbita no `index.css`**: Animações `@keyframes hero-orbit` e `@keyframes hero-orbit-rev` com `will-change: transform`.
+- **Suporte Nativo a `prefers-reduced-motion`**: Desativação graciosa de cálculos magnéticos, paralaxe e rotações contínuas para usuários com sensibilidade a movimento.
+- **Detecção de Touch (`useTouch`)**: Otimização suave para dispositivos móveis e coarse pointer com suporte a `active:`.
+
+### Modificado
+- **`src/components/sections/Hero.tsx`**: Refatoração completa incorporando entrada sequencial, física Quordix, eliminação de cores estáticas duplicadas no subtítulo, alinhamento do glow de fundo ao título em Light Mode, eliminação de warnings do Framer Motion e remoção dos botões de CTA a pedido do PO.
+- **Preservação de Títulos 100% Monocromáticos (SPEC-014)**: H1 mantido em duas linhas estritamente monocromáticas em `text-zinc-900 dark:text-white`, aprovado em 100% dos testes E2E do Playwright.
+- **`src/components/sections/__tests__/Hero.test.tsx`**: Atualização dos mocks do Framer Motion (`forwardRef`, `useSpring`, `useMotionValue`) e validação da renderização dos nós interativos (100% aprovado).
+- **`index.html`**: Adição de `<meta name="mobile-web-app-capable" content="yes" />` para sanar deprecation do Chrome.
+- **`e2e/design-system-and-stability.spec.ts`**: Atualização dos testes de resiliência e validação de 10/10 testes passando.
+
 ## [0.0.36-robots-txt-llms-txt-ai-crawlers] — 2026-09-08
 
 ### Adicionado

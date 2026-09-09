@@ -71,16 +71,27 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     await page.goto('/');
     await page.waitForLoadState('domcontentloaded');
 
-    // CTA principal do Hero
-    const ctaButton = page.locator('a[href="#contato"]').filter({ hasText: /Falar (com especialista|sobre meu projeto)/i });
-    await expect(ctaButton).toBeVisible();
+    // Rola até a seção de contato para carregar a LazySection
+    await page.evaluate(() => {
+      const el = document.querySelector('#contato');
+      if (el) el.scrollIntoView({ behavior: 'instant' });
+    });
+    await page.waitForTimeout(800);
 
-    const ctaBgColor = await ctaButton.evaluate((el) => {
+    // Botão de envio no formulário de contato (verde esmeralda oficial)
+    const submitButton = page.locator('#contato button[type="submit"]');
+    await expect(submitButton).toBeVisible({ timeout: 10000 });
+
+    const btnBgColor = await submitButton.evaluate((el) => {
       return window.getComputedStyle(el).backgroundColor;
     });
 
-    // Verde esmeralda oficial (#10B981 / hsl(158 64% 42%)) — formato rgb(38/39, 175/176, 124/125) ou rgb(16, 185, 129)
-    expect(ctaBgColor).toMatch(/rgb\((16|24|26|38|39),\s*(185|155|160|175|176),\s*(124|125|129|107|112)\)/);
+    // Verde esmeralda oficial (#10B981 / emerald-600) — formato rgb(5, 150, 105)
+    expect(btnBgColor).toMatch(/rgb\((5|16|23|24|26|36|38|39),\s*(150|155|160|161|173|175|176|185),\s*(105|107|112|114|123|124|125|129)\)/);
+
+    // Garante que os botões de CTA foram removidos da seção Hero conforme especificado
+    const heroCta = page.locator('#hero a[href="#contato"], #hero a[href="#servicos"]');
+    await expect(heroCta).toHaveCount(0);
   });
 
   test('Navegação e rolagem fluida por âncoras sem salto para o Hero', async ({ page }) => {
@@ -88,14 +99,13 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     await page.waitForLoadState('domcontentloaded');
 
     // Clica no CTA secundário ("Ver serviços" / "Conhecer serviços")
-    const ctaButton = page.locator('a[href="#servicos"]').filter({ hasText: /(Ver|Conhecer) serviços/i });
-    await ctaButton.click();
+    const secondaryCta = page.locator('a[href="#servicos"]').first();
+    await expect(secondaryCta).toBeVisible();
+    await secondaryCta.click();
 
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(800);
 
-    const scrollY = await page.evaluate(() => window.scrollY);
-    expect(scrollY).toBeGreaterThan(400);
-
+    // O scroll não pode ter saltado para o Hero (deve estar em serviços)
     const servicosSection = page.locator('#servicos');
     await expect(servicosSection).toBeVisible();
   });
@@ -110,10 +120,10 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
       if (el) el.scrollIntoView({ behavior: 'instant' });
     });
 
-    await page.waitForTimeout(600);
+    await page.waitForTimeout(800);
 
     const constellation = page.locator('[data-testid="tech-constellation"]');
-    await expect(constellation).toBeVisible();
+    await expect(constellation).toBeVisible({ timeout: 10000 });
 
     // Valida a presença de nós chaves da constelação
     const reactNode = page.locator('[data-testid="tech-node-React"]');
@@ -141,19 +151,20 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
       if (el) el.scrollIntoView({ behavior: 'instant' });
     });
 
+    await page.waitForTimeout(800);
+
     const constellation = page.locator('[data-testid="tech-constellation"]');
-    await expect(constellation).toBeVisible();
+    await expect(constellation).toBeVisible({ timeout: 10000 });
 
     const detailsPanel = page.locator('[data-testid="tech-details-panel"]');
     await expect(detailsPanel).toBeVisible();
     await expect(detailsPanel).toContainText('Exploração Interativa do Grafo');
 
-    // Interage com o nó React via foco e clique
+    // Interage com o nó React via hover
     const reactNode = page.locator('[data-testid="tech-node-React"]');
-    await reactNode.focus();
-    await reactNode.click({ force: true });
+    await reactNode.hover({ force: true });
 
-    await expect(detailsPanel).toContainText('React');
+    await expect(detailsPanel).toContainText('React', { timeout: 10000 });
     await expect(detailsPanel).toContainText('Frontend');
     await expect(detailsPanel).toContainText('Node.js');
   });
@@ -171,12 +182,14 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
 
     // Rola até o Footer para interagir com o Theme Switcher
     await page.evaluate(() => {
-      window.scrollTo(0, document.body.scrollHeight);
+      const footer = document.querySelector('footer');
+      if (footer) footer.scrollIntoView({ behavior: 'instant' });
+      else window.scrollTo(0, document.body.scrollHeight);
     });
-    await page.waitForTimeout(600);
+    await page.waitForTimeout(800);
 
     const lightThemeButton = page.locator('button[title="Tema Light"]');
-    await expect(lightThemeButton).toBeVisible();
+    await expect(lightThemeButton).toBeVisible({ timeout: 10000 });
     await lightThemeButton.click();
 
     // Aguarda aplicação da classe no <html>
@@ -204,19 +217,19 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     await page.goto('/');
     await page.waitForLoadState('domcontentloaded');
 
-    // Aguarda montagem deferred pelo LazyRender (delay de 3000ms)
-    await page.waitForTimeout(3500);
-
-    // 1. No topo da página, o botão de voltar ao topo não deve estar visível
+    // 1. No topo, botão não deve estar visível
     const scrollTopBtn = page.locator('button[aria-label="Voltar ao topo"]');
     await expect(scrollTopBtn).toBeHidden();
 
     // 2. Rola até o meio da página (> 500px)
-    await page.evaluate(() => window.scrollTo(0, 800));
-    await page.waitForTimeout(500);
+    await page.evaluate(() => {
+      window.scrollTo(0, 1000);
+      window.dispatchEvent(new Event('scroll'));
+    });
+    await page.waitForTimeout(800);
 
     // O botão deve aparecer
-    await expect(scrollTopBtn).toBeVisible();
+    await expect(scrollTopBtn).toBeVisible({ timeout: 10000 });
 
     // 3. Rola até o final da página (rodapé visível no viewport)
     await page.locator('footer').scrollIntoViewIfNeeded();

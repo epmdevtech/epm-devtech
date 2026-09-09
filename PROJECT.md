@@ -149,9 +149,7 @@ src/
 |-------------------|------------------|--------------------------------------------|
 | Design            | ✅ Padronizado   | Design System Verde EPM DEVTECH (#10B981), títulos monocromáticos e tipografia Geist |
 | Tipografia / Títulos | ✅ 100% Monocromático | Títulos 100% monocromáticos sem divisões bicolores, cor primária verde restrita a badges, CTAs e foco interativo |
-| Branding / Logo   | ✅ Adaptativo    | Logo 100% transparente em Dark e Light Mode, tipografia invertida sem moldura escura |
-| Hero              | ✅ Atualizado    | Posicionamento comercial sênior, Tagline, Dual CTA ("Falar com a engenharia" / "Ver serviços"), microprova e sem gradientes |
-| Authority         | ✅ Reposicionado | Trust Bar compacto de Prova Social logo após o Hero (posição 2 da narrativa), métricas reais de missão crítica e selos corporativos |
+| Hero              | ✅ Quordix Interativo | Entrada escalonada letra a letra (Linha 1 e Linha 2 balanceadas), física magnética (`MagneticLetter`), subtítulo dinâmico acompanhando o cursor no título e subtítulo com destaque tipográfico (peso 400 a 700, opacidade 0.45 a 1.0) e estado inicial uniforme, anéis orbitais com satélites luminosos (Ciano Elétrico `#00D4FF` e Verde Esmeralda `#10B981`) e aura atmosférica central no gradiente oficial da marca (`logo-Photoroom.png`: Ciano Elétrico -> Turquesa -> Verde Esmeralda) em Light Mode e Dark Mode, e microprova social |
 | About             | ✅ Atualizado    | Autoridade técnica (Tech Lead/fundador Elessandro Prestes Macedo), métricas (+9 anos, 4 setores, 99,9% uptime) e pilares de engenharia |
 | Sectors           | ✅ Modularizado  | Seção 4 dedicada com os 4 cards 3D isomórficos 100% preservados (Indústria, Varejo, Educação, Energia), mockups interativos e tríade contexto + problema + experiência |
 | Services          | ✅ Atualizado    | Copywriting sênior com destaque ao problema resolvido nos 6 cards, H2 monocromático, H3 font-semibold e mockups técnicos preservados |
@@ -201,4 +199,4 @@ src/
 
 ---
 
-_Última atualização: 2026-09-08 | Maintainer: Elessandro Prestes Macedo_
+_Última atualização: 2026-09-09 | Maintainer: Elessandro Prestes Macedo_

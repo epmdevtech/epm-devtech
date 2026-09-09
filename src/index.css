@@ -202,3 +202,52 @@ textarea:-webkit-autofill:active {
     will-change: auto;
   }
 }
+
+/* ─────────────────────────────────────────────────────────────
+   HERO: Anéis orbitais decorativos (Quordix Hero)
+───────────────────────────────────────────────────────────── */
+@keyframes hero-orbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes hero-orbit-rev {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.hero-orbit {
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-orbit {
+    animation: none !important;
+    will-change: auto;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   HERO: Aura atmosférica no gradiente oficial EPM DEVTECH
+   (Ciano Elétrico #00D4FF -> Turquesa #22D3EE -> Verde Esmeralda #10B981)
+   Baseado fielmente no ícone da marca (logo-Photoroom.png)
+───────────────────────────────────────────────────────────── */
+.hero-brand-aura {
+  background: radial-gradient(circle at 35% 65%, rgba(0, 212, 255, 0.18) 0%, transparent 65%),
+              radial-gradient(circle at 65% 35%, rgba(16, 185, 129, 0.20) 0%, transparent 65%),
+              radial-gradient(circle at 50% 50%, rgba(34, 211, 238, 0.12) 0%, transparent 60%);
+}
+
+.dark .hero-brand-aura {
+  background: radial-gradient(circle at 35% 65%, rgba(14, 130, 249, 0.22) 0%, transparent 65%),
+              radial-gradient(circle at 65% 35%, rgba(16, 185, 129, 0.26) 0%, transparent 65%),
+              radial-gradient(circle at 50% 50%, rgba(34, 211, 238, 0.16) 0%, transparent 60%);
+}
