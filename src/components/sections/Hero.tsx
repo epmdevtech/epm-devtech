@@ -456,7 +456,7 @@ const Hero = () => {
         }}
         className="container relative z-10 px-6 py-20 will-change-transform flex flex-col items-center text-center max-w-6xl mx-auto"
       >
-        {/* Tagline superior: Ponto único de cor na badge com entrada suave */}
+        {/* Tagline superior: Overline minimalista flanqueado por linhas decorativas (estilo Selected Projects) */}
         <motion.div
           initial={prefersReduced ? false : { opacity: 0, y: 10 }}
           animate={prefersReduced ? false : { opacity: 1, y: 0 }}
@@ -465,13 +465,19 @@ const Hero = () => {
             delay: prefersReduced ? 0 : 0.05,
             ease: "easeOut",
           }}
-          className="inline-flex items-center gap-2 px-3.5 py-1.5 mb-8 rounded-full uppercase tracking-wider font-semibold text-xs bg-emerald-50 border border-emerald-200/70 text-emerald-700 dark:bg-emerald-950/50 dark:border-emerald-800/60 dark:text-emerald-400 shadow-sm"
+          className="inline-flex items-center justify-center gap-3 sm:gap-4 mb-6 sm:mb-8"
         >
           <span
-            className="w-1.5 h-1.5 rounded-full bg-emerald-600 dark:bg-emerald-400 animate-pulse"
+            className="h-px w-6 sm:w-10 md:w-12 bg-emerald-600/60 dark:bg-emerald-400/60 shrink-0"
             aria-hidden="true"
           />
-          <span>Engenharia de Software & Modernização</span>
+          <span className="text-xs sm:text-[13px] font-semibold tracking-[0.2em] uppercase text-emerald-700 dark:text-emerald-400 select-none">
+            Engenharia de Software & Modernização
+          </span>
+          <span
+            className="h-px w-6 sm:w-10 md:w-12 bg-emerald-600/60 dark:bg-emerald-400/60 shrink-0"
+            aria-hidden="true"
+          />
         </motion.div>
 
         {/* Headline: Rigorosamente 100% monocromático, magnético e responsivo com entrada escalonada letra a letra */}

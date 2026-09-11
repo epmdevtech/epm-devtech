@@ -60,4 +60,21 @@ describe('Hero Component', () => {
         expect(screen.getAllByText(/APIs resilientes/i).length).toBeGreaterThanOrEqual(1);
         expect(screen.getByText(/Código limpo/i)).toBeInTheDocument();
     });
+
+    it('renders tagline in overline layout without pill badge or pulse dot', () => {
+        const { container } = render(<Hero />);
+
+        const taglineText = screen.getByText(/Engenharia de Software & Modernização/i);
+        expect(taglineText).toBeInTheDocument();
+        expect(taglineText).toHaveClass('uppercase');
+        expect(taglineText).toHaveClass('tracking-[0.2em]');
+
+        // Ensure old pill badge classes and pulsing dot are absent
+        expect(container.querySelector('.rounded-full.border-emerald-200\\/70')).not.toBeInTheDocument();
+        expect(container.querySelector('.animate-pulse')).not.toBeInTheDocument();
+
+        // Ensure flanking decorative lines exist with aria-hidden
+        const hiddenSpans = container.querySelectorAll('span[aria-hidden="true"]');
+        expect(hiddenSpans.length).toBeGreaterThanOrEqual(2);
+    });
 });
