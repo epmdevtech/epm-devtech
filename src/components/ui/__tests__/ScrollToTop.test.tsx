@@ -41,12 +41,13 @@ describe('ScrollToTop Component', () => {
         document.body.innerHTML = '';
     });
 
-    it('não deve exibir o botão quando scrollY for <= 400px', () => {
+    it('não deve exibir o botão quando scrollY for <= 450px', () => {
+        Object.defineProperty(window, 'scrollY', { value: 450, configurable: true });
         render(<ScrollToTop />);
         expect(screen.queryByRole('button', { name: /Voltar ao topo/i })).not.toBeInTheDocument();
     });
 
-    it('deve exibir o botão quando scrollY for > 400px', () => {
+    it('deve exibir o botão quando scrollY for > 450px com borda sólida e sem glow', () => {
         render(<ScrollToTop />);
 
         act(() => {
@@ -54,7 +55,11 @@ describe('ScrollToTop Component', () => {
             fireEvent.scroll(window);
         });
 
-        expect(screen.getByRole('button', { name: /Voltar ao topo/i })).toBeInTheDocument();
+        const button = screen.getByRole('button', { name: /Voltar ao topo/i });
+        expect(button).toBeInTheDocument();
+        expect(button).toHaveClass('border-emerald-500');
+        expect(button.className).not.toContain('shadow-lg');
+        expect(button.className).not.toContain('backdrop-blur');
     });
 
     it('deve chamar window.scrollTo para o topo ao clicar no botão', () => {

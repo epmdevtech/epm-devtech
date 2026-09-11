@@ -9,6 +9,17 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.41-scroll-to-top-chevron-sem-glow] — 2026-09-10
+
+### Modificado
+- **`src/components/ui/ScrollToTop.tsx`**:
+  - Troca do ícone de foguete (`Rocket`) por seta chevron para cima (`ChevronUp` da biblioteca `lucide-react`), mantendo o tamanho original de 20px e espessura nítida (`strokeWidth={2.5}`).
+  - Remoção completa de halo luminoso (glow), sombra de pulso (`@keyframes scroll-top-pulse`), classes de blur e box-shadow.
+  - Adoção de design flat limpo com fundo e borda alinhados às variáveis de tema do rodapé (`bg-white dark:bg-zinc-900`, `border border-emerald-500` / `#10B981`) sem cores hexadecimais fixas no código, adaptando-se com alto contraste aos modos light, dark e system.
+  - Gatilho de visibilidade atualizado para `window.scrollY > 450` com transição suave de fade-in e fade-out (300ms ease), iniciando oculto.
+  - Preservação da função de rolagem suave até o topo, z-index (50), posição fixa no canto inferior direito, tooltip e elevação adaptativa ao rodapé (`data-elevated`).
+- **`src/components/ui/__tests__/ScrollToTop.test.tsx`**: Atualização dos testes unitários para validar o novo gatilho de 450px, a presença de `border-emerald-500` e a ausência de classes de glow e blur (135/135 testes passando).
+
 ## [0.0.40-footer-cnpj-copyright-e-remocao-travessoes-legais] — 2026-09-10
 
 ### Modificado
