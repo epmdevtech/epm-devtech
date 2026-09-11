@@ -17,8 +17,8 @@ vi.mock('framer-motion', () => ({
 describe('Services Component', () => {
     it('renders section title', () => {
         render(<Services />);
-        expect(screen.getByText('Soluções de engenharia de ponta a ponta')).toBeInTheDocument();
-        expect(screen.getByText(/Do planejamento à entrega em produção/i)).toBeInTheDocument();
+        expect(screen.getByText('Da primeira reunião ao deploy em produção')).toBeInTheDocument();
+        expect(screen.getByText(/Planejamento, arquitetura, testes automatizados e entrega/i)).toBeInTheDocument();
     });
 
     it('renders all 6 service cards with titles', () => {
@@ -61,7 +61,7 @@ describe('Services Component', () => {
     it('renderiza corretamente quando useInView retorna false (antes de entrar no viewport)', () => {
         mockUseInView.mockReturnValueOnce(false);
         render(<Services />);
-        expect(screen.getByText('Soluções de engenharia de ponta a ponta')).toBeInTheDocument();
+        expect(screen.getByText('Da primeira reunião ao deploy em produção')).toBeInTheDocument();
         expect(screen.getByText('Desenvolvimento Web e Aplicações SPA')).toBeInTheDocument();
     });
 });

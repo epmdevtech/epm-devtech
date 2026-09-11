@@ -9,6 +9,32 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.43-padronizacao-eyebrows-titulos-secoes] - 2026-09-10
+
+### Adicionado
+- **`src/components/ui/BrandChipIcon.tsx`**: Componente SVG reutilizável com traço nítido do chip da marca (dimensão de 15px, traço `#10B981`, sem fundo nem borda retangular, contendo chaves `{ }` e pinos de circuito).
+
+### Modificado
+- **`src/components/ui/SectionHeader.tsx`**:
+  - Remoção completa das cápsulas ou pills anteriores com fundo e borda arredondada.
+  - Adoção do padrão `BrandChipIcon` com alinhamento vertical ao centro e espaçamento de 7px (`gap-[7px]`).
+  - Tipografia padronizada em cinza secundário (`text-[11.5px] font-medium tracking-[0.1em] uppercase text-zinc-500 dark:text-zinc-400`).
+  - Flexibilização da prop `title` como opcional e ajuste automático de espaçamentos verticais para evitar vazios em seções sem título ou subtítulo.
+- **Títulos e Textos das Seções**:
+  - **Prova Social & Autoridade (`src/components/sections/Authority.tsx`)**: Eyebrow `AUTORIDADE & RESULTADOS`, novo título `Métricas reais de quem confia na nossa engenharia.` e remoção do parágrafo.
+  - **Sobre a EPM DEVTECH (`src/components/sections/About.tsx`)**: Eyebrow `SOBRE A EPM DEVTECH`, novo título `Engenharia de software com DNA prático e foco em resultado.` e parágrafo unificado em bloco único.
+  - **Experiência por Setor (`src/components/sections/Sectors.tsx`)**: Eyebrow `SETORIAL`, novo título `Soluções desenhadas para a realidade de cada mercado.` e novo subtítulo conciso.
+  - **Serviços (`src/components/sections/Services.tsx`)**: Eyebrow `SERVIÇOS`, novo título `Do diagnóstico à sustentação: ciclo completo de software.` e novo subtítulo.
+  - **Stack Tecnológica (`src/components/sections/Technologies.tsx`)**: Eyebrow `STACK TECNOLÓGICA` posicionado diretamente acima da constelação, com remoção do título e subtítulo.
+  - **Diferenciais (`src/components/sections/Differentials.tsx`)**: Eyebrow `DIFERENCIAIS`, novo título `Por que empresas escolhem a EPM DEVTECH.` e remoção do parágrafo.
+  - **Dúvidas Frequentes (`src/components/sections/FAQ.tsx`)**: Eyebrow `FAQ`, novo título `Respostas diretas para as dúvidas mais comuns.` e novo subtítulo.
+  - **Contato (`src/components/sections/Contact.tsx`)**: Eyebrow `FALE CONOSCO`, novo título `Vamos construir a solução ideal para o seu negócio.` e novo subtítulo.
+- **Higienização Geral de Textos**:
+  - Varredura e eliminação integral de travessões (`—`) e pontos e vírgulas (`;`) em toda a cópia textual do projeto (`Contact.tsx`, `FAQ.tsx`, `Index.tsx`, `llms-full.txt`, etc.).
+- **Testes e E2E**:
+  - Atualização dos testes unitários de todas as 8 seções e do `SectionHeader` (136/136 aprovados).
+  - Atualização dos testes ponta a ponta Playwright para as novas headlines (10/10 aprovados).
+
 ## [0.0.42-scroll-to-top-neutro-sem-verde] — 2026-09-10
 
 ### Modificado

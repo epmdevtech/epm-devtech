@@ -22,7 +22,7 @@ describe('Sectors Component', () => {
         render(<Sectors />);
 
         expect(screen.getByText(/Experiência por Setor/i)).toBeInTheDocument();
-        expect(screen.getByText(/Domínio de negócio em operações críticas/i)).toBeInTheDocument();
+        expect(screen.getByText(/Cada setor tem suas próprias regras/i)).toBeInTheDocument();
     });
 
     it('renders all 4 sector cards with 3D titles and badges', () => {
@@ -69,6 +69,6 @@ describe('Sectors Component', () => {
         mockUseInView.mockReturnValueOnce(false);
         render(<Sectors />);
         expect(screen.getByText(/Experiência por Setor/i)).toBeInTheDocument();
-        expect(screen.getByText(/Domínio de negócio em operações críticas/i)).toBeInTheDocument();
+        expect(screen.getByText(/Cada setor tem suas próprias regras/i)).toBeInTheDocument();
     });
 });

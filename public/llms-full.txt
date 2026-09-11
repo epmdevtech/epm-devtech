@@ -85,7 +85,7 @@ A experiência do site institucional da EPM DEVTECH é estruturada em uma jornad
 ### 2. APIs REST e Backends Escaláveis
 - **Descrição:** Design e implementação de APIs RESTful e GraphQL preparadas para alto volume transacional, com segurança de ponta a ponta.
 - **Diferenciais:** Autenticação robusta (OAuth2, JWT), rate limiting inteligente, cache distribuído com Redis e documentação Swagger/OpenAPI.
-- **Resultados de Referência:** Throughput comprovado de 2.500+ RPS em produção na educação federal; 100% de integridade transacional na apuração regulatória do setor elétrico (ONS).
+- **Resultados de Referência:** Throughput comprovado de 2.500+ RPS em produção na educação federal, com 100% de integridade transacional na apuração regulatória do setor elétrico (ONS).
 
 ### 3. Modernização de Sistemas Legados
 - **Descrição:** Migração técnica de monólitos antigos para microsserviços modernos com zero indisponibilidade operacional.
@@ -183,7 +183,7 @@ Nosso retorno técnico ocorre em até 24 horas úteis após o envio da sua mensa
 
 **3. Como é definido o orçamento e o modelo de trabalho?**
 Trabalhamos com dois modelos flexíveis, conforme a necessidade do projeto:
-- Escopo fechado: ideal para projetos com requisitos claros, oferecendo investimento fixo e cronograma planejado;
+- Escopo fechado: ideal para projetos com requisitos claros, oferecendo investimento fixo e cronograma planejado.
 - Alocação técnica dedicada: modalidade ágil de horas mensais, recomendada para modernização contínua, arquiteturas em evolução e demandas de alta complexidade.
 
 **4. A EPM DEVTECH atende clientes fora de Toledo no Paraná ou no exterior?**

@@ -20,10 +20,10 @@ vi.mock('framer-motion', () => ({
 }));
 
 describe('Technologies Component', () => {
-  it('renders section title, subtitle and TechConstellation', () => {
+  it('renders section eyebrow and TechConstellation without heading', () => {
     render(<Technologies />);
     expect(screen.getByText(/Stack Tecnológica/i)).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: /Tecnologias/i })).toBeInTheDocument();
+    expect(screen.queryByRole('heading')).not.toBeInTheDocument();
     expect(screen.getByTestId('tech-constellation')).toBeInTheDocument();
   });
 

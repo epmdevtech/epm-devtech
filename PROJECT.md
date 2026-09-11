@@ -148,7 +148,7 @@ src/
 | Área              | Status           | Notas                                      |
 |-------------------|------------------|--------------------------------------------|
 | Design            | ✅ Padronizado   | Design System Verde EPM DEVTECH (#10B981), títulos monocromáticos e tipografia Geist |
-| Tipografia / Títulos | ✅ 100% Monocromático | Títulos 100% monocromáticos sem divisões bicolores, cor primária verde restrita a badges, CTAs e foco interativo |
+| Tipografia / Títulos | ✅ Padronizado   | Eyebrows minimalistas com traço do ícone da marca (BrandChipIcon em #10B981) + texto cinza uppercase (11.5px, weight 500, letter-spacing 0.1em), títulos 100% monocromáticos, zero cápsulas e zero travessões (—) ou pontos e vírgulas (;) |
 | Hero              | ✅ Quordix Interativo | Tagline superior em overline minimalista flanqueada por linhas decorativas (estilo Selected Projects da referência Quordix), entrada escalonada letra a letra (Linha 1 e Linha 2 balanceadas), física magnética (`MagneticLetter`), subtítulo dinâmico acompanhando o cursor no título e subtítulo com destaque tipográfico (peso 400 a 700, opacidade 0.45 a 1.0) e estado inicial uniforme, anéis orbitais com satélites luminosos (Ciano Elétrico `#00D4FF` e Verde Esmeralda `#10B981`) e aura atmosférica central no gradiente oficial da marca (`logo-Photoroom.png`: Ciano Elétrico -> Turquesa -> Verde Esmeralda) em Light Mode e Dark Mode, e microprova social |
 | About             | ✅ Atualizado    | Autoridade técnica (Tech Lead/fundador Elessandro Prestes Macedo), métricas (+9 anos, 4 setores, 99,9% uptime) e pilares de engenharia |
 | Sectors           | ✅ Modularizado  | Seção 4 dedicada com os 4 cards 3D isomórficos 100% preservados (Indústria, Varejo, Educação, Energia), mockups interativos e tríade contexto + problema + experiência |
@@ -161,7 +161,7 @@ src/
 | ScrollToTop       | ✅ Neutro / Flat | Ícone ChevronUp (20px), design utilitário neutro sem glow ou realce verde (borda fina border-zinc-200/800, text-zinc-500/400), sem competir com CTAs reais (WhatsApp/Contato), fade suave >450px e elevação dinâmica no rodapé |
 | Cookie Banner     | ✅ Otimizado     | Lazy load assíncrono + defer timer (3.5s)  |
 | SEO & Agêntico    | ✅ Formalizado   | `robots.txt` formalizado para 16 crawlers de IA (OpenAI, Anthropic, Perplexity, Google, Apple, Meta, ByteDance, etc.), `llms.txt` e `llms-full.txt` enriquecidos com a narrativa de 10 seções, setores, serviços, 10 perguntas do FAQ e métricas reais, `sitemap.xml` atualizado com `/setores` e `/faq`, links de auto-descoberta no `index.html` e eliminação de travessões artificiais |
-| Testes unitários  | ✅ Implementado  | 20/20 suites, 135/135 testes passando (95.44% coverage geral, Sectors 100%, FAQ 100%, Services 100%) |
+| Testes unitários  | ✅ Implementado  | 20/20 suites, 136/136 testes passando (95.44% coverage geral, Sectors 100%, FAQ 100%, Services 100%) |
 | Testes E2E        | ✅ Implementado  | Suíte Playwright (10/10 testes passando, incluindo teste E2E de validação e máscara de telefone, layout shift zero e computed styles) |
 | Acessibilidade    | ✅ 100% WCAG AA  | Contraste de texto e botões >= 4.5:1 (Logotipo WCAG AAA >= 17:1) |
 | Performance       | ✅ 100% Otimizado| JS inicial < 80 KB, FCP/LCP instantâneo    |

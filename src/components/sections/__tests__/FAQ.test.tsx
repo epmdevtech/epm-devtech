@@ -20,9 +20,9 @@ describe('FAQ Component', () => {
     render(<FAQ />);
 
     expect(screen.getByText(/Dúvidas Frequentes/i)).toBeInTheDocument();
-    expect(screen.getByText('Perguntas Frequentes')).toBeInTheDocument();
+    expect(screen.getByText('As perguntas que sempre chegam primeiro')).toBeInTheDocument();
     expect(
-      screen.getByText(/Respostas diretas sobre como iniciamos projetos/i)
+      screen.getByText(/Respostas diretas sobre como começar um projeto/i)
     ).toBeInTheDocument();
   });
 
@@ -95,6 +95,6 @@ describe('FAQ Component', () => {
   it('renderiza corretamente quando useInView retorna false (antes de entrar no viewport)', () => {
     mockUseInView.mockReturnValueOnce(false);
     render(<FAQ />);
-    expect(screen.getByText('Perguntas Frequentes')).toBeInTheDocument();
+    expect(screen.getByText('As perguntas que sempre chegam primeiro')).toBeInTheDocument();
   });
 });

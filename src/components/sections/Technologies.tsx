@@ -14,17 +14,14 @@ const Technologies = () => {
   return (
     <section id="tecnologias" className="relative py-24 bg-background overflow-hidden" ref={ref}>
       <div className="container px-6">
-        {/* ── Header ── */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.55 }}
-          className="mb-12"
+          className="mb-8"
         >
           <SectionHeader
             tagline="Stack Tecnológica"
-            title="Tecnologias Modernas"
-            subtitle="Arquitetura interconectada com padrões sólidos de engenharia, ferramentas consolidadas e foco em alta disponibilidade."
           />
         </motion.div>
 

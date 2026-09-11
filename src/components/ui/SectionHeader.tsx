@@ -1,10 +1,11 @@
 import React from "react";
 import { cn } from "@/lib/utils";
+import BrandChipIcon from "@/components/ui/BrandChipIcon";
 
 export interface SectionHeaderProps {
   tagline?: string;
-  withDot?: boolean;
-  title: React.ReactNode;
+  withDot?: boolean; // mantido para compatibilidade de tipos retroativa
+  title?: React.ReactNode;
   subtitle?: React.ReactNode;
   as?: "h1" | "h2";
   align?: "center" | "left";
@@ -16,7 +17,6 @@ export interface SectionHeaderProps {
 
 export const SectionHeader: React.FC<SectionHeaderProps> = ({
   tagline,
-  withDot = false,
   title,
   subtitle,
   as = "h2",
@@ -40,39 +40,37 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
     >
       {tagline && (
         <div
+          data-testid="section-eyebrow"
           className={cn(
-            "inline-flex items-center gap-2 px-3 py-1 mb-4 rounded-full uppercase tracking-wider font-semibold text-xs",
-            "bg-emerald-50 text-emerald-700 border border-emerald-200/70",
-            "dark:bg-emerald-950/50 dark:text-emerald-400 dark:border-emerald-800/60",
+            "inline-flex items-center gap-[7px] text-[11.5px] font-medium tracking-[0.1em] uppercase text-zinc-500 dark:text-zinc-400 select-none",
+            title ? "mb-3.5" : "mb-2",
             taglineClassName
           )}
         >
-          {withDot && (
-            <span
-              className="w-1.5 h-1.5 rounded-full bg-emerald-600 dark:bg-emerald-400 animate-pulse"
-              aria-hidden="true"
-            />
-          )}
+          <BrandChipIcon size={15} className="shrink-0" />
           <span>{tagline}</span>
         </div>
       )}
 
-      <HeadingTag
-        className={cn(
-          "font-bold tracking-tight text-zinc-900 dark:text-white",
-          isH1
-            ? "text-4xl sm:text-5xl lg:text-6xl leading-[1.15] mb-6"
-            : "text-3xl sm:text-4xl leading-tight mb-4",
-          titleClassName
-        )}
-      >
-        {title}
-      </HeadingTag>
+      {title && (
+        <HeadingTag
+          className={cn(
+            "font-bold tracking-tight text-zinc-900 dark:text-white",
+            isH1
+              ? "text-4xl sm:text-5xl lg:text-6xl leading-[1.15] mb-6"
+              : "text-3xl sm:text-4xl leading-tight",
+            subtitle ? "mb-4" : "mb-0",
+            titleClassName
+          )}
+        >
+          {title}
+        </HeadingTag>
+      )}
 
       {subtitle && (
         <p
           className={cn(
-            "font-normal text-base sm:text-lg leading-relaxed text-zinc-600 dark:text-zinc-400",
+            "font-normal text-base sm:text-lg leading-relaxed text-zinc-600 dark:text-zinc-400 mt-3",
             isCenter ? "max-w-2xl mx-auto" : "max-w-2xl",
             subtitleClassName
           )}

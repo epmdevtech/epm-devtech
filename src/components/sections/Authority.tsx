@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 const metrics = [
   {
@@ -62,17 +63,11 @@ const Authority = () => {
           className="space-y-10"
         >
           {/* Cabeçalho compacto e monocromático */}
-          <div className="text-center max-w-3xl mx-auto">
-            <span className="inline-block px-3 py-1 mb-3 rounded-full uppercase tracking-wider font-semibold text-xs bg-emerald-50 text-emerald-700 border border-emerald-200/70 dark:bg-emerald-950/50 dark:text-emerald-400 dark:border-emerald-800/60">
-              Prova Social & Autoridade
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white">
-              Autoridade técnica e impacto em missão crítica
-            </h2>
-            <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 mt-2">
-              Resultados comprovados na linha de frente de grandes instituições e setores estratégicos.
-            </p>
-          </div>
+          <SectionHeader
+            tagline="Prova Social & Autoridade"
+            title="Projetos em produção, não em portfólio"
+            titleClassName="text-2xl sm:text-3xl"
+          />
 
           {/* Feature 1: Métricas Consolidadas de Missão Crítica */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center divide-y sm:divide-y-0 sm:divide-x divide-zinc-200/80 dark:divide-zinc-800/80">

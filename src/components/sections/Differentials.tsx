@@ -279,12 +279,11 @@ const Differentials = () => {
             initial={{ opacity: 0, y: 24 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.55 }}
-            className="mb-12"
+            className="mb-10"
           >
             <SectionHeader
               tagline="Diferenciais"
-              title="Por Que Escolher a EPM DEVTECH"
-              subtitle="Rigor de engenharia, arquitetura escalável e compromisso com entregas previsíveis em cada linha de código."
+              title="Por que escolher a EPM DEVTECH"
             />
           </motion.div>
 

@@ -23,8 +23,8 @@ describe('About Component', () => {
         render(<About />);
 
         expect(screen.getByText(/Sobre a EPM DEVTECH/i)).toBeInTheDocument();
-        expect(screen.getByText(/Engenharia de software com excelência técnica comprovada/i)).toBeInTheDocument();
-        expect(screen.getByText(/fundada por Elessandro Prestes Macedo/i)).toBeInTheDocument();
+        expect(screen.getByText(/Uma trajetória técnica, não um discurso de vendas/i)).toBeInTheDocument();
+        expect(screen.getByText(/A EPM DEVTECH nasceu da experiência de Elessandro Prestes Macedo/i)).toBeInTheDocument();
     });
 
     it('renders the company stats with +9, 4 and 99,9% uptime', () => {
@@ -61,6 +61,6 @@ describe('About Component', () => {
         render(<About />);
         // Conteúdo sempre presente no DOM — apenas estado de animação muda
         expect(screen.getByText(/Sobre a EPM DEVTECH/i)).toBeInTheDocument();
-        expect(screen.getByText(/Engenharia de software com excelência técnica comprovada/i)).toBeInTheDocument();
+        expect(screen.getByText(/Uma trajetória técnica, não um discurso de vendas/i)).toBeInTheDocument();
     });
 });

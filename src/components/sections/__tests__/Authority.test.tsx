@@ -15,11 +15,11 @@ vi.mock('framer-motion', () => ({
 }));
 
 describe('Authority / Trust Bar Component', () => {
-    it('renders section header with badge and monochromatic title', () => {
+    it('renders section header with eyebrow and title', () => {
         render(<Authority />);
         expect(screen.getByText(/Prova Social & Autoridade/i)).toBeInTheDocument();
-        expect(screen.getByText('Autoridade técnica e impacto em missão crítica')).toBeInTheDocument();
-        expect(screen.getByText(/Resultados comprovados na linha de frente/i)).toBeInTheDocument();
+        expect(screen.getByText('Projetos em produção, não em portfólio')).toBeInTheDocument();
+        expect(screen.queryByText(/Resultados comprovados na linha de frente/i)).not.toBeInTheDocument();
     });
 
     it('renders all 4 mission-critical metrics and their labels', () => {
@@ -54,7 +54,7 @@ describe('Authority / Trust Bar Component', () => {
     it('renderiza corretamente quando useInView retorna false (antes de entrar no viewport)', () => {
         mockUseInView.mockReturnValueOnce(false);
         render(<Authority />);
-        expect(screen.getByText('Autoridade técnica e impacto em missão crítica')).toBeInTheDocument();
+        expect(screen.getByText('Projetos em produção, não em portfólio')).toBeInTheDocument();
         expect(screen.getByText('99,9%')).toBeInTheDocument();
     });
 });

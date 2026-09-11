@@ -344,8 +344,8 @@ const Services = () => {
           >
             <SectionHeader
               tagline="Serviços"
-              title="Soluções de engenharia de ponta a ponta"
-              subtitle="Do planejamento à entrega em produção: desenvolvemos software com rigor arquitetural, testes automatizados e foco em performance para o seu negócio."
+              title="Da primeira reunião ao deploy em produção"
+              subtitle="Planejamento, arquitetura, testes automatizados e entrega: cuidamos de cada etapa com o mesmo padrão técnico, sem atalhos que viram dívida técnica depois."
             />
           </motion.div>
 

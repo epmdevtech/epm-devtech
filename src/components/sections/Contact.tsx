@@ -149,7 +149,7 @@ const Contact = () => {
           <SectionHeader
             tagline="Contato"
             title="Vamos entender o seu desafio"
-            subtitle="Não precisa ter todos os requisitos definidos. Conte-nos o que está acontecendo, qual processo precisa melhorar ou o que você gostaria de construir. Avaliaremos o melhor caminho técnico."
+            subtitle="Não precisa chegar com arquitetura definida ou stack escolhida. Descreva o que está travando ou o que você quer construir, nós indicamos o caminho técnico mais adequado."
           />
         </motion.div>
 

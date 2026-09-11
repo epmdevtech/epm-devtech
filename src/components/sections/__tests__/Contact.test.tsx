@@ -124,7 +124,7 @@ describe('Contact Component', () => {
     render(<Contact />);
     expect(screen.getByText('Contato')).toBeInTheDocument();
     expect(screen.getByText('Vamos entender o seu desafio')).toBeInTheDocument();
-    expect(screen.getByText(/Não precisa ter todos os requisitos definidos/i)).toBeInTheDocument();
+    expect(screen.getByText(/Não precisa chegar com arquitetura definida/i)).toBeInTheDocument();
   });
 
   it('renders next steps and guarantees in dark side of unified card', () => {

@@ -14,12 +14,12 @@ vi.mock('framer-motion', () => ({
 }));
 
 describe('Differentials Component', () => {
-    it('renders section header with title and subtitle', () => {
+    it('renders section header with title and no subtitle', () => {
         render(<Differentials />);
 
         expect(screen.getByText(/Diferenciais/i)).toBeInTheDocument();
-        expect(screen.getByText('Por Que Escolher a EPM DEVTECH')).toBeInTheDocument();
-        expect(screen.getByText(/Rigor de engenharia, arquitetura escalável e compromisso com entregas previsíveis/i)).toBeInTheDocument();
+        expect(screen.getByText('Por que escolher a EPM DEVTECH')).toBeInTheDocument();
+        expect(screen.queryByText(/Rigor de engenharia, arquitetura escalável e compromisso com entregas previsíveis/i)).not.toBeInTheDocument();
     });
 
     it('renders the pipeline track and fill', () => {
@@ -74,7 +74,7 @@ describe('Differentials Component', () => {
     it('renderiza corretamente quando useInView retorna false (antes de entrar no viewport)', () => {
         mockUseInView.mockReturnValueOnce(false);
         render(<Differentials />);
-        expect(screen.getByText('Por Que Escolher a EPM DEVTECH')).toBeInTheDocument();
+        expect(screen.getByText('Por que escolher a EPM DEVTECH')).toBeInTheDocument();
         expect(screen.getByText('Comunicação Transparente')).toBeInTheDocument();
     });
 });

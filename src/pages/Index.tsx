@@ -57,7 +57,7 @@ const SEO_META: Record<string, SeoMeta> = {
   diferenciais: {
     title: "Diferenciais | EPM DEVTECH",
     description:
-      "Qualidade de código +45% via SonarQube, entrega +25% com IA aplicada, deploy automatizado com rollback. Não vendemos promessas — entregamos métricas. Veja nossos diferenciais.",
+      "Qualidade de código +45% via SonarQube, entrega +25% com IA aplicada, deploy automatizado com rollback. Não vendemos promessas, entregamos métricas. Veja nossos diferenciais.",
   },
   faq: {
     title: "FAQ | EPM DEVTECH",

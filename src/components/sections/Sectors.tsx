@@ -406,8 +406,8 @@ const Sectors = () => {
           >
             <SectionHeader
               tagline="Experiência por Setor"
-              title="Domínio de negócio em operações críticas"
-              subtitle="Compreendemos as particularidades regulatórias, operacionais e de escala de setores que não podem conviver com lentidão ou indisponibilidade."
+              title="Cada setor tem suas próprias regras"
+              subtitle="Backoffice, saúde, indústria: cada um exige uma leitura diferente de compliance, volume de dados e tolerância a falha. Entendemos essas diferenças antes de desenhar a arquitetura, não depois."
             />
           </motion.div>
 

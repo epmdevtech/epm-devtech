@@ -144,21 +144,9 @@ const About = () => {
             <SectionHeader
               align="left"
               tagline="Sobre a EPM DEVTECH"
-              title="Engenharia de software com excelência técnica comprovada"
-              className="mb-6"
+              title="Uma trajetória técnica, não um discurso de vendas"
+              subtitle="A EPM DEVTECH nasceu da experiência de Elessandro Prestes Macedo, Engenheiro de Software Sênior e Tech Lead, ao longo de mais de 9 anos arquitetando e modernizando plataformas corporativas para instituições que não podem parar. Hoje trabalhamos com metodologia Spec-Driven Development (SDD) combinada a ferramentas modernas de IA, o que garante requisitos rastreáveis, especificações precisas e entregas previsíveis a cada ciclo."
             />
-            
-            <div className="space-y-4 text-base sm:text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal">
-              <p>
-                A EPM DEVTECH é uma software house fundada por Elessandro Prestes Macedo, Engenheiro de Software Sênior e Tech Lead com mais de 9 anos de atuação na concepção, arquitetura e modernização de plataformas corporativas de missão crítica.
-              </p>
-              <p>
-                Nossa atuação combina engenharia orientada a resultados e rigor técnico em operações de grande porte. Desenvolvemos ecossistemas escaláveis, microsserviços e modernizações de legado sem interrupção para clientes institucionais e indústrias que exigem alta disponibilidade.
-              </p>
-              <p>
-                Trabalhamos com metodologia Spec-Driven Development (SDD) integrada a ferramentas modernas de IA, assegurando rastreabilidade de requisitos, especificações precisas e entrega previsível em cada ciclo de desenvolvimento.
-              </p>
-            </div>
 
             {/* Indicadores / Animated Stats */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 sm:gap-8 mt-10 pt-8 border-t border-border/50">

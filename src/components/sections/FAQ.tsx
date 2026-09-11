@@ -32,7 +32,7 @@ const FAQ_ITEMS: FAQItem[] = [
     category: "contratacao",
     question: "Como é definido o orçamento e o modelo de trabalho?",
     answer:
-      "Trabalhamos com dois modelos flexíveis, conforme a necessidade do projeto:\n• Escopo fechado: ideal para projetos com requisitos claros, oferecendo investimento fixo e cronograma planejado;\n• Alocação técnica dedicada: modalidade ágil de horas mensais, recomendada para modernização contínua, arquiteturas em evolução e demandas de alta complexidade.",
+      "Trabalhamos com dois modelos flexíveis, conforme a necessidade do projeto:\n• Escopo fechado: ideal para projetos com requisitos claros, oferecendo investimento fixo e cronograma planejado.\n• Alocação técnica dedicada: modalidade ágil de horas mensais, recomendada para modernização contínua, arquiteturas em evolução e demandas de alta complexidade.",
   },
   {
     category: "contratacao",
@@ -131,8 +131,8 @@ const FAQ = () => {
         >
           <SectionHeader
             tagline="Dúvidas Frequentes"
-            title="Perguntas Frequentes"
-            subtitle="Respostas diretas sobre como iniciamos projetos, como atuamos em sistemas legados e como funciona o nosso modelo de trabalho."
+            title="As perguntas que sempre chegam primeiro"
+            subtitle="Respostas diretas sobre como começar um projeto, como mexemos em sistema legado e como funciona nosso modelo de trabalho."
           />
         </motion.div>
 
