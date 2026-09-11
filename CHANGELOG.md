@@ -9,7 +9,29 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
-## [0.0.37-hero-quordix-magnetic-interativo] — 2026-09-09
+## [0.0.40-footer-cnpj-copyright-e-remocao-travessoes-legais] — 2026-09-10
+
+### Modificado
+- **`src/components/sections/Footer.tsx`**: Remoção do bloco vertical de CNPJ da Coluna 1 e consolidação da identificação jurídica diretamente na linha de copyright do sub-footer (`© 2026 EPM DEVTECH  ·  CNPJ 60.710.574/0001-85. Todos os direitos reservados.`), preservando o layout limpo e desobstruído da coluna de identidade.
+- **`src/components/legal/LegalModals.tsx`**: Remoção completa de todos os caracteres de travessão (`—`) nos títulos e textos dos Termos de Uso e da Política de Privacidade (LGPD), assegurando pontuação formal e ortografia pt-BR sem traços artificiais.
+- **`src/components/sections/__tests__/Footer.test.tsx`**: Ajuste das asserções de testes para certificar a presença do CNPJ no copyright e a ausência do bloco vertical da coluna 1 (135/135 testes passando).
+
+
+### Adicionado
+- **Dados Cadastrais Oficiais no Rodapé (`src/components/sections/Footer.tsx`)**: Inclusão dos dados corporativos abaixo de "Toledo, Paraná." (Razão Social: `ELESSANDRO PRESTES MACEDO DESENVOLVIMENTO DE SOFTWARE LTDA`, CNPJ: `60.710.574/0001-85 · Matriz` e Nome Fantasia: `EPM DEVTECH (ME)`).
+- **Modais de Termos de Uso e Política de Privacidade (`src/components/legal/LegalModals.tsx`)**: Componente com diálogos acessíveis (`Dialog` shadcn/ui / Radix UI) e scroll suave interno (`ScrollArea`), apresentando termos contratuais, propriedade intelectual, foro de Toledo/PR e diretrizes da LGPD (Lei nº 13.709/2018) com contato direto do DPO.
+- **Links Legais no Sub-footer**: Inserção de gatilhos para abertura dos modais no lado direito da barra inferior, preservando o espaçamento de segurança para o botão `ScrollToTop` (`lg:pr-14`).
+
+### Modificado
+- **`src/components/sections/Footer.tsx`**: Remoção do bloco de retorno técnico em até 24 horas na coluna de contato e da frase de valor "Código limpo, arquitetura sólida e alta disponibilidade." no sub-footer.
+- **`src/components/sections/__tests__/Footer.test.tsx`**: Atualização da suíte de testes unitários para validar a renderização dos dados cadastrais, a presença dos botões dos modais e a remoção dos textos obsoletos (135/135 testes passando).
+
+
+### Modificado
+- **`src/components/sections/Hero.tsx`**: Substituição do formato tradicional de badge em cápsula (`rounded-full`, fundo e borda) e remoção do ponto pulsante verde na tagline superior por um layout overline minimalista flanqueado por linhas decorativas horizontais (`h-px w-6 sm:w-10 md:w-12 bg-emerald-600/60 dark:bg-emerald-400/60 shrink-0` com `aria-hidden="true"`), inspirado na referência de design Quordix ("SELECTED PROJECTS").
+- **Tipografia & Design System**: Aplicação de caixa alta e tracking expandido (`tracking-[0.2em] uppercase font-semibold text-xs sm:text-[13px]`) preservando 100% das cores institucionais do texto (`text-emerald-700 dark:text-emerald-400`) e entrada suave Framer Motion compatível com `prefers-reduced-motion`.
+- **`src/components/sections/__tests__/Hero.test.tsx`**: Adição de teste unitário comprovando a ausência do pill badge / dot pulsante e a presença do overline com linhas decorativas (135/135 testes passando).
+
 
 ### Adicionado
 - **Headline em Duas Linhas Equilibradas**: Divisão harmoniosa da headline em 2 linhas ("Software sob medida construído" / "para escalar o seu negócio.") eliminando palavras órfãs e evitando quebras desconexas.

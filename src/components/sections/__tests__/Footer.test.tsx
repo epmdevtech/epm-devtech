@@ -41,6 +41,9 @@ vi.mock('lucide-react', () => ({
   Moon: () => <span>MoonIcon</span>,
   Sun: () => <span>SunIcon</span>,
   Monitor: () => <span>MonitorIcon</span>,
+  FileText: () => <span>FileTextIcon</span>,
+  ShieldCheck: () => <span>ShieldCheckIcon</span>,
+  X: () => <span>XIcon</span>,
 }));
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -51,16 +54,22 @@ describe('Footer Component', () => {
     mockTheme = 'dark';
   });
 
-  it('renders branding, positioning text and location', () => {
+  it('renders branding, positioning text and location in column 1', () => {
     render(<Footer />);
     expect(screen.getAllByAltText('EPM DEVTECH').length).toBeGreaterThan(0);
     expect(
       screen.getByText(/Engenharia de software sob medida, arquitetura de sistemas críticos/i)
     ).toBeInTheDocument();
     expect(screen.getByText('Toledo, Paraná.')).toBeInTheDocument();
+
+    // Confirma que o bloco cadastral vertical foi removido da coluna 1
+    expect(
+      screen.queryByText(/ELESSANDRO PRESTES MACEDO DESENVOLVIMENTO DE SOFTWARE LTDA/i)
+    ).not.toBeInTheDocument();
+    expect(screen.queryByText(/Nome Fantasia: EPM DEVTECH \(ME\)/i)).not.toBeInTheDocument();
   });
 
-  it('renders the 4 columns with titles and links', () => {
+  it('renders the 4 columns with titles and links without obsolete contact response text', () => {
     render(<Footer />);
 
     // Coluna 2: Soluções
@@ -85,7 +94,7 @@ describe('Footer Component', () => {
     expect(screen.getByRole('heading', { name: /Contato/i })).toBeInTheDocument();
     expect(screen.getByText('elessandro@epmdevtech.com.br')).toBeInTheDocument();
     expect(screen.getByText('WhatsApp: (45) 99917-8290')).toBeInTheDocument();
-    expect(screen.getByText('Retorno técnico em até 24 horas úteis')).toBeInTheDocument();
+    expect(screen.queryByText('Retorno técnico em até 24 horas úteis')).not.toBeInTheDocument();
   });
 
   it('renders social links for GitHub and LinkedIn', () => {
@@ -100,15 +109,17 @@ describe('Footer Component', () => {
     );
   });
 
-  it('renders copyright and sub-footer tagline', () => {
+  it('renders copyright with CNPJ and legal links in sub-footer, without obsolete value phrase', () => {
     render(<Footer />);
     const currentYear = new Date().getFullYear();
     expect(
-      screen.getByText(new RegExp(`© ${currentYear} EPM DEVTECH. Todos os direitos reservados.`, 'i'))
+      screen.getByText(new RegExp(`© ${currentYear} EPM DEVTECH.*CNPJ 60\\.710\\.574\\/0001-85.*Todos os direitos reservados\\.`, 'i'))
     ).toBeInTheDocument();
     expect(
-      screen.getByText('Código limpo, arquitetura sólida e alta disponibilidade.')
-    ).toBeInTheDocument();
+      screen.queryByText('Código limpo, arquitetura sólida e alta disponibilidade.')
+    ).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Termos de Uso/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Política de Privacidade/i })).toBeInTheDocument();
   });
 
   // ── ThemeSwitcher ─────────────────────────────────────────────────────────

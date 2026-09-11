@@ -6,12 +6,12 @@ import {
   MapPin,
   Mail,
   Phone,
-  Clock,
   Moon,
   Sun,
   Monitor,
 } from "lucide-react";
 import { useTheme } from "@/components/theme-provider";
+import { LegalLinks } from "@/components/legal/LegalModals";
 
 const SOLUTIONS_LINKS = [
   { label: "Desenvolvimento Web e SPAs", href: "#servicos" },
@@ -217,29 +217,24 @@ const Footer = () => {
                   <Phone className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
                   <span>WhatsApp: (45) 99917-8290</span>
                 </a>
-
-                <div className="flex items-center gap-2.5 text-xs text-zinc-500 dark:text-zinc-400 pt-1">
-                  <Clock className="w-3.5 h-3.5 text-zinc-400 dark:text-zinc-500 shrink-0" />
-                  <span>Retorno técnico em até 24 horas úteis</span>
-                </div>
               </div>
             </div>
           </div>
 
           {/* Barra Inferior (Sub-footer) */}
           <div className="border-t border-zinc-200/60 dark:border-zinc-800/60 mt-12 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
-            {/* Lado Esquerdo: Copyright */}
+            {/* Lado Esquerdo: Copyright e CNPJ */}
             <p className="text-xs text-zinc-500 dark:text-zinc-400 text-center md:text-left">
-              © {currentYear} EPM DEVTECH. Todos os direitos reservados.
+              © {currentYear} EPM DEVTECH &nbsp;·&nbsp; CNPJ 60.710.574/0001-85. Todos os direitos reservados.
             </p>
 
             {/* Centro: Seletor de Tema */}
             <ThemeSwitcher />
 
-            {/* Lado Direito: Frase de Valor (com respiro para ScrollToTop) */}
-            <p className="text-xs text-zinc-500 dark:text-zinc-400 text-center md:text-right lg:pr-14">
-              Código limpo, arquitetura sólida e alta disponibilidade.
-            </p>
+            {/* Lado Direito: Termos de Uso e Política de Privacidade (com respiro para ScrollToTop) */}
+            <div className="text-center md:text-right lg:pr-14">
+              <LegalLinks className="justify-center md:justify-end" />
+            </div>
           </div>
         </motion.div>
       </div>
