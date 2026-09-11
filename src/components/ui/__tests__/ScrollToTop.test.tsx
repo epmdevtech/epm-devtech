@@ -47,7 +47,7 @@ describe('ScrollToTop Component', () => {
         expect(screen.queryByRole('button', { name: /Voltar ao topo/i })).not.toBeInTheDocument();
     });
 
-    it('deve exibir o botão quando scrollY for > 450px com borda sólida e sem glow', () => {
+    it('deve exibir o botão quando scrollY for > 450px com acabamento neutro e sem glow', () => {
         render(<ScrollToTop />);
 
         act(() => {
@@ -57,7 +57,8 @@ describe('ScrollToTop Component', () => {
 
         const button = screen.getByRole('button', { name: /Voltar ao topo/i });
         expect(button).toBeInTheDocument();
-        expect(button).toHaveClass('border-emerald-500');
+        expect(button).toHaveClass('border-zinc-200');
+        expect(button.className).not.toContain('border-emerald-500');
         expect(button.className).not.toContain('shadow-lg');
         expect(button.className).not.toContain('backdrop-blur');
     });

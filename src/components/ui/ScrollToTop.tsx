@@ -125,12 +125,12 @@ const ScrollToTop = () => {
                                     transition={{ duration: 0.3, ease: "easeOut" }}
                                     onClick={scrollToTop}
                                     aria-label="Voltar ao topo"
-                                    className="p-3.5 rounded-full border border-emerald-500 bg-white dark:bg-zinc-900 text-emerald-600 dark:text-emerald-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors duration-300 cursor-pointer flex items-center justify-center"
+                                    className="p-3.5 rounded-full border border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 bg-white dark:bg-zinc-900 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all duration-300 cursor-pointer flex items-center justify-center"
                                 >
                                     <ChevronUp size={20} strokeWidth={2.5} className="transition-transform group-hover:-translate-y-0.5" />
                                 </motion.button>
                             </TooltipTrigger>
-                            <TooltipContent side="top" className="font-sans text-xs tracking-wider uppercase mb-2 border-emerald-500/30 bg-background/95">
+                            <TooltipContent side="top" className="font-sans text-xs tracking-wider uppercase mb-2 border-zinc-200 dark:border-zinc-800 bg-background/95 text-zinc-600 dark:text-zinc-300">
                                 <p>Voltar ao topo</p>
                             </TooltipContent>
                         </Tooltip>

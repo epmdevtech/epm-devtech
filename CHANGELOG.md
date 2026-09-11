@@ -9,6 +9,17 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.42-scroll-to-top-neutro-sem-verde] — 2026-09-10
+
+### Modificado
+- **`src/components/ui/ScrollToTop.tsx`**:
+  - Neutralização completa de cores no botão e tooltip para eliminar competição visual com os CTAs primários do site (WhatsApp e "Fale Conosco").
+  - Substituição da borda verde (`border-emerald-500`) por borda fina e sóbria em tons neutros (`border border-zinc-200 dark:border-zinc-800` e hover em `hover:border-zinc-300 dark:hover:border-zinc-700`).
+  - Substituição do ícone verde (`text-emerald-600 dark:text-emerald-400`) por tons neutros monocromáticos de alto contraste (`text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100`).
+  - Atualização do tooltip para borda neutra (`border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-300`).
+  - Preservação da visibilidade condicionada ao scroll (>450px), fade suave de 300ms ease, ícone ChevronUp e elevação dinâmica no rodapé.
+- **`src/components/ui/__tests__/ScrollToTop.test.tsx`**: Validação de ausência de classes verdes (`border-emerald-500`) e assertividade nas bordas neutras (`border-zinc-200`) (135/135 testes passando).
+
 ## [0.0.41-scroll-to-top-chevron-sem-glow] — 2026-09-10
 
 ### Modificado
