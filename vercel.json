@@ -3,7 +3,7 @@
   "routes": [
     {
       "src": "/odontologia-demo",
-      "dest": "https://dentistry-demo.elessandrodev.workers.dev",
+      "dest": "https://dentistry-demo.elessandrodev.workers.dev/",
       "headers": {
         "X-Content-Type-Options": "nosniff",
         "X-Frame-Options": "SAMEORIGIN",
