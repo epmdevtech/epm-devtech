@@ -1,37 +1,32 @@
 {
   "trailingSlash": false,
-  "rewrites": [
+  "routes": [
     {
-      "source": "/odontologia-demo",
-      "destination": "https://dentistry-demo.elessandrodev.workers.dev"
+      "src": "/odontologia-demo",
+      "dest": "https://dentistry-demo.elessandrodev.workers.dev",
+      "headers": {
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "SAMEORIGIN",
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "Permissions-Policy": "camera=(), microphone=(), geolocation=()"
+      }
     },
     {
-      "source": "/odontologia-demo/:path*",
-      "destination": "https://dentistry-demo.elessandrodev.workers.dev/:path*"
+      "src": "/odontologia-demo/(.*)",
+      "dest": "https://dentistry-demo.elessandrodev.workers.dev/$1",
+      "headers": {
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "SAMEORIGIN",
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "Permissions-Policy": "camera=(), microphone=(), geolocation=()"
+      }
     },
-    { "source": "/(.*)", "destination": "/index.html" }
-  ],
-  "headers": [
     {
-      "source": "/odontologia-demo/:path*",
-      "headers": [
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "SAMEORIGIN"
-        },
-        {
-          "key": "Referrer-Policy",
-          "value": "strict-origin-when-cross-origin"
-        },
-        {
-          "key": "Permissions-Policy",
-          "value": "camera=(), microphone=(), geolocation=()"
-        }
-      ]
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ]
 }
