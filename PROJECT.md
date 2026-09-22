@@ -165,6 +165,7 @@ src/
 | Testes E2E        | ✅ Implementado  | Suíte Playwright (10/10 testes passando, incluindo teste E2E de validação e máscara de telefone, layout shift zero e computed styles) |
 | Acessibilidade    | ✅ 100% WCAG AA  | Contraste de texto e botões >= 4.5:1 (Logotipo WCAG AAA >= 17:1) |
 | Performance       | ✅ 100% Otimizado| JS inicial < 80 KB, FCP/LCP instantâneo    |
+| Proxy Odontologia | ✅ Implementado  | `/odontologia-demo` → proxy reverso Vercel para `dentistry-demo.elessandrodev.workers.dev` com 4 headers AppSec (SPEC-044) |
 | i18n              | ❌ Não iniciado  | Não planejado na versão atual              |
 
 ---
@@ -199,4 +200,4 @@ src/
 
 ---
 
-_Última atualização: 2026-09-10 | Maintainer: Elessandro Prestes Macedo_
+_Última atualização: 2026-09-22 | Maintainer: Elessandro Prestes Macedo_

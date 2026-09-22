@@ -9,6 +9,15 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.44-proxy-reverso-odontologia-demo] - 2026-09-22
+
+### Adicionado
+- **`vercel.json`**: Rewrites de proxy reverso para `/odontologia-demo` e `/odontologia-demo/:path*` apontando para o Worker Cloudflare `dentistry-demo.elessandrodev.workers.dev`, expondo a demonstração de odontologia sob a rota institucional `https://epmdevtech.com.br/odontologia-demo`.
+- **`vercel.json`**: 4 headers de segurança AppSec aplicados a `/odontologia-demo/:path*`: `X-Content-Type-Options: nosniff`, `X-Frame-Options: SAMEORIGIN`, `Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy: camera=(), microphone=(), geolocation=()`.
+
+### Preservado
+- **`vercel.json`**: Rewrite SPA `/(.*) → /index.html` mantido intacto e posicionado após as regras de proxy.
+
 ## [0.0.43-padronizacao-eyebrows-titulos-secoes] - 2026-09-10
 
 ### Adicionado
