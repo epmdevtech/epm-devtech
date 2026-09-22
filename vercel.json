@@ -1,32 +1,3 @@
 {
-  "trailingSlash": false,
-  "routes": [
-    {
-      "src": "/odontologia-demo",
-      "dest": "https://dentistry-demo.elessandrodev.workers.dev/",
-      "headers": {
-        "X-Content-Type-Options": "nosniff",
-        "X-Frame-Options": "SAMEORIGIN",
-        "Referrer-Policy": "strict-origin-when-cross-origin",
-        "Permissions-Policy": "camera=(), microphone=(), geolocation=()"
-      }
-    },
-    {
-      "src": "/odontologia-demo/(.*)",
-      "dest": "https://dentistry-demo.elessandrodev.workers.dev/$1",
-      "headers": {
-        "X-Content-Type-Options": "nosniff",
-        "X-Frame-Options": "SAMEORIGIN",
-        "Referrer-Policy": "strict-origin-when-cross-origin",
-        "Permissions-Policy": "camera=(), microphone=(), geolocation=()"
-      }
-    },
-    {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
-  ]
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
