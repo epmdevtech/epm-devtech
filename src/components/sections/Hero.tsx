@@ -21,7 +21,7 @@ const Hero = () => {
     <section
       id="hero"
       aria-label="Seção principal — EPM DEVTECH Software House"
-      className="relative mx-auto w-full overflow-hidden pt-20 sm:pt-24 md:pt-28 pb-14 sm:pb-16 md:pb-24"
+      className="relative mx-auto w-full overflow-hidden pt-16 sm:pt-20 md:pt-24 pb-10 sm:pb-14 md:pb-20"
     >
       <LampContainer>
         {/* Main Content Column: Centralizado, proporcional e sob a iluminação Lamp */}
@@ -97,7 +97,7 @@ const Hero = () => {
         {/* Visual Element: Central Software Architecture Canvas com transição e fade suave */}
         <motion.div
           {...animationProps(0.5)}
-          className="relative mt-12 sm:mt-16 md:mt-20 w-full"
+          className="relative mt-8 sm:mt-12 md:mt-16 w-full"
         >
           <HeroArchitecture />
         </motion.div>

@@ -29,7 +29,7 @@ export const LampContainer = ({
       {/* Lamp Atmosphere / Light Cones */}
       <div
         aria-hidden="true"
-        className="pointer-events-none relative flex w-full h-[280px] sm:h-[320px] md:h-[360px] items-center justify-center isolate z-0 overflow-hidden select-none"
+        className="pointer-events-none relative flex w-full h-[200px] sm:h-[240px] md:h-[280px] items-center justify-center isolate z-0 overflow-hidden select-none"
       >
         {/* Left Conic Gradient Beam (Emerald Brand) */}
         <motion.div
@@ -89,7 +89,7 @@ export const LampContainer = ({
       {/* Hero Content Positioned directly under the Lamp beam */}
       <div
         className={cn(
-          "relative z-40 flex -mt-44 sm:-mt-52 md:-mt-60 flex-col items-center px-4 sm:px-6 w-full max-w-5xl mx-auto text-center",
+          "relative z-40 flex -mt-32 sm:-mt-40 md:-mt-48 flex-col items-center px-4 sm:px-6 w-full max-w-5xl mx-auto text-center",
           contentClassName
         )}
       >

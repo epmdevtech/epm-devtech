@@ -70,7 +70,7 @@ const HeroArchitecture = ({ className }: HeroArchitectureProps) => {
       role="region"
       aria-label="Diagrama de topologia de arquitetura de software da EPM DEVTECH"
       className={cn(
-        "relative w-full rounded-2xl border border-border/80 bg-card/70 dark:bg-card/40 backdrop-blur-sm shadow-xl p-5 sm:p-7 md:p-8 overflow-hidden",
+        "relative w-full rounded-2xl border border-border/80 bg-card/70 dark:bg-card/40 backdrop-blur-sm shadow-xl p-5 sm:p-7 md:p-8 overflow-hidden max-h-[360px] overflow-y-auto lg:max-h-none lg:overflow-visible",
         className
       )}
     >
