@@ -112,6 +112,7 @@ export default {
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-conic': 'conic-gradient(var(--conic-position), var(--tw-gradient-stops))',
         'grid-pattern': 'linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px), linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px)',
         'gradient-hero': 'radial-gradient(circle at 50% 0%, hsl(var(--primary) / 0.1), transparent 60%)',
       },

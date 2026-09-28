@@ -14,8 +14,8 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     // Verifica que o H1 do Hero está visível e correto
     const heroH1 = page.locator('#hero h1, section h1').first();
     await expect(heroH1).toBeVisible();
-    await expect(heroH1).toContainText('Engenharia de software');
-    await expect(heroH1).toContainText('precisam evoluir');
+    await expect(heroH1).toContainText('Desenvolvemos software');
+    await expect(heroH1).toContainText('sob medida para o seu negócio');
 
     // Aguarda 3 segundos para confirmar que não há re-renderização ou reload disparado
     await page.waitForTimeout(3000);
@@ -38,7 +38,7 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
 
     // Verifica que os headings de cada seção existem, contêm os textos padronizados e são 100% monocromáticos
     const expectedHeadings = [
-      { id: 'hero', text: 'Engenharia de software para sistemas que precisam evoluir.' },
+      { id: 'hero', text: 'Desenvolvemos software sob medida para o seu negócio.' },
       { id: 'sobre', text: 'Uma trajetória técnica, não um discurso de vendas' },
       { id: 'servicos', text: 'Da primeira reunião ao deploy em produção' },
       { id: 'diferenciais', text: 'Por que escolher a EPM DEVTECH' },
@@ -88,10 +88,10 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     // Verde esmeralda oficial (#10B981 / emerald-600) — formato rgb(5, 150, 105)
     expect(btnBgColor).toMatch(/rgb\((5|16|23|24|26|36|38|39),\s*(150|155|160|161|173|175|176|185),\s*(105|107|112|114|123|124|125|129)\)/);
 
-    // Garante presença do CTA principal do Hero direcionando para #contato conforme SPEC-045
+    // Garante presença do CTA principal do Hero direcionando para #contato conforme SPEC-047
     const heroCta = page.locator('#hero a[href="#contato"]');
     await expect(heroCta).toBeVisible();
-    await expect(heroCta).toContainText('Falar sobre um projeto');
+    await expect(heroCta).toContainText('Falar sobre meu projeto');
   });
 
   test('Navegação e rolagem fluida por âncoras sem salto para o Hero', async ({ page }) => {

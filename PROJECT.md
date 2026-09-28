@@ -149,7 +149,7 @@ src/
 |-------------------|------------------|--------------------------------------------|
 | Design            | ✅ Padronizado   | Design System Verde EPM DEVTECH (#10B981), títulos monocromáticos e tipografia Geist |
 | Tipografia / Títulos | ✅ Padronizado   | Eyebrows minimalistas com traço do ícone da marca (BrandChipIcon em #10B981) + texto cinza uppercase (11.5px, weight 500, letter-spacing 0.1em), títulos 100% monocromáticos, zero cápsulas e zero travessões (—) ou pontos e vírgulas (;) |
-| Hero              | ✅ Engenharia & Modernização | Estrutura adaptada do Hero 3 (21st.dev) com autoridade em engenharia de software e modernização de sistemas (SPEC-045). Eyebrow badge `EPM DEVTECH`, headline 100% monocromática ("Engenharia de software para sistemas que precisam evoluir."), dual CTA integrado com scroll suave (#contato e #sobre), microprova social sênior (+9 anos em sistemas críticos) e console de arquitetura de software e sistemas distribuídos (`HeroArchitecture.tsx`) 100% em código (React/Tailwind/SVG/Framer Motion), sem imagens externas ou WebGL. |
+| Hero              | ✅ Software House & Lamp Effect | Iluminação volumétrica atmosférica com efeito Lamp (`LampContainer`) adaptado à paleta esmeralda e tokens de tema (SPEC-047). Eyebrow badge `EPM DEVTECH` • `SOFTWARE HOUSE`, headline 100% monocromática ("Desenvolvemos software sob medida para o seu negócio."), supporting copy com foco em sistemas, web, APIs e integrações, dual CTA ("Falar sobre meu projeto →" e "Conhecer a EPM"), microprova ("Da ideia à produção • Engenharia direta • +9 anos de experiência") e topologia de arquitetura distribuída (`HeroArchitecture.tsx`) com fade-out na base. |
 | About             | ✅ Atualizado    | Autoridade técnica (Tech Lead/fundador Elessandro Prestes Macedo), métricas (+9 anos, 4 setores, 99,9% uptime) e pilares de engenharia |
 | Sectors           | ✅ Modularizado  | Seção 4 dedicada com os 4 cards 3D isomórficos 100% preservados (Indústria, Varejo, Educação, Energia), mockups interativos e tríade contexto + problema + experiência |
 | Services          | ✅ Atualizado    | Copywriting sênior com destaque ao problema resolvido nos 6 cards, H2 monocromático, H3 font-semibold e mockups técnicos preservados |
@@ -200,4 +200,4 @@ src/
 
 ---
 
-_Última atualização: 2026-09-22 | Maintainer: Elessandro Prestes Macedo_
+_Última atualização: 2026-09-28 | Maintainer: Elessandro Prestes Macedo_

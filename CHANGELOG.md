@@ -9,6 +9,45 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.47-hero-lamp-software-house] - 2026-09-28
+
+### Adicionado
+- **`src/components/ui/lamp.tsx`**: Componente `LampContainer` adaptado com foco em UX/UI e integração plena aos tokens do Design System da EPM DEVTECH:
+  - Feixes de luz cônicos volumétricos em tons verde esmeralda (`#10B981` / `from-emerald-500`, `bg-emerald-400`, `bg-emerald-500/40`).
+  - Suporte responsivo com zero layout shift e contenção de overflow horizontal em viewports móveis e desktops.
+  - Compatibilidade com temas Dark e Light via tokens semânticos (`bg-background`).
+  - Suporte completo a `prefers-reduced-motion`.
+- **`tailwind.config.ts`**: Adição da utilidade `gradient-conic` para suporte a gradientes cônicos angulares.
+- **`specs/SPEC-047-hero-lamp-software-house.md`**: Especificação do Hero Lamp e posicionamento Software House aprovada pelo PO.
+- **`tasks/TASK-047-hero-lamp-software-house.md`**: Rastreamento de execução da TASK-047.
+- **`reviews/QA-047.md`**: Relatório de QA e validação dos quality gates.
+
+### Modificado
+- **`src/components/sections/Hero.tsx`**: Atualização do copywriting e incorporação do efeito Lamp:
+  - Eyebrow badge: `EPM DEVTECH` • `SOFTWARE HOUSE` direcionando para `#sobre`.
+  - Headline monocromática (`<h1>`): *"Desenvolvemos software sob medida para o seu negócio."*
+  - Supporting copy: *"Sistemas, aplicações web, APIs e integrações construídos para resolver problemas reais, com segurança, escala e evolução contínua."*
+  - Dual CTAs: *"Falar sobre meu projeto →"* (`#contato`) e *"Conhecer a EPM"* (`#sobre`).
+  - Microprova social: *"Da ideia à produção • Engenharia direta • +9 anos de experiência"*.
+- **`src/components/sections/__tests__/Hero.test.tsx`**: Atualização dos testes unitários cobrindo o novo texto de Software House, badge e CTAs (138/138 testes passando).
+- **`e2e/design-system-and-stability.spec.ts`**: Atualização das validações de H1 e CTA principal do Hero (16/16 testes passando).
+- **`PROJECT.md`**: Atualização do estado canônico da seção Hero.
+
+## [0.0.46-hero-refino-visual-minimalista] - 2026-09-28
+
+### Modificado
+- **`src/components/sections/Hero.tsx`**: Refino minimalista e reorganização visual da seção Hero:
+  - Centralização equilibrada e elegante da composição (badge, headline monocromática, supporting text e dual CTAs).
+  - Remoção da linha intermediária de credenciais/tags (`+9 anos em sistemas críticos...`) acumulada abaixo dos CTAs, ampliando o respiro vertical e o protagonismo dos botões de ação e headline.
+- **`src/components/sections/hero/HeroArchitecture.tsx`**: Reestruturação para uma representação sutil de topologia de sistemas distribuídos (`Client / Edge` → `Domain Services` → `Event Stream` → `Cloud & Data`):
+  - Eliminação total de telemetria e números simulados (`14ms`, `2.500 req/s`, `99,9%`, badges redundantes de status).
+  - Adoção de ícones discretos do Lucide React, tipografia técnica sóbria e acentos sutis na identidade EPM.
+  - Implementação de desvanecimento suave na base do card (`bg-gradient-to-t from-background`) garantindo transição natural com o restante da página.
+- **`src/components/sections/__tests__/Hero.test.tsx`**: Atualização dos testes unitários para validar a topologia limpa, ausência de telemetria artificial e interatividade dos nós arquiteturais (138/138 testes passando).
+- **`specs/SPEC-046-hero-refino-visual-minimalista.md`**: Especificação do refino visual aprovada pelo PO.
+- **`tasks/TASK-046-hero-refino-visual-minimalista.md`**: Rastreamento de execução e validação da TASK-046.
+- **`reviews/QA-046.md`**: Relatório de QA e validação dos quality gates com retenção para gate de produção.
+
 ## [0.0.45-hero-engenharia-modernizacao] - 2026-09-28
 
 ### Adicionado

@@ -37,25 +37,25 @@ vi.mock('framer-motion', () => ({
 }));
 
 describe('Hero Component', () => {
-  it('renders correctly with primary heading and supporting text', () => {
+  it('renders correctly with primary heading and supporting text for software house', () => {
     render(<Hero />);
 
     const heading = screen.getByRole('heading', { level: 1 });
-    expect(heading).toHaveTextContent('Engenharia de software para sistemas que precisam evoluir.');
+    expect(heading).toHaveTextContent(/Desenvolvemos software.*sob medida para o seu negócio\./i);
 
     expect(
-      screen.getByText(/Arquitetura, desenvolvimento e modernização de software sob medida/i)
+      screen.getByText(/Sistemas, aplicações web, APIs e integrações/i)
     ).toBeInTheDocument();
   });
 
-  it('renders eyebrow badge with EPM DEVTECH chip linking to #sobre', () => {
+  it('renders eyebrow badge with EPM DEVTECH chip and SOFTWARE HOUSE label linking to #sobre', () => {
     render(<Hero />);
 
     expect(screen.getByText('EPM DEVTECH')).toBeInTheDocument();
-    expect(screen.getByText('Engenharia de Software & Modernização')).toBeInTheDocument();
+    expect(screen.getByText('SOFTWARE HOUSE')).toBeInTheDocument();
 
     const badgeLink = screen.getByRole('link', {
-      name: /EPM DEVTECH — Engenharia de Software & Modernização/i,
+      name: /EPM DEVTECH — SOFTWARE HOUSE/i,
     });
     expect(badgeLink).toHaveAttribute('href', '#sobre');
   });
@@ -63,7 +63,7 @@ describe('Hero Component', () => {
   it('renders primary and secondary CTA buttons pointing to corresponding sections', () => {
     render(<Hero />);
 
-    const primaryCta = screen.getByRole('link', { name: /Falar sobre um projeto/i });
+    const primaryCta = screen.getByRole('link', { name: /Falar sobre meu projeto/i });
     expect(primaryCta).toBeInTheDocument();
     expect(primaryCta).toHaveAttribute('href', '#contato');
 
@@ -72,37 +72,42 @@ describe('Hero Component', () => {
     expect(secondaryCta).toHaveAttribute('href', '#sobre');
   });
 
-  it('renders social proof and technical credentials', () => {
+  it('renders microprova social with concise engineering credentials', () => {
     render(<Hero />);
 
-    expect(screen.getByText(/\+9 anos em sistemas críticos/i)).toBeInTheDocument();
-    expect(screen.getByText(/Cloud-native/i)).toBeInTheDocument();
-    expect(screen.getByText(/APIs resilientes/i)).toBeInTheDocument();
-    expect(screen.getByText(/Código limpo/i)).toBeInTheDocument();
+    expect(screen.getByText(/Da ideia à produção/i)).toBeInTheDocument();
+    expect(screen.getByText(/Engenharia direta/i)).toBeInTheDocument();
+    expect(screen.getByText(/\+9 anos de experiência/i)).toBeInTheDocument();
   });
 
-  it('renders system architecture console with operational nodes and metrics', () => {
+  it('renders clean system architecture topology without simulated telemetry noise', () => {
     render(<Hero />);
 
     const archConsole = screen.getByRole('region', {
-      name: /Diagrama de arquitetura de software e sistemas da EPM DEVTECH/i,
+      name: /Diagrama de topologia de arquitetura de software da EPM DEVTECH/i,
     });
     expect(archConsole).toBeInTheDocument();
 
-    expect(screen.getByText(/topologia:\/\/arquitetura-de-sistemas.producao/i)).toBeInTheDocument();
-    expect(screen.getByText(/Sistema Online/i)).toBeInTheDocument();
-    expect(screen.getByText(/Portal de Entrada & Proteção/i)).toBeInTheDocument();
-    expect(screen.getAllByText(/Camada de APIs & Integrações/i).length).toBeGreaterThanOrEqual(1);
-    expect(screen.getByText(/Microsserviços & Filas/i)).toBeInTheDocument();
-    expect(screen.getByText(/Banco de Dados & Nuvem/i)).toBeInTheDocument();
+    expect(screen.getByText(/topologia:\/\/arquitetura-distribuida.epm/i)).toBeInTheDocument();
+    expect(screen.getByText(/Topologia Resiliente/i)).toBeInTheDocument();
+    expect(screen.getByText('Client / Edge')).toBeInTheDocument();
+    expect(screen.getAllByText('Domain Services').length).toBeGreaterThanOrEqual(1);
+    expect(screen.getByText('Event Stream')).toBeInTheDocument();
+    expect(screen.getByText('Cloud & Data')).toBeInTheDocument();
+
+    // Verify absence of telemetry noise / fake numbers
+    expect(screen.queryByText('14ms')).not.toBeInTheDocument();
+    expect(screen.queryByText('2.500 Req/s Pico')).not.toBeInTheDocument();
+    expect(screen.queryByText('99,9% Disponibilidade')).not.toBeInTheDocument();
   });
 
   it('allows interactive switching of active architectural nodes', () => {
     render(<Hero />);
 
-    const persistenceNode = screen.getByText(/Banco de Dados & Nuvem/i);
-    fireEvent.click(persistenceNode);
+    const dataNode = screen.getByText('Cloud & Data');
+    fireEvent.click(dataNode);
 
-    expect(screen.getByText('Recuperação Automática')).toBeInTheDocument();
+    expect(screen.getAllByText('Persistência & Resiliência').length).toBeGreaterThanOrEqual(1);
+    expect(screen.getByText('Multi-Região')).toBeInTheDocument();
   });
 });
