@@ -35,4 +35,5 @@ coverage-new/
 coverage-report/
 test-results/
 playwright-report/
+screenshots/
 .vercel

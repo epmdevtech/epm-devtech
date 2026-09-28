@@ -9,6 +9,26 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.45-hero-engenharia-modernizacao] - 2026-09-28
+
+### Adicionado
+- **`src/components/sections/hero/HeroBadge.tsx`**: Componente modular de status/eyebrow com chip mono (`EPM DEVTECH`), texto institucional (`Engenharia de Software & Modernização`) e microinteração de seta com hover.
+- **`src/components/sections/hero/HeroArchitecture.tsx`**: Console interativo de arquitetura de software e sistemas distribuídos (`sys-topology`), apresentando 4 nós arquiteturais fundamentais (Edge Gateway, API & BFF, Core Services & Events, Cloud & Persistence), métricas operacionais em tempo real (Cluster Online, 2.5K RPS, 99.9% SLA) e tags técnicas, 100% em código (React/Tailwind/SVG/Framer Motion), sem imagens externas ou WebGL.
+- **`specs/SPEC-045-hero-engenharia-modernizacao.md`**: Especificação formal do novo Hero institucional da EPM DevTech aprovada pelo PO.
+- **`tasks/TASK-045-hero-engenharia-modernizacao.md`**: Rastreamento de tarefas e checklist de execução SDD.
+- **`reviews/QA-045.md`**: Relatório de QA e validação dos quality gates.
+- **`e2e/hero-visual-validation.spec.ts`**: Suíte de validação visual e responsividade cobrindo 5 viewports (320px, 390px, 768px, 1280px, 1440px) e modos Dark/Light com verificação de overflow zero.
+
+### Modificado
+- **`src/components/sections/Hero.tsx`**: Reimplementação completa do Hero institucional baseando-se no layout estrutural do Hero 3 (21st.dev) adaptado para engenharia de software da EPM DevTech:
+  - Headline 100% monocromática (`<h1>`): *"Engenharia de software para sistemas que precisam evoluir."*
+  - Supporting copy: *"Arquitetura, desenvolvimento e modernização de software sob medida para empresas que precisam transformar processos complexos em sistemas confiáveis, escaláveis e sustentáveis."*
+  - Dual CTA acessível: *"Falar sobre um projeto"* (`#contato`) e *"Conhecer a EPM"* (`#sobre`).
+  - Microprova social sênior: `+9 anos em sistemas críticos • Cloud-native • APIs resilientes • Código limpo`.
+- **`src/components/sections/__tests__/Hero.test.tsx`**: Suíte de testes unitários atualizada para cobrir a nova headline, badge, CTAs, a11y e interatividade do console de arquitetura (cobertura superior a 96% nos componentes do Hero).
+- **`e2e/design-system-and-stability.spec.ts`**: Atualização das asserções de H1 e CTAs do Hero (10/10 testes passando).
+- **`PROJECT.md`**: Atualização do estado canônico da seção Hero e dos contadores de testes.
+
 ## [0.0.44-proxy-reverso-odontologia-demo] - 2026-09-22
 
 ### Adicionado

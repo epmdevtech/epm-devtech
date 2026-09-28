@@ -1,600 +1,116 @@
-import React, { useRef, useEffect, useState, useCallback, useMemo } from "react";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useSpring,
-  useMotionValue,
-  useAnimationFrame,
-  useInView,
-  useReducedMotion,
-  type MotionValue,
-} from "framer-motion";
-import { ShieldCheck } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowRight, Layers, ShieldCheck } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import HeroBadge from "@/components/sections/hero/HeroBadge";
+import HeroArchitecture from "@/components/sections/hero/HeroArchitecture";
 
-/* ─────────────────────────────────────────────
-   Hook: Detecção de dispositivo touch (coarse pointer)
-───────────────────────────────────────────── */
-function useTouch(): boolean {
-  const [isTouch, setIsTouch] = useState(false);
-  useEffect(() => {
-    if (typeof window === "undefined" || typeof window.matchMedia !== "function") return;
-    const check = () => setIsTouch(window.matchMedia("(pointer: coarse)").matches);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
-  return isTouch;
-}
-
-/* ─────────────────────────────────────────────
-   Contrato de coordenação de física e animação
-───────────────────────────────────────────── */
-interface AnimationItem {
-  id: string;
-  type: "letter" | "word";
-  centerRef: React.MutableRefObject<{ x: number; y: number }>;
-  motionValues: Record<string, MotionValue<number>>;
-  radius: number;
-  force?: number;
-}
-
-/* ─────────────────────────────────────────────
-   MagneticLetter: Física magnética letra a letra
-───────────────────────────────────────────── */
-interface MagneticLetterProps {
-  children: string;
-  registar: (item: AnimationItem) => () => void;
-  id: string;
-  reducedMotion: boolean;
-}
-
-const MagneticLetter = ({
-  children,
-  registar,
-  id,
-  reducedMotion,
-}: MagneticLetterProps) => {
-  const letterRef = useRef<HTMLSpanElement>(null);
-  const centerRef = useRef({ x: 0, y: 0 });
-
-  const springConfig = { stiffness: 150, damping: 15, mass: 0.1 };
-  const springX = useSpring(0, springConfig);
-  const springY = useSpring(0, springConfig);
-  const springSkewX = useSpring(0, springConfig);
-  const springScale = useSpring(1, springConfig);
-
-  const motionValues = useMemo(
-    () => ({
-      x: springX,
-      y: springY,
-      skewX: springSkewX,
-      scale: springScale,
-    }),
-    [springX, springY, springSkewX, springScale]
-  );
-
-  useEffect(() => {
-    if (reducedMotion) return;
-    const updateCache = () => {
-      if (letterRef.current) {
-        const rect = letterRef.current.getBoundingClientRect();
-        centerRef.current = {
-          x: rect.left + rect.width / 2 + window.scrollX,
-          y: rect.top + rect.height / 2 + window.scrollY,
-        };
-      }
-    };
-    updateCache();
-    window.addEventListener("resize", updateCache);
-    const unregister = registar({
-      id,
-      type: "letter",
-      centerRef,
-      motionValues,
-      radius: 220,
-      force: 0.35,
-    });
-    return () => {
-      window.removeEventListener("resize", updateCache);
-      unregister();
-    };
-  }, [id, registar, reducedMotion, motionValues]);
-
-  if (reducedMotion) {
-    return <span className="inline-block">{children === " " ? "\u00A0" : children}</span>;
-  }
-
-  return (
-    <motion.span
-      ref={letterRef}
-      style={{
-        x: motionValues.x,
-        y: motionValues.y,
-        skewX: motionValues.skewX,
-        scale: motionValues.scale,
-        display: "inline-block",
-        willChange: "transform",
-      }}
-    >
-      {children === " " ? "\u00A0" : children}
-    </motion.span>
-  );
-};
-
-/* ─────────────────────────────────────────────
-   SubtitleWord: Palavra do subtítulo com revelação sequencial
-   e iluminação reativa letra a letra ao passar o mouse.
-   100% monocromático inicialmente (zero duas cores automáticas),
-   sem layout shift (CLS = 0) e sem loop.
-───────────────────────────────────────────── */
-/* ─────────────────────────────────────────────
-   SubtitleWord: Palavra do subtítulo com revelação sequencial
-   e destaque tipográfico reativo acompanhando o cursor no título e subtítulo
-   (Conforme imagem do esboço Quordix: font-weight 400 a 700 e opacidade dinâmica)
-───────────────────────────────────────────── */
-interface SubtitleWordProps {
-  word: string;
-  id: string;
-  wIdx: number;
-  registar: (item: AnimationItem) => () => void;
-  reducedMotion: boolean;
-}
-
-const SubtitleWord = ({
-  word,
-  id,
-  wIdx,
-  registar,
-  reducedMotion,
-}: SubtitleWordProps) => {
-  const wordRef = useRef<HTMLSpanElement>(null);
-  const centerRef = useRef({ x: 0, y: 0 });
-
-  const springConfig = { stiffness: 90, damping: 18 };
-  const springWeight = useSpring(400, springConfig);
-  const springOpacity = useSpring(0.75, springConfig);
-
-  const motionValues = useMemo(
-    () => ({
-      weight: springWeight,
-      opacity: springOpacity,
-    }),
-    [springWeight, springOpacity]
-  );
-
-  useEffect(() => {
-    if (reducedMotion) return;
-    const updateCache = () => {
-      if (wordRef.current) {
-        const rect = wordRef.current.getBoundingClientRect();
-        centerRef.current = {
-          x: rect.left + rect.width / 2 + window.scrollX,
-          y: rect.top + rect.height / 2 + window.scrollY,
-        };
-      }
-    };
-    updateCache();
-    window.addEventListener("resize", updateCache);
-    const unregister = registar({
-      id,
-      type: "word",
-      centerRef,
-      motionValues,
-      radius: 200,
-    });
-    return () => {
-      window.removeEventListener("resize", updateCache);
-      unregister();
-    };
-  }, [id, registar, reducedMotion, motionValues]);
-
-  if (reducedMotion) {
-    return (
-      <span className="inline-block whitespace-nowrap mr-[0.25em] text-zinc-600 dark:text-zinc-400 font-normal">
-        {word}
-      </span>
-    );
-  }
-
-  return (
-    <motion.span
-      ref={wordRef}
-      initial={{ opacity: 0, y: 8 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{
-        duration: 0.5,
-        delay: 1.36 + wIdx * 0.02,
-        ease: [0.16, 1, 0.3, 1],
-      }}
-      style={{
-        fontWeight: motionValues.weight,
-        opacity: motionValues.opacity,
-        willChange: "font-weight, opacity",
-      }}
-      className="inline-block whitespace-nowrap mr-[0.25em] text-zinc-900 dark:text-zinc-100 transition-colors duration-200"
-    >
-      {word}
-    </motion.span>
-  );
-};
-
-/* ─────────────────────────────────────────────
-   Configuração dos anéis orbitais com a paleta oficial da marca:
-   Gradiente EPM DEVTECH (logo-Photoroom.png):
-   Ciano Elétrico (#00D4FF) -> Turquesa -> Verde Esmeralda (#10B981)
-───────────────────────────────────────────── */
-interface RingConfig {
-  size: number;
-  border: string;
-  speed: number;
-  satellite: boolean;
-  satelliteColor?: string;
-  satelliteGlow?: string;
-  borderColor: string;
-}
-
-const RINGS: RingConfig[] = [
-  {
-    size: 36,
-    border: "1px",
-    speed: 60,
-    satellite: true,
-    satelliteColor: "#00D4FF", // Ciano elétrico (polo inicial do gradiente)
-    satelliteGlow: "0 0 10px rgba(0, 212, 255, 0.85)",
-    borderColor: "rgba(0, 212, 255, 0.14)",
-  },
-  {
-    size: 56,
-    border: "1px",
-    speed: -80,
-    satellite: false,
-    borderColor: "rgba(161, 161, 170, 0.08)",
-  },
-  {
-    size: 86,
-    border: "1.5px",
-    speed: 120,
-    satellite: true,
-    satelliteColor: "#10B981", // Verde esmeralda primário (polo final do gradiente)
-    satelliteGlow: "0 0 12px rgba(16, 185, 129, 0.90)",
-    borderColor: "rgba(16, 185, 129, 0.22)",
-  },
-  {
-    size: 120,
-    border: "1px",
-    speed: -150,
-    satellite: true,
-    satelliteColor: "#38bdf8", // Azul celeste intermediário
-    satelliteGlow: "0 0 8px rgba(56, 189, 248, 0.65)",
-    borderColor: "rgba(161, 161, 170, 0.06)",
-  },
-];
-
-const TITLE_LINE_1 = ["Software", "sob", "medida", "construído"];
-const TITLE_LINE_2 = ["para", "escalar", "o", "seu", "negócio."];
-
-const SUBTITLE =
-  "Da concepção à infraestrutura: desenvolvemos sistemas web, APIs resilientes e arquiteturas de alta performance preparadas para acompanhar o crescimento da sua empresa.";
-const SUBTITLE_WORDS = SUBTITLE.split(" ");
-
-/* ─────────────────────────────────────────────
-   Componente Hero Principal
-───────────────────────────────────────────── */
 const Hero = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(containerRef, { amount: 0.1 });
   const prefersReduced = Boolean(useReducedMotion());
-  const isTouch = useTouch();
 
-  const mouseX = useMotionValue(-1000);
-  const mouseY = useMotionValue(-1000);
-  const itemsRef = useRef<Map<string, AnimationItem>>(new Map());
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    mouseX.set(e.pageX);
-    mouseY.set(e.pageY);
-  };
-  const handleMouseLeave = () => {
-    mouseX.set(-1000);
-    mouseY.set(-1000);
-  };
-  const handleTouchStart = (e: React.TouchEvent) => {
-    if (e.touches[0]) {
-      mouseX.set(e.touches[0].pageX);
-      mouseY.set(e.touches[0].pageY);
-    }
-  };
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (e.touches[0]) {
-      mouseX.set(e.touches[0].pageX);
-      mouseY.set(e.touches[0].pageY);
-    }
-  };
-  const handleTouchEnd = () => {
-    mouseX.set(-1000);
-    mouseY.set(-1000);
-  };
-
-  const registerItem = useCallback((item: AnimationItem) => {
-    itemsRef.current.set(item.id, item);
-    return () => {
-      itemsRef.current.delete(item.id);
-    };
-  }, []);
-
-  // useScroll global baseado na janela elimina avisos de non-static position
-  const { scrollY } = useScroll();
-  const yText = useTransform(scrollY, [0, 500], [0, 120]);
-  const opacityFade = useTransform(scrollY, [0, 350], [1, 0]);
-
-  useAnimationFrame(() => {
-    if (!isInView || prefersReduced) return;
-
-    const currentMouseX = mouseX.get();
-    const currentMouseY = mouseY.get();
-    const isInteracting = currentMouseX !== -1000;
-
-    const mx =
-      isTouch && !isInteracting
-        ? (containerRef.current?.offsetWidth || 0) / 2
-        : currentMouseX;
-    const my =
-      isTouch && !isInteracting
-        ? (containerRef.current?.getBoundingClientRect().top || 0) +
-          window.innerHeight / 2 +
-          window.scrollY
-        : currentMouseY;
-
-    const yOffset = yText.get();
-
-    itemsRef.current.forEach((item) => {
-      if (!item.centerRef.current.x) return;
-      const dx = mx - item.centerRef.current.x;
-      const dy = my - (item.centerRef.current.y + yOffset);
-
-      if (item.type === "letter") {
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        if (distance < item.radius && isInteracting) {
-          const power = (item.radius - distance) / item.radius;
-          const force = item.force || 0.35;
-          item.motionValues.x.set(dx * power * force);
-          item.motionValues.y.set(dy * power * force);
-          item.motionValues.skewX.set(dx * power * 0.1);
-          item.motionValues.scale.set(1 + power * 0.15);
-        } else {
-          item.motionValues.x.set(0);
-          item.motionValues.y.set(0);
-          item.motionValues.skewX.set(0);
-          item.motionValues.scale.set(1);
-        }
-      } else if (item.type === "word") {
-        if (isInteracting) {
-          // Escala a distância vertical por 0.35 para que o movimento horizontal do mouse
-          // sobre o título projete dinamicamente o destaque nas palavras do subtítulo abaixo!
-          const scaledDy = dy * 0.35;
-          const dist = Math.sqrt(dx * dx + scaledDy * scaledDy);
-          const radius = item.radius || 200;
-
-          if (dist < radius) {
-            const power = (radius - dist) / radius;
-            // Conforme imagem do esboço: palavras sob/perto do cursor ganham peso destacado (até 700) e opacidade total (1.0)
-            item.motionValues.weight.set(400 + power * 300);
-            item.motionValues.opacity.set(0.45 + power * 0.55);
-          } else {
-            // Palavras distantes do cursor ficam em opacidade atenuada (0.45) e peso normal (400)
-            item.motionValues.weight.set(400);
-            item.motionValues.opacity.set(0.45);
-          }
-        } else {
-          // Estado ocioso: todas as palavras uniformes, confortáveis para leitura
-          item.motionValues.weight.set(400);
-          item.motionValues.opacity.set(0.75);
-        }
-      }
-    });
-  });
+  const animationProps = (delay: number) =>
+    prefersReduced
+      ? {}
+      : {
+          initial: { opacity: 0, y: 18 },
+          animate: { opacity: 1, y: 0 },
+          transition: { duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] },
+        };
 
   return (
     <section
       id="hero"
-      ref={containerRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-      style={{
-        position: "relative",
-        touchAction: "pan-y",
-        contain: "layout paint",
-      }}
-      className="relative min-h-[100svh] flex items-center justify-center overflow-hidden bg-background noise pt-20 pb-12"
+      aria-label="Seção principal — Engenharia de Software & Modernização"
+      className="relative mx-auto w-full max-w-6xl overflow-hidden pt-24 pb-14 sm:pt-28 sm:pb-16 md:pt-32 md:pb-20 px-4 sm:px-6 lg:px-8"
     >
       {/* Background grid pattern */}
-      <div className="absolute inset-0 bg-grid-pattern bg-grid opacity-[0.03] pointer-events-none" />
-
-      {/* Background orbit rings & Glow centralizado no Título (não no meio da página, conforme esboço) */}
       <div
         aria-hidden="true"
-        className="absolute top-[43%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 flex items-center justify-center pointer-events-none"
+        className="pointer-events-none absolute inset-0 size-full overflow-hidden -z-10"
       >
-        {/* Glow de fundo com o gradiente oficial da marca (logo-Photoroom.png: Ciano Elétrico -> Turquesa -> Verde Esmeralda) */}
-        <div className="hero-brand-aura absolute w-[72vh] h-[55vh] rounded-full blur-[64px] dark:blur-[76px] opacity-80 dark:opacity-75 transform-gpu pointer-events-none" />
-
-        {RINGS.map((ring, i) => (
-          <div
-            key={i}
-            className="hero-orbit absolute rounded-full flex items-center justify-center pointer-events-none"
-            style={{
-              width: `${ring.size}vh`,
-              height: `${ring.size}vh`,
-              borderWidth: ring.border,
-              borderStyle: "solid",
-              borderColor: ring.borderColor,
-              animation: `${ring.speed > 0 ? "hero-orbit" : "hero-orbit-rev"} ${Math.abs(ring.speed)}s linear infinite`,
-            }}
-          >
-            {ring.satellite && (
-              <div
-                className="absolute top-0 -translate-y-1/2 w-1.5 h-1.5 rounded-full"
-                style={{
-                  background: ring.satelliteColor || "rgba(161, 161, 170, 0.6)",
-                  boxShadow: ring.satelliteGlow || "none",
-                }}
-              />
-            )}
-          </div>
-        ))}
+        <div className="absolute inset-0 bg-grid-pattern bg-grid opacity-[0.025] dark:opacity-[0.04]" />
       </div>
 
-      {/* Content — parallax fades on scroll */}
-      <motion.div
-        style={{
-          y: prefersReduced ? 0 : yText,
-          opacity: prefersReduced ? 1 : opacityFade,
-        }}
-        className="container relative z-10 px-6 py-20 will-change-transform flex flex-col items-center text-center max-w-6xl mx-auto"
-      >
-        {/* Tagline superior: Overline minimalista flanqueado por linhas decorativas (estilo Selected Projects) */}
-        <motion.div
-          initial={prefersReduced ? false : { opacity: 0, y: 10 }}
-          animate={prefersReduced ? false : { opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.6,
-            delay: prefersReduced ? 0 : 0.05,
-            ease: "easeOut",
-          }}
-          className="inline-flex items-center justify-center gap-3 sm:gap-4 mb-6 sm:mb-8"
-        >
-          <span
-            className="h-px w-6 sm:w-10 md:w-12 bg-emerald-600/60 dark:bg-emerald-400/60 shrink-0"
-            aria-hidden="true"
-          />
-          <span className="text-xs sm:text-[13px] font-semibold tracking-[0.2em] uppercase text-emerald-700 dark:text-emerald-400 select-none">
-            Engenharia de Software & Modernização
-          </span>
-          <span
-            className="h-px w-6 sm:w-10 md:w-12 bg-emerald-600/60 dark:bg-emerald-400/60 shrink-0"
-            aria-hidden="true"
+      {/* Main Content Column */}
+      <div className="relative z-10 flex max-w-3xl flex-col gap-5 sm:gap-6 text-left">
+        {/* Eyebrow / Status Badge */}
+        <motion.div {...animationProps(0.05)}>
+          <HeroBadge
+            tag="EPM DEVTECH"
+            label="Engenharia de Software & Modernização"
+            href="#sobre"
           />
         </motion.div>
 
-        {/* Headline: Rigorosamente 100% monocromático, magnético e responsivo com entrada escalonada letra a letra */}
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] xl:text-[3.5rem] font-bold tracking-tight leading-[1.18] mb-8 text-zinc-900 dark:text-white select-none">
-          <span className="block mb-2">
-            {(() => {
-              let charCount = 0;
-              return TITLE_LINE_1.map((word, wIdx) => (
-                <React.Fragment key={`w1-${wIdx}`}>
-                  <span className="inline-block whitespace-nowrap mr-[0.25em]">
-                    {word.split("").map((char) => {
-                      const idx = charCount++;
-                      return (
-                        <motion.span
-                          key={`c1-${idx}`}
-                          initial={prefersReduced ? false : { y: "100%", opacity: 0 }}
-                          animate={prefersReduced ? false : { y: 0, opacity: 1 }}
-                          transition={{
-                            duration: 0.7,
-                            delay: prefersReduced ? 0 : 0.1 + idx * 0.035,
-                            ease: [0.16, 1, 0.3, 1],
-                          }}
-                          className="inline-block"
-                        >
-                          <MagneticLetter
-                            id={`char-1-${idx}`}
-                            registar={registerItem}
-                            reducedMotion={prefersReduced}
-                          >
-                            {char}
-                          </MagneticLetter>
-                        </motion.span>
-                      );
-                    })}
-                  </span>
-                  {wIdx < TITLE_LINE_1.length - 1 && " "}
-                </React.Fragment>
-              ));
-            })()}
-          </span>
-          {" "}
-          <span className="block">
-            {(() => {
-              let charCount = 0;
-              return TITLE_LINE_2.map((word, wIdx) => (
-                <React.Fragment key={`w2-${wIdx}`}>
-                  <span className="inline-block whitespace-nowrap mr-[0.25em]">
-                    {word.split("").map((char) => {
-                      const idx = charCount++;
-                      return (
-                        <motion.span
-                          key={`c2-${idx}`}
-                          initial={prefersReduced ? false : { y: "100%", opacity: 0 }}
-                          animate={prefersReduced ? false : { y: 0, opacity: 1 }}
-                          transition={{
-                            duration: 0.7,
-                            delay: prefersReduced ? 0 : 0.66 + idx * 0.022,
-                            ease: [0.16, 1, 0.3, 1],
-                          }}
-                          className="inline-block"
-                        >
-                          <MagneticLetter
-                            id={`char-2-${idx}`}
-                            registar={registerItem}
-                            reducedMotion={prefersReduced}
-                          >
-                            {char}
-                          </MagneticLetter>
-                        </motion.span>
-                      );
-                    })}
-                  </span>
-                  {wIdx < TITLE_LINE_2.length - 1 && " "}
-                </React.Fragment>
-              ));
-            })()}
-          </span>
-        </h1>
-
-        {/* Subtitle: Fluido, estável (sem salto de linhas), entrada sequencial e destaque tipográfico reativo acompanhando o mouse no título e subtítulo */}
-        <p className="text-base sm:text-lg leading-[1.75] text-zinc-600 dark:text-zinc-400 max-w-4xl mx-auto mb-10 text-center select-none min-h-[4rem]">
-          {SUBTITLE_WORDS.map((word, i) => (
-            <React.Fragment key={`sub-${i}`}>
-              <SubtitleWord
-                word={word}
-                id={`word-${i}`}
-                wIdx={i}
-                registar={registerItem}
-                reducedMotion={prefersReduced}
-              />
-              {i < SUBTITLE_WORDS.length - 1 && " "}
-            </React.Fragment>
-          ))}
-        </p>
-
-        {/* Microprova Social: Ponto de autoridade e credenciais técnicas com fade sequencial */}
-        <motion.div
-          initial={prefersReduced ? false : { opacity: 0, y: 8 }}
-          animate={prefersReduced ? false : { opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.6,
-            delay: prefersReduced ? 0 : 1.8,
-            ease: "easeOut",
-          }}
-          className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 text-xs font-mono text-muted-foreground/80 pt-2"
+        {/* Headline: Rigorosamente 100% monocromática (SPEC-014) */}
+        <motion.h1
+          {...animationProps(0.15)}
+          className="text-balance font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] text-foreground leading-[1.12] tracking-tight"
         >
-          <span className="inline-flex items-center gap-1.5">
-            <ShieldCheck size={14} className="text-primary" />
-            +9 anos de experiência em sistemas críticos
+          Engenharia de software para sistemas que precisam evoluir.
+        </motion.h1>
+
+        {/* Supporting Copy */}
+        <motion.p
+          {...animationProps(0.25)}
+          className="text-muted-foreground text-base sm:text-lg md:text-xl leading-relaxed max-w-2xl"
+        >
+          Arquitetura, desenvolvimento e modernização de software sob medida para empresas que precisam transformar processos complexos em sistemas confiáveis, escaláveis e sustentáveis.
+        </motion.p>
+
+        {/* Dual CTA Actions */}
+        <motion.div
+          {...animationProps(0.35)}
+          className="flex flex-wrap items-center gap-3 pt-2"
+        >
+          <Button
+            asChild
+            size="lg"
+            className="rounded-md bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm transition-all text-sm sm:text-base font-semibold px-5 sm:px-6"
+          >
+            <a href="#contato" aria-label="Falar sobre um projeto com a EPM DEVTECH">
+              Falar sobre um projeto
+              <ArrowRight className="size-4 ml-2" aria-hidden="true" />
+            </a>
+          </Button>
+
+          <Button
+            variant="outline"
+            asChild
+            size="lg"
+            className="rounded-md border-border bg-card/60 hover:bg-card hover:border-zinc-400 dark:hover:border-zinc-700 text-foreground transition-all text-sm sm:text-base px-5 sm:px-6"
+          >
+            <a href="#sobre" aria-label="Conhecer a EPM DEVTECH">
+              <Layers className="size-4 mr-2 text-muted-foreground" aria-hidden="true" />
+              Conhecer a EPM
+            </a>
+          </Button>
+        </motion.div>
+
+        {/* Microprova Social / Credenciais Técnicas */}
+        <motion.div
+          {...animationProps(0.42)}
+          className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs font-mono text-muted-foreground pt-1 select-none"
+        >
+          <span className="inline-flex items-center gap-1.5 text-foreground/90 font-medium">
+            <ShieldCheck className="size-3.5 text-emerald-600 dark:text-emerald-400" aria-hidden="true" />
+            +9 anos em sistemas críticos
           </span>
-          <span className="hidden sm:inline text-muted-foreground/40">•</span>
-          <span>Arquiteturas cloud-native</span>
-          <span className="text-muted-foreground/40">•</span>
+          <span className="text-border" aria-hidden="true">•</span>
+          <span>Cloud-native</span>
+          <span className="text-border" aria-hidden="true">•</span>
           <span>APIs resilientes</span>
-          <span className="text-muted-foreground/40">•</span>
+          <span className="text-border" aria-hidden="true">•</span>
           <span>Código limpo</span>
         </motion.div>
+      </div>
+
+      {/* Visual Element: Central Software Architecture Canvas */}
+      <motion.div
+        {...animationProps(0.5)}
+        className="relative mt-10 sm:mt-12 md:mt-16 w-full"
+      >
+        {/* System Architecture Console */}
+        <HeroArchitecture />
       </motion.div>
     </section>
   );
