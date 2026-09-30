@@ -49,7 +49,7 @@ const Hero = () => {
             {...animationProps(0.25)}
             className="text-muted-foreground text-base sm:text-lg md:text-xl leading-relaxed max-w-2xl mx-auto"
           >
-            Sistemas, aplicações web, APIs e integrações construídos para resolver problemas reais, com segurança, escala e evolução contínua.
+            Sistemas web, APIs, integrações e soluções digitais construídas para resolver problemas reais e acompanhar a evolução da sua empresa.
           </motion.p>
 
           {/* Dual CTA Actions */}
@@ -62,7 +62,7 @@ const Hero = () => {
               size="lg"
               className="rounded-md bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm transition-all text-sm sm:text-base font-semibold px-5 sm:px-6"
             >
-              <a href="#contato" aria-label="Falar sobre meu projeto com a EPM DEVTECH">
+              <a href="#contato" aria-label="Falar sobre meu projeto com a EPM DevTech">
                 Falar sobre meu projeto
                 <ArrowRight className="size-4 ml-2" aria-hidden="true" />
               </a>
@@ -74,9 +74,9 @@ const Hero = () => {
               size="lg"
               className="rounded-md border-border bg-card/60 hover:bg-card hover:border-zinc-400 dark:hover:border-zinc-700 text-foreground transition-all text-sm sm:text-base px-5 sm:px-6"
             >
-              <a href="#sobre" aria-label="Conhecer a EPM DEVTECH">
+              <a href="#sobre" aria-label="Conhecer a EPM DevTech">
                 <Layers className="size-4 mr-2 text-muted-foreground" aria-hidden="true" />
-                Conhecer a EPM
+                Conhecer a EPM DevTech
               </a>
             </Button>
           </motion.div>
@@ -86,11 +86,11 @@ const Hero = () => {
             {...animationProps(0.42)}
             className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs font-mono text-muted-foreground pt-2 select-none"
           >
-            <span className="text-foreground/90 font-medium">Da ideia à produção</span>
+            <span className="text-foreground/90 font-medium">Da concepção ao deploy</span>
             <span className="text-border" aria-hidden="true">•</span>
             <span>Engenharia direta</span>
             <span className="text-border" aria-hidden="true">•</span>
-            <span>+9 anos de experiência</span>
+            <span>Arquitetura para evolução</span>
           </motion.div>
         </div>
 

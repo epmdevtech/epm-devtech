@@ -17,31 +17,35 @@ vi.mock('framer-motion', () => ({
 describe('Services Component', () => {
     it('renders section title', () => {
         render(<Services />);
-        expect(screen.getByText('Da primeira reunião ao deploy em produção')).toBeInTheDocument();
-        expect(screen.getByText(/Planejamento, arquitetura, testes automatizados e entrega/i)).toBeInTheDocument();
+        expect(screen.getByText('Soluções sob medida para cada estágio da sua operação')).toBeInTheDocument();
+        expect(screen.getByText(/Da criação de um novo produto à modernização de sistemas existentes/i)).toBeInTheDocument();
     });
 
-    it('renders all 6 service cards with titles', () => {
+    it('renders all 4 consolidated service cards with titles', () => {
         render(<Services />);
         const titles = [
-            'Desenvolvimento Web e Aplicações SPA',
-            'APIs e Backends Escaláveis',
-            'Integrações e Microsserviços',
-            'Arquitetura de Software',
-            'Modernização e Evolução de Legados',
-            'Consultoria Técnica e Code Review',
+            'Sistemas Web e Plataformas',
+            'APIs & Back-end Escalável',
+            'Integrações entre Sistemas',
+            'Modernização & Evolução de Legados',
         ];
         titles.forEach(title => {
             expect(screen.getByText(title)).toBeInTheDocument();
         });
     });
 
-    it('renders service descriptions', () => {
+    it('renders pain trigger indicators and descriptions', () => {
         render(<Services />);
-        expect(screen.getByText(/Interfaces modernas, responsivas e performáticas com Angular/i)).toBeInTheDocument();
-        expect(screen.getByText(/arquiteturas orientadas a eventos em PHP/i)).toBeInTheDocument();
-        expect(screen.getByText(/microsserviços e monólitos modulares com Clean Architecture/i)).toBeInTheDocument();
-        expect(screen.getByText(/Strangler Fig Pattern/i)).toBeInTheDocument();
+        expect(screen.getAllByText(/Quando precisa:/i).length).toBe(4);
+        expect(screen.getByText(/Precisa criar um sistema novo ou modernizar a interface/i)).toBeInTheDocument();
+        expect(screen.getByText(/Seu sistema sofre com lentidão em horários de pico/i)).toBeInTheDocument();
+        expect(screen.getByText(/Sua operação perde tempo com processos manuais/i)).toBeInTheDocument();
+        expect(screen.getByText(/Tem um sistema legado essencial que já não acompanha/i)).toBeInTheDocument();
+
+        expect(screen.getByText(/Aplicações web sob medida para operações corporativas/i)).toBeInTheDocument();
+        expect(screen.getByText(/Desenvolvimento de APIs RESTful e serviços de alta disponibilidade/i)).toBeInTheDocument();
+        expect(screen.getByText(/Conexão segura entre ERPs, CRMs/i)).toBeInTheDocument();
+        expect(screen.getByText(/Refatoração e migração incremental de plataformas legadas/i)).toBeInTheDocument();
     });
 
     it('renders mock visual elements inside cards', () => {
@@ -51,17 +55,12 @@ describe('Services Component', () => {
         // API mockup
         expect(screen.getByText('GET')).toBeInTheDocument();
         expect(screen.getByText(/200 OK/i)).toBeInTheDocument();
-        // Integration mockup
-        expect(screen.getByText('API Hub')).toBeInTheDocument();
-        // Maintenance mockup
-        expect(screen.getByText('legacy')).toBeInTheDocument();
-        expect(screen.getByText('refactored')).toBeInTheDocument();
     });
 
     it('renderiza corretamente quando useInView retorna false (antes de entrar no viewport)', () => {
         mockUseInView.mockReturnValueOnce(false);
         render(<Services />);
-        expect(screen.getByText('Da primeira reunião ao deploy em produção')).toBeInTheDocument();
-        expect(screen.getByText('Desenvolvimento Web e Aplicações SPA')).toBeInTheDocument();
+        expect(screen.getByText('Soluções sob medida para cada estágio da sua operação')).toBeInTheDocument();
+        expect(screen.getByText('Sistemas Web e Plataformas')).toBeInTheDocument();
     });
 });

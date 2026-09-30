@@ -15,48 +15,27 @@ const differentials = [
     icon: MessageCircle,
     step: "01",
     title: "Comunicação Transparente",
-    handle: "ALINHAMENTO • PREVISIBILIDADE",
-    description: "Acompanhamento constante, relatórios claros de progresso e alinhamento direto com quem realmente executa a engenharia, eliminando ruídos e surpresas.",
+    handle: "ALINHAMENTO & PREVISIBILIDADE",
+    description: "Alinhamento contínuo sobre escopo, decisões técnicas e prioridades. Você fala diretamente com quem planeja e executa a engenharia, eliminando ruídos e surpresas.",
   },
   {
     icon: Shield,
     step: "02",
-    title: "Arquitetura Planejada",
-    handle: "MICROSSERVIÇOS • CLEAN ARCHITECTURE",
-    description: "Sistemas projetados para crescer sem criar gargalos técnicos. Escolhas arquiteturais sólidas desde o primeiro dia para facilitar manutenções futuras.",
+    title: "Engenharia que Facilita Evoluir",
+    handle: "ARQUITETURA & MANUTENÇÃO",
+    description: "Arquitetura modular e código limpo pensados para facilitar manutenções futuras e permitir que o sistema cresça com segurança sem gerar gargalos técnicos.",
   },
   {
     icon: CheckCircle2,
     step: "03",
-    title: "Código Limpo e Testável",
-    handle: "SOLID • TESTES AUTOMATIZADOS",
-    description: "Aplicação de boas práticas consolidadas e esteiras de testes rigorosas para garantir estabilidade operacional e evolução contínua da aplicação.",
-  },
-  {
-    icon: Sparkles,
-    step: "04",
-    title: "Padrões de Engenharia",
-    handle: "SONARQUBE • CODE REVIEW",
-    description: "Revisões sistemáticas de código, análise estática de vulnerabilidades e observabilidade em produção para manter a saúde do ecossistema.",
-  },
-  {
-    icon: GitMerge,
-    step: "05",
-    title: "Esteira DevOps e CI/CD",
-    handle: "DEPLOY SEGURO • ROLLBACK",
-    description: "Pipelines automatizados com validações estritas antes de cada publicação, minimizando riscos de falhas em produção e permitindo rollback imediato.",
-  },
-  {
-    icon: Clock,
-    step: "06",
-    title: "Entregas Previsíveis",
-    handle: "PRAZOS REAIS • QUALIDADE",
-    description: "Estimativas realistas baseadas em complexidade técnica real, sem atalhos que comprometam a segurança e a longevidade do seu software.",
+    title: "Foco no Problema do Negócio",
+    handle: "PRAGMATISMO & RESULTADO",
+    description: "A tecnologia é uma ferramenta para viabilizar os objetivos da sua empresa, e não o inverso. Escolhas técnicas pragmáticas focadas em retorno real e estabilidade operacional.",
   },
 ];
 
-/* dot positions along the pipeline line (as % of width) */
-const DOT_POSITIONS = [8, 25, 42, 58, 75, 92];
+/* dot positions along the pipeline line (as % of width) for 3 pillars */
+const DOT_POSITIONS = [17, 50, 83];
 
 const Differentials = () => {
   const ref = useRef(null);
@@ -135,17 +114,16 @@ const Differentials = () => {
           z-index: 1;
         }
 
-        /* ── cards grid ── */
+        /* ── cards grid (3 pilares) ── */
         .diff-cards-grid {
           display: grid;
-          grid-template-columns: repeat(6, 1fr);
-          gap: 1.25rem;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1.5rem;
+          max-width: 70rem;
+          margin: 0 auto;
         }
-        @media (max-width: 1023px) {
-          .diff-cards-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-        }
-        @media (max-width: 639px) {
-          .diff-cards-grid { grid-template-columns: repeat(1, 1fr); gap: 0.75rem; }
+        @media (max-width: 768px) {
+          .diff-cards-grid { grid-template-columns: repeat(1, 1fr); gap: 1rem; }
         }
 
         .diff-card {
@@ -283,7 +261,8 @@ const Differentials = () => {
           >
             <SectionHeader
               tagline="Diferenciais"
-              title="Por que escolher a EPM DEVTECH"
+              title="Por que trabalhar com a EPM DevTech"
+              subtitle="Engenharia focada na longevidade do seu software, com transparência em cada etapa do projeto."
             />
           </motion.div>
 
@@ -363,6 +342,16 @@ const Differentials = () => {
               </motion.div>
             ))}
           </div>
+
+          {/* ── Linha Secundária de Práticas de Engenharia ── */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.5, delay: 0.8 }}
+            className="text-center text-xs font-mono text-muted-foreground/85 mt-10 max-w-2xl mx-auto leading-relaxed"
+          >
+            Práticas aplicadas conforme cada projeto: testes automatizados, revisão contínua de código, CI/CD e arquitetura orientada à manutenção.
+          </motion.p>
         </div>
       </section>
     </>

@@ -29,45 +29,45 @@ interface SeoMeta {
 
 const SEO_META: Record<string, SeoMeta> = {
   "": {
-    title: "EPM DEVTECH | Software House: Desenvolvimento de Software Sob Medida",
+    title: "EPM DevTech | Software House e Desenvolvimento de Software Sob Medida",
     description:
-      "Software house que entregou sistemas para CAPES, ONS e Energia Pecém: 2.500 RPS, 10.000 usuários e 99,9% uptime. PHP, Laravel, Node.js, AWS. Solicite seu orçamento.",
-    ogTitle: "EPM DEVTECH | Software House",
+      "Software house que desenvolve sistemas web, APIs e integrações sob medida para empresas. Crie, integre ou modernize seu sistema. Fale sobre seu projeto.",
+    ogTitle: "EPM DevTech | Software House",
   },
   sobre: {
-    title: "Sobre | EPM DEVTECH",
+    title: "Sobre | EPM DevTech",
     description:
-      "Tech Lead com +9 anos em sistemas críticos para CAPES, ONS e Indústria. 56.400 linhas de legado eliminadas, 2.399 testes automatizados, retrabalho -40%. Conheça nossa história.",
+      "Software house dedicada a engenharia de software sob medida. Conheça nossa trajetória, liderança técnica e compromisso com arquitetura sólida.",
   },
   setores: {
-    title: "Setores de Atuação | EPM DEVTECH",
+    title: "Setores de Atuação | EPM DevTech",
     description:
-      "Experiência comprovada em Indústria, Varejo, Educação (CAPES/MEC) e Energia (ONS). Soluções sob medida para operações complexas. Conheça nossos setores.",
+      "Experiência em diferentes contextos de negócio: Indústria, Varejo, Educação e Energia. Soluções para operações com alta exigência de estabilidade.",
   },
   servicos: {
-    title: "Serviços | EPM DEVTECH",
+    title: "Serviços | EPM DevTech",
     description:
-      "APIs a 2.500 RPS, legados modernizados com Strangler Fig, DevOps AWS com 99,9% uptime. Projetos reais para CAPES, ONS, Governo e Indústria. Veja nossos serviços.",
+      "Sistemas web, APIs & back-end escalável, integrações de sistemas e modernização de legados. Engenharia sob medida com foco no problema do negócio.",
   },
   tecnologias: {
-    title: "Tecnologias | EPM DEVTECH",
+    title: "Tecnologias | EPM DevTech",
     description:
-      "Stack enterprise comprovada em produção: PHP/Laravel, Node.js, React, PostgreSQL, AWS, RabbitMQ e Kafka. Mesma tecnologia dos sistemas do ONS e CAPES. Explore nossa stack.",
+      "Tecnologias que usamos para construir soluções: escolhas orientadas por desempenho, segurança, manutenção e capacidade de evolução contínua.",
   },
   diferenciais: {
-    title: "Diferenciais | EPM DEVTECH",
+    title: "Diferenciais | EPM DevTech",
     description:
-      "Qualidade de código +45% via SonarQube, entrega +25% com IA aplicada, deploy automatizado com rollback. Não vendemos promessas, entregamos métricas. Veja nossos diferenciais.",
+      "Comunicação transparente, engenharia que facilita evoluir e foco no problema do negócio. Por que trabalhar com a EPM DevTech.",
   },
   faq: {
-    title: "FAQ | EPM DEVTECH",
+    title: "FAQ | EPM DevTech",
     description:
-      "Perguntas frequentes sobre contratação, sistemas existentes, processo de engenharia com SDD e modelos de trabalho da EPM DEVTECH. Tire suas dúvidas.",
+      "Dúvidas frequentes sobre como iniciar um projeto, modelos de trabalho, atendimento remoto e modernização de sistemas com a EPM DevTech.",
   },
   contato: {
-    title: "Contato | EPM DEVTECH",
+    title: "Contato | EPM DevTech",
     description:
-      "Sistema crítico para construir ou modernizar? Retorno técnico em até 24h úteis. E-mail: elessandro@epmdevtech.com.br · WhatsApp: (45) 99917-8290. Solicite um orçamento.",
+      "Fale sobre seu projeto com a EPM DevTech. Retorno ágil direto com a liderança técnica para entender seu cenário e avaliar soluções.",
   },
 };
 
@@ -194,6 +194,9 @@ const Index = () => {
         <meta property="og:title" content={ogTitle} />
         <meta property="og:description" content={meta.description} />
         <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content={`${BASE_URL}/og-image-1200x630.png`} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content={`${BASE_URL}/og-image-1200x630.png`} />
       </Helmet>
 
       <div className="min-h-screen bg-background">

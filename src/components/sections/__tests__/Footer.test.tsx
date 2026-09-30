@@ -58,7 +58,7 @@ describe('Footer Component', () => {
     render(<Footer />);
     expect(screen.getAllByAltText('EPM DEVTECH').length).toBeGreaterThan(0);
     expect(
-      screen.getByText(/Engenharia de software sob medida, arquitetura de sistemas críticos/i)
+      screen.getByText(/Desenvolvimento de software sob medida, APIs escaláveis e modernização/i)
     ).toBeInTheDocument();
     expect(screen.getByText('Toledo, Paraná.')).toBeInTheDocument();
 
@@ -74,21 +74,18 @@ describe('Footer Component', () => {
 
     // Coluna 2: Soluções
     expect(screen.getByRole('heading', { name: /Soluções/i })).toBeInTheDocument();
-    expect(screen.getByText('Desenvolvimento Web e SPAs')).toBeInTheDocument();
-    expect(screen.getByText('APIs e Microsserviços')).toBeInTheDocument();
+    expect(screen.getByText('Sistemas Web e Plataformas')).toBeInTheDocument();
+    expect(screen.getByText('APIs & Back-end Escalável')).toBeInTheDocument();
+    expect(screen.getByText('Integrações entre Sistemas')).toBeInTheDocument();
     expect(screen.getByText('Modernização de Legados')).toBeInTheDocument();
-    expect(screen.getByText('Arquitetura de Software')).toBeInTheDocument();
-    expect(screen.getByText('Consultoria Técnica e Code Review')).toBeInTheDocument();
 
     // Coluna 3: Navegação
     expect(screen.getByRole('heading', { name: /Navegação/i })).toBeInTheDocument();
-    expect(screen.getByText('Sobre a Empresa')).toBeInTheDocument();
-    expect(screen.getByText('Setores de Atuação')).toBeInTheDocument();
     expect(screen.getByText('Serviços')).toBeInTheDocument();
-    expect(screen.getByText('Tecnologias')).toBeInTheDocument();
-    expect(screen.getByText('Diferenciais')).toBeInTheDocument();
+    expect(screen.getByText('Como Trabalhamos')).toBeInTheDocument();
+    expect(screen.getByText('Sobre a Empresa')).toBeInTheDocument();
     expect(screen.getByText('Dúvidas Frequentes')).toBeInTheDocument();
-    expect(screen.getByText('Fale Conosco')).toBeInTheDocument();
+    expect(screen.getByText('Falar sobre meu projeto')).toBeInTheDocument();
 
     // Coluna 4: Contato
     expect(screen.getByRole('heading', { name: /Contato/i })).toBeInTheDocument();

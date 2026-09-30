@@ -14,21 +14,18 @@ import { useTheme } from "@/components/theme-provider";
 import { LegalLinks } from "@/components/legal/LegalModals";
 
 const SOLUTIONS_LINKS = [
-  { label: "Desenvolvimento Web e SPAs", href: "#servicos" },
-  { label: "APIs e Microsserviços", href: "#servicos" },
+  { label: "Sistemas Web e Plataformas", href: "#servicos" },
+  { label: "APIs & Back-end Escalável", href: "#servicos" },
+  { label: "Integrações entre Sistemas", href: "#servicos" },
   { label: "Modernização de Legados", href: "#servicos" },
-  { label: "Arquitetura de Software", href: "#servicos" },
-  { label: "Consultoria Técnica e Code Review", href: "#servicos" },
 ];
 
 const NAVIGATION_LINKS = [
-  { label: "Sobre a Empresa", href: "#sobre" },
-  { label: "Setores de Atuação", href: "#setores" },
   { label: "Serviços", href: "#servicos" },
-  { label: "Tecnologias", href: "#tecnologias" },
-  { label: "Diferenciais", href: "#diferenciais" },
+  { label: "Como Trabalhamos", href: "#diferenciais" },
+  { label: "Sobre a Empresa", href: "#sobre" },
   { label: "Dúvidas Frequentes", href: "#faq" },
-  { label: "Fale Conosco", href: "#contato" },
+  { label: "Falar sobre meu projeto", href: "#contato" },
 ];
 
 const SOCIAL_LINKS = [
@@ -130,7 +127,7 @@ const Footer = () => {
               </div>
 
               <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                Engenharia de software sob medida, arquitetura de sistemas críticos e modernização de plataformas corporativas.
+                Desenvolvimento de software sob medida, APIs escaláveis e modernização de plataformas corporativas.
               </p>
 
               {/* Localização */}

@@ -21,8 +21,8 @@ describe('Sectors Component', () => {
     it('renders sectors header and tagline', () => {
         render(<Sectors />);
 
-        expect(screen.getByText(/Experiência por Setor/i)).toBeInTheDocument();
-        expect(screen.getByText(/Cada setor tem suas próprias regras/i)).toBeInTheDocument();
+        expect(screen.getByText(/Contextos de Negócio/i)).toBeInTheDocument();
+        expect(screen.getByText(/Experiência em diferentes contextos/i)).toBeInTheDocument();
     });
 
     it('renders all 4 sector cards with 3D titles and badges', () => {
@@ -31,14 +31,14 @@ describe('Sectors Component', () => {
         // Check titles
         expect(screen.getByText('Indústria')).toBeInTheDocument();
         expect(screen.getByText('Varejo')).toBeInTheDocument();
-        expect(screen.getByText('Educação')).toBeInTheDocument();
-        expect(screen.getByText('Energia')).toBeInTheDocument();
+        expect(screen.getAllByText('Educação').length).toBeGreaterThanOrEqual(1);
+        expect(screen.getAllByText('Energia').length).toBeGreaterThanOrEqual(1);
 
         // Check handles / subtitle tags
-        expect(screen.getByText('MANUFATURA')).toBeInTheDocument();
-        expect(screen.getByText('E-COMMERCE')).toBeInTheDocument();
-        expect(screen.getByText('CAPES · MEC · GOVERNO FEDERAL')).toBeInTheDocument();
-        expect(screen.getByText('ONS · ENERGIA PECÉM')).toBeInTheDocument();
+        expect(screen.getByText('OPERAÇÃO & MANUFATURA')).toBeInTheDocument();
+        expect(screen.getByText('ALTO VOLUME & TRANSAÇÕES')).toBeInTheDocument();
+        expect(screen.getByText('PLATAFORMAS INSTITUCIONAIS')).toBeInTheDocument();
+        expect(screen.getByText('DADOS CRÍTICOS & REGULAÇÃO')).toBeInTheDocument();
 
         // Check step numbers
         expect(screen.getByText('01')).toBeInTheDocument();
@@ -50,10 +50,10 @@ describe('Sectors Component', () => {
     it('renders technical context descriptions', () => {
         render(<Sectors />);
 
-        expect(screen.getByText(/IoT industrial e integração com ERPs corporativos/i)).toBeInTheDocument();
-        expect(screen.getByText(/esteiras de checkout seguras e sincronização de inventário/i)).toBeInTheDocument();
-        expect(screen.getByText(/modernização arquitetural de plataformas nacionais/i)).toBeInTheDocument();
-        expect(screen.getByText(/consolidação regulatória com integridade absoluta/i)).toBeInTheDocument();
+        expect(screen.getByText(/Desenvolvemos soluções para automação de processos, rastreabilidade de chão de fábrica/i)).toBeInTheDocument();
+        expect(screen.getByText(/Construímos arquiteturas escaláveis para comércio eletrônico, esteiras de checkout seguras/i)).toBeInTheDocument();
+        expect(screen.getByText(/Executamos modernização arquitetural de plataformas de grande escala/i)).toBeInTheDocument();
+        expect(screen.getByText(/Atuamos na concepção de sistemas distribuídos de monitoramento operacional/i)).toBeInTheDocument();
     });
 
     it('renders the mockup components inside the 3D cards', () => {
@@ -68,7 +68,7 @@ describe('Sectors Component', () => {
     it('renderiza corretamente quando useInView retorna false (antes de entrar no viewport)', () => {
         mockUseInView.mockReturnValueOnce(false);
         render(<Sectors />);
-        expect(screen.getByText(/Experiência por Setor/i)).toBeInTheDocument();
-        expect(screen.getByText(/Cada setor tem suas próprias regras/i)).toBeInTheDocument();
+        expect(screen.getByText(/Contextos de Negócio/i)).toBeInTheDocument();
+        expect(screen.getByText(/Experiência em diferentes contextos/i)).toBeInTheDocument();
     });
 });

@@ -132,39 +132,39 @@ describe('Index Page', () => {
     it('define título correto para / (home)', () => {
       renderAndFlush('/');
       expect(document.title).toBe(
-        'EPM DEVTECH | Software House: Desenvolvimento de Software Sob Medida',
+        'EPM DevTech | Software House e Desenvolvimento de Software Sob Medida',
       );
     });
 
     it('define título correto para /sobre', () => {
       renderAndFlush('/sobre');
-      expect(document.title).toBe('Sobre | EPM DEVTECH');
+      expect(document.title).toBe('Sobre | EPM DevTech');
     });
 
     it('define título correto para /servicos', () => {
       renderAndFlush('/servicos');
-      expect(document.title).toBe('Serviços | EPM DEVTECH');
+      expect(document.title).toBe('Serviços | EPM DevTech');
     });
 
     it('define título correto para /tecnologias', () => {
       renderAndFlush('/tecnologias');
-      expect(document.title).toBe('Tecnologias | EPM DEVTECH');
+      expect(document.title).toBe('Tecnologias | EPM DevTech');
     });
 
     it('define título correto para /diferenciais', () => {
       renderAndFlush('/diferenciais');
-      expect(document.title).toBe('Diferenciais | EPM DEVTECH');
+      expect(document.title).toBe('Diferenciais | EPM DevTech');
     });
 
     it('define título correto para /contato', () => {
       renderAndFlush('/contato');
-      expect(document.title).toBe('Contato | EPM DEVTECH');
+      expect(document.title).toBe('Contato | EPM DevTech');
     });
 
     it('usa título padrão (home) para rota desconhecida', () => {
       renderAndFlush('/rota-inexistente');
       expect(document.title).toBe(
-        'EPM DEVTECH | Software House: Desenvolvimento de Software Sob Medida',
+        'EPM DevTech | Software House e Desenvolvimento de Software Sob Medida',
       );
     });
   });

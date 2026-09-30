@@ -21,7 +21,9 @@ const Technologies = () => {
           className="mb-8"
         >
           <SectionHeader
-            tagline="Stack Tecnológica"
+            tagline="Stack & Ferramentas"
+            title="Tecnologias que usamos para construir soluções"
+            subtitle="Escolhemos tecnologias de acordo com as necessidades de cada projeto, considerando desempenho, segurança, manutenção e evolução contínua."
           />
         </motion.div>
 

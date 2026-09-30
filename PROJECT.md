@@ -149,22 +149,23 @@ src/
 |-------------------|------------------|--------------------------------------------|
 | Design            | ✅ Padronizado   | Design System Verde EPM DEVTECH (#10B981), títulos monocromáticos e tipografia Geist |
 | Tipografia / Títulos | ✅ Padronizado   | Eyebrows minimalistas com traço do ícone da marca (BrandChipIcon em #10B981) + texto cinza uppercase (11.5px, weight 500, letter-spacing 0.1em), títulos 100% monocromáticos, zero cápsulas e zero travessões (—) ou pontos e vírgulas (;) |
-| Hero              | ✅ Software House, Lamp Effect & Responsividade | Iluminação volumétrica atmosférica com efeito Lamp (`LampContainer`) adaptado à paleta esmeralda e tokens de tema (SPEC-047). Eyebrow badge `EPM DEVTECH` • `SOFTWARE HOUSE`, headline 100% monocromática ("Desenvolvemos software sob medida para o seu negócio."), supporting copy com foco em sistemas, web, APIs e integrações, dual CTA ("Falar sobre meu projeto →" e "Conhecer a EPM"), microprova ("Da ideia à produção • Engenharia direta • +9 anos de experiência") e topologia de arquitetura distribuída (`HeroArchitecture.tsx`) com fade-out na base. Ajuste de espaçamento vertical (SPEC-048) garante CTAs visíveis sem scroll em notebooks 1280×800 e 1366×768. |
-| About             | ✅ Atualizado    | Autoridade técnica (Tech Lead/fundador Elessandro Prestes Macedo), métricas (+9 anos, 4 setores, 99,9% uptime) e pilares de engenharia |
-| Sectors           | ✅ Modularizado  | Seção 4 dedicada com os 4 cards 3D isomórficos 100% preservados (Indústria, Varejo, Educação, Energia), mockups interativos e tríade contexto + problema + experiência |
-| Services          | ✅ Atualizado    | Copywriting sênior com destaque ao problema resolvido nos 6 cards, H2 monocromático, H3 font-semibold e mockups técnicos preservados |
-| Technologies      | ✅ Constellation | TechConstellation interativo com trilhas PCB, Focus & Context e Painel Arquitetural |
-| Differentials     | ✅ Atualizado    | Copywriting focado em benefícios nos 6 cards, tags técnicas, timeline preservada e H3 semântico |
-| FAQ               | ✅ Otimizado     | Acordeão interativo (shadcn/ui), 10 perguntas estritamente focadas em remoção de objeções reais (sem redundância de catálogo), contraste WCAG AAA no Light e Dark Mode |
-| Contact           | ✅ Blindado      | Split Card com formulário underline, dropdown milimétrico (gap=0px), máscara dinâmica de telefone, validação estrita Zod (rejeição de letras e DDDs inválidos), microinteração no botão e toast centralizado no topo (top-center) |
-| Footer            | ✅ Atualizado    | Layout de 4 colunas monocromáticas, CNPJ consolidado na linha de copyright (© 2026 EPM DEVTECH · CNPJ 60.710.574/0001-85), modais acessíveis de Termos de Uso e Política de Privacidade (LGPD) sem travessões e remoção de textos obsoletos |
-| ScrollToTop       | ✅ Neutro / Flat | Ícone ChevronUp (20px), design utilitário neutro sem glow ou realce verde (borda fina border-zinc-200/800, text-zinc-500/400), sem competir com CTAs reais (WhatsApp/Contato), fade suave >450px e elevação dinâmica no rodapé |
+| Hero              | ✅ Refatorado    | Iluminação volumétrica atmosférica com efeito Lamp (`LampContainer`), Eyebrow badge `EPM DEVTECH` • `SOFTWARE HOUSE`, headline monocromática, supporting copy corporativo, CTA primário unificado "Falar sobre meu projeto", CTA secundário "Conhecer a EPM DevTech", microprova sóbria e topologia de arquitetura distribuída |
+| Autoridade        | ✅ Refatorado    | Título "Sistemas construídos para operações que não podem parar", métricas de disponibilidade, throughput, integridade e contexto por setor (Educação, Energia, Indústria, Varejo) |
+| About             | ✅ Refatorado    | Posicionamento centrado na software house, liderança técnica enquadrada de Elessandro Prestes Macedo, AnimatedStats (+9 anos, 4 contextos, 100% engenharia direta) e 3 pilares de governança |
+| Sectors           | ✅ Refatorado    | Título "Experiência em diferentes contextos", 4 cards 3D isomórficos preservados com contextualização operacional e mockups intactos |
+| Services          | ✅ Consolidado   | 4 ofertas estratégicas com gatilhos de dor ("Quando precisa:"), grid 2×2 balanceado e mockups técnicos preservados |
+| Technologies      | ✅ Constellation | TechConstellation interativo com trilhas PCB, Focus & Context, título institucional de evidência e Painel Arquitetural |
+| Differentials     | ✅ Consolidado   | 3 pilares focados no cliente (Comunicação Transparente, Engenharia que Facilita Evoluir, Foco no Negócio) + linha de práticas de engenharia |
+| FAQ               | ✅ Refatorado    | 10 perguntas estritamente focadas em remoção de objeções reais, respostas calibradas para atendimento 100% remoto no Brasil e CTA integrado |
+| Contact           | ✅ Refatorado    | Título "Fale sobre seu projeto", CTA único "Falar sobre meu projeto", formulário underline, dropdown milimétrico, máscara de telefone, validação Zod e garantias |
+| Footer            | ✅ Refatorado    | 4 soluções espelhadas, navegação unificada com CTA único, dados cadastrais e modais legais |
+| ScrollToTop       | ✅ Neutro / Flat | Ícone ChevronUp (20px), design utilitário neutro sem glow ou realce verde, fade suave >450px e elevação dinâmica no rodapé |
 | Cookie Banner     | ✅ Otimizado     | Lazy load assíncrono + defer timer (3.5s)  |
-| SEO & Agêntico    | ✅ Formalizado   | `robots.txt` formalizado para 16 crawlers de IA (OpenAI, Anthropic, Perplexity, Google, Apple, Meta, ByteDance, etc.), `llms.txt` e `llms-full.txt` enriquecidos com a narrativa de 10 seções, setores, serviços, 10 perguntas do FAQ e métricas reais, `sitemap.xml` atualizado com `/setores` e `/faq`, links de auto-descoberta no `index.html` e eliminação de travessões artificiais |
-| Testes unitários  | ✅ Implementado  | 20/20 suites, 138/138 testes passando (98.66% coverage no Hero, 100% no HeroBadge, 96.73% no HeroArchitecture) |
-| Testes E2E        | ✅ Implementado  | Suíte Playwright (10/10 testes em design-system-and-stability + 6/6 testes de responsividade e viewport sem overflow horizontal) |
+| SEO & Agêntico    | ✅ Refatorado    | Meta description otimizada (152 car.), imagem Open Graph 1200×630 dedicada, JSON-LD honesto (`ProfessionalService`), rotas dinâmicas em `SEO_META`, `robots.txt` e `llms.txt` |
+| Testes unitários  | ✅ Implementado  | 20/20 suites, 138/138 testes passando (98.57% coverage geral) |
+| Testes E2E        | ✅ Implementado  | Suíte Playwright (16/16 testes passando: estabilidade, design system e 5 viewports) |
 | Acessibilidade    | ✅ 100% WCAG AA  | Contraste de texto e botões >= 4.5:1 (Logotipo WCAG AAA >= 17:1) |
-| Performance       | ✅ 100% Otimizado| JS inicial < 80 KB, FCP/LCP instantâneo    |
+| Performance       | ✅ 100% Otimizado| JS inicial < 80 KB, FCP/LCP instantâneo, maior chunk 142KB |
 | Proxy Odontologia | ✅ Implementado  | `/odontologia-demo` → proxy reverso Vercel para `dentistry-demo.elessandrodev.workers.dev` com 4 headers AppSec (SPEC-044) |
 | i18n              | ❌ Não iniciado  | Não planejado na versão atual              |
 
@@ -200,4 +201,4 @@ src/
 
 ---
 
-_Última atualização: 2026-09-28 | Maintainer: Elessandro Prestes Macedo_
+_Última atualização: 2026-09-30 | Maintainer: Elessandro Prestes Macedo_

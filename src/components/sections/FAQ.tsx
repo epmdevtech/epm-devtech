@@ -36,9 +36,9 @@ const FAQ_ITEMS: FAQItem[] = [
   },
   {
     category: "contratacao",
-    question: "A EPM DEVTECH atende clientes fora de Toledo no Paraná ou no exterior?",
+    question: "A EPM DevTech atende clientes fora de Toledo no Paraná ou no exterior?",
     answer:
-      "Sim, atuamos 100% de forma remota. Já construímos plataformas de missão crítica para clientes em Brasília (CAPES/MEC), Ceará (Energia Pecém), Santa Catarina (ONS via AMcom) e Mato Grosso do Sul (Governo MT). Mantemos comunicação diária, reuniões semanais de alinhamento e relatórios periódicos de progresso.",
+      "Sim, atuamos 100% de forma remota. Já construímos e sustentamos plataformas para operações e instituições em diversas regiões do Brasil (Educação, Energia, Indústria e Varejo). Mantemos comunicação diária, reuniões semanais de alinhamento e relatórios periódicos de progresso.",
   },
 
   // ── Categoria: Sistemas Existentes ──────────────────────────────────
@@ -210,7 +210,7 @@ const FAQ = () => {
               href="#contato"
               className="text-primary font-semibold hover:underline underline-offset-4 transition-colors"
             >
-              Fale diretamente com a equipe técnica →
+              Falar sobre meu projeto →
             </a>
           </p>
         </motion.div>

@@ -22,27 +22,27 @@ describe('About Component', () => {
     it('renders about header and description', () => {
         render(<About />);
 
-        expect(screen.getByText(/Sobre a EPM DEVTECH/i)).toBeInTheDocument();
-        expect(screen.getByText(/Uma trajetória técnica, não um discurso de vendas/i)).toBeInTheDocument();
-        expect(screen.getByText(/A EPM DEVTECH nasceu da experiência de Elessandro Prestes Macedo/i)).toBeInTheDocument();
+        expect(screen.getByText(/Sobre a EPM DevTech/i)).toBeInTheDocument();
+        expect(screen.getByText(/Engenharia de software com visão de negócio/i)).toBeInTheDocument();
+        expect(screen.getByText(/A EPM DevTech é uma software house dedicada/i)).toBeInTheDocument();
     });
 
-    it('renders the company stats with +9, 4 and 99,9% uptime', () => {
+    it('renders the company stats with +9, 4 and 100% engenharia direta', () => {
         render(<About />);
 
-        const matchText = (text: string) => (content: string, element: Element | null) => {
-            const hasText = (node: Element) => node.textContent === text;
-            const elementHasText = element ? hasText(element) : false;
-            const childrenDontHaveText = element ? Array.from(element.children).every(child => !hasText(child)) : true;
-            return elementHasText && childrenDontHaveText;
-        };
+        const stats = screen.getAllByTestId('animated-stat');
+        expect(stats).toHaveLength(3);
 
-        expect(screen.getByText(matchText('+9'))).toBeInTheDocument();
-        expect(screen.getAllByText((content, element) => element?.textContent === 'Anos de Experiência' || element?.textContent === 'Anos de Experiência')[0]).toBeInTheDocument();
-        expect(screen.getByText(matchText('4'))).toBeInTheDocument();
-        expect(screen.getByText((content, element) => element?.textContent === 'Setores Críticos' || element?.textContent === 'Setores Críticos')).toBeInTheDocument();
-        expect(screen.getByText(matchText('99,9%'))).toBeInTheDocument();
-        expect(screen.getByText((content, element) => element?.textContent === 'Uptime em Produção' || element?.textContent === 'Uptime em Produção')).toBeInTheDocument();
+        expect(stats[0]).toHaveTextContent('+');
+        expect(stats[0]).toHaveTextContent('9');
+        expect(stats[0]).toHaveTextContent('Anos de Experiência');
+
+        expect(stats[1]).toHaveTextContent('4');
+        expect(stats[1]).toHaveTextContent('Contextos de Negócio');
+
+        expect(stats[2]).toHaveTextContent('100');
+        expect(stats[2]).toHaveTextContent('%');
+        expect(stats[2]).toHaveTextContent('Engenharia Direta');
     });
 
     it('renders the engineering pillars and technical leadership card', () => {
@@ -51,16 +51,16 @@ describe('About Component', () => {
         expect(screen.getByText(/Liderança Técnica/i)).toBeInTheDocument();
         expect(screen.getByText(/Compromisso com arquitetura sólida/i)).toBeInTheDocument();
 
-        expect(screen.getByText('Arquitetura para Escala')).toBeInTheDocument();
-        expect(screen.getByText('Engenharia de Qualidade')).toBeInTheDocument();
-        expect(screen.getByText('Governança e Previsibilidade')).toBeInTheDocument();
+        expect(screen.getByText('Planejamento e Arquitetura')).toBeInTheDocument();
+        expect(screen.getByText('Qualidade e Testes')).toBeInTheDocument();
+        expect(screen.getByText('Previsibilidade e Governança')).toBeInTheDocument();
     });
 
     it('renderiza corretamente quando useInView retorna false (antes de entrar no viewport)', () => {
         mockUseInView.mockReturnValueOnce(false);
         render(<About />);
         // Conteúdo sempre presente no DOM — apenas estado de animação muda
-        expect(screen.getByText(/Sobre a EPM DEVTECH/i)).toBeInTheDocument();
-        expect(screen.getByText(/Uma trajetória técnica, não um discurso de vendas/i)).toBeInTheDocument();
+        expect(screen.getByText(/Sobre a EPM DevTech/i)).toBeInTheDocument();
+        expect(screen.getByText(/Engenharia de software com visão de negócio/i)).toBeInTheDocument();
     });
 });

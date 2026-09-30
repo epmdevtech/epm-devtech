@@ -61,7 +61,7 @@ const MockupVarejo = () => (
 const MockupEducacao = () => (
   <div className="about-mockup">
     <div className="mockup-row">
-      <span className="mockup-badge">CAPES · MEC</span>
+      <span className="mockup-badge">Educação</span>
       <span className="mockup-line" />
     </div>
     <div className="mockup-row mt-3">
@@ -82,7 +82,7 @@ const MockupEducacao = () => (
 const MockupEnergia = () => (
   <div className="about-mockup">
     <div className="mockup-row">
-      <span className="mockup-badge">ONS</span>
+      <span className="mockup-badge">Energia</span>
       <span className="mockup-line" />
     </div>
     <div className="mockup-row mt-3">
@@ -105,17 +105,17 @@ const sectors = [
     num: "01",
     icon: Building2,
     title: "Indústria",
-    handle: "MANUFATURA",
+    handle: "OPERAÇÃO & MANUFATURA",
     context: "Operações fabris e linhas de montagem contínua",
     problem: "Falhas operacionais e perda de rastreabilidade entre chão de fábrica e gestão corporativa.",
-    experience: "Desenvolvemos soluções para automação de processos, telemetria de equipamentos via IoT industrial e integração com ERPs corporativos.",
+    experience: "Desenvolvemos soluções para automação de processos, rastreabilidade de chão de fábrica e integração contínua com ERPs corporativos.",
     Mockup: MockupIndustria,
   },
   {
     num: "02",
     icon: Target,
     title: "Varejo",
-    handle: "E-COMMERCE",
+    handle: "ALTO VOLUME & TRANSAÇÕES",
     context: "Plataformas digitais com alto volume transacional",
     problem: "Perda de vendas em picos de tráfego, gargalos em checkout e inconsistência de estoque.",
     experience: "Construímos arquiteturas escaláveis para comércio eletrônico, esteiras de checkout seguras e sincronização de inventário em tempo real.",
@@ -125,20 +125,20 @@ const sectors = [
     num: "03",
     icon: Award,
     title: "Educação",
-    handle: "CAPES · MEC · GOVERNO FEDERAL",
-    context: "Órgãos federais e grandes redes de ensino",
+    handle: "PLATAFORMAS INSTITUCIONAIS",
+    context: "Instituições de ensino e plataformas de grande escala",
     problem: "Sistemas legados sobrecarregados em períodos de edital e processos manuais de prestação de contas.",
-    experience: "Executamos modernização arquitetural de plataformas nacionais, automação de processos administrativos e microsserviços de alta disponibilidade.",
+    experience: "Executamos modernização arquitetural de plataformas de grande escala, automação de fluxos operacionais e microsserviços de alta disponibilidade.",
     Mockup: MockupEducacao,
   },
   {
     num: "04",
     icon: Users,
     title: "Energia",
-    handle: "ONS · ENERGIA PECÉM",
+    handle: "DADOS CRÍTICOS & REGULAÇÃO",
     context: "Despacho energético e infraestrutura crítica",
     problem: "Tolerância zero para perda de dados regulatórios e necessidade de telemetria imediata.",
-    experience: "Atuamos na concepção de sistemas distribuídos de monitoramento operacional e consolidação regulatória com integridade absoluta.",
+    experience: "Atuamos na concepção de sistemas distribuídos de monitoramento operacional e consolidação de dados com integridade absoluta.",
     Mockup: MockupEnergia,
   },
 ];
@@ -405,9 +405,9 @@ const Sectors = () => {
             className="mb-14"
           >
             <SectionHeader
-              tagline="Experiência por Setor"
-              title="Cada setor tem suas próprias regras"
-              subtitle="Backoffice, saúde, indústria: cada um exige uma leitura diferente de compliance, volume de dados e tolerância a falha. Entendemos essas diferenças antes de desenhar a arquitetura, não depois."
+              tagline="Contextos de Negócio"
+              title="Experiência em diferentes contextos"
+              subtitle="Projetos desenvolvidos em ambientes com diferentes níveis de complexidade, integração e requisitos operacionais."
             />
           </motion.div>
 

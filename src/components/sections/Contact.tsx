@@ -59,13 +59,13 @@ const nextSteps = [
     icon: Clock,
     title: "Retorno em até 24 Horas",
     description:
-      "Resposta rápida para agendarmos uma conversa técnica sem enrolação.",
+      "Resposta técnica rápida para agendarmos uma conversa sem enrolação.",
   },
   {
     icon: ShieldCheck,
-    title: "Sigilo e Segurança",
+    title: "Sigilo e Confidencialidade",
     description:
-      "Suas ideias, dados e regras de negócio tratados com absoluta confidencialidade.",
+      "Suas ideias, dados e regras de negócio tratados com absoluta segurança.",
   },
 ];
 
@@ -111,7 +111,7 @@ const Contact = () => {
       };
 
       await emailjs.send(serviceId, templateId, templateParams);
-      toast.success("Mensagem enviada! Retornarei em breve.");
+      toast.success("Mensagem enviada com sucesso! Retornaremos em breve.");
       setIsSuccess(true);
       reset();
       setTimeout(() => {
@@ -148,8 +148,8 @@ const Contact = () => {
         >
           <SectionHeader
             tagline="Contato"
-            title="Vamos entender o seu desafio"
-            subtitle="Não precisa chegar com arquitetura definida ou stack escolhida. Descreva o que está travando ou o que você quer construir, nós indicamos o caminho técnico mais adequado."
+            title="Fale sobre seu projeto"
+            subtitle="Conte o que sua empresa precisa. Vamos entender o cenário e avaliar como a EPM DevTech pode ajudar."
           />
         </motion.div>
 
@@ -387,7 +387,7 @@ const Contact = () => {
                     ) : (
                       <>
                         <Send className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-                        <span>Enviar Mensagem</span>
+                        <span>Falar sobre meu projeto</span>
                       </>
                     )}
                   </button>

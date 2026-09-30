@@ -9,7 +9,51 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
-## [0.0.47-hero-lamp-software-house] - 2026-09-28
+## [0.0.50-refatoracao-conteudo-ux-a11y-seo] - 2026-09-30
+
+### Adicionado
+- **`public/og-image-1200x630.png`**: Imagem Open Graph de alta resolução (1200×630) baseada nos ativos visuais da marca EPM DevTech (gradiente esmeralda, tipografia Geist e logotipo).
+- **`docs/refactor/`**: Auditoria completa, inventário de conteúdo, proposta de copy de-para e plano de implementação da refatoração (`audit.md`, `inventory.md`, `copy-proposal.md`, `plan.md`).
+- **`specs/SPEC-049-refatoracao-conteudo-ux-a11y-seo.md`**: Especificação completa da refatoração de conteúdo, UX writing, acessibilidade e SEO aprovada pelo PO.
+- **`tasks/TASK-050-refatoracao-conteudo-ux-a11y-seo.md`**: Tarefa e checklist de execução rastreados via SDD.
+- **`reviews/QA-050.md`**: Relatório de QA e validação integral dos quality gates.
+
+### Modificado
+- **`index.html`**:
+  - Meta description otimizada (152 caracteres) focada em problemas de negócio e soluções sob medida.
+  - Remoção de `meta keywords` obsoletas.
+  - Metatags `og:*` e `twitter:*` completas apontando para a imagem 1200×630.
+  - Atualização do schema JSON-LD como `ProfessionalService` consolidado e honesto.
+- **`src/pages/Index.tsx`**:
+  - Dicionário `SEO_META` sincronizado em todas as rotas e seções (`/`, `/sobre`, `/setores`, `/servicos`, `/tecnologias`, `/diferenciais`, `/faq`, `/contato`).
+- **CTA Primário Unificado**:
+  - Unificação de 100% dos pontos de conversão e metadados no CTA único: **"Falar sobre meu projeto"**.
+- **`src/components/sections/Hero.tsx`**:
+  - Supporting copy focado em soluções corporativas sob medida.
+  - CTA secundário ajustado para *"Conhecer a EPM DevTech"* (`#sobre`).
+  - Microprova social concisa: *"Da concepção ao deploy • Engenharia direta • Arquitetura para evolução"*.
+- **`src/components/sections/Authority.tsx`**:
+  - Título *"Sistemas construídos para operações que não podem parar"*.
+  - Métricas e badges contextuais por setor (`Educação Superior & Redes`, `Operação Energética`, `Indústria & Manufatura`, `Varejo & E-commerce`).
+- **`src/components/sections/About.tsx`**:
+  - Posicionamento institucional centrado na empresa, apresentando o fundador de forma sóbria como liderança técnica e arquiteto de software.
+  - AnimatedStats calibrados (9 anos de experiência, 4 contextos de negócio, 100% engenharia direta).
+- **`src/components/sections/Sectors.tsx`**:
+  - Título *"Experiência em diferentes contextos"*, mantendo os 4 blocos 3D e mockups com linguagem corporativa e rigor técnico.
+- **`src/components/sections/Services.tsx`**:
+  - Grid equilibrado 2×2 consolidando 4 ofertas estratégicas com gatilhos de dor claros (`Quando precisa:`).
+- **`src/components/sections/Technologies.tsx`**:
+  - Título *"Tecnologias que usamos para construir soluções"* com justificativa técnica.
+- **`src/components/sections/Differentials.tsx`**:
+  - 3 pilares estratégicos centrados em valor para o cliente (*Comunicação Transparente*, *Engenharia que Facilita Evoluir*, *Foco no Problema do Negócio*) acompanhados de linha de práticas de engenharia.
+- **`src/components/sections/FAQ.tsx`**:
+  - Respostas calibradas para modelos de trabalho e atendimento remoto em todo o Brasil, com link direto para o CTA primário.
+- **`src/components/sections/Contact.tsx`**:
+  - Cabeçalho *"Fale sobre seu projeto"*, botão de envio alinhado ao CTA único e cards com garantias de diagnóstico, agilidade e sigilo.
+- **`src/components/sections/Footer.tsx`**:
+  - Soluções espelhadas, navegação sem redundâncias e posicionamento conciso.
+- **Suítes de Testes**:
+  - Atualização dos testes unitários (138/138 passando) e E2E (16/16 passando) refletindo o novo conteúdo com 98.57% de cobertura.
 
 ### Adicionado
 - **`src/components/ui/lamp.tsx`**: Componente `LampContainer` adaptado com foco em UX/UI e integração plena aos tokens do Design System da EPM DEVTECH:

@@ -40,7 +40,7 @@ describe('FAQ Component', () => {
       screen.getByText(/Como é definido o orçamento e o modelo de trabalho\?/i)
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/A EPM DEVTECH atende clientes fora de Toledo no Paraná ou no exterior\?/i)
+      screen.getByText(/A EPM DevTech atende clientes fora de Toledo no Paraná ou no exterior\?/i)
     ).toBeInTheDocument();
 
     // Legados
@@ -88,7 +88,7 @@ describe('FAQ Component', () => {
   it('renders bottom CTA linking to #contato', () => {
     render(<FAQ />);
 
-    const cta = screen.getByRole('link', { name: /Fale diretamente com a equipe técnica →/i });
+    const cta = screen.getByRole('link', { name: /Falar sobre meu projeto →/i });
     expect(cta).toHaveAttribute('href', '#contato');
   });
 

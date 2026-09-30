@@ -44,7 +44,7 @@ describe('Hero Component', () => {
     expect(heading).toHaveTextContent(/Desenvolvemos software.*sob medida para o seu negócio\./i);
 
     expect(
-      screen.getByText(/Sistemas, aplicações web, APIs e integrações/i)
+      screen.getByText(/Sistemas web, APIs, integrações e soluções digitais/i)
     ).toBeInTheDocument();
   });
 
@@ -67,7 +67,7 @@ describe('Hero Component', () => {
     expect(primaryCta).toBeInTheDocument();
     expect(primaryCta).toHaveAttribute('href', '#contato');
 
-    const secondaryCta = screen.getByRole('link', { name: /Conhecer a EPM/i });
+    const secondaryCta = screen.getByRole('link', { name: /Conhecer a EPM DevTech/i });
     expect(secondaryCta).toBeInTheDocument();
     expect(secondaryCta).toHaveAttribute('href', '#sobre');
   });
@@ -75,9 +75,9 @@ describe('Hero Component', () => {
   it('renders microprova social with concise engineering credentials', () => {
     render(<Hero />);
 
-    expect(screen.getByText(/Da ideia à produção/i)).toBeInTheDocument();
+    expect(screen.getByText(/Da concepção ao deploy/i)).toBeInTheDocument();
     expect(screen.getByText(/Engenharia direta/i)).toBeInTheDocument();
-    expect(screen.getByText(/\+9 anos de experiência/i)).toBeInTheDocument();
+    expect(screen.getByText(/Arquitetura para evolução/i)).toBeInTheDocument();
   });
 
   it('renders clean system architecture topology without simulated telemetry noise', () => {

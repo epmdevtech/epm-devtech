@@ -6,42 +6,38 @@ import SectionHeader from "@/components/ui/SectionHeader";
 const metrics = [
   {
     value: "99,9%",
-    label: "Uptime em ambientes de produção",
+    label: "Disponibilidade observada em produção",
   },
   {
     value: "2.500+ RPS",
-    label: "Throughput suportado em arquiteturas distribuídas",
-  },
-  {
-    value: "+448 IES e 650 Escolas",
-    label: "Impacto em plataformas educacionais e federais",
+    label: "Throughput sustentado em arquitetura distribuída",
   },
   {
     value: "Zero Perda",
-    label: "Integridade em dados regulatórios e integrações críticas",
+    label: "Integridade em conciliações de dados críticos",
+  },
+  {
+    value: "Multi-setor",
+    label: "Aplicações em Educação, Energia, Indústria e Varejo",
   },
 ];
 
 const organizations = [
   {
-    name: "CAPES • MEC",
-    detail: null,
+    name: "Educação Superior & Redes",
+    detail: "(Plataformas Institucionais)",
   },
   {
-    name: "ONS",
-    detail: "(Operador Nacional do Sistema Elétrico)",
+    name: "Operação Energética",
+    detail: "(Dados Regulatórios)",
   },
   {
-    name: "Energia Pecém",
-    detail: null,
+    name: "Indústria & Manufatura",
+    detail: "(IoT e Integração ERP)",
   },
   {
-    name: "Governo do MT",
-    detail: "(SEDUC)",
-  },
-  {
-    name: "Indústria e Manufatura",
-    detail: "(IoT Industrial e ERP)",
+    name: "Varejo & E-commerce",
+    detail: "(Transações e Estoque)",
   },
 ];
 
@@ -64,8 +60,8 @@ const Authority = () => {
         >
           {/* Cabeçalho compacto e monocromático */}
           <SectionHeader
-            tagline="Prova Social & Autoridade"
-            title="Projetos em produção, não em portfólio"
+            tagline="Experiência & Contexto"
+            title="Sistemas construídos para operações que não podem parar"
             titleClassName="text-2xl sm:text-3xl"
           />
 
@@ -92,7 +88,7 @@ const Authority = () => {
           {/* Feature 2: Faixa de Clientes, Órgãos e Setores */}
           <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
             <span className="text-xs uppercase tracking-widest font-semibold text-zinc-500 dark:text-zinc-400 text-center lg:text-left max-w-xs">
-              Engenharia comprovada em projetos e sistemas para grandes organizações e setores estratégicos:
+              Experiência técnica aplicada em setores estratégicos e operações críticas:
             </span>
             <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
               {organizations.map((org) => (
