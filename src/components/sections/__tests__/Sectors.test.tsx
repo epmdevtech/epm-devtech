@@ -50,10 +50,10 @@ describe('Sectors Component', () => {
     it('renders technical context descriptions', () => {
         render(<Sectors />);
 
-        expect(screen.getByText(/Desenvolvemos soluções para automação de processos, rastreabilidade de chão de fábrica/i)).toBeInTheDocument();
-        expect(screen.getByText(/Construímos arquiteturas escaláveis para comércio eletrônico, esteiras de checkout seguras/i)).toBeInTheDocument();
-        expect(screen.getByText(/Executamos modernização arquitetural de plataformas de grande escala/i)).toBeInTheDocument();
-        expect(screen.getByText(/Atuamos na concepção de sistemas distribuídos de monitoramento operacional/i)).toBeInTheDocument();
+        expect(screen.getByText(/Experiência em módulos de ERP, integração de IoT industrial/i)).toBeInTheDocument();
+        expect(screen.getByText(/Experiência em e-commerce e em módulos de ERP para operações de logística e financeiro/i)).toBeInTheDocument();
+        expect(screen.getByText(/Experiência em plataformas institucionais de grande escala: modernização incremental/i)).toBeInTheDocument();
+        expect(screen.getByText(/Experiência em monitoramento operacional em tempo real e consolidação de dados regulatórios/i)).toBeInTheDocument();
     });
 
     it('renders the mockup components inside the 3D cards', () => {

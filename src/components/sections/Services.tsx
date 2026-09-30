@@ -113,10 +113,10 @@ function MockMaintenance() {
 const services = [
   {
     visual: <MockBrowser />,
-    title: "Sistemas Web e Plataformas",
-    trigger: "Precisa criar um sistema novo ou modernizar a interface da sua operação?",
-    problem: "Precisa criar um sistema novo ou modernizar a interface da sua operação?",
-    description: "Aplicações web sob medida para operações corporativas, portais e sistemas de gestão internos. Interfaces rápidas, responsivas e desenhadas para a rotina da sua equipe.",
+    title: "Sistemas Web, Portais e Sites Institucionais",
+    trigger: "Precisa criar um sistema novo, um portal ou um site institucional que represente bem a sua empresa?",
+    problem: "Precisa criar um sistema novo, um portal ou um site institucional que represente bem a sua empresa?",
+    description: "Aplicações web sob medida, portais e sites institucionais: sistemas de gestão internos, plataformas e presença digital com foco em credibilidade, desempenho e acessibilidade.",
     accent: "#10b981",
   },
   {
@@ -132,7 +132,7 @@ const services = [
     title: "Integrações entre Sistemas",
     trigger: "Sua operação perde tempo com processos manuais porque seus sistemas não conversam?",
     problem: "Sua operação perde tempo com processos manuais porque seus sistemas não conversam?",
-    description: "Conexão segura entre ERPs, CRMs, plataformas e serviços externos, garantindo tolerância a falhas e sincronização de dados em tempo real sem retrabalho.",
+    description: "Conexão segura entre ERPs, CRMs, plataformas e serviços externos, com foco em confiabilidade e consistência dos dados.",
     accent: "#10b981",
   },
   {
@@ -140,7 +140,7 @@ const services = [
     title: "Modernização & Evolução de Legados",
     trigger: "Tem um sistema legado essencial que já não acompanha a velocidade da operação?",
     problem: "Tem um sistema legado essencial que já não acompanha a velocidade da operação?",
-    description: "Refatoração e migração incremental de plataformas legadas (Strangler Fig Pattern), reduzindo custos de manutenção e eliminando dívida técnica sem parada operacional.",
+    description: "Refatoração e migração gradual de plataformas legadas, reduzindo custos de manutenção e dívida técnica de forma incremental, reduzindo o risco de interrupção da operação.",
     accent: "#10b981",
   },
 ];

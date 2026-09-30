@@ -3,8 +3,8 @@
 > Software house brasileira especializada em engenharia de software sob medida, APIs escaláveis,
 > arquitetura de sistemas de alta performance e modernização de plataformas corporativas.
 
-Fundada e liderada por **Elessandro Prestes Macedo**, Engenheiro de Software Full Stack Sênior
-e Tech Lead com mais de **9 anos de experiência** na concepção e evolução de sistemas críticos.
+Fundada e liderada por **Elessandro Prestes Macedo**, Tech Lead e Arquiteto de Software
+com mais de **9 anos de experiência técnica** na concepção e evolução de sistemas corporativos.
 
 Localização: **Toledo, Paraná, Brasil** (atendimento remoto para todo o Brasil e exterior)
 Contato: elessandro@epmdevtech.com.br | WhatsApp: +55 (45) 99917-8290
@@ -104,7 +104,7 @@ desde o desenho da arquitetura até o deploy em produção com esteiras seguras 
 8. **Como funciona o diagnóstico técnico inicial?**
    Analisamos o volume de acessos esperado, regras de negócio, dependências e infraestrutura atual para apresentar opções claras de arquitetura antes de qualquer contratação.
 9. **A comunicação durante o projeto é diretamente com quem desenvolve?**
-   Sim. Você fala diretamente com o Tech Lead e os engenheiros responsáveis pelo projeto, sem intermediários comerciais.
+   Sim. Você fala diretamente com o Tech Lead e a liderança técnica responsável pelo projeto.
 10. **Como funciona o início do projeto com a metodologia Spec-Driven Development?**
     Cada entrega começa por uma especificação técnica aprovada antes de codificar, garantindo escopo claro, ausência de retrabalho e validação automatizada.
 

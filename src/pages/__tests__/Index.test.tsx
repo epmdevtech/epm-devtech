@@ -16,6 +16,7 @@ vi.mock('@/components/sections/Authority', () => ({ default: () => <section id="
 vi.mock('@/components/sections/About', () => ({ default: () => <section id="sobre" data-testid="about" /> }));
 vi.mock('@/components/sections/Sectors', () => ({ default: () => <section id="setores" data-testid="sectors" /> }));
 vi.mock('@/components/sections/Services', () => ({ default: () => <section id="servicos" data-testid="services" /> }));
+vi.mock('@/components/sections/HowWeWork', () => ({ default: () => <section id="como-trabalhamos" data-testid="how-we-work" /> }));
 vi.mock('@/components/sections/Technologies', () => ({ default: () => <section id="tecnologias" data-testid="technologies" /> }));
 vi.mock('@/components/sections/Differentials', () => ({ default: () => <section id="diferenciais" data-testid="differentials" /> }));
 vi.mock('@/components/sections/FAQ', () => ({ default: () => <section id="faq" data-testid="faq" /> }));
@@ -94,12 +95,13 @@ describe('Index Page', () => {
       // Flush lazy import promises (React.lazy usa dynamic import)
       await act(async () => {});
 
-      expect(screen.getByTestId('authority')).toBeInTheDocument();
-      expect(screen.getByTestId('about')).toBeInTheDocument();
-      expect(screen.getByTestId('sectors')).toBeInTheDocument();
       expect(screen.getByTestId('services')).toBeInTheDocument();
-      expect(screen.getByTestId('technologies')).toBeInTheDocument();
+      expect(screen.getByTestId('how-we-work')).toBeInTheDocument();
       expect(screen.getByTestId('differentials')).toBeInTheDocument();
+      expect(screen.getByTestId('technologies')).toBeInTheDocument();
+      expect(screen.getByTestId('authority')).toBeInTheDocument();
+      expect(screen.getByTestId('sectors')).toBeInTheDocument();
+      expect(screen.getByTestId('about')).toBeInTheDocument();
       expect(screen.getByTestId('faq')).toBeInTheDocument();
       expect(screen.getByTestId('contact')).toBeInTheDocument();
       expect(screen.getByTestId('footer')).toBeInTheDocument();
@@ -144,6 +146,11 @@ describe('Index Page', () => {
     it('define título correto para /servicos', () => {
       renderAndFlush('/servicos');
       expect(document.title).toBe('Serviços | EPM DevTech');
+    });
+
+    it('define título correto para /como-trabalhamos', () => {
+      renderAndFlush('/como-trabalhamos');
+      expect(document.title).toBe('Como Trabalhamos | EPM DevTech');
     });
 
     it('define título correto para /tecnologias', () => {
@@ -238,7 +245,7 @@ describe('Index Page', () => {
       expect(replaceStateSpy).not.toHaveBeenCalled();
     });
 
-    it('reseta URL para / quando #sobre sai da zona pelo bottom (usuário voltou ao Hero)', () => {
+    it('reseta URL para / quando #servicos sai da zona pelo bottom (usuário voltou ao Hero)', () => {
       const replaceStateSpy = vi.spyOn(window.history, 'replaceState');
       mockPathname = '/';
       renderIndex();
@@ -246,19 +253,19 @@ describe('Index Page', () => {
       vi.runAllTimers();
 
       // top > 0: seção está abaixo do viewport top (scrollou para cima)
-      fireIntersection([makeEntry('sobre', false, 150)]);
+      fireIntersection([makeEntry('servicos', false, 150)]);
 
       expect(replaceStateSpy).toHaveBeenCalledWith(null, '', '/');
     });
 
-    it('não reseta URL quando #sobre sai pelo topo (usuário rolando para baixo)', () => {
+    it('não reseta URL quando #servicos sai pelo topo (usuário rolando para baixo)', () => {
       const replaceStateSpy = vi.spyOn(window.history, 'replaceState');
       mockPathname = '/';
       renderIndex();
       vi.runAllTimers();
 
       // top < 0: seção passou para cima do viewport (scroll para baixo)
-      fireIntersection([makeEntry('sobre', false, -200)]);
+      fireIntersection([makeEntry('servicos', false, -200)]);
 
       expect(replaceStateSpy).not.toHaveBeenCalled();
     });

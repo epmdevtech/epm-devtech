@@ -21,10 +21,10 @@ describe('Services Component', () => {
         expect(screen.getByText(/Da criação de um novo produto à modernização de sistemas existentes/i)).toBeInTheDocument();
     });
 
-    it('renders all 4 consolidated service cards with titles', () => {
+    it('renders all 4 consolidated service cards with titles including institutional websites', () => {
         render(<Services />);
         const titles = [
-            'Sistemas Web e Plataformas',
+            'Sistemas Web, Portais e Sites Institucionais',
             'APIs & Back-end Escalável',
             'Integrações entre Sistemas',
             'Modernização & Evolução de Legados',
@@ -37,15 +37,15 @@ describe('Services Component', () => {
     it('renders pain trigger indicators and descriptions', () => {
         render(<Services />);
         expect(screen.getAllByText(/Quando precisa:/i).length).toBe(4);
-        expect(screen.getByText(/Precisa criar um sistema novo ou modernizar a interface/i)).toBeInTheDocument();
+        expect(screen.getByText(/Precisa criar um sistema novo, um portal ou um site institucional/i)).toBeInTheDocument();
         expect(screen.getByText(/Seu sistema sofre com lentidão em horários de pico/i)).toBeInTheDocument();
         expect(screen.getByText(/Sua operação perde tempo com processos manuais/i)).toBeInTheDocument();
         expect(screen.getByText(/Tem um sistema legado essencial que já não acompanha/i)).toBeInTheDocument();
 
-        expect(screen.getByText(/Aplicações web sob medida para operações corporativas/i)).toBeInTheDocument();
+        expect(screen.getByText(/Aplicações web sob medida, portais e sites institucionais/i)).toBeInTheDocument();
         expect(screen.getByText(/Desenvolvimento de APIs RESTful e serviços de alta disponibilidade/i)).toBeInTheDocument();
         expect(screen.getByText(/Conexão segura entre ERPs, CRMs/i)).toBeInTheDocument();
-        expect(screen.getByText(/Refatoração e migração incremental de plataformas legadas/i)).toBeInTheDocument();
+        expect(screen.getByText(/Refatoração e migração gradual de plataformas legadas/i)).toBeInTheDocument();
     });
 
     it('renders mock visual elements inside cards', () => {
@@ -61,6 +61,5 @@ describe('Services Component', () => {
         mockUseInView.mockReturnValueOnce(false);
         render(<Services />);
         expect(screen.getByText('Soluções sob medida para cada estágio da sua operação')).toBeInTheDocument();
-        expect(screen.getByText('Sistemas Web e Plataformas')).toBeInTheDocument();
     });
 });

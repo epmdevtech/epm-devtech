@@ -27,7 +27,7 @@ const TOPOLOGY_NODES: TopologyNode[] = [
     role: "Entrada & Segurança",
     description: "Distribuição global, terminação TLS e mitigação de latência na borda.",
     icon: Globe,
-    capabilities: ["Edge Routing", "Segurança TLS", "CDN Global"],
+    capabilities: ["Edge Routing", "Segurança TLS", "Entrega otimizada"],
   },
   {
     id: "domain",
@@ -45,7 +45,7 @@ const TOPOLOGY_NODES: TopologyNode[] = [
     role: "Mensageria & Filas",
     description: "Eventos assíncronos e mensageria distribuída para processamento resiliente.",
     icon: Workflow,
-    capabilities: ["Orientado a Eventos", "Workers Dedicados", "Zero Perdas"],
+    capabilities: ["Orientado a Eventos", "Workers Dedicados", "Processamento resiliente"],
   },
   {
     id: "data",
@@ -54,7 +54,7 @@ const TOPOLOGY_NODES: TopologyNode[] = [
     role: "Persistência & Resiliência",
     description: "Bancos de dados resilientes, estratégias de cache e redundância multi-zona.",
     icon: Database,
-    capabilities: ["Multi-Região", "Cache em Memória", "Alta Disponibilidade"],
+    capabilities: ["Redundância", "Cache em Memória", "Alta Disponibilidade"],
   },
 ];
 
@@ -199,7 +199,7 @@ const HeroArchitecture = ({ className }: HeroArchitectureProps) => {
         </div>
 
         <div className="font-mono text-[11px] text-muted-foreground">
-          Desacoplamento estrito & tolerância a falhas
+          Desacoplamento modular & resiliência operacional
         </div>
       </div>
 

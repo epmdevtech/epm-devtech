@@ -9,6 +9,47 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.51-rodada-2-veracidade-estrutura-sites] - 2026-09-30
+
+### Adicionado
+- **`src/components/sections/HowWeWork.tsx`**: Nova seção de processo ("Como trabalhamos") com âncora `#como-trabalhamos` e pipeline 01-04 (*01 Entendemos → 02 Definimos → 03 Desenvolvemos → 04 Evoluímos*).
+- **`src/components/sections/__tests__/HowWeWork.test.tsx`**: Suíte de testes unitários para a seção de processo com cobertura total.
+- **`specs/SPEC-051-rodada-2-veracidade-estrutura-sites.md`**: Especificação da rodada 2 cobrindo veracidade, nova estrutura e sites institucionais.
+- **`tasks/TASK-051-rodada-2-veracidade-estrutura-sites.md`**: Tarefa e checklist de execução rastreados via SDD.
+- **`reviews/QA-051.md`**: Relatório de QA e validação de quality gates da rodada 2.
+
+### Modificado
+- **`src/components/sections/Authority.tsx`**:
+  - Título enquadrado como *"Experiência em operações que não podem parar"*.
+  - Legenda explícita: *"Resultados de projetos anteriores conduzidos pela liderança técnica da EPM DevTech."*.
+  - Redução de 4 para 3 métricas comprovadas (99,9%, 2.500 RPS, Zero perda de dados) e remoção de badges duplicados.
+- **`src/components/sections/hero/HeroArchitecture.tsx`**:
+  - Rótulos ajustados para práticas sem promessas absolutas (*"Processamento resiliente"*, *"Redundância"*, *"Entrega otimizada"* e mantidos *"Alta Vazão"* e *"Alta Disponibilidade"*).
+- **`src/components/sections/Services.tsx`**:
+  - Card 1 atualizado para *"Sistemas Web, Portais e Sites Institucionais"*, cobrindo empresas com alta exigência de performance e SEO.
+  - Suavização de termos contratuais nos cards de microsserviços e modernização legado.
+- **`src/components/sections/About.tsx`**:
+  - Preservado apenas 1 stat destacado (*"9+ Anos de Experiência Técnica"*).
+  - Card de liderança técnica condensado sem duplicação de pilares ou detalhamento interno de metodologia.
+  - Eliminação completa de "engenheiro" no pessoal em conformidade ética e legal.
+- **`src/components/sections/Differentials.tsx`**:
+  - 3 pilares focados no cliente com ponto único de "Contato direto com quem desenvolve".
+- **`src/components/sections/FAQ.tsx`**:
+  - Condensado de 10 para 8 perguntas essenciais, incluindo sites institucionais (Q8) e explicação desmistificada de SDD para leigos.
+- **`src/components/sections/Contact.tsx`**:
+  - Adicionada opção *"Site Institucional"* no select de tipo de projeto.
+  - Placeholder do telefone atualizado para `(45) 99999-9999`.
+  - Próximos passos e prazos suavizados para estimativas sem rigidez contratual.
+- **`src/pages/Index.tsx`**:
+  - Reordenação da homepage: Hero → Serviços → Como trabalhamos → Diferenciais → Tecnologias → Autoridade + Setores → Sobre → FAQ → Contato → Footer.
+  - Sincronização de rotas em `SEO_META`.
+- **`src/components/layout/Header.tsx` & `src/components/sections/Footer.tsx`**:
+  - Itens de navegação sincronizados com a nova estrutura; rodapé com link *"Sistemas, Portais e Sites"* e e-mail único centralizado (`elessandro@epmdevtech.com.br`).
+- **`index.html` & Agêntico**:
+  - `foundingDate: "2026"`, remoção de `twitter:creator` pessoal, sincronização de schemas e atualização de `llms.txt` e `llms-full.txt`.
+- **Suíte de Testes**:
+  - 21 suites, 141 testes unitários passando, 16 testes E2E Playwright passando, cobertura de 98.55%.
+
 ## [0.0.50-refatoracao-conteudo-ux-a11y-seo] - 2026-09-30
 
 ### Adicionado

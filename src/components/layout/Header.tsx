@@ -4,11 +4,12 @@ import { X } from "lucide-react";
 import { Typewriter } from "@/components/ui/typewriter";
 
 const navLinks = [
-  { href: "#sobre", label: "Sobre" },
-  { href: "#setores", label: "Setores" },
   { href: "#servicos", label: "Serviços" },
-  { href: "#tecnologias", label: "Tecnologias" },
+  { href: "#como-trabalhamos", label: "Como Trabalhamos" },
   { href: "#diferenciais", label: "Diferenciais" },
+  { href: "#tecnologias", label: "Tecnologias" },
+  { href: "#setores", label: "Setores" },
+  { href: "#sobre", label: "Sobre" },
   { href: "#faq", label: "FAQ" },
   { href: "#contato", label: "Contato" },
 ];

@@ -13,8 +13,10 @@ import {
 import { useTheme } from "@/components/theme-provider";
 import { LegalLinks } from "@/components/legal/LegalModals";
 
+const CONTACT_EMAIL = "elessandro@epmdevtech.com.br";
+
 const SOLUTIONS_LINKS = [
-  { label: "Sistemas Web e Plataformas", href: "#servicos" },
+  { label: "Sistemas, Portais e Sites", href: "#servicos" },
   { label: "APIs & Back-end Escalável", href: "#servicos" },
   { label: "Integrações entre Sistemas", href: "#servicos" },
   { label: "Modernização de Legados", href: "#servicos" },
@@ -22,7 +24,8 @@ const SOLUTIONS_LINKS = [
 
 const NAVIGATION_LINKS = [
   { label: "Serviços", href: "#servicos" },
-  { label: "Como Trabalhamos", href: "#diferenciais" },
+  { label: "Como Trabalhamos", href: "#como-trabalhamos" },
+  { label: "Diferenciais", href: "#diferenciais" },
   { label: "Sobre a Empresa", href: "#sobre" },
   { label: "Dúvidas Frequentes", href: "#faq" },
   { label: "Falar sobre meu projeto", href: "#contato" },
@@ -198,11 +201,11 @@ const Footer = () => {
               </h3>
               <div className="flex flex-col gap-3">
                 <a
-                  href="mailto:elessandro@epmdevtech.com.br"
+                  href={`mailto:${CONTACT_EMAIL}`}
                   className="flex items-center gap-2.5 text-sm text-zinc-600 dark:text-zinc-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors group"
                 >
                   <Mail className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                  <span className="truncate">elessandro@epmdevtech.com.br</span>
+                  <span className="truncate">{CONTACT_EMAIL}</span>
                 </a>
 
                 <a

@@ -32,7 +32,7 @@ const formSchema = z.object({
   name: z.string().trim().min(3, "Informe seu nome completo"),
   email: z.string().trim().email("Informe um e-mail corporativo válido"),
   phone: z.string().trim().optional().refine(validateBrazilianPhone, {
-    message: "Informe um número de WhatsApp/Telefone válido com DDD (ex: 11 99999-9999)",
+    message: "Informe um número de WhatsApp/Telefone válido com DDD (ex: 45 99999-9999)",
   }),
   projectType: z.string().min(1, "Selecione o tipo de projeto"),
   message: z.string().trim().min(15, "Descreva seu projeto com pelo menos 15 caracteres"),
@@ -42,6 +42,7 @@ type FormValues = z.infer<typeof formSchema>;
 
 const PROJECT_TYPES = [
   "Novo Sistema ou Aplicação Web",
+  "Site Institucional",
   "Modernização de Sistema Legado",
   "APIs, Microsserviços e Integrações",
   "Consultoria Técnica e Arquitetura",
@@ -57,15 +58,15 @@ const nextSteps = [
   },
   {
     icon: Clock,
-    title: "Retorno em até 24 Horas",
+    title: "Retorno em até 24 Horas Úteis",
     description:
-      "Resposta técnica rápida para agendarmos uma conversa sem enrolação.",
+      "Resposta objetiva para agendarmos uma conversa.",
   },
   {
     icon: ShieldCheck,
     title: "Sigilo e Confidencialidade",
     description:
-      "Suas ideias, dados e regras de negócio tratados com absoluta segurança.",
+      "Suas ideias, dados e regras de negócio tratados com confidencialidade, com NDA quando solicitado.",
   },
 ];
 
@@ -235,7 +236,7 @@ const Contact = () => {
                     <Input
                       id="phone"
                       type="tel"
-                      placeholder="(11) 99999-9999"
+                      placeholder="(45) 99999-9999"
                       autoComplete="tel"
                       {...register("phone")}
                       onChange={(e) => {
@@ -403,7 +404,7 @@ const Contact = () => {
                 O que acontece a seguir?
               </h3>
               <p className="text-xs text-zinc-400 leading-relaxed mb-8">
-                Nosso processo é direto com a engenharia, sem intermediários comerciais:
+                Transparência e foco técnico desde o primeiro contato:
               </p>
 
               {/* Lista de Próximos Passos e Garantias */}

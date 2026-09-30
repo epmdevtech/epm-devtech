@@ -39,10 +39,11 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     // Verifica que os headings de cada seção existem, contêm os textos padronizados e são 100% monocromáticos
     const expectedHeadings = [
       { id: 'hero', text: 'Desenvolvemos software sob medida para o seu negócio.' },
-      { id: 'sobre', text: 'Engenharia de software com visão de negócio' },
       { id: 'servicos', text: 'Soluções sob medida para cada estágio da sua operação' },
+      { id: 'como-trabalhamos', text: 'Como trabalhamos' },
       { id: 'diferenciais', text: 'Por que trabalhar com a EPM DevTech' },
-      { id: 'autoridade', text: 'Sistemas construídos para operações que não podem parar' },
+      { id: 'autoridade', text: 'Experiência em operações que não podem parar' },
+      { id: 'sobre', text: 'Engenharia de software com visão de negócio' },
       { id: 'contato', text: 'Fale sobre seu projeto' },
     ];
 

@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
-import { ShieldCheck, Cpu, GitBranch, Terminal } from "lucide-react";
+import { Terminal } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 
 /* ─────────────────────────────────────────────────────────────
@@ -104,24 +104,6 @@ const AnimatedStat = ({
   );
 };
 
-const pillars = [
-  {
-    icon: Cpu,
-    title: "Planejamento e Arquitetura",
-    desc: "Projetamos sistemas modulares e desacoplados, preparados para suportar crescimento sem gerar gargalos de infraestrutura.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Qualidade e Testes",
-    desc: "Código limpo, tipagem estrita e testes automatizados como padrão inviolável em cada entrega realizada.",
-  },
-  {
-    icon: GitBranch,
-    title: "Previsibilidade e Governança",
-    desc: "Metodologia Spec-Driven Development (SDD), documentação técnica transparente e entregas consistentes dentro do cronograma.",
-  },
-];
-
 const About = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
@@ -145,18 +127,16 @@ const About = () => {
               align="left"
               tagline="Sobre a EPM DevTech"
               title="Engenharia de software com visão de negócio"
-              subtitle="A EPM DevTech é uma software house dedicada a desenvolver e modernizar sistemas sob medida para empresas que buscam eficiência operacional, estabilidade e capacidade de evolução. Fundada e liderada tecnicamente por Elessandro Prestes Macedo, a empresa une mais de 9 anos de experiência técnica em projetos corporativos complexos à metodologia Spec-Driven Development (SDD), garantindo escopo claro, comunicação direta e entregas previsíveis a cada ciclo."
+              subtitle="A EPM DevTech é uma software house dedicada a desenvolver e modernizar sistemas sob medida para empresas que buscam eficiência operacional, estabilidade e capacidade de evolução. Fundada e liderada tecnicamente por Elessandro Prestes Macedo, que traz mais de 9 anos de experiência técnica em projetos corporativos, a empresa atua com foco em escopo bem definido, comunicação transparente e entregas previsíveis a cada ciclo."
             />
 
-            {/* Indicadores / Animated Stats */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 sm:gap-8 mt-10 pt-8 border-t border-border/50">
-              <AnimatedStat value={9} prefix="+" label="Anos de Experiência" delay={0.1} />
-              <AnimatedStat value={4} label="Contextos de Negócio" delay={0.2} />
-              <AnimatedStat value={100} suffix="%" label="Engenharia Direta" delay={0.3} />
+            {/* Indicador Único de Experiência Técnica da Liderança */}
+            <div className="mt-8 pt-8 border-t border-border/50 max-w-xs">
+              <AnimatedStat value={9} prefix="+" label="Anos de Experiência Técnica" delay={0.1} />
             </div>
           </motion.div>
 
-          {/* ── Lado Direito: Pilares de Atuação Institucional (5 cols) ── */}
+          {/* ── Lado Direito: Liderança Técnica (5 cols) ── */}
           <motion.div
             initial={{ opacity: 0, x: 24 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -164,46 +144,23 @@ const About = () => {
             className="lg:col-span-5 flex flex-col gap-4"
           >
             {/* Header Box do Fundador / Tech Lead */}
-            <div className="p-6 rounded-xl border border-border/70 bg-card/60 backdrop-blur-sm shadow-sm relative overflow-hidden">
+            <div className="p-7 sm:p-8 rounded-2xl border border-border/70 bg-card/60 backdrop-blur-sm shadow-sm relative overflow-hidden">
               <div className="flex items-center gap-2 mb-3">
                 <Terminal className="text-primary w-4 h-4" />
                 <span className="font-mono text-xs uppercase tracking-wider text-primary font-semibold">
-                  Liderança Técnica
+                  Fundador & Liderança Técnica
                 </span>
               </div>
-              <h3 className="text-lg font-bold text-foreground tracking-tight mb-2">
-                Compromisso com arquitetura sólida
+              <h3 className="text-xl font-bold text-foreground tracking-tight mb-3">
+                Elessandro Prestes Macedo
               </h3>
-              <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                Todas as soluções são concebidas sob supervisão técnica direta, eliminando camadas desnecessárias e garantindo que cada decisão de software sirva aos objetivos estratégicos do seu negócio.
+              <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-5">
+                Atua na arquitetura, escolha tecnológica e condução técnica dos projetos da EPM DevTech. Com base prática em sistemas corporativos, assegura que cada decisão de software priorize simplicidade, manutenibilidade e estabilidade para a operação do cliente.
               </p>
-            </div>
-
-            {/* Pilares */}
-            <div className="space-y-3">
-              {pillars.map((pillar, idx) => (
-                <motion.div
-                  key={pillar.title}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.45, delay: 0.2 + idx * 0.1 }}
-                  className="p-4 rounded-xl border border-border/50 bg-secondary/30 hover:border-primary/30 transition-colors"
-                >
-                  <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0 mt-0.5">
-                      <pillar.icon size={16} />
-                    </div>
-                    <div>
-                      <h4 className="text-sm font-semibold text-foreground mb-1">
-                        {pillar.title}
-                      </h4>
-                      <p className="text-xs text-muted-foreground leading-relaxed">
-                        {pillar.desc}
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
+              <div className="pt-4 border-t border-border/50 font-mono text-xs text-muted-foreground/80 flex items-center gap-2">
+                <span className="size-2 rounded-full bg-primary" />
+                <span>Arquitetura de software & governança técnica</span>
+              </div>
             </div>
           </motion.div>
 

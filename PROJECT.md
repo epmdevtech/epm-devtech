@@ -149,22 +149,23 @@ src/
 |-------------------|------------------|--------------------------------------------|
 | Design            | ✅ Padronizado   | Design System Verde EPM DEVTECH (#10B981), títulos monocromáticos e tipografia Geist |
 | Tipografia / Títulos | ✅ Padronizado   | Eyebrows minimalistas com traço do ícone da marca (BrandChipIcon em #10B981) + texto cinza uppercase (11.5px, weight 500, letter-spacing 0.1em), títulos 100% monocromáticos, zero cápsulas e zero travessões (—) ou pontos e vírgulas (;) |
-| Hero              | ✅ Refatorado    | Iluminação volumétrica atmosférica com efeito Lamp (`LampContainer`), Eyebrow badge `EPM DEVTECH` • `SOFTWARE HOUSE`, headline monocromática, supporting copy corporativo, CTA primário unificado "Falar sobre meu projeto", CTA secundário "Conhecer a EPM DevTech", microprova sóbria e topologia de arquitetura distribuída |
-| Autoridade        | ✅ Refatorado    | Título "Sistemas construídos para operações que não podem parar", métricas de disponibilidade, throughput, integridade e contexto por setor (Educação, Energia, Indústria, Varejo) |
-| About             | ✅ Refatorado    | Posicionamento centrado na software house, liderança técnica enquadrada de Elessandro Prestes Macedo, AnimatedStats (+9 anos, 4 contextos, 100% engenharia direta) e 3 pilares de governança |
-| Sectors           | ✅ Refatorado    | Título "Experiência em diferentes contextos", 4 cards 3D isomórficos preservados com contextualização operacional e mockups intactos |
-| Services          | ✅ Consolidado   | 4 ofertas estratégicas com gatilhos de dor ("Quando precisa:"), grid 2×2 balanceado e mockups técnicos preservados |
+| Hero              | ✅ Refatorado    | Iluminação volumétrica atmosférica com efeito Lamp (`LampContainer`), Eyebrow badge `EPM DEVTECH` • `SOFTWARE HOUSE`, headline monocromática, supporting copy corporativo, CTA primário unificado "Falar sobre meu projeto", CTA secundário "Conhecer a EPM DevTech", topologia com práticas comprovadas ("Processamento resiliente", "Redundância", "Entrega otimizada", "Alta Disponibilidade", "Alta Vazão") |
+| Services          | ✅ Expandido     | 4 ofertas estratégicas com gatilhos de dor ("Quando precisa:"), inclusão de Sites Institucionais no Card 1 ("Sistemas Web, Portais e Sites Institucionais"), grid 2×2 balanceado e mockups preservados |
+| Como Trabalhamos  | ✅ Implementado  | Seção de processo com âncora `#como-trabalhamos`, pipeline 01-04 (Entendemos, Definimos, Desenvolvemos, Evoluímos) |
+| Differentials     | ✅ Consolidado   | 3 pilares focados no cliente (Contato direto com quem desenvolve, Engenharia que facilita evoluir, Foco no seu negócio) + linha de práticas de engenharia |
 | Technologies      | ✅ Constellation | TechConstellation interativo com trilhas PCB, Focus & Context, título institucional de evidência e Painel Arquitetural |
-| Differentials     | ✅ Consolidado   | 3 pilares focados no cliente (Comunicação Transparente, Engenharia que Facilita Evoluir, Foco no Negócio) + linha de práticas de engenharia |
-| FAQ               | ✅ Refatorado    | 10 perguntas estritamente focadas em remoção de objeções reais, respostas calibradas para atendimento 100% remoto no Brasil e CTA integrado |
-| Contact           | ✅ Refatorado    | Título "Fale sobre seu projeto", CTA único "Falar sobre meu projeto", formulário underline, dropdown milimétrico, máscara de telefone, validação Zod e garantias |
-| Footer            | ✅ Refatorado    | 4 soluções espelhadas, navegação unificada com CTA único, dados cadastrais e modais legais |
+| Autoridade        | ✅ Enquadrado    | Título "Experiência em operações que não podem parar", 3 métricas honestamente atribuídas a projetos anteriores da liderança técnica (99,9%, 2.500 RPS, Zero perda), badges removidos |
+| Sectors           | ✅ Refatorado    | Título "Experiência em diferentes contextos" exclusivo para setores, 4 cards 3D isomórficos com contextualização técnica sóbria |
+| About             | ✅ Enquadrado    | Posicionamento centrado na software house, liderança técnica enquadrada de Elessandro Prestes Macedo sem título de "engenheiro", 1 stat destacado ("9+ Anos de Experiência Técnica"), sem repetição dos 3 pilares |
+| FAQ               | ✅ Condensado    | 8 perguntas essenciais focadas em objeções reais, incluindo sites institucionais (Q8), explicação desmistificada de SDD e CTA integrado |
+| Contact           | ✅ Refatorado    | Título "Fale sobre seu projeto", CTA único "Falar sobre meu projeto", formulário underline, dropdown com "Site Institucional", placeholder `(45) 99999-9999`, sem promessas contratuais |
+| Footer            | ✅ Refatorado    | Links sincronizados ("Sistemas, Portais e Sites", "Como Trabalhamos"), e-mail corporativo único (`elessandro@epmdevtech.com.br`), dados cadastrais |
 | ScrollToTop       | ✅ Neutro / Flat | Ícone ChevronUp (20px), design utilitário neutro sem glow ou realce verde, fade suave >450px e elevação dinâmica no rodapé |
 | Cookie Banner     | ✅ Otimizado     | Lazy load assíncrono + defer timer (3.5s)  |
-| SEO & Agêntico    | ✅ Refatorado    | Meta description otimizada (152 car.), imagem Open Graph 1200×630 dedicada, JSON-LD honesto (`ProfessionalService`), rotas dinâmicas em `SEO_META`, `robots.txt` e `llms.txt` |
-| Testes unitários  | ✅ Implementado  | 20/20 suites, 138/138 testes passando (98.57% coverage geral) |
+| SEO & Agêntico    | ✅ Refatorado    | Meta description otimizada, imagem Open Graph 1200×630 dedicada, JSON-LD (`ProfessionalService` com `foundingDate: 2026`), remoção de `twitter:creator` pessoal, rotas em `SEO_META`, `robots.txt` e `llms.txt` |
+| Testes unitários  | ✅ Implementado  | 21/21 suites, 141/141 testes passando (98.55% coverage geral) |
 | Testes E2E        | ✅ Implementado  | Suíte Playwright (16/16 testes passando: estabilidade, design system e 5 viewports) |
-| Acessibilidade    | ✅ 100% WCAG AA  | Contraste de texto e botões >= 4.5:1 (Logotipo WCAG AAA >= 17:1) |
+| Acessibilidade    | ✅ 100% WCAG AA  | Contraste de texto e botões >= 4.5:1 (Logotipo WCAG AAA >= 17:1), hierarquia de títulos linear h1-h3 |
 | Performance       | ✅ 100% Otimizado| JS inicial < 80 KB, FCP/LCP instantâneo, maior chunk 142KB |
 | Proxy Odontologia | ✅ Implementado  | `/odontologia-demo` → proxy reverso Vercel para `dentistry-demo.elessandrodev.workers.dev` com 4 headers AppSec (SPEC-044) |
 | i18n              | ❌ Não iniciado  | Não planejado na versão atual              |

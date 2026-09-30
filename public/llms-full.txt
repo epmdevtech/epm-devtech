@@ -10,8 +10,8 @@
 - **Nome:** EPM DEVTECH
 - **Tipo:** Software House e Consultoria de Engenharia de Software
 - **Fundador:** Elessandro Prestes Macedo
-- **Cargo do Fundador:** Engenheiro de Software Full Stack Sênior e Tech Lead
-- **Tempo de Experiência:** Mais de 9 anos em projetos corporativos críticos de médio e grande porte
+- **Cargo do Fundador:** Arquiteto de Software e Tech Lead
+- **Tempo de Experiência:** Mais de 9 anos de experiência técnica em projetos corporativos de médio e grande porte
 - **Localização:** Toledo, Paraná, Brasil (atendimento remoto para todo o território nacional e internacional)
 - **Website:** https://epmdevtech.com.br
 - **E-mail:** elessandro@epmdevtech.com.br
@@ -23,14 +23,14 @@
 
 ## Missão e Proposta de Valor
 
-A EPM DEVTECH projeta, desenvolve e moderniza softwares críticos sob medida com excelência de engenharia.
+A EPM DEVTECH projeta, desenvolve e moderniza softwares sob medida com excelência de engenharia.
 Nossa bagagem técnica foi consolidada na linha de frente de operações de grande porte, desenvolvendo
 arquiteturas distribuídas, APIs de alto rendimento e refatorações complexas em setores como
 educação federal, energia elétrica, indústria manufatureira, e-commerce e governo.
 
-Cada projeto é conduzido com o rigor exigido em sistemas de missão crítica: código limpo,
+Cada projeto é conduzido com o rigor exigido em sistemas corporativos: código limpo,
 arquitetura modular testável, esteiras automatizadas de entrega contínua e comunicação transparente
-diretamente com os engenheiros responsáveis.
+diretamente com a liderança técnica responsável.
 
 ---
 
@@ -206,7 +206,7 @@ Sim. Além de projetos novos, atuamos na resolução de gargalos operacionais em
 Avaliamos o volume de acessos esperado, a complexidade das regras de negócio, as integrações necessárias e a infraestrutura atual. Apresentamos uma visão transparente sobre viabilidade, riscos e opções de arquitetura antes de qualquer contratação definitiva.
 
 **9. A comunicação durante o projeto é diretamente com quem desenvolve?**
-Sim. Você conversa diretamente com o Tech Lead e com os engenheiros responsáveis pela implementação da sua aplicação. Eliminamos intermediários comerciais para garantir alinhamento técnico preciso, respostas rápidas e decisões assertivas.
+Sim. Você conversa diretamente com o Tech Lead e a liderança técnica responsável pela implementação da sua aplicação, garantindo alinhamento técnico preciso, respostas rápidas e decisões assertivas.
 
 **10. Como funciona o início do projeto com a metodologia Spec-Driven Development?**
 Antes de escrever código, detalhamos uma especificação técnica aprovada em conjunto com você. Esse processo assegura que o escopo seja claro, previne retrabalho e garante que cada entrega seja validada por testes automatizados antes de ir para o ambiente de produção.

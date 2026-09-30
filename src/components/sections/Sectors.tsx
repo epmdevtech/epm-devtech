@@ -108,7 +108,7 @@ const sectors = [
     handle: "OPERAÇÃO & MANUFATURA",
     context: "Operações fabris e linhas de montagem contínua",
     problem: "Falhas operacionais e perda de rastreabilidade entre chão de fábrica e gestão corporativa.",
-    experience: "Desenvolvemos soluções para automação de processos, rastreabilidade de chão de fábrica e integração contínua com ERPs corporativos.",
+    experience: "Experiência em módulos de ERP, integração de IoT industrial e conexão de equipamentos de produção a sistemas corporativos.",
     Mockup: MockupIndustria,
   },
   {
@@ -117,8 +117,8 @@ const sectors = [
     title: "Varejo",
     handle: "ALTO VOLUME & TRANSAÇÕES",
     context: "Plataformas digitais com alto volume transacional",
-    problem: "Perda de vendas em picos de tráfego, gargalos em checkout e inconsistência de estoque.",
-    experience: "Construímos arquiteturas escaláveis para comércio eletrônico, esteiras de checkout seguras e sincronização de inventário em tempo real.",
+    problem: "Perda de vendas em picos de tráfego, gargalos operacionais e inconsistência de estoque.",
+    experience: "Experiência em e-commerce e em módulos de ERP para operações de logística e financeiro.",
     Mockup: MockupVarejo,
   },
   {
@@ -128,7 +128,7 @@ const sectors = [
     handle: "PLATAFORMAS INSTITUCIONAIS",
     context: "Instituições de ensino e plataformas de grande escala",
     problem: "Sistemas legados sobrecarregados em períodos de edital e processos manuais de prestação de contas.",
-    experience: "Executamos modernização arquitetural de plataformas de grande escala, automação de fluxos operacionais e microsserviços de alta disponibilidade.",
+    experience: "Experiência em plataformas institucionais de grande escala: modernização incremental, automação de fluxos e alta disponibilidade.",
     Mockup: MockupEducacao,
   },
   {
@@ -137,8 +137,8 @@ const sectors = [
     title: "Energia",
     handle: "DADOS CRÍTICOS & REGULAÇÃO",
     context: "Despacho energético e infraestrutura crítica",
-    problem: "Tolerância zero para perda de dados regulatórios e necessidade de telemetria imediata.",
-    experience: "Atuamos na concepção de sistemas distribuídos de monitoramento operacional e consolidação de dados com integridade absoluta.",
+    problem: "Rigor na preservação de dados regulatórios e necessidade de telemetria contínua.",
+    experience: "Experiência em monitoramento operacional em tempo real e consolidação de dados regulatórios, onde a integridade dos dados é requisito.",
     Mockup: MockupEnergia,
   },
 ];

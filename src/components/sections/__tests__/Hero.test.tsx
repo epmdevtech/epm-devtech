@@ -108,6 +108,6 @@ describe('Hero Component', () => {
     fireEvent.click(dataNode);
 
     expect(screen.getAllByText('Persistência & Resiliência').length).toBeGreaterThanOrEqual(1);
-    expect(screen.getByText('Multi-Região')).toBeInTheDocument();
+    expect(screen.getByText('Redundância')).toBeInTheDocument();
   });
 });

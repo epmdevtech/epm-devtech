@@ -131,7 +131,7 @@ describe('Contact Component', () => {
     render(<Contact />);
     expect(screen.getByText('O que acontece a seguir?')).toBeInTheDocument();
     expect(
-      screen.getByText(/Nosso processo é direto com a engenharia, sem intermediários comerciais:/i)
+      screen.getByText(/Transparência e foco técnico desde o primeiro contato:/i)
     ).toBeInTheDocument();
 
     // 3 Blocos de valor
@@ -140,14 +140,14 @@ describe('Contact Component', () => {
       screen.getByText(/Avaliamos seu cenário, gargalos e viabilidade arquitetural logo no primeiro contato/i)
     ).toBeInTheDocument();
 
-    expect(screen.getByText('Retorno em até 24 Horas')).toBeInTheDocument();
+    expect(screen.getByText('Retorno em até 24 Horas Úteis')).toBeInTheDocument();
     expect(
-      screen.getByText(/Resposta técnica rápida para agendarmos uma conversa sem enrolação/i)
+      screen.getByText(/Resposta objetiva para agendarmos uma conversa/i)
     ).toBeInTheDocument();
 
     expect(screen.getByText('Sigilo e Confidencialidade')).toBeInTheDocument();
     expect(
-      screen.getByText(/Suas ideias, dados e regras de negócio tratados com absoluta segurança/i)
+      screen.getByText(/Suas ideias, dados e regras de negócio tratados com confidencialidade, com NDA quando solicitado/i)
     ).toBeInTheDocument();
 
     // Chamada de ação rápida WhatsApp

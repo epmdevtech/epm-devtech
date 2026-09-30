@@ -6,38 +6,15 @@ import SectionHeader from "@/components/ui/SectionHeader";
 const metrics = [
   {
     value: "99,9%",
-    label: "Disponibilidade observada em produção",
+    label: "Disponibilidade assegurada em plataformas críticas de energia e educação.",
   },
   {
-    value: "2.500+ RPS",
-    label: "Throughput sustentado em arquitetura distribuída",
+    value: "2.500 RPS",
+    label: "Arquitetura dimensionada para picos de 10.000 usuários simultâneos.",
   },
   {
-    value: "Zero Perda",
-    label: "Integridade em conciliações de dados críticos",
-  },
-  {
-    value: "Multi-setor",
-    label: "Aplicações em Educação, Energia, Indústria e Varejo",
-  },
-];
-
-const organizations = [
-  {
-    name: "Educação Superior & Redes",
-    detail: "(Plataformas Institucionais)",
-  },
-  {
-    name: "Operação Energética",
-    detail: "(Dados Regulatórios)",
-  },
-  {
-    name: "Indústria & Manufatura",
-    detail: "(IoT e Integração ERP)",
-  },
-  {
-    name: "Varejo & E-commerce",
-    detail: "(Transações e Estoque)",
+    value: "Zero perda",
+    label: "Zero perda de dados na consolidação de dados regulatórios do setor elétrico.",
   },
 ];
 
@@ -56,56 +33,31 @@ const Authority = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
-          className="space-y-10"
+          className="space-y-8"
         >
-          {/* Cabeçalho compacto e monocromático */}
+          {/* Cabeçalho com título e legenda de atribuição honesta */}
           <SectionHeader
             tagline="Experiência & Contexto"
-            title="Sistemas construídos para operações que não podem parar"
+            title="Experiência em operações que não podem parar"
+            subtitle="Resultados de projetos anteriores conduzidos pela liderança técnica da EPM DevTech."
             titleClassName="text-2xl sm:text-3xl"
           />
 
-          {/* Feature 1: Métricas Consolidadas de Missão Crítica */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center divide-y sm:divide-y-0 sm:divide-x divide-zinc-200/80 dark:divide-zinc-800/80">
+          {/* 3 Métricas Consolidadas da Trajetória Técnica */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center divide-y sm:divide-y-0 sm:divide-x divide-zinc-200/80 dark:divide-zinc-800/80 max-w-5xl mx-auto">
             {metrics.map((m, idx) => (
               <div
-                key={m.label}
+                key={m.value}
                 className={idx === 0 ? "pt-4 sm:pt-0" : "pt-4 sm:pt-0 sm:pl-6"}
               >
                 <p className="text-3xl lg:text-4xl font-bold tracking-tight text-zinc-900 dark:text-white">
                   {m.value}
                 </p>
-                <p className="text-xs sm:text-sm font-medium text-zinc-600 dark:text-zinc-400 mt-1.5 leading-snug">
+                <p className="text-xs sm:text-sm font-medium text-zinc-600 dark:text-zinc-400 mt-2 leading-relaxed max-w-xs mx-auto">
                   {m.label}
                 </p>
               </div>
             ))}
-          </div>
-
-          {/* Divisor sutil */}
-          <div className="w-full h-px bg-zinc-200/80 dark:bg-zinc-800/80" />
-
-          {/* Feature 2: Faixa de Clientes, Órgãos e Setores */}
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
-            <span className="text-xs uppercase tracking-widest font-semibold text-zinc-500 dark:text-zinc-400 text-center lg:text-left max-w-xs">
-              Experiência técnica aplicada em setores estratégicos e operações críticas:
-            </span>
-            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-              {organizations.map((org) => (
-                <div
-                  key={org.name}
-                  className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg border border-zinc-200/80 dark:border-zinc-800 bg-white/80 dark:bg-zinc-800/50 text-xs sm:text-sm font-semibold text-zinc-700 dark:text-zinc-300 shadow-sm transition-all duration-200 hover:border-emerald-500/50 hover:text-emerald-700 dark:hover:text-emerald-400 opacity-80 hover:opacity-100 cursor-default"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500/70" />
-                  <span>{org.name}</span>
-                  {org.detail && (
-                    <span className="text-zinc-500 dark:text-zinc-400 font-normal text-xs">
-                      {org.detail}
-                    </span>
-                  )}
-                </div>
-              ))}
-            </div>
           </div>
         </motion.div>
       </div>

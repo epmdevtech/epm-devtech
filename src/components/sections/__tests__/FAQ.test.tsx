@@ -26,43 +26,47 @@ describe('FAQ Component', () => {
     ).toBeInTheDocument();
   });
 
-  it('renders all strategic objection-removal questions', () => {
+  it('renders all 8 strategic objection-removal questions including institutional websites', () => {
     render(<FAQ />);
 
-    // Contratação
+    // 1. Especificação
     expect(
       screen.getByText(/Preciso ter o projeto totalmente especificado para iniciar o contato\?/i)
     ).toBeInTheDocument();
+
+    // 2. Primeiro contato + diagnóstico
     expect(
-      screen.getByText(/Como funciona o primeiro contato e qual é o tempo de retorno\?/i)
+      screen.getByText(/Como funciona o primeiro contato, o diagnóstico inicial e o tempo de retorno\?/i)
     ).toBeInTheDocument();
+
+    // 3. Orçamento
     expect(
       screen.getByText(/Como é definido o orçamento e o modelo de trabalho\?/i)
     ).toBeInTheDocument();
+
+    // 4. Atendimento remoto
     expect(
-      screen.getByText(/A EPM DevTech atende clientes fora de Toledo no Paraná ou no exterior\?/i)
+      screen.getByText(/A EPM DevTech atende clientes fora de Toledo \(PR\) ou no exterior\?/i)
     ).toBeInTheDocument();
 
-    // Legados
+    // 5. Sistemas existentes
     expect(
-      screen.getByText(/Vocês conseguem assumir ou evoluir um sistema desenvolvido por outra empresa\?/i)
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText(/É possível modernizar um sistema legado sem interromper a operação da empresa\?/i)
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText(/Vocês trabalham com estabilização e manutenção de sistemas em produção\?/i)
+      screen.getByText(/Vocês assumem, mantêm ou evoluem sistemas desenvolvidos por outra empresa\?/i)
     ).toBeInTheDocument();
 
-    // Processo
+    // 6. Modernização sem interrupção
     expect(
-      screen.getByText(/Como funciona o diagnóstico técnico inicial\?/i)
+      screen.getByText(/É possível modernizar um sistema legado sem interromper a operação\?/i)
     ).toBeInTheDocument();
+
+    // 7. Início do projeto (com SDD leigo e canal direto)
     expect(
-      screen.getByText(/A comunicação durante o projeto é diretamente com quem desenvolve\?/i)
+      screen.getByText(/Como funciona o início de um projeto\?/i)
     ).toBeInTheDocument();
+
+    // 8. Sites institucionais
     expect(
-      screen.getByText(/Como funciona o início do projeto com a metodologia Spec-Driven Development\?/i)
+      screen.getByText(/Vocês desenvolvem sites institucionais\?/i)
     ).toBeInTheDocument();
   });
 

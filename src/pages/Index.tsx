@@ -9,12 +9,13 @@ import LazySection from "@/components/LazySection";
 
 const CursorOrb    = lazy(() => import("@/components/CursorOrb"));
 const ScrollToTop  = lazy(() => import("@/components/ui/ScrollToTop"));
-const Authority    = lazy(() => import("@/components/sections/Authority"));
-const About        = lazy(() => import("@/components/sections/About"));
-const Sectors      = lazy(() => import("@/components/sections/Sectors"));
 const Services     = lazy(() => import("@/components/sections/Services"));
-const Technologies = lazy(() => import("@/components/sections/Technologies"));
+const HowWeWork    = lazy(() => import("@/components/sections/HowWeWork"));
 const Differentials= lazy(() => import("@/components/sections/Differentials"));
+const Technologies = lazy(() => import("@/components/sections/Technologies"));
+const Authority    = lazy(() => import("@/components/sections/Authority"));
+const Sectors      = lazy(() => import("@/components/sections/Sectors"));
+const About        = lazy(() => import("@/components/sections/About"));
 const FAQ          = lazy(() => import("@/components/sections/FAQ"));
 const Contact      = lazy(() => import("@/components/sections/Contact"));
 const Footer       = lazy(() => import("@/components/sections/Footer"));
@@ -34,30 +35,35 @@ const SEO_META: Record<string, SeoMeta> = {
       "Software house que desenvolve sistemas web, APIs e integrações sob medida para empresas. Crie, integre ou modernize seu sistema. Fale sobre seu projeto.",
     ogTitle: "EPM DevTech | Software House",
   },
-  sobre: {
-    title: "Sobre | EPM DevTech",
-    description:
-      "Software house dedicada a engenharia de software sob medida. Conheça nossa trajetória, liderança técnica e compromisso com arquitetura sólida.",
-  },
-  setores: {
-    title: "Setores de Atuação | EPM DevTech",
-    description:
-      "Experiência em diferentes contextos de negócio: Indústria, Varejo, Educação e Energia. Soluções para operações com alta exigência de estabilidade.",
-  },
   servicos: {
     title: "Serviços | EPM DevTech",
     description:
-      "Sistemas web, APIs & back-end escalável, integrações de sistemas e modernização de legados. Engenharia sob medida com foco no problema do negócio.",
+      "Sistemas web, portais, sites institucionais, APIs escaláveis e modernização de legados. Engenharia sob medida com foco no problema do negócio.",
+  },
+  "como-trabalhamos": {
+    title: "Como Trabalhamos | EPM DevTech",
+    description:
+      "Processo estruturado em 4 etapas: Entendemos, Definimos, Desenvolvemos e Evoluímos. Engenharia com previsibilidade e escopo bem alinhado.",
+  },
+  diferenciais: {
+    title: "Diferenciais | EPM DevTech",
+    description:
+      "Comunicação transparente, engenharia que facilita evoluir e foco no problema do negócio. Por que trabalhar com a EPM DevTech.",
   },
   tecnologias: {
     title: "Tecnologias | EPM DevTech",
     description:
       "Tecnologias que usamos para construir soluções: escolhas orientadas por desempenho, segurança, manutenção e capacidade de evolução contínua.",
   },
-  diferenciais: {
-    title: "Diferenciais | EPM DevTech",
+  setores: {
+    title: "Setores de Atuação | EPM DevTech",
     description:
-      "Comunicação transparente, engenharia que facilita evoluir e foco no problema do negócio. Por que trabalhar com a EPM DevTech.",
+      "Experiência em diferentes contextos de negócio: Indústria, Varejo, Educação e Energia. Soluções para operações com alta exigência de estabilidade.",
+  },
+  sobre: {
+    title: "Sobre | EPM DevTech",
+    description:
+      "Software house dedicada a engenharia de software sob medida. Conheça nossa proposta, liderança técnica e compromisso com arquitetura sólida.",
   },
   faq: {
     title: "FAQ | EPM DevTech",
@@ -67,7 +73,7 @@ const SEO_META: Record<string, SeoMeta> = {
   contato: {
     title: "Contato | EPM DevTech",
     description:
-      "Fale sobre seu projeto com a EPM DevTech. Retorno ágil direto com a liderança técnica para entender seu cenário e avaliar soluções.",
+      "Fale sobre seu projeto com a EPM DevTech. Retorno em até 24 horas úteis para entender seu cenário e avaliar soluções.",
   },
 };
 
@@ -128,7 +134,7 @@ const Index = () => {
           // ou seja, o usuário rolou para cima e está de volta à seção inicial (scrollY < 100).
           if (
             !entry.isIntersecting &&
-            (entry.target.id === "autoridade" || entry.target.id === "sobre") &&
+            entry.target.id === "servicos" &&
             entry.boundingClientRect.top > 0 &&
             (typeof window !== "undefined" && window.scrollY < 100)
           ) {
@@ -208,27 +214,21 @@ const Index = () => {
         <main id="conteudo-principal" aria-label="Conteúdo principal">
           <Hero />
 
-          <LazySection id="autoridade" minHeight="300px">
-            <Suspense fallback={<div id="autoridade" style={{ minHeight: "300px" }} className="w-full" />}>
-              <Authority />
-            </Suspense>
-          </LazySection>
-
-          <LazySection id="sobre" minHeight="500px">
-            <Suspense fallback={<div id="sobre" style={{ minHeight: "500px" }} className="w-full" />}>
-              <About />
-            </Suspense>
-          </LazySection>
-
-          <LazySection id="setores" minHeight="500px">
-            <Suspense fallback={<div id="setores" style={{ minHeight: "500px" }} className="w-full" />}>
-              <Sectors />
-            </Suspense>
-          </LazySection>
-
           <LazySection id="servicos" minHeight="500px">
             <Suspense fallback={<div id="servicos" style={{ minHeight: "500px" }} className="w-full" />}>
               <Services />
+            </Suspense>
+          </LazySection>
+
+          <LazySection id="como-trabalhamos" minHeight="500px">
+            <Suspense fallback={<div id="como-trabalhamos" style={{ minHeight: "500px" }} className="w-full" />}>
+              <HowWeWork />
+            </Suspense>
+          </LazySection>
+
+          <LazySection id="diferenciais" minHeight="500px">
+            <Suspense fallback={<div id="diferenciais" style={{ minHeight: "500px" }} className="w-full" />}>
+              <Differentials />
             </Suspense>
           </LazySection>
 
@@ -238,9 +238,21 @@ const Index = () => {
             </Suspense>
           </LazySection>
 
-          <LazySection id="diferenciais" minHeight="500px">
-            <Suspense fallback={<div id="diferenciais" style={{ minHeight: "500px" }} className="w-full" />}>
-              <Differentials />
+          <LazySection id="autoridade" minHeight="300px">
+            <Suspense fallback={<div id="autoridade" style={{ minHeight: "300px" }} className="w-full" />}>
+              <Authority />
+            </Suspense>
+          </LazySection>
+
+          <LazySection id="setores" minHeight="500px">
+            <Suspense fallback={<div id="setores" style={{ minHeight: "500px" }} className="w-full" />}>
+              <Sectors />
+            </Suspense>
+          </LazySection>
+
+          <LazySection id="sobre" minHeight="500px">
+            <Suspense fallback={<div id="sobre" style={{ minHeight: "500px" }} className="w-full" />}>
+              <About />
             </Suspense>
           </LazySection>
 

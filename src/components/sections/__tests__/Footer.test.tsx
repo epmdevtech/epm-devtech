@@ -74,7 +74,7 @@ describe('Footer Component', () => {
 
     // Coluna 2: Soluções
     expect(screen.getByRole('heading', { name: /Soluções/i })).toBeInTheDocument();
-    expect(screen.getByText('Sistemas Web e Plataformas')).toBeInTheDocument();
+    expect(screen.getByText('Sistemas, Portais e Sites')).toBeInTheDocument();
     expect(screen.getByText('APIs & Back-end Escalável')).toBeInTheDocument();
     expect(screen.getByText('Integrações entre Sistemas')).toBeInTheDocument();
     expect(screen.getByText('Modernização de Legados')).toBeInTheDocument();

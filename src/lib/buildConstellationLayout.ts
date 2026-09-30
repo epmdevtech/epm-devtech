@@ -367,7 +367,7 @@ export const DEFAULT_CONSTELLATION_CATEGORIES: Category[] = [
       {
         name: "Docker",
         icon: `${DI}/docker/docker-original.svg`,
-        description: "Isolamento e containerização de aplicações garantindo paridade entre desenvolvimento e produção.",
+        description: "Isolamento e containerização de aplicações promovendo paridade entre desenvolvimento e produção.",
       },
       {
         name: "Kubernetes",
