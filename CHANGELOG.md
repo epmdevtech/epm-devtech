@@ -9,6 +9,28 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+### Adicionado
+- **`specs/SPEC-052-diferenciar-como-trabalhamos-de-diferenciais-ux-ui.md`**: Especificação para diferenciação visual, semântica e comportamental entre Como Trabalhamos e Diferenciais.
+- **`tasks/TASK-052-diferenciar-como-trabalhamos-de-diferenciais-ux-ui.md`**: Tarefa e checklist de execução rastreados via SDD.
+- **`reviews/QA-052.md`**: Relatório de QA com evidências visuais antes/depois e validação de acessibilidade Axe-core (0 violações).
+- **`docs/evidence/diff-hww/`**: Capturas visuais antes/depois das duas seções em 1440px, 768px e 375px.
+
+### Modificado
+- **`src/components/sections/HowWeWork.tsx`**:
+  - Estruturação semântica em lista ordenada `<ol role="list">` e itens `<li>`.
+  - Adição de `aria-hidden="true"` aos selos numéricos e texto para leitores de tela (`Etapa 01: ...`).
+  - Timeline vertical no mobile (< 1024px) com linha contínua e pinos laterais alinhados aos cards.
+  - Suporte total a `prefers-reduced-motion` com renderização estática imediata.
+  - Validação de contraste WCAG AA nas tags e microcopy.
+- **`src/components/sections/Differentials.tsx`**:
+  - Novo layout de 2 colunas no desktop (≈ 40% cabeçalho alinhado à esquerda e chips de práticas; ≈ 60% 3 linhas sem moldura de card com hover indicator).
+  - Remoção de timeline horizontal, pinos, números `01/02/03`, setas `→` e molduras fechadas.
+  - Nova animação stagger suave na entrada do viewport respeitando `prefers-reduced-motion`.
+- **`src/components/ui/SectionHeader.tsx`**:
+  - Suporte à prop opcional `id` repassada para o `HeadingTag` para amarração de `aria-labelledby`.
+- **Suítes de Testes**:
+  - Testes unitários atualizados em `HowWeWork.test.tsx` e `Differentials.test.tsx` (144/144 passando, 98.57% cobertura geral).
+
 ## [0.0.51-rodada-2-veracidade-estrutura-sites] - 2026-09-30
 
 ### Adicionado

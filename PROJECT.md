@@ -151,8 +151,8 @@ src/
 | Tipografia / Títulos | ✅ Padronizado   | Eyebrows minimalistas com traço do ícone da marca (BrandChipIcon em #10B981) + texto cinza uppercase (11.5px, weight 500, letter-spacing 0.1em), títulos 100% monocromáticos, zero cápsulas e zero travessões (—) ou pontos e vírgulas (;) |
 | Hero              | ✅ Refatorado    | Iluminação volumétrica atmosférica com efeito Lamp (`LampContainer`), Eyebrow badge `EPM DEVTECH` • `SOFTWARE HOUSE`, headline monocromática, supporting copy corporativo, CTA primário unificado "Falar sobre meu projeto", CTA secundário "Conhecer a EPM DevTech", topologia com práticas comprovadas ("Processamento resiliente", "Redundância", "Entrega otimizada", "Alta Disponibilidade", "Alta Vazão") |
 | Services          | ✅ Expandido     | 4 ofertas estratégicas com gatilhos de dor ("Quando precisa:"), inclusão de Sites Institucionais no Card 1 ("Sistemas Web, Portais e Sites Institucionais"), grid 2×2 balanceado e mockups preservados |
-| Como Trabalhamos  | ✅ Implementado  | Seção de processo com âncora `#como-trabalhamos`, pipeline 01-04 (Entendemos, Definimos, Desenvolvemos, Evoluímos) |
-| Differentials     | ✅ Consolidado   | 3 pilares focados no cliente (Contato direto com quem desenvolve, Engenharia que facilita evoluir, Foco no seu negócio) + linha de práticas de engenharia |
+| Como Trabalhamos  | ✅ Sequencial    | Seção de processo sequencial com âncora `#como-trabalhamos`, pipeline 01-04 (Entendemos, Definimos, Desenvolvemos, Evoluímos), lista semântica `<ol>`, timeline vertical no mobile (< 1024px) e suporte a `prefers-reduced-motion` |
+| Differentials     | ✅ Paralelo      | Layout de 2 colunas no desktop (≈ 40% cabeçalho alinhado à esquerda e chips de práticas de engenharia; ≈ 60% 3 linhas sem moldura de card com hover indicator), sem numeração sequencial, sem timeline e com animação stagger suave (SPEC-052) |
 | Technologies      | ✅ Constellation | TechConstellation interativo com trilhas PCB, Focus & Context, título institucional de evidência e Painel Arquitetural |
 | Autoridade        | ✅ Enquadrado    | Título "Experiência em operações que não podem parar", 3 métricas honestamente atribuídas a projetos anteriores da liderança técnica (99,9%, 2.500 RPS, Zero perda), badges removidos |
 | Sectors           | ✅ Refatorado    | Título "Experiência em diferentes contextos" exclusivo para setores, 4 cards 3D isomórficos com contextualização técnica sóbria |
@@ -163,7 +163,7 @@ src/
 | ScrollToTop       | ✅ Neutro / Flat | Ícone ChevronUp (20px), design utilitário neutro sem glow ou realce verde, fade suave >450px e elevação dinâmica no rodapé |
 | Cookie Banner     | ✅ Otimizado     | Lazy load assíncrono + defer timer (3.5s)  |
 | SEO & Agêntico    | ✅ Refatorado    | Meta description otimizada, imagem Open Graph 1200×630 dedicada, JSON-LD (`ProfessionalService` com `foundingDate: 2026`), remoção de `twitter:creator` pessoal, rotas em `SEO_META`, `robots.txt` e `llms.txt` |
-| Testes unitários  | ✅ Implementado  | 21/21 suites, 141/141 testes passando (98.55% coverage geral) |
+| Testes unitários  | ✅ Implementado  | 21/21 suites, 144/144 testes passando (98.57% coverage geral, 100% em HowWeWork e Differentials) |
 | Testes E2E        | ✅ Implementado  | Suíte Playwright (16/16 testes passando: estabilidade, design system e 5 viewports) |
 | Acessibilidade    | ✅ 100% WCAG AA  | Contraste de texto e botões >= 4.5:1 (Logotipo WCAG AAA >= 17:1), hierarquia de títulos linear h1-h3 |
 | Performance       | ✅ 100% Otimizado| JS inicial < 80 KB, FCP/LCP instantâneo, maior chunk 142KB |

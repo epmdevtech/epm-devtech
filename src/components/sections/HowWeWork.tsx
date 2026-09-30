@@ -1,4 +1,4 @@
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import { Fragment, useRef } from "react";
 import {
   Search,
@@ -39,18 +39,19 @@ const steps = [
   },
 ];
 
-/* Posições dos pontos ao longo da linha do pipeline para 4 etapas */
+/* Posições dos pontos ao longo da linha do pipeline para 4 etapas no desktop */
 const DOT_POSITIONS = [12.5, 37.5, 62.5, 87.5];
 
 const HowWeWork = () => {
-  const ref = useRef(null);
+  const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const shouldReduceMotion = useReducedMotion();
 
   return (
     <>
       <style>{`
         /* ══════════════════════════════════════════════════
-           HOW WE WORK PIPELINE SECTION
+           HOW WE WORK PIPELINE SECTION (SEQUENCIAL)
         ══════════════════════════════════════════════════ */
 
         .hww-pipeline-wrapper {
@@ -120,12 +121,14 @@ const HowWeWork = () => {
           gap: 1.25rem;
           max-width: 76rem;
           margin: 0 auto;
+          list-style: none;
+          padding: 0;
         }
         @media (max-width: 1024px) {
           .hww-cards-grid { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
         }
         @media (max-width: 640px) {
-          .hww-cards-grid { grid-template-columns: repeat(1, 1fr); gap: 1rem; }
+          .hww-cards-grid { grid-template-columns: repeat(1, 1fr); gap: 1.25rem; }
         }
 
         .hww-card {
@@ -135,10 +138,10 @@ const HowWeWork = () => {
           padding: 1.3rem 1.1rem;
           display: flex;
           flex-direction: column;
-          gap: 0.6rem;
+          gap: 0.65rem;
           position: relative;
           overflow: hidden;
-          transition: border-color 0.3s, box-shadow 0.3s, transform 0.35s;
+          transition: border-color 0.25s, box-shadow 0.25s;
           box-shadow: 0 2px 8px rgba(0,0,0,0.05), 0 8px 24px rgba(0,0,0,0.04);
         }
         .dark .hww-card {
@@ -148,7 +151,6 @@ const HowWeWork = () => {
             inset 0 1px 0 rgba(255,255,255,0.04);
         }
         .hww-card:hover {
-          transform: translateY(-5px);
           border-color: hsl(var(--primary) / 0.4);
           box-shadow:
             0 4px 16px rgba(0,0,0,0.08),
@@ -178,14 +180,14 @@ const HowWeWork = () => {
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          width: 22px; height: 22px;
+          width: 24px; height: 24px;
           border-radius: 6px;
-          font-size: 0.6rem;
+          font-size: 0.68rem;
           font-family: ui-monospace, monospace;
           font-weight: 700;
           background: hsl(var(--primary) / 0.12);
           color: hsl(var(--primary));
-          border: 1px solid hsl(var(--primary) / 0.2);
+          border: 1px solid hsl(var(--primary) / 0.25);
           flex-shrink: 0;
         }
 
@@ -196,35 +198,35 @@ const HowWeWork = () => {
           border: 1px solid hsl(var(--primary) / 0.15);
           display: flex; align-items: center; justify-content: center;
           flex-shrink: 0;
-          transition: transform 0.3s, background 0.3s;
+          transition: background 0.25s;
         }
         .hww-card:hover .hww-icon-wrap {
-          transform: scale(1.1);
           background: hsl(var(--primary) / 0.18);
         }
 
         .hww-card-title {
-          font-size: 0.85rem;
+          font-size: 0.92rem;
           font-weight: 600;
           line-height: 1.3;
           color: hsl(var(--foreground));
           letter-spacing: -0.01em;
           display: flex;
           align-items: center;
-          gap: 5px;
+          gap: 6px;
         }
 
         .hww-card-handle {
-          font-size: 0.57rem;
+          font-size: 0.65rem;
           font-family: ui-monospace, monospace;
           text-transform: uppercase;
-          letter-spacing: 0.06em;
+          letter-spacing: 0.08em;
           color: hsl(var(--primary));
-          opacity: 0.75;
+          font-weight: 600;
         }
+
         .hww-card-desc {
           font-family: ui-monospace, monospace;
-          font-size: 0.68rem;
+          font-size: 0.72rem;
           color: hsl(var(--muted-foreground));
           line-height: 1.65;
           flex: 1;
@@ -233,6 +235,7 @@ const HowWeWork = () => {
 
       <section
         id="como-trabalhamos"
+        aria-labelledby="como-trabalhamos-heading"
         className="relative py-24 bg-background overflow-hidden"
         ref={ref}
       >
@@ -242,42 +245,47 @@ const HowWeWork = () => {
         <div className="container px-6">
           {/* ── Header ── */}
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.55 }}
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+            animate={isInView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: shouldReduceMotion ? 0 : 0.55 }}
             className="mb-10"
           >
             <SectionHeader
+              id="como-trabalhamos-heading"
               tagline="Processo"
               title="Como trabalhamos"
               subtitle="Etapas estruturadas para transformar necessidades em software confiável."
             />
           </motion.div>
 
-          {/* ── Pipeline Line ── */}
-          <div className="hww-pipeline-wrapper hidden lg:block">
+          {/* ── Desktop Pipeline Line (>= 1024px) ── */}
+          <div className="hww-pipeline-wrapper hidden lg:block" aria-hidden="true">
             <motion.div
               className="hww-pipeline"
-              initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : {}}
-              transition={{ duration: 0.4, delay: 0.3 }}
+              initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
+              animate={isInView || shouldReduceMotion ? { opacity: 1 } : {}}
+              transition={{ duration: shouldReduceMotion ? 0 : 0.4, delay: shouldReduceMotion ? 0 : 0.3 }}
             >
               {/* animated glow fill */}
               <motion.div
                 className="hww-pipeline-fill"
-                initial={{ scaleX: 0 }}
-                animate={isInView ? { scaleX: 1 } : {}}
-                transition={{ duration: 1.1, delay: 0.45, ease: [0.22, 0.68, 0, 1] }}
+                initial={shouldReduceMotion ? { scaleX: 1 } : { scaleX: 0 }}
+                animate={isInView || shouldReduceMotion ? { scaleX: 1 } : {}}
+                transition={{
+                  duration: shouldReduceMotion ? 0 : 1.1,
+                  delay: shouldReduceMotion ? 0 : 0.45,
+                  ease: [0.22, 0.68, 0, 1],
+                }}
               />
 
               {/* dots + connectors */}
               {steps.map((item, i) => (
                 <Fragment key={item.step}>
                   <div
-                    className={`hww-dot${isInView ? " visible" : ""}`}
+                    className={`hww-dot${isInView || shouldReduceMotion ? " visible" : ""}`}
                     style={{
                       left: `${DOT_POSITIONS[i]}%`,
-                      transitionDelay: `${0.45 + i * 0.12}s`,
+                      transitionDelay: shouldReduceMotion ? "0s" : `${0.45 + i * 0.12}s`,
                     }}
                   />
                   <div
@@ -289,45 +297,60 @@ const HowWeWork = () => {
             </motion.div>
           </div>
 
-          {/* ── Cards Grid ── */}
-          <div className="hww-cards-grid">
-            {steps.map((item, index) => (
-              <motion.div
-                key={item.title}
-                className="hww-card"
-                initial={{ opacity: 0, y: 48 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{
-                  duration: 0.5,
-                  delay: 0.55 + index * 0.08,
-                  ease: [0.22, 0.68, 0, 1.1],
-                }}
-              >
-                {/* step number */}
-                <div className="flex items-center gap-2 mb-1">
-                  <div className="hww-step-num">{item.step}</div>
-                </div>
+          {/* ── Cards Grid (Ordered List) with Mobile Timeline ── */}
+          <div className="relative pl-7 sm:pl-8 lg:pl-0">
+            {/* Linha vertical conectora exclusiva para mobile e tablet (< 1024px) */}
+            <div
+              className="lg:hidden absolute left-[11px] sm:left-[13px] top-6 bottom-6 w-0.5 bg-gradient-to-b from-primary via-primary/60 to-primary/20 rounded-full"
+              aria-hidden="true"
+            />
 
-                {/* title */}
-                <h3 className="hww-card-title">
-                  <span>{item.title}</span>
-                </h3>
-
-                {/* handle */}
-                <div className="hww-card-handle">{item.handle}</div>
-
-                {/* description */}
-                <p className="hww-card-desc">{item.description}</p>
-
-                {/* icon at bottom */}
-                <div className="hww-icon-wrap mt-auto">
-                  <item.icon
-                    size={16}
-                    className="text-primary"
+            <ol className="hww-cards-grid" role="list">
+              {steps.map((item, index) => (
+                <motion.li
+                  key={item.title}
+                  className="hww-card relative"
+                  initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 36 }}
+                  animate={isInView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
+                  transition={{
+                    duration: shouldReduceMotion ? 0 : 0.5,
+                    delay: shouldReduceMotion ? 0 : 0.55 + index * 0.08,
+                    ease: [0.22, 0.68, 0, 1.1],
+                  }}
+                >
+                  {/* Pino conector exclusivo para mobile (< 1024px) */}
+                  <div
+                    className="lg:hidden absolute -left-[22px] sm:-left-[24px] top-6 w-3 h-3 rounded-full bg-primary border-2 border-background shadow-[0_0_8px_hsl(var(--primary)/0.6)]"
+                    aria-hidden="true"
                   />
-                </div>
-              </motion.div>
-            ))}
+
+                  {/* step number badge */}
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="hww-step-num" aria-hidden="true">{item.step}</span>
+                  </div>
+
+                  {/* title */}
+                  <h3 className="hww-card-title">
+                    <span className="sr-only">Etapa {item.step}: </span>
+                    <span>{item.title}</span>
+                  </h3>
+
+                  {/* handle */}
+                  <div className="hww-card-handle">{item.handle}</div>
+
+                  {/* description */}
+                  <p className="hww-card-desc">{item.description}</p>
+
+                  {/* icon at bottom */}
+                  <div className="hww-icon-wrap mt-auto" aria-hidden="true">
+                    <item.icon
+                      size={16}
+                      className="text-primary"
+                    />
+                  </div>
+                </motion.li>
+              ))}
+            </ol>
           </div>
         </div>
       </section>

@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import BrandChipIcon from "@/components/ui/BrandChipIcon";
 
 export interface SectionHeaderProps {
+  id?: string;
   tagline?: string;
   withDot?: boolean; // mantido para compatibilidade de tipos retroativa
   title?: React.ReactNode;
@@ -16,6 +17,7 @@ export interface SectionHeaderProps {
 }
 
 export const SectionHeader: React.FC<SectionHeaderProps> = ({
+  id,
   tagline,
   title,
   subtitle,
@@ -54,6 +56,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
 
       {title && (
         <HeadingTag
+          id={id}
           className={cn(
             "font-bold tracking-tight text-zinc-900 dark:text-white",
             isH1
