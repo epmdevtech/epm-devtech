@@ -161,9 +161,10 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     await expect(detailsPanel).toBeVisible();
     await expect(detailsPanel).toContainText('Exploração Interativa do Grafo');
 
-    // Interage com o nó React via hover
+    // Interage com o nó React via foco acessível
     const reactNode = page.locator('[data-testid="tech-node-React"]');
-    await reactNode.hover({ force: true });
+    await reactNode.focus();
+    await page.waitForTimeout(200);
 
     await expect(detailsPanel).toContainText('React', { timeout: 10000 });
     await expect(detailsPanel).toContainText('Frontend');
@@ -251,8 +252,8 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     await page.waitForLoadState('domcontentloaded');
     await page.waitForTimeout(600);
 
-    const header = page.locator('header');
-    const contatoLink = page.locator('header nav a[href="#contato"]');
+    const header = page.locator('header.fixed');
+    const contatoLink = page.locator('header.fixed nav a[href="#contato"]');
     const trigger = page.locator('#projectType');
 
     // Medições antes do clique

@@ -1,32 +1,32 @@
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { useRef } from "react";
-import {
-  CheckCircle2,
-  Shield,
-  MessageCircle,
-} from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { Badge } from "@/components/ui/badge";
+import {
+  IconTransparentCommunication,
+  IconEvolutionaryEngineering,
+  IconBusinessFocus,
+} from "@/components/icons";
 
 const differentials = [
   {
-    icon: MessageCircle,
+    Icon: IconTransparentCommunication,
     tag: "ALINHAMENTO & PREVISIBILIDADE",
-    title: "Comunicação Transparente",
+    title: "Comunicação transparente",
     description:
       "Alinhamento contínuo sobre escopo, decisões técnicas e prioridades. Você fala diretamente com quem planeja e executa a engenharia, reduzindo ruídos e alinhando expectativas.",
   },
   {
-    icon: Shield,
+    Icon: IconEvolutionaryEngineering,
     tag: "ARQUITETURA & MANUTENÇÃO",
-    title: "Engenharia que Facilita Evoluir",
+    title: "Engenharia que facilita evoluir",
     description:
       "Arquitetura modular e código limpo pensados para facilitar manutenções futuras e permitir que o sistema cresça com segurança sem gerar gargalos técnicos.",
   },
   {
-    icon: CheckCircle2,
+    Icon: IconBusinessFocus,
     tag: "PRAGMATISMO & RESULTADO",
-    title: "Foco no Problema do Negócio",
+    title: "Foco no problema do negócio",
     description:
       "A tecnologia é uma ferramenta para viabilizar os objetivos da sua empresa, e não o inverso. Escolhas técnicas pragmáticas focadas em retorno real e estabilidade operacional.",
   },
@@ -77,99 +77,80 @@ const Differentials = () => {
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
 
       <div className="container px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* ── Coluna Esquerda: Cabeçalho & Práticas (≈ 40%) ── */}
-          <div className="lg:col-span-5 lg:sticky lg:top-28 space-y-8">
-            <motion.div
-              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              animate={isInView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: shouldReduceMotion ? 0 : 0.5 }}
-            >
-              <SectionHeader
-                id="diferenciais-heading"
-                tagline="Diferenciais"
-                title="Por que trabalhar com a EPM DevTech"
-                subtitle="Engenharia focada na longevidade do seu software, com transparência em cada etapa do projeto."
-                align="left"
-              />
-            </motion.div>
+        {/* ── Cabeçalho Padronizado Centralizado ── */}
+        <motion.div
+          initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          animate={isInView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: shouldReduceMotion ? 0 : 0.5 }}
+        >
+          <SectionHeader
+            id="diferenciais-heading"
+            tagline="Diferenciais"
+            title="Por que trabalhar com a EPM DevTech"
+            subtitle="Engenharia focada na longevidade do seu software, com transparência em cada etapa do projeto."
+          />
+        </motion.div>
 
-            {/* Chips de Práticas de Engenharia */}
-            <motion.div
-              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-              animate={isInView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: shouldReduceMotion ? 0 : 0.45, delay: shouldReduceMotion ? 0 : 0.2 }}
-              className="pt-2"
+        {/* ── Corpo em 3 Colunas sem Moldura de Card ── */}
+        <motion.ul
+          className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border/60 max-w-6xl mx-auto list-none p-0 m-0"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView || shouldReduceMotion ? "visible" : "hidden"}
+        >
+          {differentials.map((item, index) => (
+            <motion.li
+              key={item.title}
+              variants={itemVariants}
+              className={`py-8 md:py-4 px-0 md:px-8 flex flex-col items-start text-left group ${
+                index === 0 ? "md:pl-0" : index === 2 ? "md:pr-0" : ""
+              }`}
             >
-              <span className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground/90 font-medium block mb-3.5">
-                Práticas aplicadas conforme cada projeto
-              </span>
-              <div className="flex flex-wrap gap-2">
-                {practices.map((practice) => (
-                  <Badge
-                    key={practice}
-                    variant="outline"
-                    className="px-3 py-1.5 text-xs font-mono font-medium rounded-lg bg-background/80 hover:bg-background border-border/80 text-foreground/90 transition-colors shadow-xs"
-                  >
-                    {practice}
-                  </Badge>
-                ))}
+              {/* Ícone Conceitual Autoral no Topo (sem caixa esmeralda) */}
+              <div className="mb-4 text-zinc-700 dark:text-zinc-200 group-hover:text-primary transition-colors duration-200">
+                <item.Icon size={26} aria-hidden="true" />
               </div>
-            </motion.div>
+
+              {/* Rótulo de Categoria */}
+              <span className="text-[11px] font-mono uppercase tracking-wider text-primary font-semibold block mb-2">
+                {item.tag}
+              </span>
+
+              {/* Título H3 em Sentence Case */}
+              <h3 className="text-lg font-semibold tracking-tight text-foreground mb-2.5">
+                {item.title}
+              </h3>
+
+              {/* Descrição Alinhada à Esquerda */}
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                {item.description}
+              </p>
+            </motion.li>
+          ))}
+        </motion.ul>
+
+        {/* ── Bloco Inferior Centralizado: Práticas de Engenharia ── */}
+        <motion.div
+          initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+          animate={isInView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: shouldReduceMotion ? 0 : 0.45, delay: shouldReduceMotion ? 0 : 0.25 }}
+          className="mt-14 pt-10 border-t border-border/40 text-center max-w-2xl mx-auto"
+        >
+          <span className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground/90 font-medium block mb-3.5">
+            Práticas aplicadas conforme cada projeto
+          </span>
+          <div className="flex flex-wrap justify-center gap-2">
+            {practices.map((practice) => (
+              <Badge
+                key={practice}
+                variant="outline"
+                className="px-3 py-1.5 text-xs font-mono font-medium rounded-lg bg-background/80 hover:bg-background border-border/80 text-foreground/90 transition-colors shadow-xs"
+              >
+                {practice}
+              </Badge>
+            ))}
           </div>
-
-          {/* ── Coluna Direita: Linhas de Diferenciais (≈ 60%) ── */}
-          <div className="lg:col-span-7">
-            <motion.ul
-              role="list"
-              className="divide-y divide-border/60"
-              variants={containerVariants}
-              initial="hidden"
-              animate={isInView || shouldReduceMotion ? "visible" : "hidden"}
-            >
-              {differentials.map((item) => (
-                <motion.li
-                  key={item.title}
-                  variants={itemVariants}
-                  className="group relative py-7 sm:py-8 first:pt-0 last:pb-0 transition-colors"
-                >
-                  {/* Barra vertical esmeralda indicadora no hover */}
-                  <div
-                    className="absolute -left-3 sm:-left-4 top-2 bottom-2 w-1 rounded-full bg-primary scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-center hidden sm:block"
-                    aria-hidden="true"
-                  />
-
-                  <div className="flex items-start gap-4 sm:gap-5">
-                    {/* Container do Ícone */}
-                    <div
-                      className="w-11 h-11 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 text-primary group-hover:bg-primary/20 group-hover:border-primary/40 transition-colors duration-250 mt-0.5"
-                      aria-hidden="true"
-                    >
-                      <item.icon size={20} className="text-primary" />
-                    </div>
-
-                    <div className="flex-1 space-y-1.5">
-                      {/* Tag / Rótulo de Categoria */}
-                      <span className="text-[11px] font-mono uppercase tracking-wider text-primary font-semibold block">
-                        {item.tag}
-                      </span>
-
-                      {/* Título sem setas falsas */}
-                      <h3 className="text-lg sm:text-xl font-semibold tracking-tight text-foreground">
-                        {item.title}
-                      </h3>
-
-                      {/* Descrição objetiva */}
-                      <p className="text-sm sm:text-[15px] text-muted-foreground leading-relaxed pt-0.5">
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
-                </motion.li>
-              ))}
-            </motion.ul>
-          </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

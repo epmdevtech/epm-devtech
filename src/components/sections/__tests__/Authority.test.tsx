@@ -17,7 +17,7 @@ vi.mock('framer-motion', () => ({
 describe('Authority / Trust Bar Component', () => {
   it('renders section header with eyebrow, title and attribution subtitle', () => {
     render(<Authority />);
-    expect(screen.getByText(/Experiência & Contexto/i)).toBeInTheDocument();
+    expect(screen.getByText(/Experiência e contexto/i)).toBeInTheDocument();
     expect(screen.getByText('Experiência em operações que não podem parar')).toBeInTheDocument();
     expect(
       screen.getByText('Resultados de projetos anteriores conduzidos pela liderança técnica da EPM DevTech.')

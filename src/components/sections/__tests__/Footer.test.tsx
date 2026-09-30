@@ -74,17 +74,17 @@ describe('Footer Component', () => {
 
     // Coluna 2: Soluções
     expect(screen.getByRole('heading', { name: /Soluções/i })).toBeInTheDocument();
-    expect(screen.getByText('Sistemas, Portais e Sites')).toBeInTheDocument();
-    expect(screen.getByText('APIs & Back-end Escalável')).toBeInTheDocument();
-    expect(screen.getByText('Integrações entre Sistemas')).toBeInTheDocument();
-    expect(screen.getByText('Modernização de Legados')).toBeInTheDocument();
+    expect(screen.getByText('Sistemas, portais e sites')).toBeInTheDocument();
+    expect(screen.getByText('APIs e back-end escalável')).toBeInTheDocument();
+    expect(screen.getByText('Integrações entre sistemas')).toBeInTheDocument();
+    expect(screen.getByText('Modernização de legados')).toBeInTheDocument();
 
     // Coluna 3: Navegação
     expect(screen.getByRole('heading', { name: /Navegação/i })).toBeInTheDocument();
     expect(screen.getByText('Serviços')).toBeInTheDocument();
-    expect(screen.getByText('Como Trabalhamos')).toBeInTheDocument();
-    expect(screen.getByText('Sobre a Empresa')).toBeInTheDocument();
-    expect(screen.getByText('Dúvidas Frequentes')).toBeInTheDocument();
+    expect(screen.getByText('Como trabalhamos')).toBeInTheDocument();
+    expect(screen.getByText('Sobre a empresa')).toBeInTheDocument();
+    expect(screen.getByText('Dúvidas frequentes')).toBeInTheDocument();
     expect(screen.getByText('Falar sobre meu projeto')).toBeInTheDocument();
 
     // Coluna 4: Contato

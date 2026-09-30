@@ -5,7 +5,7 @@ import { Typewriter } from "@/components/ui/typewriter";
 
 const navLinks = [
   { href: "#servicos", label: "Serviços" },
-  { href: "#como-trabalhamos", label: "Como Trabalhamos" },
+  { href: "#como-trabalhamos", label: "Como trabalhamos" },
   { href: "#diferenciais", label: "Diferenciais" },
   { href: "#tecnologias", label: "Tecnologias" },
   { href: "#setores", label: "Setores" },

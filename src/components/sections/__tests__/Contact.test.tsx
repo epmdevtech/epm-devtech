@@ -135,17 +135,17 @@ describe('Contact Component', () => {
     ).toBeInTheDocument();
 
     // 3 Blocos de valor
-    expect(screen.getByText('Diagnóstico Técnico')).toBeInTheDocument();
+    expect(screen.getByText('Diagnóstico técnico')).toBeInTheDocument();
     expect(
       screen.getByText(/Avaliamos seu cenário, gargalos e viabilidade arquitetural logo no primeiro contato/i)
     ).toBeInTheDocument();
 
-    expect(screen.getByText('Retorno em até 24 Horas Úteis')).toBeInTheDocument();
+    expect(screen.getByText('Retorno em até 24 horas úteis')).toBeInTheDocument();
     expect(
       screen.getByText(/Resposta objetiva para agendarmos uma conversa/i)
     ).toBeInTheDocument();
 
-    expect(screen.getByText('Sigilo e Confidencialidade')).toBeInTheDocument();
+    expect(screen.getByText('Sigilo e confidencialidade')).toBeInTheDocument();
     expect(
       screen.getByText(/Suas ideias, dados e regras de negócio tratados com confidencialidade, com NDA quando solicitado/i)
     ).toBeInTheDocument();

@@ -24,10 +24,10 @@ describe('Services Component', () => {
     it('renders all 4 consolidated service cards with titles including institutional websites', () => {
         render(<Services />);
         const titles = [
-            'Sistemas Web, Portais e Sites Institucionais',
-            'APIs & Back-end Escalável',
-            'Integrações entre Sistemas',
-            'Modernização & Evolução de Legados',
+            'Sistemas web, portais e sites institucionais',
+            'APIs & back-end escalável',
+            'Integrações entre sistemas',
+            'Modernização & evolução de legados',
         ];
         titles.forEach(title => {
             expect(screen.getByText(title)).toBeInTheDocument();

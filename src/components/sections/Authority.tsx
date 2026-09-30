@@ -37,7 +37,7 @@ const Authority = () => {
         >
           {/* Cabeçalho com título e legenda de atribuição honesta */}
           <SectionHeader
-            tagline="Experiência & Contexto"
+            tagline="Experiência e contexto"
             title="Experiência em operações que não podem parar"
             subtitle="Resultados de projetos anteriores conduzidos pela liderança técnica da EPM DevTech."
             titleClassName="text-2xl sm:text-3xl"

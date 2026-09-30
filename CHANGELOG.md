@@ -9,11 +9,43 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.53-padronizacao-cabecalhos-icones-premium] - 2026-09-30
+
 ### Adicionado
-- **`specs/SPEC-052-diferenciar-como-trabalhamos-de-diferenciais-ux-ui.md`**: Especificação para diferenciação visual, semântica e comportamental entre Como Trabalhamos e Diferenciais.
-- **`tasks/TASK-052-diferenciar-como-trabalhamos-de-diferenciais-ux-ui.md`**: Tarefa e checklist de execução rastreados via SDD.
-- **`reviews/QA-052.md`**: Relatório de QA com evidências visuais antes/depois e validação de acessibilidade Axe-core (0 violações).
-- **`docs/evidence/diff-hww/`**: Capturas visuais antes/depois das duas seções em 1440px, 768px e 375px.
+- **`specs/SPEC-053-padronizacao-cabecalhos-icones-premium.md`**: Especificação para padronização centralizada de cabeçalhos de seção, conjunto autoral de ícones SVG e refinamentos de copy.
+- **`tasks/TASK-053-padronizacao-cabecalhos-icones-premium.md`**: Tarefa e checklist de execução rastreados via SDD.
+- **`reviews/QA-053.md`**: Relatório de QA e validação de quality gates (TypeScript, ESLint, 144 unit tests com 98.61% coverage, 16 Playwright E2E tests).
+- **`src/components/icons/`**: Conjunto autoral de 15 ícones conceituais nativos em SVG com traço de 1.5px, duotone a 10% e nó verde esmeralda com a assinatura de marca EPM DevTech.
+- **`docs/evidence/headers-icons/`**: Evidências visuais de todas as seções e página completa em 1440px, 768px e 375px.
+
+### Modificado
+- **`src/components/ui/SectionHeader.tsx`**:
+  - Elemento semântico `<header>`.
+  - Padrão 100% centralizado em todas as seções de conteúdo.
+  - Larguras máximas balanceadas (`max-w-3xl` para H2, `max-w-2xl` para subtítulo) e `text-wrap: balance`.
+  - Espaçamentos verticais estritos e tipografia fluida.
+- **`src/components/sections/Differentials.tsx`**:
+  - Reorganização para cabeçalho centralizado superior e 3 colunas abertas sem molduras de cards, separadas por divisores verticais sutis.
+  - Ícones conceituais autorais no topo de cada coluna.
+  - Bloco inferior centralizado de chips de práticas de engenharia.
+- **`src/components/sections/HowWeWork.tsx`**:
+  - Ícones conceituais autorais integrados ao cabeçalho do card ao lado dos números `01…04`.
+  - Remoção de containers quadrados com fundo esmeralda no rodapé.
+- **`src/components/sections/Sectors.tsx`**:
+  - Ícones autorais para Indústria, Varejo, Educação e Energia.
+  - Remoção da seta direcional `ArrowRight` (falsa affordance de link em cards informativos).
+- **`src/components/sections/About.tsx`**:
+  - Cabeçalho padronizado e centralizado com `tagline="Sobre a empresa"`.
+  - Card de liderança técnica com ícone autoral.
+- **`src/components/sections/Contact.tsx`**:
+  - Ícones autorais para diagnóstico técnico, resposta rápida e confidencialidade.
+  - Remoção de círculos com fundo verde plano nos próximos passos.
+- **`src/components/sections/hero/HeroArchitecture.tsx`**:
+  - Suavização de termos contratuais para linguagem estritamente factual da engenharia.
+- **`src/components/sections/FAQ.tsx`**:
+  - Pergunta sobre sites institucionais movida para a categoria `"servicos"`.
+- **Padronização Global em Sentence Case**:
+  - Ajustados títulos e rótulos de navegação, rodapé, serviços, setores e diferenciais.
 
 ### Modificado
 - **`src/components/sections/HowWeWork.tsx`**:

@@ -11,7 +11,7 @@ import SectionHeader from "@/components/ui/SectionHeader";
 interface FAQItem {
   question: string;
   answer: string;
-  category: "contratacao" | "legados" | "processo";
+  category: "contratacao" | "legados" | "processo" | "servicos";
 }
 
 const FAQ_ITEMS: FAQItem[] = [
@@ -62,8 +62,10 @@ const FAQ_ITEMS: FAQItem[] = [
     answer:
       "Antes de desenvolver, registramos escopo, decisões e critérios de aceite em um documento de especificação, para que todos saibam exatamente o que será entregue. Durante toda a execução, você tem canal direto com a liderança técnica do projeto, com entregas incrementais validadas continuamente.",
   },
+
+  // ── Categoria: Serviços ─────────────────────────────────────────────
   {
-    category: "processo",
+    category: "servicos",
     question: "Vocês desenvolvem sites institucionais?",
     answer:
       "Sim. Desenvolvemos sites institucionais, portais corporativos e páginas de presença digital com foco em credibilidade, desempenho, acessibilidade e boa experiência em dispositivos móveis, inclusive integrando com sistemas internos ou APIs quando necessário.",
@@ -71,9 +73,10 @@ const FAQ_ITEMS: FAQItem[] = [
 ];
 
 const CATEGORY_LABELS: Record<FAQItem["category"], string> = {
-  contratacao: "Contratação & Modelo",
-  legados: "Sistemas Existentes",
-  processo: "Processo & Engenharia",
+  contratacao: "Contratação & modelo",
+  legados: "Sistemas existentes",
+  processo: "Processo & engenharia",
+  servicos: "Serviços",
 };
 
 const CATEGORY_COLORS: Record<FAQItem["category"], string> = {
@@ -83,6 +86,8 @@ const CATEGORY_COLORS: Record<FAQItem["category"], string> = {
     "bg-blue-50 text-blue-800 border-blue-300 dark:bg-blue-950/50 dark:text-blue-400 dark:border-blue-800/60",
   processo:
     "bg-violet-50 text-violet-800 border-violet-300 dark:bg-violet-950/50 dark:text-violet-400 dark:border-violet-800/60",
+  servicos:
+    "bg-teal-50 text-teal-800 border-teal-300 dark:bg-teal-950/50 dark:text-teal-400 dark:border-teal-800/60",
 };
 
 const FAQ = () => {
@@ -118,7 +123,7 @@ const FAQ = () => {
           className="mb-14"
         >
           <SectionHeader
-            tagline="Dúvidas Frequentes"
+            tagline="Dúvidas frequentes"
             title="As perguntas que sempre chegam primeiro"
             subtitle="Respostas diretas sobre como começar um projeto, como mexemos em sistema legado e como funciona nosso modelo de trabalho."
           />

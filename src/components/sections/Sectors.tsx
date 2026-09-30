@@ -1,17 +1,18 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import {
-  Building2,
-  Target,
-  Award,
-  Users,
-  ArrowRight,
   BarChart2,
   ShieldCheck,
   BookOpen,
   Zap,
 } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
+import {
+  IconSectorIndustry,
+  IconSectorRetail,
+  IconSectorEducation,
+  IconSectorEnergy,
+} from "@/components/icons";
 
 /* ─────────────────────────────────────────────────────────────
    MOCKUP PANELS (Preservados Integralmente)
@@ -103,7 +104,7 @@ const MockupEnergia = () => (
 const sectors = [
   {
     num: "01",
-    icon: Building2,
+    Icon: IconSectorIndustry,
     title: "Indústria",
     handle: "OPERAÇÃO & MANUFATURA",
     context: "Operações fabris e linhas de montagem contínua",
@@ -113,7 +114,7 @@ const sectors = [
   },
   {
     num: "02",
-    icon: Target,
+    Icon: IconSectorRetail,
     title: "Varejo",
     handle: "ALTO VOLUME & TRANSAÇÕES",
     context: "Plataformas digitais com alto volume transacional",
@@ -123,7 +124,7 @@ const sectors = [
   },
   {
     num: "03",
-    icon: Award,
+    Icon: IconSectorEducation,
     title: "Educação",
     handle: "PLATAFORMAS INSTITUCIONAIS",
     context: "Instituições de ensino e plataformas de grande escala",
@@ -133,7 +134,7 @@ const sectors = [
   },
   {
     num: "04",
-    icon: Users,
+    Icon: IconSectorEnergy,
     title: "Energia",
     handle: "DADOS CRÍTICOS & REGULAÇÃO",
     context: "Despacho energético e infraestrutura crítica",
@@ -290,25 +291,13 @@ const Sectors = () => {
         }
 
         .about-title {
-          display: flex;
-          align-items: center;
-          gap: 8px;
           font-size: 1.2rem;
           font-weight: 600;
           letter-spacing: -0.01em;
           color: hsl(var(--foreground));
           margin-bottom: 0.5rem;
-          transition: gap 0.25s;
           position: relative;
           z-index: 2;
-        }
-        .about-card:hover .about-title { gap: 12px; }
-        .about-arrow {
-          opacity: 0.5;
-          transition: opacity 0.25s, transform 0.25s;
-        }
-        .about-card:hover .about-arrow {
-          opacity: 1;
         }
 
         .about-handle {
@@ -405,7 +394,7 @@ const Sectors = () => {
             className="mb-14"
           >
             <SectionHeader
-              tagline="Contextos de Negócio"
+              tagline="Contextos de negócio"
               title="Experiência em diferentes contextos"
               subtitle="Projetos desenvolvidos em ambientes com diferentes níveis de complexidade, integração e requisitos operacionais."
             />
@@ -429,13 +418,15 @@ const Sectors = () => {
                     >
                       <div className="about-card-glow" />
 
-                      {/* Number badge */}
-                      <div className="about-num">{item.num}</div>
+                      {/* Top row: Number badge + authorial icon */}
+                      <div className="flex items-center justify-between mb-4 relative z-10">
+                        <div className="about-num !mb-0">{item.num}</div>
+                        <item.Icon size={22} className="text-primary/90" />
+                      </div>
 
-                      {/* Title + arrow */}
+                      {/* Title */}
                       <div className="about-title">
                         <span>{item.title}</span>
-                        <ArrowRight className="about-arrow" size={17} strokeWidth={2.5} />
                       </div>
 
                       {/* Sector handle */}

@@ -1,37 +1,37 @@
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { Fragment, useRef } from "react";
-import {
-  Search,
-  FileCode2,
-  Terminal,
-  TrendingUp,
-} from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
+import {
+  IconProcessUnderstand,
+  IconProcessDefine,
+  IconProcessDevelop,
+  IconProcessEvolve,
+} from "@/components/icons";
 
 const steps = [
   {
-    icon: Search,
+    Icon: IconProcessUnderstand,
     step: "01",
     title: "Entendemos",
     handle: "DIAGNÓSTICO & CONTEXTO",
     description: "Conhecemos o problema, o contexto e os objetivos do negócio.",
   },
   {
-    icon: FileCode2,
+    Icon: IconProcessDefine,
     step: "02",
     title: "Definimos",
     handle: "ESCOPO & PRIORIDADES",
     description: "Transformamos necessidades em escopo, prioridades e abordagem.",
   },
   {
-    icon: Terminal,
+    Icon: IconProcessDevelop,
     step: "03",
     title: "Desenvolvemos",
     handle: "ENGENHARIA INCREMENTAL",
     description: "Construímos a solução de forma incremental e acompanhada.",
   },
   {
-    icon: TrendingUp,
+    Icon: IconProcessEvolve,
     step: "04",
     title: "Evoluímos",
     handle: "SUSTENTAÇÃO & CRESCIMENTO",
@@ -57,7 +57,7 @@ const HowWeWork = () => {
         .hww-pipeline-wrapper {
           position: relative;
           width: 100%;
-          margin: 3.5rem 0 4.5rem;
+          margin: 3rem 0 4.5rem;
         }
 
         .hww-pipeline {
@@ -135,7 +135,7 @@ const HowWeWork = () => {
           border-radius: 12px;
           border: 1px solid hsl(var(--border));
           background: hsl(var(--card));
-          padding: 1.3rem 1.1rem;
+          padding: 1.35rem 1.15rem;
           display: flex;
           flex-direction: column;
           gap: 0.65rem;
@@ -191,19 +191,6 @@ const HowWeWork = () => {
           flex-shrink: 0;
         }
 
-        .hww-icon-wrap {
-          width: 32px; height: 32px;
-          border-radius: 10px;
-          background: hsl(var(--primary) / 0.1);
-          border: 1px solid hsl(var(--primary) / 0.15);
-          display: flex; align-items: center; justify-content: center;
-          flex-shrink: 0;
-          transition: background 0.25s;
-        }
-        .hww-card:hover .hww-icon-wrap {
-          background: hsl(var(--primary) / 0.18);
-        }
-
         .hww-card-title {
           font-size: 0.92rem;
           font-weight: 600;
@@ -243,12 +230,11 @@ const HowWeWork = () => {
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
 
         <div className="container px-6">
-          {/* ── Header ── */}
+          {/* ── Header Padronizado Centralizado ── */}
           <motion.div
             initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
             animate={isInView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: shouldReduceMotion ? 0 : 0.55 }}
-            className="mb-10"
           >
             <SectionHeader
               id="como-trabalhamos-heading"
@@ -324,9 +310,12 @@ const HowWeWork = () => {
                     aria-hidden="true"
                   />
 
-                  {/* step number badge */}
-                  <div className="flex items-center gap-2 mb-1">
+                  {/* Topo do card: Selo numérico e Ícone Autoral elegante */}
+                  <div className="flex items-center justify-between mb-1">
                     <span className="hww-step-num" aria-hidden="true">{item.step}</span>
+                    <div className="text-zinc-600 dark:text-zinc-300">
+                      <item.Icon size={20} aria-hidden="true" />
+                    </div>
                   </div>
 
                   {/* title */}
@@ -340,14 +329,6 @@ const HowWeWork = () => {
 
                   {/* description */}
                   <p className="hww-card-desc">{item.description}</p>
-
-                  {/* icon at bottom */}
-                  <div className="hww-icon-wrap mt-auto" aria-hidden="true">
-                    <item.icon
-                      size={16}
-                      className="text-primary"
-                    />
-                  </div>
                 </motion.li>
               ))}
             </ol>

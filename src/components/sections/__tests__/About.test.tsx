@@ -21,10 +21,10 @@ describe('About Component', () => {
   it('renders about header and description with truthful leadership attribution', () => {
     render(<About />);
 
-    expect(screen.getByText(/Sobre a EPM DevTech/i)).toBeInTheDocument();
+    expect(screen.getByText(/Sobre a empresa/i)).toBeInTheDocument();
     expect(screen.getByText(/Engenharia de software com visão de negócio/i)).toBeInTheDocument();
     expect(screen.getByText(/A EPM DevTech é uma software house dedicada/i)).toBeInTheDocument();
-    expect(screen.getByText(/mais de 9 anos de experiência técnica em projetos corporativos/i)).toBeInTheDocument();
+    expect(screen.getByText(/mais de 9 anos de experiência prática em projetos corporativos/i)).toBeInTheDocument();
   });
 
   it('renders single consolidated technical leadership stat (+9 Anos)', () => {
@@ -35,13 +35,13 @@ describe('About Component', () => {
 
     expect(stats[0]).toHaveTextContent('+');
     expect(stats[0]).toHaveTextContent('9');
-    expect(stats[0]).toHaveTextContent('Anos de Experiência Técnica');
+    expect(stats[0]).toHaveTextContent(/anos de experiência técnica/i);
   });
 
   it('renders the founder and technical leadership card soberly', () => {
     render(<About />);
 
-    expect(screen.getByText(/Fundador & Liderança Técnica/i)).toBeInTheDocument();
+    expect(screen.getByText(/Fundador e liderança técnica/i)).toBeInTheDocument();
     expect(screen.getByText('Elessandro Prestes Macedo')).toBeInTheDocument();
     expect(screen.getByText(/Atua na arquitetura, escolha tecnológica e condução técnica dos projetos/i)).toBeInTheDocument();
     expect(screen.getByText(/Arquitetura de software & governança técnica/i)).toBeInTheDocument();
@@ -50,7 +50,7 @@ describe('About Component', () => {
   it('renderiza corretamente quando useInView retorna false (antes de entrar no viewport)', () => {
     mockUseInView.mockReturnValueOnce(false);
     render(<About />);
-    expect(screen.getByText(/Sobre a EPM DevTech/i)).toBeInTheDocument();
+    expect(screen.getByText(/Sobre a empresa/i)).toBeInTheDocument();
     expect(screen.getByText(/Engenharia de software com visão de negócio/i)).toBeInTheDocument();
   });
 });

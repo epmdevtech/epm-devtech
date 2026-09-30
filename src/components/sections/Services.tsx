@@ -113,7 +113,7 @@ function MockMaintenance() {
 const services = [
   {
     visual: <MockBrowser />,
-    title: "Sistemas Web, Portais e Sites Institucionais",
+    title: "Sistemas web, portais e sites institucionais",
     trigger: "Precisa criar um sistema novo, um portal ou um site institucional que represente bem a sua empresa?",
     problem: "Precisa criar um sistema novo, um portal ou um site institucional que represente bem a sua empresa?",
     description: "Aplicações web sob medida, portais e sites institucionais: sistemas de gestão internos, plataformas e presença digital com foco em credibilidade, desempenho e acessibilidade.",
@@ -121,7 +121,7 @@ const services = [
   },
   {
     visual: <MockAPI />,
-    title: "APIs & Back-end Escalável",
+    title: "APIs & back-end escalável",
     trigger: "Seu sistema sofre com lentidão em horários de pico ou precisa centralizar regras?",
     problem: "Seu sistema sofre com lentidão em horários de pico ou precisa centralizar regras?",
     description: "Desenvolvimento de APIs RESTful e serviços de alta disponibilidade para sustentar aplicações, integrar operações e centralizar regras de negócio sob carga contínua.",
@@ -129,7 +129,7 @@ const services = [
   },
   {
     visual: <MockIntegration />,
-    title: "Integrações entre Sistemas",
+    title: "Integrações entre sistemas",
     trigger: "Sua operação perde tempo com processos manuais porque seus sistemas não conversam?",
     problem: "Sua operação perde tempo com processos manuais porque seus sistemas não conversam?",
     description: "Conexão segura entre ERPs, CRMs, plataformas e serviços externos, com foco em confiabilidade e consistência dos dados.",
@@ -137,7 +137,7 @@ const services = [
   },
   {
     visual: <MockMaintenance />,
-    title: "Modernização & Evolução de Legados",
+    title: "Modernização & evolução de legados",
     trigger: "Tem um sistema legado essencial que já não acompanha a velocidade da operação?",
     problem: "Tem um sistema legado essencial que já não acompanha a velocidade da operação?",
     description: "Refatoração e migração gradual de plataformas legadas, reduzindo custos de manutenção e dívida técnica de forma incremental, reduzindo o risco de interrupção da operação.",

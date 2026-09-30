@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
-import { CheckCircle2, Clock, ShieldCheck, Send, Loader2, Maximize2 } from "lucide-react";
+import { CheckCircle2, Send, Loader2, Maximize2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { Input } from "@/components/ui/input";
@@ -27,6 +27,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { formatBrazilianPhone, validateBrazilianPhone } from "@/lib/phone";
+import {
+  IconTechnicalDiagnostic,
+  IconFastResponse,
+  IconConfidentiality,
+} from "@/components/icons";
 
 const formSchema = z.object({
   name: z.string().trim().min(3, "Informe seu nome completo"),
@@ -51,20 +56,20 @@ const PROJECT_TYPES = [
 
 const nextSteps = [
   {
-    icon: CheckCircle2,
-    title: "Diagnóstico Técnico",
+    Icon: IconTechnicalDiagnostic,
+    title: "Diagnóstico técnico",
     description:
       "Avaliamos seu cenário, gargalos e viabilidade arquitetural logo no primeiro contato.",
   },
   {
-    icon: Clock,
-    title: "Retorno em até 24 Horas Úteis",
+    Icon: IconFastResponse,
+    title: "Retorno em até 24 horas úteis",
     description:
       "Resposta objetiva para agendarmos uma conversa.",
   },
   {
-    icon: ShieldCheck,
-    title: "Sigilo e Confidencialidade",
+    Icon: IconConfidentiality,
+    title: "Sigilo e confidencialidade",
     description:
       "Suas ideias, dados e regras de negócio tratados com confidencialidade, com NDA quando solicitado.",
   },
@@ -411,8 +416,8 @@ const Contact = () => {
               <div className="flex flex-col gap-6">
                 {nextSteps.map((item) => (
                   <div key={item.title} className="flex items-start gap-4 group">
-                    <div className="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center text-emerald-400 shrink-0 group-hover:bg-zinc-700/80 transition-colors">
-                      <item.icon className="w-5 h-5" />
+                    <div className="w-10 h-10 rounded-xl border border-zinc-700/80 bg-zinc-800/60 flex items-center justify-center text-zinc-300 shrink-0 group-hover:border-primary/50 group-hover:text-primary transition-colors">
+                      <item.Icon size={20} aria-hidden="true" />
                     </div>
                     <div className="min-w-0 flex-1">
                       <h4 className="text-sm font-semibold text-white mb-1">

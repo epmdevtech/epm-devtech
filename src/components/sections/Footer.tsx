@@ -16,18 +16,18 @@ import { LegalLinks } from "@/components/legal/LegalModals";
 const CONTACT_EMAIL = "elessandro@epmdevtech.com.br";
 
 const SOLUTIONS_LINKS = [
-  { label: "Sistemas, Portais e Sites", href: "#servicos" },
-  { label: "APIs & Back-end Escalável", href: "#servicos" },
-  { label: "Integrações entre Sistemas", href: "#servicos" },
-  { label: "Modernização de Legados", href: "#servicos" },
+  { label: "Sistemas, portais e sites", href: "#servicos" },
+  { label: "APIs e back-end escalável", href: "#servicos" },
+  { label: "Integrações entre sistemas", href: "#servicos" },
+  { label: "Modernização de legados", href: "#servicos" },
 ];
 
 const NAVIGATION_LINKS = [
   { label: "Serviços", href: "#servicos" },
-  { label: "Como Trabalhamos", href: "#como-trabalhamos" },
+  { label: "Como trabalhamos", href: "#como-trabalhamos" },
   { label: "Diferenciais", href: "#diferenciais" },
-  { label: "Sobre a Empresa", href: "#sobre" },
-  { label: "Dúvidas Frequentes", href: "#faq" },
+  { label: "Sobre a empresa", href: "#sobre" },
+  { label: "Dúvidas frequentes", href: "#faq" },
   { label: "Falar sobre meu projeto", href: "#contato" },
 ];
 

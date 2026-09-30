@@ -22,7 +22,7 @@ vi.mock('framer-motion', () => ({
 describe('Technologies Component', () => {
   it('renders section eyebrow and heading with TechConstellation', () => {
     render(<Technologies />);
-    expect(screen.getByText(/Stack & Ferramentas/i)).toBeInTheDocument();
+    expect(screen.getByText(/Stack e ferramentas/i)).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent(/Tecnologias que usamos para construir soluções/i);
     expect(screen.getByTestId('tech-constellation')).toBeInTheDocument();
   });
@@ -51,7 +51,7 @@ describe('Technologies Component', () => {
   it('renderiza corretamente quando useInView retorna false (antes de entrar no viewport)', () => {
     mockUseInView.mockReturnValueOnce(false);
     render(<Technologies />);
-    expect(screen.getByText(/Stack & Ferramentas/i)).toBeInTheDocument();
+    expect(screen.getByText(/Stack e ferramentas/i)).toBeInTheDocument();
     expect(screen.getByTestId('tech-constellation')).toBeInTheDocument();
   });
 });

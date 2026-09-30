@@ -67,9 +67,9 @@ describe('Differentials Component', () => {
     expect(list.tagName.toLowerCase()).toBe('ul');
 
     const titles = [
-      'Comunicação Transparente',
-      'Engenharia que Facilita Evoluir',
-      'Foco no Problema do Negócio',
+      'Comunicação transparente',
+      'Engenharia que facilita evoluir',
+      'Foco no problema do negócio',
     ];
 
     titles.forEach((title) => {
@@ -107,7 +107,7 @@ describe('Differentials Component', () => {
     render(<Differentials />);
 
     expect(screen.getByText('Por que trabalhar com a EPM DevTech')).toBeInTheDocument();
-    expect(screen.getByText('Comunicação Transparente')).toBeInTheDocument();
+    expect(screen.getByText('Comunicação transparente')).toBeInTheDocument();
   });
 
   it('renders correctly before entering viewport', () => {
@@ -115,6 +115,6 @@ describe('Differentials Component', () => {
     render(<Differentials />);
 
     expect(screen.getByText('Por que trabalhar com a EPM DevTech')).toBeInTheDocument();
-    expect(screen.getByText('Comunicação Transparente')).toBeInTheDocument();
+    expect(screen.getByText('Comunicação transparente')).toBeInTheDocument();
   });
 });
