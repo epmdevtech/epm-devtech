@@ -20,10 +20,13 @@ describe('Authority / Trust Bar Component', () => {
     expect(screen.getByText(/Experiência e contexto/i)).toBeInTheDocument();
     expect(screen.getByText('Experiência em operações que não podem parar')).toBeInTheDocument();
     expect(
-      screen.getByText('Resultados de projetos anteriores da liderança técnica da EPM DevTech.')
+      screen.getByText('Resultados de projetos da liderança técnica da EPM DevTech em outras empresas.')
     ).toBeInTheDocument();
     expect(
       screen.queryByText(/conduzidos pela liderança técnica/i)
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(/projetos anteriores/i)
     ).not.toBeInTheDocument();
   });
 

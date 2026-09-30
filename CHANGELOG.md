@@ -9,6 +9,19 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.57-metricas-lideranca-outras-empresas-links-sociais] - 2026-09-30
+
+### Adicionado
+- **`specs/SPEC-057-metricas-lideranca-outras-empresas-links-sociais.md`**: Especificação do refinamento factual da seção de autoridade e consolidação de links sociais oficiais no rodapé.
+- **`tasks/TASK-057-metricas-lideranca-outras-empresas-links-sociais.md`**: Tarefa SDD rastreada com escopo e checklist de execução.
+- **`reviews/QA-057.md`**: Relatório de QA com evidências, quality gates (100% aprovados, cobertura 99.46%, 18 testes E2E) e auditoria de segurança.
+
+### Modificado
+- **`src/components/sections/Authority.tsx`**:
+  - Subtítulo refinado para *"Resultados de projetos da liderança técnica da EPM DevTech em outras empresas."*, eliminando a palavra "anteriores" para precisão temporal com a data de fundação da empresa.
+- **`src/components/sections/__tests__/Authority.test.tsx`**:
+  - Atualização dos matchers unitários para validar a nova legenda e garantir a ausência de "conduzidos" e "projetos anteriores".
+
 ## [0.0.56-copy-stats-ssr-destaque-quando-precisa] - 2026-09-30
 
 ### Adicionado

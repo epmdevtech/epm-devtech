@@ -59,7 +59,7 @@ const Authority = () => {
           <SectionHeader
             tagline="Experiência e contexto"
             title="Experiência em operações que não podem parar"
-            subtitle="Resultados de projetos anteriores da liderança técnica da EPM DevTech."
+            subtitle="Resultados de projetos da liderança técnica da EPM DevTech em outras empresas."
             titleClassName="text-2xl sm:text-3xl"
           />
 
