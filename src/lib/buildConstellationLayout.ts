@@ -291,7 +291,7 @@ export const DEFAULT_CONSTELLATION_CATEGORIES: Category[] = [
       {
         name: "Laravel",
         icon: `${DI}/laravel/laravel-original.svg`,
-        description: "Framework PHP de excelência para desenvolvimento ágil de sistemas escaláveis.",
+        description: "Framework PHP para desenvolvimento ágil de sistemas escaláveis.",
       },
       {
         name: "Symfony",
@@ -357,7 +357,7 @@ export const DEFAULT_CONSTELLATION_CATEGORIES: Category[] = [
       {
         name: "AWS",
         icon: `${DI}/amazonwebservices/amazonwebservices-original-wordmark.svg`,
-        description: "Nuvem líder com alta disponibilidade, computação distribuída, SQS e infraestrutura resiliente.",
+        description: "Plataforma em nuvem com alta disponibilidade, computação distribuída, SQS e infraestrutura resiliente.",
       },
       {
         name: "Azure",

@@ -70,7 +70,7 @@ export function LegalLinks({ className }: LegalLinksProps) {
                 <h4 className="font-semibold text-zinc-900 dark:text-white mb-1">2. Objeto e Finalidade</h4>
                 <p>
                   O objetivo deste portal institucional é apresentar as competências técnicas, casos de sucesso,
-                  serviços especializados de engenharia de software sob medida, desenvolvimento web/APIs e modernização
+                  serviços de engenharia de software sob medida, desenvolvimento web/APIs e modernização
                   de sistemas legados oferecidos pela EPM DEVTECH, bem como fornecer um canal direto e seguro de contato.
                 </p>
               </section>

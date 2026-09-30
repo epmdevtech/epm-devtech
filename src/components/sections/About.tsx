@@ -1,107 +1,22 @@
-import React, { useRef, useEffect } from "react";
+import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { IconTechLeadership } from "@/components/icons";
 
-/* ─────────────────────────────────────────────────────────────
-   ANIMATED STAT & COUNT UP
-───────────────────────────────────────────────────────────── */
-const CountUp = ({
-  isCounting,
-  end,
-  duration,
-  decimals = 0,
-}: {
-  isCounting: boolean;
-  end: number;
-  duration: number;
-  decimals?: number;
-}) => {
-  const spanRef = useRef<HTMLSpanElement>(null);
-
-  useEffect(() => {
-    if (!isCounting) return;
-
-    const formatVal = (v: number) => {
-      if (decimals > 0) {
-        return v.toFixed(decimals).replace(".", ",");
-      }
-      return String(Math.floor(v));
-    };
-
-    if (process.env.NODE_ENV === "test") {
-      if (spanRef.current) spanRef.current.textContent = formatVal(end);
-      return;
-    }
-
-    let startTime: number | null = null;
-    let animationFrame: number;
-
-    const step = (timestamp: number) => {
-      if (!startTime) startTime = timestamp;
-      const progress = timestamp - startTime;
-      const ratio = Math.min(progress / (duration * 1000), 1);
-      const easeOut = 1 - (1 - ratio) * (1 - ratio);
-
-      if (spanRef.current) {
-        spanRef.current.textContent = formatVal(easeOut * end);
-      }
-
-      if (progress < duration * 1000) {
-        animationFrame = requestAnimationFrame(step);
-      } else {
-        if (spanRef.current) spanRef.current.textContent = formatVal(end);
-      }
-    };
-
-    animationFrame = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(animationFrame);
-  }, [isCounting, end, duration, decimals]);
-
-  return <span ref={spanRef}>0</span>;
-};
-
-interface AnimatedStatProps {
-  value: number;
+interface StaticStatProps {
+  value: string;
   label: string;
-  prefix?: string;
-  suffix?: string;
-  decimals?: number;
-  delay?: number;
 }
 
-const AnimatedStat = ({
-  value,
-  label,
-  prefix = "",
-  suffix = "",
-  decimals = 0,
-  delay = 0,
-}: AnimatedStatProps) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.1, margin: "0px" });
-
+const StaticStat = ({ value, label }: StaticStatProps) => {
   return (
-    <div ref={ref} className="flex flex-col-reverse justify-end gap-2 group" data-testid="animated-stat">
+    <div className="flex flex-col-reverse justify-end gap-2 group" data-testid="animated-stat">
       <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary flex items-baseline leading-none drop-shadow-sm">
-        {prefix}
-        <motion.span
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={inView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ duration: 0.5, delay }}
-        >
-          <CountUp isCounting={inView} end={value} duration={2} decimals={decimals} />
-        </motion.span>
-        {suffix}
+        {value}
       </div>
-      <motion.div
-        className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.12em] text-muted-foreground/80"
-        initial={{ opacity: 0, y: 4 }}
-        animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 4 }}
-        transition={{ duration: 0.4 }}
-      >
+      <div className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.12em] text-muted-foreground/80">
         {label}
-      </motion.div>
+      </div>
     </div>
   );
 };
@@ -146,9 +61,9 @@ const About = () => {
               Fundada e liderada tecnicamente por Elessandro Prestes Macedo, que traz mais de 9 anos de experiência prática em projetos corporativos, a empresa atua com foco em escopo bem definido, comunicação transparente e entregas previsíveis a cada ciclo.
             </p>
 
-            {/* Indicador Único de Experiência Técnica da Liderança */}
+            {/* Indicador Único de Experiência Técnica da Liderança (Estático) */}
             <div className="mt-8 pt-8 border-t border-border/50 max-w-xs">
-              <AnimatedStat value={9} prefix="+" label="anos de experiência técnica" delay={0.1} />
+              <StaticStat value="+9" label="anos de experiência técnica" />
             </div>
           </motion.div>
 

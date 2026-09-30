@@ -23,7 +23,7 @@ const Technologies = () => {
           <SectionHeader
             tagline="Stack e ferramentas"
             title="Tecnologias que usamos para construir soluções"
-            subtitle="Escolhemos tecnologias de acordo com as necessidades de cada projeto, considerando desempenho, segurança, manutenção e evolução contínua."
+            subtitle="Selecionamos as ferramentas de acordo com as necessidades de cada projeto, considerando desempenho, segurança, manutenção e evolução contínua."
           />
         </motion.div>
 

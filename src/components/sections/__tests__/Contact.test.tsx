@@ -147,7 +147,7 @@ describe('Contact Component', () => {
 
     expect(screen.getByText('Sigilo e confidencialidade')).toBeInTheDocument();
     expect(
-      screen.getByText(/Suas ideias, dados e regras de negócio tratados com confidencialidade, com NDA quando solicitado/i)
+      screen.getByText(/Suas ideias, dados e regras de negócio tratados sob sigilo e proteção, com NDA quando solicitado/i)
     ).toBeInTheDocument();
 
     // Chamada de ação rápida WhatsApp

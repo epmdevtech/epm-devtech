@@ -46,13 +46,13 @@ const FAQ_ITEMS: FAQItem[] = [
     category: "legados",
     question: "Vocês assumem, mantêm ou evoluem sistemas desenvolvidos por outra empresa?",
     answer:
-      "Sim. Iniciamos com uma avaliação técnica na base de código existente para mapear arquitetura, gargalos de performance e dependências críticas. A partir desse diagnóstico, estabelecemos um plano para estabilização, resolução de gargalos, manutenção contínua ou evolução do sistema.",
+      "Sim. Iniciamos com uma avaliação técnica na base de código existente para mapear arquitetura, gargalos de performance e dependências críticas. A partir desse diagnóstico, estabelecemos um plano para estabilização, otimização de desempenho, manutenção contínua ou evolução do sistema.",
   },
   {
     category: "legados",
     question: "É possível modernizar um sistema legado sem interromper a operação?",
     answer:
-      "Sim. Trabalhamos com estratégias de migração gradual: novos módulos são desenvolvidos e colocados em produção progressivamente, de forma incremental, reduzindo o risco de interrupção nas operações diárias da sua empresa.",
+      "Sim. Trabalhamos com estratégias de migração gradual: novos módulos são desenvolvidos e colocados em produção progressivamente, com evolução incremental e menor risco de interrupção nas operações diárias da sua empresa.",
   },
 
   // ── Categoria: Processo & Engenharia ────────────────────────────────

@@ -140,7 +140,7 @@ const services = [
     title: "Modernização & evolução de legados",
     trigger: "Tem um sistema legado essencial que já não acompanha a velocidade da operação?",
     problem: "Tem um sistema legado essencial que já não acompanha a velocidade da operação?",
-    description: "Refatoração e migração gradual de plataformas legadas, reduzindo custos de manutenção e dívida técnica de forma incremental, reduzindo o risco de interrupção da operação.",
+    description: "Refatoração e migração gradual de plataformas legadas, reduzindo custos de manutenção e dívida técnica, com evolução incremental e menor risco de interrupção da operação.",
     accent: "#10b981",
   },
 ];
@@ -294,7 +294,7 @@ const Services = () => {
             {services.map((service, index) => (
               <motion.div
                 key={service.title}
-                className="svc-card"
+                className="svc-card flex flex-col h-full"
                 initial={{ opacity: 0, y: 24 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: index * 0.08 }}
@@ -314,7 +314,7 @@ const Services = () => {
                 </div>
 
                 {/* Text area */}
-                <div style={{ padding: "18px 22px 22px" }}>
+                <div className="flex flex-col flex-1 p-5 sm:p-6">
                   <h3 style={{
                     fontFamily: "'Geist', sans-serif",
                     fontSize: "0.95rem",
@@ -331,14 +331,16 @@ const Services = () => {
                     fontSize: "0.75rem",
                     color: "hsl(var(--muted-foreground))",
                     lineHeight: 1.65,
-                    marginBottom: 10,
+                    marginBottom: 14,
                   }}>
                     {service.description}
                   </p>
-                  <div className="pt-2.5 border-t border-border/40 flex items-start gap-1.5 text-[11px] font-mono text-muted-foreground/90">
-                    <span className="text-primary font-semibold shrink-0">Quando precisa:</span>
-                    <span className="line-clamp-2">{service.trigger}</span>
-                  </div>
+                  <p className="mt-auto pt-3.5 border-t border-border/50 text-[12.5px] leading-relaxed text-foreground font-medium">
+                    <span className="font-mono text-[10.5px] uppercase tracking-wider text-emerald-600 dark:text-emerald-400 font-semibold block mb-1">
+                      Quando precisa:
+                    </span>
+                    {service.trigger}
+                  </p>
                 </div>
               </motion.div>
             ))}

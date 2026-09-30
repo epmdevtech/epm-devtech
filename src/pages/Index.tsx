@@ -20,7 +20,9 @@ const FAQ          = lazy(() => import("@/components/sections/FAQ"));
 const Contact      = lazy(() => import("@/components/sections/Contact"));
 const Footer       = lazy(() => import("@/components/sections/Footer"));
 
-const BASE_URL = "https://epmdevtech.com.br";
+import { SITE_CONFIG } from "@/config/site";
+
+const BASE_URL = SITE_CONFIG.url;
 
 interface SeoMeta {
   title: string;

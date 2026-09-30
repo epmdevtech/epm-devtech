@@ -58,7 +58,7 @@ describe('Footer Component', () => {
     render(<Footer />);
     expect(screen.getAllByAltText('EPM DEVTECH').length).toBeGreaterThan(0);
     expect(
-      screen.getByText(/Desenvolvimento de software sob medida, APIs escaláveis e modernização/i)
+      screen.getByText(/Software house dedicada a software sob medida, APIs escaláveis e modernização/i)
     ).toBeInTheDocument();
     expect(screen.getByText('Toledo, Paraná.')).toBeInTheDocument();
 
@@ -94,16 +94,25 @@ describe('Footer Component', () => {
     expect(screen.queryByText('Retorno técnico em até 24 horas úteis')).not.toBeInTheDocument();
   });
 
-  it('renders social links for GitHub and LinkedIn', () => {
+  it('renders official social links for GitHub and LinkedIn in column 4 with correct labels and targets', () => {
     render(<Footer />);
-    expect(screen.getByLabelText(/Perfil da EPM DEVTECH no GitHub/i)).toHaveAttribute(
+    const linkedInLink = screen.getByLabelText(/LinkedIn da EPM DevTech \(abre em nova aba\)/i);
+    expect(linkedInLink).toHaveAttribute(
       'href',
-      'https://github.com/ElessandroPrestes'
+      'https://www.linkedin.com/company/112232713/'
     );
-    expect(screen.getByLabelText(/Perfil da EPM DEVTECH no LinkedIn/i)).toHaveAttribute(
+    expect(linkedInLink).toHaveAttribute('target', '_blank');
+    expect(linkedInLink).toHaveAttribute('rel', 'noopener noreferrer');
+    expect(screen.getByText('LinkedIn')).toBeInTheDocument();
+
+    const githubLink = screen.getByLabelText(/GitHub da EPM DevTech \(abre em nova aba\)/i);
+    expect(githubLink).toHaveAttribute(
       'href',
-      'https://www.linkedin.com/in/elessandro-prestes-macedo/'
+      'https://github.com/epmdevtech'
     );
+    expect(githubLink).toHaveAttribute('target', '_blank');
+    expect(githubLink).toHaveAttribute('rel', 'noopener noreferrer');
+    expect(screen.getByText('GitHub')).toBeInTheDocument();
   });
 
   it('renders copyright with CNPJ and legal links in sub-footer, without obsolete value phrase', () => {

@@ -16,14 +16,14 @@
 - **Website:** https://epmdevtech.com.br
 - **E-mail:** elessandro@epmdevtech.com.br
 - **WhatsApp Oficial:** +55 (45) 99917-8290
-- **GitHub:** https://github.com/ElessandroPrestes
-- **LinkedIn:** https://www.linkedin.com/in/elessandro-prestes-macedo/
+- **GitHub:** https://github.com/epmdevtech
+- **LinkedIn:** https://www.linkedin.com/company/112232713/
 
 ---
 
 ## Missão e Proposta de Valor
 
-A EPM DEVTECH projeta, desenvolve e moderniza softwares sob medida com excelência de engenharia.
+A EPM DEVTECH projeta, desenvolve e moderniza softwares sob medida com rigor de engenharia.
 Nossa bagagem técnica foi consolidada na linha de frente de operações de grande porte, desenvolvendo
 arquiteturas distribuídas, APIs de alto rendimento e refatorações complexas em setores como
 educação federal, energia elétrica, indústria manufatureira, e-commerce e governo.
@@ -64,14 +64,14 @@ A experiência do site institucional da EPM DEVTECH é estruturada em uma jornad
 - **Solução EPM DEVTECH:** Arquitetura de microsserviços desacoplados, pipelines de checkout de alta conversão com tolerância a picos de tráfego e sincronização instantânea de estoques distribuídos.
 
 ### 3. Educação
-- **Contexto Operacional:** Plataformas acadêmicas federais e estaduais com ampla distribuição territorial e alto volume simultâneo.
+- **Contexto Operacional:** Plataformas acadêmicas com ampla distribuição territorial e alto volume simultâneo.
 - **Desafio e Problema:** Instabilidade técnica durante períodos de inscrições e matrículas, processamento ineficiente de dados e risco de não conformidade com a LGPD.
-- **Solução EPM DEVTECH:** Plataformas escaláveis de gestão acadêmica e fomento científico, preparadas para dezenas de milhares de usuários simultâneos com segurança avançada (como demonstrado nos sistemas da CAPES e MEC).
+- **Solução EPM DEVTECH:** Plataformas escaláveis de gestão acadêmica e fomento, preparadas para dezenas de milhares de usuários simultâneos com segurança avançada.
 
 ### 4. Energia
-- **Contexto Operacional:** Operações de geração, transmissão e monitoramento em tempo real do sistema elétrico nacional.
-- **Desafio e Problema:** Risco regulatório e multas severas geradas por inconsistência de dados, lentidão na apuração e falhas no cálculo de despacho energético.
-- **Solução EPM DEVTECH:** Sistemas de alta disponibilidade com 99,9% de uptime garantido, auditoria estrita de transações, mensageria resiliente e cálculo regulatório seguro (referência: Projetos ONS e Energia Pecém).
+- **Contexto Operacional:** Operações de geração, transmissão e monitoramento do setor elétrico.
+- **Desafio e Problema:** Risco regulatório e penalidades geradas por inconsistência de dados, lentidão na apuração e falhas no cálculo de despacho energético.
+- **Solução EPM DEVTECH:** Sistemas de alta disponibilidade com 99,9% de disponibilidade assegurada, auditoria estrita de transações, mensageria resiliente e cálculo regulatório seguro.
 
 ---
 
@@ -80,17 +80,17 @@ A experiência do site institucional da EPM DEVTECH é estruturada em uma jornad
 ### 1. Desenvolvimento de Sistemas Web e SPAs
 - **Descrição:** Aplicações web modernas, Single Page Applications e portais corporativos complexos construídos com React, TypeScript, Next.js e Vite.
 - **Diferenciais:** Design acessível (WCAG 2.1 AA), aderência aos Core Web Vitals, testes automatizados e integração contínua.
-- **Resultados de Referência:** Modernização do SIPREC (CAPES/MEC), atendendo mais de 448 Instituições de Ensino Superior com latência abaixo de 300ms.
+- **Resultados de Referência:** Modernização de plataformas corporativas atendendo centenas de instituições com latência abaixo de 300ms.
 
 ### 2. APIs REST e Backends Escaláveis
 - **Descrição:** Design e implementação de APIs RESTful e GraphQL preparadas para alto volume transacional, com segurança de ponta a ponta.
 - **Diferenciais:** Autenticação robusta (OAuth2, JWT), rate limiting inteligente, cache distribuído com Redis e documentação Swagger/OpenAPI.
-- **Resultados de Referência:** Throughput comprovado de 2.500+ RPS em produção na educação federal, com 100% de integridade transacional na apuração regulatória do setor elétrico (ONS).
+- **Resultados de Referência:** Throughput comprovado de 2.500 RPS em produção, com 100% de integridade transacional na apuração regulatória do setor elétrico.
 
 ### 3. Modernização de Sistemas Legados
 - **Descrição:** Migração técnica de monólitos antigos para microsserviços modernos com zero indisponibilidade operacional.
 - **Diferenciais:** Utilização da técnica Strangler Fig Pattern, mapeamento prévio de dependências e cobertura de testes automatizados superior a 90%.
-- **Resultados de Referência:** Eliminação de mais de 56.400 linhas de código legado e redução de 40% em retrabalho operacional em projetos gerenciados.
+- **Resultados de Referência:** Redução substancial de custos operacionais e dívida técnica em sistemas modernizados.
 
 ### 4. Arquitetura de Software
 - **Descrição:** Desenho de estruturas de software escaláveis e sustentáveis antes da implementação de código.
@@ -100,7 +100,7 @@ A experiência do site institucional da EPM DEVTECH é estruturada em uma jornad
 ### 5. DevOps e Cloud Computing
 - **Descrição:** Criação de esteiras seguras de entrega contínua (CI/CD) e provisionamento de infraestrutura em nuvem resiliente.
 - **Diferenciais:** Infraestrutura como Código (IaC), orquestração de containers com Docker e Kubernetes, monitoramento ativo e rollback automatizado.
-- **Resultados de Referência:** Redução de 60% no tempo de deploy em produção no Projeto GENIN/ONS e redução de 45% em incidentes com observabilidade em nuvem.
+- **Resultados de Referência:** Automação de esteiras com redução drástica no tempo de deploy e maior observabilidade em nuvem.
 
 ### 6. Consultoria Técnica e Code Review
 - **Descrição:** Diagnóstico profundo da qualidade de software, arquitetura e segurança de aplicações existentes.
@@ -112,62 +112,58 @@ A experiência do site institucional da EPM DEVTECH é estruturada em uma jornad
 ## Stack Tecnológica Completa
 
 ### Backend
-| Tecnologia | Nível de Especialidade | Aplicação |
+| Tecnologia | Nível de Proficiência | Aplicação |
 |------------|------------------------|-----------|
-| PHP 8.x | Especialista | APIs corporativas, microsserviços e sistemas web de missão crítica |
-| Laravel | Especialista | Framework primário para regras de negócio e integrações robustas |
+| PHP 8.x | Avançado | APIs corporativas, microsserviços e sistemas web de missão crítica |
+| Laravel | Avançado | Framework primário para regras de negócio e integrações robustas |
 | Symfony | Avançado | Componentes reutilizáveis em projetos de alta escala |
-| Node.js | Especialista | Microsserviços orientados a eventos e comunicação em tempo real |
-| TypeScript | Especialista | Tipagem estrita ponta a ponta no backend e frontend |
+| Node.js | Avançado | Microsserviços orientados a eventos e comunicação em tempo real |
+| TypeScript | Avançado | Tipagem estrita ponta a ponta no backend e frontend |
 | NestJS | Avançado | Estrutura enterprise modular e injeção de dependências |
 | Python | Intermediário | Automações, scripts de extração e suporte a processamento de dados |
 
 ### Frontend
-| Tecnologia | Nível de Especialidade | Aplicação |
+| Tecnologia | Nível de Proficiência | Aplicação |
 |------------|------------------------|-----------|
-| React 18 | Especialista | SPAs dinâmicas, interfaces corporativas e portais administrativos |
-| TypeScript | Especialista | Garantia de robustez e prevenção de erros em tempo de compilação |
-| Vite | Especialista | Build tool de alta velocidade e bundles otimizados para produção |
-| Tailwind CSS | Especialista | Estilização utilitária atômica de alto desempenho |
-| shadcn/ui | Especialista | Componentes modulares, estilizáveis e acessíveis por teclado e leitores |
+| React 18 | Avançado | SPAs dinâmicas, interfaces corporativas e portais administrativos |
+| TypeScript | Avançado | Garantia de robustez e prevenção de erros em tempo de compilação |
+| Vite | Avançado | Build tool de alta velocidade e bundles otimizados para produção |
+| Tailwind CSS | Avançado | Estilização utilitária atômica de alto desempenho |
+| shadcn/ui | Avançado | Componentes modulares, estilizáveis e acessíveis por teclado e leitores |
 | Next.js | Avançado | Aplicações híbridas com renderização no servidor quando exigido |
 | Framer Motion | Avançado | Microinterações e animações fluidas respeitando acessibilidade |
 
 ### Bancos de Dados e Armazenamento
-| Tecnologia | Nível de Especialidade | Aplicação |
+| Tecnologia | Nível de Proficiência | Aplicação |
 |------------|------------------------|-----------|
-| PostgreSQL | Especialista | Banco relacional prioritário para consistência e alta concorrência |
-| MySQL / MariaDB | Especialista | Ambientes corporativos e bases legadas de grande porte |
+| PostgreSQL | Avançado | Banco relacional prioritário para consistência e alta concorrência |
+| MySQL / MariaDB | Avançado | Ambientes corporativos e bases legadas de grande porte |
 | Oracle Database | Avançado | Ambientes corporativos legados, procedimentos PL/SQL |
-| Redis | Especialista | Cache em memória distribuído, controle de sessões e rate limiting |
+| Redis | Avançado | Cache em memória distribuído, controle de sessões e rate limiting |
 | MongoDB | Intermediário | Armazenamento de documentos e logs semi-estruturados |
 
 ### Cloud, Infraestrutura e Observabilidade
-| Tecnologia | Nível de Especialidade | Aplicação |
+| Tecnologia | Nível de Proficiência | Aplicação |
 |------------|------------------------|-----------|
-| AWS | Especialista | EC2, RDS, S3, CloudFront, Lambda, SQS, SNS, CloudWatch, API Gateway |
+| AWS | Avançado | EC2, RDS, S3, CloudFront, Lambda, SQS, SNS, CloudWatch, API Gateway |
 | Microsoft Azure | Avançado | Azure Functions, Azure Monitor, IoT Hub |
-| Docker | Especialista | Containerização de ambientes de desenvolvimento e produção |
+| Docker | Avançado | Containerização de ambientes de desenvolvimento e produção |
 | Kubernetes | Avançado | Orquestração e escalabilidade horizontal de containers |
-| GitHub Actions | Especialista | Esteiras automatizadas de teste, build, análise de qualidade e deploy |
-| SonarQube | Especialista | Controle contínuo de cobertura, débitos técnicos e vulnerabilidades |
+| GitHub Actions | Avançado | Esteiras automatizadas de teste, build, análise de qualidade e deploy |
+| SonarQube | Avançado | Controle contínuo de cobertura, débitos técnicos e vulnerabilidades |
 
 ---
 
-## Métricas Factuais e Resultados de Projetos Reais
+## Métricas Factuais e Resultados de Projetos Anteriores da Liderança Técnica
 
-| Métrica Verificada | Impacto Atingido | Projeto / Cliente de Referência |
-|--------------------|------------------|--------------------------------|
-| 2.500+ RPS | Throughput sustentado com resposta média <300ms | SIPREC / CAPES (Educação Federal) |
-| 10.000 Usuários Simultâneos | Estabilidade comprovada em períodos de pico | SIPREC / CAPES |
-| +448 Instituições de Ensino | Atendimento unificado a universidades federais | CAPES / MEC |
-| 650 Escolas em 141 Municípios | Cobertura estadual e conectividade educacional | SEDUC / Governo do Mato Grosso |
-| 99,9% Uptime em Produção | Confiabilidade contínua sem interrupções | ONS e Energia Pecém |
-| 60% Menor Tempo de Deploy | Automação completa de esteiras de entrega contínua | Projeto GENIN / ONS |
-| 50% Maior Capacidade | Aumento no volume de processamento de transações | Projeto SIGMA / Energia Pecém |
-| 56.400 Linhas de Legado Removidas | Eliminação de código obsoleto e dívida técnica | Refatorações de sistemas legados |
-| 2.399 Testes Automatizados | Cobertura ampla garantindo zero regressão | Plataformas consolidadas |
-| 40% Redução de Retrabalho | Qualidade assegurada por especificações técnicas | Metodologia Spec-Driven Development |
+| Métrica Verificada | Impacto Atingido | Contexto Operacional |
+|--------------------|------------------|----------------------|
+| 99,9% | Disponibilidade assegurada em produção | Plataformas críticas de energia e educação |
+| 2.500 RPS | Arquitetura dimensionada para alta vazão | Picos de 10.000 usuários simultâneos |
+| 100% | Integridade de dados na consolidação regulatória | Setor elétrico, sem perda de dados |
+| −35% | Redução de atividades manuais | Automações e integrações em plataforma modernizada |
+
+*(Contexto e detalhes sob solicitação, respeitando a confidencialidade dos projetos.)*
 
 ---
 
@@ -187,7 +183,7 @@ Trabalhamos com dois modelos flexíveis, conforme a necessidade do projeto:
 - Alocação técnica dedicada: modalidade ágil de horas mensais, recomendada para modernização contínua, arquiteturas em evolução e demandas de alta complexidade.
 
 **4. A EPM DEVTECH atende clientes fora de Toledo no Paraná ou no exterior?**
-Sim, atuamos 100% de forma remota. Já construímos plataformas de missão crítica para clientes em Brasília (CAPES e MEC), Ceará (Energia Pecém), Santa Catarina (ONS via AMcom) e Mato Grosso (Governo MT). Mantemos comunicação diária, reuniões semanais de alinhamento e relatórios periódicos de progresso.
+Sim, atuamos 100% de forma remota. Construímos plataformas corporativas e de missão crítica para organizações em múltiplos estados do país. Mantemos comunicação diária, reuniões semanais de alinhamento e relatórios periódicos de progresso.
 
 ### Categoria 2: Sistemas Existentes
 

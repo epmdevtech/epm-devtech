@@ -9,6 +9,81 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.56-copy-stats-ssr-destaque-quando-precisa] - 2026-09-30
+
+### Adicionado
+- **`specs/SPEC-056-copy-stats-ssr-destaque-quando-precisa.md`**: Especificação completa de ajustes textuais, saneamento de termos superlativos não comprovados, SSR/HTML inicial dos stats de autoridade sem zeros e destaque visual do "Quando precisa:".
+- **`tasks/TASK-056-copy-stats-ssr-destaque-quando-precisa.md`**: Tarefa SDD rastreada com escopo de arquivos e checklist de execução.
+- **`reviews/QA-056.md`**: Relatório de QA com evidências, quality gates (100% aprovados, cobertura 99.46%, 18 testes E2E), resultado da varredura grep e repetições saneadas.
+- **`scripts/capture-services-cards.cjs`**: Script automatizado Playwright de captura visual dos cards de serviço antes e depois em 1440px, 768px e 375px (Dark e Light).
+- **`docs/evidence/services-cards/`**: Matriz de capturas comparativas dos cards de serviço.
+
+### Modificado
+- **`src/components/ui/CountUp.tsx`**:
+  - Renderização inicial direta com o valor final formatado (`formatVal(end)`), garantindo que indexadores, leitores de tela e visualizações sem rolagem recebam os valores consolidados.
+  - Animação tratada como progressive enhancement estrito, respeitando `prefers-reduced-motion` e ambiente de teste.
+  - Inclusão do atributo `aria-hidden="true"` por padrão nos elementos visuais do contador.
+- **`src/components/sections/Authority.tsx`**:
+  - Rótulos acessíveis dedicados via `<span className="sr-only">` para cada métrica, eliminando colisões de texto e concatenações espúrias.
+- **`src/components/sections/Services.tsx`**:
+  - Reescrita do Card 4 eliminando repetição do gerúndio "reduzindo".
+  - Destaque visual dos gatilhos "Quando precisa:": rótulo mono verde esmeralda em caixa alta, pergunta com cor primária e peso médio, divisor fino e alinhamento nivelado na base via `mt-auto`.
+  - Remoção de truncamento arbitrário de linhas.
+- **`src/components/sections/hero/HeroArchitecture.tsx`**:
+  - Nó 02 ajustado para "desacoplamento entre serviços" (eliminando repetição de "modular").
+  - Mapeamento dinâmico de legendas de camadas para evitar repetição entre texto do cartão, chips e legenda ativa.
+- **`src/config/site.ts`**, **`public/site.webmanifest`**, **`index.html`**, **`public/llms.txt`**, **`public/llms-full.txt`**, **`README.md`**:
+  - Saneamento da autodescrição de "especializada" para "dedicada a", alinhada ao tom factual do projeto.
+- **`src/components/sections/Differentials.tsx`**, **`Technologies.tsx`**, **`FAQ.tsx`**, **`Contact.tsx`**:
+  - Correção de repetições pontuais de raiz léxica.
+- **`e2e/design-system-and-stability.spec.ts`**:
+  - Novos testes E2E Playwright validando valores finais sem zeros na seção de autoridade sob reduced-motion e com animação inibida.
+
+## [0.0.55-animacao-contadores-autoridade-sobre-estatico] - 2026-09-30
+
+### Adicionado
+- **`src/components/ui/CountUp.tsx`**: Componente reutilizável de count-up com suporte a pt-BR, decimais, milhares, `requestAnimationFrame`, curva `easeOut` e `prefers-reduced-motion`.
+- **`specs/SPEC-055-animacao-contadores-autoridade-sobre-estatico.md`**: Especificação funcional da redistribuição de animações de contagem.
+- **`tasks/TASK-055-animacao-contadores-autoridade-sobre-estatico.md`**: Checklist técnico rastreado via SDD.
+- **`reviews/QA-055.md`**: Relatório de QA e validação de quality gates (100% aprovados, cobertura 99.46%).
+
+### Modificado
+- **`src/components/sections/Authority.tsx`**:
+  - Integração do `CountUp` aos 4 indicadores de desempenho técnico acionados quando a seção entra em viewport (`isInView`).
+- **`src/components/sections/About.tsx`**:
+  - Remoção da animação de contagem interna, tornando o indicador de experiência técnica (`+9`) 100% estático e sóbrio.
+
+## [0.0.54-metricas-experiencia-links-rodape] - 2026-09-30
+
+### Adicionado
+- **`src/config/site.ts`**: Módulo canônico de configurações centralizando e-mail, telefone/WhatsApp, endereço, CNPJ e links oficiais de redes sociais.
+- **`specs/SPEC-054-metricas-experiencia-links-rodape.md`**: Especificação para métricas de experiência técnica, links de redes no rodapé e saneamento de repositório público.
+- **`tasks/TASK-054-metricas-experiencia-links-rodape.md`**: Checklist técnico rastreado via SDD.
+- **`reviews/QA-054.md`**: Relatório de QA e validação de quality gates (TypeScript, ESLint, 145 unit tests, 16 Playwright E2E tests, cobertura de 98.64%).
+- **`docs/evidence/stats-footer/`**: Matriz completa de evidências visuais antes × depois em 1440px, 768px e 375px (Dark e Light) para as seções de Experiência e Rodapé.
+
+### Modificado
+- **`src/components/sections/Authority.tsx`**:
+  - Restauração da simetria de 4 estatísticas comprováveis de projetos anteriores da liderança técnica.
+  - Substituição da métrica redundante "Zero perda" por "100%" de integridade de dados na apuração regulatória do setor elétrico.
+  - Inclusão do 4º stat factual: "−35%" de atividades manuais via automações e integrações.
+  - Ajuste de microcopy no subtítulo removendo o termo "conduzidos".
+  - Inclusão de nota discreta de confidencialidade abaixo do grid.
+  - Formatação pt-BR com vírgula decimal e sinal tipográfico de menos `−` (U+2212) acompanhado de `sr-only` ("redução de 35%").
+- **`src/components/sections/Footer.tsx`**:
+  - Inclusão dos links oficiais do LinkedIn da empresa e GitHub da organização na coluna "Contato".
+  - Ícones oficiais SVG inline monocromáticos (20×20px) com labels visíveis e alvo de toque acessível (≥ 44px).
+  - Remoção dos links pessoais obsoletos da coluna 1.
+  - Consumo direto de `SITE_CONFIG` para todas as informações corporativas.
+- **`index.html`**:
+  - Atualização do campo `sameAs` em `ProfessionalService` apontando exclusivamente para os perfis corporativos da EPM DevTech.
+- **`src/pages/Index.tsx`**:
+  - Consumo de `BASE_URL` a partir de `SITE_CONFIG`.
+- **`README.md`**:
+  - Reescrita técnica e institucional neutra, removendo menções a clientes confidenciais e atualizando o contato comercial oficial.
+- **`public/llms.txt` e `public/llms-full.txt`**:
+  - Saneamento de nomes de clientes de projetos passados e alinhamento com as 4 métricas autorizadas.
+
 ## [0.0.53-padronizacao-cabecalhos-icones-premium] - 2026-09-30
 
 ### Adicionado

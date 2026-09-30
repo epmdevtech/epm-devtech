@@ -17,6 +17,7 @@ interface TopologyNode {
   description: string;
   icon: typeof Globe;
   capabilities: string[];
+  legend: string;
 }
 
 const TOPOLOGY_NODES: TopologyNode[] = [
@@ -28,33 +29,37 @@ const TOPOLOGY_NODES: TopologyNode[] = [
     description: "Roteamento, terminação TLS e redução de latência na borda.",
     icon: Globe,
     capabilities: ["Edge Routing", "Segurança TLS", "Entrega otimizada"],
+    legend: "Baixa latência & proteção perimetral",
   },
   {
     id: "domain",
     step: "02 / Core",
     name: "Domain Services",
     role: "Serviços de Domínio",
-    description: "Microsserviços modulares e regras de negócio com desacoplamento modular.",
+    description: "Microsserviços modulares e regras de negócio com desacoplamento entre serviços.",
     icon: Cpu,
     capabilities: ["APIs Modulares", "Clean Architecture", "Alta Vazão"],
+    legend: "Regras de negócio isoladas & resiliência operacional",
   },
   {
     id: "events",
     step: "03 / Assincronia",
     name: "Event Stream",
     role: "Mensageria & Filas",
-    description: "Eventos assíncronos e mensageria distribuída para processamento resiliente.",
+    description: "Eventos assíncronos e mensageria distribuída para processamento confiável.",
     icon: Workflow,
-    capabilities: ["Orientado a Eventos", "Workers Dedicados", "Processamento resiliente"],
+    capabilities: ["Filas Confiáveis", "Workers Dedicados", "Absorção de Picos"],
+    legend: "Fluxos assíncronos & alta tolerância a falhas",
   },
   {
     id: "data",
     step: "04 / Nuvem",
     name: "Cloud & Data",
     role: "Persistência & Resiliência",
-    description: "Bancos de dados resilientes, estratégias de cache e redundância.",
+    description: "Bancos de dados estruturados, estratégias de cache e replicação distribuída.",
     icon: Database,
     capabilities: ["Redundância", "Cache em Memória", "Alta Disponibilidade"],
+    legend: "Integridade transacional & persistência confiável",
   },
 ];
 
@@ -199,7 +204,7 @@ const HeroArchitecture = ({ className }: HeroArchitectureProps) => {
         </div>
 
         <div className="font-mono text-[11px] text-muted-foreground">
-          Desacoplamento modular & resiliência operacional
+          {TOPOLOGY_NODES.find((n) => n.id === activeNode)?.legend ?? "Regras de negócio isoladas & resiliência operacional"}
         </div>
       </div>
 

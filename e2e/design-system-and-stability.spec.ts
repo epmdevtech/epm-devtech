@@ -342,6 +342,68 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     await expect(errorMessage).toBeHidden();
   });
 
+  test('Seção Autoridade (SPEC-056): Valores finais presentes sem 0s de placeholder, com reduced-motion e com animação inibida', async ({ page }) => {
+    // 1. Carrega a página com prefers-reduced-motion: reduce
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/#autoridade');
+    await page.waitForLoadState('domcontentloaded');
+
+    const authoritySection = page.locator('#autoridade');
+    await expect(authoritySection).toBeVisible();
+
+    // 2. Valida presença dos 4 valores finais imediatamente (visual exact match)
+    await expect(authoritySection.getByText('99,9%', { exact: true })).toBeVisible();
+    await expect(authoritySection.getByText('2.500 RPS', { exact: true })).toBeVisible();
+    await expect(authoritySection.getByText('100%', { exact: true })).toBeVisible();
+    await expect(authoritySection.getByText('\u221235%', { exact: true })).toBeVisible();
+
+    // 3. Valida ausência absoluta de valores intermediários/zerados (0,0%, 0 RPS, etc.)
+    expect(await authoritySection.getByText('0,0%', { exact: true }).count()).toBe(0);
+    expect(await authoritySection.getByText('0 RPS', { exact: true }).count()).toBe(0);
+    expect(await authoritySection.getByText('\u22120%', { exact: true }).count()).toBe(0);
+    
+    // Garante que não há concatenação defeituosa como "redução de 35%−0%"
+    const sectionText = await authoritySection.innerText();
+    expect(sectionText).not.toContain('35%−0%');
+    expect(sectionText).not.toContain('35%-0%');
+
+    // 4. Valida atributos de acessibilidade (aria-hidden nos contadores visuais e sr-only nos acessíveis)
+    const visualCounters = authoritySection.locator('span[aria-hidden="true"]');
+    const counterCount = await visualCounters.count();
+    expect(counterCount).toBeGreaterThanOrEqual(4);
+
+    const srOnlyLabels = authoritySection.locator('span.sr-only');
+    expect(await srOnlyLabels.count()).toBe(4);
+    await expect(authoritySection.locator('span.sr-only').getByText('99,9% de disponibilidade')).toBeAttached();
+    await expect(authoritySection.locator('span.sr-only').getByText('2.500 requisições por segundo')).toBeAttached();
+    await expect(authoritySection.locator('span.sr-only').getByText('100% de integridade')).toBeAttached();
+    await expect(authoritySection.locator('span.sr-only').getByText('redução de 35%')).toBeAttached();
+  });
+
+  test('Seção Autoridade (SPEC-056): Valores finais imediatos com camada de animação inativa (rAF stub)', async ({ page }) => {
+    // Inibe a camada de animação requestAnimationFrame antes da renderização
+    await page.addInitScript(() => {
+      window.requestAnimationFrame = () => 0;
+    });
+
+    await page.goto('/#autoridade');
+    await page.waitForLoadState('domcontentloaded');
+
+    const authoritySection = page.locator('#autoridade');
+    await expect(authoritySection).toBeVisible();
+
+    // Os valores finais devem estar imediatamente visíveis no DOM
+    await expect(authoritySection.getByText('99,9%', { exact: true })).toBeVisible();
+    await expect(authoritySection.getByText('2.500 RPS', { exact: true })).toBeVisible();
+    await expect(authoritySection.getByText('100%', { exact: true })).toBeVisible();
+    await expect(authoritySection.getByText('\u221235%', { exact: true })).toBeVisible();
+
+    // Sem placeholders de zero
+    expect(await authoritySection.getByText('0,0%', { exact: true }).count()).toBe(0);
+    expect(await authoritySection.getByText('0 RPS', { exact: true }).count()).toBe(0);
+    expect(await authoritySection.getByText('\u22120%', { exact: true }).count()).toBe(0);
+  });
+
 });
 
 

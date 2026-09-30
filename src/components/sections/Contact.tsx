@@ -71,7 +71,7 @@ const nextSteps = [
     Icon: IconConfidentiality,
     title: "Sigilo e confidencialidade",
     description:
-      "Suas ideias, dados e regras de negócio tratados com confidencialidade, com NDA quando solicitado.",
+      "Suas ideias, dados e regras de negócio tratados sob sigilo e proteção, com NDA quando solicitado.",
   },
 ];
 

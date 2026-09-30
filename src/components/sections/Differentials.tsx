@@ -14,7 +14,7 @@ const differentials = [
     tag: "ALINHAMENTO & PREVISIBILIDADE",
     title: "Comunicação transparente",
     description:
-      "Alinhamento contínuo sobre escopo, decisões técnicas e prioridades. Você fala diretamente com quem planeja e executa a engenharia, reduzindo ruídos e alinhando expectativas.",
+      "Alinhamento contínuo sobre escopo, decisões técnicas e prioridades. Você fala diretamente com quem planeja e executa a engenharia, reduzindo ruídos e nivelando expectativas.",
   },
   {
     Icon: IconEvolutionaryEngineering,
