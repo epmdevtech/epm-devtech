@@ -1,78 +1,122 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
+import { MemoryRouter } from 'react-router-dom';
 import Hero from '../Hero';
 
-describe('Hero Component (Slim & Minimalist — SPEC-059)', () => {
-  it('renders section with semantic accessibility labeling', () => {
-    render(<Hero />);
+const renderHero = () =>
+  render(
+    <MemoryRouter>
+      <Hero />
+    </MemoryRouter>
+  );
+
+describe('Hero Component (B2B Engineering & Architecture Canvas — SPEC-061)', () => {
+  it('renders section with semantic accessibility labeling and unique H1', () => {
+    renderHero();
 
     const section = document.getElementById('hero');
     expect(section).toBeInTheDocument();
     expect(section).toHaveAttribute('aria-labelledby', 'hero-title');
 
-    const heading = screen.getByRole('heading', { level: 1 });
-    expect(heading).toHaveAttribute('id', 'hero-title');
+    const headings = screen.getAllByRole('heading', { level: 1 });
+    expect(headings).toHaveLength(1);
+    expect(headings[0]).toHaveAttribute('id', 'hero-title');
   });
 
-  it('renders exact H1 and subheadline copy for software house', () => {
-    render(<Hero />);
+  it('renders exact H1 and subheadline copy for B2B software engineering', () => {
+    renderHero();
 
     const heading = screen.getByRole('heading', { level: 1 });
-    expect(heading).toHaveTextContent('Desenvolvemos software sob medida para o seu negócio.');
+    expect(heading).toHaveTextContent('Engenharia de software para construir, integrar e evoluir sistemas.');
 
     expect(
-      screen.getByText('Sistemas web, APIs, integrações e soluções digitais construídas para resolver problemas reais e acompanhar a evolução da sua empresa.')
+      screen.getByText(
+        'Desenvolvemos sistemas corporativos, APIs escaláveis e integrações sob medida, além de modernizar aplicações legadas com foco em qualidade, estabilidade e evolução contínua.'
+      )
     ).toBeInTheDocument();
   });
 
-  it('renders minimalist eyebrow with BrandChipIcon and "Software House" tagline', () => {
-    render(<Hero />);
+  it('renders contextual eyebrow with BrandChipIcon and uppercase engineering tagline', () => {
+    renderHero();
 
     const eyebrow = screen.getByTestId('hero-eyebrow');
     expect(eyebrow).toBeInTheDocument();
-    expect(eyebrow).toHaveTextContent(/Software House/i);
+    expect(eyebrow).toHaveTextContent(/ENGENHARIA DE SOFTWARE & MODERNIZAÇÃO/i);
     expect(eyebrow.querySelector('svg')).toBeInTheDocument();
   });
 
-  it('renders primary CTA button pointing to #contato and secondary text link pointing to #sobre', () => {
-    render(<Hero />);
+  it('renders primary CTA pointing to /contato and secondary CTA pointing to /servicos', () => {
+    renderHero();
 
-    const primaryCta = screen.getByRole('link', { name: /Falar sobre meu projeto/i });
+    const primaryCta = screen.getByRole('link', { name: /Falar sobre um projeto/i });
     expect(primaryCta).toBeInTheDocument();
-    expect(primaryCta).toHaveAttribute('href', '#contato');
+    expect(primaryCta).toHaveAttribute('href', '/contato');
 
-    const secondaryCta = screen.getByRole('link', { name: /Conhecer a EPM DevTech/i });
+    const secondaryCta = screen.getByRole('link', { name: /Conhecer soluções/i });
     expect(secondaryCta).toBeInTheDocument();
-    expect(secondaryCta).toHaveAttribute('href', '#sobre');
-    // Ensure secondary action is a text link rather than a second full button
-    expect(secondaryCta.tagName.toLowerCase()).toBe('a');
+    expect(secondaryCta).toHaveAttribute('href', '/servicos');
+  });
+
+  it('renders factual authority line below CTAs', () => {
+    renderHero();
+
+    expect(
+      screen.getByText(/Experiência técnica em projetos de energia, indústria, educação, varejo e sistemas corporativos/i)
+    ).toBeInTheDocument();
+  });
+
+  it('renders software engineering architecture canvas with layers, tech chips and aria-hidden="true"', () => {
+    const { container } = renderHero();
+
+    // Canvas container must be aria-hidden="true" for screen reader accessibility
+    const canvasWrapper = container.querySelector('[aria-hidden="true"].lg\\:col-span-5');
+    expect(canvasWrapper).toBeInTheDocument();
+
+    // Contains architectural topology layers
+    expect(canvasWrapper).toHaveTextContent(/Topologia de Arquitetura/i);
+    expect(canvasWrapper).toHaveTextContent(/Aplicações Web & Portais/i);
+    expect(canvasWrapper).toHaveTextContent(/APIs & Back-end Escalável/i);
+    expect(canvasWrapper).toHaveTextContent(/Barramento de Integração & Eventos/i);
+    expect(canvasWrapper).toHaveTextContent(/Persistência Transacional & Nuvem/i);
+
+    // Contains actual technologies from the company stack
+    expect(canvasWrapper).toHaveTextContent('React');
+    expect(canvasWrapper).toHaveTextContent('TypeScript');
+    expect(canvasWrapper).toHaveTextContent('Node.js');
+    expect(canvasWrapper).toHaveTextContent('PHP / Laravel');
+    expect(canvasWrapper).toHaveTextContent('RabbitMQ');
+    expect(canvasWrapper).toHaveTextContent('PostgreSQL');
+    expect(canvasWrapper).toHaveTextContent('AWS');
+    expect(canvasWrapper).toHaveTextContent('Docker');
   });
 
   it('renders minimalist section transition divider with brand node', () => {
-    const { container } = render(<Hero />);
+    const { container } = renderHero();
 
-    const dividerContainer = container.querySelector('[aria-hidden="true"].relative');
+    const dividerContainer = container.querySelector('.w-full.border-t.border-border')?.parentElement;
     expect(dividerContainer).toBeInTheDocument();
     expect(dividerContainer?.querySelector('.border-t')).toBeInTheDocument();
     expect(dividerContainer?.querySelector('.rounded-full.bg-primary')).toBeInTheDocument();
   });
 
-  it('verifies that architecture diagram and telemetry noise are completely removed', () => {
-    render(<Hero />);
+  it('respects prefers-reduced-motion without throwing and renders all elements', () => {
+    const originalMatchMedia = window.matchMedia;
+    window.matchMedia = (query: string) => ({
+      matches: query.includes('prefers-reduced-motion'),
+      media: query,
+      onchange: null,
+      addListener: () => {},
+      removeListener: () => {},
+      addEventListener: () => {},
+      removeEventListener: () => {},
+      dispatchEvent: () => false,
+    });
 
-    // Diagram console region must NOT exist
-    expect(screen.queryByRole('region', { name: /diagrama/i })).not.toBeInTheDocument();
+    const { container } = renderHero();
+    expect(container.querySelector('#hero')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument();
 
-    // Diagram layers and nodes must NOT exist
-    expect(screen.queryByText(/01 \/ Borda/i)).not.toBeInTheDocument();
-    expect(screen.queryByText(/02 \/ Core/i)).not.toBeInTheDocument();
-    expect(screen.queryByText(/03 \/ Assincronia/i)).not.toBeInTheDocument();
-    expect(screen.queryByText(/04 \/ Nuvem/i)).not.toBeInTheDocument();
-    expect(screen.queryByText('Client / Edge')).not.toBeInTheDocument();
-    expect(screen.queryByText('Domain Services')).not.toBeInTheDocument();
-    expect(screen.queryByText('Event Stream')).not.toBeInTheDocument();
-    expect(screen.queryByText('Cloud & Data')).not.toBeInTheDocument();
-    expect(screen.queryByText('Edge Routing')).not.toBeInTheDocument();
-    expect(screen.queryByText('topologia://arquitetura-distribuida.epm')).not.toBeInTheDocument();
+    window.matchMedia = originalMatchMedia;
   });
 });
+

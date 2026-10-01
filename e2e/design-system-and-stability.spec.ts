@@ -14,8 +14,8 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     // Verifica que o H1 do Hero está visível e correto
     const heroH1 = page.locator('#hero h1, section h1').first();
     await expect(heroH1).toBeVisible();
-    await expect(heroH1).toContainText('Desenvolvemos software');
-    await expect(heroH1).toContainText('sob medida para o seu negócio');
+    await expect(heroH1).toContainText('Engenharia de software');
+    await expect(heroH1).toContainText('construir, integrar e evoluir sistemas');
 
     // Aguarda 3 segundos para confirmar que não há re-renderização ou reload disparado
     await page.waitForTimeout(3000);
@@ -38,7 +38,7 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
 
     // Verifica que os headings de cada seção existem, contêm os textos padronizados e são 100% monocromáticos
     const expectedHeadings = [
-      { id: 'hero', text: 'Desenvolvemos software' },
+      { id: 'hero', text: 'Engenharia de software' },
       { id: 'servicos', text: 'Soluções sob medida para operações que exigem estabilidade' },
       { id: 'como-trabalhamos', text: 'Engenharia previsível do primeiro contato à sustentação' },
       { id: 'autoridade', text: 'Resultados comprovados em ambientes com alta exigência de estabilidade' },
@@ -81,26 +81,26 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     // Verde esmeralda oficial (#10B981 / emerald-600) — formato rgb(5, 150, 105)
     expect(btnBgColor).toMatch(/rgb\((5|16|23|24|26|36|38|39),\s*(150|155|160|161|173|175|176|185),\s*(105|107|112|114|123|124|125|129)\)/);
 
-    // Garante presença do CTA principal do Hero na home direcionando para #contato
+    // Garante presença do CTA principal do Hero na home direcionando para /contato
     await page.goto('/');
     await page.waitForLoadState('domcontentloaded');
-    const heroCta = page.locator('#hero a[href="#contato"]').first();
+    const heroCta = page.locator('#hero a[href="/contato"], #hero a[href="#contato"]').first();
     await expect(heroCta).toBeVisible();
-    await expect(heroCta).toContainText('Falar sobre meu projeto');
+    await expect(heroCta).toContainText('Falar sobre um projeto');
   });
 
   test('Navegação e rolagem fluida por âncoras sem salto para o Hero', async ({ page }) => {
     await page.goto('/');
     await page.waitForLoadState('domcontentloaded');
 
-    // Clica no CTA secundário ("Conhecer a EPM DevTech" que aponta para #sobre)
-    const secondaryCta = page.locator('#hero a[href="#sobre"]').first();
+    // Clica no CTA secundário ("Conhecer soluções" que aponta para /servicos)
+    const secondaryCta = page.locator('#hero a[href="/servicos"], #hero a[href="#servicos"]').first();
     await expect(secondaryCta).toBeVisible();
     await secondaryCta.click();
 
-    await page.waitForURL('**/sobre');
+    await page.waitForURL('**/servicos');
     const h1 = page.locator('h1');
-    await expect(h1).toContainText('Sobre a EPM DevTech');
+    await expect(h1).toContainText('Soluções sob medida');
   });
 
   test('TechConstellation renderiza grafo de tecnologias com interação de hover e foco', async ({ page }) => {

@@ -59,9 +59,10 @@ test.describe('Hero Visual Identity & Token Locks (SPEC-059 Section 0.1)', () =>
         const h1El = heroEl.querySelector('#hero-title')!;
         const subheadlineEl = heroEl.querySelector('p')!;
         const eyebrowEl = heroEl.querySelector('[data-testid="hero-eyebrow"]')!;
-        const buttonEl = heroEl.querySelector('a[href="#contato"]')!;
-        const linkEl = heroEl.querySelector('a[href="#sobre"]')!;
-        const dividerLineEl = heroEl.querySelector('.border-t')!;
+        const buttonEl = heroEl.querySelector('a[href="/contato"], a[href="#contato"]')!;
+        const linkEl = heroEl.querySelector('a[href="/servicos"], a[href="#servicos"], a[href="#sobre"]')!;
+        const dividerLineEl = (heroEl.querySelector('[data-testid="hero-divider-line"]') ||
+                               heroEl.querySelector('.w-full.border-t.border-border'))!;
         const nodeDotEl = heroEl.querySelector('.rounded-full.bg-primary')!;
 
         return {

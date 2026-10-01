@@ -6,7 +6,7 @@ test.describe('EPM DEVTECH — Arquitetura de Informação Multi-Rota (SPEC-060)
     {
       path: '/',
       expectedTitle: 'EPM DevTech | Software House e Desenvolvimento de Software Sob Medida',
-      expectedH1: 'Desenvolvemos software sob medida para o seu negócio.',
+      expectedH1: 'Engenharia de software para construir, integrar e evoluir sistemas.',
       canonicalUrl: 'https://epmdevtech.com.br/',
     },
     {

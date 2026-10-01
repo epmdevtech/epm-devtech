@@ -9,6 +9,30 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.61-hero-engenharia-software-b2b] - 2026-10-01
+
+### Adicionado
+- **`specs/SPEC-061-hero-engenharia-software-b2b.md`**: Especificação completa de refatoração do Hero com layout assimétrico de duas colunas, posicionamento de engenharia B2B e canvas de topologia arquitetural.
+- **`tasks/TASK-061-hero-engenharia-software-b2b.md`**: Registro de execução e quality gates da tarefa SDD.
+- **`reviews/QA-061.md`**: Relatório de qualidade com evidências de conformidade, métricas de viewport e homologação de testes.
+
+### Modificado
+- **`src/components/sections/Hero.tsx`**: Redesenho completo do Hero:
+  - Layout assimétrico de duas colunas ocupando ~80vh–90vh no desktop (875px em 1440x900).
+  - Eyebrow contextual com `BrandChipIcon`: `ENGENHARIA DE SOFTWARE & MODERNIZAÇÃO`.
+  - Headline comercial madura e memorável: *"Engenharia de software para construir, integrar e evoluir sistemas."*.
+  - Subheadline factual em 2 linhas detalhando desenvolvimento sob medida, APIs e modernização de legados.
+  - Duas chamadas para ação claras: CTA primário `"Falar sobre um projeto"` (`/contato`) e CTA secundário `"Conhecer soluções"` (`/servicos`).
+  - Linha de autoridade factual comprovada nos setores de energia, indústria, educação, varejo e sistemas corporativos.
+  - Canvas de Engenharia de Software no lado direito: topologia técnica de 4 camadas conectadas (Aplicações & Portais, APIs & Back-end, Barramento de Integração & Eventos, Persistência Transacional & Nuvem) com tags de tecnologias reais da stack (`React`, `TypeScript`, `Node.js`, `PHP / Laravel`, `RabbitMQ`, `PostgreSQL`, `Redis`, `AWS`, `Docker`) e `aria-hidden="true"`.
+  - Otimização responsiva para mobile com descrições recolhidas e chips compactos, eliminando rolagem desnecessária e mantendo zero overflow horizontal.
+  - Motion design sutil via Framer Motion respeitando `prefers-reduced-motion: reduce`.
+- **`src/components/sections/__tests__/Hero.test.tsx`**: Atualização da suíte de testes unitários para a nova estrutura, textos exatos, links e acessibilidade (8/8 testes passando).
+- **`e2e/hero-identity-token-locks.spec.ts`**: Atualização de seletores de CTA e divisor de transição para validação estrita de tokens canônicos.
+- **`e2e/design-system-and-stability.spec.ts`**: Atualização das asserções de H1, navegação e CTAs do Hero.
+- **`e2e/multi-route-navigation.spec.ts`**: Atualização do H1 esperado da rota raiz `/`.
+- **`PROJECT.md`**: Atualização do status canônico da seção Hero e contagem de testes.
+
 ## [0.0.60-arquitetura-informacao-multi-rota] - 2026-10-01
 
 ### Adicionado
