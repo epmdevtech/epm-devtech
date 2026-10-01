@@ -1,113 +1,78 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
-import React from 'react';
+import { render, screen } from '@testing-library/react';
+import { describe, it, expect } from 'vitest';
 import Hero from '../Hero';
 
-// Mock framer-motion to execute immediately
-vi.mock('framer-motion', () => ({
-  motion: {
-    div: React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-      ({ children, className, onClick, style, ...rest }, ref) => (
-        <div ref={ref} className={className} onClick={onClick} style={style} {...rest}>
-          {children}
-        </div>
-      )
-    ),
-    span: React.forwardRef<HTMLSpanElement, React.HTMLAttributes<HTMLSpanElement>>(
-      ({ children, className, style, ...rest }, ref) => (
-        <span ref={ref} className={className} style={style} {...rest}>
-          {children}
-        </span>
-      )
-    ),
-    h1: ({ children, className, ...rest }: React.HTMLAttributes<HTMLHeadingElement>) => (
-      <h1 className={className} {...rest}>{children}</h1>
-    ),
-    p: ({ children, className, ...rest }: React.HTMLAttributes<HTMLParagraphElement>) => (
-      <p className={className} {...rest}>{children}</p>
-    ),
-  },
-  useScroll: () => ({ scrollY: 0, scrollYProgress: { get: () => 0 } }),
-  useTransform: () => ({ get: () => 0 }),
-  useSpring: (val: unknown) => ({ get: () => val, set: vi.fn() }),
-  useMotionValue: (val: unknown) => ({ get: () => val, set: vi.fn() }),
-  useAnimationFrame: vi.fn(),
-  useInView: () => true,
-  useReducedMotion: () => false,
-}));
+describe('Hero Component (Slim & Minimalist — SPEC-059)', () => {
+  it('renders section with semantic accessibility labeling', () => {
+    render(<Hero />);
 
-describe('Hero Component', () => {
-  it('renders correctly with primary heading and supporting text for software house', () => {
+    const section = document.getElementById('hero');
+    expect(section).toBeInTheDocument();
+    expect(section).toHaveAttribute('aria-labelledby', 'hero-title');
+
+    const heading = screen.getByRole('heading', { level: 1 });
+    expect(heading).toHaveAttribute('id', 'hero-title');
+  });
+
+  it('renders exact H1 and subheadline copy for software house', () => {
     render(<Hero />);
 
     const heading = screen.getByRole('heading', { level: 1 });
-    expect(heading).toHaveTextContent(/Desenvolvemos software.*sob medida para o seu negócio\./i);
+    expect(heading).toHaveTextContent('Desenvolvemos software sob medida para o seu negócio.');
 
     expect(
-      screen.getByText(/Sistemas, aplicações web, APIs e integrações/i)
+      screen.getByText('Sistemas web, APIs, integrações e soluções digitais construídas para resolver problemas reais e acompanhar a evolução da sua empresa.')
     ).toBeInTheDocument();
   });
 
-  it('renders eyebrow badge with EPM DEVTECH chip and SOFTWARE HOUSE label linking to #sobre', () => {
+  it('renders minimalist eyebrow with BrandChipIcon and "Software House" tagline', () => {
     render(<Hero />);
 
-    expect(screen.getByText('EPM DEVTECH')).toBeInTheDocument();
-    expect(screen.getByText('SOFTWARE HOUSE')).toBeInTheDocument();
-
-    const badgeLink = screen.getByRole('link', {
-      name: /EPM DEVTECH — SOFTWARE HOUSE/i,
-    });
-    expect(badgeLink).toHaveAttribute('href', '#sobre');
+    const eyebrow = screen.getByTestId('hero-eyebrow');
+    expect(eyebrow).toBeInTheDocument();
+    expect(eyebrow).toHaveTextContent(/Software House/i);
+    expect(eyebrow.querySelector('svg')).toBeInTheDocument();
   });
 
-  it('renders primary and secondary CTA buttons pointing to corresponding sections', () => {
+  it('renders primary CTA button pointing to #contato and secondary text link pointing to #sobre', () => {
     render(<Hero />);
 
     const primaryCta = screen.getByRole('link', { name: /Falar sobre meu projeto/i });
     expect(primaryCta).toBeInTheDocument();
     expect(primaryCta).toHaveAttribute('href', '#contato');
 
-    const secondaryCta = screen.getByRole('link', { name: /Conhecer a EPM/i });
+    const secondaryCta = screen.getByRole('link', { name: /Conhecer a EPM DevTech/i });
     expect(secondaryCta).toBeInTheDocument();
     expect(secondaryCta).toHaveAttribute('href', '#sobre');
+    // Ensure secondary action is a text link rather than a second full button
+    expect(secondaryCta.tagName.toLowerCase()).toBe('a');
   });
 
-  it('renders microprova social with concise engineering credentials', () => {
-    render(<Hero />);
+  it('renders minimalist section transition divider with brand node', () => {
+    const { container } = render(<Hero />);
 
-    expect(screen.getByText(/Da ideia à produção/i)).toBeInTheDocument();
-    expect(screen.getByText(/Engenharia direta/i)).toBeInTheDocument();
-    expect(screen.getByText(/\+9 anos de experiência/i)).toBeInTheDocument();
+    const dividerContainer = container.querySelector('[aria-hidden="true"].relative');
+    expect(dividerContainer).toBeInTheDocument();
+    expect(dividerContainer?.querySelector('.border-t')).toBeInTheDocument();
+    expect(dividerContainer?.querySelector('.rounded-full.bg-primary')).toBeInTheDocument();
   });
 
-  it('renders clean system architecture topology without simulated telemetry noise', () => {
+  it('verifies that architecture diagram and telemetry noise are completely removed', () => {
     render(<Hero />);
 
-    const archConsole = screen.getByRole('region', {
-      name: /Diagrama de topologia de arquitetura de software da EPM DEVTECH/i,
-    });
-    expect(archConsole).toBeInTheDocument();
+    // Diagram console region must NOT exist
+    expect(screen.queryByRole('region', { name: /diagrama/i })).not.toBeInTheDocument();
 
-    expect(screen.getByText(/topologia:\/\/arquitetura-distribuida.epm/i)).toBeInTheDocument();
-    expect(screen.getByText(/Topologia Resiliente/i)).toBeInTheDocument();
-    expect(screen.getByText('Client / Edge')).toBeInTheDocument();
-    expect(screen.getAllByText('Domain Services').length).toBeGreaterThanOrEqual(1);
-    expect(screen.getByText('Event Stream')).toBeInTheDocument();
-    expect(screen.getByText('Cloud & Data')).toBeInTheDocument();
-
-    // Verify absence of telemetry noise / fake numbers
-    expect(screen.queryByText('14ms')).not.toBeInTheDocument();
-    expect(screen.queryByText('2.500 Req/s Pico')).not.toBeInTheDocument();
-    expect(screen.queryByText('99,9% Disponibilidade')).not.toBeInTheDocument();
-  });
-
-  it('allows interactive switching of active architectural nodes', () => {
-    render(<Hero />);
-
-    const dataNode = screen.getByText('Cloud & Data');
-    fireEvent.click(dataNode);
-
-    expect(screen.getAllByText('Persistência & Resiliência').length).toBeGreaterThanOrEqual(1);
-    expect(screen.getByText('Multi-Região')).toBeInTheDocument();
+    // Diagram layers and nodes must NOT exist
+    expect(screen.queryByText(/01 \/ Borda/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/02 \/ Core/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/03 \/ Assincronia/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/04 \/ Nuvem/i)).not.toBeInTheDocument();
+    expect(screen.queryByText('Client / Edge')).not.toBeInTheDocument();
+    expect(screen.queryByText('Domain Services')).not.toBeInTheDocument();
+    expect(screen.queryByText('Event Stream')).not.toBeInTheDocument();
+    expect(screen.queryByText('Cloud & Data')).not.toBeInTheDocument();
+    expect(screen.queryByText('Edge Routing')).not.toBeInTheDocument();
+    expect(screen.queryByText('topologia://arquitetura-distribuida.epm')).not.toBeInTheDocument();
   });
 });

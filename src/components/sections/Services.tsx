@@ -87,25 +87,6 @@ function MockIntegration() {
   );
 }
 
-function MockArchitecture() {
-  const layers = [
-    { label: "Presentation Layer", color: "#10b981" },
-    { label: "Application / Use Cases", color: "#A855F7" },
-    { label: "Domain / Business Logic", color: "#34d399" },
-    { label: "Infrastructure / DB / Queue", color: "#6b7280" },
-  ];
-  return (
-    <div className="svc-mockup" style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-      {layers.map((l, i) => (
-        <div key={i} className="svc-arch-layer" style={{ borderLeft: `3px solid ${l.color}` }}>
-          <div style={{ width: 6, height: 6, borderRadius: "50%", background: l.color, flexShrink: 0 }} />
-          <span style={{ fontSize: 8 }}>{l.label}</span>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 function MockMaintenance() {
   const diff = [
     { type: "remove", text: "- function getUserData(id) {" },
@@ -127,86 +108,48 @@ function MockMaintenance() {
   );
 }
 
-function MockConsulting() {
-  const comments = [
-    { user: "E", msg: "Revisei a arquitetura: 3 pontos críticos", color: "#10b981" },
-    { user: "C", msg: "N+1 query detectado em UserService.ts:42", color: "#f59e0b" },
-    { user: "E", msg: "✓ Solução: eager loading com joinQuery()", color: "#16a34a" },
-  ];
-  return (
-    <div className="svc-mockup" style={{ display: "flex", flexDirection: "column", gap: 7 }}>
-      {comments.map((c, i) => (
-        <div key={i} style={{ display: "flex", gap: 7, alignItems: "flex-start" }}>
-          <div style={{ width: 20, height: 20, borderRadius: "50%", background: `${c.color}20`, border: `1.5px solid ${c.color}60`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: 7, color: c.color, fontWeight: 700 }}>{c.user}</div>
-          <div className="svc-chat-bubble" style={{ fontSize: 8.5 }}>{c.msg}</div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 /* ─── Data ───────────────────────────────────────────────────── */
 
 const services = [
   {
     visual: <MockBrowser />,
-    title: "Desenvolvimento Web e Aplicações SPA",
-    what: "Interfaces modernas, responsivas e performáticas com Angular, Vue.js e React.",
-    problem: "Sistemas lentos, designs desatualizados e interfaces que frustram o usuário.",
-    how: "Desenvolvimento componentizado, Clean Code e integração fluida a APIs corporativas.",
-    description: "Interfaces modernas, responsivas e performáticas com Angular, Vue.js e React. Resolve lentidão e baixa conversão através de arquitetura fluida e usabilidade centrada no usuário.",
+    title: "Sistemas web, portais e sites institucionais",
+    trigger: "Precisa criar um sistema novo, um portal ou um site institucional que represente bem a sua empresa?",
+    problem: "Precisa criar um sistema novo, um portal ou um site institucional que represente bem a sua empresa?",
+    description: "Aplicações web sob medida, portais e sites institucionais: sistemas de gestão internos, plataformas e presença digital com foco em credibilidade, desempenho e acessibilidade.",
     accent: "#10b981",
   },
   {
     visual: <MockAPI />,
-    title: "APIs e Backends Escaláveis",
-    what: "Desenvolvimento de APIs REST e arquiteturas orientadas a eventos em PHP (Laravel) e Node.js.",
-    problem: "Sobrecarga de servidores em horários de pico e respostas demoradas do banco.",
-    how: "Dimensionamento para alto throughput, baixa latência e cache distribuído com Redis.",
-    description: "Desenvolvimento de APIs REST e arquiteturas orientadas a eventos em PHP (Laravel) e Node.js, dimensionadas para alto throughput e baixa latência sob carga intensa.",
+    title: "APIs & back-end escalável",
+    trigger: "Seu sistema sofre com lentidão em horários de pico ou precisa centralizar regras?",
+    problem: "Seu sistema sofre com lentidão em horários de pico ou precisa centralizar regras?",
+    description: "Desenvolvimento de APIs RESTful e serviços de alta disponibilidade para sustentar aplicações, integrar operações e centralizar regras de negócio sob carga contínua.",
     accent: "#A855F7",
   },
   {
     visual: <MockIntegration />,
-    title: "Integrações e Microsserviços",
-    what: "Conexão de ecossistemas corporativos via RabbitMQ, Kafka e webhooks.",
-    problem: "Sistemas isolados que exigem retrabalho manual e geram dados inconsistentes.",
-    how: "Comunicação assíncrona, tolerância a falhas e sincronização de dados em tempo real.",
-    description: "Conexão de ecossistemas corporativos via RabbitMQ, Kafka e webhooks, garantindo comunicação assíncrona, tolerância a falhas e sincronização em tempo real.",
+    title: "Integrações entre sistemas",
+    trigger: "Sua operação perde tempo com processos manuais porque seus sistemas não conversam?",
+    problem: "Sua operação perde tempo com processos manuais porque seus sistemas não conversam?",
+    description: "Conexão segura entre ERPs, CRMs, plataformas e serviços externos, com foco em confiabilidade e consistência dos dados.",
     accent: "#10b981",
-  },
-  {
-    visual: <MockArchitecture />,
-    title: "Arquitetura de Software",
-    what: "Design de microsserviços e monólitos modulares com Clean Architecture, DDD e BFF.",
-    problem: "Código espaguete, custos astronômicos de manutenção e medo de mexer no sistema.",
-    how: "Separação de responsabilidades em camadas, decisões em ADRs e manutenibilidade contínua.",
-    description: "Design de microsserviços e monólitos modulares com Clean Architecture, DDD, padrões Hexagonal e BFF, preparados para crescimento contínuo e manutenibilidade.",
-    accent: "#A855F7",
   },
   {
     visual: <MockMaintenance />,
-    title: "Modernização e Evolução de Legados",
-    what: "Migração incremental de sistemas legados aplicando o Strangler Fig Pattern.",
-    problem: "Risco e custo proibitivo de tentar reconstruir todo o sistema do zero.",
-    how: "Substituição gradual módulo a módulo sem parada operacional e com testes automatizados.",
-    description: "Migração incremental sem parada operacional aplicando Strangler Fig Pattern, refatoração de código com testes automatizados e ganho expressivo de performance.",
+    title: "Modernização & evolução de legados",
+    trigger: "Tem um sistema legado essencial que já não acompanha a velocidade da operação?",
+    problem: "Tem um sistema legado essencial que já não acompanha a velocidade da operação?",
+    description: "Refatoração e migração gradual de plataformas legadas, reduzindo custos de manutenção e dívida técnica, com evolução incremental e menor risco de interrupção da operação.",
     accent: "#10b981",
-  },
-  {
-    visual: <MockConsulting />,
-    title: "Consultoria Técnica e Code Review",
-    what: "Diagnóstico profundo de arquitetura, análise de vulnerabilidades e mentoria.",
-    problem: "Insegurança técnica em entregas críticas e débitos acumulados na esteira.",
-    how: "Auditoria de código, plano de refatoração priorizado e implantação de SDD com IA.",
-    description: "Diagnóstico de gargalos, análise estática de vulnerabilidades, mentoria técnica e auditoria de arquitetura para elevar a maturidade do seu time.",
-    accent: "#f59e0b",
   },
 ];
 
-/* ─── Component ──────────────────────────────────────────────── */
+interface ServicesProps {
+  hideHeader?: boolean;
+}
 
-const Services = () => {
+const Services: React.FC<ServicesProps> = ({ hideHeader = false }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -332,28 +275,31 @@ const Services = () => {
         }
       `}</style>
 
-      <section id="servicos" className="relative py-24 bg-secondary/30" ref={ref}>
+      <section id="servicos" aria-labelledby="servicos-heading" className="relative py-24 bg-secondary/30" ref={ref}>
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
 
         <div className="container px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5 }}
-            className="mb-16"
-          >
-            <SectionHeader
-              tagline="Serviços"
-              title="Da primeira reunião ao deploy em produção"
-              subtitle="Planejamento, arquitetura, testes automatizados e entrega: cuidamos de cada etapa com o mesmo padrão técnico, sem atalhos que viram dívida técnica depois."
-            />
-          </motion.div>
+          {!hideHeader && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5 }}
+              className="mb-16"
+            >
+              <SectionHeader
+                id="servicos-heading"
+                tagline="Serviços"
+                title="Soluções sob medida para cada estágio da sua operação"
+                subtitle="Da criação de um novo produto à modernização de sistemas existentes, atuamos com rigor técnico e foco no resultado do seu negócio."
+              />
+            </motion.div>
+          )}
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
             {services.map((service, index) => (
               <motion.div
                 key={service.title}
-                className="svc-card"
+                className="svc-card flex flex-col h-full"
                 initial={{ opacity: 0, y: 24 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: index * 0.08 }}
@@ -373,7 +319,7 @@ const Services = () => {
                 </div>
 
                 {/* Text area */}
-                <div style={{ padding: "18px 22px 22px" }}>
+                <div className="flex flex-col flex-1 p-5 sm:p-6">
                   <h3 style={{
                     fontFamily: "'Geist', sans-serif",
                     fontSize: "0.95rem",
@@ -390,14 +336,16 @@ const Services = () => {
                     fontSize: "0.75rem",
                     color: "hsl(var(--muted-foreground))",
                     lineHeight: 1.65,
-                    marginBottom: 10,
+                    marginBottom: 14,
                   }}>
                     {service.description}
                   </p>
-                  <div className="pt-2.5 border-t border-border/40 flex items-start gap-1.5 text-[11px] font-mono text-muted-foreground/90">
-                    <span className="text-primary font-semibold shrink-0">Problema:</span>
-                    <span className="line-clamp-2">{service.problem}</span>
-                  </div>
+                  <p className="mt-auto pt-3.5 border-t border-border/50 text-[12.5px] leading-relaxed text-foreground font-medium">
+                    <span className="font-mono text-[10.5px] uppercase tracking-wider text-emerald-600 dark:text-emerald-400 font-semibold block mb-1">
+                      Quando precisa:
+                    </span>
+                    {service.trigger}
+                  </p>
                 </div>
               </motion.div>
             ))}

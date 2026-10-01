@@ -1,371 +1,165 @@
-import { motion, useInView } from "framer-motion";
-import { Fragment, useRef } from "react";
-import {
-  CheckCircle2,
-  Shield,
-  GitMerge,
-  MessageCircle,
-  Clock,
-  Sparkles,
-} from "lucide-react";
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import { useRef } from "react";
 import SectionHeader from "@/components/ui/SectionHeader";
+import { Badge } from "@/components/ui/badge";
+import {
+  IconTransparentCommunication,
+  IconEvolutionaryEngineering,
+  IconBusinessFocus,
+} from "@/components/icons";
 
 const differentials = [
   {
-    icon: MessageCircle,
-    step: "01",
-    title: "Comunicação Transparente",
-    handle: "ALINHAMENTO • PREVISIBILIDADE",
-    description: "Acompanhamento constante, relatórios claros de progresso e alinhamento direto com quem realmente executa a engenharia, eliminando ruídos e surpresas.",
+    Icon: IconTransparentCommunication,
+    tag: "ALINHAMENTO & PREVISIBILIDADE",
+    title: "Comunicação transparente",
+    description:
+      "Alinhamento contínuo sobre escopo, decisões técnicas e prioridades. Você fala diretamente com quem planeja e executa a engenharia, reduzindo ruídos e nivelando expectativas.",
   },
   {
-    icon: Shield,
-    step: "02",
-    title: "Arquitetura Planejada",
-    handle: "MICROSSERVIÇOS • CLEAN ARCHITECTURE",
-    description: "Sistemas projetados para crescer sem criar gargalos técnicos. Escolhas arquiteturais sólidas desde o primeiro dia para facilitar manutenções futuras.",
+    Icon: IconEvolutionaryEngineering,
+    tag: "ARQUITETURA & MANUTENÇÃO",
+    title: "Engenharia que facilita evoluir",
+    description:
+      "Arquitetura modular e código limpo pensados para facilitar manutenções futuras e permitir que o sistema cresça com segurança sem gerar gargalos técnicos.",
   },
   {
-    icon: CheckCircle2,
-    step: "03",
-    title: "Código Limpo e Testável",
-    handle: "SOLID • TESTES AUTOMATIZADOS",
-    description: "Aplicação de boas práticas consolidadas e esteiras de testes rigorosas para garantir estabilidade operacional e evolução contínua da aplicação.",
-  },
-  {
-    icon: Sparkles,
-    step: "04",
-    title: "Padrões de Engenharia",
-    handle: "SONARQUBE • CODE REVIEW",
-    description: "Revisões sistemáticas de código, análise estática de vulnerabilidades e observabilidade em produção para manter a saúde do ecossistema.",
-  },
-  {
-    icon: GitMerge,
-    step: "05",
-    title: "Esteira DevOps e CI/CD",
-    handle: "DEPLOY SEGURO • ROLLBACK",
-    description: "Pipelines automatizados com validações estritas antes de cada publicação, minimizando riscos de falhas em produção e permitindo rollback imediato.",
-  },
-  {
-    icon: Clock,
-    step: "06",
-    title: "Entregas Previsíveis",
-    handle: "PRAZOS REAIS • QUALIDADE",
-    description: "Estimativas realistas baseadas em complexidade técnica real, sem atalhos que comprometam a segurança e a longevidade do seu software.",
+    Icon: IconBusinessFocus,
+    tag: "PRAGMATISMO & RESULTADO",
+    title: "Foco no problema do negócio",
+    description:
+      "A tecnologia é uma ferramenta para viabilizar os objetivos da sua empresa, e não o inverso. Escolhas técnicas pragmáticas focadas em retorno real e estabilidade operacional.",
   },
 ];
 
-/* dot positions along the pipeline line (as % of width) */
-const DOT_POSITIONS = [8, 25, 42, 58, 75, 92];
+const practices = [
+  "Testes automatizados",
+  "Revisão de código",
+  "CI/CD",
+  "Arquitetura orientada à manutenção",
+  "Desenvolvimento assistido por IA, com revisão humana",
+];
 
-const Differentials = () => {
-  const ref = useRef(null);
+export interface DifferentialsProps {
+  hideHeader?: boolean;
+}
+
+const Differentials: React.FC<DifferentialsProps> = ({ hideHeader = false }) => {
+  const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const shouldReduceMotion = useReducedMotion();
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: shouldReduceMotion ? 0 : 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 16 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: shouldReduceMotion ? 0 : 0.4,
+        ease: [0.22, 0.68, 0, 1.1],
+      },
+    },
+  };
 
   return (
-    <>
-      <style>{`
-        /* ══════════════════════════════════════════════════
-           DIFFERENTIALS PIPELINE SECTION
-        ══════════════════════════════════════════════════ */
+    <section
+      id="diferenciais"
+      aria-labelledby="diferenciais-heading"
+      className="relative py-24 bg-secondary/30 overflow-hidden"
+      ref={ref}
+    >
+      {/* top divider */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
 
-        /* ── pipeline wrapper ── */
-        .diff-pipeline-wrapper {
-          position: relative;
-          width: 100%;
-          margin: 3.5rem 0 4.5rem;
-        }
-
-        /* Track */
-        .diff-pipeline {
-          position: relative;
-          width: 100%;
-          height: 8px;
-          background: hsl(var(--border) / 0.4);
-          border-radius: 999px;
-          box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
-          overflow: visible;
-        }
-        .dark .diff-pipeline {
-          box-shadow: inset 0 2px 4px rgba(0,0,0,0.6), 0 1px 0 rgba(255,255,255,0.03);
-        }
-
-        /* animated fill line */
-        .diff-pipeline-fill {
-          position: absolute;
-          top: 0; left: 0; bottom: 0;
-          border-radius: 999px;
-          background: linear-gradient(90deg,
-            hsl(var(--primary)),
-            hsl(var(--primary) / 0.7),
-            hsl(var(--primary) / 0.5)
-          );
-          box-shadow:
-            0 0 12px 2px hsl(var(--primary) / 0.4),
-            0 0 28px 4px hsl(var(--primary) / 0.2);
-          transform-origin: left;
-        }
-
-        /* dot on pipeline */
-        .diff-dot {
-          position: absolute;
-          top: 50%;
-          transform: translate(-50%, -50%) scale(0);
-          width: 18px; height: 18px;
-          border-radius: 50%;
-          background: hsl(var(--primary));
-          border: 3px solid hsl(var(--background));
-          box-shadow:
-            0 0 0 2px hsl(var(--primary) / 0.5),
-            0 0 14px 3px hsl(var(--primary) / 0.5);
-          z-index: 2;
-          transition: transform 0.4s cubic-bezier(.34,1.56,.64,1);
-        }
-        .diff-dot.visible { transform: translate(-50%, -50%) scale(1); }
-
-        /* connector line from dot to card */
-        .diff-connector {
-          position: absolute;
-          left: 50%;
-          top: 100%;
-          width: 2px;
-          background: linear-gradient(to bottom, hsl(var(--primary) / 0.6), transparent);
-          height: 44px;
-          transform: translateX(-50%);
-          z-index: 1;
-        }
-
-        /* ── cards grid ── */
-        .diff-cards-grid {
-          display: grid;
-          grid-template-columns: repeat(6, 1fr);
-          gap: 1.25rem;
-        }
-        @media (max-width: 1023px) {
-          .diff-cards-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-        }
-        @media (max-width: 639px) {
-          .diff-cards-grid { grid-template-columns: repeat(1, 1fr); gap: 0.75rem; }
-        }
-
-        .diff-card {
-          border-radius: 12px;
-          border: 1px solid hsl(var(--border));
-          background: hsl(var(--card));
-          padding: 1.4rem 1.2rem;
-          display: flex;
-          flex-direction: column;
-          gap: 0.7rem;
-          position: relative;
-          overflow: hidden;
-          transition: border-color 0.3s, box-shadow 0.3s, transform 0.35s;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.05), 0 8px 24px rgba(0,0,0,0.04);
-        }
-        .dark .diff-card {
-          box-shadow:
-            0 2px 8px rgba(0,0,0,0.3),
-            0 8px 24px rgba(0,0,0,0.25),
-            inset 0 1px 0 rgba(255,255,255,0.04);
-        }
-        .diff-card:hover {
-          transform: translateY(-5px);
-          border-color: hsl(var(--primary) / 0.4);
-          box-shadow:
-            0 4px 16px rgba(0,0,0,0.08),
-            0 16px 40px rgba(0,0,0,0.1),
-            0 0 0 1px hsl(var(--primary) / 0.12);
-        }
-        .dark .diff-card:hover {
-          box-shadow:
-            0 4px 16px rgba(0,0,0,0.45),
-            0 16px 40px rgba(0,0,0,0.4),
-            0 0 0 1px hsl(var(--primary) / 0.2);
-        }
-
-        /* top border accent on hover */
-        .diff-card::before {
-          content: '';
-          position: absolute;
-          top: 0; left: 0; right: 0;
-          height: 2px;
-          border-radius: 12px 12px 0 0;
-          background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--primary) / 0.4));
-          opacity: 0;
-          transition: opacity 0.3s;
-        }
-        .diff-card:hover::before { opacity: 1; }
-
-        /* step number */
-        .diff-step-num {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          width: 22px; height: 22px;
-          border-radius: 6px;
-          font-size: 0.6rem;
-          font-family: ui-monospace, monospace;
-          font-weight: 700;
-          background: hsl(var(--primary) / 0.12);
-          color: hsl(var(--primary));
-          border: 1px solid hsl(var(--primary) / 0.2);
-          flex-shrink: 0;
-        }
-
-        /* icon wrapper */
-        .diff-icon-wrap {
-          width: 34px; height: 34px;
-          border-radius: 10px;
-          background: hsl(var(--primary) / 0.1);
-          border: 1px solid hsl(var(--primary) / 0.15);
-          display: flex; align-items: center; justify-content: center;
-          flex-shrink: 0;
-          transition: transform 0.3s, background 0.3s;
-        }
-        .diff-card:hover .diff-icon-wrap {
-          transform: scale(1.1);
-          background: hsl(var(--primary) / 0.18);
-        }
-
-        /* title with arrow */
-        .diff-card-title {
-          font-size: 0.85rem;
-          font-weight: 600;
-          line-height: 1.3;
-          color: hsl(var(--foreground));
-          letter-spacing: -0.01em;
-          display: flex;
-          align-items: center;
-          gap: 5px;
-          transition: gap 0.25s;
-        }
-        .diff-card:hover .diff-card-title { gap: 8px; }
-        .diff-card-arrow {
-          opacity: 0.4;
-          font-style: normal;
-          font-size: 1rem;
-          transition: opacity 0.25s;
-          flex-shrink: 0;
-        }
-        .diff-card:hover .diff-card-arrow { opacity: 1; }
-
-        .diff-card-handle {
-          font-size: 0.57rem;
-          font-family: ui-monospace, monospace;
-          text-transform: uppercase;
-          letter-spacing: 0.06em;
-          color: hsl(var(--primary));
-          opacity: 0.75;
-        }
-        .diff-card-desc {
-          font-family: ui-monospace, monospace;
-          font-size: 0.68rem;
-          color: hsl(var(--muted-foreground));
-          line-height: 1.65;
-          flex: 1;
-        }
-      `}</style>
-
-      <section
-        id="diferenciais"
-        className="relative py-24 bg-secondary/30 overflow-hidden"
-        ref={ref}
-      >
-        {/* top divider */}
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-
-        <div className="container px-6">
-          {/* ── Header ── */}
+      <div className="container px-6">
+        {/* ── Cabeçalho Padronizado Centralizado ── */}
+        {!hideHeader && (
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.55 }}
-            className="mb-10"
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            animate={isInView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: shouldReduceMotion ? 0 : 0.5 }}
           >
             <SectionHeader
+              id="diferenciais-heading"
               tagline="Diferenciais"
-              title="Por que escolher a EPM DEVTECH"
+              title="Por que trabalhar com a EPM DevTech"
+              subtitle="Engenharia focada na longevidade do seu software, com transparência em cada etapa do projeto."
             />
           </motion.div>
+        )}
 
-          {/* ── Pipeline Line ── */}
-          <div className="diff-pipeline-wrapper">
-            <motion.div
-              className="diff-pipeline"
-              initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : {}}
-              transition={{ duration: 0.4, delay: 0.3 }}
+        {/* ── Corpo em 3 Colunas sem Moldura de Card ── */}
+        <motion.ul
+          className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border/60 max-w-6xl mx-auto list-none p-0 m-0"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView || shouldReduceMotion ? "visible" : "hidden"}
+        >
+          {differentials.map((item, index) => (
+            <motion.li
+              key={item.title}
+              variants={itemVariants}
+              className={`py-8 md:py-4 px-0 md:px-8 flex flex-col items-start text-left group ${
+                index === 0 ? "md:pl-0" : index === 2 ? "md:pr-0" : ""
+              }`}
             >
-              {/* animated glow fill */}
-              <motion.div
-                className="diff-pipeline-fill"
-                initial={{ scaleX: 0 }}
-                animate={isInView ? { scaleX: 1 } : {}}
-                transition={{ duration: 1.1, delay: 0.45, ease: [0.22, 0.68, 0, 1] }}
-              />
+              {/* Ícone Conceitual Autoral no Topo (sem caixa esmeralda) */}
+              <div className="mb-4 text-zinc-700 dark:text-zinc-200 group-hover:text-primary transition-colors duration-200">
+                <item.Icon size={26} aria-hidden="true" />
+              </div>
 
-              {/* dots + connectors */}
-              {differentials.map((item, i) => (
-                <Fragment key={item.step}>
-                  <div
-                    className={`diff-dot${isInView ? " visible" : ""}`}
-                    style={{
-                      left: `${DOT_POSITIONS[i]}%`,
-                      transitionDelay: `${0.45 + i * 0.12}s`,
-                    }}
-                  />
-                  <div
-                    className="diff-connector"
-                    style={{ left: `${DOT_POSITIONS[i]}%` }}
-                  />
-                </Fragment>
-              ))}
-            </motion.div>
-          </div>
+              {/* Rótulo de Categoria */}
+              <span className="text-[11px] font-mono uppercase tracking-wider text-primary font-semibold block mb-2">
+                {item.tag}
+              </span>
 
-          {/* ── Cards: animate from bottom ── */}
-          <div className="diff-cards-grid">
-            {differentials.map((item, index) => (
-              <motion.div
-                key={item.title}
-                className="diff-card"
-                initial={{ opacity: 0, y: 48 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{
-                  duration: 0.5,
-                  delay: 0.55 + index * 0.09,
-                  ease: [0.22, 0.68, 0, 1.1],
-                }}
+              {/* Título H3 em Sentence Case */}
+              <h3 className="text-lg font-semibold tracking-tight text-foreground mb-2.5">
+                {item.title}
+              </h3>
+
+              {/* Descrição Alinhada à Esquerda */}
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                {item.description}
+              </p>
+            </motion.li>
+          ))}
+        </motion.ul>
+
+        {/* ── Bloco Inferior Centralizado: Práticas de Engenharia ── */}
+        <motion.div
+          initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+          animate={isInView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: shouldReduceMotion ? 0 : 0.45, delay: shouldReduceMotion ? 0 : 0.25 }}
+          className="mt-14 pt-10 border-t border-border/40 text-center max-w-2xl mx-auto"
+        >
+          <span className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground/90 font-medium block mb-3.5">
+            Práticas aplicadas conforme cada projeto
+          </span>
+          <div className="flex flex-wrap justify-center gap-2">
+            {practices.map((practice) => (
+              <Badge
+                key={practice}
+                variant="outline"
+                className="px-3 py-1.5 text-xs font-mono font-medium rounded-lg bg-background/80 hover:bg-background border-border/80 text-foreground/90 transition-colors shadow-xs"
               >
-                {/* step number */}
-                <div className="flex items-center gap-2 mb-1">
-                  <div className="diff-step-num">{item.step}</div>
-                </div>
-
-                {/* title with arrow */}
-                <h3 className="diff-card-title">
-                  <span>{item.title}</span>
-                  <span className="diff-card-arrow">→</span>
-                </h3>
-
-                {/* handle */}
-                <div className="diff-card-handle">{item.handle}</div>
-
-                {/* description */}
-                <p className="diff-card-desc">{item.description}</p>
-
-                {/* icon at bottom */}
-                <div className="diff-icon-wrap mt-auto">
-                  <item.icon
-                    size={16}
-                    className="text-primary"
-                  />
-                </div>
-              </motion.div>
+                {practice}
+              </Badge>
             ))}
           </div>
-        </div>
-      </section>
-    </>
+        </motion.div>
+      </div>
+    </section>
   );
 };
 

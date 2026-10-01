@@ -22,11 +22,11 @@
 
 ## Propósito
 
-Landing page institucional da **EPM DEVTECH**, Software House especializada em:
+Landing page institucional da **EPM DEVTECH**, Software House dedicada a:
 - Desenvolvimento de software sob medida
 - APIs REST/GraphQL escaláveis
 - Arquitetura de sistemas de alta performance
-- Soluções para Indústria, E-commerce, Educação (CAPES/MEC) e Energia (ONS)
+- Soluções para Indústria, Varejo, Educação e Energia
 
 A página apresenta serviços, tecnologias, diferenciais, projetos de autoridade e canal de contato direto.
 
@@ -72,33 +72,48 @@ A página apresenta serviços, tecnologias, diferenciais, projetos de autoridade
 ## Arquitetura
 
 ### Tipo
-Single Page Application (SPA) com roteamento client-side simulando seções via `/:section`.
+Single Page Application (SPA) multi-rota desacoplada com rotas independentes, hub comercial enxuto na raiz e pré-renderização estática de HTML no pós-build para SEO pleno.
 
-### Estrutura de Rotas
-| Rota            | Seção               |
-|-----------------|---------------------|
-| `/`             | Hero                |
-| `/sobre`        | About               |
-| `/setores`      | Sectors             |
-| `/servicos`     | Services            |
-| `/tecnologias`  | Technologies        |
-| `/diferenciais` | Differentials       |
-| `/faq`          | FAQ                 |
-| `/contato`      | Contact             |
-| `/*`            | NotFound (404)      |
+### Estrutura de Rotas Canônicas
+| Rota                 | Componente           | Função                                      |
+|----------------------|----------------------|---------------------------------------------|
+| `/`                  | `Home.tsx`           | Hub comercial sintetizado com Hero Slim     |
+| `/servicos`          | `ServicesPage.tsx`   | Catálogo com 4 ofertas e dores de negócio   |
+| `/como-trabalhamos`  | `HowWeWorkPage.tsx`  | Pipeline sequencial de 4 etapas             |
+| `/experiencia`       | `ExperiencePage.tsx` | Indicadores de autoridade e contextos reais |
+| `/engenharia`        | `EngineeringPage.tsx`| Pilares de engenharia e TechConstellation   |
+| `/sobre`             | `AboutPage.tsx`      | Institucional com liderança técnica e dados |
+| `/contato`           | `ContactPage.tsx`    | Formulário de contato, canais e SLA         |
+| `/duvidas-frequentes`| `FAQPage.tsx`        | 8 perguntas categorizadas (fonte única)     |
+| `/*`                 | `NotFound.tsx`       | Página 404 em português com links de resgate|
 
-### Scroll Spy
-IntersectionObserver com `rootMargin: "-40% 0px -40% 0px"` atualiza a URL via `replaceState` ao rolar — sem empilhar histórico.
+### Redirecionamentos 301 (Edge / Vercel)
+- `/setores` → `/experiencia` (301 permanente)
+- `/autoridade` → `/experiencia` (301 permanente)
+- `/diferenciais` → `/engenharia` (301 permanente)
+- `/tecnologias` → `/engenharia` (301 permanente)
+- `/faq` → `/duvidas-frequentes` (301 permanente)
+
+### Gerenciamento de Foco e Rolagem (`ScrollManager`)
+- Rolagem suave para o topo a cada transição de rota (respeitando `prefers-reduced-motion`).
+- Transferência programática de foco para o `<h1>` da nova rota (`tabIndex={-1}`) para suporte pleno a leitores de tela.
+- Interceptação de hashes legados na raiz (`/#servicos`, `/#contato`) redirecionando via `replaceState` para rotas canônicas.
 
 ### Estrutura de Diretórios
 ```
 src/
-├── App.tsx                     # Providers raiz e roteamento
+├── App.tsx                     # Rotas aninhadas sob Layout e providers raiz
 ├── main.tsx                    # Ponto de entrada React
 ├── index.css                   # Estilos globais e tokens Tailwind
+├── config/
+│   ├── experience.ts           # Organizações aprovadas (CAPES, ONS, Energia Pecém)
+│   └── faq.ts                  # Perguntas frequentes categorizadas
 ├── components/
 │   ├── layout/
-│   │   └── Header.tsx          # Navegação principal
+│   │   ├── Layout.tsx          # Shell persistente com skip-link, Header, Outlet e Footer
+│   │   └── Header.tsx          # Menu enxuto (5 links + 1 botão CTA)
+│   ├── routing/
+│   │   └── ScrollManager.tsx   # Foco e rolagem acessível entre rotas
 │   ├── sections/
 │   │   ├── Hero.tsx
 │   │   ├── Authority.tsx
@@ -111,7 +126,7 @@ src/
 │   │   ├── FAQ.tsx
 │   │   ├── Contact.tsx
 │   │   └── Footer.tsx
-│   ├── ui/                     # Componentes shadcn/ui e SectionHeader.tsx
+│   ├── ui/                     # Componentes shadcn/ui, PageHeader e SectionHeader
 │   ├── CursorOrb.tsx
 │   ├── NavLink.tsx
 │   ├── cookie-banner.tsx
@@ -120,26 +135,34 @@ src/
 ├── lib/
 │   └── buildConstellationLayout.ts
 ├── pages/
-│   ├── Index.tsx               # Página principal com SEO dinâmico
-│   └── NotFound.tsx
+│   ├── Home.tsx                # Homepage curta como hub comercial
+│   ├── ServicesPage.tsx        # /servicos
+│   ├── HowWeWorkPage.tsx       # /como-trabalhamos
+│   ├── ExperiencePage.tsx      # /experiencia
+│   ├── EngineeringPage.tsx     # /engenharia
+│   ├── AboutPage.tsx           # /sobre
+│   ├── ContactPage.tsx         # /contato
+│   ├── FAQPage.tsx             # /duvidas-frequentes
+│   └── NotFound.tsx            # 404 em português
 └── test/
     ├── setup.ts
     └── example.test.ts
 ```
 
-### Padrões de Carregamento
-- **Hero** e **Header**: carregamento imediato (LCP crítico)
-- Demais seções: `React.lazy` + `Suspense` (code splitting automático)
-- Bundle splitting manual via Vite `manualChunks`: `framer-motion`, `react`, `router`, `radix`, `icons`, `emailjs`, `tanstack`
+### Padrões de Carregamento e SEO
+- **Home**, **Layout** e **Header**: carregamento imediato na raiz (LCP instantâneo sem layout shift)
+- Subrotas independentes: `React.lazy` + `Suspense` sob demanda
+- Pré-render estático multi-rota via `scripts/prerender.js` gerando `dist/<rota>/index.html` pré-populado com `<title>`, `<meta name="description">`, `<link rel="canonical">`, Open Graph e H1 para crawlers e scrapers sem JavaScript.
 
 ---
 
 ## SEO
 
-- Meta tags dinâmicas por seção via `react-helmet-async`
-- URL canônica dinâmica
-- Open Graph configurado
-- Skip-to-content link para acessibilidade
+- Meta tags dinâmicas por rota via `react-helmet-async`
+- Pré-render estático no pós-build para scrapers de redes sociais e SEO bot
+- URL canônica individual por rota (`data-rh="true"`)
+- Open Graph e Twitter Cards específicos por página
+- Skip-to-content link para acessibilidade (`#conteudo-principal`)
 
 ---
 
@@ -147,24 +170,27 @@ src/
 
 | Área              | Status           | Notas                                      |
 |-------------------|------------------|--------------------------------------------|
-| Design            | ✅ Padronizado   | Design System Verde EPM DEVTECH (#10B981), títulos monocromáticos e tipografia Geist |
-| Tipografia / Títulos | ✅ Padronizado   | Eyebrows minimalistas com traço do ícone da marca (BrandChipIcon em #10B981) + texto cinza uppercase (11.5px, weight 500, letter-spacing 0.1em), títulos 100% monocromáticos, zero cápsulas e zero travessões (—) ou pontos e vírgulas (;) |
-| Hero              | ✅ Software House, Lamp Effect & Responsividade | Iluminação volumétrica atmosférica com efeito Lamp (`LampContainer`) adaptado à paleta esmeralda e tokens de tema (SPEC-047). Eyebrow badge `EPM DEVTECH` • `SOFTWARE HOUSE`, headline 100% monocromática ("Desenvolvemos software sob medida para o seu negócio."), supporting copy com foco em sistemas, web, APIs e integrações, dual CTA ("Falar sobre meu projeto →" e "Conhecer a EPM"), microprova ("Da ideia à produção • Engenharia direta • +9 anos de experiência") e topologia de arquitetura distribuída (`HeroArchitecture.tsx`) com fade-out na base. Ajuste de espaçamento vertical (SPEC-048) garante CTAs visíveis sem scroll em notebooks 1280×800 e 1366×768. |
-| About             | ✅ Atualizado    | Autoridade técnica (Tech Lead/fundador Elessandro Prestes Macedo), métricas (+9 anos, 4 setores, 99,9% uptime) e pilares de engenharia |
-| Sectors           | ✅ Modularizado  | Seção 4 dedicada com os 4 cards 3D isomórficos 100% preservados (Indústria, Varejo, Educação, Energia), mockups interativos e tríade contexto + problema + experiência |
-| Services          | ✅ Atualizado    | Copywriting sênior com destaque ao problema resolvido nos 6 cards, H2 monocromático, H3 font-semibold e mockups técnicos preservados |
-| Technologies      | ✅ Constellation | TechConstellation interativo com trilhas PCB, Focus & Context e Painel Arquitetural |
-| Differentials     | ✅ Atualizado    | Copywriting focado em benefícios nos 6 cards, tags técnicas, timeline preservada e H3 semântico |
-| FAQ               | ✅ Otimizado     | Acordeão interativo (shadcn/ui), 10 perguntas estritamente focadas em remoção de objeções reais (sem redundância de catálogo), contraste WCAG AAA no Light e Dark Mode |
-| Contact           | ✅ Blindado      | Split Card com formulário underline, dropdown milimétrico (gap=0px), máscara dinâmica de telefone, validação estrita Zod (rejeição de letras e DDDs inválidos), microinteração no botão e toast centralizado no topo (top-center) |
-| Footer            | ✅ Atualizado    | Layout de 4 colunas monocromáticas, CNPJ consolidado na linha de copyright (© 2026 EPM DEVTECH · CNPJ 60.710.574/0001-85), modais acessíveis de Termos de Uso e Política de Privacidade (LGPD) sem travessões e remoção de textos obsoletos |
-| ScrollToTop       | ✅ Neutro / Flat | Ícone ChevronUp (20px), design utilitário neutro sem glow ou realce verde (borda fina border-zinc-200/800, text-zinc-500/400), sem competir com CTAs reais (WhatsApp/Contato), fade suave >450px e elevação dinâmica no rodapé |
+| Design            | ✅ Padronizado   | Design System Verde EPM DEVTECH (#10B981), cabeçalhos 100% centralizados com `<header>` (`SectionHeader`), escala H2 fluida idêntica em todas as seções, `aria-labelledby` em cada seção e `[text-wrap:balance]` (SPEC-058) |
+| Tipografia / Títulos | ✅ Padronizado   | Eyebrows minimalistas com traço do ícone da marca (BrandChipIcon em #10B981) + texto cinza uppercase (11.5px, weight 500, letter-spacing 0.1em), títulos 100% monocromáticos, zero cápsulas e padrão sentence case em todo o site |
+| Iconografia       | ✅ Autoral / SVG | Conjunto autoral de 15 SVGs conceituais em `@/components/icons` com traço 1.5px, duotone 10%, nó verde de assinatura de marca e wrapper `Icon`; sem caixas de template (SPEC-058) |
+| Hero              | ✅ Slim / Minimalista | Faixa slim de coluna única centralizada (458px em 1440x900, redução de 62.9%), headline monocromática em 2 linhas com `[text-wrap:balance]`, subheadline concisa, CTA primário unificado "Falar sobre meu projeto", CTA secundário em link de texto, zero gradientes, transição discreta com nó esmeralda sólido e Serviços visível acima da dobra (SPEC-059) |
+| Services          | ✅ Expandido     | 4 ofertas com gatilhos de dor destacados ("Quando precisa:" com label verde mono, pergunta em foreground font-medium, divisor fino e alinhamento na base), títulos em sentence case e sem repetição de "reduzindo" (SPEC-056) |
+| Como Trabalhamos  | ✅ Sequencial    | Seção de processo sequencial com pipeline 01-04, lista semântica `<ol>`, timeline vertical no mobile (< 1024px), ícones autorais no cabeçalho do card e sem caixa esmeralda inferior |
+| Differentials     | ✅ 3 Colunas     | Cabeçalho centralizado, 3 colunas abertas sem moldura de card separadas por divisores sutis verticais, ícones autorais no topo e bloco inferior centralizado de práticas de engenharia (SPEC-053) |
+| Technologies      | ✅ Constellation | TechConstellation interativo com trilhas PCB, Focus & Context, cabeçalho centralizado e Painel Arquitetural |
+| Autoridade        | ✅ CountUp       | Grid simétrico com 4 estatísticas consolidadas (99,9%, 2.500 RPS, 100%, −35%), subtítulo atualizado com contexto de outras empresas, escala H2 unificada, DOM inicial com valores finais sem zero placeholder, contagem animada como progressive enhancement, aria-hidden nos números visuais e sr-only dedicado (SPEC-058) |
+| Sectors           | ✅ Refatorado    | Título "Experiência em diferentes contextos", 4 cards 3D isomórficos com ícones conceituais autorais e sem setas direcionais (falsa affordance removida) |
+| About             | ✅ Enquadrado    | Posicionamento centrado na software house, cabeçalho centralizado, liderança técnica com ícone autoral, indicador de experiência estático (+9 Anos), sem título de engenheiro (SPEC-055) |
+| FAQ               | ✅ Condensado    | 8 perguntas essenciais, pergunta de sites institucionais alocada na categoria "servicos", abas em sentence case e CTA integrado |
+| Contact           | ✅ Refatorado    | Título "Fale sobre seu projeto", CTA único "Falar sobre meu projeto", próximos passos com ícones conceituais e borda sutil de 1px |
+| Footer            | ✅ Refatorado    | Links corporativos sincronizados via `site.ts`, LinkedIn e GitHub oficiais na coluna Contato com ícones SVG monocromáticos (20px) e touch target ≥ 44px; descrição factual "dedicada a..." (SPEC-057) |
+| ScrollToTop       | ✅ Neutro / Flat | Ícone ChevronUp (20px), design utilitário neutro sem glow ou realce verde, fade suave >450px e elevação dinâmica no rodapé |
 | Cookie Banner     | ✅ Otimizado     | Lazy load assíncrono + defer timer (3.5s)  |
-| SEO & Agêntico    | ✅ Formalizado   | `robots.txt` formalizado para 16 crawlers de IA (OpenAI, Anthropic, Perplexity, Google, Apple, Meta, ByteDance, etc.), `llms.txt` e `llms-full.txt` enriquecidos com a narrativa de 10 seções, setores, serviços, 10 perguntas do FAQ e métricas reais, `sitemap.xml` atualizado com `/setores` e `/faq`, links de auto-descoberta no `index.html` e eliminação de travessões artificiais |
-| Testes unitários  | ✅ Implementado  | 20/20 suites, 138/138 testes passando (98.66% coverage no Hero, 100% no HeroBadge, 96.73% no HeroArchitecture) |
-| Testes E2E        | ✅ Implementado  | Suíte Playwright (10/10 testes em design-system-and-stability + 6/6 testes de responsividade e viewport sem overflow horizontal) |
-| Acessibilidade    | ✅ 100% WCAG AA  | Contraste de texto e botões >= 4.5:1 (Logotipo WCAG AAA >= 17:1) |
-| Performance       | ✅ 100% Otimizado| JS inicial < 80 KB, FCP/LCP instantâneo    |
+| Multi-Rota & SEO  | ✅ Multi-Rota SPA | Transição de monólito one-page para SPA multi-rota com rotas canônicas independentes (`/`, `/servicos`, `/como-trabalhamos`, `/experiencia`, `/engenharia`, `/sobre`, `/contato`, `/duvidas-frequentes`), menu enxuto (5 links + 1 CTA), preservação 301 de URLs e pré-render estático HTML pós-build (SPEC-060) |
+| Testes unitários  | ✅ Implementado  | 25/25 suites, 161/161 testes passando (99.64% linhas, 90.44% branches, 90.38% funcs) |
+| Testes E2E        | ✅ Implementado  | Suíte Playwright (43/43 testes passando: rotas independentes, F5 direto, SEO canônico, menu mobile acessível, Hero slim, travas de tokens e responsividade) |
+| Acessibilidade    | ✅ 100% WCAG AA  | Skip-link acessível, foco programático em `<h1>`, `aria-current="page"`, contraste ≥ 4.5:1, touch target ≥ 44px, zero layout shift (CLS: 0.000 mobile) |
+| Performance       | ✅ 100% Otimizado| Mobile Perf: 84 (+16 pontos vs baseline 68), TBT: 480ms (-77% de bloqueio), CLS: 0.000; Desktop Perf: 97, SEO: 100/100, FCP 0.5s / LCP 0.6s |
 | Proxy Odontologia | ✅ Implementado  | `/odontologia-demo` → proxy reverso Vercel para `dentistry-demo.elessandrodev.workers.dev` com 4 headers AppSec (SPEC-044) |
 | i18n              | ❌ Não iniciado  | Não planejado na versão atual              |
 
@@ -200,4 +226,4 @@ src/
 
 ---
 
-_Última atualização: 2026-09-28 | Maintainer: Elessandro Prestes Macedo_
+_Última atualização: 2026-10-01 | Maintainer: Elessandro Prestes Macedo_

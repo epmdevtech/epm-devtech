@@ -2,46 +2,39 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import SectionHeader from "@/components/ui/SectionHeader";
+import CountUp from "@/components/ui/CountUp";
+import { cn } from "@/lib/utils";
 
 const metrics = [
   {
-    value: "99,9%",
-    label: "Uptime em ambientes de produção",
+    end: 99.9,
+    decimals: 1,
+    suffix: "%",
+    label: "Disponibilidade assegurada em plataformas críticas de energia e educação.",
+    accessibleLabel: "99,9% de disponibilidade",
   },
   {
-    value: "2.500+ RPS",
-    label: "Throughput suportado em arquiteturas distribuídas",
+    end: 2500,
+    decimals: 0,
+    suffix: " RPS",
+    formatThousands: true,
+    label: "Arquitetura dimensionada para picos de 10.000 usuários simultâneos.",
+    accessibleLabel: "2.500 requisições por segundo",
   },
   {
-    value: "+448 IES e 650 Escolas",
-    label: "Impacto em plataformas educacionais e federais",
+    end: 100,
+    decimals: 0,
+    suffix: "%",
+    label: "De integridade dos dados na consolidação regulatória do setor elétrico, sem perda.",
+    accessibleLabel: "100% de integridade",
   },
   {
-    value: "Zero Perda",
-    label: "Integridade em dados regulatórios e integrações críticas",
-  },
-];
-
-const organizations = [
-  {
-    name: "CAPES • MEC",
-    detail: null,
-  },
-  {
-    name: "ONS",
-    detail: "(Operador Nacional do Sistema Elétrico)",
-  },
-  {
-    name: "Energia Pecém",
-    detail: null,
-  },
-  {
-    name: "Governo do MT",
-    detail: "(SEDUC)",
-  },
-  {
-    name: "Indústria e Manufatura",
-    detail: "(IoT Industrial e ERP)",
+    end: 35,
+    decimals: 0,
+    prefix: "\u2212",
+    suffix: "%",
+    label: "De atividades manuais, com automações e integrações em uma plataforma modernizada.",
+    accessibleLabel: "redução de 35%",
   },
 ];
 
@@ -52,6 +45,7 @@ const Authority = () => {
   return (
     <section
       id="autoridade"
+      aria-labelledby="autoridade-heading"
       className="py-14 lg:py-16 border-y border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-zinc-900/30 relative"
       ref={ref}
     >
@@ -60,57 +54,58 @@ const Authority = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
-          className="space-y-10"
+          className="space-y-8"
         >
-          {/* Cabeçalho compacto e monocromático */}
+          {/* Cabeçalho centralizado com escala padronizada e acessibilidade */}
           <SectionHeader
-            tagline="Prova Social & Autoridade"
-            title="Projetos em produção, não em portfólio"
-            titleClassName="text-2xl sm:text-3xl"
+            id="autoridade-heading"
+            tagline="Experiência e contexto"
+            title="Experiência em operações que não podem parar"
+            subtitle="Resultados de projetos da liderança técnica da EPM DevTech em outras empresas."
           />
 
-          {/* Feature 1: Métricas Consolidadas de Missão Crítica */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center divide-y sm:divide-y-0 sm:divide-x divide-zinc-200/80 dark:divide-zinc-800/80">
+          {/* 4 Métricas Consolidadas com Animação CountUp */}
+          <ul
+            role="list"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-8 sm:gap-y-0 text-center lg:divide-x divide-zinc-200/80 dark:divide-zinc-800/80 max-w-6xl mx-auto list-none p-0 m-0"
+          >
             {metrics.map((m, idx) => (
-              <div
+              <li
                 key={m.label}
-                className={idx === 0 ? "pt-4 sm:pt-0" : "pt-4 sm:pt-0 sm:pl-6"}
+                className={cn(
+                  "px-4 flex flex-col items-center",
+                  idx !== 0 && "lg:pl-6",
+                  // Tablet (2 colunas): divisores internos 2x2
+                  idx % 2 === 1 && "sm:border-l sm:border-zinc-200/80 sm:dark:border-zinc-800/80 lg:border-l-0",
+                  idx >= 2 && "sm:border-t sm:border-zinc-200/80 sm:dark:border-zinc-800/80 lg:border-t-0 sm:pt-6 lg:pt-0",
+                  // Mobile (1 coluna): divisores horizontais discretos
+                  idx > 0 && "border-t border-zinc-200/80 dark:border-zinc-800/80 pt-6 sm:border-t-0 sm:pt-0"
+                )}
               >
                 <p className="text-3xl lg:text-4xl font-bold tracking-tight text-zinc-900 dark:text-white">
-                  {m.value}
+                  <span className="sr-only">{m.accessibleLabel}</span>
+                  <CountUp
+                    isCounting={isInView}
+                    end={m.end}
+                    decimals={m.decimals}
+                    prefix={m.prefix}
+                    suffix={m.suffix}
+                    formatThousands={m.formatThousands}
+                    duration={2}
+                    aria-hidden="true"
+                  />
                 </p>
-                <p className="text-xs sm:text-sm font-medium text-zinc-600 dark:text-zinc-400 mt-1.5 leading-snug">
+                <p className="text-xs sm:text-sm font-medium text-zinc-600 dark:text-zinc-400 mt-2 leading-relaxed max-w-xs mx-auto">
                   {m.label}
                 </p>
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
 
-          {/* Divisor sutil */}
-          <div className="w-full h-px bg-zinc-200/80 dark:bg-zinc-800/80" />
-
-          {/* Feature 2: Faixa de Clientes, Órgãos e Setores */}
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
-            <span className="text-xs uppercase tracking-widest font-semibold text-zinc-500 dark:text-zinc-400 text-center lg:text-left max-w-xs">
-              Engenharia comprovada em projetos e sistemas para grandes organizações e setores estratégicos:
-            </span>
-            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-              {organizations.map((org) => (
-                <div
-                  key={org.name}
-                  className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg border border-zinc-200/80 dark:border-zinc-800 bg-white/80 dark:bg-zinc-800/50 text-xs sm:text-sm font-semibold text-zinc-700 dark:text-zinc-300 shadow-sm transition-all duration-200 hover:border-emerald-500/50 hover:text-emerald-700 dark:hover:text-emerald-400 opacity-80 hover:opacity-100 cursor-default"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500/70" />
-                  <span>{org.name}</span>
-                  {org.detail && (
-                    <span className="text-zinc-500 dark:text-zinc-400 font-normal text-xs">
-                      {org.detail}
-                    </span>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
+          {/* Nota discreta de confidencialidade */}
+          <p className="text-xs text-zinc-500 dark:text-zinc-400 text-center max-w-2xl mx-auto pt-2">
+            Contexto e detalhes sob solicitação, respeitando a confidencialidade dos projetos.
+          </p>
         </motion.div>
       </div>
     </section>

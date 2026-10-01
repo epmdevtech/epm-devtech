@@ -1,3 +1,12 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "redirects": [
+    { "source": "/setores", "destination": "/experiencia", "permanent": true },
+    { "source": "/autoridade", "destination": "/experiencia", "permanent": true },
+    { "source": "/diferenciais", "destination": "/engenharia", "permanent": true },
+    { "source": "/tecnologias", "destination": "/engenharia", "permanent": true },
+    { "source": "/faq", "destination": "/duvidas-frequentes", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
 }

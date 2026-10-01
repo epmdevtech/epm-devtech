@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
-import { CheckCircle2, Clock, ShieldCheck, Send, Loader2, Maximize2 } from "lucide-react";
+import { CheckCircle2, Send, Loader2, Maximize2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { Input } from "@/components/ui/input";
@@ -27,12 +27,17 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { formatBrazilianPhone, validateBrazilianPhone } from "@/lib/phone";
+import {
+  IconTechnicalDiagnostic,
+  IconFastResponse,
+  IconConfidentiality,
+} from "@/components/icons";
 
 const formSchema = z.object({
   name: z.string().trim().min(3, "Informe seu nome completo"),
   email: z.string().trim().email("Informe um e-mail corporativo válido"),
   phone: z.string().trim().optional().refine(validateBrazilianPhone, {
-    message: "Informe um número de WhatsApp/Telefone válido com DDD (ex: 11 99999-9999)",
+    message: "Informe um número de WhatsApp/Telefone válido com DDD (ex: 45 99999-9999)",
   }),
   projectType: z.string().min(1, "Selecione o tipo de projeto"),
   message: z.string().trim().min(15, "Descreva seu projeto com pelo menos 15 caracteres"),
@@ -41,35 +46,39 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 const PROJECT_TYPES = [
-  "Novo Sistema ou Aplicação Web",
-  "Modernização de Sistema Legado",
-  "APIs, Microsserviços e Integrações",
-  "Consultoria Técnica e Arquitetura",
-  "Outro Desafio",
+  "Sistema, portal ou site institucional",
+  "APIs e integrações",
+  "Modernização de sistema legado",
+  "Consultoria ou avaliação técnica",
+  "Outro",
 ];
 
 const nextSteps = [
   {
-    icon: CheckCircle2,
-    title: "Diagnóstico Técnico",
+    Icon: IconTechnicalDiagnostic,
+    title: "Diagnóstico técnico",
     description:
       "Avaliamos seu cenário, gargalos e viabilidade arquitetural logo no primeiro contato.",
   },
   {
-    icon: Clock,
-    title: "Retorno em até 24 Horas",
+    Icon: IconFastResponse,
+    title: "Retorno em até 24 horas úteis",
     description:
-      "Resposta rápida para agendarmos uma conversa técnica sem enrolação.",
+      "Resposta objetiva para agendarmos uma conversa.",
   },
   {
-    icon: ShieldCheck,
-    title: "Sigilo e Segurança",
+    Icon: IconConfidentiality,
+    title: "Sigilo e confidencialidade",
     description:
-      "Suas ideias, dados e regras de negócio tratados com absoluta confidencialidade.",
+      "Suas ideias, dados e regras de negócio tratados sob sigilo e proteção, com NDA quando solicitado.",
   },
 ];
 
-const Contact = () => {
+export interface ContactProps {
+  hideHeader?: boolean;
+}
+
+const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [isSending, setIsSending] = useState(false);
@@ -111,7 +120,7 @@ const Contact = () => {
       };
 
       await emailjs.send(serviceId, templateId, templateParams);
-      toast.success("Mensagem enviada! Retornarei em breve.");
+      toast.success("Mensagem enviada com sucesso! Retornaremos em breve.");
       setIsSuccess(true);
       reset();
       setTimeout(() => {
@@ -134,24 +143,27 @@ const Contact = () => {
   };
 
   return (
-    <section id="contato" className="relative py-24 bg-secondary/30 overflow-hidden" ref={ref}>
+    <section id="contato" aria-labelledby="contato-heading" className="relative py-24 bg-secondary/30 overflow-hidden" ref={ref}>
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[128px]" />
 
       <div className="container px-6 relative z-10">
         {/* Cabeçalho Externo da Seção */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
-          className="mb-14"
-        >
-          <SectionHeader
-            tagline="Contato"
-            title="Vamos entender o seu desafio"
-            subtitle="Não precisa chegar com arquitetura definida ou stack escolhida. Descreva o que está travando ou o que você quer construir, nós indicamos o caminho técnico mais adequado."
-          />
-        </motion.div>
+        {!hideHeader && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5 }}
+            className="mb-14"
+          >
+            <SectionHeader
+              id="contato-heading"
+              tagline="Contato"
+              title="Fale sobre seu projeto"
+              subtitle="Conte o que sua empresa precisa. Vamos entender o cenário e avaliar como a EPM DevTech pode ajudar."
+            />
+          </motion.div>
+        )}
 
         {/* Container Principal: Split Card Unificado */}
         <motion.div
@@ -235,7 +247,7 @@ const Contact = () => {
                     <Input
                       id="phone"
                       type="tel"
-                      placeholder="(11) 99999-9999"
+                      placeholder="(45) 99999-9999"
                       autoComplete="tel"
                       {...register("phone")}
                       onChange={(e) => {
@@ -387,7 +399,7 @@ const Contact = () => {
                     ) : (
                       <>
                         <Send className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-                        <span>Enviar Mensagem</span>
+                        <span>Falar sobre meu projeto</span>
                       </>
                     )}
                   </button>
@@ -403,15 +415,15 @@ const Contact = () => {
                 O que acontece a seguir?
               </h3>
               <p className="text-xs text-zinc-400 leading-relaxed mb-8">
-                Nosso processo é direto com a engenharia, sem intermediários comerciais:
+                Transparência e foco técnico desde o primeiro contato:
               </p>
 
               {/* Lista de Próximos Passos e Garantias */}
               <div className="flex flex-col gap-6">
                 {nextSteps.map((item) => (
                   <div key={item.title} className="flex items-start gap-4 group">
-                    <div className="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center text-emerald-400 shrink-0 group-hover:bg-zinc-700/80 transition-colors">
-                      <item.icon className="w-5 h-5" />
+                    <div className="w-10 h-10 rounded-xl border border-zinc-700/80 bg-zinc-800/60 flex items-center justify-center text-zinc-300 shrink-0 group-hover:border-primary/50 group-hover:text-primary transition-colors">
+                      <item.Icon size={20} aria-hidden="true" />
                     </div>
                     <div className="min-w-0 flex-1">
                       <h4 className="text-sm font-semibold text-white mb-1">

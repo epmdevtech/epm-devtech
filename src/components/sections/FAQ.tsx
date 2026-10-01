@@ -11,7 +11,7 @@ import SectionHeader from "@/components/ui/SectionHeader";
 interface FAQItem {
   question: string;
   answer: string;
-  category: "contratacao" | "legados" | "processo";
+  category: "contratacao" | "legados" | "processo" | "servicos";
 }
 
 const FAQ_ITEMS: FAQItem[] = [
@@ -20,13 +20,13 @@ const FAQ_ITEMS: FAQItem[] = [
     category: "contratacao",
     question: "Preciso ter o projeto totalmente especificado para iniciar o contato?",
     answer:
-      "Não. Você não precisa ter documentação técnica pronta nem lista fechada de requisitos. Basta compartilhar conosco o contexto do seu negócio, o problema operacional que você enfrenta ou o objetivo que deseja atingir. Durante o diagnóstico técnico, nós ajudamos a mapear o cenário e desenhar a arquitetura recomendada.",
+      "Não. Você não precisa ter documentação técnica pronta nem lista fechada de requisitos. Basta compartilhar conosco o contexto do seu negócio, o problema operacional que você enfrenta ou o objetivo que deseja atingir. Durante a conversa inicial, ajudamos a mapear o cenário e desenhar a abordagem técnica recomendada.",
   },
   {
     category: "contratacao",
-    question: "Como funciona o primeiro contato e qual é o tempo de retorno?",
+    question: "Como funciona o primeiro contato, o diagnóstico inicial e o tempo de retorno?",
     answer:
-      "Nosso retorno técnico ocorre em até 24 horas úteis após o envio da sua mensagem por formulário, e-mail ou WhatsApp. Agendamos uma conversa inicial focada em engenharia para entender seu contexto, avaliar a viabilidade técnica e esclarecer dúvidas sem compromisso.",
+      "Nosso retorno ocorre em até 24 horas úteis após o envio da sua mensagem. Agendamos uma conversa inicial para entender seu contexto, avaliar o volume esperado, regras de negócio e integrações necessárias, apresentando uma visão transparente sobre viabilidade e opções de arquitetura sem compromisso.",
   },
   {
     category: "contratacao",
@@ -36,56 +36,47 @@ const FAQ_ITEMS: FAQItem[] = [
   },
   {
     category: "contratacao",
-    question: "A EPM DEVTECH atende clientes fora de Toledo no Paraná ou no exterior?",
+    question: "A EPM DevTech atende clientes fora de Toledo (PR) ou no exterior?",
     answer:
-      "Sim, atuamos 100% de forma remota. Já construímos plataformas de missão crítica para clientes em Brasília (CAPES/MEC), Ceará (Energia Pecém), Santa Catarina (ONS via AMcom) e Mato Grosso do Sul (Governo MT). Mantemos comunicação diária, reuniões semanais de alinhamento e relatórios periódicos de progresso.",
+      "Sim, atuamos de forma remota para empresas e instituições de qualquer região. Já participamos de soluções aplicadas em diferentes estados brasileiros, mantendo comunicação frequente, alinhamentos periódicos e acompanhamento próximo a cada etapa.",
   },
 
   // ── Categoria: Sistemas Existentes ──────────────────────────────────
   {
     category: "legados",
-    question: "Vocês conseguem assumir ou evoluir um sistema desenvolvido por outra empresa?",
+    question: "Vocês assumem, mantêm ou evoluem sistemas desenvolvidos por outra empresa?",
     answer:
-      "Sim. Iniciamos com uma auditoria técnica na base de código existente para mapear a arquitetura, identificar gargalos de performance, vulnerabilidades de segurança e dependências críticas. A partir desse diagnóstico, estabelecemos um plano seguro de estabilização, refatoração e evolução sem sobressaltos.",
+      "Sim. Iniciamos com uma avaliação técnica na base de código existente para mapear arquitetura, gargalos de performance e dependências críticas. A partir desse diagnóstico, estabelecemos um plano para estabilização, otimização de desempenho, manutenção contínua ou evolução do sistema.",
   },
   {
     category: "legados",
-    question: "É possível modernizar um sistema legado sem interromper a operação da empresa?",
+    question: "É possível modernizar um sistema legado sem interromper a operação?",
     answer:
-      "Sim. Aplicamos o padrão Strangler Fig Pattern, que viabiliza a migração incremental do sistema. Módulos modernos são desenvolvidos e colocados em produção em paralelo com o sistema legado, assumindo rotas gradativamente e garantindo zero paralisação nas operações diárias da sua empresa.",
-  },
-  {
-    category: "legados",
-    question: "Vocês trabalham com estabilização e manutenção de sistemas em produção?",
-    answer:
-      "Sim. Além de projetos novos, atuamos na resolução de gargalos operacionais em plataformas ativas que sofrem com lentidão, instabilidade em horários de pico ou falhas de sincronização de banco de dados, aplicando testes automatizados e esteiras seguras de deploy.",
+      "Sim. Trabalhamos com estratégias de migração gradual: novos módulos são desenvolvidos e colocados em produção progressivamente, com evolução incremental e menor risco de interrupção nas operações diárias da sua empresa.",
   },
 
   // ── Categoria: Processo & Engenharia ────────────────────────────────
   {
     category: "processo",
-    question: "Como funciona o diagnóstico técnico inicial?",
+    question: "Como funciona o início de um projeto?",
     answer:
-      "Avaliamos o volume de acessos esperado, a complexidade das regras de negócio, as integrações necessárias e a infraestrutura atual. Apresentamos uma visão transparente sobre viabilidade, riscos e opções de arquitetura antes de qualquer contratação definitiva.",
+      "Antes de desenvolver, registramos escopo, decisões e critérios de aceite em um documento de especificação, para que todos saibam exatamente o que será entregue. Durante toda a execução, você tem canal direto com a liderança técnica do projeto, com entregas incrementais validadas continuamente.",
   },
+
+  // ── Categoria: Serviços ─────────────────────────────────────────────
   {
-    category: "processo",
-    question: "A comunicação durante o projeto é diretamente com quem desenvolve?",
+    category: "servicos",
+    question: "Vocês desenvolvem sites institucionais?",
     answer:
-      "Sim. Você conversa diretamente com o Tech Lead e com os engenheiros responsáveis pela implementação da sua aplicação. Eliminamos intermediários comerciais para garantir alinhamento técnico preciso, respostas rápidas e decisões assertivas.",
-  },
-  {
-    category: "processo",
-    question: "Como funciona o início do projeto com a metodologia Spec-Driven Development?",
-    answer:
-      "Antes de escrever código, detalhamos uma especificação técnica aprovada em conjunto com você. Esse processo assegura que o escopo seja claro, previne retrabalho e garante que cada entrega seja validada por testes automatizados antes de ir para o ambiente de produção.",
+      "Sim. Desenvolvemos sites institucionais, portais corporativos e páginas de presença digital com foco em credibilidade, desempenho, acessibilidade e boa experiência em dispositivos móveis, inclusive integrando com sistemas internos ou APIs quando necessário.",
   },
 ];
 
 const CATEGORY_LABELS: Record<FAQItem["category"], string> = {
-  contratacao: "Contratação & Modelo",
-  legados: "Sistemas Existentes",
-  processo: "Processo & Engenharia",
+  contratacao: "Contratação & modelo",
+  legados: "Sistemas existentes",
+  processo: "Processo & engenharia",
+  servicos: "Serviços",
 };
 
 const CATEGORY_COLORS: Record<FAQItem["category"], string> = {
@@ -95,6 +86,8 @@ const CATEGORY_COLORS: Record<FAQItem["category"], string> = {
     "bg-blue-50 text-blue-800 border-blue-300 dark:bg-blue-950/50 dark:text-blue-400 dark:border-blue-800/60",
   processo:
     "bg-violet-50 text-violet-800 border-violet-300 dark:bg-violet-950/50 dark:text-violet-400 dark:border-violet-800/60",
+  servicos:
+    "bg-teal-50 text-teal-800 border-teal-300 dark:bg-teal-950/50 dark:text-teal-400 dark:border-teal-800/60",
 };
 
 const FAQ = () => {
@@ -106,7 +99,7 @@ const FAQ = () => {
       id="faq"
       ref={ref}
       className="relative py-24 bg-background overflow-hidden"
-      aria-label="Perguntas frequentes"
+      aria-labelledby="faq-heading"
     >
       {/* top divider */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
@@ -130,7 +123,8 @@ const FAQ = () => {
           className="mb-14"
         >
           <SectionHeader
-            tagline="Dúvidas Frequentes"
+            id="faq-heading"
+            tagline="Dúvidas frequentes"
             title="As perguntas que sempre chegam primeiro"
             subtitle="Respostas diretas sobre como começar um projeto, como mexemos em sistema legado e como funciona nosso modelo de trabalho."
           />
@@ -210,7 +204,7 @@ const FAQ = () => {
               href="#contato"
               className="text-primary font-semibold hover:underline underline-offset-4 transition-colors"
             >
-              Fale diretamente com a equipe técnica →
+              Falar sobre meu projeto →
             </a>
           </p>
         </motion.div>

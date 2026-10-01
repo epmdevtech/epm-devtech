@@ -9,7 +9,324 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
-## [0.0.47-hero-lamp-software-house] - 2026-09-28
+## [0.0.60-arquitetura-informacao-multi-rota] - 2026-10-01
+
+### Adicionado
+- **`specs/SPEC-060-arquitetura-informacao-multi-rota.md`**: Especificação completa da arquitetura de informação multi-rota, navegação enxuta, SEO estruturado e regras de preservação de URL.
+- **`tasks/TASK-060-arquitetura-informacao-multi-rota.md`**: Tarefa SDD com inventário de rotas, componentes e checklist de validação.
+- **`reviews/QA-060.md`**: Relatório de qualidade com evidências, quality gates (161 testes unitários, 43 testes E2E, cobertura 99.64%) e auditoria Lighthouse.
+- **`docs/refactor/inventory.md`**: Inventário técnico de rotas, navegação, metadados, baseline de testes e performance do monólito one-page anterior.
+- **`docs/refactor/route-map.md`**: Tabela canônica de rotas novas, redirecionamentos 301 permanentes e estratégia de hash no cliente.
+- **`docs/refactor/plan.md`**: Plano de execução detalhado com análise de impacto, pré-render e decisões de arquitetura.
+- **`src/config/experience.ts`**: Dataset canônico tipado de organizações profissionais aprovadas (`CAPES`, `ONS`, `Energia Pecém`), com declaração explícita de não-clientes da EPM.
+- **`src/config/faq.ts`**: Fonte única para as 8 perguntas frequentes categorizadas.
+- **`src/components/ui/PageHeader.tsx`**: Componente de cabeçalho padronizado para páginas internas com eyebrow, título semântico `<h1>` e descrição.
+- **`src/components/routing/ScrollManager.tsx`**: Gerenciador de restauração de rolagem, foco acessível no `<h1>` e redirecionamento de hashes legados.
+- **`src/components/layout/Layout.tsx`**: Shell persistente compartilhado contendo Header, Skip-Link (`#conteudo-principal`), `<main>` com `<Outlet />` e Footer.
+- **`src/pages/Home.tsx`**: Homepage curta como hub comercial combinando Hero Slim com resumos e links para páginas de aprofundamento.
+- **`src/pages/ServicesPage.tsx`**: Rota `/servicos` com detalhamento das 4 ofertas, mockups e gatilhos "Quando precisa:".
+- **`src/pages/HowWeWorkPage.tsx`**: Rota `/como-trabalhamos` com pipeline sequencial de 4 etapas de engenharia.
+- **`src/pages/ExperiencePage.tsx`**: Rota `/experiencia` com indicadores de confiabilidade, 4 contextos de mercado e organizações de atuação profissional.
+- **`src/pages/EngineeringPage.tsx`**: Rota `/engenharia` com os 3 pilares de engenharia, boas práticas e grafo `TechConstellation`.
+- **`src/pages/AboutPage.tsx`**: Rota `/sobre` institucional com liderança técnica, atuação remota e dados cadastrais de Toledo/PR.
+- **`src/pages/ContactPage.tsx`**: Rota `/contato` com formulário estruturado, SLA de resposta e canais diretos.
+- **`src/pages/FAQPage.tsx`**: Rota `/duvidas-frequentes` com acordeão categorizado.
+- **`scripts/prerender.js`**: Script de pós-build que gera arquivos estáticos `dist/<rota>/index.html` pré-populados com metadados para SEO e crawlers sem JS.
+- **`e2e/multi-route-navigation.spec.ts`**: Bateria de 13 testes Playwright cobrindo carregamento direto F5, H1 único por rota, menu mobile e redirecionamentos.
+
+### Modificado
+- **`src/App.tsx`**: Configuração de rotas aninhadas em `Layout`, rotas de redirecionamento local e rota 404 limpa.
+- **`src/components/layout/Header.tsx`**: Menu superior enxuto com 5 links (`NavLink` com `aria-current="page"`) + 1 botão CTA (`"Falar sobre meu projeto"` para `/contato`).
+- **`src/components/sections/Footer.tsx`**: Links internos convertidos para rotas canônicas dedicadas.
+- **`src/components/ContactForm.tsx`**: Alinhamento do campo `projectType` aos 4 serviços canônicos.
+- **`src/pages/NotFound.tsx`**: Página 404 totalmente em português com meta `noindex` e links de recuperação de navegação.
+- **`vercel.json`**: Adição de 5 regras de redirecionamento 301 permanente para rotas antigas.
+- **`public/sitemap.xml`**: Atualização para as 8 URLs canônicas da nova arquitetura.
+- **`public/llms.txt`**: Atualização do contexto canônico para agentes de IA e LLMs com 8 rotas, 4 serviços e CTA unificado.
+- **`public/llms-full.txt`**: Documentação aprofundada de contexto institucional e técnico para motores de busca generativos.
+- **`index.html`**: Refinamento de URLs no schema JSON-LD (`FAQPage` para `/duvidas-frequentes` e serviços).
+- **`package.json`**: Integração do pré-render no comando `npm run build`.
+
+## [0.0.59-hero-slim-minimalista] - 2026-10-01
+
+### Adicionado
+- **`specs/SPEC-059-hero-slim-minimalista.md`**: Especificação do redesenho minimalista slim do Hero, travas estritas de tokens e CTA integrado no Header.
+- **`tasks/TASK-059-hero-slim-minimalista.md`**: Tarefa SDD rastreada com escopo de arquivos e checklist de execução concluído.
+- **`reviews/QA-059.md`**: Relatório de QA com evidências completas, quality gates (100% aprovados, cobertura 99.75%, 30 testes E2E) e auditoria de performance/Lighthouse.
+- **`docs/visual-identity-inventory.md`**: Inventário canônico de paleta, tipografia, raios, bordas, padrões de assinatura e travas de sistema.
+- **`docs/hero-diagnosis.md`**: Diagnóstico detalhado de baseline (alturas, custos, animações e ocupação de tela).
+- **`e2e/hero-identity-token-locks.spec.ts`**: Teste automatizado Playwright auditando ausência total de gradientes e aderência rigorosa aos tokens computados em Dark e Light Mode.
+- **`e2e/diagnose-hero-before.spec.ts`** e **`e2e/diagnose-hero-after.spec.ts`**: Testes de medição automatizada de alturas e geração de evidências visuais.
+- **`docs/evidence/hero-before/`** e **`docs/evidence/hero-after/`**: Capturas comparativas em 5 viewports em Dark e Light Mode, incluindo viewport fold em 1440×900.
+
+### Modificado
+- **`src/components/sections/Hero.tsx`**:
+  - Redesenho completo para formato slim de coluna única centralizada (altura reduzida de 1234px para 458px em desktop).
+  - Serviços visível acima da dobra em 1440×900 sem necessidade de rolagem.
+  - Headline H1 100% monocromática com quebra balanceada em 2 linhas (`max-w-[20ch]`).
+  - Eyebrow minimalista com `BrandChipIcon` e rótulo mono `Software House`.
+  - Ação dominante única com botão primário sólido e link de texto secundário.
+  - Detalhe de transição minimalista com linha de 1px e nó central esmeralda sólido (#10B981).
+  - Erradicação de feixes luminosos, gradientes e animações de entrada que atrasavam o LCP.
+- **`src/components/layout/Header.tsx`**:
+  - Adição de botão de acento CTA `"Falar sobre meu projeto"` à direita da navegação desktop e no menu móvel.
+  - Breakpoint de troca para menu móvel antecipado para `lg` (<1024px) para garantir espaçamento ideal.
+- **`src/index.css`**:
+  - Remoção de regras CSS legadas não utilizadas (`@keyframes hero-orbit`, `.hero-brand-aura`).
+
+### Removido
+- **`src/components/ui/lamp.tsx`**: Componente de feixes de luz cônicos volumétricos excluído por completo.
+- **`src/components/sections/hero/HeroBadge.tsx`**: Badge duplo com seta removido.
+- **`src/components/sections/hero/HeroArchitecture.tsx`**: Console interativo de arquitetura removido do Hero.
+
+## [0.0.58-padronizacao-cabecalhos-icones-premium] - 2026-09-30
+
+### Adicionado
+- **`specs/SPEC-058-padronizacao-cabecalhos-icones-premium.md`**: Especificação técnica da padronização estrita de cabeçalhos de seção (`SectionHeader`) e consolidação da suíte de ícones conceituais autorais.
+- **`tasks/TASK-058-padronizacao-cabecalhos-icones-premium.md`**: Tarefa SDD rastreada com escopo de arquivos e checklist de execução.
+- **`reviews/QA-058.md`**: Relatório de QA com evidências, quality gates (100% aprovados, cobertura 99.46%, 18 testes E2E) e matriz de conformidade.
+- **`src/components/icons/Icon.tsx`**: Componente wrapper reutilizável para ícones conceituais autorais com suporte a acessibilidade e tipagem estrita.
+- **`src/components/icons/__tests__/Icon.test.tsx`**: Testes unitários para o componente wrapper `Icon`.
+- **`scripts/generate-icon-preview.cjs`**: Script de geração da matriz de prévia dos 15 ícones autorais em 4 tamanhos (16, 20, 24, 32px) para Dark e Light Mode.
+- **`docs/evidence/icons/`**: Matriz de evidência de renderização visual dos ícones.
+
+### Modificado
+- **`src/components/sections/Authority.tsx`**:
+  - Remoção de override tipográfico no H2 (`titleClassName`), igualando a escala fluida padronizada a todas as seções do site.
+  - Associação semântica com `aria-labelledby="autoridade-heading"`.
+- **`src/components/sections/Services.tsx`**, **`Technologies.tsx`**, **`Sectors.tsx`**, **`FAQ.tsx`**, **`Contact.tsx`**:
+  - Associação explícita de `aria-labelledby="[id]-heading"` em cada `<section>` referenciando o id do `SectionHeader`.
+- **`src/components/icons/index.ts`**:
+  - Exportação unificada de tipos, ícones conceituais e componente `Icon`.
+
+## [0.0.57-metricas-lideranca-outras-empresas-links-sociais] - 2026-09-30
+
+### Adicionado
+- **`specs/SPEC-057-metricas-lideranca-outras-empresas-links-sociais.md`**: Especificação do refinamento factual da seção de autoridade e consolidação de links sociais oficiais no rodapé.
+- **`tasks/TASK-057-metricas-lideranca-outras-empresas-links-sociais.md`**: Tarefa SDD rastreada com escopo e checklist de execução.
+- **`reviews/QA-057.md`**: Relatório de QA com evidências, quality gates (100% aprovados, cobertura 99.46%, 18 testes E2E) e auditoria de segurança.
+
+### Modificado
+- **`src/components/sections/Authority.tsx`**:
+  - Subtítulo refinado para *"Resultados de projetos da liderança técnica da EPM DevTech em outras empresas."*, eliminando a palavra "anteriores" para precisão temporal com a data de fundação da empresa.
+- **`src/components/sections/__tests__/Authority.test.tsx`**:
+  - Atualização dos matchers unitários para validar a nova legenda e garantir a ausência de "conduzidos" e "projetos anteriores".
+
+## [0.0.56-copy-stats-ssr-destaque-quando-precisa] - 2026-09-30
+
+### Adicionado
+- **`specs/SPEC-056-copy-stats-ssr-destaque-quando-precisa.md`**: Especificação completa de ajustes textuais, saneamento de termos superlativos não comprovados, SSR/HTML inicial dos stats de autoridade sem zeros e destaque visual do "Quando precisa:".
+- **`tasks/TASK-056-copy-stats-ssr-destaque-quando-precisa.md`**: Tarefa SDD rastreada com escopo de arquivos e checklist de execução.
+- **`reviews/QA-056.md`**: Relatório de QA com evidências, quality gates (100% aprovados, cobertura 99.46%, 18 testes E2E), resultado da varredura grep e repetições saneadas.
+- **`scripts/capture-services-cards.cjs`**: Script automatizado Playwright de captura visual dos cards de serviço antes e depois em 1440px, 768px e 375px (Dark e Light).
+- **`docs/evidence/services-cards/`**: Matriz de capturas comparativas dos cards de serviço.
+
+### Modificado
+- **`src/components/ui/CountUp.tsx`**:
+  - Renderização inicial direta com o valor final formatado (`formatVal(end)`), garantindo que indexadores, leitores de tela e visualizações sem rolagem recebam os valores consolidados.
+  - Animação tratada como progressive enhancement estrito, respeitando `prefers-reduced-motion` e ambiente de teste.
+  - Inclusão do atributo `aria-hidden="true"` por padrão nos elementos visuais do contador.
+- **`src/components/sections/Authority.tsx`**:
+  - Rótulos acessíveis dedicados via `<span className="sr-only">` para cada métrica, eliminando colisões de texto e concatenações espúrias.
+- **`src/components/sections/Services.tsx`**:
+  - Reescrita do Card 4 eliminando repetição do gerúndio "reduzindo".
+  - Destaque visual dos gatilhos "Quando precisa:": rótulo mono verde esmeralda em caixa alta, pergunta com cor primária e peso médio, divisor fino e alinhamento nivelado na base via `mt-auto`.
+  - Remoção de truncamento arbitrário de linhas.
+- **`src/components/sections/hero/HeroArchitecture.tsx`**:
+  - Nó 02 ajustado para "desacoplamento entre serviços" (eliminando repetição de "modular").
+  - Mapeamento dinâmico de legendas de camadas para evitar repetição entre texto do cartão, chips e legenda ativa.
+- **`src/config/site.ts`**, **`public/site.webmanifest`**, **`index.html`**, **`public/llms.txt`**, **`public/llms-full.txt`**, **`README.md`**:
+  - Saneamento da autodescrição de "especializada" para "dedicada a", alinhada ao tom factual do projeto.
+- **`src/components/sections/Differentials.tsx`**, **`Technologies.tsx`**, **`FAQ.tsx`**, **`Contact.tsx`**:
+  - Correção de repetições pontuais de raiz léxica.
+- **`e2e/design-system-and-stability.spec.ts`**:
+  - Novos testes E2E Playwright validando valores finais sem zeros na seção de autoridade sob reduced-motion e com animação inibida.
+
+## [0.0.55-animacao-contadores-autoridade-sobre-estatico] - 2026-09-30
+
+### Adicionado
+- **`src/components/ui/CountUp.tsx`**: Componente reutilizável de count-up com suporte a pt-BR, decimais, milhares, `requestAnimationFrame`, curva `easeOut` e `prefers-reduced-motion`.
+- **`specs/SPEC-055-animacao-contadores-autoridade-sobre-estatico.md`**: Especificação funcional da redistribuição de animações de contagem.
+- **`tasks/TASK-055-animacao-contadores-autoridade-sobre-estatico.md`**: Checklist técnico rastreado via SDD.
+- **`reviews/QA-055.md`**: Relatório de QA e validação de quality gates (100% aprovados, cobertura 99.46%).
+
+### Modificado
+- **`src/components/sections/Authority.tsx`**:
+  - Integração do `CountUp` aos 4 indicadores de desempenho técnico acionados quando a seção entra em viewport (`isInView`).
+- **`src/components/sections/About.tsx`**:
+  - Remoção da animação de contagem interna, tornando o indicador de experiência técnica (`+9`) 100% estático e sóbrio.
+
+## [0.0.54-metricas-experiencia-links-rodape] - 2026-09-30
+
+### Adicionado
+- **`src/config/site.ts`**: Módulo canônico de configurações centralizando e-mail, telefone/WhatsApp, endereço, CNPJ e links oficiais de redes sociais.
+- **`specs/SPEC-054-metricas-experiencia-links-rodape.md`**: Especificação para métricas de experiência técnica, links de redes no rodapé e saneamento de repositório público.
+- **`tasks/TASK-054-metricas-experiencia-links-rodape.md`**: Checklist técnico rastreado via SDD.
+- **`reviews/QA-054.md`**: Relatório de QA e validação de quality gates (TypeScript, ESLint, 145 unit tests, 16 Playwright E2E tests, cobertura de 98.64%).
+- **`docs/evidence/stats-footer/`**: Matriz completa de evidências visuais antes × depois em 1440px, 768px e 375px (Dark e Light) para as seções de Experiência e Rodapé.
+
+### Modificado
+- **`src/components/sections/Authority.tsx`**:
+  - Restauração da simetria de 4 estatísticas comprováveis de projetos anteriores da liderança técnica.
+  - Substituição da métrica redundante "Zero perda" por "100%" de integridade de dados na apuração regulatória do setor elétrico.
+  - Inclusão do 4º stat factual: "−35%" de atividades manuais via automações e integrações.
+  - Ajuste de microcopy no subtítulo removendo o termo "conduzidos".
+  - Inclusão de nota discreta de confidencialidade abaixo do grid.
+  - Formatação pt-BR com vírgula decimal e sinal tipográfico de menos `−` (U+2212) acompanhado de `sr-only` ("redução de 35%").
+- **`src/components/sections/Footer.tsx`**:
+  - Inclusão dos links oficiais do LinkedIn da empresa e GitHub da organização na coluna "Contato".
+  - Ícones oficiais SVG inline monocromáticos (20×20px) com labels visíveis e alvo de toque acessível (≥ 44px).
+  - Remoção dos links pessoais obsoletos da coluna 1.
+  - Consumo direto de `SITE_CONFIG` para todas as informações corporativas.
+- **`index.html`**:
+  - Atualização do campo `sameAs` em `ProfessionalService` apontando exclusivamente para os perfis corporativos da EPM DevTech.
+- **`src/pages/Index.tsx`**:
+  - Consumo de `BASE_URL` a partir de `SITE_CONFIG`.
+- **`README.md`**:
+  - Reescrita técnica e institucional neutra, removendo menções a clientes confidenciais e atualizando o contato comercial oficial.
+- **`public/llms.txt` e `public/llms-full.txt`**:
+  - Saneamento de nomes de clientes de projetos passados e alinhamento com as 4 métricas autorizadas.
+
+## [0.0.53-padronizacao-cabecalhos-icones-premium] - 2026-09-30
+
+### Adicionado
+- **`specs/SPEC-053-padronizacao-cabecalhos-icones-premium.md`**: Especificação para padronização centralizada de cabeçalhos de seção, conjunto autoral de ícones SVG e refinamentos de copy.
+- **`tasks/TASK-053-padronizacao-cabecalhos-icones-premium.md`**: Tarefa e checklist de execução rastreados via SDD.
+- **`reviews/QA-053.md`**: Relatório de QA e validação de quality gates (TypeScript, ESLint, 144 unit tests com 98.61% coverage, 16 Playwright E2E tests).
+- **`src/components/icons/`**: Conjunto autoral de 15 ícones conceituais nativos em SVG com traço de 1.5px, duotone a 10% e nó verde esmeralda com a assinatura de marca EPM DevTech.
+- **`docs/evidence/headers-icons/`**: Evidências visuais de todas as seções e página completa em 1440px, 768px e 375px.
+
+### Modificado
+- **`src/components/ui/SectionHeader.tsx`**:
+  - Elemento semântico `<header>`.
+  - Padrão 100% centralizado em todas as seções de conteúdo.
+  - Larguras máximas balanceadas (`max-w-3xl` para H2, `max-w-2xl` para subtítulo) e `text-wrap: balance`.
+  - Espaçamentos verticais estritos e tipografia fluida.
+- **`src/components/sections/Differentials.tsx`**:
+  - Reorganização para cabeçalho centralizado superior e 3 colunas abertas sem molduras de cards, separadas por divisores verticais sutis.
+  - Ícones conceituais autorais no topo de cada coluna.
+  - Bloco inferior centralizado de chips de práticas de engenharia.
+- **`src/components/sections/HowWeWork.tsx`**:
+  - Ícones conceituais autorais integrados ao cabeçalho do card ao lado dos números `01…04`.
+  - Remoção de containers quadrados com fundo esmeralda no rodapé.
+- **`src/components/sections/Sectors.tsx`**:
+  - Ícones autorais para Indústria, Varejo, Educação e Energia.
+  - Remoção da seta direcional `ArrowRight` (falsa affordance de link em cards informativos).
+- **`src/components/sections/About.tsx`**:
+  - Cabeçalho padronizado e centralizado com `tagline="Sobre a empresa"`.
+  - Card de liderança técnica com ícone autoral.
+- **`src/components/sections/Contact.tsx`**:
+  - Ícones autorais para diagnóstico técnico, resposta rápida e confidencialidade.
+  - Remoção de círculos com fundo verde plano nos próximos passos.
+- **`src/components/sections/hero/HeroArchitecture.tsx`**:
+  - Suavização de termos contratuais para linguagem estritamente factual da engenharia.
+- **`src/components/sections/FAQ.tsx`**:
+  - Pergunta sobre sites institucionais movida para a categoria `"servicos"`.
+- **Padronização Global em Sentence Case**:
+  - Ajustados títulos e rótulos de navegação, rodapé, serviços, setores e diferenciais.
+
+### Modificado
+- **`src/components/sections/HowWeWork.tsx`**:
+  - Estruturação semântica em lista ordenada `<ol role="list">` e itens `<li>`.
+  - Adição de `aria-hidden="true"` aos selos numéricos e texto para leitores de tela (`Etapa 01: ...`).
+  - Timeline vertical no mobile (< 1024px) com linha contínua e pinos laterais alinhados aos cards.
+  - Suporte total a `prefers-reduced-motion` com renderização estática imediata.
+  - Validação de contraste WCAG AA nas tags e microcopy.
+- **`src/components/sections/Differentials.tsx`**:
+  - Novo layout de 2 colunas no desktop (≈ 40% cabeçalho alinhado à esquerda e chips de práticas; ≈ 60% 3 linhas sem moldura de card com hover indicator).
+  - Remoção de timeline horizontal, pinos, números `01/02/03`, setas `→` e molduras fechadas.
+  - Nova animação stagger suave na entrada do viewport respeitando `prefers-reduced-motion`.
+- **`src/components/ui/SectionHeader.tsx`**:
+  - Suporte à prop opcional `id` repassada para o `HeadingTag` para amarração de `aria-labelledby`.
+- **Suítes de Testes**:
+  - Testes unitários atualizados em `HowWeWork.test.tsx` e `Differentials.test.tsx` (144/144 passando, 98.57% cobertura geral).
+
+## [0.0.51-rodada-2-veracidade-estrutura-sites] - 2026-09-30
+
+### Adicionado
+- **`src/components/sections/HowWeWork.tsx`**: Nova seção de processo ("Como trabalhamos") com âncora `#como-trabalhamos` e pipeline 01-04 (*01 Entendemos → 02 Definimos → 03 Desenvolvemos → 04 Evoluímos*).
+- **`src/components/sections/__tests__/HowWeWork.test.tsx`**: Suíte de testes unitários para a seção de processo com cobertura total.
+- **`specs/SPEC-051-rodada-2-veracidade-estrutura-sites.md`**: Especificação da rodada 2 cobrindo veracidade, nova estrutura e sites institucionais.
+- **`tasks/TASK-051-rodada-2-veracidade-estrutura-sites.md`**: Tarefa e checklist de execução rastreados via SDD.
+- **`reviews/QA-051.md`**: Relatório de QA e validação de quality gates da rodada 2.
+
+### Modificado
+- **`src/components/sections/Authority.tsx`**:
+  - Título enquadrado como *"Experiência em operações que não podem parar"*.
+  - Legenda explícita: *"Resultados de projetos anteriores conduzidos pela liderança técnica da EPM DevTech."*.
+  - Redução de 4 para 3 métricas comprovadas (99,9%, 2.500 RPS, Zero perda de dados) e remoção de badges duplicados.
+- **`src/components/sections/hero/HeroArchitecture.tsx`**:
+  - Rótulos ajustados para práticas sem promessas absolutas (*"Processamento resiliente"*, *"Redundância"*, *"Entrega otimizada"* e mantidos *"Alta Vazão"* e *"Alta Disponibilidade"*).
+- **`src/components/sections/Services.tsx`**:
+  - Card 1 atualizado para *"Sistemas Web, Portais e Sites Institucionais"*, cobrindo empresas com alta exigência de performance e SEO.
+  - Suavização de termos contratuais nos cards de microsserviços e modernização legado.
+- **`src/components/sections/About.tsx`**:
+  - Preservado apenas 1 stat destacado (*"9+ Anos de Experiência Técnica"*).
+  - Card de liderança técnica condensado sem duplicação de pilares ou detalhamento interno de metodologia.
+  - Eliminação completa de "engenheiro" no pessoal em conformidade ética e legal.
+- **`src/components/sections/Differentials.tsx`**:
+  - 3 pilares focados no cliente com ponto único de "Contato direto com quem desenvolve".
+- **`src/components/sections/FAQ.tsx`**:
+  - Condensado de 10 para 8 perguntas essenciais, incluindo sites institucionais (Q8) e explicação desmistificada de SDD para leigos.
+- **`src/components/sections/Contact.tsx`**:
+  - Adicionada opção *"Site Institucional"* no select de tipo de projeto.
+  - Placeholder do telefone atualizado para `(45) 99999-9999`.
+  - Próximos passos e prazos suavizados para estimativas sem rigidez contratual.
+- **`src/pages/Index.tsx`**:
+  - Reordenação da homepage: Hero → Serviços → Como trabalhamos → Diferenciais → Tecnologias → Autoridade + Setores → Sobre → FAQ → Contato → Footer.
+  - Sincronização de rotas em `SEO_META`.
+- **`src/components/layout/Header.tsx` & `src/components/sections/Footer.tsx`**:
+  - Itens de navegação sincronizados com a nova estrutura; rodapé com link *"Sistemas, Portais e Sites"* e e-mail único centralizado (`elessandro@epmdevtech.com.br`).
+- **`index.html` & Agêntico**:
+  - `foundingDate: "2026"`, remoção de `twitter:creator` pessoal, sincronização de schemas e atualização de `llms.txt` e `llms-full.txt`.
+- **Suíte de Testes**:
+  - 21 suites, 141 testes unitários passando, 16 testes E2E Playwright passando, cobertura de 98.55%.
+
+## [0.0.50-refatoracao-conteudo-ux-a11y-seo] - 2026-09-30
+
+### Adicionado
+- **`public/og-image-1200x630.png`**: Imagem Open Graph de alta resolução (1200×630) baseada nos ativos visuais da marca EPM DevTech (gradiente esmeralda, tipografia Geist e logotipo).
+- **`docs/refactor/`**: Auditoria completa, inventário de conteúdo, proposta de copy de-para e plano de implementação da refatoração (`audit.md`, `inventory.md`, `copy-proposal.md`, `plan.md`).
+- **`specs/SPEC-049-refatoracao-conteudo-ux-a11y-seo.md`**: Especificação completa da refatoração de conteúdo, UX writing, acessibilidade e SEO aprovada pelo PO.
+- **`tasks/TASK-050-refatoracao-conteudo-ux-a11y-seo.md`**: Tarefa e checklist de execução rastreados via SDD.
+- **`reviews/QA-050.md`**: Relatório de QA e validação integral dos quality gates.
+
+### Modificado
+- **`index.html`**:
+  - Meta description otimizada (152 caracteres) focada em problemas de negócio e soluções sob medida.
+  - Remoção de `meta keywords` obsoletas.
+  - Metatags `og:*` e `twitter:*` completas apontando para a imagem 1200×630.
+  - Atualização do schema JSON-LD como `ProfessionalService` consolidado e honesto.
+- **`src/pages/Index.tsx`**:
+  - Dicionário `SEO_META` sincronizado em todas as rotas e seções (`/`, `/sobre`, `/setores`, `/servicos`, `/tecnologias`, `/diferenciais`, `/faq`, `/contato`).
+- **CTA Primário Unificado**:
+  - Unificação de 100% dos pontos de conversão e metadados no CTA único: **"Falar sobre meu projeto"**.
+- **`src/components/sections/Hero.tsx`**:
+  - Supporting copy focado em soluções corporativas sob medida.
+  - CTA secundário ajustado para *"Conhecer a EPM DevTech"* (`#sobre`).
+  - Microprova social concisa: *"Da concepção ao deploy • Engenharia direta • Arquitetura para evolução"*.
+- **`src/components/sections/Authority.tsx`**:
+  - Título *"Sistemas construídos para operações que não podem parar"*.
+  - Métricas e badges contextuais por setor (`Educação Superior & Redes`, `Operação Energética`, `Indústria & Manufatura`, `Varejo & E-commerce`).
+- **`src/components/sections/About.tsx`**:
+  - Posicionamento institucional centrado na empresa, apresentando o fundador de forma sóbria como liderança técnica e arquiteto de software.
+  - AnimatedStats calibrados (9 anos de experiência, 4 contextos de negócio, 100% engenharia direta).
+- **`src/components/sections/Sectors.tsx`**:
+  - Título *"Experiência em diferentes contextos"*, mantendo os 4 blocos 3D e mockups com linguagem corporativa e rigor técnico.
+- **`src/components/sections/Services.tsx`**:
+  - Grid equilibrado 2×2 consolidando 4 ofertas estratégicas com gatilhos de dor claros (`Quando precisa:`).
+- **`src/components/sections/Technologies.tsx`**:
+  - Título *"Tecnologias que usamos para construir soluções"* com justificativa técnica.
+- **`src/components/sections/Differentials.tsx`**:
+  - 3 pilares estratégicos centrados em valor para o cliente (*Comunicação Transparente*, *Engenharia que Facilita Evoluir*, *Foco no Problema do Negócio*) acompanhados de linha de práticas de engenharia.
+- **`src/components/sections/FAQ.tsx`**:
+  - Respostas calibradas para modelos de trabalho e atendimento remoto em todo o Brasil, com link direto para o CTA primário.
+- **`src/components/sections/Contact.tsx`**:
+  - Cabeçalho *"Fale sobre seu projeto"*, botão de envio alinhado ao CTA único e cards com garantias de diagnóstico, agilidade e sigilo.
+- **`src/components/sections/Footer.tsx`**:
+  - Soluções espelhadas, navegação sem redundâncias e posicionamento conciso.
+- **Suítes de Testes**:
+  - Atualização dos testes unitários (138/138 passando) e E2E (16/16 passando) refletindo o novo conteúdo com 98.57% de cobertura.
 
 ### Adicionado
 - **`src/components/ui/lamp.tsx`**: Componente `LampContainer` adaptado com foco em UX/UI e integração plena aos tokens do Design System da EPM DEVTECH:

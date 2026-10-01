@@ -1,17 +1,18 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import {
-  Building2,
-  Target,
-  Award,
-  Users,
-  ArrowRight,
   BarChart2,
   ShieldCheck,
   BookOpen,
   Zap,
 } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
+import {
+  IconSectorIndustry,
+  IconSectorRetail,
+  IconSectorEducation,
+  IconSectorEnergy,
+} from "@/components/icons";
 
 /* ─────────────────────────────────────────────────────────────
    MOCKUP PANELS (Preservados Integralmente)
@@ -61,7 +62,7 @@ const MockupVarejo = () => (
 const MockupEducacao = () => (
   <div className="about-mockup">
     <div className="mockup-row">
-      <span className="mockup-badge">CAPES · MEC</span>
+      <span className="mockup-badge">Educação</span>
       <span className="mockup-line" />
     </div>
     <div className="mockup-row mt-3">
@@ -82,7 +83,7 @@ const MockupEducacao = () => (
 const MockupEnergia = () => (
   <div className="about-mockup">
     <div className="mockup-row">
-      <span className="mockup-badge">ONS</span>
+      <span className="mockup-badge">Energia</span>
       <span className="mockup-line" />
     </div>
     <div className="mockup-row mt-3">
@@ -103,47 +104,51 @@ const MockupEnergia = () => (
 const sectors = [
   {
     num: "01",
-    icon: Building2,
+    Icon: IconSectorIndustry,
     title: "Indústria",
-    handle: "MANUFATURA",
+    handle: "OPERAÇÃO & MANUFATURA",
     context: "Operações fabris e linhas de montagem contínua",
     problem: "Falhas operacionais e perda de rastreabilidade entre chão de fábrica e gestão corporativa.",
-    experience: "Desenvolvemos soluções para automação de processos, telemetria de equipamentos via IoT industrial e integração com ERPs corporativos.",
+    experience: "Experiência em módulos de ERP, integração de IoT industrial e conexão de equipamentos de produção a sistemas corporativos.",
     Mockup: MockupIndustria,
   },
   {
     num: "02",
-    icon: Target,
+    Icon: IconSectorRetail,
     title: "Varejo",
-    handle: "E-COMMERCE",
+    handle: "ALTO VOLUME & TRANSAÇÕES",
     context: "Plataformas digitais com alto volume transacional",
-    problem: "Perda de vendas em picos de tráfego, gargalos em checkout e inconsistência de estoque.",
-    experience: "Construímos arquiteturas escaláveis para comércio eletrônico, esteiras de checkout seguras e sincronização de inventário em tempo real.",
+    problem: "Perda de vendas em picos de tráfego, gargalos operacionais e inconsistência de estoque.",
+    experience: "Experiência em e-commerce e em módulos de ERP para operações de logística e financeiro.",
     Mockup: MockupVarejo,
   },
   {
     num: "03",
-    icon: Award,
+    Icon: IconSectorEducation,
     title: "Educação",
-    handle: "CAPES · MEC · GOVERNO FEDERAL",
-    context: "Órgãos federais e grandes redes de ensino",
+    handle: "PLATAFORMAS INSTITUCIONAIS",
+    context: "Instituições de ensino e plataformas de grande escala",
     problem: "Sistemas legados sobrecarregados em períodos de edital e processos manuais de prestação de contas.",
-    experience: "Executamos modernização arquitetural de plataformas nacionais, automação de processos administrativos e microsserviços de alta disponibilidade.",
+    experience: "Experiência em plataformas institucionais de grande escala: modernização incremental, automação de fluxos e alta disponibilidade.",
     Mockup: MockupEducacao,
   },
   {
     num: "04",
-    icon: Users,
+    Icon: IconSectorEnergy,
     title: "Energia",
-    handle: "ONS · ENERGIA PECÉM",
+    handle: "DADOS CRÍTICOS & REGULAÇÃO",
     context: "Despacho energético e infraestrutura crítica",
-    problem: "Tolerância zero para perda de dados regulatórios e necessidade de telemetria imediata.",
-    experience: "Atuamos na concepção de sistemas distribuídos de monitoramento operacional e consolidação regulatória com integridade absoluta.",
+    problem: "Rigor na preservação de dados regulatórios e necessidade de telemetria contínua.",
+    experience: "Experiência em monitoramento operacional em tempo real e consolidação de dados regulatórios, onde a integridade dos dados é requisito.",
     Mockup: MockupEnergia,
   },
 ];
 
-const Sectors = () => {
+export interface SectorsProps {
+  hideHeader?: boolean;
+}
+
+const Sectors: React.FC<SectorsProps> = ({ hideHeader = false }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
@@ -290,25 +295,13 @@ const Sectors = () => {
         }
 
         .about-title {
-          display: flex;
-          align-items: center;
-          gap: 8px;
           font-size: 1.2rem;
           font-weight: 600;
           letter-spacing: -0.01em;
           color: hsl(var(--foreground));
           margin-bottom: 0.5rem;
-          transition: gap 0.25s;
           position: relative;
           z-index: 2;
-        }
-        .about-card:hover .about-title { gap: 12px; }
-        .about-arrow {
-          opacity: 0.5;
-          transition: opacity 0.25s, transform 0.25s;
-        }
-        .about-card:hover .about-arrow {
-          opacity: 1;
         }
 
         .about-handle {
@@ -392,24 +385,27 @@ const Sectors = () => {
         .mockup-chip-label { font-size: 0.65rem; color: hsl(var(--muted-foreground)); }
       `}</style>
 
-      <section id="setores" className="relative py-24 bg-secondary/20 overflow-hidden" ref={ref}>
+      <section id="setores" aria-labelledby="setores-heading" className="relative py-24 bg-secondary/20 overflow-hidden" ref={ref}>
         {/* top divider */}
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
 
         <div className="container px-6">
           {/* Header da Seção */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.55 }}
-            className="mb-14"
-          >
-            <SectionHeader
-              tagline="Experiência por Setor"
-              title="Cada setor tem suas próprias regras"
-              subtitle="Backoffice, saúde, indústria: cada um exige uma leitura diferente de compliance, volume de dados e tolerância a falha. Entendemos essas diferenças antes de desenhar a arquitetura, não depois."
-            />
-          </motion.div>
+          {!hideHeader && (
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.55 }}
+              className="mb-14"
+            >
+              <SectionHeader
+                id="setores-heading"
+                tagline="Contextos de negócio"
+                title="Experiência em diferentes contextos"
+                subtitle="Projetos desenvolvidos em ambientes com diferentes níveis de complexidade, integração e requisitos operacionais."
+              />
+            </motion.div>
+          )}
 
           {/* Cards 3D Preservados Integralmente */}
           <div className="max-w-6xl mx-auto sectors-pairs-wrap">
@@ -429,13 +425,15 @@ const Sectors = () => {
                     >
                       <div className="about-card-glow" />
 
-                      {/* Number badge */}
-                      <div className="about-num">{item.num}</div>
+                      {/* Top row: Number badge + authorial icon */}
+                      <div className="flex items-center justify-between mb-4 relative z-10">
+                        <div className="about-num !mb-0">{item.num}</div>
+                        <item.Icon size={22} className="text-primary/90" />
+                      </div>
 
-                      {/* Title + arrow */}
+                      {/* Title */}
                       <div className="about-title">
                         <span>{item.title}</span>
-                        <ArrowRight className="about-arrow" size={17} strokeWidth={2.5} />
                       </div>
 
                       {/* Sector handle */}

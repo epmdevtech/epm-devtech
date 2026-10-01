@@ -1,81 +1,121 @@
-# EPM DEVTECH - Landing Page
+# EPM DEVTECH — Site Institucional
 
-Bem-vindo ao repositório oficial da EPM DEVTECH, uma vitrine digital de excelência em Engenharia de Software focada em soluções robustas, escaláveis e de alta performance. Desenvolvido para apresentar serviços, metodologias ágeis e atuação em áreas críticas como Indústria, E-commerce, Educação (CAPES/MEC) e Energia (ONS).
+Repositório do site institucional da **EPM DevTech**, software house dedicada a software corporativo sob medida, APIs escaláveis e modernização de plataformas.
 
-![EPM DEVTECH Preview](./public/vite.svg)
+---
 
-## 🚀 Tecnologias e Stack
+## 🛠️ Stack Tecnológica
 
-Este projeto é desenvolvido com um ecossistema moderno focado em performance, tipagem forte e manutenibilidade. A interface foi construída seguindo as diretrizes do **Clean Code** e **Mobile First**.
+O projeto adota uma stack moderna, tipada e com foco em acessibilidade (WCAG 2.2 AA), estabilidade e performance:
 
-- **React 18** (Interface declarativa e componentes reutilizáveis)
-- **TypeScript** (Tipagem estática para maior segurança e previsibilidade)
-- **Vite** (Build tool veloz para empacotamento)
-- **Tailwind CSS** (Estilização via utilitários com suporte nativo a Dark/Light Mode)
-- **shadcn/ui & Radix UI** (Componentes acessíveis, primitivos e altamente customizáveis)
-- **Framer Motion** (Animações fluidas e baseadas em scroll)
-- **Vitest & React Testing Library** (Testes unitários superando 90% de cobertura)
-- **Docker & Docker Compose** (Containerização do ambiente de setup e portabilidade)
+- **Framework:** [React 18](https://react.dev/) + [TypeScript 5](https://www.typescriptlang.org/)
+- **Build & Bundler:** [Vite 5](https://vitejs.dev/)
+- **Estilização:** [Tailwind CSS 3](https://tailwindcss.com/)
+- **Componentes:** [shadcn/ui](https://ui.shadcn.com/) & [Radix UI](https://www.radix-ui.com/)
+- **Animações:** [Framer Motion 12](https://www.framer.com/motion/)
+- **Testes Unitários:** [Vitest](https://vitest.dev/) + [React Testing Library](https://testing-library.com/)
+- **Testes End-to-End:** [Playwright](https://playwright.dev/)
+- **Containerização:** [Docker](https://www.docker.com/) & Docker Compose
 
-## 📦 Como Executar o Projeto Localmente
+---
 
-Existem duas formas de rodar a aplicação na sua máquina: utilizando o gerenciador de pacotes local `npm` ou de forma totalmente isolada via **Docker**.
+## 🚀 Como Executar Localmente
 
-### Opção 1: Via Gerenciador de Pacotes (Node.js Local)
+### Opção 1: Node.js (Ambiente Local)
 
-**Pré-requisitos:** Node.js (versão 18+) e NPM instalados.
+**Pré-requisitos:** Node.js 20+ e npm instalados.
 
-1. **Clone do Repositório:**
+1. **Clonar o repositório:**
    ```bash
-   git clone https://github.com/ElessandroPrestes/epm-devtech-solutions.git
-   cd epm-devtech-solutions
+   git clone https://github.com/epmdevtech/epm-devtech.git
+   cd epm-devtech
    ```
 
-2. **Instale as Dependências:**
+2. **Instalar dependências:**
    ```bash
    npm install
    ```
 
-3. **Inicie o Servidor de Desenvolvimento:**
+3. **Iniciar o servidor de desenvolvimento:**
    ```bash
    npm run dev
    ```
-   *Acesse `http://localhost:8070` no seu navegador.*
+   Acesse a aplicação em `http://localhost:8070`.
 
-### Opção 2: Via Docker (Recomendado)
+---
 
-O projeto conta com um `docker-compose.yml` pré-configurado com a imagem `node:20-alpine` lidando com toda a orquestração. Não é necessário ter o Node instalado em sua máquina bare-metal, apenas o Docker Engine.
+### Opção 2: Docker Compose
 
-**Pré-requisitos:** Docker e Docker Compose instalados.
+**Pré-requisitos:** Docker Engine e Docker Compose instalados.
 
-1. **No diretório raiz da aplicação, basta executar:**
+1. **Subir os containers:**
    ```bash
    docker-compose up -d
    ```
 
-2. **Acessando a aplicação:**  
-   O Docker cuidará de instalar as dependências automaticamente durante a compilação do container base, amarrando no diretório `app` e mapeando a porta padrão do repositório.
-   Abra seu navegador e acesse: `http://localhost:8070`
+2. **Acessar:**
+   Abra `http://localhost:8070` no navegador.
 
-> **Nota:** Para parar a execução do container, use: `docker-compose down`
-
-## 🧪 Testes Unitários
-
-O projeto conta com uma suíte de testes ponta a ponta construída com **Vitest** rodando no ambiente virtual nativo (**v8** engine de coverage). 
-
-Para rodar todos os testes na sua máquina e validar os relatórios de coverage:
-
-```bash
-npm run test:coverage
-```
-
-Isso processará o script configurado gerando o report via terminal constatando que os principais componentes da Home Page rodam perfeitamente, mantendo o índice acima de >90%.
-
-## 📜 Licença  e Direitos Autorais
-
-Desenvolvido orgulhosamente por **Elessandro Prestes Macedo**.
-Contato: [elessandro.prestes@gmail.com](mailto:elessandro.prestes@gmail.com)
+3. **Encerrar containers:**
+   ```bash
+   docker-compose down
+   ```
 
 ---
 
-> *“Trabalhamos com metodologias ágeis, versionamento rigoroso e integração contínua (CI/CD), garantindo transparência e previsibilidade em cada projeto.”*
+## 🧪 Quality Gates e Testes
+
+O projeto segue a disciplina de Spec-Driven Development (SDD) e exige aprovação em todos os quality gates antes de qualquer entrega:
+
+```bash
+# Verificação de tipos TypeScript
+npx tsc --noEmit
+
+# Análise estática com ESLint
+npm run lint
+
+# Execução de testes unitários
+npm run test
+
+# Cobertura de testes unitários (meta ≥ 90%)
+npm run test:coverage
+
+# Testes end-to-end com Playwright
+npm run test:e2e
+
+# Build de produção
+npm run build
+```
+
+---
+
+## 📁 Estrutura de Diretórios
+
+```
+epm-devtech/
+├── e2e/               # Testes end-to-end (Playwright)
+├── public/            # Assets estáticos, manifestos e llms.txt
+├── specs/             # Especificações funcionais (SDD)
+├── tasks/             # Registros de tarefas técnicas executadas
+├── reviews/           # Relatórios de garantia de qualidade (QA)
+├── src/
+│   ├── components/    # Componentes React (layout, seções, ui, icons)
+│   ├── config/        # Configurações canônicas centralizadas (site.ts)
+│   ├── hooks/         # Custom React hooks
+│   ├── lib/           # Utilitários, formatações e esquemas
+│   ├── pages/         # Páginas e roteamento da aplicação
+│   └── index.css      # Tokens e utilitários globais do Tailwind CSS
+└── index.html         # Ponto de entrada HTML e dados estruturados (JSON-LD)
+```
+
+---
+
+## 📄 Licença e Contato
+
+© 2026 **EPM DevTech** — Elessandro Prestes Macedo Desenvolvimento de Software LTDA.  
+CNPJ: `60.710.574/0001-85`. Todos os direitos reservados.
+
+- **Website:** [epmdevtech.com.br](https://epmdevtech.com.br)
+- **Contato Comercial:** [elessandro@epmdevtech.com.br](mailto:elessandro@epmdevtech.com.br)
+- **LinkedIn:** [company/112232713](https://www.linkedin.com/company/112232713/)
+- **GitHub:** [github.com/epmdevtech](https://github.com/epmdevtech)

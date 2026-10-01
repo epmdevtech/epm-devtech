@@ -1,80 +1,120 @@
 import { render, screen } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import React from 'react';
 import Differentials from '../Differentials';
 
 const mockUseInView = vi.fn().mockReturnValue(true);
+const mockUseReducedMotion = vi.fn().mockReturnValue(false);
 
-// Mock framer-motion and useInView to execute immediately
 vi.mock('framer-motion', () => ({
-    motion: {
-        div: ({ children, className }: React.HTMLAttributes<HTMLDivElement>) => <div className={className} data-testid="motion-div">{children}</div>,
-    },
-    useInView: (...args: unknown[]) => mockUseInView(...args),
+  motion: {
+    div: ({ children, className }: React.HTMLAttributes<HTMLDivElement>) => (
+      <div className={className} data-testid="motion-div">{children}</div>
+    ),
+    p: ({ children, className }: React.HTMLAttributes<HTMLParagraphElement>) => (
+      <p className={className}>{children}</p>
+    ),
+    ul: ({ children, className, role }: React.HTMLAttributes<HTMLUListElement>) => (
+      <ul className={className} role={role}>{children}</ul>
+    ),
+    li: ({ children, className }: React.HTMLAttributes<HTMLLIElement>) => (
+      <li className={className}>{children}</li>
+    ),
+  },
+  useInView: (...args: unknown[]) => mockUseInView(...args),
+  useReducedMotion: () => mockUseReducedMotion(),
 }));
 
 describe('Differentials Component', () => {
-    it('renders section header with title and no subtitle', () => {
-        render(<Differentials />);
+  beforeEach(() => {
+    vi.clearAllMocks();
+    mockUseInView.mockReturnValue(true);
+    mockUseReducedMotion.mockReturnValue(false);
+  });
 
-        expect(screen.getByText(/Diferenciais/i)).toBeInTheDocument();
-        expect(screen.getByText('Por que escolher a EPM DEVTECH')).toBeInTheDocument();
-        expect(screen.queryByText(/Rigor de engenharia, arquitetura escalável e compromisso com entregas previsíveis/i)).not.toBeInTheDocument();
+  it('renders section header with left alignment, title and subtitle', () => {
+    render(<Differentials />);
+
+    expect(screen.getByText(/Diferenciais/i)).toBeInTheDocument();
+    expect(screen.getByText('Por que trabalhar com a EPM DevTech')).toBeInTheDocument();
+    expect(
+      screen.getByText(/Engenharia focada na longevidade do seu software, com transparência em cada etapa do projeto/i)
+    ).toBeInTheDocument();
+  });
+
+  it('renders the engineering practices label and all chips', () => {
+    render(<Differentials />);
+
+    expect(screen.getByText('Práticas aplicadas conforme cada projeto')).toBeInTheDocument();
+
+    const practices = [
+      'Testes automatizados',
+      'Revisão de código',
+      'CI/CD',
+      'Arquitetura orientada à manutenção',
+    ];
+
+    practices.forEach((practice) => {
+      expect(screen.getByText(practice)).toBeInTheDocument();
+    });
+  });
+
+  it('renders all 3 differential items with titles, tags and technical descriptions in a semantic list', () => {
+    render(<Differentials />);
+
+    const list = screen.getByRole('list');
+    expect(list).toBeInTheDocument();
+    expect(list.tagName.toLowerCase()).toBe('ul');
+
+    const titles = [
+      'Comunicação transparente',
+      'Engenharia que facilita evoluir',
+      'Foco no problema do negócio',
+    ];
+
+    titles.forEach((title) => {
+      expect(screen.getByText(title)).toBeInTheDocument();
     });
 
-    it('renders the pipeline track and fill', () => {
-        const { container } = render(<Differentials />);
-
-        // Using container query for specific DOM classes we know exist
-        expect(container.querySelector('.diff-pipeline')).toBeInTheDocument();
-        expect(container.querySelector('.diff-pipeline-fill')).toBeInTheDocument();
+    const tags = [
+      'ALINHAMENTO & PREVISIBILIDADE',
+      'ARQUITETURA & MANUTENÇÃO',
+      'PRAGMATISMO & RESULTADO',
+    ];
+    tags.forEach((tag) => {
+      expect(screen.getByText(tag)).toBeInTheDocument();
     });
 
-    it('renders all 6 differential cards with updated titles, tags and step numbers', () => {
-        render(<Differentials />);
+    expect(screen.getByText(/Alinhamento contínuo sobre escopo, decisões técnicas e prioridades/i)).toBeInTheDocument();
+    expect(screen.getByText(/Arquitetura modular e código limpo pensados para facilitar manutenções futuras/i)).toBeInTheDocument();
+    expect(screen.getByText(/A tecnologia é uma ferramenta para viabilizar os objetivos da sua empresa/i)).toBeInTheDocument();
+  });
 
-        const titles = [
-            'Comunicação Transparente',
-            'Arquitetura Planejada',
-            'Código Limpo e Testável',
-            'Padrões de Engenharia',
-            'Esteira DevOps e CI/CD',
-            'Entregas Previsíveis',
-        ];
+  it('does NOT render sequential step numbers or arrows', () => {
+    render(<Differentials />);
 
-        titles.forEach(title => {
-            expect(screen.getByText(title)).toBeInTheDocument();
-        });
+    // Verifica que não há '01', '02', '03' em Diferenciais (pois não é sequencial)
+    expect(screen.queryByText('01')).not.toBeInTheDocument();
+    expect(screen.queryByText('02')).not.toBeInTheDocument();
+    expect(screen.queryByText('03')).not.toBeInTheDocument();
 
-        const stepNums = ['01', '02', '03', '04', '05', '06'];
-        stepNums.forEach(num => {
-            expect(screen.getByText(num)).toBeInTheDocument();
-        });
+    // Sem setas enganosas
+    expect(screen.queryByText('→')).not.toBeInTheDocument();
+  });
 
-        const tags = [
-            'ALINHAMENTO • PREVISIBILIDADE',
-            'MICROSSERVIÇOS • CLEAN ARCHITECTURE',
-            'SOLID • TESTES AUTOMATIZADOS',
-            'SONARQUBE • CODE REVIEW',
-            'DEPLOY SEGURO • ROLLBACK',
-            'PRAZOS REAIS • QUALIDADE',
-        ];
-        tags.forEach(tag => {
-            expect(screen.getByText(tag)).toBeInTheDocument();
-        });
-    });
+  it('handles prefers-reduced-motion correctly', () => {
+    mockUseReducedMotion.mockReturnValue(true);
+    render(<Differentials />);
 
-    it('renders technical descriptions of differentials', () => {
-        render(<Differentials />);
-        expect(screen.getByText(/alinhamento direto com quem realmente executa a engenharia/i)).toBeInTheDocument();
-        expect(screen.getByText(/Sistemas projetados para crescer sem criar gargalos técnicos/i)).toBeInTheDocument();
-        expect(screen.getByText(/Pipelines automatizados com validações estritas/i)).toBeInTheDocument();
-    });
+    expect(screen.getByText('Por que trabalhar com a EPM DevTech')).toBeInTheDocument();
+    expect(screen.getByText('Comunicação transparente')).toBeInTheDocument();
+  });
 
-    it('renderiza corretamente quando useInView retorna false (antes de entrar no viewport)', () => {
-        mockUseInView.mockReturnValueOnce(false);
-        render(<Differentials />);
-        expect(screen.getByText('Por que escolher a EPM DEVTECH')).toBeInTheDocument();
-        expect(screen.getByText('Comunicação Transparente')).toBeInTheDocument();
-    });
+  it('renders correctly before entering viewport', () => {
+    mockUseInView.mockReturnValue(false);
+    render(<Differentials />);
+
+    expect(screen.getByText('Por que trabalhar com a EPM DevTech')).toBeInTheDocument();
+    expect(screen.getByText('Comunicação transparente')).toBeInTheDocument();
+  });
 });
