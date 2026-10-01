@@ -53,7 +53,7 @@ export const EngineeringPage = () => {
         </section>
 
         {/* Chamada Final para Ação */}
-        <section className="py-16 sm:py-24 border-t border-border/40 bg-zinc-50/40 dark:bg-zinc-950/30">
+        <section className="py-16 sm:py-24 border-t border-border-subtle bg-surface/30">
           <div className="container px-6 text-center max-w-3xl mx-auto">
             <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground [text-wrap:balance]">
               Precisa de engenharia sólida no seu produto ou sistema interno?

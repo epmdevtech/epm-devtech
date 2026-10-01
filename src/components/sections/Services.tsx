@@ -25,7 +25,7 @@ function MockBrowser() {
       <div className="svc-block" style={{ padding: "10px 12px", marginBottom: 8 }}>
         <div className="svc-bar" style={{ width: "55%", height: 7, borderRadius: 3, marginBottom: 5 }} />
         <div className="svc-bar" style={{ width: "40%", height: 5, borderRadius: 3, marginBottom: 8 }} />
-        <div style={{ width: 60, height: 20, background: "linear-gradient(135deg,#10b981,#059669)", borderRadius: 4 }} />
+        <div style={{ width: 60, height: 20, background: "var(--accent-blue)", borderRadius: 4 }} />
       </div>
       {/* 3 card blocks */}
       <div style={{ display: "flex", gap: 6 }}>
@@ -48,7 +48,7 @@ function MockAPI() {
   return (
     <div className="svc-mockup" style={{ fontSize: 9, lineHeight: 1.8 }}>
       <div style={{ display: "flex", gap: 5, marginBottom: 10 }}>
-        <div style={{ padding: "2px 8px", borderRadius: 4, background: "rgba(16,185,129,0.18)", color: "#10b981", fontSize: 8, fontWeight: 700 }}>GET</div>
+        <div style={{ padding: "2px 8px", borderRadius: 4, background: "rgba(167,139,250,0.18)", color: "var(--accent-violet)", fontSize: 8, fontWeight: 700 }}>GET</div>
         <div className="svc-bar" style={{ flex: 1, height: 18, borderRadius: 4, display: "flex", alignItems: "center", paddingLeft: 8, fontSize: 8 }}>/api/v1/users</div>
       </div>
       {lines.map((l, i) => (
@@ -69,19 +69,19 @@ function MockIntegration() {
   return (
     <div className="svc-mockup" style={{ display: "flex", flexDirection: "column", gap: 8 }}>
       <div style={{ display: "flex", justifyContent: "center", marginBottom: 4 }}>
-        <div style={{ padding: "4px 14px", borderRadius: 6, background: "rgba(16,185,129,0.18)", border: "1px solid rgba(16,185,129,0.35)", color: "#10b981", fontSize: 9, fontWeight: 700 }}>API Hub</div>
+        <div style={{ padding: "4px 14px", borderRadius: 6, background: "rgba(251,191,36,0.18)", border: "1px solid rgba(251,191,36,0.35)", color: "var(--accent-amber)", fontSize: 9, fontWeight: 700 }}>API Hub</div>
       </div>
       <div style={{ display: "flex", justifyContent: "center", height: 14, alignItems: "center" }}>
-        <div style={{ width: "80%", height: 1, background: "linear-gradient(90deg, transparent, rgba(168,85,247,0.4), transparent)" }} />
+        <div style={{ width: "80%", height: 1, background: "linear-gradient(90deg, transparent, rgba(251,191,36,0.4), transparent)" }} />
       </div>
       <div style={{ display: "flex", justifyContent: "space-around" }}>
-        {[{ label: "CRM", color: "#10b981" }, { label: "ERP", color: "#A855F7" }, { label: "Email", color: "#10b981" }, { label: "DB", color: "#f59e0b" }].map(n => (
-          <div key={n.label} style={{ padding: "3px 8px", borderRadius: 5, background: `${n.color}18`, border: `1px solid ${n.color}40`, color: n.color, fontSize: 8 }}>{n.label}</div>
+        {[{ label: "CRM", color: "var(--accent-blue)" }, { label: "ERP", color: "var(--accent-violet)" }, { label: "Email", color: "var(--brand)" }, { label: "DB", color: "var(--accent-amber)" }].map(n => (
+          <div key={n.label} style={{ padding: "3px 8px", borderRadius: 5, background: "var(--bg-elevated)", border: "1px solid var(--border-subtle)", color: n.color, fontSize: 8 }}>{n.label}</div>
         ))}
       </div>
       <div style={{ marginTop: 6, display: "flex", gap: 5 }}>
-        <div style={{ padding: "2px 7px", borderRadius: 4, background: "rgba(168,85,247,0.15)", color: "#a78bfa", fontSize: 8 }}>event.publish()</div>
-        <div style={{ padding: "2px 7px", borderRadius: 4, background: "rgba(16,185,129,0.12)", color: "#10b981", fontSize: 8 }}>webhook → OK</div>
+        <div style={{ padding: "2px 7px", borderRadius: 4, background: "var(--bg-elevated)", color: "var(--accent-violet)", fontSize: 8 }}>event.publish()</div>
+        <div style={{ padding: "2px 7px", borderRadius: 4, background: "var(--bg-elevated)", color: "var(--brand)", fontSize: 8 }}>webhook → OK</div>
       </div>
     </div>
   );
@@ -98,8 +98,8 @@ function MockMaintenance() {
   return (
     <div className="svc-mockup" style={{ fontSize: 8.5, lineHeight: 1.9 }}>
       <div style={{ display: "flex", gap: 4, marginBottom: 8 }}>
-        <div style={{ padding: "2px 7px", background: "rgba(239,68,68,0.1)", borderRadius: 4, color: "#ef4444", fontSize: 8, border: "1px solid rgba(239,68,68,0.2)" }}>legacy</div>
-        <div style={{ padding: "2px 7px", background: "rgba(34,197,94,0.1)", borderRadius: 4, color: "#16a34a", fontSize: 8, border: "1px solid rgba(34,197,94,0.2)" }}>refactored</div>
+        <div style={{ padding: "2px 7px", background: "rgba(248,113,113,0.1)", borderRadius: 4, color: "var(--danger)", fontSize: 8, border: "1px solid rgba(248,113,113,0.2)" }}>legacy</div>
+        <div style={{ padding: "2px 7px", background: "var(--brand-subtle)", borderRadius: 4, color: "var(--text-brand)", fontSize: 8, border: "1px solid var(--border-subtle)" }}>refactored</div>
       </div>
       {diff.map((l, i) => (
         <div key={i} className={`svc-diff-line svc-diff-${l.type}`}>{l.text}</div>
@@ -117,7 +117,7 @@ const services = [
     trigger: "Precisa criar um sistema novo, um portal ou um site institucional que represente bem a sua empresa?",
     problem: "Precisa criar um sistema novo, um portal ou um site institucional que represente bem a sua empresa?",
     description: "Aplicações web sob medida, portais e sites institucionais: sistemas de gestão internos, plataformas e presença digital com foco em credibilidade, desempenho e acessibilidade.",
-    accent: "#10b981",
+    accent: "var(--accent-blue)",
   },
   {
     visual: <MockAPI />,
@@ -125,7 +125,7 @@ const services = [
     trigger: "Seu sistema sofre com lentidão em horários de pico ou precisa centralizar regras?",
     problem: "Seu sistema sofre com lentidão em horários de pico ou precisa centralizar regras?",
     description: "Desenvolvimento de APIs RESTful e serviços de alta disponibilidade para sustentar aplicações, integrar operações e centralizar regras de negócio sob carga contínua.",
-    accent: "#A855F7",
+    accent: "var(--accent-violet)",
   },
   {
     visual: <MockIntegration />,
@@ -133,7 +133,7 @@ const services = [
     trigger: "Sua operação perde tempo com processos manuais porque seus sistemas não conversam?",
     problem: "Sua operação perde tempo com processos manuais porque seus sistemas não conversam?",
     description: "Conexão segura entre ERPs, CRMs, plataformas e serviços externos, com foco em confiabilidade e consistência dos dados.",
-    accent: "#10b981",
+    accent: "var(--accent-amber)",
   },
   {
     visual: <MockMaintenance />,
@@ -141,7 +141,7 @@ const services = [
     trigger: "Tem um sistema legado essencial que já não acompanha a velocidade da operação?",
     problem: "Tem um sistema legado essencial que já não acompanha a velocidade da operação?",
     description: "Refatoração e migração gradual de plataformas legadas, reduzindo custos de manutenção e dívida técnica, com evolução incremental e menor risco de interrupção da operação.",
-    accent: "#10b981",
+    accent: "var(--brand)",
   },
 ];
 
@@ -341,7 +341,7 @@ const Services: React.FC<ServicesProps> = ({ hideHeader = false }) => {
                     {service.description}
                   </p>
                   <p className="mt-auto pt-3.5 border-t border-border/50 text-[12.5px] leading-relaxed text-foreground font-medium">
-                    <span className="font-mono text-[10.5px] uppercase tracking-wider text-emerald-600 dark:text-emerald-400 font-semibold block mb-1">
+                    <span className="font-mono text-[10.5px] uppercase tracking-wider text-text-brand font-semibold block mb-1">
                       Quando precisa:
                     </span>
                     {service.trigger}

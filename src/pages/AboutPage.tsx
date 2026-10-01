@@ -130,51 +130,51 @@ export const AboutPage = () => {
         </section>
 
         {/* Pilares de Atuação e Engenharia (Movidos da Home conforme SPEC-062) */}
-        <section className="py-16 sm:py-20 border-t border-border/40 bg-zinc-50/30 dark:bg-zinc-950/20">
+        <section className="py-16 sm:py-20 border-t border-border/40 bg-surface/30">
           <div className="container px-6 max-w-5xl mx-auto">
             <div className="max-w-2xl mb-12">
-              <div className="inline-flex items-center gap-[7px] text-[11.5px] font-mono font-medium tracking-[0.1em] uppercase text-zinc-500 dark:text-zinc-400 select-none mb-3">
+              <div className="inline-flex items-center gap-[7px] text-[11.5px] font-mono font-medium tracking-[0.1em] uppercase text-muted select-none mb-3">
                 <BrandChipIcon size={15} className="shrink-0" />
                 <span>PILARES DE ATUAÇÃO</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground [text-wrap:balance]">
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-primary [text-wrap:balance]">
                 Princípios que orientam cada linha de código e entrega
               </h2>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="p-6 rounded-xl border border-border/60 bg-card/60">
-                <div className="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-primary mb-4">
+              <div className="p-6 rounded-xl border border-border-default bg-surface">
+                <div className="w-10 h-10 rounded-lg bg-accent-blue/10 border border-accent-blue/20 flex items-center justify-center text-accent-blue mb-4">
                   <ShieldCheck className="w-5 h-5" />
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">
+                <h3 className="text-lg font-semibold text-primary mb-2">
                   Comunicação transparente
                 </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <p className="text-sm text-secondary leading-relaxed">
                   Sem intermediários comerciais: contato direto com a liderança técnica, visibilidade clara de cronograma e validações contínuas.
                 </p>
               </div>
 
-              <div className="p-6 rounded-xl border border-border/60 bg-card/60">
-                <div className="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-primary mb-4">
+              <div className="p-6 rounded-xl border border-border-default bg-surface">
+                <div className="w-10 h-10 rounded-lg bg-accent-violet/10 border border-accent-violet/20 flex items-center justify-center text-accent-violet mb-4">
                   <Layers className="w-5 h-5" />
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">
+                <h3 className="text-lg font-semibold text-primary mb-2">
                   Engenharia que facilita evoluir
                 </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <p className="text-sm text-secondary leading-relaxed">
                   Código limpo, arquitetura desacoplada e testes automatizados para que novos recursos sejam adicionados sem quebrar o que já funciona.
                 </p>
               </div>
 
-              <div className="p-6 rounded-xl border border-border/60 bg-card/60">
-                <div className="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-primary mb-4">
+              <div className="p-6 rounded-xl border border-border-default bg-surface">
+                <div className="w-10 h-10 rounded-lg bg-brand-subtle border border-brand/20 flex items-center justify-center text-text-brand mb-4">
                   <Clock className="w-5 h-5" />
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">
+                <h3 className="text-lg font-semibold text-primary mb-2">
                   Foco no problema do negócio
                 </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <p className="text-sm text-secondary leading-relaxed">
                   Tecnologia selecionada em função do desafio e não por modismo, priorizando segurança, manutenibilidade e custo de operação.
                 </p>
               </div>

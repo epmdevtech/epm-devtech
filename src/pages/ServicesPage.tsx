@@ -54,7 +54,7 @@ export const ServicesPage = () => {
         </div>
 
         {/* Bloco de Garantias e Próximos Passos */}
-        <section className="py-16 sm:py-20 border-t border-border/40 bg-zinc-50/40 dark:bg-zinc-950/30">
+        <section className="py-16 sm:py-20 border-t border-border-subtle bg-surface/30">
           <div className="container px-6">
             <div className="max-w-4xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">

@@ -1,4 +1,5 @@
 import React from "react";
+import { cn } from "@/lib/utils";
 
 interface BrandChipIconProps extends React.SVGProps<SVGSVGElement> {
   size?: number;
@@ -8,6 +9,7 @@ interface BrandChipIconProps extends React.SVGProps<SVGSVGElement> {
 export const BrandChipIcon: React.FC<BrandChipIconProps> = ({
   size = 15,
   className = "",
+  stroke = "currentColor",
   ...props
 }) => {
   return (
@@ -16,12 +18,12 @@ export const BrandChipIcon: React.FC<BrandChipIconProps> = ({
       height={size}
       viewBox="0 0 24 24"
       fill="none"
-      stroke="#10B981"
+      stroke={stroke}
       strokeWidth="1.8"
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
-      className={className}
+      className={cn("text-brand", className)}
       {...props}
     >
       {/* Contorno central do chip / die */}

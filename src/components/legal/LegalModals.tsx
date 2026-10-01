@@ -19,21 +19,21 @@ export function LegalLinks({ className }: LegalLinksProps) {
 
   return (
     <>
-      <div className={`flex items-center gap-3 text-xs text-zinc-500 dark:text-zinc-400 ${className || ""}`}>
+      <div className={`flex items-center gap-3 text-xs text-muted ${className || ""}`}>
         <button
           type="button"
           onClick={() => setOpenTerms(true)}
-          className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors cursor-pointer focus:outline-none focus-visible:underline"
+          className="hover:text-brand transition-colors cursor-pointer focus:outline-none focus-visible:underline"
         >
           Termos de Uso
         </button>
-        <span aria-hidden="true" className="text-zinc-400 dark:text-zinc-600">
+        <span aria-hidden="true" className="text-muted">
           ·
         </span>
         <button
           type="button"
           onClick={() => setOpenPrivacy(true)}
-          className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors cursor-pointer focus:outline-none focus-visible:underline"
+          className="hover:text-brand transition-colors cursor-pointer focus:outline-none focus-visible:underline"
         >
           Política de Privacidade
         </button>
@@ -41,24 +41,24 @@ export function LegalLinks({ className }: LegalLinksProps) {
 
       {/* Modal: Termos de Uso */}
       <Dialog open={openTerms} onOpenChange={setOpenTerms}>
-        <DialogContent className="max-w-2xl max-h-[85vh] flex flex-col p-6 border-zinc-200 dark:border-zinc-800 bg-background text-foreground">
-          <DialogHeader className="text-left pb-2 border-b border-zinc-200/80 dark:border-zinc-800/80">
-            <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 mb-1">
+        <DialogContent className="max-w-2xl max-h-[85vh] flex flex-col p-6 border-border-default bg-surface text-primary">
+          <DialogHeader className="text-left pb-2 border-b border-border-subtle">
+            <div className="flex items-center gap-2 text-brand mb-1">
               <FileText className="w-5 h-5" />
               <span className="text-xs font-semibold uppercase tracking-wider">Documento Legal</span>
             </div>
-            <DialogTitle className="text-lg font-bold text-zinc-900 dark:text-white">
+            <DialogTitle className="text-lg font-bold text-primary">
               Termos de Uso | EPM DEVTECH
             </DialogTitle>
-            <DialogDescription className="text-xs text-zinc-500 dark:text-zinc-400">
+            <DialogDescription className="text-xs text-muted">
               Condições gerais de navegação, contratação técnica e propriedade intelectual.
             </DialogDescription>
           </DialogHeader>
 
           <ScrollArea className="flex-1 max-h-[60vh] pr-4 mt-2">
-            <div className="space-y-4 text-xs text-zinc-600 dark:text-zinc-300 leading-relaxed">
+            <div className="space-y-4 text-xs text-secondary leading-relaxed">
               <section>
-                <h4 className="font-semibold text-zinc-900 dark:text-white mb-1">1. Identificação da Empresa</h4>
+                <h4 className="font-semibold text-primary mb-1">1. Identificação da Empresa</h4>
                 <p>
                   Este site é de titularidade e operado pela <strong>ELESSANDRO PRESTES MACEDO DESENVOLVIMENTO DE SOFTWARE LTDA</strong>,
                   inscrita no CNPJ/MF sob o nº <strong>60.710.574/0001-85</strong> (Matriz), com sede e foro na cidade de
@@ -67,7 +67,7 @@ export function LegalLinks({ className }: LegalLinksProps) {
               </section>
 
               <section>
-                <h4 className="font-semibold text-zinc-900 dark:text-white mb-1">2. Objeto e Finalidade</h4>
+                <h4 className="font-semibold text-primary mb-1">2. Objeto e Finalidade</h4>
                 <p>
                   O objetivo deste portal institucional é apresentar as competências técnicas, casos de sucesso,
                   serviços de engenharia de software sob medida, desenvolvimento web/APIs e modernização
@@ -76,7 +76,7 @@ export function LegalLinks({ className }: LegalLinksProps) {
               </section>
 
               <section>
-                <h4 className="font-semibold text-zinc-900 dark:text-white mb-1">3. Propriedade Intelectual</h4>
+                <h4 className="font-semibold text-primary mb-1">3. Propriedade Intelectual</h4>
                 <p>
                   Todo o conteúdo exibido neste site, incluindo textos, códigos-fonte, arquitetura de software,
                   layouts, elementos gráficos, logomarcas, ícones e ilustrações interativas, é de propriedade exclusiva
@@ -87,7 +87,7 @@ export function LegalLinks({ className }: LegalLinksProps) {
               </section>
 
               <section>
-                <h4 className="font-semibold text-zinc-900 dark:text-white mb-1">4. Condições de Uso e Conduta</h4>
+                <h4 className="font-semibold text-primary mb-1">4. Condições de Uso e Conduta</h4>
                 <p>
                   O usuário compromete-se a utilizar este site de maneira ética e em estrita conformidade com a lei.
                   É terminantemente proibido: (a) tentar violar a segurança, autenticação ou integridade dos servidores;
@@ -97,7 +97,7 @@ export function LegalLinks({ className }: LegalLinksProps) {
               </section>
 
               <section>
-                <h4 className="font-semibold text-zinc-900 dark:text-white mb-1">5. Limitação de Responsabilidade</h4>
+                <h4 className="font-semibold text-primary mb-1">5. Limitação de Responsabilidade</h4>
                 <p>
                   A EPM DEVTECH emprega as melhores práticas de engenharia e alta disponibilidade para garantir a
                   continuidade do serviço. No entanto, não nos responsabilizamos por indisponibilidades temporárias decorrentes
@@ -106,10 +106,10 @@ export function LegalLinks({ className }: LegalLinksProps) {
               </section>
 
               <section>
-                <h4 className="font-semibold text-zinc-900 dark:text-white mb-1">6. Contato e Foro</h4>
+                <h4 className="font-semibold text-primary mb-1">6. Contato e Foro</h4>
                 <p>
                   Para esclarecimentos relativos a estes Termos de Uso, utilize o e-mail:{" "}
-                  <a href="mailto:elessandro@epmdevtech.com.br" className="text-emerald-600 dark:text-emerald-400 hover:underline">
+                  <a href="mailto:elessandro@epmdevtech.com.br" className="text-text-brand hover:underline">
                     elessandro@epmdevtech.com.br
                   </a>
                   . Fica eleito o Foro da Comarca de Toledo, Estado do Paraná, com exclusão de qualquer outro, por mais
@@ -123,24 +123,24 @@ export function LegalLinks({ className }: LegalLinksProps) {
 
       {/* Modal: Política de Privacidade */}
       <Dialog open={openPrivacy} onOpenChange={setOpenPrivacy}>
-        <DialogContent className="max-w-2xl max-h-[85vh] flex flex-col p-6 border-zinc-200 dark:border-zinc-800 bg-background text-foreground">
-          <DialogHeader className="text-left pb-2 border-b border-zinc-200/80 dark:border-zinc-800/80">
-            <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 mb-1">
+        <DialogContent className="max-w-2xl max-h-[85vh] flex flex-col p-6 border-border-default bg-surface text-primary">
+          <DialogHeader className="text-left pb-2 border-b border-border-subtle">
+            <div className="flex items-center gap-2 text-brand mb-1">
               <ShieldCheck className="w-5 h-5" />
               <span className="text-xs font-semibold uppercase tracking-wider">Privacidade & Proteção de Dados</span>
             </div>
-            <DialogTitle className="text-lg font-bold text-zinc-900 dark:text-white">
+            <DialogTitle className="text-lg font-bold text-primary">
               Política de Privacidade (LGPD) | EPM DEVTECH
             </DialogTitle>
-            <DialogDescription className="text-xs text-zinc-500 dark:text-zinc-400">
+            <DialogDescription className="text-xs text-muted">
               Conformidade com a Lei Geral de Proteção de Dados Pessoais (Lei Federal nº 13.709/2018).
             </DialogDescription>
           </DialogHeader>
 
           <ScrollArea className="flex-1 max-h-[60vh] pr-4 mt-2">
-            <div className="space-y-4 text-xs text-zinc-600 dark:text-zinc-300 leading-relaxed">
+            <div className="space-y-4 text-xs text-secondary leading-relaxed">
               <section>
-                <h4 className="font-semibold text-zinc-900 dark:text-white mb-1">1. Princípios e Controlador dos Dados</h4>
+                <h4 className="font-semibold text-primary mb-1">1. Princípios e Controlador dos Dados</h4>
                 <p>
                   A <strong>ELESSANDRO PRESTES MACEDO DESENVOLVIMENTO DE SOFTWARE LTDA</strong>, inscrita no CNPJ sob o nº{" "}
                   <strong>60.710.574/0001-85</strong> (EPM DEVTECH), atua como Controladora dos dados pessoais coletados
@@ -150,7 +150,7 @@ export function LegalLinks({ className }: LegalLinksProps) {
               </section>
 
               <section>
-                <h4 className="font-semibold text-zinc-900 dark:text-white mb-1">2. Dados Coletados e Base Legal</h4>
+                <h4 className="font-semibold text-primary mb-1">2. Dados Coletados e Base Legal</h4>
                 <p>
                   Coletamos estritamente os dados necessários para o atendimento solicitado pelo usuário:
                 </p>
@@ -168,7 +168,7 @@ export function LegalLinks({ className }: LegalLinksProps) {
               </section>
 
               <section>
-                <h4 className="font-semibold text-zinc-900 dark:text-white mb-1">3. Finalidade e Não Compartilhamento</h4>
+                <h4 className="font-semibold text-primary mb-1">3. Finalidade e Não Compartilhamento</h4>
                 <p>
                   Os dados fornecidos são utilizados com a finalidade exclusiva de: (a) responder dúvidas técnicas; (b) agendar
                   reuniões de alinhamento de escopo; (c) elaborar e encaminhar propostas de serviços de desenvolvimento de software.
@@ -178,7 +178,7 @@ export function LegalLinks({ className }: LegalLinksProps) {
               </section>
 
               <section>
-                <h4 className="font-semibold text-zinc-900 dark:text-white mb-1">4. Segurança da Informação</h4>
+                <h4 className="font-semibold text-primary mb-1">4. Segurança da Informação</h4>
                 <p>
                   Adotamos rigorosos padrões de segurança da informação (DevSecOps), incluindo tráfego criptografado
                   (HTTPS / TLS 1.3), validações de schema estritas (Zod) e políticas restritivas de acesso interno.
@@ -186,7 +186,7 @@ export function LegalLinks({ className }: LegalLinksProps) {
               </section>
 
               <section>
-                <h4 className="font-semibold text-zinc-900 dark:text-white mb-1">5. Direitos dos Titulares</h4>
+                <h4 className="font-semibold text-primary mb-1">5. Direitos dos Titulares</h4>
                 <p>
                   Conforme o Artigo 18 da LGPD, o titular possui o direito de solicitar a qualquer momento: confirmação da
                   existência de tratamento; acesso aos seus dados; correção de dados incompletos ou desatualizados;
@@ -195,11 +195,11 @@ export function LegalLinks({ className }: LegalLinksProps) {
               </section>
 
               <section>
-                <h4 className="font-semibold text-zinc-900 dark:text-white mb-1">6. Encarregado pelo Tratamento de Dados (DPO)</h4>
+                <h4 className="font-semibold text-primary mb-1">6. Encarregado pelo Tratamento de Dados (DPO)</h4>
                 <p>
                   Para exercer seus direitos de titular ou sanar qualquer dúvida referente ao tratamento de seus dados
                   pessoais, entre em contato diretamente com nosso Encarregado pelo e-mail:{" "}
-                  <a href="mailto:elessandro@epmdevtech.com.br" className="text-emerald-600 dark:text-emerald-400 hover:underline">
+                  <a href="mailto:elessandro@epmdevtech.com.br" className="text-text-brand hover:underline">
                     elessandro@epmdevtech.com.br
                   </a>
                   .
@@ -207,7 +207,7 @@ export function LegalLinks({ className }: LegalLinksProps) {
               </section>
 
               <section>
-                <h4 className="font-semibold text-zinc-900 dark:text-white mb-1">7. Vigência e Atualizações</h4>
+                <h4 className="font-semibold text-primary mb-1">7. Vigência e Atualizações</h4>
                 <p>
                   Esta Política de Privacidade está em vigor e foi atualizada em 10 de setembro de 2026. Reservamo-nos o
                   direito de atualizá-la quando necessário para refletir adequações legais e tecnológicas.

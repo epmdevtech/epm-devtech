@@ -114,7 +114,7 @@ const Differentials: React.FC<DifferentialsProps> = ({ hideHeader = false }) => 
               }`}
             >
               {/* Ícone Conceitual Autoral no Topo (sem caixa esmeralda) */}
-              <div className="mb-4 text-zinc-700 dark:text-zinc-200 group-hover:text-primary transition-colors duration-200">
+              <div className="mb-4 text-text-secondary group-hover:text-text-brand transition-colors duration-200">
                 <item.Icon size={26} aria-hidden="true" />
               </div>
 

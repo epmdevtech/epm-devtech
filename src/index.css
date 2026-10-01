@@ -78,68 +78,175 @@ textarea:-webkit-autofill:active {
 }
 
 @layer base {
-  :root {
-    /* Modo Claro (Light Mode) */
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+  :root,
+  [data-theme="light"] {
+    color-scheme: light;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* Camada 1: Primitivas (Light) */
+    --neutral-50: #F6FAFA;
+    --neutral-100: #E3EDEE;
+    --neutral-200: #CFE0E2;
+    --neutral-300: #ADC8CB;
+    --neutral-500: #5C7175;
+    --neutral-700: #3F5558;
+    --neutral-900: #0A0F10;
+    --neutral-950: #04201C;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --teal-400: #2DD4BF;
+    --teal-500: #14B8A6;
+    --teal-600: #0D9488;
+    --teal-700: #0F766E;
+    --teal-800: #115E59;
+    --teal-950: #04201C;
 
-    --primary: 158 75% 36%; /* Verde Esmeralda oficial EPM DEVTECH — WCAG AA >= 4.5:1 com texto branco */
-    --primary-foreground: 0 0% 100%;
+    /* Camada 2: Semânticas (Light) */
+    --bg-base-rgb: 246 250 250;
+    --bg-base: #F6FAFA;
+    --bg-surface-rgb: 255 255 255;
+    --bg-surface: #FFFFFF;
+    --bg-elevated-rgb: 255 255 255;
+    --bg-elevated: #FFFFFF;
+    --bg-overlay: rgba(246, 250, 250, 0.85);
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --border-subtle-rgb: 227 237 238;
+    --border-subtle: #E3EDEE;
+    --border-default-rgb: 207 224 226;
+    --border-default: #CFE0E2;
+    --border-strong-rgb: 173 200 203;
+    --border-strong: #ADC8CB;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 38%; /* Aumentado de 46.9% → 38% para atingir contraste WCAG AA 4.5:1 */
+    --text-primary-rgb: 10 15 16;
+    --text-primary: #0A0F10;
+    --text-secondary-rgb: 63 85 88;
+    --text-secondary: #3F5558;
+    --text-muted-rgb: 92 113 117;
+    --text-muted: #5C7175;
+    --text-on-brand-rgb: 4 32 28;
+    --text-on-brand: #04201C;
+    --text-brand-rgb: 15 118 110;
+    --text-brand: #0F766E;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --brand-rgb: 45 212 191;
+    --brand: #2DD4BF;
+    --brand-hover-rgb: 13 148 136;
+    --brand-hover: #0D9488;
+    --brand-active-rgb: 17 94 89;
+    --brand-active: #115E59;
+    --brand-subtle: rgba(15, 118, 110, 0.10);
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --accent-blue-rgb: 3 105 161;
+    --accent-blue: #0369A1;
+    --accent-blue-subtle: rgba(3, 105, 161, 0.10);
+    --accent-violet-rgb: 109 40 217;
+    --accent-violet: #6D28D9;
+    --accent-violet-subtle: rgba(109, 40, 217, 0.10);
+    --accent-amber-rgb: 180 83 9;
+    --accent-amber: #B45309;
+    --accent-amber-subtle: rgba(180, 83, 9, 0.10);
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 158 64% 45%;
+    --success-rgb: 21 128 61;
+    --success: #15803D;
+    --success-subtle: rgba(21, 128, 61, 0.10);
+    --warning-rgb: 180 83 9;
+    --warning: #B45309;
+    --warning-subtle: rgba(180, 83, 9, 0.10);
+    --danger-rgb: 185 28 28;
+    --danger: #B91C1C;
+    --danger-subtle: rgba(185, 28, 28, 0.10);
+
+    --focus-ring-rgb: 15 118 110;
+    --focus-ring: #0F766E;
+    --glow-brand: rgba(15, 118, 110, 0.15);
+
+    --shadow-sm: 0 1px 2px 0 rgba(10, 15, 16, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(10, 15, 16, 0.08), 0 2px 4px -2px rgba(10, 15, 16, 0.05);
+    --shadow-lg: 0 10px 15px -3px rgba(10, 15, 16, 0.10), 0 4px 6px -4px rgba(10, 15, 16, 0.05);
 
     --radius: 0.5rem;
   }
 
+  [data-theme="dark"],
   .dark {
-    /* Modo Escuro (Dark Mode) */
-    --background: 0 0% 7%; /* #121212 Preto Profundo */
-    --foreground: 0 0% 100%;
+    color-scheme: dark;
 
-    --card: 0 0% 7%;
-    --card-foreground: 0 0% 100%;
+    /* Camada 1: Primitivas (Dark) */
+    --neutral-50: #F2F7F7;
+    --neutral-300: #9DB0B3;
+    --neutral-500: #71868A;
+    --neutral-700: #33464A;
+    --neutral-800: #243336;
+    --neutral-850: #1A2527;
+    --neutral-900: #141D1F;
+    --neutral-925: #0F1617;
+    --neutral-950: #0A0F10;
 
-    --popover: 0 0% 7%;
-    --popover-foreground: 0 0% 100%;
+    --teal-300: #5EEAD4;
+    --teal-400: #2DD4BF;
+    --teal-500: #14B8A6;
+    --teal-950: #04201C;
 
-    --primary: 158 64% 42%; /* Verde Esmeralda oficial EPM DEVTECH (#10B981 balanceado WCAG AA >= 4.5:1) */
-    --primary-foreground: 0 0% 100%;
+    /* Camada 2: Semânticas (Dark) */
+    --bg-base-rgb: 10 15 16;
+    --bg-base: #0A0F10;
+    --bg-surface-rgb: 15 22 23;
+    --bg-surface: #0F1617;
+    --bg-elevated-rgb: 20 29 31;
+    --bg-elevated: #141D1F;
+    --bg-overlay: rgba(10, 15, 16, 0.85);
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --border-subtle-rgb: 26 37 39;
+    --border-subtle: #1A2527;
+    --border-default-rgb: 36 51 54;
+    --border-default: #243336;
+    --border-strong-rgb: 51 70 74;
+    --border-strong: #33464A;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --text-primary-rgb: 242 247 247;
+    --text-primary: #F2F7F7;
+    --text-secondary-rgb: 157 176 179;
+    --text-secondary: #9DB0B3;
+    --text-muted-rgb: 113 134 138;
+    --text-muted: #71868A;
+    --text-on-brand-rgb: 4 32 28;
+    --text-on-brand: #04201C;
+    --text-brand-rgb: 45 212 191;
+    --text-brand: #2DD4BF;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --brand-rgb: 45 212 191;
+    --brand: #2DD4BF;
+    --brand-hover-rgb: 94 234 212;
+    --brand-hover: #5EEAD4;
+    --brand-active-rgb: 20 184 166;
+    --brand-active: #14B8A6;
+    --brand-subtle: rgba(45, 212, 191, 0.12);
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --accent-blue-rgb: 56 189 248;
+    --accent-blue: #38BDF8;
+    --accent-blue-subtle: rgba(56, 189, 248, 0.12);
+    --accent-violet-rgb: 167 139 250;
+    --accent-violet: #A78BFA;
+    --accent-violet-subtle: rgba(167, 139, 250, 0.12);
+    --accent-amber-rgb: 251 191 36;
+    --accent-amber: #FBBF24;
+    --accent-amber-subtle: rgba(251, 191, 36, 0.12);
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 158 64% 52%;
+    --success-rgb: 74 222 128;
+    --success: #4ADE80;
+    --success-subtle: rgba(74, 222, 128, 0.12);
+    --warning-rgb: 251 191 36;
+    --warning: #FBBF24;
+    --warning-subtle: rgba(251, 191, 36, 0.12);
+    --danger-rgb: 248 113 113;
+    --danger: #F87171;
+    --danger-subtle: rgba(248, 113, 113, 0.12);
+
+    --focus-ring-rgb: 45 212 191;
+    --focus-ring: #2DD4BF;
+    --glow-brand: rgba(45, 212, 191, 0.25);
+
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.35);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.45), 0 2px 4px -2px rgba(0, 0, 0, 0.35);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.55), 0 4px 6px -4px rgba(0, 0, 0, 0.45);
   }
 }
 

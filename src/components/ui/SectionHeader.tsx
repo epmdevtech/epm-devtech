@@ -44,7 +44,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
         <div
           data-testid="section-eyebrow"
           className={cn(
-            "inline-flex items-center gap-[7px] text-[11.5px] font-medium tracking-[0.1em] uppercase text-zinc-500 dark:text-zinc-400 select-none mb-2.5 sm:mb-3",
+            "inline-flex items-center gap-[7px] text-[11.5px] font-medium tracking-[0.1em] uppercase text-muted select-none mb-2.5 sm:mb-3",
             taglineClassName
           )}
         >
@@ -57,7 +57,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
         <HeadingTag
           id={id}
           className={cn(
-            "font-bold tracking-tight text-zinc-900 dark:text-white [text-wrap:balance]",
+            "font-bold tracking-tight text-primary [text-wrap:balance]",
             isH1
               ? "text-4xl sm:text-5xl lg:text-6xl leading-[1.15] mb-5 sm:mb-6"
               : "text-3xl sm:text-4xl lg:text-[2.65rem] lg:leading-[1.18] max-w-3xl mx-auto",
@@ -72,7 +72,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
       {subtitle && (
         <p
           className={cn(
-            "font-normal text-base sm:text-lg leading-relaxed text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto [text-wrap:balance]",
+            "font-normal text-base sm:text-lg leading-relaxed text-secondary max-w-2xl mx-auto [text-wrap:balance]",
             subtitleClassName
           )}
         >

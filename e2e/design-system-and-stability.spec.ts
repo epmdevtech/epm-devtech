@@ -65,11 +65,11 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     }
   });
 
-  test('Cor principal de destaque utiliza o verde da marca EPM DEVTECH (#10b981 / emerald)', async ({ page }) => {
+  test('Cor principal de destaque utiliza o verde da marca EPM DEVTECH (#2DD4BF / teal)', async ({ page }) => {
     await page.goto('/contato');
     await page.waitForLoadState('domcontentloaded');
 
-    // Botão de envio no formulário de contato (verde esmeralda oficial)
+    // Botão de envio no formulário de contato (verde-água oficial brand #2DD4BF)
     const submitButton = page.locator('button[type="submit"]').first();
     await expect(submitButton).toBeVisible({ timeout: 10000 });
 
@@ -77,8 +77,8 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
       return window.getComputedStyle(el).backgroundColor;
     });
 
-    // Verde esmeralda oficial (#10B981 / emerald-600) — formato rgb(5, 150, 105)
-    expect(btnBgColor).toMatch(/rgb\((5|16|23|24|26|36|38|39),\s*(150|155|160|161|173|175|176|185),\s*(105|107|112|114|123|124|125|129)\)/);
+    // Verde-água teal oficial (#2DD4BF / brand) — formato rgb(45, 212, 191)
+    expect(btnBgColor).toBe('rgb(45, 212, 191)');
 
     // Garante presença do CTA principal do Hero na home direcionando para /contato
     await page.goto('/');

@@ -291,7 +291,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
             type="submit"
             disabled={isSubmitting || isSuccess}
             className={`w-full sm:w-auto min-w-[180px] transition-all duration-200 ${
-              isSuccess ? "bg-emerald-600 hover:bg-emerald-600 text-white" : ""
+              isSuccess ? "bg-success hover:bg-success text-white" : ""
             }`}
           >
             {isSubmitting ? (

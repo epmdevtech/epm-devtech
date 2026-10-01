@@ -76,10 +76,10 @@ const CursorOrb = () => {
     const dotSize = clicking ? 4 : 6;
     const ringSize = hovering ? 40 : clicking ? 26 : 32;
 
-    const dotColor = isDark ? "hsla(218, 100%, 58%, 0.5)" : "hsla(222, 84%, 15%, 0.35)";
-    const ringColor = isDark ? "hsla(218, 100%, 58%, 0.15)" : "hsla(222, 47%, 11%, 0.08)";
-    const ringBorder = isDark ? "hsla(218, 100%, 58%, 0.35)" : "hsla(222, 47%, 11%, 0.2)";
-    const glowColor = isDark ? "0 0 10px 2px hsla(218, 100%, 65%, 0.25)" : "none";
+    const dotColor = isDark ? "rgba(45, 212, 191, 0.5)" : "rgba(15, 118, 110, 0.4)";
+    const ringColor = isDark ? "rgba(45, 212, 191, 0.12)" : "rgba(15, 118, 110, 0.08)";
+    const ringBorder = isDark ? "rgba(45, 212, 191, 0.35)" : "rgba(15, 118, 110, 0.2)";
+    const glowColor = isDark ? "0 0 10px 2px rgba(45, 212, 191, 0.25)" : "none";
 
     return (
         <>
@@ -95,7 +95,7 @@ const CursorOrb = () => {
                     translateX: "-50%",
                     translateY: "-50%",
                     backgroundColor: dotColor,
-                    boxShadow: isDark ? `0 0 6px 1px hsla(218, 100%, 65%, 0.35)` : "none",
+                    boxShadow: isDark ? `0 0 6px 1px rgba(45, 212, 191, 0.35)` : "none",
                     opacity: visible ? 0.35 : 0,
                     transition: "width 0.12s, height 0.12s, opacity 0.2s",
                 }}

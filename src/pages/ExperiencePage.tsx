@@ -60,12 +60,12 @@ export const ExperiencePage = () => {
         <section id="organizacoes" className="py-16 sm:py-24 border-t border-border/40 scroll-mt-24">
           <div className="container px-6 max-w-5xl mx-auto">
             <div className="max-w-3xl mb-10">
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground [text-wrap:balance]">
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-primary [text-wrap:balance]">
                 Organizações e projetos de atuação
               </h2>
               {/* Rótulo Fixo Obrigatório */}
-              <div className="mt-4 p-4 rounded-lg border border-border/70 bg-zinc-100/70 dark:bg-zinc-900/60 text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                <span className="font-semibold text-foreground">Nota de contexto: </span>
+              <div className="mt-4 p-4 rounded-lg border border-border-default bg-surface-elevated text-xs sm:text-sm text-secondary leading-relaxed">
+                <span className="font-semibold text-primary">Nota de contexto: </span>
                 Organizações e projetos em que a liderança técnica da EPM DevTech atuou profissionalmente, em outras empresas. Não são clientes da EPM DevTech.
               </div>
             </div>
@@ -74,31 +74,31 @@ export const ExperiencePage = () => {
               {approvedExperiences.map((exp) => (
                 <div
                   key={exp.organization}
-                  className="p-6 rounded-xl border border-border/60 bg-card/60 flex flex-col justify-between"
+                  className="p-6 rounded-xl border border-border-default bg-surface flex flex-col justify-between"
                 >
                   <div>
                     <div className="flex items-center gap-2.5 mb-3">
-                      <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
+                      <div className="w-8 h-8 rounded-lg bg-brand-subtle border border-brand/20 flex items-center justify-center text-text-brand shrink-0">
                         <Building2 className="w-4 h-4" />
                       </div>
                       <div>
-                        <div className="font-bold text-foreground text-base tracking-tight">
+                        <div className="font-bold text-primary text-base tracking-tight">
                           {exp.organization}
                         </div>
-                        <div className="text-[11px] font-mono text-primary uppercase tracking-wider">
+                        <div className="text-[11px] font-mono text-text-brand uppercase tracking-wider">
                           {exp.sector}
                         </div>
                       </div>
                     </div>
 
-                    <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mt-3">
+                    <p className="text-xs sm:text-sm text-secondary leading-relaxed mt-3">
                       {exp.context}
                     </p>
                   </div>
 
                   {exp.via && (
-                    <div className="mt-4 pt-3 border-t border-border/40 text-[11px] text-zinc-500 dark:text-zinc-400">
-                      Via <span className="font-medium text-foreground">{exp.via}</span>
+                    <div className="mt-4 pt-3 border-t border-border-subtle text-[11px] text-muted">
+                      Via <span className="font-medium text-primary">{exp.via}</span>
                     </div>
                   )}
                 </div>
@@ -107,16 +107,16 @@ export const ExperiencePage = () => {
 
             {/* Chamada Final para Contato */}
             <div className="text-center pt-8 border-t border-border/40">
-              <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground mb-3">
+              <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-primary mb-3">
                 Sua empresa tem uma demanda de alta complexidade?
               </h3>
-              <p className="text-sm sm:text-base text-muted-foreground max-w-xl mx-auto mb-8">
+              <p className="text-sm sm:text-base text-secondary max-w-xl mx-auto mb-8">
                 Conversamos diretamente sobre requisitos de arquitetura, estabilidade e capacidade de evolução.
               </p>
               <Button
                 asChild
                 size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 min-h-[44px] px-8 text-sm font-medium"
+                className="bg-brand text-on-brand hover:bg-brand-hover active:bg-brand-active min-h-[44px] px-8 text-sm font-semibold"
               >
                 <Link to="/contato">Falar sobre meu projeto</Link>
               </Button>

@@ -46,7 +46,7 @@ const Authority = () => {
     <section
       id="autoridade"
       aria-labelledby="autoridade-heading"
-      className="py-14 lg:py-16 border-y border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-zinc-900/30 relative"
+      className="py-14 lg:py-16 border-y border-border-subtle bg-surface/50 relative"
       ref={ref}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -67,7 +67,7 @@ const Authority = () => {
           {/* 4 Métricas Consolidadas com Animação CountUp */}
           <ul
             role="list"
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-8 sm:gap-y-0 text-center lg:divide-x divide-zinc-200/80 dark:divide-zinc-800/80 max-w-6xl mx-auto list-none p-0 m-0"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-8 sm:gap-y-0 text-center lg:divide-x divide-border-subtle max-w-6xl mx-auto list-none p-0 m-0"
           >
             {metrics.map((m, idx) => (
               <li
@@ -76,13 +76,13 @@ const Authority = () => {
                   "px-4 flex flex-col items-center",
                   idx !== 0 && "lg:pl-6",
                   // Tablet (2 colunas): divisores internos 2x2
-                  idx % 2 === 1 && "sm:border-l sm:border-zinc-200/80 sm:dark:border-zinc-800/80 lg:border-l-0",
-                  idx >= 2 && "sm:border-t sm:border-zinc-200/80 sm:dark:border-zinc-800/80 lg:border-t-0 sm:pt-6 lg:pt-0",
+                  idx % 2 === 1 && "sm:border-l sm:border-border-subtle lg:border-l-0",
+                  idx >= 2 && "sm:border-t sm:border-border-subtle lg:border-t-0 sm:pt-6 lg:pt-0",
                   // Mobile (1 coluna): divisores horizontais discretos
-                  idx > 0 && "border-t border-zinc-200/80 dark:border-zinc-800/80 pt-6 sm:border-t-0 sm:pt-0"
+                  idx > 0 && "border-t border-border-subtle pt-6 sm:border-t-0 sm:pt-0"
                 )}
               >
-                <p className="text-3xl lg:text-4xl font-bold tracking-tight text-zinc-900 dark:text-white">
+                <p className="text-3xl lg:text-4xl font-bold tracking-tight text-text-primary">
                   <span className="sr-only">{m.accessibleLabel}</span>
                   <CountUp
                     isCounting={isInView}
@@ -95,7 +95,7 @@ const Authority = () => {
                     aria-hidden="true"
                   />
                 </p>
-                <p className="text-xs sm:text-sm font-medium text-zinc-600 dark:text-zinc-400 mt-2 leading-relaxed max-w-xs mx-auto">
+                <p className="text-xs sm:text-sm font-medium text-text-secondary mt-2 leading-relaxed max-w-xs mx-auto">
                   {m.label}
                 </p>
               </li>
@@ -103,7 +103,7 @@ const Authority = () => {
           </ul>
 
           {/* Nota discreta de confidencialidade */}
-          <p className="text-xs text-zinc-500 dark:text-zinc-400 text-center max-w-2xl mx-auto pt-2">
+          <p className="text-xs text-text-muted text-center max-w-2xl mx-auto pt-2">
             Contexto e detalhes sob solicitação, respeitando a confidencialidade dos projetos.
           </p>
         </motion.div>

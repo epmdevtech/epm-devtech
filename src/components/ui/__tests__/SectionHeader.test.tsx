@@ -15,8 +15,7 @@ describe("SectionHeader Component", () => {
     const tagline = screen.getByText("Serviços");
     expect(tagline).toBeInTheDocument();
     expect(tagline.parentElement).toHaveClass("uppercase");
-    expect(tagline.parentElement).toHaveClass("text-zinc-500");
-    expect(tagline.parentElement).toHaveClass("dark:text-zinc-400");
+    expect(tagline.parentElement).toHaveClass("text-muted");
     expect(tagline.parentElement).toHaveClass("tracking-[0.1em]");
     expect(tagline.parentElement).not.toHaveClass("bg-emerald-50");
 
@@ -30,15 +29,13 @@ describe("SectionHeader Component", () => {
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveClass("font-bold");
     expect(heading).toHaveClass("text-3xl");
-    expect(heading).toHaveClass("text-zinc-900");
-    expect(heading).toHaveClass("dark:text-white");
+    expect(heading).toHaveClass("text-primary");
     expect(heading).toHaveTextContent("Da primeira reunião ao deploy em produção");
 
     const subtitle = screen.getByText(/Planejamento, arquitetura, testes automatizados/i);
     expect(subtitle).toBeInTheDocument();
     expect(subtitle).toHaveClass("font-normal");
-    expect(subtitle).toHaveClass("text-zinc-600");
-    expect(subtitle).toHaveClass("dark:text-zinc-400");
+    expect(subtitle).toHaveClass("text-secondary");
   });
 
   it("renderiza apenas o eyebrow quando title e subtitle são omitidos (ex: Stack Tecnológica)", () => {

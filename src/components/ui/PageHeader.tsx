@@ -36,7 +36,7 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
           <div
             data-testid="page-eyebrow"
             className={cn(
-              "inline-flex items-center gap-[7px] text-[11.5px] font-mono font-medium tracking-[0.1em] uppercase text-zinc-500 dark:text-zinc-400 select-none mb-3 sm:mb-4",
+              "inline-flex items-center gap-[7px] text-[11.5px] font-mono font-medium tracking-[0.1em] uppercase text-muted select-none mb-3 sm:mb-4",
               isCenter ? "justify-center" : "justify-start"
             )}
           >
@@ -48,13 +48,13 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
         <h1
           id="page-title"
           tabIndex={-1}
-          className="font-bold tracking-tight text-foreground text-3xl sm:text-4xl md:text-5xl leading-[1.15] [text-wrap:balance] outline-none focus:outline-none"
+          className="font-bold tracking-tight text-primary text-3xl sm:text-4xl md:text-5xl leading-[1.15] [text-wrap:balance] outline-none focus:outline-none"
         >
           {title}
         </h1>
 
         {description && (
-          <p className="mt-4 sm:mt-5 text-base sm:text-lg leading-relaxed text-muted-foreground [text-wrap:balance]">
+          <p className="mt-4 sm:mt-5 text-base sm:text-lg leading-relaxed text-secondary [text-wrap:balance]">
             {description}
           </p>
         )}

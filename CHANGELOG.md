@@ -9,6 +9,40 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.63-sistema-cores-tokens-temas] - 2026-10-01
+
+### Adicionado
+- **`specs/SPEC-063-sistema-cores-tokens-temas.md`**: Especificação completa da refatoração do sistema de cores, tokens semânticos em 2 camadas e temas ricos (Dark, Light, System) com contraste WCAG AAA.
+- **`tasks/TASK-063-sistema-cores-tokens-temas.md`**: Registro de execução e checklist de qualidade da tarefa SDD.
+- **`reviews/QA-063.md`**: Relatório de qualidade, matriz de contraste WCAG 2.1 e evidências dos quality gates.
+- **`docs/design-system/color-tokens-guide.md`**: Guia de uso dos tokens de cores, regra 60/30/10, catálogo de superfícies e tabela de contraste.
+
+### Modificado
+- **`src/index.css`**:
+  - Implementação da arquitetura em 2 camadas: Primitivas (Camada 1: neutral, teal, blue, violet, amber, red, green) e Semânticas (Camada 2: base, surface, elevated, overlay, border-*, text-*, brand-*, accent-*).
+  - Configuração de neutros tingidos (frio esverdeado/azulado) em vez de preto e branco puros.
+  - Suporte completo a `:root, [data-theme="light"]` e `[data-theme="dark"], .dark` com transições suaves e respeito a `prefers-reduced-motion`.
+- **`tailwind.config.ts`**:
+  - Mapeamento de tokens semânticos via `rgb(var(--*-rgb) / <alpha-value>)`.
+  - Isolamento de `backgroundColor.base` para prevenir colisão com a classe utilitária de tipografia `text-base` do Tailwind.
+  - Inclusão dos tokens semânticos `on-brand`, `brand`, `text.*`, `accent.*`, `glow-brand` e sombras.
+- **`index.html`**:
+  - Script inline anti-FOUC no `<head>` sincronizando `data-theme`, classes e `color-scheme` no frame 0.
+  - Meta tags `theme-color` adaptativas (`#0A0F10` para dark e `#F6FAFA` para light).
+  - Atualização do CSS crítico inline com a nova paleta institucional.
+- **`src/components/theme-provider.tsx`**:
+  - Suporte nativo ao atributo `data-theme`, `color-scheme`, listener de alteração no sistema e atualização dinâmica da meta tag `theme-color`.
+- **`src/components/ui/button.tsx`**:
+  - Botão primário (`variant: "default"`) com `bg-brand` (`#2DD4BF`) e `text-on-brand` (`#04201C`), alcançando contraste **12.44:1 (WCAG AAA)**.
+  - Variantes outline, secondary e ghost adaptadas para tokens semânticos.
+- **Componentes e Seções**:
+  - `Hero.tsx`, `Home.tsx`, `Header.tsx`, `Footer.tsx`, `Contact.tsx`, `Services.tsx`, `FAQ.tsx`, `Authority.tsx`, `HowWeWork.tsx`, `Differentials.tsx`: remoção de todas as classes `zinc-*` e `emerald-*`, padronizando 100% da interface em tokens semânticos.
+  - Distribuição consistente das cores de apoio nos 4 serviços (01: Blue, 02: Violet, 03: Amber, 04: Teal).
+- **Testes & E2E**:
+  - Atualização de `e2e/design-system-and-stability.spec.ts` para verificar o verde-água da marca (`rgb(45, 212, 191)`).
+  - Atualização de `e2e/hero-identity-token-locks.spec.ts` para validar as travas de tokens e ausência de gradientes com os novos tokens semânticos.
+  - 100% dos testes passando (163 unitários com 99.44% de cobertura, 43 E2E no Playwright).
+
 ## [0.0.62-eliminacao-redundancias-home] - 2026-10-01
 
 ### Adicionado

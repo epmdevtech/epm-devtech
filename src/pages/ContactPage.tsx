@@ -50,7 +50,7 @@ export const ContactPage = () => {
         </div>
 
         {/* Dúvidas Frequentes em Destaque */}
-        <section className="py-16 sm:py-20 border-t border-border/40 bg-zinc-50/40 dark:bg-zinc-950/30">
+        <section className="py-16 sm:py-20 border-t border-border-subtle bg-surface/30">
           <div className="container px-6 max-w-4xl mx-auto">
             <div className="text-center max-w-2xl mx-auto mb-10">
               <div className="inline-flex items-center gap-2 text-xs font-mono font-medium text-primary uppercase tracking-wider mb-2">

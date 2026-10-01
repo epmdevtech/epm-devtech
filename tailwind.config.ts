@@ -17,50 +17,118 @@ export default {
       },
     },
     extend: {
+      backgroundColor: {
+        base: "rgb(var(--bg-base-rgb) / <alpha-value>)",
+      },
       colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        // Camada 2: Tokens Semânticos da EPM DEVTECH
+        surface: "rgb(var(--bg-surface-rgb) / <alpha-value>)",
+        elevated: "rgb(var(--bg-elevated-rgb) / <alpha-value>)",
+        overlay: "var(--bg-overlay)",
+
+        "border-subtle": "rgb(var(--border-subtle-rgb) / <alpha-value>)",
+        "border-default": "rgb(var(--border-default-rgb) / <alpha-value>)",
+        "border-strong": "rgb(var(--border-strong-rgb) / <alpha-value>)",
+
+        "on-brand": "rgb(var(--text-on-brand-rgb) / <alpha-value>)",
+        "text-primary": "rgb(var(--text-primary-rgb) / <alpha-value>)",
+        "text-secondary": "rgb(var(--text-secondary-rgb) / <alpha-value>)",
+        "text-muted": "rgb(var(--text-muted-rgb) / <alpha-value>)",
+        "text-brand": "rgb(var(--text-brand-rgb) / <alpha-value>)",
+        "text-on-brand": "rgb(var(--text-on-brand-rgb) / <alpha-value>)",
+        text: {
+          primary: "rgb(var(--text-primary-rgb) / <alpha-value>)",
+          secondary: "rgb(var(--text-secondary-rgb) / <alpha-value>)",
+          muted: "rgb(var(--text-muted-rgb) / <alpha-value>)",
+          brand: "rgb(var(--text-brand-rgb) / <alpha-value>)",
+          "on-brand": "rgb(var(--text-on-brand-rgb) / <alpha-value>)",
+        },
+
+        brand: {
+          DEFAULT: "rgb(var(--brand-rgb) / <alpha-value>)",
+          hover: "rgb(var(--brand-hover-rgb) / <alpha-value>)",
+          active: "rgb(var(--brand-active-rgb) / <alpha-value>)",
+          subtle: "var(--brand-subtle)",
+        },
+
+        accent: {
+          DEFAULT: "rgb(var(--bg-elevated-rgb) / <alpha-value>)",
+          foreground: "rgb(var(--text-primary-rgb) / <alpha-value>)",
+          blue: {
+            DEFAULT: "rgb(var(--accent-blue-rgb) / <alpha-value>)",
+            subtle: "var(--accent-blue-subtle)",
+          },
+          violet: {
+            DEFAULT: "rgb(var(--accent-violet-rgb) / <alpha-value>)",
+            subtle: "var(--accent-violet-subtle)",
+          },
+          amber: {
+            DEFAULT: "rgb(var(--accent-amber-rgb) / <alpha-value>)",
+            subtle: "var(--accent-amber-subtle)",
+          },
+        },
+
+        success: {
+          DEFAULT: "rgb(var(--success-rgb) / <alpha-value>)",
+          subtle: "var(--success-subtle)",
+        },
+        warning: {
+          DEFAULT: "rgb(var(--warning-rgb) / <alpha-value>)",
+          subtle: "var(--warning-subtle)",
+        },
+        danger: {
+          DEFAULT: "rgb(var(--danger-rgb) / <alpha-value>)",
+          subtle: "var(--danger-subtle)",
+        },
+
+        "focus-ring": "rgb(var(--focus-ring-rgb) / <alpha-value>)",
+        "glow-brand": "var(--glow-brand)",
+
+        // Compatibilidade semântica com componentes shadcn/ui
+        border: "rgb(var(--border-default-rgb) / <alpha-value>)",
+        input: "rgb(var(--border-default-rgb) / <alpha-value>)",
+        ring: "rgb(var(--focus-ring-rgb) / <alpha-value>)",
+        background: "rgb(var(--bg-base-rgb) / <alpha-value>)",
+        foreground: "rgb(var(--text-primary-rgb) / <alpha-value>)",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: "rgb(var(--brand-rgb) / <alpha-value>)",
+          foreground: "rgb(var(--text-on-brand-rgb) / <alpha-value>)",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+          DEFAULT: "rgb(var(--bg-elevated-rgb) / <alpha-value>)",
+          foreground: "rgb(var(--text-secondary-rgb) / <alpha-value>)",
         },
         destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
+          DEFAULT: "rgb(var(--danger-rgb) / <alpha-value>)",
+          foreground: "rgb(var(--text-primary-rgb) / <alpha-value>)",
         },
         muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
+          DEFAULT: "rgb(var(--bg-surface-rgb) / <alpha-value>)",
+          foreground: "rgb(var(--text-muted-rgb) / <alpha-value>)",
         },
         popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
+          DEFAULT: "rgb(var(--bg-surface-rgb) / <alpha-value>)",
+          foreground: "rgb(var(--text-primary-rgb) / <alpha-value>)",
         },
         card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
+          DEFAULT: "rgb(var(--bg-surface-rgb) / <alpha-value>)",
+          foreground: "rgb(var(--text-primary-rgb) / <alpha-value>)",
         },
         sidebar: {
-          DEFAULT: "hsl(var(--sidebar-background))",
-          foreground: "hsl(var(--sidebar-foreground))",
-          primary: "hsl(var(--sidebar-primary))",
-          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
-          accent: "hsl(var(--sidebar-accent))",
-          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
-          border: "hsl(var(--sidebar-border))",
-          ring: "hsl(var(--sidebar-ring))",
+          DEFAULT: "rgb(var(--bg-surface-rgb) / <alpha-value>)",
+          foreground: "rgb(var(--text-primary-rgb) / <alpha-value>)",
+          primary: "rgb(var(--brand-rgb) / <alpha-value>)",
+          "primary-foreground": "rgb(var(--text-on-brand-rgb) / <alpha-value>)",
+          accent: "rgb(var(--bg-elevated-rgb) / <alpha-value>)",
+          "accent-foreground": "rgb(var(--text-primary-rgb) / <alpha-value>)",
+          border: "rgb(var(--border-subtle-rgb) / <alpha-value>)",
+          ring: "rgb(var(--focus-ring-rgb) / <alpha-value>)",
         },
+      },
+      boxShadow: {
+        sm: "var(--shadow-sm)",
+        md: "var(--shadow-md)",
+        lg: "var(--shadow-lg)",
       },
       borderRadius: {
         lg: "var(--radius)",

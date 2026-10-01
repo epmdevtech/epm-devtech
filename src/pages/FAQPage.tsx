@@ -17,13 +17,13 @@ const BASE_URL = SITE_CONFIG.url;
 
 const CATEGORY_COLORS: Record<FAQItem["category"], string> = {
   contratacao:
-    "bg-emerald-50 text-emerald-800 border-emerald-300 dark:bg-emerald-950/50 dark:text-emerald-400 dark:border-emerald-800/60",
+    "bg-brand-subtle text-text-brand border-brand/20",
   legados:
-    "bg-blue-50 text-blue-800 border-blue-300 dark:bg-blue-950/50 dark:text-blue-400 dark:border-blue-800/60",
+    "bg-accent-blue/10 text-accent-blue border-accent-blue/20",
   processo:
-    "bg-violet-50 text-violet-800 border-violet-300 dark:bg-violet-950/50 dark:text-violet-400 dark:border-violet-800/60",
+    "bg-accent-violet/10 text-accent-violet border-accent-violet/20",
   servicos:
-    "bg-teal-50 text-teal-800 border-teal-300 dark:bg-teal-950/50 dark:text-teal-400 dark:border-teal-800/60",
+    "bg-accent-amber/10 text-accent-amber border-accent-amber/20",
 };
 
 type FilterCategory = "todas" | FAQItem["category"];
@@ -77,8 +77,8 @@ export const FAQPage = () => {
               className={cn(
                 "px-3 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer",
                 selectedCategory === "todas"
-                  ? "bg-primary text-primary-foreground font-semibold"
-                  : "bg-secondary text-muted-foreground hover:text-foreground"
+                  ? "bg-brand text-on-brand font-semibold shadow-xs"
+                  : "bg-surface-elevated text-secondary hover:text-primary border border-border-subtle"
               )}
             >
               Todas as dúvidas ({FAQ_ITEMS.length})
@@ -90,8 +90,8 @@ export const FAQPage = () => {
                 className={cn(
                   "px-3 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer",
                   selectedCategory === cat
-                    ? "bg-primary text-primary-foreground font-semibold"
-                    : "bg-secondary text-muted-foreground hover:text-foreground"
+                    ? "bg-brand text-on-brand font-semibold shadow-xs"
+                    : "bg-surface-elevated text-secondary hover:text-primary border border-border-subtle"
                 )}
               >
                 {CATEGORY_LABELS[cat]}
@@ -105,7 +105,7 @@ export const FAQPage = () => {
               <AccordionItem
                 key={item.id}
                 value={item.id}
-                className="border border-border/70 rounded-xl overflow-hidden bg-card/60 shadow-xs transition-colors hover:border-primary/40 data-[state=open]:border-primary/50"
+                className="border border-border-default rounded-xl overflow-hidden bg-surface shadow-xs transition-colors hover:border-brand/40 data-[state=open]:border-brand/50"
               >
                 <AccordionTrigger className="px-5 py-4 text-left hover:no-underline group">
                   <div className="flex items-start gap-3 w-full">
@@ -117,20 +117,20 @@ export const FAQPage = () => {
                     >
                       {CATEGORY_LABELS[item.category]}
                     </span>
-                    <span className="text-sm font-semibold text-foreground leading-snug group-data-[state=open]:text-primary transition-colors">
+                    <span className="text-sm font-semibold text-primary leading-snug group-data-[state=open]:text-text-brand transition-colors">
                       {item.question}
                     </span>
                   </div>
                 </AccordionTrigger>
 
                 <AccordionContent className="px-5 pb-5">
-                  <div className="mt-1 space-y-2 text-muted-foreground">
+                  <div className="mt-1 space-y-2 text-secondary">
                     {item.answer.split("\n").map((line, i) => (
                       <p
                         key={i}
                         className={cn(
                           "text-sm leading-relaxed",
-                          line.startsWith("•") ? "pl-3 font-mono text-xs sm:text-sm text-foreground/80" : ""
+                          line.startsWith("•") ? "pl-3 font-mono text-xs sm:text-sm text-primary/80" : ""
                         )}
                       >
                         {line}
@@ -143,17 +143,17 @@ export const FAQPage = () => {
           </Accordion>
 
           {/* Chamada Final */}
-          <div className="p-8 sm:p-10 rounded-2xl border border-border/70 bg-card/40 text-center">
-            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground mb-3">
+          <div className="p-8 sm:p-10 rounded-2xl border border-border-default bg-surface text-center">
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-primary mb-3">
               Não encontrou a resposta para o seu cenário?
             </h2>
-            <p className="text-sm sm:text-base text-muted-foreground max-w-xl mx-auto mb-6">
+            <p className="text-sm sm:text-base text-secondary max-w-xl mx-auto mb-6">
               Envie sua dúvida ou descreva o desafio da sua empresa. Retornamos em até 24 horas úteis com uma avaliação técnica preliminar.
             </p>
             <Button
               asChild
               size="lg"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 min-h-[44px] px-8 text-sm font-medium"
+              className="bg-brand text-on-brand hover:bg-brand-hover active:bg-brand-active min-h-[44px] px-8 text-sm font-semibold"
             >
               <Link to="/contato">Falar sobre meu projeto</Link>
             </Button>
