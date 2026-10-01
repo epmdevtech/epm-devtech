@@ -64,23 +64,29 @@ const CursorOrb = () => {
         };
     }, [rawX, rawY]);
 
-    // Esconde em dispositivos touch
-    if (window.matchMedia("(pointer: coarse)").matches) return null;
+    // Desativa em dispositivos touch e em ambientes com prefers-reduced-motion
+    if (
+        typeof window !== "undefined" &&
+        (window.matchMedia("(pointer: coarse)").matches ||
+         window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+    ) {
+        return null;
+    }
 
     const dotSize = clicking ? 4 : 6;
-    const ringSize = hovering ? 44 : clicking ? 28 : 36;
+    const ringSize = hovering ? 40 : clicking ? 26 : 32;
 
-    const dotColor = isDark ? "hsl(218 100% 58%)" : "hsl(222 84% 15%)";
-    const ringColor = isDark ? "hsla(218, 100%, 58%, 0.35)" : "hsla(222, 47%, 11%, 0.18)";
-    const ringBorder = isDark ? "hsla(218, 100%, 58%, 0.7)" : "hsla(222, 47%, 11%, 0.45)";
-    const glowColor = isDark ? "0 0 14px 4px hsla(218, 100%, 65%, 0.45)" : "none";
+    const dotColor = isDark ? "hsla(218, 100%, 58%, 0.5)" : "hsla(222, 84%, 15%, 0.35)";
+    const ringColor = isDark ? "hsla(218, 100%, 58%, 0.15)" : "hsla(222, 47%, 11%, 0.08)";
+    const ringBorder = isDark ? "hsla(218, 100%, 58%, 0.35)" : "hsla(222, 47%, 11%, 0.2)";
+    const glowColor = isDark ? "0 0 10px 2px hsla(218, 100%, 65%, 0.25)" : "none";
 
     return (
         <>
-            {/* Dot — segue 1:1 */}
+            {/* Dot — segue 1:1 atrás do conteúdo (z-0) */}
             <motion.div
                 ref={cursorRef}
-                className="fixed top-0 left-0 rounded-full pointer-events-none z-[9999]"
+                className="fixed top-0 left-0 rounded-full pointer-events-none z-0"
                 style={{
                     x: rawX,
                     y: rawY,
@@ -89,16 +95,16 @@ const CursorOrb = () => {
                     translateX: "-50%",
                     translateY: "-50%",
                     backgroundColor: dotColor,
-                    boxShadow: isDark ? `0 0 8px 2px hsla(218, 100%, 65%, 0.6)` : "none",
-                    opacity: visible ? 1 : 0,
+                    boxShadow: isDark ? `0 0 6px 1px hsla(218, 100%, 65%, 0.35)` : "none",
+                    opacity: visible ? 0.35 : 0,
                     transition: "width 0.12s, height 0.12s, opacity 0.2s",
                 }}
             />
 
-            {/* Ring — segue com spring */}
+            {/* Ring — segue com spring atrás do conteúdo (z-0) com opacidade suave */}
             <motion.div
                 ref={ringRef}
-                className="fixed top-0 left-0 rounded-full pointer-events-none z-[9998]"
+                className="fixed top-0 left-0 rounded-full pointer-events-none z-0"
                 style={{
                     x: ringX,
                     y: ringY,
@@ -107,11 +113,10 @@ const CursorOrb = () => {
                     translateX: "-50%",
                     translateY: "-50%",
                     backgroundColor: hovering ? ringColor : "transparent",
-                    border: `1.5px solid ${ringBorder}`,
+                    border: `1px solid ${ringBorder}`,
                     boxShadow: isDark ? glowColor : "none",
-                    opacity: visible ? 1 : 0,
+                    opacity: visible ? (hovering ? 0.35 : 0.2) : 0,
                     transition: "width 0.18s, height 0.18s, background-color 0.18s, opacity 0.2s",
-                    backdropFilter: hovering ? "blur(2px)" : "none",
                 }}
             />
         </>

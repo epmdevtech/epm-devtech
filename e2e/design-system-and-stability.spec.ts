@@ -39,10 +39,9 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     // Verifica que os headings de cada seção existem, contêm os textos padronizados e são 100% monocromáticos
     const expectedHeadings = [
       { id: 'hero', text: 'Engenharia de software' },
-      { id: 'servicos', text: 'Soluções sob medida para operações que exigem estabilidade' },
-      { id: 'como-trabalhamos', text: 'Engenharia previsível do primeiro contato à sustentação' },
-      { id: 'autoridade', text: 'Resultados comprovados em ambientes com alta exigência de estabilidade' },
-      { id: 'sobre', text: 'Software house brasileira com atendimento remoto e liderança técnica dedicada' },
+      { id: 'servicos', text: 'Engenharia sob medida para os gargalos da sua operação' },
+      { id: 'como-trabalhamos', text: 'Engenharia previsível com contato direto com quem constrói' },
+      { id: 'autoridade', text: 'Resultados comprovados em operações de grande escala' },
       { id: 'contato', text: 'Vamos entender o cenário da sua empresa?' },
     ];
 
@@ -86,21 +85,21 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     await page.waitForLoadState('domcontentloaded');
     const heroCta = page.locator('#hero a[href="/contato"], #hero a[href="#contato"]').first();
     await expect(heroCta).toBeVisible();
-    await expect(heroCta).toContainText('Falar sobre um projeto');
+    await expect(heroCta).toContainText('Falar sobre meu projeto');
   });
 
   test('Navegação e rolagem fluida por âncoras sem salto para o Hero', async ({ page }) => {
     await page.goto('/');
     await page.waitForLoadState('domcontentloaded');
 
-    // Clica no CTA secundário ("Conhecer soluções" que aponta para /servicos)
-    const secondaryCta = page.locator('#hero a[href="/servicos"], #hero a[href="#servicos"]').first();
+    // Clica no CTA secundário ("Ver soluções" que aponta para #servicos)
+    const secondaryCta = page.locator('#hero a[href="#servicos"]').first();
     await expect(secondaryCta).toBeVisible();
     await secondaryCta.click();
 
-    await page.waitForURL('**/servicos');
-    const h1 = page.locator('h1');
-    await expect(h1).toContainText('Soluções sob medida');
+    await page.waitForTimeout(600);
+    const servicosSection = page.locator('#servicos');
+    await expect(servicosSection).toBeInViewport();
   });
 
   test('TechConstellation renderiza grafo de tecnologias com interação de hover e foco', async ({ page }) => {

@@ -187,7 +187,7 @@ src/
 | ScrollToTop       | ✅ Neutro / Flat | Ícone ChevronUp (20px), design utilitário neutro sem glow ou realce verde, fade suave >450px e elevação dinâmica no rodapé |
 | Cookie Banner     | ✅ Otimizado     | Lazy load assíncrono + defer timer (3.5s)  |
 | Multi-Rota & SEO  | ✅ Multi-Rota SPA | Transição de monólito one-page para SPA multi-rota com rotas canônicas independentes (`/`, `/servicos`, `/como-trabalhamos`, `/experiencia`, `/engenharia`, `/sobre`, `/contato`, `/duvidas-frequentes`), menu enxuto (5 links + 1 CTA), preservação 301 de URLs e pré-render estático HTML pós-build (SPEC-060) |
-| Testes unitários  | ✅ Implementado  | 25/25 suites, 162/162 testes passando (99.65% linhas, 89.38% branches, 90.38% funcs) |
+| Testes unitários  | ✅ Implementado  | 25/25 suites, 163/163 testes passando (99.65% linhas, 89.38% branches, 90.38% funcs) |
 | Testes E2E        | ✅ Implementado  | Suíte Playwright (43/43 testes passando: rotas independentes, F5 direto, SEO canônico, menu mobile acessível, Hero engenharia B2B, travas de tokens e responsividade) |
 | Acessibilidade    | ✅ 100% WCAG AA  | Skip-link acessível, foco programático em `<h1>`, `aria-current="page"`, contraste ≥ 4.5:1, touch target ≥ 44px, zero layout shift (CLS: 0.000 mobile) |
 | Performance       | ✅ 100% Otimizado| Mobile Perf: 84 (+16 pontos vs baseline 68), TBT: 480ms (-77% de bloqueio), CLS: 0.000; Desktop Perf: 97, SEO: 100/100, FCP 0.5s / LCP 0.6s |

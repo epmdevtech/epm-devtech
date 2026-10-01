@@ -9,6 +9,35 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.62-eliminacao-redundancias-home] - 2026-10-01
+
+### Adicionado
+- **`specs/SPEC-062-eliminacao-redundancias-home.md`**: Especificação de eliminação de redundâncias da Home baseada no princípio "Uma ideia, um lugar".
+- **`tasks/TASK-062-eliminacao-redundancias-home.md`**: Tarefa de execução e checklist de qualidade SDD.
+- **`reviews/QA-062.md`**: Relatório de qualidade com evidências de conformidade, quality gates e validações E2E.
+- **`src/pages/AboutPage.tsx`**: Adicionada a seção institucional dos 3 Pilares de Atuação ("Comunicação transparente", "Engenharia que facilita evoluir", "Foco no problema do negócio") movida da Home.
+
+### Modificado
+- **`src/components/sections/Hero.tsx`**:
+  - Padronização do CTA primário para `"Falar sobre meu projeto"` (`/contato`).
+  - CTA secundário transformado em âncora suave para a seção de serviços: `"Ver soluções"` (`#servicos`).
+  - Card "Topologia de Arquitetura" simplificado para stack visual pura de engenharia (removidas descrições longas, métricas 99,9%, 2.500+ RPS e selos).
+- **`src/pages/Home.tsx`**:
+  - Seção Serviços ("O que desenvolvemos"): 4 cards inteiros clicáveis para `/servicos` focados estritamente em problemas de negócio (≤ 14 palavras cada); título e subtítulo reescritos sem repetir "estabilidade"; link curto `"Ver todos os serviços →"`.
+  - Seção Processo ("Como trabalhamos"): compactada em stepper horizontal de 4 etapas (≤ 10 palavras cada), com diferencial de contato direto em linha única e link curto `"Ver metodologia →"`.
+  - Seção Resultados ("Experiência Prática"): consolidada como único ponto de métricas da Home, com link curto `"Ver projetos →"`.
+  - Unificação de Confiança + CTA Final: eliminação do bloco Sobre repetitivo e criação de seção comercial enxuta com linha de confiança (*"Toledo (PR) · Atendimento em todo o Brasil · 9+ anos em sistemas críticos"*), promessa de SLA (*"Resposta em até 24h úteis"*) e link discreto para `"Dúvidas frequentes →"`.
+  - Remoção completa da seção de Pilares da Home (`#diferenciais`).
+- **`src/components/sections/Footer.tsx`**:
+  - Redução da descrição institucional para 1 linha concisa: *"Engenharia de software sob medida, sistemas web e integrações corporativas."*.
+- **`src/components/CursorOrb.tsx` & `src/components/layout/Layout.tsx`**:
+  - Cursor posicionado atrás do conteúdo (`z-0`), com opacidade reduzida e desativação em dispositivos touch (`pointer: coarse`) e sob `prefers-reduced-motion: reduce`.
+- **Testes & E2E**:
+  - `src/components/sections/__tests__/Hero.test.tsx`: validação dos novos CTAs e ausência de métricas redundantes no canvas.
+  - `src/pages/__tests__/pages.test.tsx`: atualização dos headings esperados na Home.
+  - `src/components/sections/__tests__/Footer.test.tsx`: validação da nova descrição institucional de 1 linha.
+  - `e2e/design-system-and-stability.spec.ts`: atualização de títulos e navegação de âncora.
+
 ## [0.0.61-hero-engenharia-software-b2b] - 2026-10-01
 
 ### Adicionado

@@ -66,7 +66,7 @@ describe('Footer Component', () => {
     renderFooter();
     expect(screen.getAllByAltText('EPM DEVTECH').length).toBeGreaterThan(0);
     expect(
-      screen.getByText(/Software house dedicada a software sob medida, APIs escaláveis e modernização/i)
+      screen.getByText(/Engenharia de software sob medida, sistemas web e integrações corporativas/i)
     ).toBeInTheDocument();
     expect(screen.getByText('Toledo, Paraná.')).toBeInTheDocument();
 

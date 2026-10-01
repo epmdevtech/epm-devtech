@@ -54,8 +54,8 @@ const Hero = () => {
                 asChild
                 className="h-12 px-7 rounded-md bg-primary text-primary-foreground hover:bg-primary/90 font-medium text-sm sm:text-base shadow-xs min-h-[44px] transition-colors duration-200"
               >
-                <Link to="/contato" aria-label="Falar sobre um projeto com a EPM DevTech">
-                  Falar sobre um projeto
+                <Link to="/contato" aria-label="Falar sobre meu projeto com a EPM DevTech">
+                  Falar sobre meu projeto
                 </Link>
               </Button>
 
@@ -64,9 +64,19 @@ const Hero = () => {
                 variant="outline"
                 className="h-12 px-6 rounded-md border-border/80 text-foreground hover:bg-accent hover:text-accent-foreground font-medium text-sm sm:text-base min-h-[44px] transition-colors duration-200"
               >
-                <Link to="/servicos" aria-label="Conhecer soluções da EPM DevTech">
-                  Conhecer soluções
-                </Link>
+                <a
+                  href="#servicos"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const el = document.getElementById("servicos");
+                    if (el) {
+                      el.scrollIntoView({ behavior: "smooth" });
+                    }
+                  }}
+                  aria-label="Ver soluções da EPM DevTech"
+                >
+                  Ver soluções
+                </a>
               </Button>
             </div>
 
@@ -97,28 +107,20 @@ const Hero = () => {
                   </span>
                 </div>
                 <span className="text-[10px] sm:text-[10.5px] font-mono text-zinc-500 dark:text-zinc-400 bg-secondary/60 px-2 py-0.5 rounded border border-border/50">
-                  Alta Disponibilidade · 99,9%
+                  Stack de Engenharia
                 </span>
               </div>
 
               {/* Camadas Técnicas da Arquitetura */}
               <div className="space-y-2 sm:space-y-2.5">
                 {/* Camada 01: Client & Portais */}
-                <div className="p-2.5 sm:p-3.5 rounded-lg border border-border/60 bg-background/60 hover:border-primary/40 transition-colors duration-200">
-                  <div className="flex items-center justify-between mb-1 sm:mb-1.5">
-                    <div className="flex items-center gap-2">
-                      <span className="text-[10px] font-mono font-bold text-primary">01</span>
-                      <span className="text-xs font-semibold text-foreground">
-                        Aplicações Web &amp; Portais
-                      </span>
-                    </div>
-                    <span className="text-[10px] font-mono text-zinc-500 dark:text-zinc-400">
-                      Latência &lt; 50ms
+                <div className="p-2.5 sm:p-3 rounded-lg border border-border/60 bg-background/60 hover:border-primary/40 transition-colors duration-200">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span className="text-[10px] font-mono font-bold text-primary">01</span>
+                    <span className="text-xs font-semibold text-foreground">
+                      Aplicações Web &amp; Portais
                     </span>
                   </div>
-                  <p className="hidden sm:block text-[11px] text-muted-foreground leading-snug mb-2">
-                    Sistemas corporativos, fluxos operacionais e portais sob medida.
-                  </p>
                   <div className="flex flex-wrap gap-1.5">
                     <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-secondary/50 text-foreground/80 border border-border/40">
                       React
@@ -134,25 +136,17 @@ const Hero = () => {
 
                 {/* Conector Vertical 1 */}
                 <div className="flex items-center justify-center -my-0.5 sm:-my-1">
-                  <div className="w-px h-2.5 sm:h-3 bg-border" />
+                  <div className="w-px h-2 sm:h-2.5 bg-border" />
                 </div>
 
                 {/* Camada 02: Core & Back-end */}
-                <div className="p-2.5 sm:p-3.5 rounded-lg border border-border/60 bg-background/60 hover:border-primary/40 transition-colors duration-200">
-                  <div className="flex items-center justify-between mb-1 sm:mb-1.5">
-                    <div className="flex items-center gap-2">
-                      <span className="text-[10px] font-mono font-bold text-primary">02</span>
-                      <span className="text-xs font-semibold text-foreground">
-                        APIs &amp; Back-end Escalável
-                      </span>
-                    </div>
-                    <span className="text-[10px] font-mono text-zinc-500 dark:text-zinc-400">
-                      2.500+ RPS
+                <div className="p-2.5 sm:p-3 rounded-lg border border-border/60 bg-background/60 hover:border-primary/40 transition-colors duration-200">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span className="text-[10px] font-mono font-bold text-primary">02</span>
+                    <span className="text-xs font-semibold text-foreground">
+                      APIs &amp; Back-end Escalável
                     </span>
                   </div>
-                  <p className="hidden sm:block text-[11px] text-muted-foreground leading-snug mb-2">
-                    Regras de negócio críticas, microsserviços e barramento REST/GraphQL.
-                  </p>
                   <div className="flex flex-wrap gap-1.5">
                     <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-secondary/50 text-foreground/80 border border-border/40">
                       Node.js
@@ -168,25 +162,17 @@ const Hero = () => {
 
                 {/* Conector Vertical 2 */}
                 <div className="flex items-center justify-center -my-0.5 sm:-my-1">
-                  <div className="w-px h-2.5 sm:h-3 bg-border" />
+                  <div className="w-px h-2 sm:h-2.5 bg-border" />
                 </div>
 
                 {/* Camada 03: Integrações & Mensageria */}
-                <div className="p-2.5 sm:p-3.5 rounded-lg border border-border/60 bg-background/60 hover:border-primary/40 transition-colors duration-200">
-                  <div className="flex items-center justify-between mb-1 sm:mb-1.5">
-                    <div className="flex items-center gap-2">
-                      <span className="text-[10px] font-mono font-bold text-primary">03</span>
-                      <span className="text-xs font-semibold text-foreground">
-                        Barramento de Integração &amp; Eventos
-                      </span>
-                    </div>
-                    <span className="text-[10px] font-mono text-zinc-500 dark:text-zinc-400">
-                      Entrega garantida
+                <div className="p-2.5 sm:p-3 rounded-lg border border-border/60 bg-background/60 hover:border-primary/40 transition-colors duration-200">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span className="text-[10px] font-mono font-bold text-primary">03</span>
+                    <span className="text-xs font-semibold text-foreground">
+                      Barramento de Integração &amp; Eventos
                     </span>
                   </div>
-                  <p className="hidden sm:block text-[11px] text-muted-foreground leading-snug mb-2">
-                    Comunicação assíncrona, sincronização de ERPs/CRMs e workers.
-                  </p>
                   <div className="flex flex-wrap gap-1.5">
                     <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-secondary/50 text-foreground/80 border border-border/40">
                       RabbitMQ
@@ -202,25 +188,17 @@ const Hero = () => {
 
                 {/* Conector Vertical 3 */}
                 <div className="flex items-center justify-center -my-0.5 sm:-my-1">
-                  <div className="w-px h-2.5 sm:h-3 bg-border" />
+                  <div className="w-px h-2 sm:h-2.5 bg-border" />
                 </div>
 
                 {/* Camada 04: Dados & Nuvem */}
-                <div className="p-2.5 sm:p-3.5 rounded-lg border border-border/60 bg-background/60 hover:border-primary/40 transition-colors duration-200">
-                  <div className="flex items-center justify-between mb-1 sm:mb-1.5">
-                    <div className="flex items-center gap-2">
-                      <span className="text-[10px] font-mono font-bold text-primary">04</span>
-                      <span className="text-xs font-semibold text-foreground">
-                        Persistência Transacional &amp; Nuvem
-                      </span>
-                    </div>
-                    <span className="text-[10px] font-mono text-zinc-500 dark:text-zinc-400">
-                      Integridade ACID
+                <div className="p-2.5 sm:p-3 rounded-lg border border-border/60 bg-background/60 hover:border-primary/40 transition-colors duration-200">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span className="text-[10px] font-mono font-bold text-primary">04</span>
+                    <span className="text-xs font-semibold text-foreground">
+                      Persistência Transacional &amp; Nuvem
                     </span>
                   </div>
-                  <p className="hidden sm:block text-[11px] text-muted-foreground leading-snug mb-2">
-                    Bancos relacionais, cache em memória e containers orquestrados.
-                  </p>
                   <div className="flex flex-wrap gap-1.5">
                     <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-secondary/50 text-foreground/80 border border-border/40">
                       PostgreSQL

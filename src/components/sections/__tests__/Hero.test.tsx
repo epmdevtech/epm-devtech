@@ -45,16 +45,16 @@ describe('Hero Component (B2B Engineering & Architecture Canvas — SPEC-061)', 
     expect(eyebrow.querySelector('svg')).toBeInTheDocument();
   });
 
-  it('renders primary CTA pointing to /contato and secondary CTA pointing to /servicos', () => {
+  it('renders primary CTA pointing to /contato and secondary CTA pointing to #servicos', () => {
     renderHero();
 
-    const primaryCta = screen.getByRole('link', { name: /Falar sobre um projeto/i });
+    const primaryCta = screen.getByRole('link', { name: /Falar sobre meu projeto/i });
     expect(primaryCta).toBeInTheDocument();
     expect(primaryCta).toHaveAttribute('href', '/contato');
 
-    const secondaryCta = screen.getByRole('link', { name: /Conhecer soluções/i });
+    const secondaryCta = screen.getByRole('link', { name: /Ver soluções/i });
     expect(secondaryCta).toBeInTheDocument();
-    expect(secondaryCta).toHaveAttribute('href', '/servicos');
+    expect(secondaryCta).toHaveAttribute('href', '#servicos');
   });
 
   it('renders factual authority line below CTAs', () => {
@@ -65,7 +65,7 @@ describe('Hero Component (B2B Engineering & Architecture Canvas — SPEC-061)', 
     ).toBeInTheDocument();
   });
 
-  it('renders software engineering architecture canvas with layers, tech chips and aria-hidden="true"', () => {
+  it('renders software engineering architecture canvas with layers, tech chips and aria-hidden="true" without duplicate metrics', () => {
     const { container } = renderHero();
 
     // Canvas container must be aria-hidden="true" for screen reader accessibility
@@ -74,10 +74,16 @@ describe('Hero Component (B2B Engineering & Architecture Canvas — SPEC-061)', 
 
     // Contains architectural topology layers
     expect(canvasWrapper).toHaveTextContent(/Topologia de Arquitetura/i);
+    expect(canvasWrapper).toHaveTextContent(/Stack de Engenharia/i);
     expect(canvasWrapper).toHaveTextContent(/Aplicações Web & Portais/i);
     expect(canvasWrapper).toHaveTextContent(/APIs & Back-end Escalável/i);
     expect(canvasWrapper).toHaveTextContent(/Barramento de Integração & Eventos/i);
     expect(canvasWrapper).toHaveTextContent(/Persistência Transacional & Nuvem/i);
+
+    // Verifies absence of redundant metrics in Hero canvas (SPEC-062)
+    expect(canvasWrapper).not.toHaveTextContent('99,9%');
+    expect(canvasWrapper).not.toHaveTextContent('2.500+');
+    expect(canvasWrapper).not.toHaveTextContent('Alta Disponibilidade');
 
     // Contains actual technologies from the company stack
     expect(canvasWrapper).toHaveTextContent('React');

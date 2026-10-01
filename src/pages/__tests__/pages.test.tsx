@@ -72,10 +72,10 @@ describe('Rotas e Páginas Independentes (SPEC-060)', () => {
   it('Home (/) renderiza hub comercial com H1 no Hero e blocos de resumo', () => {
     renderWithProviders(<Home />);
     expect(screen.getByTestId('mock-hero')).toBeInTheDocument();
-    expect(screen.getByRole('heading', { level: 2, name: /Soluções sob medida para operações que exigem estabilidade/i })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { level: 2, name: /Engenharia previsível do primeiro contato à sustentação/i })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { level: 2, name: /Resultados comprovados em ambientes/i })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { level: 2, name: /Software house brasileira com atendimento remoto/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: /Engenharia sob medida para os gargalos da sua operação/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: /Engenharia previsível com contato direto com quem constrói/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: /Resultados comprovados em operações de grande escala/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: /Vamos entender o cenário da sua empresa\?/i })).toBeInTheDocument();
   });
 
   it('ServicesPage (/servicos) renderiza H1 e conteúdo de serviços', () => {

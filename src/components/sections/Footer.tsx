@@ -116,7 +116,7 @@ const Footer = () => {
               </div>
 
               <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                {SITE_CONFIG.description}
+                Engenharia de software sob medida, sistemas web e integrações corporativas.
               </p>
 
               {/* Localização */}
