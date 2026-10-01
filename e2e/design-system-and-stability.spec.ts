@@ -38,23 +38,22 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
 
     // Verifica que os headings de cada seção existem, contêm os textos padronizados e são 100% monocromáticos
     const expectedHeadings = [
-      { id: 'hero', text: 'Desenvolvemos software sob medida para o seu negócio.' },
-      { id: 'servicos', text: 'Soluções sob medida para cada estágio da sua operação' },
-      { id: 'como-trabalhamos', text: 'Como trabalhamos' },
-      { id: 'diferenciais', text: 'Por que trabalhar com a EPM DevTech' },
-      { id: 'autoridade', text: 'Experiência em operações que não podem parar' },
-      { id: 'sobre', text: 'Engenharia de software com visão de negócio' },
-      { id: 'contato', text: 'Fale sobre seu projeto' },
+      { id: 'hero', text: 'Desenvolvemos software' },
+      { id: 'servicos', text: 'Soluções sob medida para operações que exigem estabilidade' },
+      { id: 'como-trabalhamos', text: 'Engenharia previsível do primeiro contato à sustentação' },
+      { id: 'autoridade', text: 'Resultados comprovados em ambientes com alta exigência de estabilidade' },
+      { id: 'sobre', text: 'Software house brasileira com atendimento remoto e liderança técnica dedicada' },
+      { id: 'contato', text: 'Vamos entender o cenário da sua empresa?' },
     ];
 
     for (const item of expectedHeadings) {
-      // Rola até a seção para lazy loading montar
+      // Rola até a seção
       await page.evaluate((id) => {
         const el = document.getElementById(id);
         if (el) el.scrollIntoView({ behavior: 'instant' });
       }, item.id);
 
-      await page.waitForTimeout(500);
+      await page.waitForTimeout(400);
 
       const heading = page.locator(`#${item.id} h1, #${item.id} h2`).first();
       await expect(heading).toBeVisible();
@@ -68,18 +67,11 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
   });
 
   test('Cor principal de destaque utiliza o verde da marca EPM DEVTECH (#10b981 / emerald)', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/contato');
     await page.waitForLoadState('domcontentloaded');
 
-    // Rola até a seção de contato para carregar a LazySection
-    await page.evaluate(() => {
-      const el = document.querySelector('#contato');
-      if (el) el.scrollIntoView({ behavior: 'instant' });
-    });
-    await page.waitForTimeout(800);
-
     // Botão de envio no formulário de contato (verde esmeralda oficial)
-    const submitButton = page.locator('#contato button[type="submit"]');
+    const submitButton = page.locator('button[type="submit"]').first();
     await expect(submitButton).toBeVisible({ timeout: 10000 });
 
     const btnBgColor = await submitButton.evaluate((el) => {
@@ -89,8 +81,10 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     // Verde esmeralda oficial (#10B981 / emerald-600) — formato rgb(5, 150, 105)
     expect(btnBgColor).toMatch(/rgb\((5|16|23|24|26|36|38|39),\s*(150|155|160|161|173|175|176|185),\s*(105|107|112|114|123|124|125|129)\)/);
 
-    // Garante presença do CTA principal do Hero direcionando para #contato conforme SPEC-047
-    const heroCta = page.locator('#hero a[href="#contato"]');
+    // Garante presença do CTA principal do Hero na home direcionando para #contato
+    await page.goto('/');
+    await page.waitForLoadState('domcontentloaded');
+    const heroCta = page.locator('#hero a[href="#contato"]').first();
     await expect(heroCta).toBeVisible();
     await expect(heroCta).toContainText('Falar sobre meu projeto');
   });
@@ -99,20 +93,18 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     await page.goto('/');
     await page.waitForLoadState('domcontentloaded');
 
-    // Clica no CTA secundário ("Ver serviços" / "Conhecer serviços")
-    const secondaryCta = page.locator('a[href="#servicos"]').first();
+    // Clica no CTA secundário ("Conhecer a EPM DevTech" que aponta para #sobre)
+    const secondaryCta = page.locator('#hero a[href="#sobre"]').first();
     await expect(secondaryCta).toBeVisible();
     await secondaryCta.click();
 
-    await page.waitForTimeout(800);
-
-    // O scroll não pode ter saltado para o Hero (deve estar em serviços)
-    const servicosSection = page.locator('#servicos');
-    await expect(servicosSection).toBeVisible();
+    await page.waitForURL('**/sobre');
+    const h1 = page.locator('h1');
+    await expect(h1).toContainText('Sobre a EPM DevTech');
   });
 
   test('TechConstellation renderiza grafo de tecnologias com interação de hover e foco', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/engenharia');
     await page.waitForLoadState('domcontentloaded');
 
     // Rola até a seção de tecnologias
@@ -143,7 +135,7 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
   });
 
   test('TechConstellation exibe painel de detalhes interativo com nome e conexões ao interagir com nós', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/engenharia');
     await page.waitForLoadState('domcontentloaded');
 
     // Rola até a seção de tecnologias
@@ -223,12 +215,13 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     const scrollTopBtn = page.locator('button[aria-label="Voltar ao topo"]');
     await expect(scrollTopBtn).toBeHidden();
 
-    // 2. Rola até o meio da página (> 500px)
+    // 2. Aguarda montagem do LazyRender (delay 2500ms) e rola até o meio da página (> 500px)
+    await page.waitForTimeout(3000);
     await page.evaluate(() => {
       window.scrollTo(0, 1000);
       window.dispatchEvent(new Event('scroll'));
     });
-    await page.waitForTimeout(800);
+    await page.waitForTimeout(500);
 
     // O botão deve aparecer
     await expect(scrollTopBtn).toBeVisible({ timeout: 10000 });
@@ -248,12 +241,12 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
 
   test('Abertura do dropdown de tipo de projeto não causa layout shift no menu superior (Header fixo)', async ({ page }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
-    await page.goto('/#contato');
+    await page.goto('/contato');
     await page.waitForLoadState('domcontentloaded');
     await page.waitForTimeout(600);
 
     const header = page.locator('header.fixed');
-    const contatoLink = page.locator('header.fixed nav a[href="#contato"]');
+    const contatoLink = page.locator('header.fixed a[href="/contato"]').first();
     const trigger = page.locator('#projectType');
 
     // Medições antes do clique

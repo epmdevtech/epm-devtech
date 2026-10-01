@@ -37,9 +37,14 @@ const practices = [
   "Revisão de código",
   "CI/CD",
   "Arquitetura orientada à manutenção",
+  "Desenvolvimento assistido por IA, com revisão humana",
 ];
 
-const Differentials = () => {
+export interface DifferentialsProps {
+  hideHeader?: boolean;
+}
+
+const Differentials: React.FC<DifferentialsProps> = ({ hideHeader = false }) => {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const shouldReduceMotion = useReducedMotion();
@@ -78,18 +83,20 @@ const Differentials = () => {
 
       <div className="container px-6">
         {/* ── Cabeçalho Padronizado Centralizado ── */}
-        <motion.div
-          initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          animate={isInView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: shouldReduceMotion ? 0 : 0.5 }}
-        >
-          <SectionHeader
-            id="diferenciais-heading"
-            tagline="Diferenciais"
-            title="Por que trabalhar com a EPM DevTech"
-            subtitle="Engenharia focada na longevidade do seu software, com transparência em cada etapa do projeto."
-          />
-        </motion.div>
+        {!hideHeader && (
+          <motion.div
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            animate={isInView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: shouldReduceMotion ? 0 : 0.5 }}
+          >
+            <SectionHeader
+              id="diferenciais-heading"
+              tagline="Diferenciais"
+              title="Por que trabalhar com a EPM DevTech"
+              subtitle="Engenharia focada na longevidade do seu software, com transparência em cada etapa do projeto."
+            />
+          </motion.div>
+        )}
 
         {/* ── Corpo em 3 Colunas sem Moldura de Card ── */}
         <motion.ul

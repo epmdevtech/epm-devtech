@@ -1,184 +1,114 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { MemoryRouter } from 'react-router-dom';
 import Header from '../Header';
 
-// ─── react-router-dom: mock useNavigate ──────────────────────────────────────
-const mockNavigate = vi.fn();
-vi.mock('react-router-dom', () => ({
-  useNavigate: () => mockNavigate,
-}));
-
-// ─── Typewriter ───────────────────────────────────────────────────────────────
+// ─── Typewriter Mock ──────────────────────────────────────────────────────────
 vi.mock('@/components/ui/typewriter', () => ({
   Typewriter: ({ text }: { text: string }) => <span>{text}</span>,
 }));
 
-// ─── Framer Motion ────────────────────────────────────────────────────────────
-vi.mock('framer-motion', async () => {
-  const actual = await vi.importActual('framer-motion') as Record<string, unknown>;
-  return {
-    ...actual,
-    AnimatePresence: ({ children }: { children: React.ReactNode }) => <>{children}</>,
-    motion: {
-      ...(actual.motion as Record<string, unknown>),
-      header: (props: React.ComponentPropsWithoutRef<'header'>) => <header {...props} />,
-      div: (props: React.ComponentPropsWithoutRef<'div'>) => <div {...props} />,
-      a: (props: React.ComponentPropsWithoutRef<'a'>) => <a {...props} />,
-      span: (props: React.ComponentPropsWithoutRef<'span'>) => <span {...props} />,
-    },
-  };
-});
-
-// ─── window.scrollTo ─────────────────────────────────────────────────────────
-const scrollToMock = vi.fn();
-Object.defineProperty(window, 'scrollTo', { value: scrollToMock, writable: true });
-
-// ─── Helpers ─────────────────────────────────────────────────────────────────
-const createSection = (id: string, top = 500) => {
-  const el = document.createElement('div');
-  el.id = id;
-  el.getBoundingClientRect = vi.fn(() => ({
-    top, left: 0, right: 0, bottom: 0, width: 0, height: 0, x: 0, y: 0, toJSON: () => {},
-  }));
-  document.body.appendChild(el);
-  return el;
-};
+const renderHeader = (initialRoute = '/') =>
+  render(
+    <MemoryRouter initialEntries={[initialRoute]}>
+      <Header />
+    </MemoryRouter>
+  );
 
 describe('Header', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
-  it('renderiza logo e links de navegação', () => {
-    render(<Header />);
-    expect(screen.getByAltText('EPM DEVTECH')).toBeInTheDocument();
-    expect(screen.getByText('Sobre')).toBeInTheDocument();
-    expect(screen.getByText('Serviços')).toBeInTheDocument();
-    expect(screen.getByText('Tecnologias')).toBeInTheDocument();
-    expect(screen.getByText('Diferenciais')).toBeInTheDocument();
-    expect(screen.getByText('Contato')).toBeInTheDocument();
+  it('renderiza logo e os 5 links de navegação previstos na SPEC-060', () => {
+    renderHeader();
+    expect(screen.getAllByAltText('EPM DEVTECH').length).toBeGreaterThan(0);
+
+    const desktopNav = screen.getByRole('navigation', { name: /Navegação principal/i });
+    expect(desktopNav).toBeInTheDocument();
+
+    const expectedLinks = [
+      { text: 'Serviços', href: '/servicos' },
+      { text: 'Como trabalhamos', href: '/como-trabalhamos' },
+      { text: 'Experiência', href: '/experiencia' },
+      { text: 'Engenharia', href: '/engenharia' },
+      { text: 'Sobre', href: '/sobre' },
+    ];
+
+    expectedLinks.forEach(({ text, href }) => {
+      const link = screen.getByRole('link', { name: text });
+      expect(link).toBeInTheDocument();
+      expect(link).toHaveAttribute('href', href);
+    });
   });
 
   it('renderiza o texto "Software House" via Typewriter', () => {
-    render(<Header />);
+    renderHeader();
     expect(screen.getByText('Software House')).toBeInTheDocument();
   });
 
+  it('renderiza o botão CTA "Falar sobre meu projeto" apontando para /contato', () => {
+    renderHeader();
+    const ctaButton = screen.getByRole('link', { name: 'Falar sobre meu projeto' });
+    expect(ctaButton).toBeInTheDocument();
+    expect(ctaButton).toHaveAttribute('href', '/contato');
+  });
+
   it('abre e fecha o menu mobile ao clicar no botão hamburger', () => {
-    render(<Header />);
+    renderHeader();
     const menuButton = screen.getByLabelText('Abrir menu');
 
     fireEvent.click(menuButton);
-    expect(screen.getAllByLabelText('Fechar menu').length).toBeGreaterThan(0);
+    expect(screen.getByRole('dialog', { name: 'Menu de navegação' })).toBeInTheDocument();
 
     const closeButton = screen.getAllByLabelText('Fechar menu')[1];
     fireEvent.click(closeButton);
-    expect(screen.getByLabelText('Abrir menu')).toBeInTheDocument();
+    expect(screen.queryByRole('dialog', { name: 'Menu de navegação' })).not.toBeInTheDocument();
   });
 
-  it('link do menu mobile chama navigate e scrollTo para a seção correta', () => {
-    vi.useFakeTimers();
-    render(<Header />);
-    const section = createSection('sobre', 500);
-
-    // Abre menu e clica no link mobile (índice 1 = dentro do sidebar)
+  it('fecha o menu mobile ao pressionar a tecla Escape', () => {
+    renderHeader();
     fireEvent.click(screen.getByLabelText('Abrir menu'));
-    fireEvent.click(screen.getAllByText('Sobre')[1]);
+    expect(screen.getByRole('dialog', { name: 'Menu de navegação' })).toBeInTheDocument();
 
-    // navigate é chamado imediatamente (antes do setTimeout)
-    expect(mockNavigate).toHaveBeenCalledWith('/sobre');
-
-    // scrollTo é chamado após os 350ms do setTimeout
-    vi.advanceTimersByTime(400);
-    expect(scrollToMock).toHaveBeenCalledWith({
-      top: 500 + window.scrollY - 80,
-      behavior: 'smooth',
-    });
-
-    document.body.removeChild(section);
-    vi.useRealTimers();
-  });
-
-  it('link do nav desktop chama navigate e scrollTo para a seção correta', () => {
-    vi.useFakeTimers();
-    render(<Header />);
-    const section = createSection('contato', 900);
-
-    // Clica no link desktop (índice 0 = nav desktop, antes do mobile)
-    fireEvent.click(screen.getAllByText('Contato')[0]);
-
-    expect(mockNavigate).toHaveBeenCalledWith('/contato');
-
-    vi.advanceTimersByTime(400);
-    expect(scrollToMock).toHaveBeenCalledWith({
-      top: 900 + window.scrollY - 80,
-      behavior: 'smooth',
-    });
-
-    document.body.removeChild(section);
-    vi.useRealTimers();
-  });
-
-  it('não chama scrollTo se o elemento da seção não existir no DOM', () => {
-    vi.useFakeTimers();
-    render(<Header />);
-
-    fireEvent.click(screen.getAllByText('Serviços')[0]);
-    expect(mockNavigate).toHaveBeenCalledWith('/servicos');
-
-    vi.advanceTimersByTime(400);
-    expect(scrollToMock).not.toHaveBeenCalled();
-
-    vi.useRealTimers();
-  });
-
-  it('atualiza estilo do header ao fazer scroll', () => {
-    const { container } = render(<Header />);
-
-    expect(container.querySelector('header')?.className).toContain('bg-transparent');
-
-    Object.defineProperty(window, 'scrollY', { value: 100, configurable: true });
-    fireEvent.scroll(window);
-
-    expect(container.querySelector('header')?.className).toContain('glass');
+    fireEvent.keyDown(window, { key: 'Escape' });
+    expect(screen.queryByRole('dialog', { name: 'Menu de navegação' })).not.toBeInTheDocument();
   });
 
   it('fecha o menu mobile ao clicar no backdrop', () => {
-    render(<Header />);
+    const { container } = renderHeader();
     fireEvent.click(screen.getByLabelText('Abrir menu'));
+    expect(screen.getByRole('dialog', { name: 'Menu de navegação' })).toBeInTheDocument();
 
-    // Backdrop é o primeiro elemento com onClick no AnimatePresence de backdrop
-    const backdrop = document.querySelector('.bg-background\\/80');
+    const backdrop = container.querySelector('.bg-background\\/80');
     expect(backdrop).toBeInTheDocument();
     fireEvent.click(backdrop!);
 
-    expect(screen.getByLabelText('Abrir menu')).toBeInTheDocument();
+    expect(screen.queryByRole('dialog', { name: 'Menu de navegação' })).not.toBeInTheDocument();
   });
 
-  it('renderiza o botão CTA "Falar sobre meu projeto" no desktop e no menu mobile', () => {
-    render(<Header />);
-    const ctaButtons = screen.getAllByRole('link', { name: /Falar sobre meu projeto/i });
-    expect(ctaButtons.length).toBeGreaterThanOrEqual(1);
-    expect(ctaButtons[0]).toHaveAttribute('href', '#contato');
+  it('fecha o menu mobile ao clicar em um link interno no drawer móvel', () => {
+    renderHeader();
+    fireEvent.click(screen.getByLabelText('Abrir menu'));
+    expect(screen.getByRole('dialog', { name: 'Menu de navegação' })).toBeInTheDocument();
+
+    const mobileNav = screen.getByRole('navigation', { name: /Navegação móvel/i });
+    const mobileLink = mobileNav.querySelector('a[href="/servicos"]');
+    expect(mobileLink).toBeInTheDocument();
+    fireEvent.click(mobileLink!);
+
+    expect(screen.queryByRole('dialog', { name: 'Menu de navegação' })).not.toBeInTheDocument();
   });
 
-  it('clique no CTA "Falar sobre meu projeto" dispara navegação e rolagem para #contato', () => {
-    vi.useFakeTimers();
-    render(<Header />);
-    const section = createSection('contato', 1200);
+  it('atualiza estilo do header ao fazer scroll', () => {
+    const { container } = renderHeader();
+    const header = container.querySelector('header');
+    expect(header?.className).toContain('bg-transparent');
 
-    const desktopCta = screen.getAllByRole('link', { name: /Falar sobre meu projeto/i })[0];
-    fireEvent.click(desktopCta);
+    Object.defineProperty(window, 'scrollY', { value: 50, configurable: true });
+    fireEvent.scroll(window);
 
-    expect(mockNavigate).toHaveBeenCalledWith('/contato');
-
-    vi.advanceTimersByTime(400);
-    expect(scrollToMock).toHaveBeenCalledWith({
-      top: 1200 + window.scrollY - 80,
-      behavior: 'smooth',
-    });
-
-    document.body.removeChild(section);
-    vi.useRealTimers();
+    expect(header?.className).toContain('glass');
   });
 });
+

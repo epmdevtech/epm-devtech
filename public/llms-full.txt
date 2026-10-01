@@ -5,233 +5,193 @@
 
 ---
 
-## Identificação da Empresa
+## 1. Identificação Institucional
 
-- **Nome:** EPM DEVTECH
-- **Tipo:** Software House e Consultoria de Engenharia de Software
-- **Fundador:** Elessandro Prestes Macedo
-- **Cargo do Fundador:** Arquiteto de Software e Tech Lead
-- **Tempo de Experiência:** Mais de 9 anos de experiência técnica em projetos corporativos de médio e grande porte
-- **Localização:** Toledo, Paraná, Brasil (atendimento remoto para todo o território nacional e internacional)
-- **Website:** https://epmdevtech.com.br
-- **E-mail:** elessandro@epmdevtech.com.br
-- **WhatsApp Oficial:** +55 (45) 99917-8290
-- **GitHub:** https://github.com/epmdevtech
-- **LinkedIn:** https://www.linkedin.com/company/112232713/
-
----
-
-## Missão e Proposta de Valor
-
-A EPM DEVTECH projeta, desenvolve e moderniza softwares sob medida com rigor de engenharia.
-Nossa bagagem técnica foi consolidada na linha de frente de operações de grande porte, desenvolvendo
-arquiteturas distribuídas, APIs de alto rendimento e refatorações complexas em setores como
-educação federal, energia elétrica, indústria manufatureira, e-commerce e governo.
-
-Cada projeto é conduzido com o rigor exigido em sistemas corporativos: código limpo,
-arquitetura modular testável, esteiras automatizadas de entrega contínua e comunicação transparente
-diretamente com a liderança técnica responsável.
+- **Razão / Nome Fantasia:** EPM DEVTECH
+- **Atividade Principal:** Software House e Consultoria Especializada em Engenharia de Software
+- **Fundador e Liderança Técnica:** Elessandro Prestes Macedo
+- **Qualificação Profissional:** Arquiteto de Software e Tech Lead com mais de 9 anos de experiência técnica em sistemas corporativos
+- **Sede:** Toledo, Paraná, Brasil
+- **Modelo de Atuação:** Atendimento 100% remoto para empresas em todo o Brasil e no exterior
+- **Website Oficial:** https://epmdevtech.com.br
+- **E-mail de Contato:** elessandro@epmdevtech.com.br
+- **WhatsApp Corporativo:** +55 (45) 99917-8290
+- **GitHub Institucional:** https://github.com/epmdevtech
+- **LinkedIn Oficial:** https://www.linkedin.com/company/112232713/
+- **Padrão de Chamada para Ação (CTA):** "Falar sobre meu projeto" (https://epmdevtech.com.br/contato)
 
 ---
 
-## Estrutura Narrativa da Aplicação (10 Seções)
+## 2. Missão, Cultura e Proposta de Valor
 
-A experiência do site institucional da EPM DEVTECH é estruturada em uma jornada narrativa coesa de 10 etapas:
+A EPM DEVTECH projeta, desenvolve e moderniza softwares sob medida com rigor de engenharia e foco exclusivo no problema do negócio.
 
-1. **Hero:** Apresentação da proposta de valor central focada em escalabilidade técnica com CTA primário "Falar com a engenharia".
-2. **Autoridade (Trust Bar):** Indicadores consolidados de missões críticas em produção e organizações de destaque nacional.
-3. **Sobre:** Perfil institucional do fundador Elessandro Prestes Macedo, princípios de liderança e histórico de entregas.
-4. **Setores de Atuação:** Demonstração prática da capacidade técnica aplicada a 4 verticais de mercado com mockups visuais 3D.
-5. **Serviços:** 6 modalidades completas de engenharia de software estruturadas pelo problema operacional que resolvem.
-6. **Tecnologias:** Constelação interativa com as principais linguagens, bancos, frameworks e plataformas em nuvem utilizadas.
-7. **Diferenciais:** Critérios objetivos de qualidade de código, previsibilidade de prazos e metodologia de entrega.
-8. **Perguntas Frequentes (FAQ):** Respostas claras para as 10 principais dúvidas de contratação, sistemas existentes e engenharia.
-9. **Contato:** Formulário técnico para solicitação de diagnóstico e canais de atendimento com retorno em até 24 horas úteis.
-10. **Rodapé:** Mapa de navegação unificado, políticas de conformidade e links de contexto para agentes de IA.
+A software house foi estruturada para eliminar os vícios tradicionais do mercado de desenvolvimento terceirizado:
+1. **Sem intermediários comerciais desalinhados:** O alinhamento de escopo, regras de negócio e arquitetura é conduzido diretamente com quem desenvolve e assina a liderança técnica.
+2. **Sem código descartável:** Todo projeto é concebido com arquitetura limpa, tipagem estrita e testes automatizados para que possa evoluir de forma sustentável ao longo dos anos.
+3. **Previsibilidade técnica:** Utilização do método Spec-Driven Development (SDD), onde requisitos, decisões técnicas e critérios de aceite são documentados e aprovados antes de qualquer linha de código.
+4. **Respeito à operação:** Modernização de sistemas existentes realizada sem paralisar o faturamento diário da empresa contratante.
 
 ---
 
-## Setores de Atuação em Detalhe
+## 3. Arquitetura de Informação Multi-Rota (URLs Canônicas)
 
-### 1. Indústria e Manufatura
-- **Contexto Operacional:** Operações fabris, linhas de montagem contínua e plantas industriais com múltiplos turnos.
-- **Desafio e Problema:** Falhas operacionais recorrentes, falta de sincronização entre os dados gerados no chão de fábrica e os sistemas corporativos de gestão.
-- **Solução EPM DEVTECH:** Automação de processos operacionais, telemetria de sensores e equipamentos via IoT industrial e integração direta com ERPs corporativos para tomada de decisão em tempo real.
+A aplicação institucional é uma Single Page Application (SPA) construída em React, TypeScript e Vite, com rotas independentes, URLs limpas e HTML estático pré-renderizado para indexação:
 
-### 2. Varejo e E-Commerce
-- **Contexto Operacional:** Plataformas de vendas digitais e redes varejistas com múltiplos pontos de estoque.
-- **Desafio e Problema:** Carrinhos abandonados causados por lentidão no checkout e divergências graves entre estoque físico e vendas online.
-- **Solução EPM DEVTECH:** Arquitetura de microsserviços desacoplados, pipelines de checkout de alta conversão com tolerância a picos de tráfego e sincronização instantânea de estoques distribuídos.
-
-### 3. Educação
-- **Contexto Operacional:** Plataformas acadêmicas com ampla distribuição territorial e alto volume simultâneo.
-- **Desafio e Problema:** Instabilidade técnica durante períodos de inscrições e matrículas, processamento ineficiente de dados e risco de não conformidade com a LGPD.
-- **Solução EPM DEVTECH:** Plataformas escaláveis de gestão acadêmica e fomento, preparadas para dezenas de milhares de usuários simultâneos com segurança avançada.
-
-### 4. Energia
-- **Contexto Operacional:** Operações de geração, transmissão e monitoramento do setor elétrico.
-- **Desafio e Problema:** Risco regulatório e penalidades geradas por inconsistência de dados, lentidão na apuração e falhas no cálculo de despacho energético.
-- **Solução EPM DEVTECH:** Sistemas de alta disponibilidade com 99,9% de disponibilidade assegurada, auditoria estrita de transações, mensageria resiliente e cálculo regulatório seguro.
+| Rota | URL Canônica | Descrição e Propósito |
+|---|---|---|
+| **Início (Hub Comercial)** | `https://epmdevtech.com.br/` | Visão executiva sintética, proposta de valor central, Hero Slim minimalista e encaminhamento para as páginas de detalhe. |
+| **Serviços** | `https://epmdevtech.com.br/servicos` | Detalhamento das 4 ofertas estruturadas de desenvolvimento com foco em dores operacionais e mockups técnicos. |
+| **Como Trabalhamos** | `https://epmdevtech.com.br/como-trabalhamos` | Pipeline sequencial em 4 etapas (Entendemos, Definimos, Desenvolvemos, Evoluímos) e metodologia SDD. |
+| **Experiência** | `https://epmdevtech.com.br/experiencia` | Indicadores de estabilidade em alta escala, 4 contextos de mercado (Indústria, Varejo, Educação, Energia) e organizações de atuação profissional prévia. |
+| **Engenharia** | `https://epmdevtech.com.br/engenharia` | Pilares de sustentabilidade de software, linha de práticas de engenharia e constelação interativa de tecnologias (TechConstellation). |
+| **Sobre** | `https://epmdevtech.com.br/sobre` | Perfil institucional da software house, liderança técnica única, dados cadastrais de Toledo/PR e compromisso de atendimento remoto nacional. |
+| **Contato** | `https://epmdevtech.com.br/contato` | Formulário de diagnóstico inicial estruturado com validação Zod, canais diretos e política de retorno em até 24 horas úteis. |
+| **Dúvidas Frequentes** | `https://epmdevtech.com.br/duvidas-frequentes` | Base de conhecimento categorizada com as 8 principais perguntas sobre contratação, legados e metodologia. |
 
 ---
 
-## Serviços de Engenharia de Software
+## 4. Catálogo Canônico de Serviços
 
-### 1. Desenvolvimento de Sistemas Web e SPAs
-- **Descrição:** Aplicações web modernas, Single Page Applications e portais corporativos complexos construídos com React, TypeScript, Next.js e Vite.
-- **Diferenciais:** Design acessível (WCAG 2.1 AA), aderência aos Core Web Vitals, testes automatizados e integração contínua.
-- **Resultados de Referência:** Modernização de plataformas corporativas atendendo centenas de instituições com latência abaixo de 300ms.
+### 1. Sistemas web, portais e plataformas corporativas
+- **O que é:** Desenvolvimento de aplicações web ricas, Single Page Applications corporativas, portais institucionais e painéis administrativos seguros.
+- **Tecnologias principais:** React 18, TypeScript, Vite, Tailwind CSS, shadcn/ui, Next.js.
+- **Diferenciais:** Foco em Core Web Vitals, conformidade com acessibilidade WCAG 2.2 AA, responsividade rigorosa do mobile (320px) ao desktop ultrawide, sem inchaço de dependências.
+- **Quando precisa:** Empresas dependentes de planilhas manuais ou sistemas fragmentados que precisam centralizar dados operacionais com controle granular de perfis e acessos.
 
-### 2. APIs REST e Backends Escaláveis
-- **Descrição:** Design e implementação de APIs RESTful e GraphQL preparadas para alto volume transacional, com segurança de ponta a ponta.
-- **Diferenciais:** Autenticação robusta (OAuth2, JWT), rate limiting inteligente, cache distribuído com Redis e documentação Swagger/OpenAPI.
-- **Resultados de Referência:** Throughput comprovado de 2.500 RPS em produção, com 100% de integridade transacional na apuração regulatória do setor elétrico.
+### 2. APIs escaláveis e arquitetura de back-end
+- **O que é:** Construção de serviços de retaguarda, microserviços e APIs RESTful/GraphQL preparados para alto volume de requisições e processamento concorrente.
+- **Tecnologias principais:** PHP 8.x (Laravel, Symfony), Node.js (NestJS, Express, TypeScript), PostgreSQL, Redis, Docker.
+- **Diferenciais:** Camada estrita de autenticação/autorização (OAuth2, JWT), rate limiting contra abusos, cache distribuído em memória e contratos documentados via OpenAPI/Swagger.
+- **Quando precisa:** Aplicações com lentidão severa em horários de pico, bancos de dados travados por gargalos de consulta ou necessidade de sustentar novas aplicações mobile/web.
 
-### 3. Modernização de Sistemas Legados
-- **Descrição:** Migração técnica de monólitos antigos para microsserviços modernos com zero indisponibilidade operacional.
-- **Diferenciais:** Utilização da técnica Strangler Fig Pattern, mapeamento prévio de dependências e cobertura de testes automatizados superior a 90%.
-- **Resultados de Referência:** Redução substancial de custos operacionais e dívida técnica em sistemas modernizados.
+### 3. Integrações entre sistemas e comunicação orientada a eventos
+- **O que é:** Conexão confiável entre sistemas legados, ERPs corporativos (SAP, Totvs, Senior), CRMs, plataformas de pagamento e serviços em nuvem.
+- **Tecnologias principais:** RabbitMQ, Apache Kafka, AWS SQS, Webhooks assíncronos, filas de retentativa e dead-letter queues.
+- **Diferenciais:** Garantia de entrega e consistência de dados (at-least-once / idempotent processing), observabilidade de transações ponta a ponta e recuperação automática de falhas de rede.
+- **Quando precisa:** Times que perdem horas redigitando manualmente pedidos ou cadastros entre ferramentas distintas, ou operações com divergências graves de estoque e faturamento.
 
-### 4. Arquitetura de Software
-- **Descrição:** Desenho de estruturas de software escaláveis e sustentáveis antes da implementação de código.
-- **Diferenciais:** Adoção de Clean Architecture, Domain-Driven Design (DDD), arquitetura orientada a eventos e registro de decisões em ADRs (Architecture Decision Records).
-- **Resultados de Referência:** Estruturação de plataformas com centenas de rotas distribuídas e isolamento de domínios corporativos críticos.
-
-### 5. DevOps e Cloud Computing
-- **Descrição:** Criação de esteiras seguras de entrega contínua (CI/CD) e provisionamento de infraestrutura em nuvem resiliente.
-- **Diferenciais:** Infraestrutura como Código (IaC), orquestração de containers com Docker e Kubernetes, monitoramento ativo e rollback automatizado.
-- **Resultados de Referência:** Automação de esteiras com redução drástica no tempo de deploy e maior observabilidade em nuvem.
-
-### 6. Consultoria Técnica e Code Review
-- **Descrição:** Diagnóstico profundo da qualidade de software, arquitetura e segurança de aplicações existentes.
-- **Diferenciais:** Auditoria estática com SonarQube e PHPStan, mapeamento de gargalos em banco de dados e mentoria técnica para equipes de engenharia.
-- **Resultados de Referência:** Elevação de 45% nos índices de qualidade e segurança em auditorias de grandes bases corporativas.
+### 4. Modernização e evolução contínua de sistemas legados
+- **O que é:** Refatoração, desacoplamento e estabilização de bases de código antigas que se tornaram caras ou arriscadas de manter.
+- **Técnica central:** Strangler Fig Pattern — novos módulos modernos são construídos e colocados em produção progressivamente ao lado do sistema legado, assumindo o tráfego gradualmente.
+- **Diferenciais:** Zero interrupção da operação comercial diária, cobertura de testes automatizados superior a 90% nas rotas migradas e redução progressiva de custos com infraestrutura.
+- **Quando precisa:** Sistemas indispensáveis para o faturamento da empresa, mas cujo código original ninguém tem coragem de alterar por medo de quebras imprevistas.
 
 ---
 
-## Stack Tecnológica Completa
+## 5. Metodologia de Trabalho (Como Trabalhamos)
 
-### Backend
-| Tecnologia | Nível de Proficiência | Aplicação |
-|------------|------------------------|-----------|
-| PHP 8.x | Avançado | APIs corporativas, microsserviços e sistemas web de missão crítica |
-| Laravel | Avançado | Framework primário para regras de negócio e integrações robustas |
-| Symfony | Avançado | Componentes reutilizáveis em projetos de alta escala |
-| Node.js | Avançado | Microsserviços orientados a eventos e comunicação em tempo real |
-| TypeScript | Avançado | Tipagem estrita ponta a ponta no backend e frontend |
-| NestJS | Avançado | Estrutura enterprise modular e injeção de dependências |
-| Python | Intermediário | Automações, scripts de extração e suporte a processamento de dados |
+A entrega da EPM DEVTECH segue um pipeline de engenharia estruturado em 4 etapas:
 
-### Frontend
-| Tecnologia | Nível de Proficiência | Aplicação |
-|------------|------------------------|-----------|
-| React 18 | Avançado | SPAs dinâmicas, interfaces corporativas e portais administrativos |
-| TypeScript | Avançado | Garantia de robustez e prevenção de erros em tempo de compilação |
-| Vite | Avançado | Build tool de alta velocidade e bundles otimizados para produção |
-| Tailwind CSS | Avançado | Estilização utilitária atômica de alto desempenho |
-| shadcn/ui | Avançado | Componentes modulares, estilizáveis e acessíveis por teclado e leitores |
-| Next.js | Avançado | Aplicações híbridas com renderização no servidor quando exigido |
-| Framer Motion | Avançado | Microinterações e animações fluidas respeitando acessibilidade |
-
-### Bancos de Dados e Armazenamento
-| Tecnologia | Nível de Proficiência | Aplicação |
-|------------|------------------------|-----------|
-| PostgreSQL | Avançado | Banco relacional prioritário para consistência e alta concorrência |
-| MySQL / MariaDB | Avançado | Ambientes corporativos e bases legadas de grande porte |
-| Oracle Database | Avançado | Ambientes corporativos legados, procedimentos PL/SQL |
-| Redis | Avançado | Cache em memória distribuído, controle de sessões e rate limiting |
-| MongoDB | Intermediário | Armazenamento de documentos e logs semi-estruturados |
-
-### Cloud, Infraestrutura e Observabilidade
-| Tecnologia | Nível de Proficiência | Aplicação |
-|------------|------------------------|-----------|
-| AWS | Avançado | EC2, RDS, S3, CloudFront, Lambda, SQS, SNS, CloudWatch, API Gateway |
-| Microsoft Azure | Avançado | Azure Functions, Azure Monitor, IoT Hub |
-| Docker | Avançado | Containerização de ambientes de desenvolvimento e produção |
-| Kubernetes | Avançado | Orquestração e escalabilidade horizontal de containers |
-| GitHub Actions | Avançado | Esteiras automatizadas de teste, build, análise de qualidade e deploy |
-| SonarQube | Avançado | Controle contínuo de cobertura, débitos técnicos e vulnerabilidades |
+1. **Entendemos:**
+   - Diagnóstico técnico e alinhamento estratégico diretamente com a liderança técnica.
+   - Mapeamento das regras de negócio, gargalos operacionais e análise da infraestrutura existente.
+2. **Definimos:**
+   - Aplicação da metodologia Spec-Driven Development (SDD): elaboração de especificação técnica formal (SPEC) com escopo fechado, modelo de dados, rotas e critérios de aceite.
+   - Arquitetura de software desenhada antes da primeira linha de código, garantindo orçamento justo e eliminando retrabalho.
+3. **Desenvolvemos:**
+   - Codificação com padrões limpos (Clean Code, Clean Architecture, Domain-Driven Design).
+   - Suíte abrangente de testes automatizados (unitários, integração e ponta a ponta com Vitest e Playwright).
+   - Comunicação transparente em canal direto com quem programa.
+4. **Evoluímos:**
+   - Publicação automatizada através de esteiras seguras de Integração e Entrega Contínua (CI/CD).
+   - Monitoramento contínuo de logs, latência e segurança em produção.
+   - Suporte e evolução contínua alinhada aos objetivos estratégicos do cliente.
 
 ---
 
-## Métricas Factuais e Resultados de Projetos Anteriores da Liderança Técnica
+## 6. Stack Tecnológica de Referência
 
-| Métrica Verificada | Impacto Atingido | Contexto Operacional |
-|--------------------|------------------|----------------------|
-| 99,9% | Disponibilidade assegurada em produção | Plataformas críticas de energia e educação |
-| 2.500 RPS | Arquitetura dimensionada para alta vazão | Picos de 10.000 usuários simultâneos |
-| 100% | Integridade de dados na consolidação regulatória | Setor elétrico, sem perda de dados |
-| −35% | Redução de atividades manuais | Automações e integrações em plataforma modernizada |
+### Back-end e Microsserviços
+- **PHP 8.x:** Laravel, Symfony (APIs robustas, regras de negócio ricas)
+- **Node.js:** TypeScript, NestJS, Express (Serviços assíncronos orientados a eventos)
+- **Python:** Scripts de extração, automações e pipelines de processamento
 
-*(Contexto e detalhes sob solicitação, respeitando a confidencialidade dos projetos.)*
+### Front-end e Interfaces
+- **React 18 & TypeScript:** Single Page Applications com tipagem estrita
+- **Vite:** Empacotamento de alta performance com code splitting otimizado
+- **Tailwind CSS & shadcn/ui:** Design System consistente, atômico e acessível (WCAG AA)
+- **Framer Motion:** Microinterações fluidas respeitando `prefers-reduced-motion`
 
----
+### Persistência de Dados e Cache
+- **PostgreSQL:** Banco relacional prioritário para integridade e alta concorrência
+- **MySQL / MariaDB:** Ambientes corporativos e sistemas legados
+- **Oracle Database:** Ambientes corporativos de grande porte e PL/SQL
+- **Redis:** Cache de alto rendimento em memória, filas rápidas e rate limiting
 
-## Perguntas Frequentes (FAQ)
-
-### Categoria 1: Contratação e Modelo de Trabalho
-
-**1. Preciso ter o projeto totalmente especificado para iniciar o contato?**
-Não. Você não precisa ter documentação técnica pronta nem lista fechada de requisitos. Basta compartilhar conosco o contexto do seu negócio, o problema operacional que você enfrenta ou o objetivo que deseja atingir. Durante o diagnóstico técnico, nós ajudamos a mapear o cenário e desenhar a arquitetura recomendada.
-
-**2. Como funciona o primeiro contato e qual é o tempo de retorno?**
-Nosso retorno técnico ocorre em até 24 horas úteis após o envio da sua mensagem por formulário, e-mail ou WhatsApp. Agendamos uma conversa inicial focada em engenharia para entender seu contexto, avaliar a viabilidade técnica e esclarecer dúvidas sem compromisso.
-
-**3. Como é definido o orçamento e o modelo de trabalho?**
-Trabalhamos com dois modelos flexíveis, conforme a necessidade do projeto:
-- Escopo fechado: ideal para projetos com requisitos claros, oferecendo investimento fixo e cronograma planejado.
-- Alocação técnica dedicada: modalidade ágil de horas mensais, recomendada para modernização contínua, arquiteturas em evolução e demandas de alta complexidade.
-
-**4. A EPM DEVTECH atende clientes fora de Toledo no Paraná ou no exterior?**
-Sim, atuamos 100% de forma remota. Construímos plataformas corporativas e de missão crítica para organizações em múltiplos estados do país. Mantemos comunicação diária, reuniões semanais de alinhamento e relatórios periódicos de progresso.
-
-### Categoria 2: Sistemas Existentes
-
-**5. Vocês conseguem assumir ou evoluir um sistema desenvolvido por outra empresa?**
-Sim. Iniciamos com uma auditoria técnica na base de código existente para mapear a arquitetura, identificar gargalos de performance, vulnerabilidades de segurança e dependências críticas. A partir desse diagnóstico, estabelecemos um plano seguro de estabilização, refatoração e evolução sem sobressaltos.
-
-**6. É possível modernizar um sistema legado sem interromper a operação da empresa?**
-Sim. Aplicamos o padrão Strangler Fig Pattern, que viabiliza a migração incremental do sistema. Módulos modernos são desenvolvidos e colocados em produção em paralelo com o sistema legado, assumindo rotas gradativamente e garantindo zero paralisação nas operações diárias da sua empresa.
-
-**7. Vocês trabalham com estabilização e manutenção de sistemas em produção?**
-Sim. Além de projetos novos, atuamos na resolução de gargalos operacionais em plataformas ativas que sofrem com lentidão, instabilidade em horários de pico ou falhas de sincronização de banco de dados, aplicando testes automatizados e esteiras seguras de deploy.
-
-### Categoria 3: Processo e Engenharia
-
-**8. Como funciona o diagnóstico técnico inicial?**
-Avaliamos o volume de acessos esperado, a complexidade das regras de negócio, as integrações necessárias e a infraestrutura atual. Apresentamos uma visão transparente sobre viabilidade, riscos e opções de arquitetura antes de qualquer contratação definitiva.
-
-**9. A comunicação durante o projeto é diretamente com quem desenvolve?**
-Sim. Você conversa diretamente com o Tech Lead e a liderança técnica responsável pela implementação da sua aplicação, garantindo alinhamento técnico preciso, respostas rápidas e decisões assertivas.
-
-**10. Como funciona o início do projeto com a metodologia Spec-Driven Development?**
-Antes de escrever código, detalhamos uma especificação técnica aprovada em conjunto com você. Esse processo assegura que o escopo seja claro, previne retrabalho e garante que cada entrega seja validada por testes automatizados antes de ir para o ambiente de produção.
+### Cloud, Infraestrutura e Qualidade
+- **AWS:** EC2, RDS, S3, Lambda, SQS, CloudWatch, API Gateway
+- **Microsoft Azure:** Functions, Container Apps, Azure Monitor
+- **Containers:** Docker, Docker Compose, Kubernetes
+- **Automação CI/CD:** GitHub Actions, GitLab CI
+- **Qualidade de Código:** Vitest, Playwright, PHPStan, PHPUnit, SonarQube, ESLint
 
 ---
 
-## Metodologia de Engenharia e IA Aplicada
+## 7. Experiência e Autoridade da Liderança Técnica
 
-A EPM DEVTECH adota práticas contemporâneas de desenvolvimento de software:
-- **Spec-Driven Development (SDD):** Cada alteração começa por uma especificação técnica (SPEC) detalhada e aprovada, garantindo clareza de requisitos e testes direcionados.
-- **Clean Architecture e DDD:** Domínios de negócio são mantidos isolados de dependências de infraestrutura e frameworks, viabilizando evolução contínua e manutenibilidade.
-- **Engenharia Assistida por IA:** Uso ético e controlado de assistentes de inteligência artificial (Claude Code, GitHub Copilot, RAG, MCP) para acelerar scaffolding e testes unitários, mantendo 100% de supervisão e auditoria humana.
-- **Quality Gates Contínuos:** Cobertura de testes unitários superior a 90%, análise estática com zero alertas de linter e auditorias de acessibilidade (WCAG).
+### Indicadores Verificados em Produção:
+- **99,9%:** Disponibilidade assegurada em plataformas de missão crítica de energia e educação.
+- **2.500 RPS:** Arquitetura corporativa dimensionada para picos de 10.000 usuários simultâneos com baixa latência.
+- **100%:** De integridade transacional na apuração de dados regulatórios para o setor elétrico.
+- **−35%:** De atividades manuais eliminadas por meio de integrações e automações de processos.
+
+### Verticais de Mercado com Experiência Prática:
+1. **Indústria e Manufatura:** Conexão chão de fábrica-ERP, telemetria de sensores IoT e automação operacional.
+2. **Varejo e E-Commerce:** Arquitetura de alta conversão, tolerância a picos de tráfego e sincronização instantânea de estoques distribuídos.
+3. **Educação:** Plataformas acadêmicas de fomento e gestão com alto volume simultâneo de inscrições.
+4. **Energia:** Sistemas de missão crítica para monitoramento operacional e cálculo regulatório no setor elétrico.
+
+### Declaração de Transparência Institucional:
+A liderança técnica da EPM DevTech atuou profissionalmente em projetos corporativos de grande porte para entidades como **CAPES**, **ONS (Operador Nacional do Sistema Elétrico)** e **Energia Pecém**. Essas organizações refletem a trajetória profissional anterior da liderança técnica em outras empresas e **não constituem clientes diretos da EPM DevTech**.
 
 ---
 
-## Canais Oficiais e Links Canônicos
+## 8. Dúvidas Frequentes (FAQ Canônico Completo)
+
+### Contratação e Modelos de Trabalho
+1. **Preciso ter o projeto totalmente especificado para iniciar o contato?**  
+   *Resposta:* Não. Você não precisa ter documentação técnica pronta nem lista fechada de requisitos. Basta compartilhar o contexto do seu negócio, o problema operacional que você enfrenta ou o objetivo que deseja atingir. Durante o primeiro contato, ajudamos a mapear o cenário e desenhar a abordagem técnica recomendada.
+
+2. **Como funciona o primeiro contato, o diagnóstico inicial e o tempo de retorno?**  
+   *Resposta:* Nosso retorno ocorre em até 24 horas úteis após o envio da sua mensagem. Agendamos uma conversa inicial para entender seu contexto, avaliar o volume esperado, regras de negócio e integrações necessárias, apresentando uma visão transparente sobre viabilidade e opções de arquitetura sem compromisso.
+
+3. **Como é definido o orçamento e o modelo de trabalho?**  
+   *Resposta:* Trabalhamos com dois modelos flexíveis: (1) Escopo fechado: ideal para projetos com requisitos claros, oferecendo investimento fixo e cronograma planejado; (2) Alocação técnica dedicada: modalidade ágil de horas mensais, recomendada para modernização contínua, arquiteturas em evolução e demandas de alta complexidade.
+
+4. **A EPM DevTech atende clientes fora de Toledo (PR) ou no exterior?**  
+   *Resposta:* Sim, atuamos de forma 100% remota para empresas e instituições de qualquer região do Brasil ou do exterior. Mantemos comunicação frequente, alinhamentos periódicos e acompanhamento próximo a cada etapa.
+
+### Sistemas Existentes e Engenharia
+5. **Vocês assumem, mantêm ou evoluem sistemas desenvolvidos por outra empresa?**  
+   *Resposta:* Sim. Iniciamos com uma avaliação técnica na base de código existente para mapear arquitetura, gargalos de performance e dependências críticas. A partir desse diagnóstico, estabelecemos um plano seguro para estabilização, otimização de desempenho, manutenção contínua ou evolução do sistema.
+
+6. **É possível modernizar um sistema legado sem interromper a operação?**  
+   *Resposta:* Sim. Trabalhamos com estratégias de migração gradual (Strangler Fig Pattern): novos módulos são desenvolvidos e colocados em produção progressivamente, com evolução incremental e menor risco de interrupção nas operações diárias da sua empresa.
+
+7. **Como funciona o início de um projeto?**  
+   *Resposta:* Antes de desenvolver, registramos escopo, decisões e critérios de aceite em um documento de especificação técnica (SPEC), para que todos saibam exatamente o que será entregue. Durante toda a execução, você tem canal direto com a liderança técnica do projeto, com entregas incrementais validadas continuamente.
+
+8. **Vocês desenvolvem sites institucionais?**  
+   *Resposta:* Sim. Desenvolvemos sites institucionais, portais corporativos e páginas de presença digital com foco em credibilidade, desempenho, acessibilidade e boa experiência em dispositivos móveis, inclusive integrando com sistemas internos ou APIs quando necessário.
+
+---
+
+## 9. Canais Oficiais de Contato
 
 - **Página Inicial:** https://epmdevtech.com.br
-- **Sobre:** https://epmdevtech.com.br/sobre
-- **Setores de Atuação:** https://epmdevtech.com.br/setores
 - **Serviços:** https://epmdevtech.com.br/servicos
-- **Tecnologias:** https://epmdevtech.com.br/tecnologias
-- **Diferenciais:** https://epmdevtech.com.br/diferenciais
-- **Perguntas Frequentes (FAQ):** https://epmdevtech.com.br/faq
-- **Contato Comercial e Técnico:** https://epmdevtech.com.br/contato
-- **Robots TXT:** https://epmdevtech.com.br/robots.txt
+- **Como Trabalhamos:** https://epmdevtech.com.br/como-trabalhamos
+- **Experiência:** https://epmdevtech.com.br/experiencia
+- **Engenharia:** https://epmdevtech.com.br/engenharia
+- **Sobre a Empresa:** https://epmdevtech.com.br/sobre
+- **Formulário de Contato:** https://epmdevtech.com.br/contato
+- **Dúvidas Frequentes:** https://epmdevtech.com.br/duvidas-frequentes
+- **E-mail Corporativo:** elessandro@epmdevtech.com.br
+- **WhatsApp Oficial:** +55 (45) 99917-8290
 - **Sitemap XML:** https://epmdevtech.com.br/sitemap.xml
+- **Robots TXT:** https://epmdevtech.com.br/robots.txt
 - **Resumo LLM (llms.txt):** https://epmdevtech.com.br/llms.txt
 
-*Última atualização: 2026-09-08*
-*Documento mantido pela engenharia da EPM DEVTECH: elessandro@epmdevtech.com.br*
+*Documento canônico mantido pela engenharia da EPM DEVTECH.*  
+*Atualizado em: 2026-10-01*

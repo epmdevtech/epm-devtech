@@ -94,7 +94,7 @@ const fillValidForm = () => {
     simulateInput('name', 'João Silva');
     simulateInput('email', 'joao@example.com');
     fireEvent.change(screen.getByTestId('project-type-select'), {
-      target: { value: 'Novo Sistema ou Aplicação Web' },
+      target: { value: 'Sistema, portal ou site institucional' },
     });
     simulateInput('message', 'Preciso de um sistema web com integração de API e autenticação.');
   });

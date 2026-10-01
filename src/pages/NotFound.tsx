@@ -1,7 +1,10 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft, Home, Code2, Mail } from "lucide-react";
 
-const NotFound = () => {
+export const NotFound = () => {
   const location = useLocation();
 
   useEffect(() => {
@@ -9,15 +12,60 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-muted">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">404</h1>
-        <p className="mb-4 text-xl text-muted-foreground">Oops! Page not found</p>
-        <a href="/" className="text-primary underline hover:text-primary/90">
-          Return to Home
-        </a>
+    <>
+      <Helmet>
+        <title>Página Não Encontrada (404) | EPM DevTech</title>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
+
+      <div className="flex flex-col items-center justify-center min-h-[70vh] px-6 py-20 text-center">
+        <div className="max-w-md mx-auto">
+          <div className="font-mono text-xs font-semibold uppercase tracking-widest text-primary mb-2">
+            ERRO 404
+          </div>
+          <h1
+            tabIndex={-1}
+            className="text-4xl sm:text-5xl font-bold tracking-tight text-foreground mb-4 outline-none focus:outline-none"
+          >
+            Página não encontrada
+          </h1>
+          <p className="text-base text-muted-foreground leading-relaxed mb-8">
+            O endereço que você tentou acessar não existe, foi renomeado ou movido para uma nova rota.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <Button asChild size="default" className="min-h-[44px] w-full sm:w-auto">
+              <Link to="/" className="inline-flex items-center gap-2">
+                <Home className="w-4 h-4" />
+                <span>Página inicial</span>
+              </Link>
+            </Button>
+            <Button
+              asChild
+              variant="outline"
+              size="default"
+              className="min-h-[44px] w-full sm:w-auto border-border/80"
+            >
+              <Link to="/servicos" className="inline-flex items-center gap-2">
+                <Code2 className="w-4 h-4" />
+                <span>Ver serviços</span>
+              </Link>
+            </Button>
+            <Button
+              asChild
+              variant="ghost"
+              size="default"
+              className="min-h-[44px] w-full sm:w-auto text-muted-foreground hover:text-foreground"
+            >
+              <Link to="/contato" className="inline-flex items-center gap-2">
+                <Mail className="w-4 h-4" />
+                <span>Fale conosco</span>
+              </Link>
+            </Button>
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

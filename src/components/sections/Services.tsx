@@ -145,9 +145,11 @@ const services = [
   },
 ];
 
-/* ─── Component ──────────────────────────────────────────────── */
+interface ServicesProps {
+  hideHeader?: boolean;
+}
 
-const Services = () => {
+const Services: React.FC<ServicesProps> = ({ hideHeader = false }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -277,19 +279,21 @@ const Services = () => {
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
 
         <div className="container px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5 }}
-            className="mb-16"
-          >
-            <SectionHeader
-              id="servicos-heading"
-              tagline="Serviços"
-              title="Soluções sob medida para cada estágio da sua operação"
-              subtitle="Da criação de um novo produto à modernização de sistemas existentes, atuamos com rigor técnico e foco no resultado do seu negócio."
-            />
-          </motion.div>
+          {!hideHeader && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5 }}
+              className="mb-16"
+            >
+              <SectionHeader
+                id="servicos-heading"
+                tagline="Serviços"
+                title="Soluções sob medida para cada estágio da sua operação"
+                subtitle="Da criação de um novo produto à modernização de sistemas existentes, atuamos com rigor técnico e foco no resultado do seu negócio."
+              />
+            </motion.div>
+          )}
 
           <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
             {services.map((service, index) => (

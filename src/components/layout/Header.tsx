@@ -1,25 +1,23 @@
-import { useState, useEffect, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { Link, NavLink } from "react-router-dom";
 import { X } from "lucide-react";
 import { Typewriter } from "@/components/ui/typewriter";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { href: "#servicos", label: "Serviços" },
-  { href: "#como-trabalhamos", label: "Como trabalhamos" },
-  { href: "#diferenciais", label: "Diferenciais" },
-  { href: "#tecnologias", label: "Tecnologias" },
-  { href: "#setores", label: "Setores" },
-  { href: "#sobre", label: "Sobre" },
-  { href: "#faq", label: "FAQ" },
-  { href: "#contato", label: "Contato" },
+  { href: "/servicos", label: "Serviços" },
+  { href: "/como-trabalhamos", label: "Como trabalhamos" },
+  { href: "/experiencia", label: "Experiência" },
+  { href: "/engenharia", label: "Engenharia" },
+  { href: "/sobre", label: "Sobre" },
 ];
 
-const Header = () => {
-  const navigate = useNavigate();
+export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const menuToggleRef = useRef<HTMLButtonElement>(null);
 
   const handleScroll = useCallback(() => {
     setIsScrolled(window.scrollY > 20);
@@ -31,26 +29,22 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
-  const closeMobileMenu = useCallback(() => setIsMobileMenuOpen(false), []);
+  const closeMobileMenu = useCallback(() => {
+    setIsMobileMenuOpen(false);
+    // Devolve o foco ao botão de abertura do menu para WCAG 2.2 AA
+    menuToggleRef.current?.focus();
+  }, []);
 
-  const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    closeMobileMenu();
-
-    const targetId = href.replace(/.*#/, "");
-
-    // Navega via React Router — atualiza a URL e dispara useLocation() em Index
-    navigate(`/${targetId}`);
-
-    // Aguarda a animação do menu fechar (300ms) para calcular e rolar corretamente
-    setTimeout(() => {
-      const elem = document.getElementById(targetId);
-      if (elem) {
-        const top = elem.getBoundingClientRect().top + window.scrollY - 80; // 80px de compensação do fixed header
-        window.scrollTo({ top, behavior: "smooth" });
+  // Fechamento via teclado (Escape)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isMobileMenuOpen) {
+        closeMobileMenu();
       }
-    }, 350);
-  }, [closeMobileMenu, navigate]);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isMobileMenuOpen, closeMobileMenu]);
 
   return (
     <>
@@ -64,91 +58,120 @@ const Header = () => {
         }`}
       >
         <div className="container px-6">
-        <div className="flex items-center justify-between gap-2">
-          {/* Logo */}
-          <a href="#" className="flex items-center gap-3 group min-w-0 shrink-0">
-            <div className="min-w-0">
-              <div className="font-bold text-lg leading-tight mb-0.5">
-                <div className="rounded-md py-0.5 transition-colors duration-300">
-                  {/* Dark mode logo */}
-                  <img
-                    src="/logo-emp-dev-tech-xs.webp"
-                    srcSet="/logo-emp-dev-tech-xs.webp 149w, /logo-emp-dev-tech-sm.webp 300w"
-                    sizes="(max-width: 640px) 83px, 95px"
-                    alt="EPM DEVTECH"
-                    width={149}
-                    height={50}
-                    loading="eager"
-                    decoding="async"
-                    {...{ fetchpriority: "high" }}
-                    className="h-7 sm:h-8 w-auto object-contain hidden dark:block"
-                  />
-                  {/* Light mode logo */}
-                  <img
-                    src="/logo-epm-devtech-light-xs.webp"
-                    srcSet="/logo-epm-devtech-light-xs.webp 149w, /logo-epm-devtech-light-sm.webp 300w"
-                    sizes="(max-width: 640px) 83px, 95px"
-                    alt=""
-                    aria-hidden="true"
-                    width={149}
-                    height={50}
-                    loading="eager"
-                    decoding="async"
-                    {...{ fetchpriority: "high" }}
-                    className="h-7 sm:h-8 w-auto object-contain block dark:hidden"
-                  />
+          <div className="flex items-center justify-between gap-4">
+            {/* Logo */}
+            <Link
+              to="/"
+              className="flex items-center gap-3 group min-w-0 shrink-0"
+              aria-label="EPM DEVTECH — Início"
+            >
+              <div className="min-w-0">
+                <div className="font-bold text-lg leading-tight mb-0.5">
+                  <div className="rounded-md py-0.5 transition-colors duration-300">
+                    {/* Dark mode logo */}
+                    <img
+                      src="/logo-emp-dev-tech-xs.webp"
+                      srcSet="/logo-emp-dev-tech-xs.webp 149w, /logo-emp-dev-tech-sm.webp 300w"
+                      sizes="(max-width: 640px) 83px, 95px"
+                      alt="EPM DEVTECH"
+                      width={149}
+                      height={50}
+                      loading="eager"
+                      decoding="async"
+                      {...{ fetchpriority: "high" }}
+                      className="h-7 sm:h-8 w-auto object-contain hidden dark:block"
+                    />
+                    {/* Light mode logo */}
+                    <img
+                      src="/logo-epm-devtech-light-xs.webp"
+                      srcSet="/logo-epm-devtech-light-xs.webp 149w, /logo-epm-devtech-light-sm.webp 300w"
+                      sizes="(max-width: 640px) 83px, 95px"
+                      alt=""
+                      aria-hidden="true"
+                      width={149}
+                      height={50}
+                      loading="eager"
+                      decoding="async"
+                      {...{ fetchpriority: "high" }}
+                      className="h-7 sm:h-8 w-auto object-contain block dark:hidden"
+                    />
+                  </div>
+                </div>
+                <div className="text-xs text-muted-foreground">
+                  <Typewriter text="Software House" speed={50} delay={200} cursor={false} />
                 </div>
               </div>
-              <div className="text-xs text-muted-foreground">
-                <Typewriter text="Software House" speed={50} delay={200} cursor={false} />
-              </div>
+            </Link>
+
+            {/* Desktop Navigation (5 links enxutos) */}
+            <nav
+              aria-label="Navegação principal"
+              className="hidden lg:flex items-center gap-5 xl:gap-8"
+            >
+              {navLinks.map((link) => (
+                <NavLink
+                  key={link.href}
+                  to={link.href}
+                  className={({ isActive }) =>
+                    cn(
+                      "text-xs xl:text-xs font-mono font-medium uppercase tracking-widest transition-colors relative group py-2",
+                      isActive
+                        ? "text-foreground font-semibold"
+                        : "text-muted-foreground hover:text-foreground"
+                    )
+                  }
+                >
+                  {({ isActive }) => (
+                    <>
+                      <span>{link.label}</span>
+                      <span
+                        className={cn(
+                          "absolute -bottom-0.5 left-0 h-0.5 bg-primary transition-all",
+                          isActive ? "w-full" : "w-0 group-hover:w-full"
+                        )}
+                      />
+                    </>
+                  )}
+                </NavLink>
+              ))}
+            </nav>
+
+            {/* Desktop CTA (1 botão de ação) */}
+            <div className="hidden lg:flex items-center justify-end shrink-0">
+              <Button
+                asChild
+                size="sm"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium text-xs tracking-wide shadow-xs min-h-[44px] px-4 rounded-md transition-colors"
+              >
+                <Link to="/contato" aria-label="Falar sobre meu projeto">
+                  Falar sobre meu projeto
+                </Link>
+              </Button>
             </div>
-          </a>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-3.5 xl:gap-6 2xl:gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
-                className="text-[11px] xl:text-xs font-mono font-medium uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors relative group"
+            {/* Mobile Menu Trigger */}
+            <div className="flex items-center gap-2 lg:hidden shrink-0">
+              <button
+                ref={menuToggleRef}
+                onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+                className="relative z-[60] p-2 w-11 h-11 flex flex-col items-center justify-center gap-[6px] text-foreground transition-colors outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md [-webkit-tap-highlight-color:transparent]"
+                aria-label={isMobileMenuOpen ? "Fechar menu" : "Abrir menu"}
+                aria-expanded={isMobileMenuOpen}
+                aria-controls="mobile-navigation"
               >
-                {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
-              </a>
-            ))}
-          </nav>
-
-          {/* Desktop CTA */}
-          <div className="hidden lg:flex items-center justify-end shrink-0">
-            <Button
-              asChild
-              size="sm"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium text-xs tracking-wide shadow-xs min-h-[44px] px-4 rounded-md transition-colors"
-            >
-              <a
-                href="#contato"
-                onClick={(e) => handleNavClick(e, "#contato")}
-                aria-label="Falar sobre meu projeto"
-              >
-                Falar sobre meu projeto
-              </a>
-            </Button>
+                <span
+                  className={`block w-5 h-0.5 bg-current transition-transform duration-300 ease-in-out ${
+                    isMobileMenuOpen ? "translate-y-[4px] rotate-45" : ""
+                  }`}
+                />
+                <span
+                  className={`block w-5 h-0.5 bg-current transition-transform duration-300 ease-in-out ${
+                    isMobileMenuOpen ? "-translate-y-[4px] -rotate-45" : ""
+                  }`}
+                />
+              </button>
+            </div>
           </div>
-
-          <div className="flex items-center gap-2 lg:hidden shrink-0">
-            <button
-              onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-              className="relative z-[60] p-2 w-10 h-10 flex flex-col items-center justify-center gap-[6px] text-foreground transition-colors outline-none focus:outline-none [-webkit-tap-highlight-color:transparent]"
-              aria-label={isMobileMenuOpen ? "Fechar menu" : "Abrir menu"}
-              aria-expanded={isMobileMenuOpen}
-            >
-              <span className={`block w-5 h-0.5 bg-current transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? 'translate-y-[4px] rotate-45' : ''}`} />
-              <span className={`block w-5 h-0.5 bg-current transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? '-translate-y-[4px] -rotate-45' : ''}`} />
-            </button>
-          </div>
-        </div>
         </div>
       </header>
 
@@ -157,52 +180,66 @@ const Header = () => {
         <div
           className="fixed inset-0 z-40 bg-background/80 backdrop-blur-sm lg:hidden animate-fade-in"
           onClick={closeMobileMenu}
+          aria-hidden="true"
         />
       )}
 
-      {/* Mobile Menu Sidebar */}
+      {/* Mobile Menu Drawer */}
       {isMobileMenuOpen && (
         <div
-          className="fixed top-0 right-0 bottom-0 w-64 lg:hidden glass border-l border-border/50 shadow-2xl z-50 overflow-y-auto animate-slide-in-right"
+          id="mobile-navigation"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menu de navegação"
+          className="fixed top-0 right-0 bottom-0 w-72 lg:hidden glass border-l border-border/50 shadow-2xl z-50 overflow-y-auto animate-slide-in-right"
         >
           <div className="flex flex-col h-full pt-6 px-6 pb-6 relative">
             <button
               onClick={closeMobileMenu}
-              className="absolute top-4 right-4 p-2 w-10 h-10 flex items-center justify-center text-foreground hover:bg-white/10 rounded-full transition-colors outline-none focus:outline-none [-webkit-tap-highlight-color:transparent] z-50"
+              className="absolute top-4 right-4 p-2 w-11 h-11 flex items-center justify-center text-foreground hover:bg-white/10 rounded-full transition-colors outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-primary z-50"
               aria-label="Fechar menu"
             >
               <X className="w-6 h-6" />
             </button>
-            
-            <nav className="flex flex-col gap-6 mt-14">
+
+            <nav className="flex flex-col gap-2 mt-14" aria-label="Navegação móvel">
               {navLinks.map((link, i) => (
-                <a
+                <NavLink
                   key={link.href}
-                  href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
-                  className="relative group text-lg font-mono font-medium uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors py-3 border-b border-white/5 opacity-0 animate-fade-in-up"
-                  style={{ animationDelay: `${100 + i * 50}ms`, animationFillMode: 'forwards' }}
+                  to={link.href}
+                  onClick={closeMobileMenu}
+                  className={({ isActive }) =>
+                    cn(
+                      "relative group text-base font-mono font-medium uppercase tracking-widest py-3 min-h-[44px] flex items-center border-b border-border/30 transition-colors opacity-0 animate-fade-in-up",
+                      isActive
+                        ? "text-primary font-semibold"
+                        : "text-muted-foreground hover:text-foreground"
+                    )
+                  }
+                  style={{ animationDelay: `${50 + i * 40}ms`, animationFillMode: "forwards" }}
                 >
                   <span className="relative z-10">{link.label}</span>
-                  <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-primary transition-all duration-300 group-hover:w-full" />
-                </a>
+                </NavLink>
               ))}
 
               <div
-                className="pt-2 opacity-0 animate-fade-in-up"
-                style={{ animationDelay: `${100 + navLinks.length * 50}ms`, animationFillMode: 'forwards' }}
+                className="pt-6 opacity-0 animate-fade-in-up"
+                style={{
+                  animationDelay: `${50 + navLinks.length * 40}ms`,
+                  animationFillMode: "forwards",
+                }}
               >
                 <Button
                   asChild
                   className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-medium min-h-[44px] shadow-xs text-sm"
                 >
-                  <a
-                    href="#contato"
-                    onClick={(e) => handleNavClick(e, "#contato")}
+                  <Link
+                    to="/contato"
+                    onClick={closeMobileMenu}
                     aria-label="Falar sobre meu projeto"
                   >
                     Falar sobre meu projeto
-                  </a>
+                  </Link>
                 </Button>
               </div>
             </nav>

@@ -46,12 +46,11 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 const PROJECT_TYPES = [
-  "Novo Sistema ou Aplicação Web",
-  "Site Institucional",
-  "Modernização de Sistema Legado",
-  "APIs, Microsserviços e Integrações",
-  "Consultoria Técnica e Arquitetura",
-  "Outro Desafio",
+  "Sistema, portal ou site institucional",
+  "APIs e integrações",
+  "Modernização de sistema legado",
+  "Consultoria ou avaliação técnica",
+  "Outro",
 ];
 
 const nextSteps = [
@@ -75,7 +74,11 @@ const nextSteps = [
   },
 ];
 
-const Contact = () => {
+export interface ContactProps {
+  hideHeader?: boolean;
+}
+
+const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [isSending, setIsSending] = useState(false);
@@ -146,19 +149,21 @@ const Contact = () => {
 
       <div className="container px-6 relative z-10">
         {/* Cabeçalho Externo da Seção */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
-          className="mb-14"
-        >
-          <SectionHeader
-            id="contato-heading"
-            tagline="Contato"
-            title="Fale sobre seu projeto"
-            subtitle="Conte o que sua empresa precisa. Vamos entender o cenário e avaliar como a EPM DevTech pode ajudar."
-          />
-        </motion.div>
+        {!hideHeader && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5 }}
+            className="mb-14"
+          >
+            <SectionHeader
+              id="contato-heading"
+              tagline="Contato"
+              title="Fale sobre seu projeto"
+              subtitle="Conte o que sua empresa precisa. Vamos entender o cenário e avaliar como a EPM DevTech pode ajudar."
+            />
+          </motion.div>
+        )}
 
         {/* Container Principal: Split Card Unificado */}
         <motion.div

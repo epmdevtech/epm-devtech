@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
 import {
   MapPin,
@@ -13,19 +14,20 @@ import { LegalLinks } from "@/components/legal/LegalModals";
 import { SITE_CONFIG } from "@/config/site";
 
 const SOLUTIONS_LINKS = [
-  { label: "Sistemas, portais e sites", href: "#servicos" },
-  { label: "APIs e back-end escalável", href: "#servicos" },
-  { label: "Integrações entre sistemas", href: "#servicos" },
-  { label: "Modernização de legados", href: "#servicos" },
+  { label: "Sistemas, portais e plataformas", href: "/servicos" },
+  { label: "APIs e back-end escalável", href: "/servicos" },
+  { label: "Integrações entre sistemas", href: "/servicos" },
+  { label: "Modernização de legados", href: "/servicos" },
 ];
 
 const NAVIGATION_LINKS = [
-  { label: "Serviços", href: "#servicos" },
-  { label: "Como trabalhamos", href: "#como-trabalhamos" },
-  { label: "Diferenciais", href: "#diferenciais" },
-  { label: "Sobre a empresa", href: "#sobre" },
-  { label: "Dúvidas frequentes", href: "#faq" },
-  { label: "Falar sobre meu projeto", href: "#contato" },
+  { label: "Serviços", href: "/servicos" },
+  { label: "Como trabalhamos", href: "/como-trabalhamos" },
+  { label: "Experiência", href: "/experiencia" },
+  { label: "Engenharia", href: "/engenharia" },
+  { label: "Sobre a empresa", href: "/sobre" },
+  { label: "Dúvidas frequentes", href: "/duvidas-frequentes" },
+  { label: "Falar sobre meu projeto", href: "/contato" },
 ];
 
 const THEME_OPTIONS = [
@@ -89,10 +91,10 @@ const Footer = () => {
             {/* Coluna 1: Identidade e Posicionamento */}
             <div className="flex flex-col gap-4">
               <div className="flex items-center gap-2">
-                <a
-                  href="#hero"
+                <Link
+                  to="/"
                   className="flex items-center gap-2 group transition-transform duration-200 hover:scale-[1.02]"
-                  aria-label="EPM DEVTECH - Início"
+                  aria-label="EPM DEVTECH — Início"
                 >
                   {/* Logotipo Dark Mode */}
                   <img
@@ -110,7 +112,7 @@ const Footer = () => {
                     height={49}
                     className="h-7 w-auto object-contain block dark:hidden"
                   />
-                </a>
+                </Link>
               </div>
 
               <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
@@ -132,12 +134,12 @@ const Footer = () => {
               <ul className="flex flex-col gap-2.5 list-none p-0 m-0">
                 {SOLUTIONS_LINKS.map((link) => (
                   <li key={link.label}>
-                    <a
-                      href={link.href}
+                    <Link
+                      to={link.href}
                       className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded"
                     >
                       {link.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -151,12 +153,12 @@ const Footer = () => {
               <ul className="flex flex-col gap-2.5 list-none p-0 m-0">
                 {NAVIGATION_LINKS.map((link) => (
                   <li key={link.label}>
-                    <a
-                      href={link.href}
+                    <Link
+                      to={link.href}
                       className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded"
                     >
                       {link.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>

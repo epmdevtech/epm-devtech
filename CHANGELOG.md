@@ -9,6 +9,44 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.60-arquitetura-informacao-multi-rota] - 2026-10-01
+
+### Adicionado
+- **`specs/SPEC-060-arquitetura-informacao-multi-rota.md`**: Especificação completa da arquitetura de informação multi-rota, navegação enxuta, SEO estruturado e regras de preservação de URL.
+- **`tasks/TASK-060-arquitetura-informacao-multi-rota.md`**: Tarefa SDD com inventário de rotas, componentes e checklist de validação.
+- **`reviews/QA-060.md`**: Relatório de qualidade com evidências, quality gates (161 testes unitários, 43 testes E2E, cobertura 99.64%) e auditoria Lighthouse.
+- **`docs/refactor/inventory.md`**: Inventário técnico de rotas, navegação, metadados, baseline de testes e performance do monólito one-page anterior.
+- **`docs/refactor/route-map.md`**: Tabela canônica de rotas novas, redirecionamentos 301 permanentes e estratégia de hash no cliente.
+- **`docs/refactor/plan.md`**: Plano de execução detalhado com análise de impacto, pré-render e decisões de arquitetura.
+- **`src/config/experience.ts`**: Dataset canônico tipado de organizações profissionais aprovadas (`CAPES`, `ONS`, `Energia Pecém`), com declaração explícita de não-clientes da EPM.
+- **`src/config/faq.ts`**: Fonte única para as 8 perguntas frequentes categorizadas.
+- **`src/components/ui/PageHeader.tsx`**: Componente de cabeçalho padronizado para páginas internas com eyebrow, título semântico `<h1>` e descrição.
+- **`src/components/routing/ScrollManager.tsx`**: Gerenciador de restauração de rolagem, foco acessível no `<h1>` e redirecionamento de hashes legados.
+- **`src/components/layout/Layout.tsx`**: Shell persistente compartilhado contendo Header, Skip-Link (`#conteudo-principal`), `<main>` com `<Outlet />` e Footer.
+- **`src/pages/Home.tsx`**: Homepage curta como hub comercial combinando Hero Slim com resumos e links para páginas de aprofundamento.
+- **`src/pages/ServicesPage.tsx`**: Rota `/servicos` com detalhamento das 4 ofertas, mockups e gatilhos "Quando precisa:".
+- **`src/pages/HowWeWorkPage.tsx`**: Rota `/como-trabalhamos` com pipeline sequencial de 4 etapas de engenharia.
+- **`src/pages/ExperiencePage.tsx`**: Rota `/experiencia` com indicadores de confiabilidade, 4 contextos de mercado e organizações de atuação profissional.
+- **`src/pages/EngineeringPage.tsx`**: Rota `/engenharia` com os 3 pilares de engenharia, boas práticas e grafo `TechConstellation`.
+- **`src/pages/AboutPage.tsx`**: Rota `/sobre` institucional com liderança técnica, atuação remota e dados cadastrais de Toledo/PR.
+- **`src/pages/ContactPage.tsx`**: Rota `/contato` com formulário estruturado, SLA de resposta e canais diretos.
+- **`src/pages/FAQPage.tsx`**: Rota `/duvidas-frequentes` com acordeão categorizado.
+- **`scripts/prerender.js`**: Script de pós-build que gera arquivos estáticos `dist/<rota>/index.html` pré-populados com metadados para SEO e crawlers sem JS.
+- **`e2e/multi-route-navigation.spec.ts`**: Bateria de 13 testes Playwright cobrindo carregamento direto F5, H1 único por rota, menu mobile e redirecionamentos.
+
+### Modificado
+- **`src/App.tsx`**: Configuração de rotas aninhadas em `Layout`, rotas de redirecionamento local e rota 404 limpa.
+- **`src/components/layout/Header.tsx`**: Menu superior enxuto com 5 links (`NavLink` com `aria-current="page"`) + 1 botão CTA (`"Falar sobre meu projeto"` para `/contato`).
+- **`src/components/sections/Footer.tsx`**: Links internos convertidos para rotas canônicas dedicadas.
+- **`src/components/ContactForm.tsx`**: Alinhamento do campo `projectType` aos 4 serviços canônicos.
+- **`src/pages/NotFound.tsx`**: Página 404 totalmente em português com meta `noindex` e links de recuperação de navegação.
+- **`vercel.json`**: Adição de 5 regras de redirecionamento 301 permanente para rotas antigas.
+- **`public/sitemap.xml`**: Atualização para as 8 URLs canônicas da nova arquitetura.
+- **`public/llms.txt`**: Atualização do contexto canônico para agentes de IA e LLMs com 8 rotas, 4 serviços e CTA unificado.
+- **`public/llms-full.txt`**: Documentação aprofundada de contexto institucional e técnico para motores de busca generativos.
+- **`index.html`**: Refinamento de URLs no schema JSON-LD (`FAQPage` para `/duvidas-frequentes` e serviços).
+- **`package.json`**: Integração do pré-render no comando `npm run build`.
+
 ## [0.0.59-hero-slim-minimalista] - 2026-10-01
 
 ### Adicionado

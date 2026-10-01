@@ -72,33 +72,48 @@ A página apresenta serviços, tecnologias, diferenciais, projetos de autoridade
 ## Arquitetura
 
 ### Tipo
-Single Page Application (SPA) com roteamento client-side simulando seções via `/:section`.
+Single Page Application (SPA) multi-rota desacoplada com rotas independentes, hub comercial enxuto na raiz e pré-renderização estática de HTML no pós-build para SEO pleno.
 
-### Estrutura de Rotas
-| Rota            | Seção               |
-|-----------------|---------------------|
-| `/`             | Hero                |
-| `/sobre`        | About               |
-| `/setores`      | Sectors             |
-| `/servicos`     | Services            |
-| `/tecnologias`  | Technologies        |
-| `/diferenciais` | Differentials       |
-| `/faq`          | FAQ                 |
-| `/contato`      | Contact             |
-| `/*`            | NotFound (404)      |
+### Estrutura de Rotas Canônicas
+| Rota                 | Componente           | Função                                      |
+|----------------------|----------------------|---------------------------------------------|
+| `/`                  | `Home.tsx`           | Hub comercial sintetizado com Hero Slim     |
+| `/servicos`          | `ServicesPage.tsx`   | Catálogo com 4 ofertas e dores de negócio   |
+| `/como-trabalhamos`  | `HowWeWorkPage.tsx`  | Pipeline sequencial de 4 etapas             |
+| `/experiencia`       | `ExperiencePage.tsx` | Indicadores de autoridade e contextos reais |
+| `/engenharia`        | `EngineeringPage.tsx`| Pilares de engenharia e TechConstellation   |
+| `/sobre`             | `AboutPage.tsx`      | Institucional com liderança técnica e dados |
+| `/contato`           | `ContactPage.tsx`    | Formulário de contato, canais e SLA         |
+| `/duvidas-frequentes`| `FAQPage.tsx`        | 8 perguntas categorizadas (fonte única)     |
+| `/*`                 | `NotFound.tsx`       | Página 404 em português com links de resgate|
 
-### Scroll Spy
-IntersectionObserver com `rootMargin: "-40% 0px -40% 0px"` atualiza a URL via `replaceState` ao rolar — sem empilhar histórico.
+### Redirecionamentos 301 (Edge / Vercel)
+- `/setores` → `/experiencia` (301 permanente)
+- `/autoridade` → `/experiencia` (301 permanente)
+- `/diferenciais` → `/engenharia` (301 permanente)
+- `/tecnologias` → `/engenharia` (301 permanente)
+- `/faq` → `/duvidas-frequentes` (301 permanente)
+
+### Gerenciamento de Foco e Rolagem (`ScrollManager`)
+- Rolagem suave para o topo a cada transição de rota (respeitando `prefers-reduced-motion`).
+- Transferência programática de foco para o `<h1>` da nova rota (`tabIndex={-1}`) para suporte pleno a leitores de tela.
+- Interceptação de hashes legados na raiz (`/#servicos`, `/#contato`) redirecionando via `replaceState` para rotas canônicas.
 
 ### Estrutura de Diretórios
 ```
 src/
-├── App.tsx                     # Providers raiz e roteamento
+├── App.tsx                     # Rotas aninhadas sob Layout e providers raiz
 ├── main.tsx                    # Ponto de entrada React
 ├── index.css                   # Estilos globais e tokens Tailwind
+├── config/
+│   ├── experience.ts           # Organizações aprovadas (CAPES, ONS, Energia Pecém)
+│   └── faq.ts                  # Perguntas frequentes categorizadas
 ├── components/
 │   ├── layout/
-│   │   └── Header.tsx          # Navegação principal
+│   │   ├── Layout.tsx          # Shell persistente com skip-link, Header, Outlet e Footer
+│   │   └── Header.tsx          # Menu enxuto (5 links + 1 botão CTA)
+│   ├── routing/
+│   │   └── ScrollManager.tsx   # Foco e rolagem acessível entre rotas
 │   ├── sections/
 │   │   ├── Hero.tsx
 │   │   ├── Authority.tsx
@@ -111,7 +126,7 @@ src/
 │   │   ├── FAQ.tsx
 │   │   ├── Contact.tsx
 │   │   └── Footer.tsx
-│   ├── ui/                     # Componentes shadcn/ui e SectionHeader.tsx
+│   ├── ui/                     # Componentes shadcn/ui, PageHeader e SectionHeader
 │   ├── CursorOrb.tsx
 │   ├── NavLink.tsx
 │   ├── cookie-banner.tsx
@@ -120,26 +135,34 @@ src/
 ├── lib/
 │   └── buildConstellationLayout.ts
 ├── pages/
-│   ├── Index.tsx               # Página principal com SEO dinâmico
-│   └── NotFound.tsx
+│   ├── Home.tsx                # Homepage curta como hub comercial
+│   ├── ServicesPage.tsx        # /servicos
+│   ├── HowWeWorkPage.tsx       # /como-trabalhamos
+│   ├── ExperiencePage.tsx      # /experiencia
+│   ├── EngineeringPage.tsx     # /engenharia
+│   ├── AboutPage.tsx           # /sobre
+│   ├── ContactPage.tsx         # /contato
+│   ├── FAQPage.tsx             # /duvidas-frequentes
+│   └── NotFound.tsx            # 404 em português
 └── test/
     ├── setup.ts
     └── example.test.ts
 ```
 
-### Padrões de Carregamento
-- **Hero** e **Header**: carregamento imediato (LCP crítico)
-- Demais seções: `React.lazy` + `Suspense` (code splitting automático)
-- Bundle splitting manual via Vite `manualChunks`: `framer-motion`, `react`, `router`, `radix`, `icons`, `emailjs`, `tanstack`
+### Padrões de Carregamento e SEO
+- **Home**, **Layout** e **Header**: carregamento imediato na raiz (LCP instantâneo sem layout shift)
+- Subrotas independentes: `React.lazy` + `Suspense` sob demanda
+- Pré-render estático multi-rota via `scripts/prerender.js` gerando `dist/<rota>/index.html` pré-populado com `<title>`, `<meta name="description">`, `<link rel="canonical">`, Open Graph e H1 para crawlers e scrapers sem JavaScript.
 
 ---
 
 ## SEO
 
-- Meta tags dinâmicas por seção via `react-helmet-async`
-- URL canônica dinâmica
-- Open Graph configurado
-- Skip-to-content link para acessibilidade
+- Meta tags dinâmicas por rota via `react-helmet-async`
+- Pré-render estático no pós-build para scrapers de redes sociais e SEO bot
+- URL canônica individual por rota (`data-rh="true"`)
+- Open Graph e Twitter Cards específicos por página
+- Skip-to-content link para acessibilidade (`#conteudo-principal`)
 
 ---
 
@@ -163,11 +186,11 @@ src/
 | Footer            | ✅ Refatorado    | Links corporativos sincronizados via `site.ts`, LinkedIn e GitHub oficiais na coluna Contato com ícones SVG monocromáticos (20px) e touch target ≥ 44px; descrição factual "dedicada a..." (SPEC-057) |
 | ScrollToTop       | ✅ Neutro / Flat | Ícone ChevronUp (20px), design utilitário neutro sem glow ou realce verde, fade suave >450px e elevação dinâmica no rodapé |
 | Cookie Banner     | ✅ Otimizado     | Lazy load assíncrono + defer timer (3.5s)  |
-| SEO & Agêntico    | ✅ Refatorado    | Meta description otimizada, Open Graph 1200×630, JSON-LD (`ProfessionalService` com `sameAs` oficial da empresa), saneamento de termos superlativos em `README.md`, `llms.txt` e `site.ts` (SPEC-056) |
-| Testes unitários  | ✅ Implementado  | 22/22 suites, 151/151 testes passando (99.75% coverage geral, 100% em Hero, Authority, About, HowWeWork, Differentials, Sectors, Services, Technologies) |
-| Testes E2E        | ✅ Implementado  | Suíte Playwright (30/30 testes passando: estabilidade, design system, travas estritas de tokens e gradientes, ausência de zeros nos stats sem rolagem/com reduced-motion, e 5 viewports) |
-| Acessibilidade    | ✅ 100% WCAG AA  | Contraste de texto e botões >= 4.5:1 (Logotipo WCAG AAA >= 17:1), hierarquia semântica com `<header>`, `aria-labelledby` e `text-wrap: balance` |
-| Performance       | ✅ 100% Otimizado| JS inicial 63.32 KB (gzip 21.36 KB), FCP 0.4s / LCP 0.5s desktop, LCP mobile 2.1s (-40%), Performance desktop 99 / mobile 79, maior chunk 142KB |
+| Multi-Rota & SEO  | ✅ Multi-Rota SPA | Transição de monólito one-page para SPA multi-rota com rotas canônicas independentes (`/`, `/servicos`, `/como-trabalhamos`, `/experiencia`, `/engenharia`, `/sobre`, `/contato`, `/duvidas-frequentes`), menu enxuto (5 links + 1 CTA), preservação 301 de URLs e pré-render estático HTML pós-build (SPEC-060) |
+| Testes unitários  | ✅ Implementado  | 25/25 suites, 161/161 testes passando (99.64% linhas, 90.44% branches, 90.38% funcs) |
+| Testes E2E        | ✅ Implementado  | Suíte Playwright (43/43 testes passando: rotas independentes, F5 direto, SEO canônico, menu mobile acessível, Hero slim, travas de tokens e responsividade) |
+| Acessibilidade    | ✅ 100% WCAG AA  | Skip-link acessível, foco programático em `<h1>`, `aria-current="page"`, contraste ≥ 4.5:1, touch target ≥ 44px, zero layout shift (CLS: 0.000 mobile) |
+| Performance       | ✅ 100% Otimizado| Mobile Perf: 84 (+16 pontos vs baseline 68), TBT: 480ms (-77% de bloqueio), CLS: 0.000; Desktop Perf: 97, SEO: 100/100, FCP 0.5s / LCP 0.6s |
 | Proxy Odontologia | ✅ Implementado  | `/odontologia-demo` → proxy reverso Vercel para `dentistry-demo.elessandrodev.workers.dev` com 4 headers AppSec (SPEC-044) |
 | i18n              | ❌ Não iniciado  | Não planejado na versão atual              |
 

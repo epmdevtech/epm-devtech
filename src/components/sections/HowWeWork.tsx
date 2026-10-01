@@ -42,7 +42,11 @@ const steps = [
 /* Posições dos pontos ao longo da linha do pipeline para 4 etapas no desktop */
 const DOT_POSITIONS = [12.5, 37.5, 62.5, 87.5];
 
-const HowWeWork = () => {
+export interface HowWeWorkProps {
+  hideHeader?: boolean;
+}
+
+const HowWeWork: React.FC<HowWeWorkProps> = ({ hideHeader = false }) => {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const shouldReduceMotion = useReducedMotion();
@@ -231,18 +235,20 @@ const HowWeWork = () => {
 
         <div className="container px-6">
           {/* ── Header Padronizado Centralizado ── */}
-          <motion.div
-            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
-            animate={isInView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: shouldReduceMotion ? 0 : 0.55 }}
-          >
-            <SectionHeader
-              id="como-trabalhamos-heading"
-              tagline="Processo"
-              title="Como trabalhamos"
-              subtitle="Etapas estruturadas para transformar necessidades em software confiável."
-            />
-          </motion.div>
+          {!hideHeader && (
+            <motion.div
+              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+              animate={isInView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: shouldReduceMotion ? 0 : 0.55 }}
+            >
+              <SectionHeader
+                id="como-trabalhamos-heading"
+                tagline="Processo"
+                title="Como trabalhamos"
+                subtitle="Etapas estruturadas para transformar necessidades em software confiável."
+              />
+            </motion.div>
+          )}
 
           {/* ── Desktop Pipeline Line (>= 1024px) ── */}
           <div className="hww-pipeline-wrapper hidden lg:block" aria-hidden="true">

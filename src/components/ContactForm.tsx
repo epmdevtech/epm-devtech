@@ -28,12 +28,20 @@ import { Button } from "@/components/ui/button";
 import { formatBrazilianPhone, validateBrazilianPhone } from "@/lib/phone";
 
 export const PROJECT_TYPES = [
-  "Novo Sistema ou Aplicação Web",
-  "Modernização de Sistema Legado",
-  "APIs, Microsserviços e Integrações",
-  "Consultoria Técnica e Arquitetura",
-  "Outro Desafio",
+  "Sistema, portal ou site institucional",
+  "APIs e integrações",
+  "Modernização de sistema legado",
+  "Consultoria ou avaliação técnica",
+  "Outro",
 ] as const;
+
+export const LEGACY_PROJECT_TYPE_MAP: Record<string, string> = {
+  "Novo Sistema ou Aplicação Web": "Sistema, portal ou site institucional",
+  "Modernização de Sistema Legado": "Modernização de sistema legado",
+  "APIs, Microsserviços e Integrações": "APIs e integrações",
+  "Consultoria Técnica e Arquitetura": "Consultoria ou avaliação técnica",
+  "Outro Desafio": "Outro",
+};
 
 export const contactFormSchema = z.object({
   name: z

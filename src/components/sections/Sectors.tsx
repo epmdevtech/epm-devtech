@@ -144,7 +144,11 @@ const sectors = [
   },
 ];
 
-const Sectors = () => {
+export interface SectorsProps {
+  hideHeader?: boolean;
+}
+
+const Sectors: React.FC<SectorsProps> = ({ hideHeader = false }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
@@ -387,19 +391,21 @@ const Sectors = () => {
 
         <div className="container px-6">
           {/* Header da Seção */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.55 }}
-            className="mb-14"
-          >
-            <SectionHeader
-              id="setores-heading"
-              tagline="Contextos de negócio"
-              title="Experiência em diferentes contextos"
-              subtitle="Projetos desenvolvidos em ambientes com diferentes níveis de complexidade, integração e requisitos operacionais."
-            />
-          </motion.div>
+          {!hideHeader && (
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.55 }}
+              className="mb-14"
+            >
+              <SectionHeader
+                id="setores-heading"
+                tagline="Contextos de negócio"
+                title="Experiência em diferentes contextos"
+                subtitle="Projetos desenvolvidos em ambientes com diferentes níveis de complexidade, integração e requisitos operacionais."
+              />
+            </motion.div>
+          )}
 
           {/* Cards 3D Preservados Integralmente */}
           <div className="max-w-6xl mx-auto sectors-pairs-wrap">

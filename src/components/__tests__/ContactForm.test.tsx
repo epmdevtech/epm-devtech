@@ -166,7 +166,7 @@ describe('ContactForm Component', () => {
       target: { value: '(45) 99999-8888' },
     });
     fireEvent.change(screen.getByTestId('project-type-select'), {
-      target: { value: 'Modernização de Sistema Legado' },
+      target: { value: 'Modernização de sistema legado' },
     });
     fireEvent.change(screen.getByLabelText(/Mensagem/i), {
       target: { value: 'Gostaríamos de migrar nosso monolito para arquitetura modular.' },
@@ -194,7 +194,7 @@ describe('ContactForm Component', () => {
       target: { value: 'ana@tech.com' },
     });
     fireEvent.change(screen.getByTestId('project-type-select'), {
-      target: { value: 'APIs, Microsserviços e Integrações' },
+      target: { value: 'APIs e integrações' },
     });
     fireEvent.change(screen.getByLabelText(/Mensagem/i), {
       target: { value: 'Precisamos de consultoria para desenho de APIs críticas.' },
@@ -208,7 +208,7 @@ describe('ContactForm Component', () => {
         expect.objectContaining({
           name: 'Ana Souza',
           email: 'ana@tech.com',
-          projectType: 'APIs, Microsserviços e Integrações',
+          projectType: 'APIs e integrações',
         })
       );
       expect(mockToastSuccess).toHaveBeenCalledWith(
@@ -231,7 +231,7 @@ describe('ContactForm Component', () => {
       target: { value: 'carlos@empresa.com' },
     });
     fireEvent.change(screen.getByTestId('project-type-select'), {
-      target: { value: 'Consultoria Técnica e Arquitetura' },
+      target: { value: 'Consultoria ou avaliação técnica' },
     });
     fireEvent.change(screen.getByLabelText(/Mensagem/i), {
       target: { value: 'Necessitamos de revisão arquitetural para escalabilidade.' },
