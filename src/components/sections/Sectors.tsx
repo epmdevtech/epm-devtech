@@ -381,7 +381,7 @@ const Sectors = () => {
         .mockup-chip-label { font-size: 0.65rem; color: hsl(var(--muted-foreground)); }
       `}</style>
 
-      <section id="setores" className="relative py-24 bg-secondary/20 overflow-hidden" ref={ref}>
+      <section id="setores" aria-labelledby="setores-heading" className="relative py-24 bg-secondary/20 overflow-hidden" ref={ref}>
         {/* top divider */}
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
 
@@ -394,6 +394,7 @@ const Sectors = () => {
             className="mb-14"
           >
             <SectionHeader
+              id="setores-heading"
               tagline="Contextos de negócio"
               title="Experiência em diferentes contextos"
               subtitle="Projetos desenvolvidos em ambientes com diferentes níveis de complexidade, integração e requisitos operacionais."

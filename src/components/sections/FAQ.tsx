@@ -99,7 +99,7 @@ const FAQ = () => {
       id="faq"
       ref={ref}
       className="relative py-24 bg-background overflow-hidden"
-      aria-label="Perguntas frequentes"
+      aria-labelledby="faq-heading"
     >
       {/* top divider */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
@@ -123,6 +123,7 @@ const FAQ = () => {
           className="mb-14"
         >
           <SectionHeader
+            id="faq-heading"
             tagline="Dúvidas frequentes"
             title="As perguntas que sempre chegam primeiro"
             subtitle="Respostas diretas sobre como começar um projeto, como mexemos em sistema legado e como funciona nosso modelo de trabalho."

@@ -12,7 +12,7 @@ const Technologies = () => {
   const isInView = useInView(ref, { once: true, margin: "100px 0px" });
 
   return (
-    <section id="tecnologias" className="relative py-24 bg-background overflow-hidden" ref={ref}>
+    <section id="tecnologias" aria-labelledby="tecnologias-heading" className="relative py-24 bg-background overflow-hidden" ref={ref}>
       <div className="container px-6">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -21,6 +21,7 @@ const Technologies = () => {
           className="mb-8"
         >
           <SectionHeader
+            id="tecnologias-heading"
             tagline="Stack e ferramentas"
             title="Tecnologias que usamos para construir soluções"
             subtitle="Selecionamos as ferramentas de acordo com as necessidades de cada projeto, considerando desempenho, segurança, manutenção e evolução contínua."

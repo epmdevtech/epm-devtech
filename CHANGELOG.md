@@ -9,6 +9,26 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.58-padronizacao-cabecalhos-icones-premium] - 2026-09-30
+
+### Adicionado
+- **`specs/SPEC-058-padronizacao-cabecalhos-icones-premium.md`**: Especificação técnica da padronização estrita de cabeçalhos de seção (`SectionHeader`) e consolidação da suíte de ícones conceituais autorais.
+- **`tasks/TASK-058-padronizacao-cabecalhos-icones-premium.md`**: Tarefa SDD rastreada com escopo de arquivos e checklist de execução.
+- **`reviews/QA-058.md`**: Relatório de QA com evidências, quality gates (100% aprovados, cobertura 99.46%, 18 testes E2E) e matriz de conformidade.
+- **`src/components/icons/Icon.tsx`**: Componente wrapper reutilizável para ícones conceituais autorais com suporte a acessibilidade e tipagem estrita.
+- **`src/components/icons/__tests__/Icon.test.tsx`**: Testes unitários para o componente wrapper `Icon`.
+- **`scripts/generate-icon-preview.cjs`**: Script de geração da matriz de prévia dos 15 ícones autorais em 4 tamanhos (16, 20, 24, 32px) para Dark e Light Mode.
+- **`docs/evidence/icons/`**: Matriz de evidência de renderização visual dos ícones.
+
+### Modificado
+- **`src/components/sections/Authority.tsx`**:
+  - Remoção de override tipográfico no H2 (`titleClassName`), igualando a escala fluida padronizada a todas as seções do site.
+  - Associação semântica com `aria-labelledby="autoridade-heading"`.
+- **`src/components/sections/Services.tsx`**, **`Technologies.tsx`**, **`Sectors.tsx`**, **`FAQ.tsx`**, **`Contact.tsx`**:
+  - Associação explícita de `aria-labelledby="[id]-heading"` em cada `<section>` referenciando o id do `SectionHeader`.
+- **`src/components/icons/index.ts`**:
+  - Exportação unificada de tipos, ícones conceituais e componente `Icon`.
+
 ## [0.0.57-metricas-lideranca-outras-empresas-links-sociais] - 2026-09-30
 
 ### Adicionado

@@ -45,6 +45,7 @@ const Authority = () => {
   return (
     <section
       id="autoridade"
+      aria-labelledby="autoridade-heading"
       className="py-14 lg:py-16 border-y border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-zinc-900/30 relative"
       ref={ref}
     >
@@ -55,12 +56,12 @@ const Authority = () => {
           transition={{ duration: 0.5 }}
           className="space-y-8"
         >
-          {/* Cabeçalho com título e legenda de atribuição honesta (sem a palavra "conduzidos") */}
+          {/* Cabeçalho centralizado com escala padronizada e acessibilidade */}
           <SectionHeader
+            id="autoridade-heading"
             tagline="Experiência e contexto"
             title="Experiência em operações que não podem parar"
             subtitle="Resultados de projetos da liderança técnica da EPM DevTech em outras empresas."
-            titleClassName="text-2xl sm:text-3xl"
           />
 
           {/* 4 Métricas Consolidadas com Animação CountUp */}

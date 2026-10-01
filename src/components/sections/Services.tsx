@@ -273,7 +273,7 @@ const Services = () => {
         }
       `}</style>
 
-      <section id="servicos" className="relative py-24 bg-secondary/30" ref={ref}>
+      <section id="servicos" aria-labelledby="servicos-heading" className="relative py-24 bg-secondary/30" ref={ref}>
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
 
         <div className="container px-6">
@@ -284,6 +284,7 @@ const Services = () => {
             className="mb-16"
           >
             <SectionHeader
+              id="servicos-heading"
               tagline="Serviços"
               title="Soluções sob medida para cada estágio da sua operação"
               subtitle="Da criação de um novo produto à modernização de sistemas existentes, atuamos com rigor técnico e foco no resultado do seu negócio."

@@ -147,15 +147,15 @@ src/
 
 | Área              | Status           | Notas                                      |
 |-------------------|------------------|--------------------------------------------|
-| Design            | ✅ Padronizado   | Design System Verde EPM DEVTECH (#10B981), cabeçalhos centralizados com `<header>` (`SectionHeader`), tipografia fluida, títulos monocromáticos e padrão sentence case |
+| Design            | ✅ Padronizado   | Design System Verde EPM DEVTECH (#10B981), cabeçalhos 100% centralizados com `<header>` (`SectionHeader`), escala H2 fluida idêntica em todas as seções, `aria-labelledby` em cada seção e `[text-wrap:balance]` (SPEC-058) |
 | Tipografia / Títulos | ✅ Padronizado   | Eyebrows minimalistas com traço do ícone da marca (BrandChipIcon em #10B981) + texto cinza uppercase (11.5px, weight 500, letter-spacing 0.1em), títulos 100% monocromáticos, zero cápsulas e padrão sentence case em todo o site |
-| Iconografia       | ✅ Autoral / SVG | Conjunto autoral de 15 SVGs conceituais em `@/components/icons` com traço 1.5px, duotone 10% e nó verde de assinatura de marca; sem caixas de template |
+| Iconografia       | ✅ Autoral / SVG | Conjunto autoral de 15 SVGs conceituais em `@/components/icons` com traço 1.5px, duotone 10%, nó verde de assinatura de marca e wrapper `Icon`; sem caixas de template (SPEC-058) |
 | Hero              | ✅ Refatorado    | Iluminação volumétrica atmosférica com efeito Lamp (`LampContainer`), Eyebrow badge `EPM DEVTECH` • `SOFTWARE HOUSE`, headline monocromática, supporting copy corporativo, CTA primário unificado "Falar sobre meu projeto", CTA secundário "Conhecer a EPM DevTech", topologia sóbria |
 | Services          | ✅ Expandido     | 4 ofertas com gatilhos de dor destacados ("Quando precisa:" com label verde mono, pergunta em foreground font-medium, divisor fino e alinhamento na base), títulos em sentence case e sem repetição de "reduzindo" (SPEC-056) |
 | Como Trabalhamos  | ✅ Sequencial    | Seção de processo sequencial com pipeline 01-04, lista semântica `<ol>`, timeline vertical no mobile (< 1024px), ícones autorais no cabeçalho do card e sem caixa esmeralda inferior |
 | Differentials     | ✅ 3 Colunas     | Cabeçalho centralizado, 3 colunas abertas sem moldura de card separadas por divisores sutis verticais, ícones autorais no topo e bloco inferior centralizado de práticas de engenharia (SPEC-053) |
 | Technologies      | ✅ Constellation | TechConstellation interativo com trilhas PCB, Focus & Context, cabeçalho centralizado e Painel Arquitetural |
-| Autoridade        | ✅ CountUp       | Grid simétrico com 4 estatísticas consolidadas (99,9%, 2.500 RPS, 100%, −35%), subtítulo atualizado com contexto de outras empresas, DOM inicial com valores finais sem zero placeholder, contagem animada como progressive enhancement, aria-hidden nos números visuais e sr-only dedicado (SPEC-057) |
+| Autoridade        | ✅ CountUp       | Grid simétrico com 4 estatísticas consolidadas (99,9%, 2.500 RPS, 100%, −35%), subtítulo atualizado com contexto de outras empresas, escala H2 unificada, DOM inicial com valores finais sem zero placeholder, contagem animada como progressive enhancement, aria-hidden nos números visuais e sr-only dedicado (SPEC-058) |
 | Sectors           | ✅ Refatorado    | Título "Experiência em diferentes contextos", 4 cards 3D isomórficos com ícones conceituais autorais e sem setas direcionais (falsa affordance removida) |
 | About             | ✅ Enquadrado    | Posicionamento centrado na software house, cabeçalho centralizado, liderança técnica com ícone autoral, indicador de experiência estático (+9 Anos), sem título de engenheiro (SPEC-055) |
 | FAQ               | ✅ Condensado    | 8 perguntas essenciais, pergunta de sites institucionais alocada na categoria "servicos", abas em sentence case e CTA integrado |
@@ -164,7 +164,7 @@ src/
 | ScrollToTop       | ✅ Neutro / Flat | Ícone ChevronUp (20px), design utilitário neutro sem glow ou realce verde, fade suave >450px e elevação dinâmica no rodapé |
 | Cookie Banner     | ✅ Otimizado     | Lazy load assíncrono + defer timer (3.5s)  |
 | SEO & Agêntico    | ✅ Refatorado    | Meta description otimizada, Open Graph 1200×630, JSON-LD (`ProfessionalService` com `sameAs` oficial da empresa), saneamento de termos superlativos em `README.md`, `llms.txt` e `site.ts` (SPEC-056) |
-| Testes unitários  | ✅ Implementado  | 21/21 suites, 147/147 testes passando (99.46% coverage geral, 100% em Authority, About, HowWeWork, Differentials, Sectors, Services, Technologies) |
+| Testes unitários  | ✅ Implementado  | 22/22 suites, 149/149 testes passando (99.46% coverage geral, 100% em Authority, About, HowWeWork, Differentials, Sectors, Services, Technologies) |
 | Testes E2E        | ✅ Implementado  | Suíte Playwright (18/18 testes passando: estabilidade, design system, ausência de zeros nos stats sem rolagem/com reduced-motion, e 5 viewports) |
 | Acessibilidade    | ✅ 100% WCAG AA  | Contraste de texto e botões >= 4.5:1 (Logotipo WCAG AAA >= 17:1), hierarquia semântica com `<header>` e `text-wrap: balance` |
 | Performance       | ✅ 100% Otimizado| JS inicial < 80 KB, FCP/LCP instantâneo, módulo de ícones 8.5 KB, maior chunk 142KB |
