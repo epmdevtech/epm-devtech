@@ -154,4 +154,31 @@ describe('Header', () => {
 
     expect(screen.getByLabelText('Abrir menu')).toBeInTheDocument();
   });
+
+  it('renderiza o botão CTA "Falar sobre meu projeto" no desktop e no menu mobile', () => {
+    render(<Header />);
+    const ctaButtons = screen.getAllByRole('link', { name: /Falar sobre meu projeto/i });
+    expect(ctaButtons.length).toBeGreaterThanOrEqual(1);
+    expect(ctaButtons[0]).toHaveAttribute('href', '#contato');
+  });
+
+  it('clique no CTA "Falar sobre meu projeto" dispara navegação e rolagem para #contato', () => {
+    vi.useFakeTimers();
+    render(<Header />);
+    const section = createSection('contato', 1200);
+
+    const desktopCta = screen.getAllByRole('link', { name: /Falar sobre meu projeto/i })[0];
+    fireEvent.click(desktopCta);
+
+    expect(mockNavigate).toHaveBeenCalledWith('/contato');
+
+    vi.advanceTimersByTime(400);
+    expect(scrollToMock).toHaveBeenCalledWith({
+      top: 1200 + window.scrollY - 80,
+      behavior: 'smooth',
+    });
+
+    document.body.removeChild(section);
+    vi.useRealTimers();
+  });
 });

@@ -150,7 +150,7 @@ src/
 | Design            | ✅ Padronizado   | Design System Verde EPM DEVTECH (#10B981), cabeçalhos 100% centralizados com `<header>` (`SectionHeader`), escala H2 fluida idêntica em todas as seções, `aria-labelledby` em cada seção e `[text-wrap:balance]` (SPEC-058) |
 | Tipografia / Títulos | ✅ Padronizado   | Eyebrows minimalistas com traço do ícone da marca (BrandChipIcon em #10B981) + texto cinza uppercase (11.5px, weight 500, letter-spacing 0.1em), títulos 100% monocromáticos, zero cápsulas e padrão sentence case em todo o site |
 | Iconografia       | ✅ Autoral / SVG | Conjunto autoral de 15 SVGs conceituais em `@/components/icons` com traço 1.5px, duotone 10%, nó verde de assinatura de marca e wrapper `Icon`; sem caixas de template (SPEC-058) |
-| Hero              | ✅ Refatorado    | Iluminação volumétrica atmosférica com efeito Lamp (`LampContainer`), Eyebrow badge `EPM DEVTECH` • `SOFTWARE HOUSE`, headline monocromática, supporting copy corporativo, CTA primário unificado "Falar sobre meu projeto", CTA secundário "Conhecer a EPM DevTech", topologia sóbria |
+| Hero              | ✅ Slim / Minimalista | Faixa slim de coluna única centralizada (458px em 1440x900, redução de 62.9%), headline monocromática em 2 linhas com `[text-wrap:balance]`, subheadline concisa, CTA primário unificado "Falar sobre meu projeto", CTA secundário em link de texto, zero gradientes, transição discreta com nó esmeralda sólido e Serviços visível acima da dobra (SPEC-059) |
 | Services          | ✅ Expandido     | 4 ofertas com gatilhos de dor destacados ("Quando precisa:" com label verde mono, pergunta em foreground font-medium, divisor fino e alinhamento na base), títulos em sentence case e sem repetição de "reduzindo" (SPEC-056) |
 | Como Trabalhamos  | ✅ Sequencial    | Seção de processo sequencial com pipeline 01-04, lista semântica `<ol>`, timeline vertical no mobile (< 1024px), ícones autorais no cabeçalho do card e sem caixa esmeralda inferior |
 | Differentials     | ✅ 3 Colunas     | Cabeçalho centralizado, 3 colunas abertas sem moldura de card separadas por divisores sutis verticais, ícones autorais no topo e bloco inferior centralizado de práticas de engenharia (SPEC-053) |
@@ -164,10 +164,10 @@ src/
 | ScrollToTop       | ✅ Neutro / Flat | Ícone ChevronUp (20px), design utilitário neutro sem glow ou realce verde, fade suave >450px e elevação dinâmica no rodapé |
 | Cookie Banner     | ✅ Otimizado     | Lazy load assíncrono + defer timer (3.5s)  |
 | SEO & Agêntico    | ✅ Refatorado    | Meta description otimizada, Open Graph 1200×630, JSON-LD (`ProfessionalService` com `sameAs` oficial da empresa), saneamento de termos superlativos em `README.md`, `llms.txt` e `site.ts` (SPEC-056) |
-| Testes unitários  | ✅ Implementado  | 22/22 suites, 149/149 testes passando (99.46% coverage geral, 100% em Authority, About, HowWeWork, Differentials, Sectors, Services, Technologies) |
-| Testes E2E        | ✅ Implementado  | Suíte Playwright (18/18 testes passando: estabilidade, design system, ausência de zeros nos stats sem rolagem/com reduced-motion, e 5 viewports) |
-| Acessibilidade    | ✅ 100% WCAG AA  | Contraste de texto e botões >= 4.5:1 (Logotipo WCAG AAA >= 17:1), hierarquia semântica com `<header>` e `text-wrap: balance` |
-| Performance       | ✅ 100% Otimizado| JS inicial < 80 KB, FCP/LCP instantâneo, módulo de ícones 8.5 KB, maior chunk 142KB |
+| Testes unitários  | ✅ Implementado  | 22/22 suites, 151/151 testes passando (99.75% coverage geral, 100% em Hero, Authority, About, HowWeWork, Differentials, Sectors, Services, Technologies) |
+| Testes E2E        | ✅ Implementado  | Suíte Playwright (30/30 testes passando: estabilidade, design system, travas estritas de tokens e gradientes, ausência de zeros nos stats sem rolagem/com reduced-motion, e 5 viewports) |
+| Acessibilidade    | ✅ 100% WCAG AA  | Contraste de texto e botões >= 4.5:1 (Logotipo WCAG AAA >= 17:1), hierarquia semântica com `<header>`, `aria-labelledby` e `text-wrap: balance` |
+| Performance       | ✅ 100% Otimizado| JS inicial 63.32 KB (gzip 21.36 KB), FCP 0.4s / LCP 0.5s desktop, LCP mobile 2.1s (-40%), Performance desktop 99 / mobile 79, maior chunk 142KB |
 | Proxy Odontologia | ✅ Implementado  | `/odontologia-demo` → proxy reverso Vercel para `dentistry-demo.elessandrodev.workers.dev` com 4 headers AppSec (SPEC-044) |
 | i18n              | ❌ Não iniciado  | Não planejado na versão atual              |
 
@@ -203,4 +203,4 @@ src/
 
 ---
 
-_Última atualização: 2026-09-30 | Maintainer: Elessandro Prestes Macedo_
+_Última atualização: 2026-10-01 | Maintainer: Elessandro Prestes Macedo_

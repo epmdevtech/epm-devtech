@@ -9,6 +9,38 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.59-hero-slim-minimalista] - 2026-10-01
+
+### Adicionado
+- **`specs/SPEC-059-hero-slim-minimalista.md`**: Especificação do redesenho minimalista slim do Hero, travas estritas de tokens e CTA integrado no Header.
+- **`tasks/TASK-059-hero-slim-minimalista.md`**: Tarefa SDD rastreada com escopo de arquivos e checklist de execução concluído.
+- **`reviews/QA-059.md`**: Relatório de QA com evidências completas, quality gates (100% aprovados, cobertura 99.75%, 30 testes E2E) e auditoria de performance/Lighthouse.
+- **`docs/visual-identity-inventory.md`**: Inventário canônico de paleta, tipografia, raios, bordas, padrões de assinatura e travas de sistema.
+- **`docs/hero-diagnosis.md`**: Diagnóstico detalhado de baseline (alturas, custos, animações e ocupação de tela).
+- **`e2e/hero-identity-token-locks.spec.ts`**: Teste automatizado Playwright auditando ausência total de gradientes e aderência rigorosa aos tokens computados em Dark e Light Mode.
+- **`e2e/diagnose-hero-before.spec.ts`** e **`e2e/diagnose-hero-after.spec.ts`**: Testes de medição automatizada de alturas e geração de evidências visuais.
+- **`docs/evidence/hero-before/`** e **`docs/evidence/hero-after/`**: Capturas comparativas em 5 viewports em Dark e Light Mode, incluindo viewport fold em 1440×900.
+
+### Modificado
+- **`src/components/sections/Hero.tsx`**:
+  - Redesenho completo para formato slim de coluna única centralizada (altura reduzida de 1234px para 458px em desktop).
+  - Serviços visível acima da dobra em 1440×900 sem necessidade de rolagem.
+  - Headline H1 100% monocromática com quebra balanceada em 2 linhas (`max-w-[20ch]`).
+  - Eyebrow minimalista com `BrandChipIcon` e rótulo mono `Software House`.
+  - Ação dominante única com botão primário sólido e link de texto secundário.
+  - Detalhe de transição minimalista com linha de 1px e nó central esmeralda sólido (#10B981).
+  - Erradicação de feixes luminosos, gradientes e animações de entrada que atrasavam o LCP.
+- **`src/components/layout/Header.tsx`**:
+  - Adição de botão de acento CTA `"Falar sobre meu projeto"` à direita da navegação desktop e no menu móvel.
+  - Breakpoint de troca para menu móvel antecipado para `lg` (<1024px) para garantir espaçamento ideal.
+- **`src/index.css`**:
+  - Remoção de regras CSS legadas não utilizadas (`@keyframes hero-orbit`, `.hero-brand-aura`).
+
+### Removido
+- **`src/components/ui/lamp.tsx`**: Componente de feixes de luz cônicos volumétricos excluído por completo.
+- **`src/components/sections/hero/HeroBadge.tsx`**: Badge duplo com seta removido.
+- **`src/components/sections/hero/HeroArchitecture.tsx`**: Console interativo de arquitetura removido do Hero.
+
 ## [0.0.58-padronizacao-cabecalhos-icones-premium] - 2026-09-30
 
 ### Adicionado

@@ -1,0 +1,47 @@
+[
+  {
+    "viewport": "1440x900",
+    "width": 1440,
+    "viewportHeight": 900,
+    "heroHeight": 458,
+    "viewportRatioPercent": 50.9,
+    "servicosTop": 458,
+    "servicosVisibleAboveFold": true
+  },
+  {
+    "viewport": "1024x768",
+    "width": 1024,
+    "viewportHeight": 768,
+    "heroHeight": 449,
+    "viewportRatioPercent": 58.5,
+    "servicosTop": 449,
+    "servicosVisibleAboveFold": true
+  },
+  {
+    "viewport": "768x1024",
+    "width": 768,
+    "viewportHeight": 1024,
+    "heroHeight": 479,
+    "viewportRatioPercent": 46.8,
+    "servicosTop": 479,
+    "servicosVisibleAboveFold": true
+  },
+  {
+    "viewport": "390x844",
+    "width": 390,
+    "viewportHeight": 844,
+    "heroHeight": 508,
+    "viewportRatioPercent": 60.2,
+    "servicosTop": 508,
+    "servicosVisibleAboveFold": true
+  },
+  {
+    "viewport": "320x640",
+    "width": 320,
+    "viewportHeight": 640,
+    "heroHeight": 569,
+    "viewportRatioPercent": 89,
+    "servicosTop": 569,
+    "servicosVisibleAboveFold": true
+  }
+]

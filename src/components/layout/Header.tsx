@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { X } from "lucide-react";
 import { Typewriter } from "@/components/ui/typewriter";
+import { Button } from "@/components/ui/button";
 
 const navLinks = [
   { href: "#servicos", label: "Serviços" },
@@ -105,13 +106,13 @@ const Header = () => {
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-3.5 xl:gap-6 2xl:gap-8">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className="text-xs font-mono font-medium uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors relative group"
+                className="text-[11px] xl:text-xs font-mono font-medium uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors relative group"
               >
                 {link.label}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
@@ -120,10 +121,23 @@ const Header = () => {
           </nav>
 
           {/* Desktop CTA */}
-          <div className="hidden md:flex items-center gap-4 min-w-[170px] justify-end">
+          <div className="hidden lg:flex items-center justify-end shrink-0">
+            <Button
+              asChild
+              size="sm"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium text-xs tracking-wide shadow-xs min-h-[44px] px-4 rounded-md transition-colors"
+            >
+              <a
+                href="#contato"
+                onClick={(e) => handleNavClick(e, "#contato")}
+                aria-label="Falar sobre meu projeto"
+              >
+                Falar sobre meu projeto
+              </a>
+            </Button>
           </div>
 
-          <div className="flex items-center gap-2 md:hidden shrink-0">
+          <div className="flex items-center gap-2 lg:hidden shrink-0">
             <button
               onClick={() => setIsMobileMenuOpen((prev) => !prev)}
               className="relative z-[60] p-2 w-10 h-10 flex flex-col items-center justify-center gap-[6px] text-foreground transition-colors outline-none focus:outline-none [-webkit-tap-highlight-color:transparent]"
@@ -141,7 +155,7 @@ const Header = () => {
       {/* Mobile Menu Backdrop */}
       {isMobileMenuOpen && (
         <div
-          className="fixed inset-0 z-40 bg-background/80 backdrop-blur-sm md:hidden animate-fade-in"
+          className="fixed inset-0 z-40 bg-background/80 backdrop-blur-sm lg:hidden animate-fade-in"
           onClick={closeMobileMenu}
         />
       )}
@@ -149,7 +163,7 @@ const Header = () => {
       {/* Mobile Menu Sidebar */}
       {isMobileMenuOpen && (
         <div
-          className="fixed top-0 right-0 bottom-0 w-64 md:hidden glass border-l border-border/50 shadow-2xl z-50 overflow-y-auto animate-slide-in-right"
+          className="fixed top-0 right-0 bottom-0 w-64 lg:hidden glass border-l border-border/50 shadow-2xl z-50 overflow-y-auto animate-slide-in-right"
         >
           <div className="flex flex-col h-full pt-6 px-6 pb-6 relative">
             <button
@@ -173,6 +187,24 @@ const Header = () => {
                   <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-primary transition-all duration-300 group-hover:w-full" />
                 </a>
               ))}
+
+              <div
+                className="pt-2 opacity-0 animate-fade-in-up"
+                style={{ animationDelay: `${100 + navLinks.length * 50}ms`, animationFillMode: 'forwards' }}
+              >
+                <Button
+                  asChild
+                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-medium min-h-[44px] shadow-xs text-sm"
+                >
+                  <a
+                    href="#contato"
+                    onClick={(e) => handleNavClick(e, "#contato")}
+                    aria-label="Falar sobre meu projeto"
+                  >
+                    Falar sobre meu projeto
+                  </a>
+                </Button>
+              </div>
             </nav>
           </div>
         </div>
