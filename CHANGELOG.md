@@ -9,6 +9,38 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.71-limpeza-cta-home-padronizacao-botoes] - 2026-10-01
+
+### Adicionado
+- **`specs/SPEC-071-limpeza-cta-home-padronizacao-botoes.md`**: Especificação técnica para eliminação da seção intermediária redundante de contato na Home e padronização dos botões de ação e conversão.
+- **`tasks/TASK-071-limpeza-cta-home-padronizacao-botoes.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-071.md`**: Relatório de QA com evidências de conformidade aos quality gates.
+
+### Modificado
+- **`src/pages/Home.tsx`**: Remoção do bloco intermediário redundante `<section id="contato">` ("Vamos entender o cenário da sua empresa?"), permitindo uma transição fluida e natural da seção de Resultados para o rodapé; limpeza de imports orfãos (`Clock`, `Button`).
+- **`src/components/layout/Header.tsx`**: Padronização do botão de ação no Header desktop e gaveta móvel para `"Fale conosco"` com `aria-label="Fale conosco"`.
+- **`src/components/sections/Hero.tsx`**: Padronização do CTA primário do Hero para `"Vamos conversar"` com `aria-label="Vamos conversar sobre seu projeto"` direcionando para `/contato`, preservando o secundário `"Ver soluções"` direcionando para `#servicos`.
+- **`src/components/layout/__tests__/Header.test.tsx`**: Atualização da asserção do botão CTA para `"Fale conosco"`.
+- **`src/components/sections/__tests__/Hero.test.tsx`**: Atualização da asserção do botão CTA primário para `"Vamos conversar"`.
+- **`src/pages/__tests__/pages.test.tsx`**: Atualização para verificar ausência do bloco intermediário removido.
+- **`e2e/multi-route-navigation.spec.ts`**: Atualização do teste E2E do Header para validar `"Fale conosco"`.
+- **`e2e/design-system-and-stability.spec.ts`**: Remoção de seção `#contato` da lista de headings da Home e atualização do CTA principal do Hero para `"Vamos conversar"`.
+
+## [0.0.70-pipeline-animacao-fluxo-continuo] - 2026-10-01
+
+### Adicionado
+- **`specs/SPEC-070-pipeline-animacao-fluxo-continuo.md`**: Especificação técnica da animação contínua da esteira de engenharia no pipeline de metodologia com Framer Motion.
+- **`tasks/TASK-070-pipeline-animacao-fluxo-continuo.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-070.md`**: Relatório de QA com evidências de conformidade aos quality gates.
+
+### Modificado
+- **`src/components/sections/HomeProcessPipeline.tsx`**:
+  - Implementação de arquitetura de duas camadas na linha condutora: trilho base estático (`bg-border-subtle/80`) e feixe animado em loop contínuo de 3s (`motion.div` com gradiente `from-transparent via-brand to-transparent`).
+  - Suporte a layout responsivo: feixe horizontal da esquerda para a direita no desktop (`x: ["-100%", "300%"]`) e feixe vertical de cima para baixo no mobile (`y: ["-100%", "300%"]`).
+  - Suporte a acessibilidade com `useReducedMotion()`, pausando a animação e exibindo feixe estático sutil.
+  - Micro-interações de hover táteis nos nós circulares com halo de brilho verde-água (`shadow-[0_0_16px_rgba(45,212,191,0.3)]`) e realce de contraste no texto da descrição (`group-hover:text-foreground/90`).
+- **`src/components/sections/__tests__/HomeProcessPipeline.test.tsx`**: Suíte de testes unitários com 100% de cobertura validando nós, textos e conformidade de renderização.
+
 ## [0.0.69-hero-fullscreen-minimalista] - 2026-10-01
 
 ### Adicionado

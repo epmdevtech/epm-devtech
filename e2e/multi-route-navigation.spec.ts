@@ -103,7 +103,7 @@ test.describe('EPM DEVTECH — Arquitetura de Informação Multi-Rota (SPEC-060)
     // Botão de Ação CTA único no Header
     const ctaButton = page.locator('header a[href="/contato"]').first();
     await expect(ctaButton).toBeVisible();
-    await expect(ctaButton).toContainText('Falar sobre meu projeto');
+    await expect(ctaButton).toContainText('Fale conosco');
 
     // Ao clicar em um link, navega para a rota e marca aria-current="page"
     await nav.locator('a[href="/servicos"]').click();

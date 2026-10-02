@@ -55,8 +55,8 @@ const Hero = () => {
                 asChild
                 className="h-12 px-7 rounded-md bg-brand text-on-brand hover:bg-brand-hover active:bg-brand-active font-semibold text-sm sm:text-base shadow-sm min-h-[44px] transition-all duration-200 hover:shadow-glow-brand hover:scale-[1.02] active:scale-[0.98]"
               >
-                <Link to="/contato" aria-label="Falar sobre meu projeto com a EPM DevTech">
-                  Falar sobre meu projeto
+                <Link to="/contato" aria-label="Vamos conversar sobre seu projeto">
+                  Vamos conversar
                 </Link>
               </Button>
 

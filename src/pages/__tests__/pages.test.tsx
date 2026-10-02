@@ -75,7 +75,7 @@ describe('Rotas e Páginas Independentes (SPEC-060)', () => {
     expect(screen.getByRole('heading', { level: 2, name: /Engenharia sob medida para os gargalos da sua operação/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: /Engenharia previsível com contato direto com quem constrói/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: /Resultados comprovados em operações de grande escala/i })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { level: 2, name: /Vamos entender o cenário da sua empresa\?/i })).toBeInTheDocument();
+    expect(screen.queryByRole('heading', { level: 2, name: /Vamos entender o cenário da sua empresa\?/i })).not.toBeInTheDocument();
   });
 
   it('ServicesPage (/servicos) renderiza H1 e conteúdo de serviços', () => {

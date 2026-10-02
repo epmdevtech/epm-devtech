@@ -47,9 +47,9 @@ describe('Header', () => {
     expect(screen.getByText('Software House')).toBeInTheDocument();
   });
 
-  it('renderiza o botão CTA "Falar sobre meu projeto" apontando para /contato', () => {
+  it('renderiza o botão CTA "Fale conosco" apontando para /contato', () => {
     renderHeader();
-    const ctaButton = screen.getByRole('link', { name: 'Falar sobre meu projeto' });
+    const ctaButton = screen.getByRole('link', { name: 'Fale conosco' });
     expect(ctaButton).toBeInTheDocument();
     expect(ctaButton).toHaveAttribute('href', '/contato');
   });

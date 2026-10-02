@@ -1,12 +1,10 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { Clock } from "lucide-react";
 import Hero from "@/components/sections/Hero";
 import HomeServicesBento from "@/components/sections/HomeServicesBento";
 import HomeProcessPipeline from "@/components/sections/HomeProcessPipeline";
 import HomeResultsStrip from "@/components/sections/HomeResultsStrip";
 import BrandChipIcon from "@/components/ui/BrandChipIcon";
-import { Button } from "@/components/ui/button";
 import { SITE_CONFIG } from "@/config/site";
 
 const BASE_URL = SITE_CONFIG.url;
@@ -43,12 +41,12 @@ export const Home = () => {
         <meta name="twitter:image" content={`${BASE_URL}/og-image-1200x630.png`} />
       </Helmet>
 
-      <div className="w-full">
+      <div>
         {/* Hero Section */}
         <Hero />
 
-        {/* ─── Bloco 1: Serviços (Cards Clicáveis com Foco no Problema de Negócio) ─── */}
-        <section id="servicos" className="py-14 sm:py-18 border-b border-border/40 bg-surface/30 scroll-mt-24">
+        {/* ─── Bloco 1: O que Desenvolvemos (Bento Grid de 12 Colunas) ─── */}
+        <section id="servicos" className="py-14 sm:py-18 border-b border-border/40 scroll-mt-24">
           <div className="container px-6">
             <div className="max-w-3xl mb-10">
               <div className="inline-flex items-center gap-[7px] text-[11.5px] font-mono font-medium tracking-[0.1em] uppercase text-muted select-none mb-3">
@@ -59,14 +57,14 @@ export const Home = () => {
                 Engenharia sob medida para os gargalos da sua operação
               </h2>
               <p className="mt-3 text-base text-secondary leading-relaxed">
-                Aplicações web, APIs robustas e integrações desenvolvidas para resolver desafios reais de negócio.
+                Quatro frentes de entrega técnica desenhadas para construir sistemas novos, integrar fluxos existentes ou estabilizar legados.
               </p>
             </div>
 
-            {/* Bento Grid Assimétrico de 12 Colunas */}
+            {/* Bento Grid Editorial / Técnico */}
             <HomeServicesBento />
 
-            <div className="flex items-center">
+            <div>
               <Link
                 to="/servicos"
                 className="inline-flex items-center gap-1.5 text-sm font-medium text-text-brand hover:underline group"
@@ -136,47 +134,6 @@ export const Home = () => {
                 className="inline-flex items-center gap-1.5 text-sm font-medium text-text-brand hover:underline group"
               >
                 <span>Ver projetos →</span>
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* ─── Bloco 4: Confiança + CTA Final (Unificação Comercial) ─── */}
-        <section id="contato" className="py-16 sm:py-20 bg-surface/40 scroll-mt-24">
-          <div className="container px-6 text-center max-w-2xl mx-auto">
-            {/* Linha de Confiança */}
-            <div className="inline-flex items-center justify-center gap-2 text-xs font-mono text-muted select-none mb-4">
-              <span>Toledo (PR) · Atendimento em todo o Brasil · 9+ anos em sistemas críticos</span>
-            </div>
-
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-primary [text-wrap:balance]">
-              Vamos entender o cenário da sua empresa?
-            </h2>
-            <p className="mt-3 text-base text-secondary leading-relaxed">
-              Compartilhe seu desafio operacional ou nova demanda técnica.
-            </p>
-
-            <div className="mt-8 flex flex-col items-center justify-center gap-3">
-              <Button
-                asChild
-                size="lg"
-                className="bg-brand text-on-brand hover:bg-brand-hover active:bg-brand-active min-h-[44px] px-8 text-sm font-semibold tracking-wide shadow-sm"
-              >
-                <Link to="/contato">Falar sobre meu projeto</Link>
-              </Button>
-
-              <span className="inline-flex items-center gap-1.5 text-xs text-muted">
-                <Clock className="w-3.5 h-3.5 text-brand" />
-                Resposta em até 24h úteis
-              </span>
-            </div>
-
-            <div className="mt-6">
-              <Link
-                to="/duvidas-frequentes"
-                className="text-xs text-muted hover:text-primary underline transition-colors"
-              >
-                Dúvidas frequentes →
               </Link>
             </div>
           </div>

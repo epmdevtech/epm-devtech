@@ -3,45 +3,45 @@
     "viewport": "1440x900",
     "width": 1440,
     "viewportHeight": 900,
-    "heroHeight": 761,
-    "viewportRatioPercent": 84.5,
-    "servicosTop": 761,
-    "servicosVisibleAboveFold": true
+    "heroHeight": 900,
+    "viewportRatioPercent": 100,
+    "servicosTop": 900,
+    "servicosVisibleAboveFold": false
   },
   {
     "viewport": "1024x768",
     "width": 1024,
     "viewportHeight": 768,
-    "heroHeight": 761,
-    "viewportRatioPercent": 99,
-    "servicosTop": 761,
-    "servicosVisibleAboveFold": true
+    "heroHeight": 768,
+    "viewportRatioPercent": 100,
+    "servicosTop": 768,
+    "servicosVisibleAboveFold": false
   },
   {
     "viewport": "768x1024",
     "width": 768,
     "viewportHeight": 1024,
-    "heroHeight": 1186,
-    "viewportRatioPercent": 115.8,
-    "servicosTop": 1186,
+    "heroHeight": 1024,
+    "viewportRatioPercent": 100,
+    "servicosTop": 1024,
     "servicosVisibleAboveFold": false
   },
   {
     "viewport": "390x844",
     "width": 390,
     "viewportHeight": 844,
-    "heroHeight": 1219,
-    "viewportRatioPercent": 144.4,
-    "servicosTop": 1219,
+    "heroHeight": 999,
+    "viewportRatioPercent": 118.4,
+    "servicosTop": 999,
     "servicosVisibleAboveFold": false
   },
   {
     "viewport": "320x640",
     "width": 320,
     "viewportHeight": 640,
-    "heroHeight": 1424,
-    "viewportRatioPercent": 222.6,
-    "servicosTop": 1424,
+    "heroHeight": 1224,
+    "viewportRatioPercent": 191.2,
+    "servicosTop": 1224,
     "servicosVisibleAboveFold": false
   }
 ]

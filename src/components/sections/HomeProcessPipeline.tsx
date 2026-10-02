@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 
 interface ProcessStep {
   step: string;
@@ -22,7 +23,7 @@ const steps: ProcessStep[] = [
     theme: {
       nodeBorder: "border-accent-blue/50 group-hover:border-accent-blue",
       nodeText: "text-accent-blue",
-      nodeGlow: "group-hover:shadow-[0_0_14px_rgba(56,189,248,0.35)]",
+      nodeGlow: "group-hover:shadow-[0_0_15px_rgba(56,189,248,0.35)]",
       phaseColor: "text-accent-blue",
     },
   },
@@ -34,7 +35,7 @@ const steps: ProcessStep[] = [
     theme: {
       nodeBorder: "border-accent-violet/50 group-hover:border-accent-violet",
       nodeText: "text-accent-violet",
-      nodeGlow: "group-hover:shadow-[0_0_14px_rgba(167,139,250,0.35)]",
+      nodeGlow: "group-hover:shadow-[0_0_15px_rgba(167,139,250,0.35)]",
       phaseColor: "text-accent-violet",
     },
   },
@@ -46,7 +47,7 @@ const steps: ProcessStep[] = [
     theme: {
       nodeBorder: "border-accent-amber/50 group-hover:border-accent-amber",
       nodeText: "text-accent-amber",
-      nodeGlow: "group-hover:shadow-[0_0_14px_rgba(251,191,36,0.35)]",
+      nodeGlow: "group-hover:shadow-[0_0_15px_rgba(251,191,36,0.35)]",
       phaseColor: "text-accent-amber",
     },
   },
@@ -58,7 +59,7 @@ const steps: ProcessStep[] = [
     theme: {
       nodeBorder: "border-brand/50 group-hover:border-brand",
       nodeText: "text-text-brand",
-      nodeGlow: "group-hover:shadow-[0_0_14px_rgba(45,212,191,0.35)]",
+      nodeGlow: "group-hover:shadow-[0_0_15px_rgba(45,212,191,0.35)]",
       phaseColor: "text-text-brand",
     },
   },
@@ -67,32 +68,57 @@ const steps: ProcessStep[] = [
 /**
  * HomeProcessPipeline
  * ───────────────────
- * Pipeline contínuo de engenharia e metodologia.
- * Elimina caixas fechadas individuais, conectando as etapas 01 a 04
- * através de uma linha condutora contínua (horizontal no desktop e vertical no mobile),
- * com nós técnicos em tipografia monospace e micro-interações refinadas.
+ * Pipeline contínuo de engenharia com esteira animada via Framer Motion.
+ * Conecta as etapas 01 a 04 com um feixe de luz dinâmico sobreposto ao trilho base,
+ * micro-interações de halo nos nós e elevação de contraste em hover.
  */
 export const HomeProcessPipeline: FC = () => {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <div className="relative mb-8">
       {/* ─── Linha Condutora Horizontal (Desktop >= md) ─── */}
       <div
         aria-hidden="true"
-        className="hidden md:block absolute top-[18px] left-[12.5%] right-[12.5%] h-[2px] bg-gradient-to-r from-accent-blue/40 via-accent-violet/40 via-accent-amber/40 to-brand/40 pointer-events-none"
-      />
+        className="hidden md:block absolute top-[17px] left-[12.5%] right-[12.5%] h-[2px] bg-border-subtle/80 overflow-hidden pointer-events-none"
+      >
+        {!shouldReduceMotion && (
+          <motion.div
+            className="w-48 h-full bg-gradient-to-r from-transparent via-brand to-transparent will-change-transform"
+            animate={{ x: ["-100%", "300%"] }}
+            transition={{
+              repeat: Infinity,
+              duration: 3,
+              ease: "easeInOut",
+            }}
+          />
+        )}
+      </div>
 
       {/* ─── Linha Condutora Vertical (Mobile < md) ─── */}
       <div
         aria-hidden="true"
-        className="md:hidden absolute top-[18px] bottom-[18px] left-[17px] w-[2px] bg-gradient-to-b from-accent-blue/40 via-accent-violet/40 via-accent-amber/40 to-brand/40 pointer-events-none"
-      />
+        className="md:hidden absolute top-[18px] bottom-[18px] left-[17px] w-[2px] bg-border-subtle/80 overflow-hidden pointer-events-none"
+      >
+        {!shouldReduceMotion && (
+          <motion.div
+            className="h-28 w-full bg-gradient-to-b from-transparent via-brand to-transparent will-change-transform"
+            animate={{ y: ["-100%", "300%"] }}
+            transition={{
+              repeat: Infinity,
+              duration: 3,
+              ease: "easeInOut",
+            }}
+          />
+        )}
+      </div>
 
       {/* Lista ordenada acessível de etapas */}
       <ol className="grid grid-cols-1 md:grid-cols-4 gap-6 lg:gap-8 relative z-10">
         {steps.map((s) => (
           <li
             key={s.step}
-            className="group relative pl-12 pb-8 last:pb-0 md:pl-0 md:pb-0 flex flex-col"
+            className="group relative pl-12 pb-8 last:pb-0 md:pl-0 md:pb-0 flex flex-col cursor-default"
           >
             {/* Marcador do Nó (Node) */}
             <div className="absolute left-0 top-0 md:relative md:left-auto md:top-auto mb-3 md:mb-5">
@@ -113,7 +139,7 @@ export const HomeProcessPipeline: FC = () => {
               <h3 className="font-semibold text-primary text-base sm:text-lg mb-1.5 transition-colors">
                 {s.title}
               </h3>
-              <p className="text-xs sm:text-sm text-secondary leading-relaxed">
+              <p className="text-xs sm:text-sm text-secondary group-hover:text-primary leading-relaxed transition-colors duration-200">
                 {s.description}
               </p>
             </div>

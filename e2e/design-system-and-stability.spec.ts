@@ -42,7 +42,6 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
       { id: 'servicos', text: 'Engenharia sob medida para os gargalos da sua operação' },
       { id: 'como-trabalhamos', text: 'Engenharia previsível com contato direto com quem constrói' },
       { id: 'autoridade', text: 'Resultados comprovados em operações de grande escala' },
-      { id: 'contato', text: 'Vamos entender o cenário da sua empresa?' },
     ];
 
     for (const item of expectedHeadings) {
@@ -85,7 +84,7 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     await page.waitForLoadState('domcontentloaded');
     const heroCta = page.locator('#hero a[href="/contato"], #hero a[href="#contato"]').first();
     await expect(heroCta).toBeVisible();
-    await expect(heroCta).toContainText('Falar sobre meu projeto');
+    await expect(heroCta).toContainText('Vamos conversar');
   });
 
   test('Navegação e rolagem fluida por âncoras sem salto para o Hero', async ({ page }) => {

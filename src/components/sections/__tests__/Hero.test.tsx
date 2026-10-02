@@ -53,7 +53,7 @@ describe('Hero Component (B2B Engineering Fullscreen & Minimalist — SPEC-069)'
   it('renders primary CTA pointing to /contato and secondary CTA pointing to #servicos', () => {
     renderHero();
 
-    const primaryCta = screen.getByRole('link', { name: /Falar sobre meu projeto/i });
+    const primaryCta = screen.getByRole('link', { name: /Vamos conversar/i });
     expect(primaryCta).toBeInTheDocument();
     expect(primaryCta).toHaveAttribute('href', '/contato');
 

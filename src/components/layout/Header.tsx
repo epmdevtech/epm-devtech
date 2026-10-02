@@ -143,8 +143,8 @@ export const Header = () => {
                 size="sm"
                 className="bg-brand text-on-brand hover:bg-brand-hover active:bg-brand-active font-medium text-xs tracking-wide shadow-xs min-h-[44px] px-4 rounded-md transition-colors"
               >
-                <Link to="/contato" aria-label="Falar sobre meu projeto">
-                  Falar sobre meu projeto
+                <Link to="/contato" aria-label="Fale conosco">
+                  Fale conosco
                 </Link>
               </Button>
             </div>
@@ -236,9 +236,9 @@ export const Header = () => {
                   <Link
                     to="/contato"
                     onClick={closeMobileMenu}
-                    aria-label="Falar sobre meu projeto"
+                    aria-label="Fale conosco"
                   >
-                    Falar sobre meu projeto
+                    Fale conosco
                   </Link>
                 </Button>
               </div>

@@ -46,4 +46,24 @@ describe("HomeProcessPipeline Component", () => {
     expect(screen.getByText(/Código testado com validações contínuas em ambiente de homologação/i)).toBeInTheDocument();
     expect(screen.getByText(/Monitoramento contínuo e suporte direto para novas demandas operacionais/i)).toBeInTheDocument();
   });
+
+  it("renderiza respeitando prefers-reduced-motion sem erros", () => {
+    const originalMatchMedia = window.matchMedia;
+    window.matchMedia = (query: string) => ({
+      matches: query.includes("prefers-reduced-motion"),
+      media: query,
+      onchange: null,
+      addListener: () => {},
+      removeListener: () => {},
+      addEventListener: () => {},
+      removeEventListener: () => {},
+      dispatchEvent: () => false,
+    });
+
+    render(<HomeProcessPipeline />);
+    expect(screen.getByRole("list")).toBeInTheDocument();
+    expect(screen.getByText("01")).toBeInTheDocument();
+
+    window.matchMedia = originalMatchMedia;
+  });
 });
