@@ -17,6 +17,13 @@ export default {
       },
     },
     extend: {
+      textColor: {
+        primary: "rgb(var(--text-primary-rgb) / <alpha-value>)",
+        secondary: "rgb(var(--text-secondary-rgb) / <alpha-value>)",
+        muted: "rgb(var(--text-muted-rgb) / <alpha-value>)",
+        brand: "rgb(var(--text-brand-rgb) / <alpha-value>)",
+        "on-brand": "rgb(var(--text-on-brand-rgb) / <alpha-value>)",
+      },
       backgroundColor: {
         base: "rgb(var(--bg-base-rgb) / <alpha-value>)",
       },

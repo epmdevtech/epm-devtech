@@ -47,10 +47,14 @@ export const Layout = () => {
       {/* Rodapé compartilhado */}
       <Footer />
 
+      {/* Cursor customizado imediato */}
+      <Suspense fallback={null}>
+        <CursorOrb />
+      </Suspense>
+
       {/* Componentes globais diferidos */}
       <LazyRender delay={2500}>
         <Suspense fallback={null}>
-          <CursorOrb />
           <ScrollToTop />
         </Suspense>
       </LazyRender>

@@ -35,9 +35,10 @@ html body[data-scroll-locked] header.fixed {
 }
 
 /* Oculta o cursor nativo em dispositivos com mouse (pointer: fine)
-   para que apenas o CursorOrb customizado seja exibido */
+   apenas quando o CursorOrb customizado estiver montado e ativo */
 @media (pointer: fine) {
-  html, * {
+  html.custom-cursor-active,
+  html.custom-cursor-active * {
     cursor: none !important;
   }
 }

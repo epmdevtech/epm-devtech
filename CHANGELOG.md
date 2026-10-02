@@ -9,6 +9,23 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.64-correcao-contraste-textos-cursor-dark] - 2026-10-01
+
+### Adicionado
+- **`specs/SPEC-064-correcao-contraste-textos-cursor-dark.md`**: Especificação técnica para resolução de conflito de namespace de cores de texto e visibilidade do Cursor Orb no tema Dark.
+- **`tasks/TASK-064-correcao-contraste-textos-cursor-dark.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-064.md`**: Relatório de QA com rácio de contraste WCAG 2.1 (AAA/AA) e validação dos quality gates.
+
+### Corrigido
+- **Contraste de Textos no Dark Mode (`tailwind.config.ts`)**:
+  - Resolução da colisão de namespace onde `text-muted` e `text-secondary` resolviam para cores de superfície de fundo (`--bg-surface-rgb` e `--bg-elevated-rgb`), tornando eyebrows, parágrafos de cards e rodapé quase invisíveis.
+  - Inclusão explícita de `theme.extend.textColor` mapeando `primary` (#F2F7F7 a 17.26:1), `secondary` (#9DB0B3 a 9.12:1), `muted` (#71868A a 5.36:1), `brand` e `on-brand` com conformidade estrita WCAG AAA/AA.
+- **Cursor Orb Customizado (`src/components/CursorOrb.tsx`, `Layout.tsx`, `src/index.css`)**:
+  - Desacoplamento do componente `CursorOrb` do delay de 2500ms em `Layout.tsx`, ativando o ponteiro customizado imediatamente na carga da página.
+  - Elevação do empilhamento do cursor para `z-[9999]` com `pointer-events-none`, garantindo visibilidade irrestrita sobre cards, botões, modais e elementos opacos.
+  - Escopo condicional da regra CSS `cursor: none !important;` para `html.custom-cursor-active`, adicionada dinamicamente pelo `CursorOrb` apenas em ambientes com mouse (`pointer: fine`) e sem redução de movimento.
+  - Ponto de mira (dot) ampliado para 8px com preenchimento sólido `#2DD4BF` e glow nítido, além de anel reativo fluido com feedback tátil em interações.
+
 ## [0.0.63-sistema-cores-tokens-temas] - 2026-10-01
 
 ### Adicionado
