@@ -81,7 +81,7 @@ const Hero = () => {
               Sistemas sob medida para empresas que precisam criar plataformas, conectar operações ou modernizar o software do seu negócio.
             </p>
 
-            {/* Ações (CTAs): Primário dominante com glow sutil + Secundário com contorno discreto */}
+            {/* Ação (CTA): Primário dominante com foco na conversão direta */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 w-full sm:w-auto">
               <Button
                 asChild
@@ -91,38 +91,6 @@ const Hero = () => {
                   Vamos conversar
                 </Link>
               </Button>
-
-              <Button
-                asChild
-                variant="outline"
-                className="h-12 px-6 rounded-md border-border-default bg-surface/50 hover:bg-surface-elevated text-secondary hover:text-primary font-medium text-sm sm:text-base min-h-[44px] transition-colors duration-200"
-              >
-                <a
-                  href="#servicos"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    const el = document.getElementById("servicos");
-                    if (el) {
-                      el.scrollIntoView({ behavior: "smooth" });
-                    }
-                  }}
-                  aria-label="Ver soluções da EPM DevTech"
-                >
-                  Ver soluções
-                </a>
-              </Button>
-            </div>
-
-            {/* Faixa de Confiança Operacional com fatos verificáveis */}
-            <div
-              data-testid="hero-operational-trust"
-              className="mt-8 pt-6 border-t border-border-default/40 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs sm:text-sm text-secondary/80 font-mono"
-            >
-              <span>Aplicações corporativas críticas</span>
-              <span className="text-muted/40 select-none" aria-hidden="true">·</span>
-              <span>Energia, educação, indústria e varejo</span>
-              <span className="text-muted/40 select-none" aria-hidden="true">·</span>
-              <span>Retorno em até 24h úteis</span>
             </div>
           </motion.div>
 

@@ -93,18 +93,18 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     await expect(heroCta).toContainText('Vamos conversar');
   });
 
-  test('Navegação e rolagem fluida por âncoras sem salto para o Hero', async ({ page }) => {
+  test('Navegação fluida a partir do Hero por cenário de negócio para rota ancorada', async ({ page }) => {
     await page.goto('/');
     await page.waitForLoadState('domcontentloaded');
 
-    // Clica no CTA secundário ("Ver soluções" que aponta para #servicos)
-    const secondaryCta = page.locator('#hero a[href="#servicos"]').first();
-    await expect(secondaryCta).toBeVisible();
-    await secondaryCta.click();
+    // Clica no cenário "Criar um novo sistema, portal ou plataforma web" que aponta para /servicos#sistemas
+    const scenarioLink = page.locator('[data-testid="scenario-link-sistemas"]');
+    await expect(scenarioLink).toBeVisible();
+    await scenarioLink.click();
 
-    await page.waitForTimeout(600);
-    const servicosSection = page.locator('#servicos');
-    await expect(servicosSection).toBeInViewport();
+    await page.waitForURL('**/servicos#sistemas');
+    const targetArticle = page.locator('#sistemas');
+    await expect(targetArticle).toBeVisible();
   });
 
   test('ArchitecturalBlueprint renderiza camadas de tecnologias com interação de foco e acessibilidade', async ({ page }) => {
@@ -524,21 +524,18 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     );
     await expect(subheadline).toBeVisible();
 
-    // 3. Valida CTAs principais
+    // 3. Valida CTA principal único e ausência de CTA secundário (SPEC-084)
     const ctaPrimario = page.locator('#hero a[href="/contato"]').first();
     await expect(ctaPrimario).toBeVisible();
     await expect(ctaPrimario).toContainText('Vamos conversar');
 
-    const ctaSecundario = page.locator('#hero a[href="#servicos"]').first();
-    await expect(ctaSecundario).toBeVisible();
-    await expect(ctaSecundario).toContainText('Ver soluções');
+    const ctaSecundario = page.locator('#hero a[href="#servicos"]');
+    await expect(ctaSecundario).toHaveCount(0);
 
-    // 4. Valida faixa de confiança operacional
+    // 4. Valida ausência da faixa de confiança operacional (SPEC-084)
     const trustStrip = page.locator('[data-testid="hero-operational-trust"]');
-    await expect(trustStrip).toBeVisible();
-    await expect(trustStrip).toContainText('Aplicações corporativas críticas');
-    await expect(trustStrip).toContainText('Energia, educação, indústria e varejo');
-    await expect(trustStrip).toContainText('Retorno em até 24h úteis');
+    await expect(trustStrip).toHaveCount(0);
+    await expect(page.getByText('Aplicações corporativas críticas')).toHaveCount(0);
 
     // 5. Valida Seletor Interativo de Cenários de Negócio
     const selector = page.locator('[data-testid="hero-scenario-selector"]');

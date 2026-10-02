@@ -59,26 +59,25 @@ describe('Hero Component (Business Scenarios Selector & B2B Decision — SPEC-08
     expect(eyebrow.className).not.toContain('border');
   });
 
-  it('renders primary CTA pointing to /contato and secondary CTA pointing to #servicos', () => {
+  it('renders primary CTA pointing to /contato and ensures secondary CTA is absent (SPEC-084)', () => {
     renderHero();
 
     const primaryCta = screen.getByRole('link', { name: /Vamos conversar/i });
     expect(primaryCta).toBeInTheDocument();
     expect(primaryCta).toHaveAttribute('href', '/contato');
 
-    const secondaryCta = screen.getByRole('link', { name: /Ver soluções/i });
-    expect(secondaryCta).toBeInTheDocument();
-    expect(secondaryCta).toHaveAttribute('href', '#servicos');
+    const secondaryCta = screen.queryByRole('link', { name: /Ver soluções/i });
+    expect(secondaryCta).not.toBeInTheDocument();
   });
 
-  it('renders operational trust strip with verifiable factual commitments (SPEC-083)', () => {
+  it('does not render operational trust strip (SPEC-084)', () => {
     renderHero();
 
-    const trustStrip = screen.getByTestId('hero-operational-trust');
-    expect(trustStrip).toBeInTheDocument();
-    expect(trustStrip).toHaveTextContent('Aplicações corporativas críticas');
-    expect(trustStrip).toHaveTextContent('Energia, educação, indústria e varejo');
-    expect(trustStrip).toHaveTextContent('Retorno em até 24h úteis');
+    const trustStrip = screen.queryByTestId('hero-operational-trust');
+    expect(trustStrip).not.toBeInTheDocument();
+    expect(screen.queryByText(/Aplicações corporativas críticas/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Energia, educação, indústria e varejo/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Retorno em até 24h úteis/i)).not.toBeInTheDocument();
   });
 
   it('renders interactive business scenario selector with header, status, and 4 scenario links (SPEC-083)', () => {

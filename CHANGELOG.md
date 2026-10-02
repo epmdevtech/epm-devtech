@@ -9,6 +9,22 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.84-hero-simplificacao-copy-cta] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-084-hero-simplificacao-copy-cta.md`**: Especificação técnica para simplificação do Hero da Home (`/`), focando no CTA primário de conversão direta e removendo elementos auxiliares.
+- **`tasks/TASK-084-hero-simplificacao-copy-cta.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-084.md`**: Relatório de QA com evidências de conformidade aos quality gates e capturas de tela.
+
+### Modificado
+- **`src/components/sections/Hero.tsx`**:
+  - Remoção do botão de CTA secundário *"Ver soluções"* (`#servicos`), eliminando bifurcação e redundância com o Seletor de Cenários.
+  - Remoção da faixa de confiança operacional *"Aplicações corporativas críticas · Energia, educação, indústria e varejo · Retorno em até 24h úteis"* (`hero-operational-trust`) e respectiva borda divisória.
+  - CTA primário consolidado e destacado: botão *"Vamos conversar"* direcionando para `/contato`.
+- **`src/components/sections/__tests__/Hero.test.tsx`**: Atualização dos testes unitários para validar a presença exclusiva do botão *"Vamos conversar"* e a ausência do botão secundário e da faixa de confiança.
+- **`e2e/design-system-and-stability.spec.ts`**: Atualização do teste de ancoragem a partir do Hero para navegar via cenário de negócio e assertar ausência de elementos removidos.
+- **`PROJECT.md`**: Atualização do estado canônico da seção Hero.
+
 ## [0.0.83-hero-seletor-cenarios-negocio] - 2026-10-02
 
 ### Adicionado
