@@ -9,6 +9,37 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.85-metricas-home-experiencia] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-085-metricas-home-experiencia.md`**: Especificação técnica para reorganização de métricas entre a Home (`/`) e a rota `/experiencia`, migrando os contadores numéricos animados e iniciando `/experiencia` diretamente nas verticais de negócio.
+- **`tasks/TASK-085-metricas-home-experiencia.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-085.md`**: Relatório de QA com evidências de conformidade aos quality gates e capturas visuais.
+
+### Modificado
+- **`src/components/sections/HomeResultsStrip.tsx`**:
+  - Incorporação do componente de contadores numéricos animados `CountUp` acionados dinamicamente via `useInView(ref, { once: true, margin: "-50px" })`.
+  - Suporte rigoroso a `useReducedMotion` para acessibilidade.
+  - Implementação das 4 métricas técnicas consolidadas:
+    * `99,9%` | *"Disponibilidade assegurada"* | *"Em plataformas críticas de energia e educação."*
+    * `2.500 RPS` | *"Arquitetura dimensionada"* | *"Para picos de 10.000 usuários simultâneos sem gargalos."*
+    * `100%` | *"Integridade de dados"* | *"Na consolidação regulatória do setor elétrico, sem perdas."*
+    * `−35%` (com sinal de menos tipográfico `\u2212`) | *"Atividades manuais reduzidas"* | *"Automações e integrações em plataformas modernizadas."*
+  - Preservação da nota de rodapé contextual e lista semântica (`role="list"` com rótulos `aria-label`/`sr-only`).
+- **`src/pages/Home.tsx`**:
+  - Atualização do texto do link de navegação na seção de resultados para: *"Ver projetos detalhados →"* direcionando para `/experiencia`.
+- **`src/pages/ExperiencePage.tsx`**:
+  - Remoção completa do bloco superior redundante de contadores numéricos (`<Authority />` / `#resultados`).
+  - Início imediato no cabeçalho editorial `PageHeader` ("Experiência em projetos reais") conectando-se diretamente à Matriz de Verticais de Negócio (`#contextos`) e ao Ledger de Organizações (`#organizacoes`).
+  - Ajuste no ritmo do Sistema de Camadas Tonais (SPEC-082): `anchor` (Header) → `base` (`#contextos`) → `alt` (`#organizacoes`) → `base` (`#cta`) → `anchor` (Footer).
+  - Redução de bundle de 13.02 kB para 9.47 kB (-27%).
+- **`src/components/routing/ScrollManager.tsx`**:
+  - Remoção do mapeamento de hash obsoleto `"#autoridade": "/experiencia#resultados"`, permitindo que navegações para `/#autoridade` permaneçam na seção de resultados da Home.
+- **`src/components/sections/__tests__/HomeResultsStrip.test.tsx`**:
+  - Atualização dos testes unitários com mock de `useInView` e validação das 4 métricas técnicas com formatação exata.
+- **`PROJECT.md`**:
+  - Atualização do estado canônico de `Autoridade / Resultados`, `Experiência / Verticais` e contagem de testes unitários (194 testes).
+
 ## [0.0.84-hero-simplificacao-copy-cta] - 2026-10-02
 
 ### Adicionado

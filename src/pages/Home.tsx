@@ -129,7 +129,7 @@ export const Home = () => {
               to="/experiencia"
               className="inline-flex items-center gap-1.5 text-sm font-medium text-text-brand hover:underline group"
             >
-              <span>Ver projetos →</span>
+              <span>Ver projetos detalhados →</span>
             </Link>
           </div>
         </SectionWrapper>

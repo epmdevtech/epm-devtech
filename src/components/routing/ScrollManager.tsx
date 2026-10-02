@@ -7,7 +7,6 @@ const LEGACY_HASH_MAP: Record<string, string> = {
   "#diferenciais": "/engenharia",
   "#tecnologias": "/engenharia#tecnologias",
   "#setores": "/experiencia#contextos",
-  "#autoridade": "/experiencia#resultados",
   "#sobre": "/sobre",
   "#faq": "/duvidas-frequentes",
   "#contato": "/contato",

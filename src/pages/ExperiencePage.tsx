@@ -3,7 +3,6 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import PageHeader from "@/components/ui/PageHeader";
-import Authority from "@/components/sections/Authority";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import { Button } from "@/components/ui/button";
 import { getApprovedExperiences } from "@/config/experience";
@@ -106,13 +105,8 @@ export const ExperiencePage = () => {
           description="Métricas consolidadas de confiabilidade, atuação em verticais críticas e histórico técnico em ambientes de alta complexidade regulatória e de concorrência."
         />
 
-        {/* Bloco 1: Indicadores e Métricas de Escala (Tom: Base) */}
-        <SectionWrapper tone="base" id="resultados" className="scroll-mt-24">
-          <Authority className="border-y-0 bg-transparent py-0" />
-        </SectionWrapper>
-
-        {/* Bloco 2: Contextos de Negócio e Verticais (Tom: Alt) */}
-        <SectionWrapper tone="alt" id="contextos" className="scroll-mt-24" containerClassName="max-w-6xl mx-auto">
+        {/* Bloco 1: Contextos de Negócio e Verticais (Tom: Base) */}
+        <SectionWrapper tone="base" id="contextos" className="scroll-mt-24" containerClassName="max-w-6xl mx-auto">
           <div className="max-w-3xl mb-12">
             <div className="font-mono text-xs font-semibold text-text-brand tracking-wider mb-2">
               // MATRIZ DE VERTICAIS
@@ -167,8 +161,8 @@ export const ExperiencePage = () => {
           </div>
         </SectionWrapper>
 
-        {/* Bloco 3: Organizações e Projetos de Atuação (Tom: Base) */}
-        <SectionWrapper tone="base" id="organizacoes" className="scroll-mt-24" containerClassName="max-w-6xl mx-auto">
+        {/* Bloco 2: Organizações e Projetos de Atuação (Tom: Alt) */}
+        <SectionWrapper tone="alt" id="organizacoes" className="scroll-mt-24" containerClassName="max-w-6xl mx-auto">
           <div className="max-w-4xl mb-10">
             <div className="font-mono text-xs font-semibold text-text-brand tracking-wider mb-2">
               // HISTÓRICO CORPORATIVO
@@ -227,8 +221,8 @@ export const ExperiencePage = () => {
           </div>
         </SectionWrapper>
 
-        {/* Bloco 4: Chamada Final para Contato (Tom: Alt) */}
-        <SectionWrapper tone="alt">
+        {/* Bloco 3: Chamada Final para Contato (Tom: Base) */}
+        <SectionWrapper tone="base">
           <div className="max-w-3xl mx-auto text-center">
             <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-primary mb-3">
               Sua empresa tem uma demanda de alta complexidade?
