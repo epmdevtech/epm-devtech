@@ -9,6 +9,30 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.83-hero-seletor-cenarios-negocio] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-083-hero-seletor-cenarios-negocio.md`**: Especificação técnica para refatoração da seção Hero da Home (`/`), substituindo o card de topologia fictícia por um Seletor Interativo de Cenários de Negócio orientado a tomadores de decisão e copy de alto valor.
+- **`tasks/TASK-083-hero-seletor-cenarios-negocio.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-083.md`**: Relatório de QA com evidências de conformidade aos quality gates, validações de acessibilidade e capturas de tela nos modos Dark e Light.
+
+### Modificado
+- **`src/components/sections/Hero.tsx`**:
+  - H1 com acento cromático intencional no brand teal (`#2DD4BF` / `text-text-brand`) na expressão *"construir, integrar e evoluir"*.
+  - Nova subheadline orientada a decisores de negócio: *"Sistemas sob medida para empresas que precisam criar plataformas, conectar operações ou modernizar o software do seu negócio."*
+  - Faixa de confiança operacional factual com divisores sutis: *"Aplicações corporativas críticas · Energia, educação, indústria e varejo · Retorno em até 24h úteis"*.
+  - Painel interativo de decisão *"O que sua empresa precisa agora?"* com status de direcionamento técnico imediato e 4 cenários navegáveis ancorados:
+    1. *"Criar um novo sistema, portal ou plataforma web"* → `/servicos#sistemas`
+    2. *"Conectar sistemas antigos e automatizar fluxos de dados"* → `/servicos#integracoes`
+    3. *"Modernizar e refatorar um software legado sem parar a operação"* → `/servicos#legados`
+    4. *"Avaliar arquitetura e ter uma segunda opinião técnica sênior"* → `/contato`
+  - Linha condutora vertical SVG conectando os nós com animação pontual (`pathLength: 0 -> 1`), microinterações com glow esmeralda/teal no hover/focus e suporte estrito a `prefers-reduced-motion`.
+  - Compatibilidade com o Design System de Camadas Tonais (SPEC-082) em Dark e Light Mode.
+- **`src/components/sections/Services.tsx`**: Inclusão dos IDs de ancoragem semânticos (`id="sistemas"`, `id="apis"`, `id="integracoes"`, `id="legados"`) nos artigos de serviço para navegação direta vinda do seletor da Home.
+- **`src/components/sections/__tests__/Hero.test.tsx`**: Atualização completa da suíte de testes unitários validando novos títulos, CTAs, faixa de confiança operacional e navegação dos 4 cenários de negócio.
+- **`e2e/design-system-and-stability.spec.ts`**: Atualização do teste de títulos para permitir acento cromático intencional da marca no H1 do Hero, e inclusão de validação E2E completa do seletor de cenários de negócio.
+- **`PROJECT.md`**: Atualização do estado canônico da seção Hero.
+
 ## [0.0.82-sistema-camadas-tonais] - 2026-10-02
 
 ### Adicionado

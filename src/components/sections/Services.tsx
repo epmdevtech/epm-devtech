@@ -219,6 +219,7 @@ function MockMaintenance() {
 
 const services = [
   {
+    id: "sistemas",
     indexTag: "01 // WEB & PORTAIS",
     visual: <MockBrowser />,
     title: "Sistemas web, portais e sites institucionais",
@@ -227,6 +228,7 @@ const services = [
     accent: "var(--accent-blue)",
   },
   {
+    id: "apis",
     indexTag: "02 // APIS & BACK-END",
     visual: <MockAPI />,
     title: "APIs & back-end escalável",
@@ -235,6 +237,7 @@ const services = [
     accent: "var(--accent-violet)",
   },
   {
+    id: "integracoes",
     indexTag: "03 // INTEGRAÇÃO DE DADOS",
     visual: <MockIntegration />,
     title: "Integrações entre sistemas",
@@ -243,6 +246,7 @@ const services = [
     accent: "var(--accent-amber)",
   },
   {
+    id: "legados",
     indexTag: "04 // MODERNIZAÇÃO",
     visual: <MockMaintenance />,
     title: "Modernização & evolução de legados",
@@ -349,6 +353,7 @@ export const Services: FC<ServicesProps> = ({ hideHeader = false }) => {
               return (
                 <motion.article
                   key={service.title}
+                  id={service.id}
                   initial={{ opacity: 0, y: 24 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: index * 0.08 }}

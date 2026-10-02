@@ -1,7 +1,31 @@
 import { Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import BrandChipIcon from "@/components/ui/BrandChipIcon";
+
+const SCENARIOS = [
+  {
+    id: "sistemas",
+    title: "Criar um novo sistema, portal ou plataforma web",
+    href: "/servicos#sistemas",
+  },
+  {
+    id: "integracoes",
+    title: "Conectar sistemas antigos e automatizar fluxos de dados",
+    href: "/servicos#integracoes",
+  },
+  {
+    id: "legados",
+    title: "Modernizar e refatorar um software legado sem parar a operação",
+    href: "/servicos#legados",
+  },
+  {
+    id: "diagnostico",
+    title: "Avaliar arquitetura e ter uma segunda opinião técnica sênior",
+    href: "/contato",
+  },
+];
 
 const Hero = () => {
   const shouldReduceMotion = useReducedMotion();
@@ -26,7 +50,7 @@ const Hero = () => {
 
       <div className="container px-6 mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 xl:gap-12 items-center">
-          {/* ─── Coluna Esquerda: Narrativa & Conversão Direta ─── */}
+          {/* ─── Coluna Esquerda: Narrativa, Decisão & Conversão Direta ─── */}
           <motion.div
             initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -42,13 +66,20 @@ const Hero = () => {
               <span>ENGENHARIA DE SOFTWARE &amp; MODERNIZAÇÃO</span>
             </div>
 
-            {/* Headline H1 de forte impacto visual */}
+            {/* Headline H1 de forte impacto com acento visual no verbo de ação */}
             <h1
               id="hero-title"
-              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-primary tracking-tight leading-[1.12] [text-wrap:balance] mb-8"
+              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-primary tracking-tight leading-[1.12] [text-wrap:balance] mb-6"
             >
-              Engenharia de software para construir, integrar e evoluir sistemas.
+              Engenharia de software para{" "}
+              <span className="text-text-brand">construir, integrar e evoluir</span>{" "}
+              sistemas.
             </h1>
+
+            {/* Subheadline editorial de proposta de valor */}
+            <p className="text-base sm:text-lg text-secondary leading-relaxed max-w-xl mb-8 font-normal">
+              Sistemas sob medida para empresas que precisam criar plataformas, conectar operações ou modernizar o software do seu negócio.
+            </p>
 
             {/* Ações (CTAs): Primário dominante com glow sutil + Secundário com contorno discreto */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 w-full sm:w-auto">
@@ -81,15 +112,26 @@ const Hero = () => {
                 </a>
               </Button>
             </div>
+
+            {/* Faixa de Confiança Operacional com fatos verificáveis */}
+            <div
+              data-testid="hero-operational-trust"
+              className="mt-8 pt-6 border-t border-border-default/40 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs sm:text-sm text-secondary/80 font-mono"
+            >
+              <span>Aplicações corporativas críticas</span>
+              <span className="text-muted/40 select-none" aria-hidden="true">·</span>
+              <span>Energia, educação, indústria e varejo</span>
+              <span className="text-muted/40 select-none" aria-hidden="true">·</span>
+              <span>Retorno em até 24h úteis</span>
+            </div>
           </motion.div>
 
-          {/* ─── Coluna Direita: Janela Dev "Sistema & Arquitetura Ativa" ─── */}
+          {/* ─── Coluna Direita: Seletor Interativo de Cenários de Negócio ─── */}
           <motion.div
             initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...transitionConfig, delay: shouldReduceMotion ? 0 : 0.15 }}
             className="lg:col-span-5 xl:col-span-5 w-full flex justify-center lg:justify-end"
-            aria-hidden="true"
           >
             <div className="relative w-full max-w-lg lg:max-w-none">
               {/* Efeito de iluminação suave atrás do painel */}
@@ -98,141 +140,76 @@ const Hero = () => {
                 aria-hidden="true"
               />
 
-              {/* Card Terminal Dev */}
-              <div className="relative rounded-xl border border-border-default/80 bg-surface/80 backdrop-blur-md p-4 sm:p-5 shadow-lg select-none">
-                {/* Cabeçalho de janela dev: controles, título e status limpo sem badge */}
-                <div className="flex items-center justify-between pb-3.5 mb-3.5 sm:pb-4 sm:mb-4 border-b border-border-subtle">
-                  {/* Controles estilo macOS / Linux */}
-                  <div className="flex items-center gap-1.5">
-                    <div className="w-2.5 h-2.5 rounded-full bg-border-strong/70" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-border-strong/70" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-border-strong/70" />
-                  </div>
-
-                  {/* Nome do arquivo monospace */}
-                  <span className="text-xs font-mono font-medium text-secondary">
-                    architecture.overview.ts
-                  </span>
-
-                  {/* Status técnico sem badge */}
-                  <div className="flex items-center gap-1.5 font-mono text-[10px] sm:text-xs text-text-brand">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand animate-pulse" />
-                    <span>HEALTHY / 99.9% uptime</span>
+              {/* Painel do Seletor */}
+              <div
+                data-testid="hero-scenario-selector"
+                className="relative rounded-2xl border border-border-default/80 dark:border-zinc-800/80 bg-surface/90 dark:bg-zinc-950/70 backdrop-blur-md p-5 sm:p-6 shadow-xl dark:shadow-2xl transition-colors duration-200"
+              >
+                {/* Cabeçalho do painel */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 mb-4 border-b border-border-default/50">
+                  <h2 className="text-sm sm:text-base font-bold text-primary tracking-tight">
+                    O que sua empresa precisa agora?
+                  </h2>
+                  <div className="flex items-center gap-1.5 font-mono text-[10px] sm:text-xs text-text-brand select-none shrink-0">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand animate-pulse shrink-0" />
+                    <span>Direcionamento técnico imediato</span>
                   </div>
                 </div>
 
-                {/* Camadas Técnicas Conectadas da Arquitetura */}
-                <div className="space-y-2 sm:space-y-2.5">
-                  {/* Camada 01: Client & Portais */}
-                  <div className="p-2.5 sm:p-3 rounded-lg border border-border-default bg-surface hover:border-accent-blue/40 transition-colors duration-200">
-                    <div className="flex items-center gap-2 mb-1.5">
-                      <span className="text-[10px] font-mono font-bold text-accent-blue">01</span>
-                      <span className="text-xs font-semibold text-primary">
-                        Aplicações Web &amp; Portais
-                      </span>
-                    </div>
-                    <div className="flex flex-wrap gap-1.5">
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-surface-elevated text-secondary border border-border-subtle">
-                        React
-                      </span>
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-surface-elevated text-secondary border border-border-subtle">
-                        TypeScript
-                      </span>
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-surface-elevated text-secondary border border-border-subtle">
-                        Tailwind CSS
-                      </span>
-                    </div>
-                  </div>
+                {/* Lista de cenários com linha condutora SVG vertical conectando os nós */}
+                <div className="relative flex flex-col gap-2">
+                  {/* Linha vertical SVG animada conectando os nós */}
+                  <svg
+                    className="absolute left-[20px] sm:left-[22px] top-6 bottom-6 w-[2px] -translate-x-1/2 pointer-events-none z-0 h-[calc(100%-48px)]"
+                    aria-hidden="true"
+                  >
+                    <defs>
+                      <linearGradient id="heroGuideLine" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stopColor="#2DD4BF" stopOpacity="0.3" />
+                        <stop offset="50%" stopColor="#2DD4BF" stopOpacity="0.8" />
+                        <stop offset="100%" stopColor="#2DD4BF" stopOpacity="0.3" />
+                      </linearGradient>
+                    </defs>
+                    <motion.line
+                      x1="1"
+                      y1="0"
+                      x2="1"
+                      y2="100%"
+                      stroke="url(#heroGuideLine)"
+                      strokeWidth="2"
+                      initial={shouldReduceMotion ? { pathLength: 1 } : { pathLength: 0 }}
+                      animate={{ pathLength: 1 }}
+                      transition={{ duration: 0.8, ease: "easeOut" }}
+                    />
+                  </svg>
 
-                  {/* Conector Vertical 1 */}
-                  <div className="flex items-center justify-center -my-0.5 sm:-my-1">
-                    <div className="w-px h-2 sm:h-2.5 bg-border-default" />
-                  </div>
+                  {SCENARIOS.map((scenario) => (
+                    <Link
+                      key={scenario.id}
+                      to={scenario.href}
+                      data-testid={`scenario-link-${scenario.id}`}
+                      className="group relative z-10 flex items-center justify-between gap-3.5 p-3 sm:p-3.5 rounded-xl border border-transparent hover:border-border-default dark:hover:border-zinc-800/80 hover:bg-surface-elevated/80 dark:hover:bg-zinc-900/60 focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-brand transition-all duration-200 cursor-pointer"
+                    >
+                      <div className="flex items-center gap-3 min-w-0">
+                        {/* Nó circular indicador conectado ao eixo */}
+                        <div className="relative z-10 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-surface dark:bg-zinc-950 border-2 border-border-default dark:border-zinc-800 flex items-center justify-center shrink-0 transition-all duration-200 group-hover:border-brand group-hover:shadow-[0_0_12px_rgba(45,212,191,0.5)] group-hover:scale-110">
+                          <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground/50 dark:bg-zinc-600 transition-colors duration-200 group-hover:bg-brand" />
+                        </div>
 
-                  {/* Camada 02: Core & Back-end */}
-                  <div className="p-2.5 sm:p-3 rounded-lg border border-border-default bg-surface hover:border-accent-violet/40 transition-colors duration-200">
-                    <div className="flex items-center gap-2 mb-1.5">
-                      <span className="text-[10px] font-mono font-bold text-accent-violet">02</span>
-                      <span className="text-xs font-semibold text-primary">
-                        APIs &amp; Back-end Escalável
-                      </span>
-                    </div>
-                    <div className="flex flex-wrap gap-1.5">
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-surface-elevated text-secondary border border-border-subtle">
-                        Node.js
-                      </span>
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-surface-elevated text-secondary border border-border-subtle">
-                        PHP / Laravel
-                      </span>
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-surface-elevated text-secondary border border-border-subtle">
-                        APIs REST
-                      </span>
-                    </div>
-                  </div>
+                        {/* Texto da dor/solução */}
+                        <span className="text-xs sm:text-sm font-medium text-secondary group-hover:text-primary transition-colors leading-snug">
+                          {scenario.title}
+                        </span>
+                      </div>
 
-                  {/* Conector Vertical 2 */}
-                  <div className="flex items-center justify-center -my-0.5 sm:-my-1">
-                    <div className="w-px h-2 sm:h-2.5 bg-border-default" />
-                  </div>
-
-                  {/* Camada 03: Integrações & Mensageria */}
-                  <div className="p-2.5 sm:p-3 rounded-lg border border-border-default bg-surface hover:border-accent-amber/40 transition-colors duration-200">
-                    <div className="flex items-center gap-2 mb-1.5">
-                      <span className="text-[10px] font-mono font-bold text-accent-amber">03</span>
-                      <span className="text-xs font-semibold text-primary">
-                        Barramento de Integração &amp; Eventos
-                      </span>
-                    </div>
-                    <div className="flex flex-wrap gap-1.5">
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-surface-elevated text-secondary border border-border-subtle">
-                        RabbitMQ
-                      </span>
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-surface-elevated text-secondary border border-border-subtle">
-                        Workers
-                      </span>
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-surface-elevated text-secondary border border-border-subtle">
-                        Eventos
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Conector Vertical 3 */}
-                  <div className="flex items-center justify-center -my-0.5 sm:-my-1">
-                    <div className="w-px h-2 sm:h-2.5 bg-border-default" />
-                  </div>
-
-                  {/* Camada 04: Dados & Nuvem */}
-                  <div className="p-2.5 sm:p-3 rounded-lg border border-border-default bg-surface hover:border-brand/40 transition-colors duration-200">
-                    <div className="flex items-center gap-2 mb-1.5">
-                      <span className="text-[10px] font-mono font-bold text-brand">04</span>
-                      <span className="text-xs font-semibold text-primary">
-                        Persistência Transacional &amp; Nuvem
-                      </span>
-                    </div>
-                    <div className="flex flex-wrap gap-1.5">
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-surface-elevated text-secondary border border-border-subtle">
-                        PostgreSQL
-                      </span>
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-surface-elevated text-secondary border border-border-subtle">
-                        Redis
-                      </span>
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-surface-elevated text-secondary border border-border-subtle">
-                        AWS
-                      </span>
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-surface-elevated text-secondary border border-border-subtle">
-                        Docker
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Rodapé técnico da janela */}
-                <div className="flex items-center justify-between pt-3 mt-3 sm:pt-4 sm:mt-4 border-t border-border-subtle text-[10px] sm:text-[10.5px] font-mono text-muted">
-                  <span className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand" />
-                    CI/CD · Testes Automatizados
-                  </span>
-                  <span>Segurança &amp; Observabilidade</span>
+                      {/* Seta direcional com affordance de navegação */}
+                      <ArrowUpRight
+                        size={16}
+                        className="shrink-0 text-muted group-hover:text-brand group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200"
+                        aria-hidden="true"
+                      />
+                    </Link>
+                  ))}
                 </div>
               </div>
             </div>

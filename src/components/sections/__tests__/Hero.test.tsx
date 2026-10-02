@@ -10,13 +10,14 @@ const renderHero = () =>
     </MemoryRouter>
   );
 
-describe('Hero Component (B2B Engineering Fullscreen & Minimalist — SPEC-069)', () => {
-  it('renders section with semantic accessibility labeling, fullscreen classes and unique H1', () => {
+describe('Hero Component (Business Scenarios Selector & B2B Decision — SPEC-083)', () => {
+  it('renders section with semantic accessibility labeling, fullscreen classes, data-tone and unique H1', () => {
     renderHero();
 
     const section = document.getElementById('hero');
     expect(section).toBeInTheDocument();
     expect(section).toHaveAttribute('aria-labelledby', 'hero-title');
+    expect(section).toHaveAttribute('data-tone', 'anchor');
     expect(section?.className).toContain('min-h-screen');
     expect(section?.className).toContain('min-h-[100svh]');
 
@@ -25,19 +26,27 @@ describe('Hero Component (B2B Engineering Fullscreen & Minimalist — SPEC-069)'
     expect(headings[0]).toHaveAttribute('id', 'hero-title');
   });
 
-  it('renders exact H1 copy without redundant subheadline paragraph (SPEC-069)', () => {
+  it('renders exact H1 with visual chromatic accent and editorial subheadline (SPEC-083)', () => {
     renderHero();
 
     const heading = screen.getByRole('heading', { level: 1 });
     expect(heading).toHaveTextContent('Engenharia de software para construir, integrar e evoluir sistemas.');
 
-    // Subheadline removed for ultra-clean direct conversion flow
+    // Chromatic accent on action verbs
+    const accentedSpan = heading.querySelector('span');
+    expect(accentedSpan).toBeInTheDocument();
+    expect(accentedSpan).toHaveTextContent('construir, integrar e evoluir');
+    expect(accentedSpan?.className).toContain('text-text-brand');
+
+    // Editorial subheadline
     expect(
-      screen.queryByText(/Desenvolvemos sistemas corporativos, APIs escaláveis/i)
-    ).not.toBeInTheDocument();
+      screen.getByText(
+        'Sistemas sob medida para empresas que precisam criar plataformas, conectar operações ou modernizar o software do seu negócio.'
+      )
+    ).toBeInTheDocument();
   });
 
-  it('renders contextual eyebrow with BrandChipIcon without pill/badge wrapper (SPEC-069)', () => {
+  it('renders contextual eyebrow with BrandChipIcon without pill/badge wrapper', () => {
     renderHero();
 
     const eyebrow = screen.getByTestId('hero-eyebrow');
@@ -62,47 +71,47 @@ describe('Hero Component (B2B Engineering Fullscreen & Minimalist — SPEC-069)'
     expect(secondaryCta).toHaveAttribute('href', '#servicos');
   });
 
-  it('does not render bottom micro social proof phrase (SPEC-069)', () => {
+  it('renders operational trust strip with verifiable factual commitments (SPEC-083)', () => {
     renderHero();
 
-    expect(
-      screen.queryByText(/Sistemas em produção nos setores/i)
-    ).not.toBeInTheDocument();
+    const trustStrip = screen.getByTestId('hero-operational-trust');
+    expect(trustStrip).toBeInTheDocument();
+    expect(trustStrip).toHaveTextContent('Aplicações corporativas críticas');
+    expect(trustStrip).toHaveTextContent('Energia, educação, indústria e varejo');
+    expect(trustStrip).toHaveTextContent('Retorno em até 24h úteis');
   });
 
-  it('renders dev-style active architecture window with clean status text without badge (SPEC-069)', () => {
-    const { container } = renderHero();
+  it('renders interactive business scenario selector with header, status, and 4 scenario links (SPEC-083)', () => {
+    renderHero();
 
-    // Canvas container must be aria-hidden="true" for screen reader accessibility
-    const canvasWrapper = container.querySelector('[aria-hidden="true"].lg\\:col-span-5');
-    expect(canvasWrapper).toBeInTheDocument();
+    const selector = screen.getByTestId('hero-scenario-selector');
+    expect(selector).toBeInTheDocument();
+    expect(selector).toHaveTextContent('O que sua empresa precisa agora?');
+    expect(selector).toHaveTextContent('Direcionamento técnico imediato');
 
-    // Dev-style window controls and status
-    expect(canvasWrapper).toHaveTextContent('architecture.overview.ts');
-    expect(canvasWrapper).toHaveTextContent(/HEALTHY \/ 99\.9% uptime/i);
+    // Scenario 1: Sistemas / Web
+    const link1 = screen.getByTestId('scenario-link-sistemas');
+    expect(link1).toBeInTheDocument();
+    expect(link1).toHaveAttribute('href', '/servicos#sistemas');
+    expect(link1).toHaveTextContent('Criar um novo sistema, portal ou plataforma web');
 
-    // Contains architectural topology layers
-    expect(canvasWrapper).toHaveTextContent(/Aplicações Web & Portais/i);
-    expect(canvasWrapper).toHaveTextContent(/APIs & Back-end Escalável/i);
-    expect(canvasWrapper).toHaveTextContent(/Barramento de Integração & Eventos/i);
-    expect(canvasWrapper).toHaveTextContent(/Persistência Transacional & Nuvem/i);
+    // Scenario 2: Integrações
+    const link2 = screen.getByTestId('scenario-link-integracoes');
+    expect(link2).toBeInTheDocument();
+    expect(link2).toHaveAttribute('href', '/servicos#integracoes');
+    expect(link2).toHaveTextContent('Conectar sistemas antigos e automatizar fluxos de dados');
 
-    // Contains actual technologies from the company stack
-    expect(canvasWrapper).toHaveTextContent('React');
-    expect(canvasWrapper).toHaveTextContent('TypeScript');
-    expect(canvasWrapper).toHaveTextContent('Node.js');
-    expect(canvasWrapper).toHaveTextContent('PHP / Laravel');
-    expect(canvasWrapper).toHaveTextContent('RabbitMQ');
-    expect(canvasWrapper).toHaveTextContent('PostgreSQL');
-    expect(canvasWrapper).toHaveTextContent('AWS');
-    expect(canvasWrapper).toHaveTextContent('Docker');
-  });
+    // Scenario 3: Legados
+    const link3 = screen.getByTestId('scenario-link-legados');
+    expect(link3).toBeInTheDocument();
+    expect(link3).toHaveAttribute('href', '/servicos#legados');
+    expect(link3).toHaveTextContent('Modernizar e refatorar um software legado sem parar a operação');
 
-  it('removes artificial horizontal divider line and static node dot (SPEC-068/069)', () => {
-    const { container } = renderHero();
-
-    expect(container.querySelector('[data-testid="hero-divider-line"]')).not.toBeInTheDocument();
-    expect(container.querySelector('.w-full.border-t.border-border')).not.toBeInTheDocument();
+    // Scenario 4: Diagnóstico
+    const link4 = screen.getByTestId('scenario-link-diagnostico');
+    expect(link4).toBeInTheDocument();
+    expect(link4).toHaveAttribute('href', '/contato');
+    expect(link4).toHaveTextContent('Avaliar arquitetura e ter uma segunda opinião técnica sênior');
   });
 
   it('respects prefers-reduced-motion without throwing and renders all elements', () => {

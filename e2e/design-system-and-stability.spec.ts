@@ -27,7 +27,7 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     expect(scrollY).toBeLessThan(150);
   });
 
-  test('Títulos de todas as seções são rigorosamente monocromáticos (sem text-gradient)', async ({ page }) => {
+  test('Títulos das seções não possuem gradientes artificiais e Hero H1 possui acento visual de marca (SPEC-083)', async ({ page }) => {
     await page.goto('/');
     await page.waitForLoadState('domcontentloaded');
 
@@ -36,16 +36,22 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     const count = await gradientElements.count();
     expect(count).toBe(0);
 
-    // Verifica que os headings de cada seção existem, contêm os textos padronizados e são 100% monocromáticos
+    // Valida H1 do Hero com acento cromático oficial de marca na ação (SPEC-083)
+    const heroH1 = page.locator('#hero h1').first();
+    await expect(heroH1).toBeVisible();
+    await expect(heroH1).toContainText('Engenharia de software para construir, integrar e evoluir sistemas.');
+    const heroAccent = heroH1.locator('span.text-text-brand');
+    await expect(heroAccent).toBeVisible();
+    await expect(heroAccent).toHaveText('construir, integrar e evoluir');
+
+    // Verifica que os headings das demais seções são rigorosamente monocromáticos
     const expectedHeadings = [
-      { id: 'hero', text: 'Engenharia de software' },
       { id: 'servicos', text: 'Engenharia sob medida para os gargalos da sua operação' },
       { id: 'como-trabalhamos', text: 'Engenharia previsível com contato direto com quem constrói' },
       { id: 'autoridade', text: 'Resultados comprovados em operações de grande escala' },
     ];
 
     for (const item of expectedHeadings) {
-      // Rola até a seção
       await page.evaluate((id) => {
         const el = document.getElementById(id);
         if (el) el.scrollIntoView({ behavior: 'instant' });
@@ -501,6 +507,59 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     const darkThemeButton = page.locator('button[title="Tema Dark"]');
     await darkThemeButton.click();
     await page.waitForTimeout(400);
+  });
+
+  test('Hero (SPEC-083): Renderiza proposta de valor, acento cromático no H1, faixa operacional e seletor interativo de cenários', async ({ page }) => {
+    await page.goto('/');
+    await page.waitForLoadState('domcontentloaded');
+
+    // 1. Valida H1 com acento visual no verbo de ação
+    const heroH1 = page.locator('#hero h1');
+    await expect(heroH1).toBeVisible();
+    await expect(heroH1.locator('span.text-text-brand')).toHaveText('construir, integrar e evoluir');
+
+    // 2. Valida subheadline editorial de proposta de valor
+    const subheadline = page.getByText(
+      'Sistemas sob medida para empresas que precisam criar plataformas, conectar operações ou modernizar o software do seu negócio.'
+    );
+    await expect(subheadline).toBeVisible();
+
+    // 3. Valida CTAs principais
+    const ctaPrimario = page.locator('#hero a[href="/contato"]').first();
+    await expect(ctaPrimario).toBeVisible();
+    await expect(ctaPrimario).toContainText('Vamos conversar');
+
+    const ctaSecundario = page.locator('#hero a[href="#servicos"]').first();
+    await expect(ctaSecundario).toBeVisible();
+    await expect(ctaSecundario).toContainText('Ver soluções');
+
+    // 4. Valida faixa de confiança operacional
+    const trustStrip = page.locator('[data-testid="hero-operational-trust"]');
+    await expect(trustStrip).toBeVisible();
+    await expect(trustStrip).toContainText('Aplicações corporativas críticas');
+    await expect(trustStrip).toContainText('Energia, educação, indústria e varejo');
+    await expect(trustStrip).toContainText('Retorno em até 24h úteis');
+
+    // 5. Valida Seletor Interativo de Cenários de Negócio
+    const selector = page.locator('[data-testid="hero-scenario-selector"]');
+    await expect(selector).toBeVisible();
+    await expect(selector).toContainText('O que sua empresa precisa agora?');
+    await expect(selector).toContainText('Direcionamento técnico imediato');
+
+    // Valida os 4 links de cenário com navegação ancorada
+    const scenarios = [
+      { id: 'sistemas', text: 'Criar um novo sistema, portal ou plataforma web', href: '/servicos#sistemas' },
+      { id: 'integracoes', text: 'Conectar sistemas antigos e automatizar fluxos de dados', href: '/servicos#integracoes' },
+      { id: 'legados', text: 'Modernizar e refatorar um software legado sem parar a operação', href: '/servicos#legados' },
+      { id: 'diagnostico', text: 'Avaliar arquitetura e ter uma segunda opinião técnica sênior', href: '/contato' },
+    ];
+
+    for (const scenario of scenarios) {
+      const scenarioLink = page.locator(`[data-testid="scenario-link-${scenario.id}"]`);
+      await expect(scenarioLink).toBeVisible();
+      await expect(scenarioLink).toContainText(scenario.text);
+      await expect(scenarioLink).toHaveAttribute('href', scenario.href);
+    }
   });
 });
 
