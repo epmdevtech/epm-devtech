@@ -52,7 +52,7 @@ const ROUTES = [
     title: "Sobre a EPM DevTech | Engenharia de Software Corporativa",
     description:
       "Software house de engenharia de software sob medida para aplicações corporativas críticas, com atendimento 100% remoto em escala nacional.",
-    h1: "Engenharia de software sob medida com visão real de negócio",
+    h1: "Transformando desafios em soluções que funcionam",
   },
   {
     path: "contato",

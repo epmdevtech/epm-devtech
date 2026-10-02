@@ -9,6 +9,27 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.90-sobre-hero-copy-monocromatico] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-090-sobre-hero-copy-monocromatico.md`**: Especificação técnica para ajuste de copywriting e tipografia 100% monocromática do Hero de `/sobre`.
+- **`tasks/TASK-090-sobre-hero-copy-monocromatico.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-090.md`**: Relatório de QA com validação dos quality gates e evidências visuais nos temas Dark, Light e Mobile.
+
+### Removido
+- **`src/pages/AboutPage.tsx`**:
+  - Excluída a faixa de Inline Trust Marks (`● Atendimento 100% Remoto & Nacional`, `● Contato Direto com Liderança Técnica` e `● Propriedade Integral do Código`).
+  - Removido o destaque verde/ciano nas palavras do H1.
+
+### Modificado
+- **`src/pages/AboutPage.tsx`**:
+  - H1 atualizado para *"Transformando desafios em soluções que funcionam"*, 100% monocromático (`text-primary`).
+  - Subtítulo atualizado para *"Unimos tecnologia, experiência e visão de negócio para criar soluções digitais que simplificam operações e geram resultados reais."*.
+- **`scripts/prerender.js`**: H1 atualizado para a rota `sobre`.
+- **`e2e/multi-route-navigation.spec.ts`**: Atualizada expectativa de H1 para `/sobre`.
+- **`src/pages/__tests__/pages.test.tsx`**: Testes unitários atualizados para validar o novo H1 e a ausência das trust marks.
+- **`PROJECT.md`**: Atualização do estado canônico da rota `/sobre`.
+
 ## [0.0.89-sobre-hero-editorial-network] - 2026-10-02
 
 ### Adicionado

@@ -139,39 +139,19 @@ export const AboutPage: React.FC = () => {
                 <span>[ QUEM SOMOS // POSICIONAMENTO ]</span>
               </div>
 
-              {/* H1 Editorial Amplo */}
+              {/* H1 Editorial Amplo Monocromático */}
               <h1
                 id="page-title"
                 tabIndex={-1}
                 className="font-bold tracking-tight text-primary text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.12] [text-wrap:balance] outline-none focus:outline-none mb-6"
               >
-                Engenharia de software sob medida com{" "}
-                <span className="text-text-brand">visão real de negócio</span>
+                Transformando desafios em soluções que funcionam
               </h1>
 
-              {/* Parágrafo Institucional Amplo */}
+              {/* Subtítulo Institucional */}
               <p className="text-base sm:text-lg lg:text-xl text-secondary leading-relaxed font-normal [text-wrap:balance]">
-                A EPM DevTech projeta, constrói e moderniza aplicações corporativas críticas. Desenvolvemos ecossistemas sob medida para operações que exigem estabilidade contínua, integrações sem perda de dados e comunicação técnica direta com quem implementa a solução.
+                Unimos tecnologia, experiência e visão de negócio para criar soluções digitais que simplificam operações e geram resultados reais.
               </p>
-
-              {/* Faixa de Inline Trust Marks (Sem Caixas Fechadas) */}
-              <div
-                data-testid="trust-marks-strip"
-                className="flex flex-wrap gap-y-3 gap-x-6 sm:gap-x-8 mt-8 sm:mt-10 items-center text-xs sm:text-sm font-mono text-secondary"
-              >
-                <div className="inline-flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-brand shrink-0" />
-                  <span>Atendimento 100% Remoto & Nacional</span>
-                </div>
-                <div className="inline-flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-brand shrink-0" />
-                  <span>Contato Direto com Liderança Técnica</span>
-                </div>
-                <div className="inline-flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-brand shrink-0" />
-                  <span>Propriedade Integral do Código</span>
-                </div>
-              </div>
             </div>
           </div>
         </header>

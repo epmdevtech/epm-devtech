@@ -131,14 +131,15 @@ describe('Rotas e Páginas Independentes (SPEC-060)', () => {
     expect(screen.queryByText('Precisa de engenharia sólida no seu produto ou sistema interno?')).not.toBeInTheDocument();
   });
 
-  it('AboutPage (/sobre) renderiza Hero editorial amplo com H1, eyebrow, inline trust marks, timeline e manifesto sem cards fechados, dados burocráticos ou CTA final redundante', () => {
+  it('AboutPage (/sobre) renderiza Hero editorial monocromático com H1, subtítulo, timeline e manifesto sem trust marks, dados burocráticos ou CTA final redundante', () => {
     renderWithProviders(<AboutPage />);
-    expect(screen.getByRole('heading', { level: 1, name: /Engenharia de software sob medida com visão real de negócio/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1, name: 'Transformando desafios em soluções que funcionam' })).toBeInTheDocument();
     expect(screen.getByText(/\[ QUEM SOMOS \/\/ POSICIONAMENTO \]/i)).toBeInTheDocument();
-    expect(screen.getByTestId('trust-marks-strip')).toBeInTheDocument();
-    expect(screen.getByText('Atendimento 100% Remoto & Nacional')).toBeInTheDocument();
-    expect(screen.getByText('Contato Direto com Liderança Técnica')).toBeInTheDocument();
-    expect(screen.getByText('Propriedade Integral do Código')).toBeInTheDocument();
+    expect(screen.getByText('Unimos tecnologia, experiência e visão de negócio para criar soluções digitais que simplificam operações e geram resultados reais.')).toBeInTheDocument();
+    expect(screen.queryByTestId('trust-marks-strip')).not.toBeInTheDocument();
+    expect(screen.queryByText('Atendimento 100% Remoto & Nacional')).not.toBeInTheDocument();
+    expect(screen.queryByText('Contato Direto com Liderança Técnica')).not.toBeInTheDocument();
+    expect(screen.queryByText('Propriedade Integral do Código')).not.toBeInTheDocument();
     expect(screen.queryByText('Como atuamos com a sua equipe')).not.toBeInTheDocument();
     expect(screen.queryByText('Parceria Direta')).not.toBeInTheDocument();
     expect(screen.queryByText(/Elessandro Prestes Macedo/i)).not.toBeInTheDocument();

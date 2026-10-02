@@ -36,7 +36,7 @@ test.describe('EPM DEVTECH — Arquitetura de Informação Multi-Rota (SPEC-060)
     {
       path: '/sobre',
       expectedTitle: 'Sobre a EPM DevTech | Engenharia de Software Corporativa',
-      expectedH1: 'Engenharia de software sob medida com visão real de negócio',
+      expectedH1: 'Transformando desafios em soluções que funcionam',
       canonicalUrl: 'https://epmdevtech.com.br/sobre',
     },
     {
