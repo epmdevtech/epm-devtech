@@ -9,6 +9,18 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.97-correcao-contraste-numeros-pipeline-dark-mode] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-097-correcao-contraste-numeros-pipeline-dark-mode.md`**: Especificação técnica aprovada pelo PO para correção de contraste e visibilidade dos números das etapas do pipeline no Modo Escuro (Dark Mode).
+- **`tasks/TASK-097-correcao-contraste-numeros-pipeline-dark-mode.md`**: Tarefa e checklist de execução concluídos sob o protocolo Universal SDD.
+- **`reviews/QA-097.md`**: Relatório de QA com validação de 100% dos quality gates e captura de tela demonstrando nitidez dos números das etapas no Dark Mode.
+
+### Modificado
+- **`src/components/sections/HomeProcessPipeline.tsx`**: Eliminação de classes dinâmicas concatenadas com prefixo `dark:${...}` no elemento circular dos nós. Declaração de classes completas e estáticas para Dark e Light mode nos tokens das 4 etapas (`dark:text-accent-blue`, `dark:text-accent-violet`, `dark:text-accent-amber`, `dark:text-text-brand` e bordas iluminadas temáticas), garantindo varredura estática pelo Tailwind CSS e contraste WCAG AAA (8.4:1 a 12.8:1) sobre `dark:bg-zinc-950`.
+- **`src/components/sections/__tests__/HomeProcessPipeline.test.tsx`**: Adicionada asserção automatizada garantindo presença das classes estáticas de modo escuro nos 4 nós técnicos.
+- **`PROJECT.md`**: Atualização do estado do componente de Pipeline e métricas de testes.
+
 ## [0.0.96-refatoracao-experiencia-tipografica-espacial-editorial] - 2026-10-02
 
 ### Adicionado

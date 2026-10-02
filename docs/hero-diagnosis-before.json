@@ -30,18 +30,18 @@
     "viewport": "390x844",
     "width": 390,
     "viewportHeight": 844,
-    "heroHeight": 1106,
-    "viewportRatioPercent": 131.1,
-    "servicosTop": 1106,
+    "heroHeight": 1122,
+    "viewportRatioPercent": 132.9,
+    "servicosTop": 1122,
     "servicosVisibleAboveFold": false
   },
   {
     "viewport": "320x640",
     "width": 320,
     "viewportHeight": 640,
-    "heroHeight": 1269,
-    "viewportRatioPercent": 198.2,
-    "servicosTop": 1269,
+    "heroHeight": 1285,
+    "viewportRatioPercent": 200.7,
+    "servicosTop": 1285,
     "servicosVisibleAboveFold": false
   }
 ]

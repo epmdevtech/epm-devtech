@@ -87,4 +87,25 @@ describe("HomeProcessPipeline Component", () => {
       expect(node.className).toContain("dark:bg-zinc-950");
     });
   });
+
+  it("garante classes estáticas de alto contraste no modo escuro nos 4 nós técnicos (SPEC-097)", () => {
+    const { container } = render(<HomeProcessPipeline />);
+    const nodes = container.querySelectorAll(".w-9.h-9");
+
+    // Nó 01: Entendimento
+    expect(nodes[0].className).toContain("dark:text-accent-blue");
+    expect(nodes[0].className).toContain("dark:border-accent-blue/50");
+
+    // Nó 02: Definição
+    expect(nodes[1].className).toContain("dark:text-accent-violet");
+    expect(nodes[1].className).toContain("dark:border-accent-violet/50");
+
+    // Nó 03: Desenvolvimento
+    expect(nodes[2].className).toContain("dark:text-accent-amber");
+    expect(nodes[2].className).toContain("dark:border-accent-amber/50");
+
+    // Nó 04: Evolução
+    expect(nodes[3].className).toContain("dark:text-text-brand");
+    expect(nodes[3].className).toContain("dark:border-brand/50");
+  });
 });

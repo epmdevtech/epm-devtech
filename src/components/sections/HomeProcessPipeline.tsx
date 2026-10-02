@@ -21,8 +21,8 @@ const steps: ProcessStep[] = [
     title: "Diagnóstico inicial",
     description: "Mapeamos os gargalos operacionais e desenhamos a arquitetura mais eficiente para o seu momento.",
     theme: {
-      nodeBorder: "border-accent-blue/50 group-hover:border-accent-blue",
-      nodeText: "text-accent-blue",
+      nodeBorder: "border-zinc-300 dark:border-accent-blue/50 dark:group-hover:border-accent-blue",
+      nodeText: "text-zinc-900 dark:text-accent-blue",
       nodeGlow: "group-hover:shadow-[0_0_15px_rgba(56,189,248,0.35)]",
       phaseColor: "text-accent-blue",
     },
@@ -33,8 +33,8 @@ const steps: ProcessStep[] = [
     title: "Escopo e entregáveis",
     description: "Definimos critérios claros de aceite, cronograma realista e prioridades de negócio antes de codificar.",
     theme: {
-      nodeBorder: "border-accent-violet/50 group-hover:border-accent-violet",
-      nodeText: "text-accent-violet",
+      nodeBorder: "border-zinc-300 dark:border-accent-violet/50 dark:group-hover:border-accent-violet",
+      nodeText: "text-zinc-900 dark:text-accent-violet",
       nodeGlow: "group-hover:shadow-[0_0_15px_rgba(167,139,250,0.35)]",
       phaseColor: "text-accent-violet",
     },
@@ -45,8 +45,8 @@ const steps: ProcessStep[] = [
     title: "Entregas incrementais",
     description: "Código testado com validações periódicas em homologação para sua equipe acompanhar a evolução real.",
     theme: {
-      nodeBorder: "border-accent-amber/50 group-hover:border-accent-amber",
-      nodeText: "text-accent-amber",
+      nodeBorder: "border-zinc-300 dark:border-accent-amber/50 dark:group-hover:border-accent-amber",
+      nodeText: "text-zinc-900 dark:text-accent-amber",
       nodeGlow: "group-hover:shadow-[0_0_15px_rgba(251,191,36,0.35)]",
       phaseColor: "text-accent-amber",
     },
@@ -57,8 +57,8 @@ const steps: ProcessStep[] = [
     title: "Sustentação e melhoria",
     description: "Acompanhamento próximo em produção, monitoramento de estabilidade e suporte técnico ágil.",
     theme: {
-      nodeBorder: "border-brand/50 group-hover:border-brand",
-      nodeText: "text-text-brand",
+      nodeBorder: "border-zinc-300 dark:border-brand/50 dark:group-hover:border-brand",
+      nodeText: "text-zinc-900 dark:text-text-brand",
       nodeGlow: "group-hover:shadow-[0_0_15px_rgba(45,212,191,0.35)]",
       phaseColor: "text-text-brand",
     },
@@ -125,7 +125,7 @@ export const HomeProcessPipeline: FC = () => {
             {/* Marcador do Nó (Node) */}
             <div className="absolute left-0 top-0 md:relative md:left-auto md:top-auto mb-3 md:mb-5">
               <div
-                className={`relative z-10 w-9 h-9 rounded-full bg-white dark:bg-zinc-950 border-2 border-zinc-300 dark:${s.theme.nodeBorder} text-zinc-900 dark:${s.theme.nodeText} ${s.theme.nodeGlow} flex items-center justify-center font-mono text-xs font-bold transition-all duration-300 group-hover:scale-110 shadow-sm`}
+                className={`relative z-10 w-9 h-9 rounded-full bg-white dark:bg-zinc-950 border-2 ${s.theme.nodeBorder} ${s.theme.nodeText} ${s.theme.nodeGlow} flex items-center justify-center font-mono text-xs font-bold transition-all duration-300 group-hover:scale-110 shadow-sm`}
               >
                 {s.step}
               </div>
