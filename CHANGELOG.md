@@ -9,6 +9,22 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.65-bento-grid-servicos-home] - 2026-10-01
+
+### Adicionado
+- **`specs/SPEC-065-bento-grid-servicos-home.md`**: Especificação do Bento Grid de 12 colunas para a seção de Serviços da Home, substituindo a grade simétrica de 4 cards por composição editorial/técnica.
+- **`tasks/TASK-065-bento-grid-servicos-home.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-065.md`**: Relatório de QA com evidências de conformidade aos quality gates e aprovação visual pelo PO.
+- **`src/components/sections/HomeServicesBento.tsx`**: Componente modular do Bento Grid assimétrico de 12 colunas com 4 serviços:
+  - Card 1 (`col-7`): APIs e back-end (destaque principal, mock visual de terminal HTTP `POST /api/v2/transactions`, 18ms latência, 2.500+ RPS, badge pulsante "Alta Concorrência").
+  - Card 2 (`col-5`): Sistemas e portais (tags técnicas React 18/TypeScript/Tailwind CSS, garantia de arquitetura limpa e indicador 100% Type-Safe).
+  - Card 3 (`col-5`): Integrações de dados (topologia visual de conectores ERP ➔ Event Hub ➔ CRMs/APIs, badge "Sync Ativo", fila com retry e 99.9% confiabilidade).
+  - Card 4 (`col-7`): Modernização de legados (transição conceitual direta Antes/Depois via padrão Strangler Fig, badge "Zero Downtime" e evolução segura).
+- **`src/components/sections/__tests__/HomeServicesBento.test.tsx`**: Suíte de testes unitários validando renderização de títulos, descrições de negócio, micro-artefatos técnicos e acessibilidade dos links.
+
+### Modificado
+- **`src/pages/Home.tsx`**: Substituição da grade de 4 colunas simétricas pelo componente `<HomeServicesBento />`, preservando cabeçalho, títulos aprovados e link canônico para `/servicos`.
+
 ## [0.0.64-correcao-contraste-textos-cursor-dark] - 2026-10-01
 
 ### Adicionado

@@ -1,7 +1,8 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { ArrowRight, Code2, Cpu, Database, RefreshCw, Clock } from "lucide-react";
+import { Clock } from "lucide-react";
 import Hero from "@/components/sections/Hero";
+import HomeServicesBento from "@/components/sections/HomeServicesBento";
 import BrandChipIcon from "@/components/ui/BrandChipIcon";
 import { Button } from "@/components/ui/button";
 import { SITE_CONFIG } from "@/config/site";
@@ -60,83 +61,8 @@ export const Home = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
-              {/* Card 1: Sistemas e Portais (accent-blue) */}
-              <Link
-                to="/servicos"
-                className="group p-6 rounded-xl border border-border-default bg-surface hover:border-accent-blue/50 hover:bg-surface-elevated transition-all duration-200 flex flex-col justify-between focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring"
-                aria-label="Sistemas e portais: Elimine gargalos operacionais e erros manuais com plataformas web sob medida para sua equipe."
-              >
-                <div>
-                  <div className="w-10 h-10 rounded-lg bg-accent-blue/10 border border-accent-blue/20 flex items-center justify-center text-accent-blue mb-4 group-hover:scale-105 transition-transform duration-200">
-                    <Code2 className="w-5 h-5" />
-                  </div>
-                  <h3 className="font-semibold text-primary text-base mb-2 group-hover:text-accent-blue transition-colors">
-                    Sistemas e portais
-                  </h3>
-                  <p className="text-sm text-secondary leading-relaxed">
-                    Elimine gargalos operacionais e erros manuais com plataformas web sob medida para sua equipe.
-                  </p>
-                </div>
-              </Link>
-
-              {/* Card 2: APIs e Back-end (accent-violet) */}
-              <Link
-                to="/servicos"
-                className="group p-6 rounded-xl border border-border-default bg-surface hover:border-accent-violet/50 hover:bg-surface-elevated transition-all duration-200 flex flex-col justify-between focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring"
-                aria-label="APIs e back-end: Processe regras complexas e alto volume com segurança, sem lentidão ou quedas inesperadas."
-              >
-                <div>
-                  <div className="w-10 h-10 rounded-lg bg-accent-violet/10 border border-accent-violet/20 flex items-center justify-center text-accent-violet mb-4 group-hover:scale-105 transition-transform duration-200">
-                    <Cpu className="w-5 h-5" />
-                  </div>
-                  <h3 className="font-semibold text-primary text-base mb-2 group-hover:text-accent-violet transition-colors">
-                    APIs e back-end
-                  </h3>
-                  <p className="text-sm text-secondary leading-relaxed">
-                    Processe regras complexas e alto volume com segurança, sem lentidão ou quedas inesperadas.
-                  </p>
-                </div>
-              </Link>
-
-              {/* Card 3: Integrações de Dados (accent-amber) */}
-              <Link
-                to="/servicos"
-                className="group p-6 rounded-xl border border-border-default bg-surface hover:border-accent-amber/50 hover:bg-surface-elevated transition-all duration-200 flex flex-col justify-between focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring"
-                aria-label="Integrações de dados: Conecte seus sistemas e automatize fluxos manuais com comunicação confiável e sem perdas."
-              >
-                <div>
-                  <div className="w-10 h-10 rounded-lg bg-accent-amber/10 border border-accent-amber/20 flex items-center justify-center text-accent-amber mb-4 group-hover:scale-105 transition-transform duration-200">
-                    <Database className="w-5 h-5" />
-                  </div>
-                  <h3 className="font-semibold text-primary text-base mb-2 group-hover:text-accent-amber transition-colors">
-                    Integrações de dados
-                  </h3>
-                  <p className="text-sm text-secondary leading-relaxed">
-                    Conecte seus sistemas e automatize fluxos manuais com comunicação confiável e sem perdas.
-                  </p>
-                </div>
-              </Link>
-
-              {/* Card 4: Modernização de Legados (brand teal) */}
-              <Link
-                to="/servicos"
-                className="group p-6 rounded-xl border border-border-default bg-surface hover:border-brand/50 hover:bg-surface-elevated transition-all duration-200 flex flex-col justify-between focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring"
-                aria-label="Modernização de legados: Atualize sistemas antigos que travam o crescimento do negócio sem interromper a operação diária."
-              >
-                <div>
-                  <div className="w-10 h-10 rounded-lg bg-brand-subtle border border-brand/20 flex items-center justify-center text-text-brand mb-4 group-hover:scale-105 transition-transform duration-200">
-                    <RefreshCw className="w-5 h-5" />
-                  </div>
-                  <h3 className="font-semibold text-primary text-base mb-2 group-hover:text-text-brand transition-colors">
-                    Modernização de legados
-                  </h3>
-                  <p className="text-sm text-secondary leading-relaxed">
-                    Atualize sistemas antigos que travam o crescimento do negócio sem interromper a operação diária.
-                  </p>
-                </div>
-              </Link>
-            </div>
+            {/* Bento Grid Assimétrico de 12 Colunas */}
+            <HomeServicesBento />
 
             <div className="flex items-center">
               <Link
