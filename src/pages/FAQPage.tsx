@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import PageHeader from "@/components/ui/PageHeader";
+import SectionWrapper from "@/components/ui/SectionWrapper";
 import {
   Accordion,
   AccordionContent,
@@ -62,14 +63,15 @@ export const FAQPage = () => {
       </Helmet>
 
       <div className="w-full">
-        {/* Page Header */}
+        {/* Page Header (Tom: Anchor) */}
         <PageHeader
           eyebrow="FAQ"
           title="Dúvidas frequentes"
           description="Respostas claras e diretas sobre como iniciar um projeto, modelos de trabalho, modernização de legados e atuação técnica remota."
         />
 
-        <div className="container px-6 pb-20 max-w-4xl mx-auto">
+        {/* Acordeão de Dúvidas (Tom: Base) */}
+        <SectionWrapper tone="base" containerClassName="max-w-4xl mx-auto">
           {/* Filtros por Categoria */}
           <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
             <button
@@ -100,7 +102,7 @@ export const FAQPage = () => {
           </div>
 
           {/* Acordeão de Perguntas */}
-          <Accordion type="single" collapsible className="space-y-3 mb-16">
+          <Accordion type="single" collapsible className="space-y-3">
             {filteredItems.map((item) => (
               <AccordionItem
                 key={item.id}
@@ -141,8 +143,10 @@ export const FAQPage = () => {
               </AccordionItem>
             ))}
           </Accordion>
+        </SectionWrapper>
 
-          {/* Chamada Final */}
+        {/* Chamada Final (Tom: Alt) */}
+        <SectionWrapper tone="alt" containerClassName="max-w-4xl mx-auto">
           <div className="p-8 sm:p-10 rounded-2xl border border-border-default bg-surface text-center">
             <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-primary mb-3">
               Não encontrou a resposta para o seu cenário?
@@ -158,7 +162,7 @@ export const FAQPage = () => {
               <Link to="/contato">Falar sobre meu projeto</Link>
             </Button>
           </div>
-        </div>
+        </SectionWrapper>
       </div>
     </>
   );

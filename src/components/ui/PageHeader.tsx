@@ -21,8 +21,9 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
 
   return (
     <header
+      data-tone="anchor"
       className={cn(
-        "relative w-full pt-28 pb-8 sm:pt-36 sm:pb-12 border-b border-border/40 mb-12 sm:mb-16",
+        "relative w-full pt-28 pb-12 sm:pt-36 sm:pb-16 bg-surface-anchor text-foreground transition-colors duration-200",
         className
       )}
     >

@@ -26,10 +26,21 @@ export default {
       },
       backgroundColor: {
         base: "rgb(var(--bg-base-rgb) / <alpha-value>)",
+        "surface-anchor": "hsl(var(--surface-anchor) / <alpha-value>)",
+        "surface-base": "hsl(var(--surface-base) / <alpha-value>)",
+        "surface-alt": "hsl(var(--surface-alt) / <alpha-value>)",
       },
       colors: {
         // Camada 2: Tokens Semânticos da EPM DEVTECH
-        surface: "rgb(var(--bg-surface-rgb) / <alpha-value>)",
+        surface: {
+          DEFAULT: "rgb(var(--bg-surface-rgb) / <alpha-value>)",
+          anchor: "hsl(var(--surface-anchor) / <alpha-value>)",
+          base: "hsl(var(--surface-base) / <alpha-value>)",
+          alt: "hsl(var(--surface-alt) / <alpha-value>)",
+        },
+        "surface-anchor": "hsl(var(--surface-anchor) / <alpha-value>)",
+        "surface-base": "hsl(var(--surface-base) / <alpha-value>)",
+        "surface-alt": "hsl(var(--surface-alt) / <alpha-value>)",
         elevated: "rgb(var(--bg-elevated-rgb) / <alpha-value>)",
         overlay: "var(--bg-overlay)",
 

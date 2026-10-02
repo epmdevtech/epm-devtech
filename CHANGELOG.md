@@ -9,6 +9,34 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.82-sistema-camadas-tonais] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-082-tonal-layering-design-system.md`**: Especificação técnica para substituição das linhas divisórias horizontais inter-seções por separação por camadas tonais (*tonal layering*) em todas as rotas e nos temas Dark e Light.
+- **`tasks/TASK-082-tonal-layering-design-system.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-082.md`**: Relatório de QA com evidências de conformidade aos quality gates e capturas visuais.
+- **`src/components/ui/SectionWrapper.tsx`**: Componente reutilizável de seção com prop explícita `tone="anchor" | "base" | "alt"`, padding vertical responsivo consistente (`py-16` a `py-28`) e container centralizado flexível.
+- **`src/components/ui/__tests__/SectionWrapper.test.tsx`**: Suíte de testes unitários para o `SectionWrapper`.
+
+### Modificado
+- **`src/index.css`**: Adição dos tokens semânticos HSL `--surface-anchor`, `--surface-base` e `--surface-alt` para os temas dark e light ($\Delta L = 3.5\%$), restauração de bordas em `forced-colors: active` e transição de background respeitando `prefers-reduced-motion`.
+- **`tailwind.config.ts`**: Mapeamento das classes semânticas utilitárias `surface-anchor`, `surface-base` e `surface-alt`.
+- **`src/components/layout/Header.tsx`**: Consumo de `surface-anchor` e aplicação de backdrop blur + borda inferior sutil exclusivamente sob scroll.
+- **`src/components/sections/Footer.tsx`**: Consumo de `surface-anchor` e remoção da linha horizontal divisória superior.
+- **`src/components/ui/PageHeader.tsx`**: Consumo de `surface-anchor` e eliminação da borda inferior `border-b border-border/40`.
+- **`src/pages/Home.tsx`**: Refatoração das seções adotando o ritmo tonal estrito `anchor -> base -> alt -> base -> alt -> base -> alt -> base -> alt -> base -> anchor` e remoção de divisores horizontais.
+- **`src/pages/ServicesPage.tsx`**: Ritmo tonal `anchor -> base -> alt -> base -> anchor` com `SectionWrapper`.
+- **`src/pages/HowWeWorkPage.tsx`**: Ritmo tonal `anchor -> base -> alt -> base -> anchor` com `SectionWrapper`.
+- **`src/pages/ExperiencePage.tsx`**: Ritmo tonal `anchor -> base -> alt -> base -> alt -> anchor` com `SectionWrapper`.
+- **`src/pages/EngineeringPage.tsx`**: Ritmo tonal `anchor -> base -> alt -> base -> anchor` com `SectionWrapper`.
+- **`src/pages/AboutPage.tsx`**: Ritmo tonal `anchor -> base -> alt -> base -> alt -> anchor` com `SectionWrapper`.
+- **`src/pages/ContactPage.tsx`**: Ritmo tonal `anchor -> base -> alt -> anchor` com `SectionWrapper`.
+- **`src/pages/FAQPage.tsx`**: Ritmo tonal `anchor -> base -> alt -> anchor` com `SectionWrapper`.
+- **`src/pages/NotFound.tsx`**: Ritmo tonal `anchor -> base -> anchor` com `SectionWrapper`.
+- **`src/components/layout/__tests__/Header.test.tsx`**: Atualização do teste de scroll para verificar classes de camadas tonais.
+- **`e2e/design-system-and-stability.spec.ts`**: Adição de testes E2E validando a ausência de linhas divisórias entre seções, ritmo tonal contínuo e alternância em Dark/Light mode em todas as 8 rotas principais.
+- **`PROJECT.md`**: Atualização do status de Design para Camadas Tonais.
+
 ## [0.0.81-sobre-nos-timeline-e-manifesto] - 2026-10-02
 
 ### Adicionado

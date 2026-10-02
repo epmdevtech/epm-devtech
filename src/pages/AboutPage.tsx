@@ -10,6 +10,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import PageHeader from "@/components/ui/PageHeader";
+import SectionWrapper from "@/components/ui/SectionWrapper";
 import { Button } from "@/components/ui/button";
 import { SITE_CONFIG } from "@/config/site";
 import { cn } from "@/lib/utils";
@@ -134,94 +135,91 @@ export const AboutPage: React.FC = () => {
           description="Fundada e conduzida pela liderança técnica de Elessandro Prestes Macedo (+9 anos de experiência), a EPM DevTech desenvolve e moderniza sistemas sob medida para empresas que buscam eficiência operacional, estabilidade e capacidade de evolução a longo prazo sem intermediários comerciais."
         />
 
-        {/* Bloco Institucional & Fundador */}
-        <section className="pb-16 sm:pb-24">
-          <div className="container px-6 max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-              {/* Coluna 1: Posicionamento Editorial (7 cols) */}
-              <div className="lg:col-span-7 flex flex-col justify-start">
-                <div className="font-mono text-xs font-semibold text-text-brand tracking-wider mb-2">
-                  // VISÃO & POSICIONAMENTO
-                </div>
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-primary mb-4 [text-wrap:balance]">
-                  Engenharia de software com visão de negócio
-                </h2>
-                <p className="text-base sm:text-lg text-secondary leading-relaxed mb-6 font-normal">
-                  A EPM DevTech é uma software house dedicada a desenvolver e modernizar sistemas sob medida para empresas que buscam eficiência operacional, estabilidade e capacidade de evolução.
-                </p>
-                <p className="text-sm sm:text-base text-secondary/90 leading-relaxed font-normal mb-6">
-                  Fundada e conduzida tecnicamente por Elessandro Prestes Macedo, que reúne mais de 9 anos de experiência prática em arquitetura de software e sistemas corporativos, a empresa atua com foco em escopo bem definido, comunicação transparente e entregas previsíveis a cada ciclo.
-                </p>
-                <p className="text-sm sm:text-base text-secondary/90 leading-relaxed font-normal">
-                  Nosso modelo de trabalho prioriza código sustentável e arquitetura desacoplada, garantindo que as soluções entregues continuem fáceis de manter e preparadas para novas demandas de escala.
-                </p>
-
-                {/* Destaque Estático de Experiência */}
-                <div className="mt-8 pt-8 border-t border-border-default/60 max-w-xs">
-                  <div className="text-3xl sm:text-4xl font-extrabold text-primary font-mono leading-none mb-2">
-                    +9
-                  </div>
-                  <div className="font-mono text-xs uppercase tracking-wider text-muted">
-                    anos de experiência técnica da liderança
-                  </div>
-                </div>
+        {/* Bloco Institucional & Fundador (Tom: Base) */}
+        <SectionWrapper tone="base" containerClassName="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+            {/* Coluna 1: Posicionamento Editorial (7 cols) */}
+            <div className="lg:col-span-7 flex flex-col justify-start">
+              <div className="font-mono text-xs font-semibold text-text-brand tracking-wider mb-2">
+                // VISÃO & POSICIONAMENTO
               </div>
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-primary mb-4 [text-wrap:balance]">
+                Engenharia de software com visão de negócio
+              </h2>
+              <p className="text-base sm:text-lg text-secondary leading-relaxed mb-6 font-normal">
+                A EPM DevTech é uma software house dedicada a desenvolver e modernizar sistemas sob medida para empresas que buscam eficiência operacional, estabilidade e capacidade de evolução.
+              </p>
+              <p className="text-sm sm:text-base text-secondary/90 leading-relaxed font-normal mb-6">
+                Fundada e conduzida tecnicamente por Elessandro Prestes Macedo, que reúne mais de 9 anos de experiência prática em arquitetura de software e sistemas corporativos, a empresa atua com foco em escopo bem definido, comunicação transparente e entregas previsíveis a cada ciclo.
+              </p>
+              <p className="text-sm sm:text-base text-secondary/90 leading-relaxed font-normal">
+                Nosso modelo de trabalho prioriza código sustentável e arquitetura desacoplada, garantindo que as soluções entregues continuem fáceis de manter e preparadas para novas demandas de escala.
+              </p>
 
-              {/* Coluna 2: Dados Operacionais e Institucionais (5 cols) */}
-              <div className="lg:col-span-5 p-6 sm:p-8 rounded-xl border border-zinc-800/80 bg-zinc-950/60 shadow-xl flex flex-col gap-6">
-                <div>
-                  <h3 className="font-mono font-semibold text-primary text-xs uppercase tracking-wider mb-5 flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand" />
-                    Transparência Operacional
-                  </h3>
-                  <div className="space-y-4 text-xs sm:text-sm text-secondary">
-                    <div className="flex items-start gap-3">
-                      <Globe className="w-4 h-4 text-text-brand shrink-0 mt-0.5" />
-                      <div>
-                        <span className="font-semibold text-primary block">Atendimento 100% remoto</span>
-                        Atendemos clientes e parceiros em todo o Brasil com canais diretos e alinhamento contínuo.
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-3">
-                      <CheckCircle2 className="w-4 h-4 text-text-brand shrink-0 mt-0.5" />
-                      <div>
-                        <span className="font-semibold text-primary block">Sem intermediários comerciais</span>
-                        Contato direto com quem planeja a arquitetura e escreve o código do seu sistema.
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-3">
-                      <MapPin className="w-4 h-4 text-text-brand shrink-0 mt-0.5" />
-                      <div>
-                        <span className="font-semibold text-primary block">Sede da empresa</span>
-                        {SITE_CONFIG.company.location}
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-3">
-                      <Building className="w-4 h-4 text-text-brand shrink-0 mt-0.5" />
-                      <div>
-                        <span className="font-semibold text-primary block">Dados cadastrais</span>
-                        CNPJ: {SITE_CONFIG.company.cnpj} · EPM DevTech
-                      </div>
-                    </div>
-                  </div>
+              {/* Destaque Estático de Experiência */}
+              <div className="mt-8 pt-8 border-t border-border-default/60 max-w-xs">
+                <div className="text-3xl sm:text-4xl font-extrabold text-primary font-mono leading-none mb-2">
+                  +9
                 </div>
-
-                <div className="pt-4 border-t border-zinc-800/60">
-                  <Button asChild className="w-full bg-primary text-primary-foreground hover:bg-primary/90 min-h-[44px] text-xs font-medium">
-                    <Link to="/contato">Falar sobre meu projeto</Link>
-                  </Button>
+                <div className="font-mono text-xs uppercase tracking-wider text-muted">
+                  anos de experiência técnica da liderança
                 </div>
               </div>
             </div>
-          </div>
-        </section>
 
-        {/* Seção 2: Nossa Jornada (Timeline Histórica Alternada) */}
-        <section id="jornada" className="py-16 sm:py-24 border-t border-border-default/60 bg-surface/20">
-          <div className="container px-6 max-w-6xl mx-auto">
+            {/* Coluna 2: Dados Operacionais e Institucionais (5 cols) */}
+            <div className="lg:col-span-5 p-6 sm:p-8 rounded-xl border border-zinc-800/80 bg-zinc-950/60 shadow-xl flex flex-col gap-6">
+              <div>
+                <h3 className="font-mono font-semibold text-primary text-xs uppercase tracking-wider mb-5 flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand" />
+                  Transparência Operacional
+                </h3>
+                <div className="space-y-4 text-xs sm:text-sm text-secondary">
+                  <div className="flex items-start gap-3">
+                    <Globe className="w-4 h-4 text-text-brand shrink-0 mt-0.5" />
+                    <div>
+                      <span className="font-semibold text-primary block">Atendimento 100% remoto</span>
+                      Atendemos clientes e parceiros em todo o Brasil com canais diretos e alinhamento contínuo.
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <CheckCircle2 className="w-4 h-4 text-text-brand shrink-0 mt-0.5" />
+                    <div>
+                      <span className="font-semibold text-primary block">Sem intermediários comerciais</span>
+                      Contato direto com quem planeja a arquitetura e escreve o código do seu sistema.
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <MapPin className="w-4 h-4 text-text-brand shrink-0 mt-0.5" />
+                    <div>
+                      <span className="font-semibold text-primary block">Sede da empresa</span>
+                      {SITE_CONFIG.company.location}
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <Building className="w-4 h-4 text-text-brand shrink-0 mt-0.5" />
+                    <div>
+                      <span className="font-semibold text-primary block">Dados cadastrais</span>
+                      CNPJ: {SITE_CONFIG.company.cnpj} · EPM DevTech
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-zinc-800/60">
+                <Button asChild className="w-full bg-primary text-primary-foreground hover:bg-primary/90 min-h-[44px] text-xs font-medium">
+                  <Link to="/contato">Falar sobre meu projeto</Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </SectionWrapper>
+
+        {/* Seção 2: Nossa Jornada (Tom: Alt) */}
+        <SectionWrapper id="jornada" tone="alt" containerClassName="max-w-6xl mx-auto">
             {/* Cabeçalho da Seção */}
             <div className="max-w-3xl mb-12 sm:mb-16">
               <div className="font-mono text-xs font-semibold text-text-brand tracking-wider mb-2">
@@ -401,85 +399,80 @@ export const AboutPage: React.FC = () => {
                 </div>
               ))}
             </div>
-          </div>
-        </section>
+        </SectionWrapper>
 
-        {/* Seção 3: Missão e Princípios de Engenharia (Manifesto Técnico) */}
-        <section id="principios" className="py-16 sm:py-24 border-t border-border-default/60">
-          <div className="container px-6 max-w-6xl mx-auto">
-            {/* Cabeçalho da Seção */}
-            <div className="max-w-3xl mb-12 sm:mb-16">
-              <div className="font-mono text-xs font-semibold text-text-brand tracking-wider mb-2">
-                // DIRETRIZES & COMPROMISSO
-              </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-primary [text-wrap:balance]">
-                Missão e princípios de engenharia
-              </h2>
-              <p className="text-sm sm:text-base text-secondary mt-2 leading-relaxed">
-                Não vendemos modismos nem complexidade desnecessária. Cada escolha técnica existe para resolver um gargalo real e garantir a longevidade da sua operação.
-              </p>
+        {/* Seção 3: Missão e Princípios de Engenharia (Tom: Base) */}
+        <SectionWrapper id="principios" tone="base" containerClassName="max-w-6xl mx-auto">
+          {/* Cabeçalho da Seção */}
+          <div className="max-w-3xl mb-12 sm:mb-16">
+            <div className="font-mono text-xs font-semibold text-text-brand tracking-wider mb-2">
+              // DIRETRIZES & COMPROMISSO
             </div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-primary [text-wrap:balance]">
+              Missão e princípios de engenharia
+            </h2>
+            <p className="text-sm sm:text-base text-secondary mt-2 leading-relaxed">
+              Não vendemos modismos nem complexidade desnecessária. Cada escolha técnica existe para resolver um gargalo real e garantir a longevidade da sua operação.
+            </p>
+          </div>
 
-            {/* Tabela de Diretrizes em Formato de Manifesto Técnico */}
-            <div
-              data-testid="principles-manifesto"
-              className="border-y border-zinc-800/80 divide-y divide-zinc-800/80"
-            >
-              {PRINCIPLES.map((principle) => (
-                <div
-                  key={principle.code}
-                  className="py-6 sm:py-8 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start group hover:bg-zinc-950/40 transition-colors px-2 sm:px-4 rounded-lg"
-                >
-                  {/* Coluna 1: Código Monospace (3 cols) */}
-                  <div className="md:col-span-3 flex items-center md:items-start gap-2">
-                    <span className="font-mono text-xs font-bold text-text-brand tracking-wider">
-                      {principle.code}
-                    </span>
-                  </div>
-
-                  {/* Coluna 2: Título do Valor (3 cols) */}
-                  <div className="md:col-span-3">
-                    <h3 className="text-base sm:text-lg font-bold text-primary tracking-tight">
-                      {principle.title}
-                    </h3>
-                  </div>
-
-                  {/* Coluna 3: Explicação Técnica (6 cols) */}
-                  <div className="md:col-span-6">
-                    <p className="text-xs sm:text-sm text-secondary leading-relaxed font-normal">
-                      {principle.description}
-                    </p>
-                  </div>
+          {/* Tabela de Diretrizes em Formato de Manifesto Técnico */}
+          <div
+            data-testid="principles-manifesto"
+            className="border-y border-zinc-800/80 divide-y divide-zinc-800/80"
+          >
+            {PRINCIPLES.map((principle) => (
+              <div
+                key={principle.code}
+                className="py-6 sm:py-8 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start group hover:bg-zinc-950/40 transition-colors px-2 sm:px-4 rounded-lg"
+              >
+                {/* Coluna 1: Código Monospace (3 cols) */}
+                <div className="md:col-span-3 flex items-center md:items-start gap-2">
+                  <span className="font-mono text-xs font-bold text-text-brand tracking-wider">
+                    {principle.code}
+                  </span>
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
 
-        {/* Seção 4: Fechamento da Página (CTA Comercial Discreto) */}
-        <section className="py-16 sm:py-24 border-t border-border-default/60 bg-surface/30">
-          <div className="container px-6 max-w-4xl mx-auto text-center">
-            <div className="p-8 sm:p-12 rounded-2xl border border-zinc-800/80 bg-zinc-950/70 shadow-2xl">
-              <div className="font-mono text-xs font-semibold text-text-brand tracking-wider mb-3 uppercase">
-                // CONVERSE COM A LIDERANÇA TÉCNICA
+                {/* Coluna 2: Título do Valor (3 cols) */}
+                <div className="md:col-span-3">
+                  <h3 className="text-base sm:text-lg font-bold text-primary tracking-tight">
+                    {principle.title}
+                  </h3>
+                </div>
+
+                {/* Coluna 3: Explicação Técnica (6 cols) */}
+                <div className="md:col-span-6">
+                  <p className="text-xs sm:text-sm text-secondary leading-relaxed font-normal">
+                    {principle.description}
+                  </p>
+                </div>
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-primary [text-wrap:balance] mb-4">
-                Pronto para construir sua próxima solução com quem entende de código?
-              </h2>
-              <p className="text-sm sm:text-base text-secondary max-w-2xl mx-auto leading-relaxed mb-8">
-                Analisamos sua arquitetura atual ou desenhamos a stack ideal para seu próximo sistema corporativo, com previsibilidade e contato direto com quem programa.
-              </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-8 min-h-[46px] text-sm shadow-md">
-                  <Link to="/contato" className="inline-flex items-center gap-2">
-                    <span>Fale conosco</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </Button>
-              </div>
+            ))}
+          </div>
+        </SectionWrapper>
+
+        {/* Seção 4: Fechamento da Página (Tom: Alt) */}
+        <SectionWrapper tone="alt" containerClassName="max-w-4xl mx-auto text-center">
+          <div className="p-8 sm:p-12 rounded-2xl border border-zinc-800/80 bg-zinc-950/70 shadow-2xl">
+            <div className="font-mono text-xs font-semibold text-text-brand tracking-wider mb-3 uppercase">
+              // CONVERSE COM A LIDERANÇA TÉCNICA
+            </div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-primary [text-wrap:balance] mb-4">
+              Pronto para construir sua próxima solução com quem entende de código?
+            </h2>
+            <p className="text-sm sm:text-base text-secondary max-w-2xl mx-auto leading-relaxed mb-8">
+              Analisamos sua arquitetura atual ou desenhamos a stack ideal para seu próximo sistema corporativo, com previsibilidade e contato direto com quem programa.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-8 min-h-[46px] text-sm shadow-md">
+                <Link to="/contato" className="inline-flex items-center gap-2">
+                  <span>Fale conosco</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </Button>
             </div>
           </div>
-        </section>
+        </SectionWrapper>
       </div>
     </>
   );

@@ -49,12 +49,13 @@ export const Header = () => {
   return (
     <>
       <header
+        data-tone="anchor"
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           mounted ? "translate-y-0" : "-translate-y-full"
         } ${
           isScrolled
-            ? "py-3 glass border-b border-border/50"
-            : "py-5 bg-transparent"
+            ? "py-3 backdrop-blur-md bg-surface-anchor/85 border-b border-border/40 shadow-xs"
+            : "py-5 bg-surface-anchor"
         }`}
       >
         <div className="container px-6">

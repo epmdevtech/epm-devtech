@@ -15,7 +15,8 @@ const Hero = () => {
     <section
       id="hero"
       aria-labelledby="hero-title"
-      className="relative w-full min-h-screen min-h-[100svh] flex flex-col justify-center bg-base bg-gradient-to-b from-transparent to-surface/40 pt-20 pb-12 sm:pb-16 overflow-hidden"
+      data-tone="anchor"
+      className="relative w-full min-h-screen min-h-[100svh] flex flex-col justify-center bg-surface-anchor text-foreground pt-20 pb-12 sm:pb-16 overflow-hidden transition-colors duration-200"
     >
       {/* Glow/spotlight suave em background para profundidade técnica */}
       <div

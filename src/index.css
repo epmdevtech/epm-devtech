@@ -101,6 +101,13 @@ textarea:-webkit-autofill:active {
     --teal-950: #04201C;
 
     /* Camada 2: Semânticas (Light) */
+    --surface-anchor: 190 18% 91.5%;
+    --surface-anchor-rgb: 229 237 238;
+    --surface-base: 190 18% 95.0%;
+    --surface-base-rgb: 240 245 245;
+    --surface-alt: 190 18% 98.5%;
+    --surface-alt-rgb: 250 252 252;
+
     --bg-base-rgb: 246 250 250;
     --bg-base: #F6FAFA;
     --bg-surface-rgb: 255 255 255;
@@ -187,6 +194,13 @@ textarea:-webkit-autofill:active {
     --teal-950: #04201C;
 
     /* Camada 2: Semânticas (Dark) */
+    --surface-anchor: 190 23% 5.0%;
+    --surface-anchor-rgb: 10 15 16;
+    --surface-base: 190 23% 8.5%;
+    --surface-base-rgb: 17 24 26;
+    --surface-alt: 190 23% 12.0%;
+    --surface-alt-rgb: 24 34 37;
+
     --bg-base-rgb: 10 15 16;
     --bg-base: #0A0F10;
     --bg-surface-rgb: 15 22 23;
@@ -308,5 +322,33 @@ textarea:-webkit-autofill:active {
   .tech-band-track {
     animation: none !important;
     will-change: auto;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   ACESSIBILIDADE: Restauração de separação física em alto contraste (forced-colors)
+───────────────────────────────────────────────────────────── */
+@media (forced-colors: active) {
+  .section-wrapper {
+    border-top: 1px solid ButtonBorder;
+  }
+  .section-wrapper[data-tone="anchor"]:first-of-type,
+  header + main > .section-wrapper:first-of-type {
+    border-top: none;
+  }
+  footer {
+    border-top: 1px solid ButtonBorder;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   TRANSIÇÃO SUAVE: Troca de tema com respeito a prefers-reduced-motion
+───────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: no-preference) {
+  body,
+  header,
+  footer,
+  .section-wrapper {
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
   }
 }

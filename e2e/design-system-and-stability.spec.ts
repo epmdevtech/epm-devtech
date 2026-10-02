@@ -413,6 +413,95 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     expect(await authoritySection.getByText('\u22120%', { exact: true }).count()).toBe(0);
   });
 
+  test('Sistema de Camadas Tonais (SPEC-082): Ritmo tonal e ausência de linhas divisórias em todas as rotas', async ({ page }) => {
+    const routesToTest = [
+      '/',
+      '/servicos',
+      '/como-trabalhamos',
+      '/experiencia',
+      '/engenharia',
+      '/sobre',
+      '/contato',
+      '/duvidas-frequentes',
+    ];
+
+    for (const route of routesToTest) {
+      await page.goto(route);
+      await page.waitForLoadState('domcontentloaded');
+
+      // Coleta todos os elementos de seção com data-tone dentro da página
+      const tonedElements = page.locator('[data-tone]');
+      const count = await tonedElements.count();
+      expect(count).toBeGreaterThanOrEqual(2);
+
+      // 1. A primeira seção (ou header) deve ser 'anchor'
+      const firstTone = await tonedElements.first().getAttribute('data-tone');
+      expect(firstTone).toBe('anchor');
+
+      // 2. O Footer (último elemento com data-tone) deve ser 'anchor'
+      const lastTone = await tonedElements.last().getAttribute('data-tone');
+      expect(lastTone).toBe('anchor');
+
+      // 3. Validação do ritmo: duas seções adjacentes NUNCA podem ter o mesmo tom
+      // Note: Header é fixed, então comparamos a sequência de seções do fluxo de conteúdo
+      const flowTonedElements = page.locator('main [data-tone], section[data-tone], footer[data-tone]');
+      const flowCount = await flowTonedElements.count();
+      const flowTones: string[] = [];
+      for (let i = 0; i < flowCount; i++) {
+        const tone = await flowTonedElements.nth(i).getAttribute('data-tone');
+        if (tone) flowTones.push(tone);
+      }
+
+      for (let i = 0; i < flowTones.length - 1; i++) {
+        expect(
+          flowTones[i],
+          `Em ${route}, seções adjacentes [${i}] e [${i + 1}] possuem o mesmo tom (${flowTones[i]})`
+        ).not.toBe(flowTones[i + 1]);
+      }
+
+      // 4. Ausência de linhas divisórias entre seções (border-t / border-b com border-border nas seções principais)
+      const sections = page.locator('section[data-tone]');
+      const sectionCount = await sections.count();
+      for (let i = 0; i < sectionCount; i++) {
+        const sectionClasses = (await sections.nth(i).getAttribute('class')) || '';
+        expect(sectionClasses).not.toContain('border-t border-border');
+        expect(sectionClasses).not.toContain('border-b border-border');
+      }
+    }
+  });
+
+  test('Sistema de Camadas Tonais (SPEC-082): Suporte a Dark e Light Mode com contraste e classes semânticas', async ({ page }) => {
+    await page.goto('/');
+    await page.waitForLoadState('domcontentloaded');
+
+    // Valida tokens em Dark Mode
+    const hero = page.locator('#hero');
+    await expect(hero).toHaveAttribute('data-tone', 'anchor');
+    const servicos = page.locator('#servicos');
+    await expect(servicos).toHaveAttribute('data-tone', 'base');
+
+    // Rola para o rodapé e alterna para Light Mode
+    await page.evaluate(() => {
+      const footer = document.querySelector('footer');
+      if (footer) footer.scrollIntoView({ behavior: 'instant' });
+      else window.scrollTo(0, document.body.scrollHeight);
+    });
+    await page.waitForTimeout(600);
+
+    const lightThemeButton = page.locator('button[title="Tema Light"]');
+    await expect(lightThemeButton).toBeVisible({ timeout: 10000 });
+    await lightThemeButton.click();
+    await page.waitForTimeout(400);
+
+    // Valida em Light Mode
+    await expect(hero).toHaveAttribute('data-tone', 'anchor');
+    await expect(servicos).toHaveAttribute('data-tone', 'base');
+
+    // Retorna para Dark Mode
+    const darkThemeButton = page.locator('button[title="Tema Dark"]');
+    await darkThemeButton.click();
+    await page.waitForTimeout(400);
+  });
 });
 
 

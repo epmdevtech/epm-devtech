@@ -76,7 +76,8 @@ const Footer = () => {
 
   return (
     <footer
-      className="border-t border-border-default bg-surface/50 pt-16 pb-10"
+      data-tone="anchor"
+      className="bg-surface-anchor text-foreground pt-16 pb-10 transition-colors duration-200"
       ref={ref}
     >
       <div className="container px-6">

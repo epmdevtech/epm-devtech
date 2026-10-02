@@ -103,12 +103,13 @@ describe('Header', () => {
   it('atualiza estilo do header ao fazer scroll', () => {
     const { container } = renderHeader();
     const header = container.querySelector('header');
-    expect(header?.className).toContain('bg-transparent');
+    expect(header?.className).toContain('bg-surface-anchor');
 
     Object.defineProperty(window, 'scrollY', { value: 50, configurable: true });
     fireEvent.scroll(window);
 
-    expect(header?.className).toContain('glass');
+    expect(header?.className).toContain('backdrop-blur-md');
+    expect(header?.className).toContain('border-b');
   });
 });
 

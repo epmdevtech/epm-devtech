@@ -1,6 +1,7 @@
 import { useLocation, Link } from "react-router-dom";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
+import SectionWrapper from "@/components/ui/SectionWrapper";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Home, Code2, Mail } from "lucide-react";
 
@@ -18,7 +19,7 @@ export const NotFound = () => {
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
 
-      <div className="flex flex-col items-center justify-center min-h-[70vh] px-6 py-20 text-center">
+      <SectionWrapper tone="base" className="min-h-[70vh] flex flex-col items-center justify-center text-center">
         <div className="max-w-md mx-auto">
           <div className="font-mono text-xs font-semibold uppercase tracking-widest text-primary mb-2">
             ERRO 404
@@ -64,7 +65,7 @@ export const NotFound = () => {
             </Button>
           </div>
         </div>
-      </div>
+      </SectionWrapper>
     </>
   );
 };

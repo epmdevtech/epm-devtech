@@ -320,7 +320,8 @@ export const Services: FC<ServicesProps> = ({ hideHeader = false }) => {
       <section
         id="servicos"
         aria-labelledby="servicos-heading"
-        className="relative py-16 sm:py-24"
+        data-tone="base"
+        className="relative py-16 sm:py-20 md:py-24 lg:py-28 bg-surface-base text-foreground section-wrapper transition-colors duration-200"
         ref={ref}
       >
         <div className="container px-6">
