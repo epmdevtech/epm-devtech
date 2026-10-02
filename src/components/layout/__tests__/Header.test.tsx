@@ -32,7 +32,7 @@ describe('Header', () => {
       { text: 'Como trabalhamos', href: '/como-trabalhamos' },
       { text: 'Experiência', href: '/experiencia' },
       { text: 'Engenharia', href: '/engenharia' },
-      { text: 'Sobre', href: '/sobre' },
+      { text: 'Sobre nós', href: '/sobre' },
     ];
 
     expectedLinks.forEach(({ text, href }) => {

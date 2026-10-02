@@ -9,6 +9,26 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.81-sobre-nos-timeline-e-manifesto] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-081-sobre-nos-timeline-e-manifesto.md`**: Especificação técnica para refatoração da rota `/sobre` com layout de Timeline Histórica Alternada e Manifesto Técnico de Engenharia, e atualização da Navbar para "Sobre nós".
+- **`tasks/TASK-081-sobre-nos-timeline-e-manifesto.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-081.md`**: Relatório de QA com evidências de conformidade aos quality gates.
+
+### Modificado
+- **`src/components/layout/Header.tsx`**: Atualização do rótulo no menu de links de `"Sobre"` para `"Sobre nós"`, preservando a rota `/sobre`.
+- **`src/pages/AboutPage.tsx`**:
+  - H1 de alto impacto: *"Engenharia de software com foco em longevidade e impacto real"*, com subtítulo editorial de contextualização do fundador Elessandro Prestes Macedo (+9 anos de experiência) e painel de transparência operacional.
+  - Seção "Nossa Jornada" com Timeline Histórica Alternada (desktop: linha horizontal com nós centrais e balões alternados acima/abaixo; mobile: timeline vertical contínua à esquerda com nós luminosos e cards empilhados).
+  - Seção "Missão e Princípios de Engenharia" em formato de Manifesto Técnico / Tabela de Diretrizes com divisores sutis (`divide-y`), eliminando os 3 cards fechados genéricos.
+  - Fechamento comercial com card técnico *"Pronto para construir sua próxima solução com quem entende de código?"* e botão CTA `"Fale conosco"` apontando para `/contato`.
+- **`src/components/layout/__tests__/Header.test.tsx`**: Atualização dos testes unitários assertando `"Sobre nós"`.
+- **`src/pages/__tests__/pages.test.tsx`**: Atualização dos testes unitários validando novo H1, fundação, timeline e manifesto na `AboutPage`.
+- **`e2e/multi-route-navigation.spec.ts`**: Atualização dos testes E2E do Playwright para validar o H1 e link `"Sobre nós"`.
+- **`scripts/prerender.js`**: Atualização do H1 canônico da rota `sobre` para pré-render estático SSR.
+- **`PROJECT.md`**: Atualização do estado canônico da rota `/sobre` e Navbar.
+
 ## [0.0.80-engenharia-ajuste-aws-tooltips] - 2026-10-02
 
 ### Adicionado

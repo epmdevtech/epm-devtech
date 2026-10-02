@@ -52,7 +52,7 @@ const ROUTES = [
     title: "Sobre a EPM DevTech | Software House em Toledo, PR",
     description:
       "Software house dedicada a engenharia de software sob medida, conduzida por fundador e liderança técnica com atendimento remoto em todo o Brasil.",
-    h1: "Sobre a EPM DevTech",
+    h1: "Engenharia de software com foco em longevidade e impacto real",
   },
   {
     path: "contato",

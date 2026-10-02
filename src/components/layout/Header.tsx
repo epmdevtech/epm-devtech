@@ -10,7 +10,7 @@ const navLinks = [
   { href: "/como-trabalhamos", label: "Como trabalhamos" },
   { href: "/experiencia", label: "Experiência" },
   { href: "/engenharia", label: "Engenharia" },
-  { href: "/sobre", label: "Sobre" },
+  { href: "/sobre", label: "Sobre nós" },
 ];
 
 export const Header = () => {

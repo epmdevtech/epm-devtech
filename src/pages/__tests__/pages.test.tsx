@@ -121,12 +121,16 @@ describe('Rotas e Páginas Independentes (SPEC-060)', () => {
     expect(screen.getByText('Nossas especialidades técnicas')).toBeInTheDocument();
   });
 
-  it('AboutPage (/sobre) renderiza H1, condução pelo fundador e registro formal', () => {
+  it('AboutPage (/sobre) renderiza H1, condução pelo fundador, timeline e manifesto técnico', () => {
     renderWithProviders(<AboutPage />);
-    expect(screen.getByRole('heading', { level: 1, name: 'Sobre a EPM DevTech' })).toBeInTheDocument();
-    expect(screen.getByText('INSTITUCIONAL')).toBeInTheDocument();
-    expect(screen.getByText(/Elessandro Prestes Macedo/i)).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1, name: 'Engenharia de software com foco em longevidade e impacto real' })).toBeInTheDocument();
+    expect(screen.getByText('SOBRE NÓS')).toBeInTheDocument();
+    expect(screen.getAllByText(/Elessandro Prestes Macedo/i).length).toBeGreaterThan(0);
     expect(screen.getByText(/60\.710\.574\/0001-85/i)).toBeInTheDocument();
+    expect(screen.getByText('Nossa jornada técnica')).toBeInTheDocument();
+    expect(screen.getByText('Missão e princípios de engenharia')).toBeInTheDocument();
+    expect(screen.getByText('PRINCIPIO_01')).toBeInTheDocument();
+    expect(screen.getByText('Excelência Pragmática')).toBeInTheDocument();
   });
 
   it('ContactPage (/contato) renderiza H1 e formulário de contato', () => {
