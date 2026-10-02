@@ -19,23 +19,23 @@ const PRINCIPLES: PrincipleItem[] = [
   {
     num: "01",
     tag: "ALINHAMENTO & PREVISIBILIDADE",
-    title: "Comunicação transparente",
+    title: "Comunicação técnica direta",
     description:
-      "Alinhamento contínuo sobre escopo, decisões técnicas e prioridades. Você fala diretamente com quem planeja e executa a engenharia, reduzindo ruídos e nivelando expectativas.",
+      "Você conversa com quem projeta e implementa o código. Sem camadas comerciais distorcendo prazos ou viabilidade técnica.",
   },
   {
     num: "02",
     tag: "ARQUITETURA & MANUTENÇÃO",
-    title: "Engenharia que facilita evoluir",
+    title: "Arquitetura fácil de manter",
     description:
-      "Arquitetura modular e código limpo pensados para facilitar manutenções futuras e permitir que o sistema cresça com segurança sem gerar gargalos técnicos.",
+      "Construímos código modular e bem testado para que sua empresa possa evoluir o sistema no futuro sem medo de quebrar o que já funciona.",
   },
   {
     num: "03",
     tag: "PRAGMATISMO & RESULTADO",
-    title: "Foco no problema do negócio",
+    title: "Pragmatismo voltado ao negócio",
     description:
-      "A tecnologia é uma ferramenta para viabilizar os objetivos da sua empresa, e não o inverso. Escolhas técnicas pragmáticas focadas em retorno real e estabilidade operacional.",
+      "Não inventamos complexidade desnecessária. Cada tecnologia e padrão escolhido serve para resolver um problema real com custo previsível.",
   },
 ];
 
@@ -99,7 +99,7 @@ export const EngineeringPage = () => {
         <PageHeader
           eyebrow="ENGENHARIA DE SOFTWARE"
           title="Engenharia pensada para evoluir"
-          description="Decisões pragmáticas de arquitetura, stack modular estruturada por camadas e práticas contínuas de qualidade para sistemas corporativos de alta longevidade."
+          description="Decisões pragmáticas de arquitetura, código sustentável e rotinas de qualidade automatizadas para garantir que seu software continue rápido e seguro por muitos anos."
         />
 
         {/* Bloco 1: Filosofia de Execução vs. Painel de Qualidade Contínua (Tom: Base) */}

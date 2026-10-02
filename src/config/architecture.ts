@@ -22,7 +22,7 @@ export const CORE_TECHNOLOGIES: CoreTechnology[] = [
     name: "React",
     category: "frontend",
     purpose:
-      "Componentização declarativa, Single Page Applications de alto rendimento e ecossistema de interfaces reativas.",
+      "Interfaces web fluidas e modulares para plataformas corporativas com excelente experiência de uso.",
     accentClass: "text-brand hover:text-brand/80",
     sizeClass: "text-3xl sm:text-4xl md:text-5xl font-extrabold",
     icon: `${DI}/react/react-original.svg`,
@@ -31,7 +31,7 @@ export const CORE_TECHNOLOGIES: CoreTechnology[] = [
     name: "TypeScript",
     category: "frontend",
     purpose:
-      "Tipagem estática estrita em tempo de compilação, prevenindo erros em runtime e assegurando contratos previsíveis.",
+      "Evita falhas em tempo de execução e garante contratos de dados precisos entre o front-end e as APIs.",
     sizeClass: "text-2xl sm:text-3xl md:text-4xl font-extrabold",
     icon: `${DI}/typescript/typescript-original.svg`,
   },
@@ -39,7 +39,7 @@ export const CORE_TECHNOLOGIES: CoreTechnology[] = [
     name: "Node.js",
     category: "backend",
     purpose:
-      "Runtime assíncrono e orientado a eventos para APIs escaláveis e microsserviços de alto throughput.",
+      "Processamento veloz de requisições e alta capacidade de escala para sustentar operações intensas.",
     badge: "Core Runtime",
     badgeVariant: "brand",
     sizeClass: "text-3xl sm:text-4xl md:text-5xl font-extrabold",
@@ -49,7 +49,7 @@ export const CORE_TECHNOLOGIES: CoreTechnology[] = [
     name: "AWS",
     category: "cloud",
     purpose:
-      "Computação elástica distribuída, infraestrutura em nuvem resiliente, serverless e armazenamento seguro de alta disponibilidade.",
+      "Hospedagem segura e infraestrutura em nuvem elástica, mantendo o sistema no ar mesmo em picos de tráfego.",
     sizeClass: "text-3xl sm:text-4xl md:text-5xl font-extrabold",
     icon: `${DI}/amazonwebservices/amazonwebservices-original-wordmark.svg`,
   },
@@ -57,7 +57,7 @@ export const CORE_TECHNOLOGIES: CoreTechnology[] = [
     name: "Vue.js",
     category: "frontend",
     purpose:
-      "Ecossistema progressivo e ágil com reatividade fina para portais e interfaces corporativas integradas.",
+      "Agilidade na construção de telas interativas e dashboards com integração suave a sistemas legados.",
     sizeClass: "text-2xl sm:text-3xl md:text-4xl font-extrabold",
     icon: `${DI}/vuejs/vuejs-original.svg`,
   },
@@ -65,7 +65,7 @@ export const CORE_TECHNOLOGIES: CoreTechnology[] = [
     name: "PHP",
     category: "backend",
     purpose:
-      "Back-end maduro e corporativo com tipagem estrita moderna e ecossistema estável para sistemas corporativos.",
+      "Linguagem estável e amplamente consolidada para suporte e evolução de sistemas corporativos de missão crítica.",
     sizeClass: "text-2xl sm:text-3xl md:text-4xl font-extrabold",
     icon: `${DI}/php/php-original.svg`,
   },
@@ -73,7 +73,7 @@ export const CORE_TECHNOLOGIES: CoreTechnology[] = [
     name: "Laravel",
     category: "backend",
     purpose:
-      "Framework robusto para desenvolvimento ágil de sistemas complexos com arquitetura limpa e alta manutenibilidade.",
+      "Estrutura moderna e organizada para acelerar o desenvolvimento de regras de negócio com facilidade de manutenção.",
     sizeClass: "text-2xl sm:text-3xl md:text-4xl font-extrabold",
     icon: `${DI}/laravel/laravel-original.svg`,
   },
@@ -81,7 +81,7 @@ export const CORE_TECHNOLOGIES: CoreTechnology[] = [
     name: "Angular",
     category: "frontend",
     purpose:
-      "Framework corporativo opinado com injeção de dependências e modularidade para sistemas de grande escala.",
+      "Plataforma padronizada para grandes portais corporativos que exigem separação rigorosa de módulos.",
     sizeClass: "text-2xl sm:text-3xl md:text-4xl font-extrabold",
     icon: `${DI}/angular/angular-original.svg`,
   },
@@ -89,7 +89,7 @@ export const CORE_TECHNOLOGIES: CoreTechnology[] = [
     name: "Azure",
     category: "cloud",
     purpose:
-      "Serviços corporativos de nuvem da Microsoft para hospedar e integrar arquiteturas híbridas e críticas.",
+      "Soluções em nuvem da Microsoft para integração direta com ecossistemas corporativos e bancos relacionais.",
     sizeClass: "text-2xl sm:text-3xl md:text-4xl font-extrabold",
     icon: `${DI}/azure/azure-original.svg`,
   },

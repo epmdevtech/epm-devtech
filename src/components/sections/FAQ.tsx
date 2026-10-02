@@ -36,9 +36,9 @@ const FAQ_ITEMS: FAQItem[] = [
   },
   {
     category: "contratacao",
-    question: "A EPM DevTech atende clientes fora de Toledo (PR) ou no exterior?",
+    question: "Como funciona o atendimento remoto da EPM DevTech para empresas de diferentes regiões?",
     answer:
-      "Sim, atuamos de forma remota para empresas e instituições de qualquer região. Já participamos de soluções aplicadas em diferentes estados brasileiros, mantendo comunicação frequente, alinhamentos periódicos e acompanhamento próximo a cada etapa.",
+      "Atuamos de forma 100% remota com empresas e operações em qualquer estado do país. Nosso modelo de trabalho se baseia em comunicação direta, alinhamentos periódicos e entregas incrementais em ambiente de homologação, garantindo proximidade e acompanhamento contínuo em cada etapa do projeto.",
   },
 
   // ── Categoria: Sistemas Existentes ──────────────────────────────────

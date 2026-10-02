@@ -7,22 +7,22 @@ import BrandChipIcon from "@/components/ui/BrandChipIcon";
 const SCENARIOS = [
   {
     id: "sistemas",
-    title: "Criar um novo sistema, portal ou plataforma web",
+    title: "Criar um novo sistema, portal ou plataforma corporativa",
     href: "/servicos#sistemas",
   },
   {
     id: "integracoes",
-    title: "Conectar sistemas antigos e automatizar fluxos de dados",
+    title: "Conectar sistemas isolados e acabar com retrabalho manual",
     href: "/servicos#integracoes",
   },
   {
     id: "legados",
-    title: "Modernizar e refatorar um software legado sem parar a operação",
+    title: "Modernizar um software legado sem interromper o dia a dia",
     href: "/servicos#legados",
   },
   {
     id: "diagnostico",
-    title: "Avaliar arquitetura e ter uma segunda opinião técnica sênior",
+    title: "Avaliar a arquitetura do meu sistema com um olhar sênior",
     href: "/contato",
   },
 ];
@@ -78,7 +78,7 @@ const Hero = () => {
 
             {/* Subheadline editorial de proposta de valor */}
             <p className="text-base sm:text-lg text-secondary leading-relaxed max-w-xl mb-8 font-normal">
-              Sistemas sob medida para empresas que precisam criar plataformas, conectar operações ou modernizar o software do seu negócio.
+              Desenvolvemos sistemas web, APIs e integrações sob medida para operações que não podem parar por instabilidade ou lentidão.
             </p>
 
             {/* Ação (CTA): Primário dominante com foco na conversão direta */}
@@ -116,11 +116,11 @@ const Hero = () => {
                 {/* Cabeçalho do painel */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 mb-4 border-b border-border-default/50">
                   <h2 className="text-sm sm:text-base font-bold text-primary tracking-tight">
-                    O que sua empresa precisa agora?
+                    Qual é o principal desafio da sua empresa hoje?
                   </h2>
                   <div className="flex items-center gap-1.5 font-mono text-[10px] sm:text-xs text-text-brand select-none shrink-0">
                     <span className="w-1.5 h-1.5 rounded-full bg-brand animate-pulse shrink-0" />
-                    <span>Direcionamento técnico imediato</span>
+                    <span>Diagnóstico técnico direto</span>
                   </div>
                 </div>
 

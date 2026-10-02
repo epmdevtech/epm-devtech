@@ -26,7 +26,7 @@ const PROCESS_STEPS: ProcessStep[] = [
     title: "Entendemos",
     handle: "DIAGNÓSTICO & CONTEXTO",
     executiveSummary:
-      "Mapeamos detalhadamente as dores do negócio, os requisitos críticos do sistema e a viabilidade da arquitetura. Analisamos sistemas legados, integrações existentes e gargalos operacionais antes de qualquer linha de código.",
+      "Investigamos a fundo o funcionamento da sua empresa, os sistemas em uso e onde estão os verdadeiros gargalos. Nenhum código é iniciado sem termos clareza do problema que precisa ser resolvido.",
     deliverables: [
       "Matriz de Riscos & Restrições",
       "Diagrama C4 Inicial",
@@ -34,15 +34,15 @@ const PROCESS_STEPS: ProcessStep[] = [
       "Documento de Visão de Produto",
     ],
     exitCriteria:
-      "Aprovação formal do alinhamento técnico e arquitetural antes do início da codificação.",
+      "Alinhamento técnico e de objetivos formalmente acordado antes da implementação.",
     Icon: IconProcessUnderstand,
   },
   {
     step: "02",
     title: "Definimos",
-    handle: "ESCOPO & PRIORIDADES",
+    handle: "ESCOPO & PLANEJAMENTO",
     executiveSummary:
-      "Transformamos as necessidades levantadas em especificações funcionais e técnicas acionáveis (SPECs). Estruturamos contratos de API, modelagem de banco de dados e planejamento de entregas contínuas por valor de negócio.",
+      "Organizamos a solução em entregas claras e priorizadas por impacto no negócio. Definimos regras, interfaces e cronograma de forma que sua equipe saiba exatamente o que esperar de cada ciclo.",
     deliverables: [
       "Especificações Técnicas (SPECs)",
       "Contratos de API (OpenAPI)",
@@ -50,15 +50,15 @@ const PROCESS_STEPS: ProcessStep[] = [
       "Cronograma de Marcos e Sprints",
     ],
     exitCriteria:
-      "Arquitetura e escopo validados com definição clara de prazos, interfaces e marcos de entrega.",
+      "Escopo, arquitetura e marcos de entrega validados em conjunto com a sua equipe.",
     Icon: IconProcessDefine,
   },
   {
     step: "03",
     title: "Desenvolvemos",
-    handle: "ENGENHARIA INCREMENTAL",
+    handle: "ENTREGAS INCREMENTAIS",
     executiveSummary:
-      "Construção orientada por testes automatizados, componentização limpa e integração contínua (CI/CD). Cada incremento é entregue em ambiente de homologação acessível, garantindo visibilidade do progresso sem caixas pretas.",
+      "Construímos o código com testes automatizados rigorosos e deploys contínuos em ambiente de homologação. Você testa e valida cada etapa funcionando, sem caixas-pretas.",
     deliverables: [
       "Código com Cobertura de Testes (≥90%)",
       "Pipeline CI/CD Automatizado",
@@ -66,15 +66,15 @@ const PROCESS_STEPS: ProcessStep[] = [
       "Documentação Viva de Código",
     ],
     exitCriteria:
-      "Código testado, revisado e aprovado em ambiente de homologação antes do deploy em produção.",
+      "Funcionalidades testadas e homologadas pela sua equipe antes de entrarem em produção.",
     Icon: IconProcessDevelop,
   },
   {
     step: "04",
     title: "Evoluímos",
-    handle: "SUSTENTAÇÃO & CRESCIMENTO",
+    handle: "OPERAÇÃO & SUPORTE",
     executiveSummary:
-      "Deploy assistido em ambiente produtivo, monitoramento de métricas em tempo real e observabilidade. Mantemos o sistema estável, seguro e preparado para novas demandas e escala contínua da sua operação.",
+      "Colocamos o sistema no ar de forma assistida, com monitoramento ativo e resposta rápida. Acompanhamos a operação de perto para garantir estabilidade contínua e evolução segura.",
     deliverables: [
       "Dashboards de Telemetria e Logs",
       "Métricas de Performance e SLAs",
@@ -82,7 +82,7 @@ const PROCESS_STEPS: ProcessStep[] = [
       "Guia de Repasse e Transferência",
     ],
     exitCriteria:
-      "Sistema operando estavelmente com métricas acordadas e canal de suporte técnico aberto.",
+      "Sistema em produção com telemetria ativa e suporte técnico dedicado.",
     Icon: IconProcessEvolve,
   },
 ];

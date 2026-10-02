@@ -37,7 +37,7 @@ export const HowWeWorkPage = () => {
         <PageHeader
           eyebrow="METODOLOGIA"
           title="Como trabalhamos"
-          description="Etapas estruturadas para transformar desafios de negócio em software confiável, com previsibilidade de entrega e comunicação técnica direta."
+          description="Um processo transparente e previsível para transformar problemas operacionais em sistemas confiáveis, com validações frequentes e comunicação direta."
         />
 
         {/* Process Explorer Interativo (Tom: Base) */}
@@ -53,10 +53,10 @@ export const HowWeWorkPage = () => {
                 // GARANTIA OPERACIONAL
               </div>
               <h3 className="text-lg sm:text-xl font-bold text-primary mb-3">
-                Previsibilidade contratual e técnica
+                Previsibilidade do início ao fim
               </h3>
               <p className="text-sm sm:text-base text-secondary leading-relaxed">
-                Definimos os critérios de aceite e a arquitetura antes da escrita do código. Cada entrega incremental passa por validação contínua em ambiente controlado, eliminando surpresas ao final do projeto.
+                Alinhamos a arquitetura e os critérios de sucesso antes de escrever a primeira linha de código. Cada funcionalidade é entregue em homologação para que você acompanhe o projeto avançando sem surpresas de prazo ou custo.
               </p>
             </div>
 
@@ -65,10 +65,10 @@ export const HowWeWorkPage = () => {
                 // GESTÃO DIRETA
               </div>
               <h3 className="text-lg sm:text-xl font-bold text-primary mb-3">
-                Comunicação direta sem ruídos
+                Sem intermediários, sem ruído
               </h3>
               <p className="text-sm sm:text-base text-secondary leading-relaxed">
-                Você conversa diretamente com a liderança técnica responsável pela arquitetura e implementação da sua solução, com alinhamentos periódicos e decisões documentadas.
+                Você fala diretamente com a liderança técnica que planeja a arquitetura e implementa o código. Decisões são tomadas de forma ágil e registradas com transparência.
               </p>
             </div>
           </div>

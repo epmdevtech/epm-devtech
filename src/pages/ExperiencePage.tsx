@@ -29,7 +29,7 @@ const VERTICALS: VerticalItem[] = [
     title: "Indústria",
     specialtyBadge: "IoT INDUSTRIAL",
     description:
-      "Eliminação de falhas operacionais e perda de rastreabilidade entre chão de fábrica e gestão corporativa em linhas de produção contínua.",
+      "Conexão direta entre o chão de fábrica e a gestão corporativa, garantindo rastreabilidade de máquinas, controle de insumos e fim das anotações em papel.",
     stackSolutions:
       "ERP Integrations · Telemetria em tempo real · Conexão de CLPs e Sensores · Message Broker",
     Icon: IconSectorIndustry,
@@ -39,7 +39,7 @@ const VERTICALS: VerticalItem[] = [
     title: "Varejo",
     specialtyBadge: "ALTA CONCORRÊNCIA",
     description:
-      "Prevenção de indisponibilidade e perda de conversão em picos massivos de tráfego, garantindo resiliência de checkout e consistência de estoque.",
+      "Prevenção de lentidão e perdas de vendas em picos promocionais, mantendo checkouts rápidos e estoque 100% sincronizado.",
     stackSolutions:
       "APIs de Alto Throughput · Checkout Resiliente · Sincronização de Inventário · Caching Distribuído",
     Icon: IconSectorRetail,
@@ -49,7 +49,7 @@ const VERTICALS: VerticalItem[] = [
     title: "Educação",
     specialtyBadge: "ESCALA NACIONAL",
     description:
-      "Modernização incremental de plataformas legadas para suportar períodos críticos de editais, inscrições massivas e automação de fluxos de prestação de contas.",
+      "Sustentação de portais com picos intensos de inscrições e processamento de dados acadêmicos com segurança e alta disponibilidade.",
     stackSolutions:
       "Arquitetura Multi-Tenant · Decomposição de Monólitos · Alta Disponibilidade · Processamento em Lote",
     Icon: IconSectorEducation,
@@ -59,7 +59,7 @@ const VERTICALS: VerticalItem[] = [
     title: "Energia",
     specialtyBadge: "DADOS REGULATÓRIOS",
     description:
-      "Monitoramento operacional em tempo real de infraestruturas críticas com integridade e rastreabilidade rigorosa de dados exigidos por órgãos reguladores.",
+      "Monitoramento contínuo de dados operacionais e conformidade com regras estritas do setor elétrico, com tolerância zero para perda de dados.",
     stackSolutions:
       "Consolidação Regulatória · Telemetria Sub-segundo · Logs Imutáveis · Dashboards Operacionais",
     Icon: IconSectorEnergy,
@@ -99,7 +99,7 @@ export const ExperiencePage = () => {
         <PageHeader
           eyebrow="EXPERIÊNCIA E ESCALA"
           title="Experiência em projetos reais"
-          description="Métricas consolidadas de confiabilidade, atuação em verticais críticas e histórico técnico em ambientes de alta complexidade regulatória e de concorrência."
+          description="Conhecimento construído em operações reais com requisitos rigorosos de estabilidade, integração e volume de dados."
         />
 
         {/* Bloco 1: Contextos de Negócio e Verticais (Tom: Base) */}

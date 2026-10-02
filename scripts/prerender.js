@@ -23,8 +23,8 @@ const ROUTES = [
     path: "servicos",
     title: "Serviços de Desenvolvimento de Software | EPM DevTech",
     description:
-      "Sistemas web, portais, APIs escaláveis e modernização de legados. Engenharia sob medida com foco no problema do negócio e código sustentável.",
-    h1: "Soluções sob medida para cada estágio da sua operação",
+      "Do diagnóstico técnico à sustentação: desenvolvemos sistemas web, APIs de alta concorrência e integrações de dados para resolver gargalos operacionais reais.",
+    h1: "Soluções de software sob medida para destravar sua empresa",
   },
   {
     path: "como-trabalhamos",

@@ -9,6 +9,29 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.92-humanizacao-completa-copywriting-b2b] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-092-humanizacao-completa-copywriting-b2b.md`**: Especificação técnica e guia de tom de voz para humanização de 100% dos textos do site com foco em decisores de negócio e dores operacionais B2B.
+- **`tasks/TASK-092-humanizacao-completa-copywriting-b2b.md`**: Tarefa e checklist de execução do protocolo Universal SDD.
+- **`reviews/QA-092.md`**: Relatório de QA com validação de 100% dos quality gates (Vitest, Playwright, ESLint, TypeScript, Build e Prerender).
+
+### Modificado
+- **`src/config/site.ts`**: Atualizada descrição canônica e localização institucional para "Atendimento remoto em todo o Brasil".
+- **`src/pages/Home.tsx` & `src/components/sections/Hero.tsx`**: Proposta de valor humanizada, H1 de forte impacto ("Engenharia de software para construir, integrar e evoluir sistemas"), subheadline editorial direta, seletor de cenários focado em dores concretas ("Qual é o principal desafio da sua empresa hoje?" com diagnóstico técnico direto).
+- **`src/components/sections/HomeServicesBento.tsx`**: 4 serviços com descrições pragmáticas de ganho operacional (Sistemas sob medida, Integrações de APIs sem perda de dados, Modernização segura de legados e Consultoria de arquitetura).
+- **`src/components/sections/HomeProcessPipeline.tsx`**: Etapas do pipeline (01 a 04) detalhadas em entregáveis tangíveis sem jargão vazio.
+- **`src/components/sections/HomeResultsStrip.tsx`**: Legendas e rótulos acessíveis humanizados para autoridade e consistência técnica.
+- **`src/pages/ServicesPage.tsx` & `src/components/sections/Services.tsx`**: H1 do PageHeader, faixa de garantias de engenharia e seções em Z-pattern estruturadas com gatilhos "Quando sua empresa precisa:".
+- **`src/pages/HowWeWorkPage.tsx` & `src/components/sections/ProcessExplorer.tsx`**: Manifesto técnico em 2 colunas e resumos executivos com critérios de saída formais por fase no explorador interativo.
+- **`src/pages/ExperiencePage.tsx`**: Descrições e desafios solucionados nas verticais de Indústria, Varejo, Educação e Energia, com nota de contexto honesta sobre projetos corporativos.
+- **`src/pages/EngineeringPage.tsx` & `src/config/architecture.ts`**: Tooltips contextuais de tecnologias (React, TypeScript, Node.js, AWS, etc.) reescritos com foco no benefício gerado para a operação do cliente.
+- **`src/pages/AboutPage.tsx`**: Marcos históricos na timeline e princípios de engenharia com sobriedade e maturidade institucional.
+- **`src/components/sections/Contact.tsx`, `src/config/faq.ts` & `src/components/sections/Footer.tsx`**: Mensagem de retorno ágil em formulário (24h úteis), FAQ sobre modelo de atendimento 100% remoto nacional e rodapé sincronizado.
+- **`scripts/prerender.js` & `index.html`**: Sincronização de metatags canônicas e HTML estático pré-renderizado para todas as 7 rotas.
+- **Testes Unitários & E2E (`pages.test.tsx`, `Hero.test.tsx`, `Services.test.tsx`, `Contact.test.tsx`, `Footer.test.tsx`, `FAQ.test.tsx`, `hero-identity-token-locks.spec.ts`, etc.)**: Sincronizadas todas as asserções de conteúdo textual e tokens para 100% de aprovação nas suítes.
+- **`PROJECT.md`**: Atualização do estado canônico do projeto com o registro da humanização B2B integral.
+
 ## [0.0.91-sobre-hero-constelacao-animada-posicionamento] - 2026-10-02
 
 ### Adicionado

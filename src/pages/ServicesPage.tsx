@@ -15,7 +15,7 @@ export const ServicesPage = () => {
         <title>Serviços de Desenvolvimento de Software | EPM DevTech</title>
         <meta
           name="description"
-          content="Sistemas web, portais, APIs escaláveis e modernização de legados. Engenharia sob medida com foco no problema do negócio e código sustentável."
+          content="Do diagnóstico técnico à sustentação: desenvolvemos sistemas web, APIs de alta concorrência e integrações de dados para resolver gargalos operacionais reais."
         />
         <link rel="canonical" href={`${BASE_URL}/servicos`} />
         <meta
@@ -24,7 +24,7 @@ export const ServicesPage = () => {
         />
         <meta
           property="og:description"
-          content="Sistemas web, portais, APIs escaláveis e modernização de legados. Engenharia sob medida com foco no problema do negócio e código sustentável."
+          content="Do diagnóstico técnico à sustentação: desenvolvemos sistemas web, APIs de alta concorrência e integrações de dados para resolver gargalos operacionais reais."
         />
         <meta property="og:url" content={`${BASE_URL}/servicos`} />
         <meta property="og:image" content={`${BASE_URL}/og-image-1200x630.png`} />
@@ -35,7 +35,7 @@ export const ServicesPage = () => {
         />
         <meta
           name="twitter:description"
-          content="Sistemas web, portais, APIs escaláveis e modernização de legados. Engenharia sob medida com foco no problema do negócio e código sustentável."
+          content="Do diagnóstico técnico à sustentação: desenvolvemos sistemas web, APIs de alta concorrência e integrações de dados para resolver gargalos operacionais reais."
         />
         <meta name="twitter:image" content={`${BASE_URL}/og-image-1200x630.png`} />
       </Helmet>
@@ -44,8 +44,8 @@ export const ServicesPage = () => {
         {/* Page Header padronizado com CTA destacado (Tom: Anchor) */}
         <PageHeader
           eyebrow="SERVIÇOS"
-          title="Soluções sob medida para cada estágio da sua operação"
-          description="Do diagnóstico técnico à sustentação: desenvolvemos sistemas web, APIs de alta concorrência e integrações de dados para resolver problemas reais de negócio."
+          title="Soluções de software sob medida para destravar sua empresa"
+          description="Do diagnóstico técnico à sustentação: desenvolvemos sistemas web, APIs de alta concorrência e integrações de dados para resolver gargalos operacionais reais."
           containerClassName="max-w-4xl mx-auto"
         >
           <div className="mt-8 flex justify-center">
@@ -53,7 +53,7 @@ export const ServicesPage = () => {
               to="/contato"
               className="group inline-flex items-center justify-center gap-2 w-full max-w-xs sm:w-auto font-semibold text-zinc-950 bg-emerald-400 hover:bg-emerald-300 px-8 py-3.5 rounded-xl shadow-[0_0_25px_rgba(52,211,153,0.25)] hover:shadow-[0_0_30px_rgba(52,211,153,0.4)] hover:scale-[1.02] active:scale-[0.98] motion-reduce:hover:scale-100 motion-reduce:transition-none transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 min-h-[44px]"
             >
-              <span>Solicite uma conversa</span>
+              <span>Conversar sobre seu projeto</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 motion-reduce:transform-none transition-transform" />
             </Link>
           </div>
@@ -73,10 +73,10 @@ export const ServicesPage = () => {
                   [ 01 // ESCOPO ]
                 </div>
                 <h3 className="text-base sm:text-lg font-bold text-primary mb-2">
-                  Escopo bem alinhado
+                  Escopo e metas claras
                 </h3>
                 <p className="text-sm text-secondary leading-relaxed">
-                  Critérios objetivos de aceite e validações incrementais em cada ciclo de entrega.
+                  Critérios objetivos de aceite e validações em cada ciclo, eliminando surpresas contratuais.
                 </p>
               </div>
 
@@ -85,10 +85,10 @@ export const ServicesPage = () => {
                   [ 02 // SUSTENTABILIDADE ]
                 </div>
                 <h3 className="text-base sm:text-lg font-bold text-primary mb-2">
-                  Código sustentável
+                  Código fácil de manter
                 </h3>
                 <p className="text-sm text-secondary leading-relaxed">
-                  Testes automatizados e documentação técnica para facilitar a evolução contínua da sua empresa.
+                  Arquitetura limpa, testes automatizados e documentação para que seu software evolua com tranquilidade.
                 </p>
               </div>
 
@@ -97,10 +97,10 @@ export const ServicesPage = () => {
                   [ 03 // COMUNICAÇÃO ]
                 </div>
                 <h3 className="text-base sm:text-lg font-bold text-primary mb-2">
-                  Canal direto com quem faz
+                  Contato direto com quem faz
                 </h3>
                 <p className="text-sm text-secondary leading-relaxed">
-                  Comunicação constante diretamente com a liderança técnica do projeto, sem ruídos.
+                  Você conversa diretamente com os engenheiros responsáveis pelo projeto, sem ruídos de intermediação.
                 </p>
               </div>
             </div>

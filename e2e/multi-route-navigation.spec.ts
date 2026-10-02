@@ -5,14 +5,14 @@ test.describe('EPM DEVTECH — Arquitetura de Informação Multi-Rota (SPEC-060)
   const CANONICAL_ROUTES = [
     {
       path: '/',
-      expectedTitle: 'EPM DevTech | Software House e Desenvolvimento de Software Sob Medida',
+      expectedTitle: 'EPM DevTech | Engenharia de Software Sob Medida para Empresas',
       expectedH1: 'Engenharia de software para construir, integrar e evoluir sistemas.',
       canonicalUrl: 'https://epmdevtech.com.br/',
     },
     {
       path: '/servicos',
       expectedTitle: 'Serviços de Desenvolvimento de Software | EPM DevTech',
-      expectedH1: 'Soluções sob medida para cada estágio da sua operação',
+      expectedH1: 'Soluções de software sob medida para destravar sua empresa',
       canonicalUrl: 'https://epmdevtech.com.br/servicos',
     },
     {

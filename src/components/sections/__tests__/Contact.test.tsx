@@ -142,12 +142,12 @@ describe('Contact Component', () => {
 
     expect(screen.getByText('Retorno em até 24 horas úteis')).toBeInTheDocument();
     expect(
-      screen.getByText(/Resposta objetiva para agendarmos uma conversa/i)
+      screen.getByText(/Resposta objetiva e técnica para agendarmos uma conversa/i)
     ).toBeInTheDocument();
 
     expect(screen.getByText('Sigilo e confidencialidade')).toBeInTheDocument();
     expect(
-      screen.getByText(/Suas ideias, dados e regras de negócio tratados sob sigilo e proteção, com NDA quando solicitado/i)
+      screen.getByText(/Suas regras de negócio e dados tratados com confidencialidade total, com NDA quando solicitado/i)
     ).toBeInTheDocument();
 
     // Chamada de ação rápida WhatsApp
@@ -237,7 +237,7 @@ describe('Contact Component', () => {
     await waitFor(() => {
       expect(emailjs.send).toHaveBeenCalledTimes(1);
       expect(mockToastSuccess).toHaveBeenCalledWith(
-        expect.stringContaining('Mensagem enviada com sucesso!')
+        expect.stringContaining('Mensagem recebida. Retornamos em até 24 horas úteis.')
       );
       expect(screen.getByRole('button', { name: /Mensagem Enviada!/i })).toBeInTheDocument();
     });

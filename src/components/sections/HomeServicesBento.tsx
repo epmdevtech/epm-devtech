@@ -16,7 +16,7 @@ export const HomeServicesBento = () => {
       <Link
         to="/servicos"
         className="group relative p-6 sm:p-7 rounded-xl border border-border-default bg-surface hover:border-accent-violet/50 hover:bg-surface-elevated transition-all duration-300 flex flex-col justify-between md:col-span-7 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring overflow-hidden"
-        aria-label="APIs e back-end: Processe regras complexas e alto volume com segurança, sem lentidão ou quedas inesperadas."
+        aria-label="APIs e back-end: Sistemas estáveis para processar grande volume de transações e regras complexas, sem lentidão ou quedas em momentos de pico."
       >
         {/* Glow sutil de fundo */}
         <div
@@ -37,10 +37,10 @@ export const HomeServicesBento = () => {
           </div>
 
           <h3 className="font-semibold text-primary text-lg sm:text-xl mb-2 group-hover:text-accent-violet transition-colors">
-            APIs e back-end
+            APIs e back-end de alta performance
           </h3>
           <p className="text-sm text-secondary leading-relaxed mb-6">
-            Processe regras complexas e alto volume com segurança, sem lentidão ou quedas inesperadas.
+            Sistemas estáveis para processar grande volume de transações e regras complexas, sem lentidão ou quedas em momentos de pico.
           </p>
 
           {/* Mock Visual Técnico — Terminal / Pipeline HTTP */}
@@ -80,7 +80,7 @@ export const HomeServicesBento = () => {
         </div>
 
         <div className="mt-5 pt-3.5 border-t border-border-subtle/70 flex items-center justify-between text-xs font-medium text-muted group-hover:text-primary transition-colors">
-          <span>Saber mais sobre arquitetura de APIs</span>
+          <span>Entenda como desenhamos APIs</span>
           <ArrowRight className="w-4 h-4 text-accent-violet group-hover:translate-x-1 transition-transform" />
         </div>
       </Link>
@@ -89,7 +89,7 @@ export const HomeServicesBento = () => {
       <Link
         to="/servicos"
         className="group relative p-6 sm:p-7 rounded-xl border border-border-default bg-surface hover:border-accent-blue/50 hover:bg-surface-elevated transition-all duration-300 flex flex-col justify-between md:col-span-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring overflow-hidden"
-        aria-label="Sistemas e portais: Elimine gargalos operacionais e erros manuais com plataformas web sob medida para sua equipe."
+        aria-label="Sistemas web e plataformas internas: Substitua planilhas confusas e controles manuais por sistemas web intuitivos, rápidos e adaptados à rotina da sua equipe."
       >
         <div
           aria-hidden="true"
@@ -108,10 +108,10 @@ export const HomeServicesBento = () => {
           </div>
 
           <h3 className="font-semibold text-primary text-lg sm:text-xl mb-2 group-hover:text-accent-blue transition-colors">
-            Sistemas e portais
+            Sistemas web e plataformas internas
           </h3>
           <p className="text-sm text-secondary leading-relaxed mb-6">
-            Elimine gargalos operacionais e erros manuais com plataformas web sob medida para sua equipe.
+            Substitua planilhas confusas e controles manuais por sistemas web intuitivos, rápidos e adaptados à rotina da sua equipe.
           </p>
 
           {/* Mock Visual Técnico — Stack & UI Preview */}
@@ -151,7 +151,7 @@ export const HomeServicesBento = () => {
       <Link
         to="/servicos"
         className="group relative p-6 sm:p-7 rounded-xl border border-border-default bg-surface hover:border-accent-amber/50 hover:bg-surface-elevated transition-all duration-300 flex flex-col justify-between md:col-span-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring overflow-hidden"
-        aria-label="Integrações de dados: Conecte seus sistemas e automatize fluxos manuais com comunicação confiável e sem perdas."
+        aria-label="Integrações entre sistemas: Elimine o retrabalho de redigitar dados conectando seu ERP, CRM e ferramentas externas de forma confiável e sem perda de informações."
       >
         <div
           aria-hidden="true"
@@ -170,10 +170,10 @@ export const HomeServicesBento = () => {
           </div>
 
           <h3 className="font-semibold text-primary text-lg sm:text-xl mb-2 group-hover:text-accent-amber transition-colors">
-            Integrações de dados
+            Integrações entre sistemas
           </h3>
           <p className="text-sm text-secondary leading-relaxed mb-6">
-            Conecte seus sistemas e automatize fluxos manuais com comunicação confiável e sem perdas.
+            Elimine o retrabalho de redigitar dados conectando seu ERP, CRM e ferramentas externas de forma confiável e sem perda de informações.
           </p>
 
           {/* Mock Visual Técnico — Fluxo de Conectores & Webhooks */}
@@ -213,7 +213,7 @@ export const HomeServicesBento = () => {
       <Link
         to="/servicos"
         className="group relative p-6 sm:p-7 rounded-xl border border-border-default bg-surface hover:border-brand/50 hover:bg-surface-elevated transition-all duration-300 flex flex-col justify-between md:col-span-7 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring overflow-hidden"
-        aria-label="Modernização de legados: Atualize sistemas antigos que travam o crescimento do negócio sem interromper a operação diária."
+        aria-label="Modernização de sistemas legados: Atualize sistemas antigos que travam o crescimento do seu negócio de forma gradual, sem colocar em risco a operação diária."
       >
         <div
           aria-hidden="true"
@@ -232,10 +232,10 @@ export const HomeServicesBento = () => {
           </div>
 
           <h3 className="font-semibold text-primary text-lg sm:text-xl mb-2 group-hover:text-text-brand transition-colors">
-            Modernização de legados
+            Modernização de sistemas legados
           </h3>
           <p className="text-sm text-secondary leading-relaxed mb-6">
-            Atualize sistemas antigos que travam o crescimento do negócio sem interromper a operação diária.
+            Atualize sistemas antigos que travam o crescimento do seu negócio de forma gradual, sem colocar em risco a operação diária.
           </p>
 
           {/* Mock Visual Técnico — Transição de Conceito Arquitetural */}
@@ -251,7 +251,7 @@ export const HomeServicesBento = () => {
                   <span className="w-2 h-2 rounded-full bg-danger/70 inline-block" />
                 </div>
                 <div className="text-secondary text-[11.5px] leading-snug">
-                  Código legado, acoplamento rígido e alto risco de quebra a cada release.
+                  Monólito antigo: código difícil de manter, risco alto de quebra a cada alteração.
                 </div>
               </div>
 
@@ -261,7 +261,7 @@ export const HomeServicesBento = () => {
                   <span className="w-2 h-2 rounded-full bg-success inline-block" />
                 </div>
                 <div className="text-primary text-[11.5px] leading-snug">
-                  Módulos independentes, testes automatizados e deploy contínuo sem parada.
+                  Módulos desacoplados: testes automatizados, evolução rápida e deploy sem parada.
                 </div>
               </div>
             </div>

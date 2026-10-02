@@ -84,12 +84,12 @@ describe('Rotas e Páginas Independentes (SPEC-060)', () => {
 
   it('ServicesPage (/servicos) renderiza H1, CTA de conversa e conteúdo de serviços sem CTA final redundante', () => {
     renderWithProviders(<ServicesPage />);
-    expect(screen.getByRole('heading', { level: 1, name: /Soluções sob medida para cada estágio da sua operação/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1, name: /Soluções de software sob medida para destravar sua empresa/i })).toBeInTheDocument();
     expect(screen.getByText('SERVIÇOS')).toBeInTheDocument();
-    const ctaButton = screen.getByRole('link', { name: /Solicite uma conversa/i });
+    const ctaButton = screen.getByRole('link', { name: /Conversar sobre seu projeto/i });
     expect(ctaButton).toBeInTheDocument();
     expect(ctaButton).toHaveAttribute('href', '/contato');
-    expect(screen.getByText('Escopo bem alinhado')).toBeInTheDocument();
+    expect(screen.getByText('Escopo e metas claras')).toBeInTheDocument();
     expect(screen.queryByText('Iniciar diagnóstico do projeto')).not.toBeInTheDocument();
   });
 
@@ -98,8 +98,8 @@ describe('Rotas e Páginas Independentes (SPEC-060)', () => {
     expect(screen.getByRole('heading', { level: 1, name: 'Como trabalhamos' })).toBeInTheDocument();
     expect(screen.getByText('METODOLOGIA')).toBeInTheDocument();
     expect(screen.getByText('// GARANTIA OPERACIONAL')).toBeInTheDocument();
-    expect(screen.getByText('Previsibilidade contratual e técnica')).toBeInTheDocument();
-    expect(screen.getByText('Comunicação direta sem ruídos')).toBeInTheDocument();
+    expect(screen.getByText('Previsibilidade do início ao fim')).toBeInTheDocument();
+    expect(screen.getByText('Sem intermediários, sem ruído')).toBeInTheDocument();
     expect(screen.queryByText('Fale com um engenheiro')).not.toBeInTheDocument();
   });
 

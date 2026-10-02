@@ -14,30 +14,30 @@ export const Home = () => {
   return (
     <>
       <Helmet>
-        <title>EPM DevTech | Software House e Desenvolvimento de Software Sob Medida</title>
+        <title>EPM DevTech | Engenharia de Software Sob Medida para Empresas</title>
         <meta
           name="description"
-          content="Software house que desenvolve sistemas web, APIs e integrações sob medida para empresas. Crie, integre ou modernize seu sistema. Fale sobre seu projeto."
+          content="Desenvolvemos sistemas web, APIs e integrações sob medida para destravar a operação da sua empresa. Fale direto com a liderança técnica."
         />
         <link rel="canonical" href={`${BASE_URL}/`} />
         <meta
           property="og:title"
-          content="EPM DevTech | Software House e Desenvolvimento de Software Sob Medida"
+          content="EPM DevTech | Engenharia de Software Sob Medida para Empresas"
         />
         <meta
           property="og:description"
-          content="Software house que desenvolve sistemas web, APIs e integrações sob medida para empresas. Crie, integre ou modernize seu sistema. Fale sobre seu projeto."
+          content="Desenvolvemos sistemas web, APIs e integrações sob medida para destravar a operação da sua empresa. Fale direto com a liderança técnica."
         />
         <meta property="og:url" content={`${BASE_URL}/`} />
         <meta property="og:image" content={`${BASE_URL}/og-image-1200x630.png`} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="EPM DevTech | Software House e Desenvolvimento de Software Sob Medida"
+          content="EPM DevTech | Engenharia de Software Sob Medida para Empresas"
         />
         <meta
           name="twitter:description"
-          content="Software house que desenvolve sistemas web, APIs e integrações sob medida para empresas. Crie, integre ou modernize seu sistema. Fale sobre seu projeto."
+          content="Desenvolvemos sistemas web, APIs e integrações sob medida para destravar a operação da sua empresa. Fale direto com a liderança técnica."
         />
         <meta name="twitter:image" content={`${BASE_URL}/og-image-1200x630.png`} />
       </Helmet>
@@ -57,7 +57,7 @@ export const Home = () => {
               Engenharia sob medida para os gargalos da sua operação
             </h2>
             <p className="mt-3 text-base text-secondary leading-relaxed">
-              Quatro frentes de entrega técnica desenhadas para construir sistemas novos, integrar fluxos existentes ou estabilizar legados.
+              Soluções práticas para substituir processos manuais, conectar ferramentas isoladas e modernizar softwares essenciais da sua empresa.
             </p>
           </div>
 
@@ -85,7 +85,7 @@ export const Home = () => {
               Engenharia previsível com contato direto com quem constrói
             </h2>
             <p className="mt-3 text-base text-secondary leading-relaxed">
-              Do diagnóstico inicial à sustentação contínua, sem intermediários comerciais.
+              Alinhamentos objetivos, entregas frequentes em homologação e zero intermediários comerciais.
             </p>
           </div>
 
@@ -97,7 +97,7 @@ export const Home = () => {
               to="/como-trabalhamos"
               className="inline-flex items-center gap-1.5 text-sm font-medium text-text-brand hover:underline group"
             >
-              <span>Ver metodologia →</span>
+              <span>Ver como trabalhamos →</span>
             </Link>
           </div>
         </SectionWrapper>
@@ -113,7 +113,7 @@ export const Home = () => {
               Resultados comprovados em operações de grande escala
             </h2>
             <p className="mt-3 text-base text-secondary leading-relaxed">
-              Métricas reais atingidas pela liderança técnica em ambientes de alta concorrência.
+              Métricas consolidadas em ambientes com exigência máxima de estabilidade, volume e conformidade regulatória.
             </p>
           </div>
 
@@ -121,7 +121,7 @@ export const Home = () => {
           <HomeResultsStrip />
 
           <p className="text-xs text-muted mb-6">
-            * Resultados de projetos da liderança técnica da EPM DevTech em outras empresas.
+            * Resultados alcançados pela liderança técnica em projetos de missão crítica em outras organizações.
           </p>
 
           <div>
@@ -129,7 +129,7 @@ export const Home = () => {
               to="/experiencia"
               className="inline-flex items-center gap-1.5 text-sm font-medium text-text-brand hover:underline group"
             >
-              <span>Ver projetos detalhados →</span>
+              <span>Conhecer nossa experiência →</span>
             </Link>
           </div>
         </SectionWrapper>

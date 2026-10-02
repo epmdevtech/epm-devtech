@@ -18,8 +18,8 @@ const steps: ProcessStep[] = [
   {
     step: "01",
     phase: "ENTENDIMENTO",
-    title: "Diagnóstico técnico",
-    description: "Alinhamento direto de objetivos, arquitetura e viabilidade do projeto.",
+    title: "Diagnóstico inicial",
+    description: "Mapeamos os gargalos operacionais e desenhamos a arquitetura mais eficiente para o seu momento.",
     theme: {
       nodeBorder: "border-accent-blue/50 group-hover:border-accent-blue",
       nodeText: "text-accent-blue",
@@ -30,8 +30,8 @@ const steps: ProcessStep[] = [
   {
     step: "02",
     phase: "DEFINIÇÃO",
-    title: "Escopo e arquitetura",
-    description: "Especificação detalhada, critérios de aceite e cronograma de entregas.",
+    title: "Escopo e entregáveis",
+    description: "Definimos critérios claros de aceite, cronograma realista e prioridades de negócio antes de codificar.",
     theme: {
       nodeBorder: "border-accent-violet/50 group-hover:border-accent-violet",
       nodeText: "text-accent-violet",
@@ -42,8 +42,8 @@ const steps: ProcessStep[] = [
   {
     step: "03",
     phase: "DESENVOLVIMENTO",
-    title: "Ciclos incrementais",
-    description: "Código testado com validações contínuas em ambiente de homologação.",
+    title: "Entregas incrementais",
+    description: "Código testado com validações periódicas em homologação para sua equipe acompanhar a evolução real.",
     theme: {
       nodeBorder: "border-accent-amber/50 group-hover:border-accent-amber",
       nodeText: "text-accent-amber",
@@ -54,8 +54,8 @@ const steps: ProcessStep[] = [
   {
     step: "04",
     phase: "EVOLUÇÃO",
-    title: "Sustentação e escala",
-    description: "Monitoramento contínuo e suporte direto para novas demandas operacionais.",
+    title: "Sustentação e melhoria",
+    description: "Acompanhamento próximo em produção, monitoramento de estabilidade e suporte técnico ágil.",
     theme: {
       nodeBorder: "border-brand/50 group-hover:border-brand",
       nodeText: "text-text-brand",

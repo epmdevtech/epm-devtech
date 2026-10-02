@@ -44,10 +44,10 @@ describe('ProcessExplorer Component', () => {
     render(<ProcessExplorer />);
 
     // Step 01 details (rendered in desktop panel and default open mobile accordion)
-    expect(screen.getAllByText(/Mapeamos detalhadamente as dores do negócio/i).length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText(/Investigamos a fundo o funcionamento da sua empresa/i).length).toBeGreaterThanOrEqual(1);
     expect(screen.getAllByText('Matriz de Riscos & Restrições').length).toBeGreaterThanOrEqual(1);
     expect(screen.getAllByText('Diagrama C4 Inicial').length).toBeGreaterThanOrEqual(1);
-    expect(screen.getAllByText(/Aprovação formal do alinhamento técnico/i).length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText(/Alinhamento técnico e de objetivos formalmente acordado/i).length).toBeGreaterThanOrEqual(1);
   });
 
   it('switches active step details when clicking a desktop tab', () => {
@@ -62,17 +62,17 @@ describe('ProcessExplorer Component', () => {
     }
 
     // Step 02 details should now be visible
-    expect(screen.getByText(/Transformamos as necessidades levantadas em especificações funcionais/i)).toBeInTheDocument();
+    expect(screen.getByText(/Organizamos a solução em entregas claras e priorizadas/i)).toBeInTheDocument();
     expect(screen.getByText('Especificações Técnicas (SPECs)')).toBeInTheDocument();
     expect(screen.getByText('Contratos de API (OpenAPI)')).toBeInTheDocument();
-    expect(screen.getByText(/Arquitetura e escopo validados com definição clara de prazos/i)).toBeInTheDocument();
+    expect(screen.getByText(/Escopo, arquitetura e marcos de entrega validados/i)).toBeInTheDocument();
   });
 
   it('allows expanding and collapsing mobile accordion items', () => {
     render(<ProcessExplorer />);
 
     // By default, index 0 is open in mobile
-    const toggleButton = screen.getByRole('button', { name: /02 ESCOPO & PRIORIDADES Definimos/i });
+    const toggleButton = screen.getByRole('button', { name: /02 ESCOPO & PLANEJAMENTO Definimos/i });
     expect(toggleButton).toBeInTheDocument();
 
     fireEvent.click(toggleButton);
@@ -80,7 +80,7 @@ describe('ProcessExplorer Component', () => {
     // After clicking step 02 accordion toggle, its content should be displayed
     const mobileContent = document.getElementById('mobile-step-content-02');
     expect(mobileContent).toBeInTheDocument();
-    expect(mobileContent).toHaveTextContent(/Transformamos as necessidades levantadas/i);
+    expect(mobileContent).toHaveTextContent(/Organizamos a solução em entregas claras/i);
   });
 
   it('handles prefers-reduced-motion correctly', () => {
@@ -88,6 +88,6 @@ describe('ProcessExplorer Component', () => {
     render(<ProcessExplorer />);
 
     expect(screen.getAllByText('Entendemos').length).toBeGreaterThanOrEqual(1);
-    expect(screen.getAllByText(/Mapeamos detalhadamente as dores do negócio/i).length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText(/Investigamos a fundo o funcionamento da sua empresa/i).length).toBeGreaterThanOrEqual(1);
   });
 });

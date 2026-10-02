@@ -25,7 +25,7 @@ const MILESTONES: MilestoneItem[] = [
     tag: "// FUNDAMENTOS TÉCNICOS",
     title: "Início da Trajetória & Arquitetura",
     description:
-      "Início da atuação em engenharia de software profunda, com foco em fundamentos sólidos, modelagem relacional, arquitetura de sistemas corporativos e código sustentável.",
+      "Início da atuação em engenharia de sistemas corporativos, com foco em modelagem sólida de dados e arquitetura de código sustentável.",
   },
   {
     id: "m2",
@@ -33,7 +33,7 @@ const MILESTONES: MilestoneItem[] = [
     tag: "// OPERAÇÕES CRÍTICAS",
     title: "Projetos de Grande Escala",
     description:
-      "Participação em sistemas de alta complexidade e missão crítica em setores regulados (energia, indústria pesada e regulação pública), operando sob requisitos estritos de estabilidade.",
+      "Experiência prática em projetos de missão crítica em setores regulados (energia, infraestrutura e educação), com tolerância zero a falhas.",
   },
   {
     id: "m3",
@@ -41,7 +41,7 @@ const MILESTONES: MilestoneItem[] = [
     tag: "// CONSOLIDAÇÃO & ESCALA",
     title: "Consolidação da Software House",
     description:
-      "Consolidação da EPM DevTech com foco em desenvolvimento de APIs de alto volume, microsserviços distribuídos e modernização de legados corporativos para empresas em expansão.",
+      "Atuação focada no desenvolvimento de APIs de alta performance, microsserviços e modernização de sistemas corporativos essenciais.",
   },
   {
     id: "m4",
@@ -49,7 +49,7 @@ const MILESTONES: MilestoneItem[] = [
     tag: "// ENGENHARIA SOB MEDIDA",
     title: "Atendimento Direto & Impacto Real",
     description:
-      "Operação madura e consultiva: atendimento direto com a liderança técnica, sem intermediários comerciais, com garantia de escopo bem definido e foco em resolver gargalos reais.",
+      "Modelo de trabalho consultivo e direto: contato com a liderança técnica, escopo transparente e foco na resolução de gargalos reais.",
     highlight: true,
   },
 ];
@@ -65,25 +65,25 @@ const PRINCIPLES: PrincipleItem[] = [
     code: "PRINCIPIO_01",
     title: "Excelência Pragmática",
     description:
-      "Não vendemos complexidade desnecessária nem criamos abstrações prematuras. Cada linha de código, biblioteca ou padrão arquitetural existe para resolver um gargalo real da operação com custo de manutenção previsível e retorno concreto.",
+      "Não vendemos tecnologias da moda nem criamos complexidade desnecessária. Cada componente ou banco de dados existe para resolver uma dor concreta da operação com custo previsível.",
   },
   {
     code: "PRINCIPIO_02",
-    title: "Transparência Técnica",
+    title: "Transparência Total",
     description:
-      "Comunicação direta entre quem decide e quem executa. Você fala diretamente com a liderança de engenharia, reduzindo ruídos e alinhando expectativas de forma realista, sem camadas comerciais que distorcem prazos ou viabilidade técnica.",
+      "Conversas diretas entre quem decide e quem implementa. Apresentamos cenários realistas de prazo e viabilidade técnica, sem meias-palavras.",
   },
   {
     code: "PRINCIPIO_03",
-    title: "Código Sustentável",
+    title: "Código que Pertence a Você",
     description:
-      "Arquitetura desacoplada, testes automatizados e tipagem estrita de ponta a ponta. Entregamos softwares limpos e documentados que facilitam manutenções futuras, permitindo que a sua própria equipe ou novos desenvolvedores continuem evoluindo o sistema com segurança.",
+      "Repositórios, documentação e infraestrutura pertencem integralmente à sua empresa. Escrevemos código limpo e testado para que qualquer bom desenvolvedor consiga dar continuidade.",
   },
   {
     code: "PRINCIPIO_04",
-    title: "Compromisso com a Operação",
+    title: "Estabilidade Operacional",
     description:
-      "Sistemas corporativos exigem estabilidade contínua. Desenhamos arquiteturas com tolerância a falhas, esteiras de qualidade automatizadas e homologação rigorosa para garantir que a sua empresa opere com previsibilidade e alta disponibilidade.",
+      "Seu negócio não pode parar. Planejamos cada entrega com testes automatizados e homologação cuidadosa para garantir alta disponibilidade no dia a dia.",
   },
 ];
 

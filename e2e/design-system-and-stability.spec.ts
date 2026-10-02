@@ -163,15 +163,15 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
 
     // Valida abertura de tooltip em todas as 9 tecnologias (linha superior e inferior)
     const techExpectations = [
-      { name: 'React', textMatch: /Componentização declarativa/i },
-      { name: 'TypeScript', textMatch: /Tipagem estática estrita/i },
-      { name: 'Node.js', textMatch: /Runtime assíncrono e orientado a eventos/i },
-      { name: 'AWS', textMatch: /Computação elástica distribuída/i },
-      { name: 'Vue.js', textMatch: /Ecossistema progressivo e ágil/i },
-      { name: 'PHP', textMatch: /Back-end maduro e corporativo/i },
-      { name: 'Laravel', textMatch: /Framework robusto para desenvolvimento ágil/i },
-      { name: 'Angular', textMatch: /Framework corporativo opinado/i },
-      { name: 'Azure', textMatch: /Serviços corporativos de nuvem/i },
+      { name: 'React', textMatch: /Interfaces web fluidas e modulares/i },
+      { name: 'TypeScript', textMatch: /Evita falhas em tempo de execução/i },
+      { name: 'Node.js', textMatch: /Processamento veloz de requisições/i },
+      { name: 'AWS', textMatch: /Hospedagem segura e infraestrutura em nuvem/i },
+      { name: 'Vue.js', textMatch: /Agilidade na construção de telas interativas/i },
+      { name: 'PHP', textMatch: /Linguagem estável e amplamente consolidada/i },
+      { name: 'Laravel', textMatch: /Estrutura moderna e organizada/i },
+      { name: 'Angular', textMatch: /Plataforma padronizada para grandes portais/i },
+      { name: 'Azure', textMatch: /Soluções em nuvem da Microsoft/i },
     ];
 
     for (const tech of techExpectations) {
@@ -391,7 +391,7 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     expect(await srOnlyLabels.count()).toBe(4);
     await expect(authoritySection.locator('span.sr-only').getByText('99,9% de disponibilidade')).toBeAttached();
     await expect(authoritySection.locator('span.sr-only').getByText('2.500 requisições por segundo')).toBeAttached();
-    await expect(authoritySection.locator('span.sr-only').getByText('100% de integridade')).toBeAttached();
+    await expect(authoritySection.locator('span.sr-only').getByText('100% de consistência')).toBeAttached();
     await expect(authoritySection.locator('span.sr-only').getByText('redução de 35%')).toBeAttached();
   });
 
@@ -520,7 +520,7 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
 
     // 2. Valida subheadline editorial de proposta de valor
     const subheadline = page.getByText(
-      'Sistemas sob medida para empresas que precisam criar plataformas, conectar operações ou modernizar o software do seu negócio.'
+      'Desenvolvemos sistemas web, APIs e integrações sob medida para operações que não podem parar por instabilidade ou lentidão.'
     );
     await expect(subheadline).toBeVisible();
 
@@ -540,15 +540,15 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     // 5. Valida Seletor Interativo de Cenários de Negócio
     const selector = page.locator('[data-testid="hero-scenario-selector"]');
     await expect(selector).toBeVisible();
-    await expect(selector).toContainText('O que sua empresa precisa agora?');
-    await expect(selector).toContainText('Direcionamento técnico imediato');
+    await expect(selector).toContainText('Qual é o principal desafio da sua empresa hoje?');
+    await expect(selector).toContainText('Diagnóstico técnico direto');
 
     // Valida os 4 links de cenário com navegação ancorada
     const scenarios = [
-      { id: 'sistemas', text: 'Criar um novo sistema, portal ou plataforma web', href: '/servicos#sistemas' },
-      { id: 'integracoes', text: 'Conectar sistemas antigos e automatizar fluxos de dados', href: '/servicos#integracoes' },
-      { id: 'legados', text: 'Modernizar e refatorar um software legado sem parar a operação', href: '/servicos#legados' },
-      { id: 'diagnostico', text: 'Avaliar arquitetura e ter uma segunda opinião técnica sênior', href: '/contato' },
+      { id: 'sistemas', text: 'Criar um novo sistema, portal ou plataforma corporativa', href: '/servicos#sistemas' },
+      { id: 'integracoes', text: 'Conectar sistemas isolados e acabar com retrabalho manual', href: '/servicos#integracoes' },
+      { id: 'legados', text: 'Modernizar um software legado sem interromper o dia a dia', href: '/servicos#legados' },
+      { id: 'diagnostico', text: 'Avaliar a arquitetura do meu sistema com um olhar sênior', href: '/contato' },
     ];
 
     for (const scenario of scenarios) {

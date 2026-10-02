@@ -64,13 +64,13 @@ const nextSteps = [
     Icon: IconFastResponse,
     title: "Retorno em até 24 horas úteis",
     description:
-      "Resposta objetiva para agendarmos uma conversa.",
+      "Resposta objetiva e técnica para agendarmos uma conversa.",
   },
   {
     Icon: IconConfidentiality,
     title: "Sigilo e confidencialidade",
     description:
-      "Suas ideias, dados e regras de negócio tratados sob sigilo e proteção, com NDA quando solicitado.",
+      "Suas regras de negócio e dados tratados com confidencialidade total, com NDA quando solicitado.",
   },
 ];
 
@@ -120,7 +120,7 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
       };
 
       await emailjs.send(serviceId, templateId, templateParams);
-      toast.success("Mensagem enviada com sucesso! Retornaremos em breve.");
+      toast.success("Mensagem recebida. Retornamos em até 24 horas úteis.");
       setIsSuccess(true);
       reset();
       setTimeout(() => {
@@ -347,7 +347,7 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
                         </DialogHeader>
                         <div className="flex-1 min-h-0 mt-4 relative">
                           <Textarea
-                            placeholder="Conte resumidamente qual processo quer otimizar ou qual sistema pretende construir..."
+                            placeholder="Descreva resumidamente o desafio do seu sistema ou a demanda da sua empresa..."
                             className="h-full resize-none text-base p-4 border-border-default focus-visible:ring-brand/20 focus-visible:border-brand"
                             {...register("message")}
                             onChange={(e) => {
@@ -360,7 +360,7 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
                   </div>
                   <Textarea
                     id="message"
-                    placeholder="Conte resumidamente qual processo quer otimizar ou qual sistema pretende construir..."
+                    placeholder="Descreva resumidamente o desafio do seu sistema ou a demanda da sua empresa..."
                     rows={4}
                     {...register("message")}
                     aria-invalid={!!errors.message}

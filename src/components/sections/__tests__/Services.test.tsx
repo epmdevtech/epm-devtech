@@ -27,10 +27,10 @@ describe('Services Component', () => {
     it('renders all 4 consolidated service cards with titles including institutional websites', () => {
         render(<Services />);
         const titles = [
-            'Sistemas web, portais e sites institucionais',
-            'APIs & back-end escalável',
-            'Integrações entre sistemas',
-            'Modernização & evolução de legados',
+            'Sistemas web e plataformas corporativas',
+            'APIs e back-end de alta concorrência',
+            'Integrações de dados entre sistemas',
+            'Modernização de sistemas legados',
         ];
         titles.forEach(title => {
             expect(screen.getByText(title)).toBeInTheDocument();
@@ -39,8 +39,8 @@ describe('Services Component', () => {
 
     it('renders Z-pattern section tags (SPEC-073)', () => {
         render(<Services />);
-        expect(screen.getByText(/01 \/\/ WEB & PORTAIS/i)).toBeInTheDocument();
-        expect(screen.getByText(/02 \/\/ APIS & BACK-END/i)).toBeInTheDocument();
+        expect(screen.getByText(/01 \/\/ WEB & PLATAFORMAS/i)).toBeInTheDocument();
+        expect(screen.getByText(/02 \/\/ APIS & ALTA PERFORMANCE/i)).toBeInTheDocument();
         expect(screen.getByText(/03 \/\/ INTEGRAÇÃO DE DADOS/i)).toBeInTheDocument();
         expect(screen.getByText(/04 \/\/ MODERNIZAÇÃO/i)).toBeInTheDocument();
     });
@@ -48,15 +48,15 @@ describe('Services Component', () => {
     it('renders pain trigger indicators and descriptions', () => {
         render(<Services />);
         expect(screen.getAllByText(/Quando precisa:/i).length).toBe(4);
-        expect(screen.getByText(/Precisa criar um sistema novo, um portal ou um site institucional/i)).toBeInTheDocument();
-        expect(screen.getByText(/Seu sistema sofre com lentidão em horários de pico/i)).toBeInTheDocument();
-        expect(screen.getByText(/Sua operação perde tempo com processos manuais/i)).toBeInTheDocument();
-        expect(screen.getByText(/Tem um sistema legado essencial que já não acompanha/i)).toBeInTheDocument();
+        expect(screen.getByText(/Sua equipe perde tempo gerenciando processos em planilhas desconectadas/i)).toBeInTheDocument();
+        expect(screen.getByText(/O sistema atual trava ou fica lento em horários de pico/i)).toBeInTheDocument();
+        expect(screen.getByText(/Sua equipe gasta horas do dia redigitando informações entre ERP/i)).toBeInTheDocument();
+        expect(screen.getByText(/A empresa depende de um sistema antigo que ninguém tem coragem de mexer/i)).toBeInTheDocument();
 
-        expect(screen.getByText(/Aplicações web sob medida, portais e sites institucionais/i)).toBeInTheDocument();
-        expect(screen.getByText(/Desenvolvimento de APIs RESTful e serviços de alta disponibilidade/i)).toBeInTheDocument();
-        expect(screen.getByText(/Conexão segura entre ERPs, CRMs/i)).toBeInTheDocument();
-        expect(screen.getByText(/Refatoração e migração gradual de plataformas legadas/i)).toBeInTheDocument();
+        expect(screen.getByText(/Desenvolvemos sistemas internos, portais e ferramentas corporativas/i)).toBeInTheDocument();
+        expect(screen.getByText(/Construímos APIs robustas e arquiteturas preparadas para absorver grandes picos/i)).toBeInTheDocument();
+        expect(screen.getByText(/Criamos pontes automatizadas e seguras entre suas ferramentas/i)).toBeInTheDocument();
+        expect(screen.getByText(/Substituímos e refatoramos módulos antigos passo a passo/i)).toBeInTheDocument();
     });
 
     it('renders mock visual elements inside cards', () => {

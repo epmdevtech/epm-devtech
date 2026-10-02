@@ -15,26 +15,26 @@ describe("HomeServicesBento Component", () => {
   it("renderiza os 4 títulos de serviços no Bento Grid", () => {
     renderComponent();
 
-    expect(screen.getByRole("heading", { level: 3, name: /APIs e back-end/i })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { level: 3, name: /Sistemas e portais/i })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { level: 3, name: /Integrações de dados/i })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { level: 3, name: /Modernização de legados/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 3, name: /APIs e back-end de alta performance/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 3, name: /Sistemas web e plataformas internas/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 3, name: /Integrações entre sistemas/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 3, name: /Modernização de sistemas legados/i })).toBeInTheDocument();
   });
 
   it("renderiza as 4 descrições de negócio aprovadas", () => {
     renderComponent();
 
     expect(
-      screen.getByText(/Processe regras complexas e alto volume com segurança, sem lentidão ou quedas inesperadas/i)
+      screen.getByText(/Sistemas estáveis para processar grande volume de transações e regras complexas, sem lentidão ou quedas em momentos de pico/i)
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/Elimine gargalos operacionais e erros manuais com plataformas web sob medida para sua equipe/i)
+      screen.getByText(/Substitua planilhas confusas e controles manuais por sistemas web intuitivos, rápidos e adaptados à rotina da sua equipe/i)
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/Conecte seus sistemas e automatize fluxos manuais com comunicação confiável e sem perdas/i)
+      screen.getByText(/Elimine o retrabalho de redigitar dados conectando seu ERP, CRM e ferramentas externas de forma confiável e sem perda de informações/i)
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/Atualize sistemas antigos que travam o crescimento do negócio sem interromper a operação diária/i)
+      screen.getByText(/Atualize sistemas antigos que travam o crescimento do seu negócio de forma gradual, sem colocar em risco a operação diária/i)
     ).toBeInTheDocument();
   });
 

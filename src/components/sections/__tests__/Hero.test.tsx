@@ -41,7 +41,7 @@ describe('Hero Component (Business Scenarios Selector & B2B Decision — SPEC-08
     // Editorial subheadline
     expect(
       screen.getByText(
-        'Sistemas sob medida para empresas que precisam criar plataformas, conectar operações ou modernizar o software do seu negócio.'
+        'Desenvolvemos sistemas web, APIs e integrações sob medida para operações que não podem parar por instabilidade ou lentidão.'
       )
     ).toBeInTheDocument();
   });
@@ -85,32 +85,32 @@ describe('Hero Component (Business Scenarios Selector & B2B Decision — SPEC-08
 
     const selector = screen.getByTestId('hero-scenario-selector');
     expect(selector).toBeInTheDocument();
-    expect(selector).toHaveTextContent('O que sua empresa precisa agora?');
-    expect(selector).toHaveTextContent('Direcionamento técnico imediato');
+    expect(selector).toHaveTextContent('Qual é o principal desafio da sua empresa hoje?');
+    expect(selector).toHaveTextContent('Diagnóstico técnico direto');
 
     // Scenario 1: Sistemas / Web
     const link1 = screen.getByTestId('scenario-link-sistemas');
     expect(link1).toBeInTheDocument();
     expect(link1).toHaveAttribute('href', '/servicos#sistemas');
-    expect(link1).toHaveTextContent('Criar um novo sistema, portal ou plataforma web');
+    expect(link1).toHaveTextContent('Criar um novo sistema, portal ou plataforma corporativa');
 
     // Scenario 2: Integrações
     const link2 = screen.getByTestId('scenario-link-integracoes');
     expect(link2).toBeInTheDocument();
     expect(link2).toHaveAttribute('href', '/servicos#integracoes');
-    expect(link2).toHaveTextContent('Conectar sistemas antigos e automatizar fluxos de dados');
+    expect(link2).toHaveTextContent('Conectar sistemas isolados e acabar com retrabalho manual');
 
     // Scenario 3: Legados
     const link3 = screen.getByTestId('scenario-link-legados');
     expect(link3).toBeInTheDocument();
     expect(link3).toHaveAttribute('href', '/servicos#legados');
-    expect(link3).toHaveTextContent('Modernizar e refatorar um software legado sem parar a operação');
+    expect(link3).toHaveTextContent('Modernizar um software legado sem interromper o dia a dia');
 
     // Scenario 4: Diagnóstico
     const link4 = screen.getByTestId('scenario-link-diagnostico');
     expect(link4).toBeInTheDocument();
     expect(link4).toHaveAttribute('href', '/contato');
-    expect(link4).toHaveTextContent('Avaliar arquitetura e ter uma segunda opinião técnica sênior');
+    expect(link4).toHaveTextContent('Avaliar a arquitetura do meu sistema com um olhar sênior');
   });
 
   it('respects prefers-reduced-motion without throwing and renders all elements', () => {

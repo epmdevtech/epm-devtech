@@ -26,25 +26,25 @@ describe("HomeProcessPipeline Component", () => {
     render(<HomeProcessPipeline />);
 
     expect(screen.getByText(/01 · ENTENDIMENTO/i)).toBeInTheDocument();
-    expect(screen.getByRole("heading", { level: 3, name: /Diagnóstico técnico/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 3, name: /Diagnóstico inicial/i })).toBeInTheDocument();
 
     expect(screen.getByText(/02 · DEFINIÇÃO/i)).toBeInTheDocument();
-    expect(screen.getByRole("heading", { level: 3, name: /Escopo e arquitetura/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 3, name: /Escopo e entregáveis/i })).toBeInTheDocument();
 
     expect(screen.getByText(/03 · DESENVOLVIMENTO/i)).toBeInTheDocument();
-    expect(screen.getByRole("heading", { level: 3, name: /Ciclos incrementais/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 3, name: /Entregas incrementais/i })).toBeInTheDocument();
 
     expect(screen.getByText(/04 · EVOLUÇÃO/i)).toBeInTheDocument();
-    expect(screen.getByRole("heading", { level: 3, name: /Sustentação e escala/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 3, name: /Sustentação e melhoria/i })).toBeInTheDocument();
   });
 
   it("renderiza as descrições de negócio completas", () => {
     render(<HomeProcessPipeline />);
 
-    expect(screen.getByText(/Alinhamento direto de objetivos, arquitetura e viabilidade do projeto/i)).toBeInTheDocument();
-    expect(screen.getByText(/Especificação detalhada, critérios de aceite e cronograma de entregas/i)).toBeInTheDocument();
-    expect(screen.getByText(/Código testado com validações contínuas em ambiente de homologação/i)).toBeInTheDocument();
-    expect(screen.getByText(/Monitoramento contínuo e suporte direto para novas demandas operacionais/i)).toBeInTheDocument();
+    expect(screen.getByText(/Mapeamos os gargalos operacionais e desenhamos a arquitetura mais eficiente para o seu momento/i)).toBeInTheDocument();
+    expect(screen.getByText(/Definimos critérios claros de aceite, cronograma realista e prioridades de negócio antes de codificar/i)).toBeInTheDocument();
+    expect(screen.getByText(/Código testado com validações periódicas em homologação para sua equipe acompanhar a evolução real/i)).toBeInTheDocument();
+    expect(screen.getByText(/Acompanhamento próximo em produção, monitoramento de estabilidade e suporte técnico ágil/i)).toBeInTheDocument();
   });
 
   it("renderiza respeitando prefers-reduced-motion sem erros", () => {
