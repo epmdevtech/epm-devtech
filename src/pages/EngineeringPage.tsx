@@ -50,7 +50,7 @@ const QUALITY_GATES: QualityGateCheck[] = [
   {
     title: "Unit & Integration Tests",
     metric: "PASS (100% coverage)",
-    detail: "Vitest / Testing Library · 29 suites · 183 tests OK",
+    detail: "Vitest / Testing Library · 30 suites · 189 tests OK",
   },
   {
     title: "Strict Static Analysis",

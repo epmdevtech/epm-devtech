@@ -117,10 +117,10 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     await expect(blueprint).toBeVisible({ timeout: 10000 });
 
     // Valida a presença das 4 camadas horizontais
-    await expect(page.getByText('LAYER 01 // INTERFACE & EDGE')).toBeVisible();
-    await expect(page.getByText('LAYER 02 // APLICAÇÃO & APIS')).toBeVisible();
-    await expect(page.getByText('LAYER 03 // MENSAGERIA & BARRAMENTO')).toBeVisible();
-    await expect(page.getByText('LAYER 04 // NUVEM, DADOS & OBSERVABILIDADE')).toBeVisible();
+    await expect(page.getByText('LAYER 01 // WEB & INTERFACES REATIVAS')).toBeVisible();
+    await expect(page.getByText('LAYER 02 // BACK-END, APIS & LINGUAGENS')).toBeVisible();
+    await expect(page.getByText('LAYER 03 // MOBILE & ENGENHARIA DE IA')).toBeVisible();
+    await expect(page.getByText('LAYER 04 // CLOUD & INFRAESTRUTURA ESCALÁVEL')).toBeVisible();
 
     // Valida nós chaves da arquitetura
     const reactBadge = page.locator('[data-testid="tech-badge-React"]');
@@ -157,7 +157,7 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     await page.waitForTimeout(300);
 
     // Valida exibição de propósito contextual
-    await expect(page.getByRole('tooltip').getByText('Componentização declarativa e renderização eficiente no cliente.')).toBeVisible();
+    await expect(page.getByRole('tooltip').getByText(/Componentização declarativa/i)).toBeVisible();
   });
 
   test('Logotipo adapta-se perfeitamente entre Dark e Light Mode sem container escuro artificial', async ({ page }) => {

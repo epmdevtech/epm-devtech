@@ -1,4 +1,5 @@
 import React from "react";
+import { Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   Tooltip,
@@ -26,10 +27,10 @@ const ArchitecturalBlueprint: React.FC<ArchitecturalBlueprintProps> = ({
           // ARQUITETURA EM CAMADAS
         </div>
         <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-primary [text-wrap:balance]">
-          Stack tecnológica organizada por camadas de software
+          Stack tecnológica e especialidades de engenharia
         </h2>
         <p className="text-sm sm:text-base text-secondary mt-2 leading-relaxed">
-          Visão arquitetural de como componentes de interface, serviços de aplicação, mensageria e infraestrutura conectam-se para formar sistemas estáveis e fáceis de evoluir.
+          Especialidades centrais organizadas em camadas arquiteturais: do desenvolvimento web e mobile à infraestrutura corporativa em nuvem e inteligência artificial.
         </p>
       </div>
 
@@ -68,38 +69,80 @@ const ArchitecturalBlueprint: React.FC<ArchitecturalBlueprintProps> = ({
                   </div>
                 </div>
 
-                {/* Lado Direito: Badges Técnicas com Logo e Tooltip de Função */}
-                <div className="lg:col-span-8 flex flex-wrap gap-2 sm:gap-2.5 items-center lg:pt-1">
+                {/* Lado Direito: Especialidades com Presença Tipográfica e Badges */}
+                <div className="lg:col-span-8 flex flex-wrap gap-2.5 sm:gap-3.5 items-center lg:pt-1">
                   {layer.technologies.map((tech) => (
                     <Tooltip key={tech.name}>
                       <TooltipTrigger asChild>
                         <button
                           type="button"
                           data-testid={`tech-badge-${tech.name}`}
-                          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-border-default/80 bg-surface-elevated/40 dark:bg-zinc-900/50 hover:bg-surface-elevated/80 dark:hover:bg-zinc-900/90 hover:border-brand/50 transition-all duration-150 cursor-pointer group text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+                          className={cn(
+                            "inline-flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl border transition-all duration-150 cursor-pointer group text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand",
+                            tech.highlight
+                              ? "border-amber-500/40 bg-amber-500/5 hover:bg-amber-500/10 hover:border-amber-500/60 shadow-sm"
+                              : "border-border-default/80 bg-surface-elevated/40 dark:bg-zinc-900/60 hover:bg-surface-elevated/80 dark:hover:bg-zinc-800/80 hover:border-brand/50"
+                          )}
                         >
-                          <img
-                            src={tech.icon}
-                            alt=""
-                            aria-hidden="true"
-                            className="w-4 h-4 object-contain filter group-hover:brightness-110 transition-transform duration-150 group-hover:scale-105 shrink-0"
-                            loading="lazy"
-                            onError={(e) => {
-                              // Fallback silencioso se o ícone remoto falhar
-                              (e.target as HTMLElement).style.display = "none";
-                            }}
-                          />
-                          <span className="font-mono text-xs text-text-primary group-hover:text-primary transition-colors font-medium">
+                          {/* Ícone Oficial ou Sparkles para IA */}
+                          {tech.icon ? (
+                            <img
+                              src={tech.icon}
+                              alt=""
+                              aria-hidden="true"
+                              className="w-5 h-5 object-contain filter group-hover:brightness-110 transition-transform duration-150 group-hover:scale-105 shrink-0"
+                              loading="lazy"
+                              onError={(e) => {
+                                (e.target as HTMLElement).style.display = "none";
+                              }}
+                            />
+                          ) : (
+                            <Sparkles
+                              className="w-5 h-5 text-amber-500 dark:text-amber-400 shrink-0 group-hover:scale-110 transition-transform"
+                              aria-hidden="true"
+                            />
+                          )}
+
+                          {/* Nome da Tecnologia */}
+                          <span
+                            className={cn(
+                              "font-bold text-sm sm:text-base tracking-tight transition-colors",
+                              tech.highlight
+                                ? "text-amber-600 dark:text-amber-300 group-hover:text-amber-500 dark:group-hover:text-amber-200"
+                                : "text-primary group-hover:text-brand"
+                            )}
+                          >
                             {tech.name}
                           </span>
+
+                          {/* Badge de Destaque / Autoridade */}
+                          {tech.badge && (
+                            <span
+                              className={cn(
+                                "text-[10px] font-mono font-semibold uppercase px-2 py-0.5 rounded tracking-wide",
+                                tech.badgeVariant === "amber"
+                                  ? "bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30"
+                                  : tech.badgeVariant === "brand"
+                                  ? "bg-brand/15 text-text-brand border border-brand/30"
+                                  : "bg-surface-base dark:bg-zinc-800 text-secondary border border-border-default/70"
+                              )}
+                            >
+                              {tech.badge}
+                            </span>
+                          )}
                         </button>
                       </TooltipTrigger>
                       <TooltipContent
                         side="top"
-                        className="max-w-xs bg-zinc-950 text-zinc-100 border border-border-default/80 p-2.5 shadow-xl text-xs rounded-lg"
+                        className="max-w-xs bg-zinc-950 text-zinc-100 border border-border-default/80 p-3 shadow-xl text-xs rounded-xl"
                       >
-                        <div className="font-semibold text-text-brand font-mono text-[11px] mb-1">
-                          {tech.name}
+                        <div className="flex items-center gap-1.5 font-semibold text-text-brand font-mono text-[11px] mb-1">
+                          <span>{tech.name}</span>
+                          {tech.badge && (
+                            <span className="text-[9px] uppercase px-1 py-0.2 rounded bg-brand/20 text-text-brand">
+                              {tech.badge}
+                            </span>
+                          )}
                         </div>
                         <div className="text-zinc-300 text-[11.5px] leading-snug">
                           {tech.purpose}

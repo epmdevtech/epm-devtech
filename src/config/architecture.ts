@@ -1,15 +1,18 @@
 /**
  * architecture.ts
  *
- * Dados estruturados das camadas de arquitetura tecnológica da EPM DevTech.
+ * Dados estruturados e curadoria das camadas de arquitetura tecnológica da EPM DevTech.
  */
 
 const DI = "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons";
 
 export interface TechItem {
   name: string;
-  icon: string;
+  icon?: string;
   purpose: string;
+  badge?: string;
+  badgeVariant?: "amber" | "brand" | "default";
+  highlight?: boolean;
 }
 
 export interface LayerItem {
@@ -23,167 +26,135 @@ export interface LayerItem {
 
 export const ARCHITECTURAL_LAYERS: LayerItem[] = [
   {
-    id: "presentation-edge",
-    layerTag: "LAYER 01 // INTERFACE & EDGE",
-    statusBadge: "CLIENT RUNTIME",
-    title: "Camada de Apresentação & Edge",
+    id: "web-interfaces",
+    layerTag: "LAYER 01 // WEB & INTERFACES REATIVAS",
+    statusBadge: "CLIENT RUNTIME & SSR",
+    title: "Camada de Apresentação & Web",
     description:
-      "Interfaces reativas, Server-Side Rendering (SSR) e orquestração no edge para máxima velocidade de carregamento e experiência fluida.",
+      "Aplicações web modernas, Server-Side Rendering (SSR), tipagem estática e interfaces reativas de alto desempenho.",
     technologies: [
       {
         name: "React",
         icon: `${DI}/react/react-original.svg`,
-        purpose: "Componentização declarativa e renderização eficiente no cliente.",
+        purpose: "Componentização declarativa, Single Page Applications e ecossistema de interfaces reativas.",
+      },
+      {
+        name: "Next.js",
+        icon: `${DI}/nextjs/nextjs-original.svg`,
+        purpose: "Framework fullstack com Server-Side Rendering (SSR), Static Generation e rotas otimizadas no edge.",
       },
       {
         name: "TypeScript",
         icon: `${DI}/typescript/typescript-original.svg`,
-        purpose: "Tipagem estática estrita e contratos de dados previsíveis.",
+        purpose: "Tipagem estática estrita em tempo de compilação, eliminando bugs em produção e garantindo contratos previsíveis.",
+      },
+      {
+        name: "JavaScript",
+        icon: `${DI}/javascript/javascript-original.svg`,
+        purpose: "Fundação dinâmica do ecossistema web moderno (ESNext), execução assíncrona e APIs do navegador.",
       },
       {
         name: "Vue.js",
         icon: `${DI}/vuejs/vuejs-original.svg`,
-        purpose: "Ecossistema progressivo e ágil para interfaces interativas.",
-      },
-      {
-        name: "Tailwind CSS",
-        icon: `${DI}/tailwindcss/tailwindcss-original.svg`,
-        purpose: "Design system utilitário com zero sobrecarga de CSS em runtime.",
+        purpose: "Ecossistema progressivo e ágil com reatividade fina para interfaces corporativas e portais integrados.",
       },
       {
         name: "Angular",
         icon: `${DI}/angular/angular-original.svg`,
-        purpose: "Framework robusto para aplicações corporativas com arquitetura opinada.",
+        purpose: "Framework opinado para sistemas de grande porte corporativo, com injeção de dependências e arquitetura modular.",
       },
     ],
   },
   {
-    id: "application-apis",
-    layerTag: "LAYER 02 // APLICAÇÃO & APIS",
+    id: "backend-apis",
+    layerTag: "LAYER 02 // BACK-END, APIS & LINGUAGENS",
     statusBadge: "SERVICE RUNTIME",
-    title: "Camada de Aplicação & APIs",
+    title: "Camada de Back-end & APIs",
     description:
-      "Serviços desacoplados, regras de negócio estruturadas e endpoints RESTful/GraphQL de alto rendimento com tipagem e arquitetura limpa.",
+      "Serviços de aplicação escaláveis, APIs RESTful/GraphQL de baixa latência e regras de negócio com alta concorrência.",
     technologies: [
       {
         name: "Node.js",
         icon: `${DI}/nodejs/nodejs-original.svg`,
-        purpose: "Runtime assíncrono e event-loop para APIs de alta concorrência.",
+        purpose: "Runtime assíncrono e event-driven para APIs com alta densidade de requisições simultâneas.",
+        badge: "Core Runtime",
+        badgeVariant: "brand",
+      },
+      {
+        name: "Python",
+        icon: `${DI}/python/python-original.svg`,
+        purpose: "Desenvolvimento ágil de microserviços, automações analíticas, processamento de dados e pipelines de IA.",
+      },
+      {
+        name: "Go",
+        icon: `${DI}/go/go-original.svg`,
+        purpose: "Compilação nativa de alta velocidade, rotinas concorrentes leves (goroutines) e serviços de infraestrutura.",
       },
       {
         name: "PHP",
         icon: `${DI}/php/php-original.svg`,
-        purpose: "Back-end corporativo moderno com tipagem forte e ecossistema maduro.",
+        purpose: "Back-end maduro e performático com tipagem estrita moderna e ecossistema robusto para soluções corporativas.",
       },
       {
-        name: "Laravel",
-        icon: `${DI}/laravel/laravel-original.svg`,
-        purpose: "Framework estruturado para rápida entrega com arquitetura limpa.",
-      },
-      {
-        name: "Symfony",
-        icon: `${DI}/symfony/symfony-original-wordmark.svg`,
-        purpose: "Componentes corporativos desacoplados de alto desempenho e precisão.",
+        name: "Ruby on Rails",
+        icon: `${DI}/rails/rails-plain.svg`,
+        purpose: "Desenvolvimento rápido de produtos e APIs orientadas a convenção com alta produtividade de engenharia.",
       },
     ],
   },
   {
-    id: "messaging-streaming",
-    layerTag: "LAYER 03 // MENSAGERIA & BARRAMENTO",
-    statusBadge: "ASYNC DECOUPLING",
-    title: "Camada de Mensageria & Barramento",
+    id: "mobile-ai",
+    layerTag: "LAYER 03 // MOBILE & ENGENHARIA DE IA",
+    statusBadge: "NATIVE APPS & INTELLIGENCE",
+    title: "Camada Mobile & Inteligência Artificial",
     description:
-      "Desacoplamento assíncrono de serviços, processamento em segundo plano, cache distribuído e streaming de dados em tempo real.",
+      "Aplicações móveis híbridas e nativas de alta performance combinadas com aceleração e workflows assistidos por IA.",
     technologies: [
       {
-        name: "RabbitMQ",
-        icon: `${DI}/rabbitmq/rabbitmq-original.svg`,
-        purpose: "Message broker AMQP com roteamento flexível e filas confiáveis.",
+        name: "React Native",
+        icon: `${DI}/react/react-original.svg`,
+        purpose: "Aplicações móveis multiplataforma (iOS e Android) com base de código unificada e componentes nativos reais.",
       },
       {
-        name: "Kafka",
-        icon: `${DI}/apachekafka/apachekafka-original-wordmark.svg`,
-        purpose: "Streaming distribuído de eventos e telemetria em tempo real.",
+        name: "Android",
+        icon: `${DI}/android/android-original.svg`,
+        purpose: "Desenvolvimento nativo para o ecossistema Android (Kotlin), otimizado para integração de hardware e telemetria.",
       },
       {
-        name: "Redis",
-        icon: `${DI}/redis/redis-original.svg`,
-        purpose: "Estrutura de dados em memória para cache distribuído e pub/sub veloz.",
+        name: "Swift",
+        icon: `${DI}/swift/swift-original.svg`,
+        purpose: "Engenharia nativa iOS com segurança de memória e máxima fluidez para dispositivos Apple.",
+      },
+      {
+        name: "Programação com IA",
+        purpose: "Aceleração de desenvolvimento com agentes autônomos, engenharia de contexto e geração assistida de testes e código.",
+        badge: "Inovação",
+        badgeVariant: "amber",
+        highlight: true,
       },
     ],
   },
   {
-    id: "cloud-data-observability",
-    layerTag: "LAYER 04 // NUVEM, DADOS & OBSERVABILIDADE",
-    statusBadge: "INFRAESTRUTURA RESILIENTE",
-    title: "Nuvem, Dados & Observabilidade",
+    id: "cloud-infrastructure",
+    layerTag: "LAYER 04 // CLOUD & INFRAESTRUTURA ESCALÁVEL",
+    statusBadge: "ENTERPRISE CLOUD",
+    title: "Camada Cloud & Infraestrutura",
     description:
-      "Bancos relacionais e NoSQL, orquestração de containers, infraestrutura como código versionada e telemetria operacional contínua.",
+      "Provedores líderes de nuvem para hospedar sistemas de missão crítica com 99,9% de disponibilidade e escala elástica.",
     technologies: [
-      {
-        name: "PostgreSQL",
-        icon: `${DI}/postgresql/postgresql-original.svg`,
-        purpose: "Transações ACID estritas, modelagem relacional e extensões geo/JSON.",
-      },
-      {
-        name: "MySQL",
-        icon: `${DI}/mysql/mysql-original.svg`,
-        purpose: "Banco relacional amplamente testado para operações transacionais rápidas.",
-      },
-      {
-        name: "Oracle",
-        icon: `${DI}/oracle/oracle-original.svg`,
-        purpose: "Banco de dados enterprise para cargas críticas corporativas.",
-      },
-      {
-        name: "MongoDB",
-        icon: `${DI}/mongodb/mongodb-original.svg`,
-        purpose: "Armazenamento NoSQL em documentos flexíveis com escala horizontal.",
-      },
       {
         name: "AWS",
         icon: `${DI}/amazonwebservices/amazonwebservices-original-wordmark.svg`,
-        purpose: "Computação distribuída, mensageria SQS/SNS e infraestrutura resiliente.",
+        purpose: "Arquitetura em nuvem distribuída, computação elástica (EC2/ECS), serverless (Lambda) e mensageria gerenciada.",
+        badge: "Certificado",
+        badgeVariant: "amber",
       },
       {
         name: "Azure",
         icon: `${DI}/azure/azure-original.svg`,
-        purpose: "Serviços em nuvem integrados para cargas corporativas híbridas.",
-      },
-      {
-        name: "Docker",
-        icon: `${DI}/docker/docker-original.svg`,
-        purpose: "Isolamento em containers promovendo paridade dev-prod.",
-      },
-      {
-        name: "Kubernetes",
-        icon: `${DI}/kubernetes/kubernetes-plain.svg`,
-        purpose: "Orquestração de microsserviços com auto-healing e escala elástica.",
-      },
-      {
-        name: "Terraform",
-        icon: `${DI}/terraform/terraform-original-wordmark.svg`,
-        purpose: "Infraestrutura como Código (IaC) versionada e determinística.",
-      },
-      {
-        name: "GitHub Actions",
-        icon: "https://cdn.simpleicons.org/githubactions/2088FF",
-        purpose: "Pipelines de CI/CD automatizados para build, teste e deploy contínuo.",
-      },
-      {
-        name: "Prometheus",
-        icon: `${DI}/prometheus/prometheus-original.svg`,
-        purpose: "Métricas de séries temporais com alertas proativos de incidentes.",
-      },
-      {
-        name: "Grafana",
-        icon: `${DI}/grafana/grafana-original.svg`,
-        purpose: "Dashboards analíticos em tempo real de saúde operacional e tráfego.",
-      },
-      {
-        name: "SonarQube",
-        icon: `${DI}/sonarqube/sonarqube-original.svg`,
-        purpose: "Auditoria estática de código para inspeção contínua de segurança e bugs.",
+        purpose: "Serviços de computação em nuvem empresarial da Microsoft para integração com ecossistemas corporativos híbridos.",
+        badge: "Enterprise",
+        badgeVariant: "default",
       },
     ],
   },

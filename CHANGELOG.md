@@ -9,7 +9,29 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
-## [0.0.77-engenharia-architectural-blueprint] - 2026-10-02
+## [0.0.78-engenharia-tecnologias-curadoria-visual] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-078-engenharia-tecnologias-curadoria-visual.md`**: Especificação técnica para curadoria de tecnologias e refinamento tipográfico na rota `/engenharia`.
+- **`tasks/TASK-078-engenharia-tecnologias-curadoria-visual.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-078.md`**: Relatório de QA com evidências de conformidade aos quality gates.
+
+### Modificado
+- **`src/config/architecture.ts`**:
+  - Inclusão das especialidades: Next.js, JavaScript, Python, Go, PHP, Ruby on Rails, React Native, Android, Swift e Programação com IA.
+  - Remoção de bancos de dados isolados, observabilidade, Tailwind CSS, frameworks secundários (Laravel, Symfony), mensagerias (RabbitMQ, Kafka, Redis) e orquestradores de infraestrutura.
+  - Reorganização das 4 camadas: Camada 01 (Web & Interfaces Reativas), Camada 02 (Back-end & APIs), Camada 03 (Mobile & Engenharia de IA) e Camada 04 restrita estritamente a **AWS e Azure**.
+  - Metadados de badges (`Certificado`, `Core Runtime`, `Inovação`) e marcações de destaque.
+- **`src/components/sections/ArchitecturalBlueprint.tsx`**:
+  - Refinamento tipográfico editorial com nomes destacados (`font-bold text-sm sm:text-base tracking-tight`), ícones oficiais de alta resolução e badges de autoridade.
+  - Destaque especial e ícone `Sparkles` para `Programação com IA`.
+  - Badge dourada/âmbar `[CERTIFICADO]` associada à AWS, replicando a autoridade da referência visual.
+- **`src/pages/EngineeringPage.tsx`**: Atualização do terminal de simulação CI/CD Quality Gate para 30 suites e 189 testes aprovados.
+- **`src/components/sections/__tests__/ArchitecturalBlueprint.test.tsx`**: Atualização completa da suíte de testes unitários validando presença das novas especialidades, badges e ausência dos itens descontinuados.
+- **`src/pages/__tests__/pages.test.tsx`**: Atualização das asserções de tags de camada para a rota `/engenharia`.
+- **`e2e/design-system-and-stability.spec.ts`**: Atualização dos testes E2E do Playwright validando os novos identificadores de camada e tooltips.
+- **`PROJECT.md`**: Atualização de métricas e status canônico de tecnologias da rota `/engenharia`.
+
 
 ### Adicionado
 - **`specs/SPEC-077-engenharia-architectural-blueprint.md`**: Especificação técnica para redesenho da rota `/engenharia` aplicando os padrões Architectural Blueprint (Matriz de Camadas de Software) e Layout Dividido (Princípios de Engenharia vs. Terminal CI/CD Quality Gate).

@@ -20,52 +20,95 @@ describe("ArchitecturalBlueprint Component", () => {
     render(<ArchitecturalBlueprint />);
     expect(screen.getByText("// ARQUITETURA EM CAMADAS")).toBeInTheDocument();
     expect(
-      screen.getByText("Stack tecnológica organizada por camadas de software")
+      screen.getByText("Stack tecnológica e especialidades de engenharia")
     ).toBeInTheDocument();
   });
 
   it("renderiza as 4 camadas arquiteturais horizontais", () => {
     render(<ArchitecturalBlueprint />);
-    expect(screen.getByText("LAYER 01 // INTERFACE & EDGE")).toBeInTheDocument();
-    expect(screen.getByText("LAYER 02 // APLICAÇÃO & APIS")).toBeInTheDocument();
-    expect(screen.getByText("LAYER 03 // MENSAGERIA & BARRAMENTO")).toBeInTheDocument();
+    expect(screen.getByText("LAYER 01 // WEB & INTERFACES REATIVAS")).toBeInTheDocument();
+    expect(screen.getByText("LAYER 02 // BACK-END, APIS & LINGUAGENS")).toBeInTheDocument();
+    expect(screen.getByText("LAYER 03 // MOBILE & ENGENHARIA DE IA")).toBeInTheDocument();
     expect(
-      screen.getByText("LAYER 04 // NUVEM, DADOS & OBSERVABILIDADE")
+      screen.getByText("LAYER 04 // CLOUD & INFRAESTRUTURA ESCALÁVEL")
     ).toBeInTheDocument();
 
-    expect(screen.getByText("Camada de Apresentação & Edge")).toBeInTheDocument();
-    expect(screen.getByText("Camada de Aplicação & APIs")).toBeInTheDocument();
-    expect(screen.getByText("Camada de Mensageria & Barramento")).toBeInTheDocument();
-    expect(screen.getByText("Nuvem, Dados & Observabilidade")).toBeInTheDocument();
+    expect(screen.getByText("Camada de Apresentação & Web")).toBeInTheDocument();
+    expect(screen.getByText("Camada de Back-end & APIs")).toBeInTheDocument();
+    expect(screen.getByText("Camada Mobile & Inteligência Artificial")).toBeInTheDocument();
+    expect(screen.getByText("Camada Cloud & Infraestrutura")).toBeInTheDocument();
   });
 
   it("renderiza os badges de runtime e status de cada camada", () => {
     render(<ArchitecturalBlueprint />);
-    expect(screen.getByText("CLIENT RUNTIME")).toBeInTheDocument();
+    expect(screen.getByText("CLIENT RUNTIME & SSR")).toBeInTheDocument();
     expect(screen.getByText("SERVICE RUNTIME")).toBeInTheDocument();
-    expect(screen.getByText("ASYNC DECOUPLING")).toBeInTheDocument();
-    expect(screen.getByText("INFRAESTRUTURA RESILIENTE")).toBeInTheDocument();
+    expect(screen.getByText("NATIVE APPS & INTELLIGENCE")).toBeInTheDocument();
+    expect(screen.getByText("ENTERPRISE CLOUD")).toBeInTheDocument();
   });
 
-  it("renderiza todas as tecnologias configuradas no blueprint", () => {
+  it("renderiza todas as especialidades curadas e badges de autoridade", () => {
     render(<ArchitecturalBlueprint />);
-    // Total de tecnologias
-    const allTechNames = ARCHITECTURAL_LAYERS.flatMap((l) =>
-      l.technologies.map((t) => t.name)
-    );
-    expect(allTechNames.length).toBeGreaterThanOrEqual(24);
-
-    // Exemplos de cada camada
+    
+    // Camada 1
     expect(screen.getByText("React")).toBeInTheDocument();
+    expect(screen.getByText("Next.js")).toBeInTheDocument();
     expect(screen.getByText("TypeScript")).toBeInTheDocument();
+    expect(screen.getByText("JavaScript")).toBeInTheDocument();
+    expect(screen.getByText("Vue.js")).toBeInTheDocument();
+    expect(screen.getByText("Angular")).toBeInTheDocument();
+
+    // Camada 2
     expect(screen.getByText("Node.js")).toBeInTheDocument();
-    expect(screen.getByText("Laravel")).toBeInTheDocument();
-    expect(screen.getByText("RabbitMQ")).toBeInTheDocument();
-    expect(screen.getByText("Kafka")).toBeInTheDocument();
-    expect(screen.getByText("PostgreSQL")).toBeInTheDocument();
-    expect(screen.getByText("Kubernetes")).toBeInTheDocument();
-    expect(screen.getByText("Docker")).toBeInTheDocument();
-    expect(screen.getByText("Grafana")).toBeInTheDocument();
+    expect(screen.getByText("Python")).toBeInTheDocument();
+    expect(screen.getByText("Go")).toBeInTheDocument();
+    expect(screen.getByText("PHP")).toBeInTheDocument();
+    expect(screen.getByText("Ruby on Rails")).toBeInTheDocument();
+
+    // Camada 3
+    expect(screen.getByText("React Native")).toBeInTheDocument();
+    expect(screen.getByText("Android")).toBeInTheDocument();
+    expect(screen.getByText("Swift")).toBeInTheDocument();
+    expect(screen.getByText("Programação com IA")).toBeInTheDocument();
+
+    // Camada 4 (estritamente AWS e Azure)
+    expect(screen.getByText("AWS")).toBeInTheDocument();
+    expect(screen.getByText("Azure")).toBeInTheDocument();
+
+    // Badges de autoridade
+    expect(screen.getByText("Certificado")).toBeInTheDocument();
+    expect(screen.getByText("Core Runtime")).toBeInTheDocument();
+    expect(screen.getByText("Inovação")).toBeInTheDocument();
+  });
+
+  it("garante a remoção das tecnologias descontinuadas do blueprint", () => {
+    render(<ArchitecturalBlueprint />);
+    
+    // Bancos de dados
+    expect(screen.queryByText("PostgreSQL")).not.toBeInTheDocument();
+    expect(screen.queryByText("MySQL")).not.toBeInTheDocument();
+    expect(screen.queryByText("MongoDB")).not.toBeInTheDocument();
+    expect(screen.queryByText("Oracle")).not.toBeInTheDocument();
+
+    // Observabilidade
+    expect(screen.queryByText("Prometheus")).not.toBeInTheDocument();
+    expect(screen.queryByText("Grafana")).not.toBeInTheDocument();
+    expect(screen.queryByText("SonarQube")).not.toBeInTheDocument();
+
+    // Estilos e frameworks descartados
+    expect(screen.queryByText("Tailwind CSS")).not.toBeInTheDocument();
+    expect(screen.queryByText("Laravel")).not.toBeInTheDocument();
+    expect(screen.queryByText("Symfony")).not.toBeInTheDocument();
+
+    // Mensageria
+    expect(screen.queryByText("RabbitMQ")).not.toBeInTheDocument();
+    expect(screen.queryByText("Kafka")).not.toBeInTheDocument();
+    expect(screen.queryByText("Redis")).not.toBeInTheDocument();
+
+    // Infraestrutura operacional secundária
+    expect(screen.queryByText("Kubernetes")).not.toBeInTheDocument();
+    expect(screen.queryByText("Docker")).not.toBeInTheDocument();
+    expect(screen.queryByText("Terraform")).not.toBeInTheDocument();
   });
 
   it("permite customização de container via className", () => {
