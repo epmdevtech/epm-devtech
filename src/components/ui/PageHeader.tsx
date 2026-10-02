@@ -33,7 +33,7 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
     >
       <div
         className={cn(
-          "container px-6",
+          "container editorial-container",
           isCenter ? "text-center max-w-3xl mx-auto" : "text-left max-w-3xl",
           containerClassName
         )}
@@ -42,11 +42,11 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
           <div
             data-testid="page-eyebrow"
             className={cn(
-              "inline-flex items-center gap-[7px] text-[11.5px] font-mono font-medium tracking-[0.1em] uppercase text-muted select-none mb-3 sm:mb-4",
+              "inline-flex items-center gap-2 text-[0.8rem] font-semibold tracking-[0.04em] text-text-brand uppercase leading-[1.3] select-none mb-3 sm:mb-4",
               isCenter ? "justify-center" : "justify-start"
             )}
           >
-            <BrandChipIcon size={15} className="shrink-0" />
+            <BrandChipIcon size={14} className="shrink-0" />
             <span>{eyebrow}</span>
           </div>
         )}
@@ -54,13 +54,18 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
         <h1
           id="page-title"
           tabIndex={-1}
-          className="font-bold tracking-tight text-primary text-3xl sm:text-4xl md:text-5xl leading-[1.15] [text-wrap:balance] outline-none focus:outline-none"
+          className="font-bold text-primary text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.02] tracking-[-0.05em] [text-wrap:balance] outline-none focus:outline-none"
         >
           {title}
         </h1>
 
         {description && (
-          <p className="mt-4 sm:mt-5 text-base sm:text-lg leading-relaxed text-secondary [text-wrap:balance]">
+          <p
+            className={cn(
+              "mt-4 sm:mt-5 text-[clamp(1rem,1.15vw,1.125rem)] font-normal leading-[1.65] tracking-[-0.01em] text-secondary max-w-[65ch] [text-wrap:balance]",
+              isCenter && "mx-auto"
+            )}
+          >
             {description}
           </p>
         )}

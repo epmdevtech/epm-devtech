@@ -36,10 +36,10 @@ export const HomeServicesBento = () => {
             </span>
           </div>
 
-          <h3 className="font-semibold text-primary text-lg sm:text-xl mb-2 group-hover:text-accent-violet transition-colors">
+          <h3 className="font-semibold text-primary text-[clamp(1.25rem,1.8vw,1.5rem)] tracking-[-0.025em] leading-[1.2] mb-2 group-hover:text-accent-violet transition-colors">
             APIs e back-end de alta performance
           </h3>
-          <p className="text-sm text-secondary leading-relaxed mb-6">
+          <p className="text-[clamp(0.925rem,1vw,1rem)] text-secondary leading-[1.6] tracking-[-0.01em] max-w-[65ch] mb-6">
             Sistemas estáveis para processar grande volume de transações e regras complexas, sem lentidão ou quedas em momentos de pico.
           </p>
 
@@ -107,10 +107,10 @@ export const HomeServicesBento = () => {
             </span>
           </div>
 
-          <h3 className="font-semibold text-primary text-lg sm:text-xl mb-2 group-hover:text-accent-blue transition-colors">
+          <h3 className="font-semibold text-primary text-[clamp(1.25rem,1.8vw,1.5rem)] tracking-[-0.025em] leading-[1.2] mb-2 group-hover:text-accent-blue transition-colors">
             Sistemas web e plataformas internas
           </h3>
-          <p className="text-sm text-secondary leading-relaxed mb-6">
+          <p className="text-[clamp(0.925rem,1vw,1rem)] text-secondary leading-[1.6] tracking-[-0.01em] max-w-[65ch] mb-6">
             Substitua planilhas confusas e controles manuais por sistemas web intuitivos, rápidos e adaptados à rotina da sua equipe.
           </p>
 
@@ -169,10 +169,10 @@ export const HomeServicesBento = () => {
             </span>
           </div>
 
-          <h3 className="font-semibold text-primary text-lg sm:text-xl mb-2 group-hover:text-accent-amber transition-colors">
+          <h3 className="font-semibold text-primary text-[clamp(1.25rem,1.8vw,1.5rem)] tracking-[-0.025em] leading-[1.2] mb-2 group-hover:text-accent-amber transition-colors">
             Integrações entre sistemas
           </h3>
-          <p className="text-sm text-secondary leading-relaxed mb-6">
+          <p className="text-[clamp(0.925rem,1vw,1rem)] text-secondary leading-[1.6] tracking-[-0.01em] max-w-[65ch] mb-6">
             Elimine o retrabalho de redigitar dados conectando seu ERP, CRM e ferramentas externas de forma confiável e sem perda de informações.
           </p>
 
@@ -231,10 +231,10 @@ export const HomeServicesBento = () => {
             </span>
           </div>
 
-          <h3 className="font-semibold text-primary text-lg sm:text-xl mb-2 group-hover:text-text-brand transition-colors">
+          <h3 className="font-semibold text-primary text-[clamp(1.25rem,1.8vw,1.5rem)] tracking-[-0.025em] leading-[1.2] mb-2 group-hover:text-text-brand transition-colors">
             Modernização de sistemas legados
           </h3>
-          <p className="text-sm text-secondary leading-relaxed mb-6">
+          <p className="text-[clamp(0.925rem,1vw,1rem)] text-secondary leading-[1.6] tracking-[-0.01em] max-w-[65ch] mb-6">
             Atualize sistemas antigos que travam o crescimento do seu negócio de forma gradual, sem colocar em risco a operação diária.
           </p>
 

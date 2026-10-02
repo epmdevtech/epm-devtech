@@ -138,10 +138,10 @@ export const HomeProcessPipeline: FC = () => {
               >
                 {s.step} · {s.phase}
               </div>
-              <h3 className="font-semibold text-primary text-base sm:text-lg mb-1.5 transition-colors">
+              <h3 className="font-semibold text-primary text-[clamp(1.1rem,1.4vw,1.25rem)] tracking-[-0.02em] leading-[1.25] mb-1.5 transition-colors">
                 {s.title}
               </h3>
-              <p className="text-xs sm:text-sm text-secondary group-hover:text-primary leading-relaxed transition-colors duration-200">
+              <p className="text-[clamp(0.875rem,0.95vw,0.95rem)] text-secondary group-hover:text-primary leading-relaxed transition-colors duration-200 max-w-[50ch]">
                 {s.description}
               </p>
             </div>

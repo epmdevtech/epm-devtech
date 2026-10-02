@@ -46,30 +46,32 @@ export const HowWeWorkPage = () => {
         </SectionWrapper>
 
         {/* Manifesto Técnico de Engenharia (Tom: Alt) */}
-        <SectionWrapper tone="alt" containerClassName="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 md:divide-x md:divide-border-subtle">
-            <div className="md:pr-8">
-              <div className="font-mono text-xs font-semibold text-text-brand tracking-wider mb-2">
-                // GARANTIA OPERACIONAL
+        <SectionWrapper tone="alt">
+          <div className="max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 md:divide-x md:divide-border-subtle">
+              <div className="md:pr-8">
+                <div className="text-[0.8rem] font-semibold text-text-brand uppercase tracking-[0.04em] mb-2 leading-[1.3]">
+                  // GARANTIA OPERACIONAL
+                </div>
+                <h3 className="text-[clamp(1.25rem,1.8vw,1.5rem)] font-bold tracking-[-0.025em] leading-[1.2] text-primary mb-3">
+                  Previsibilidade do início ao fim
+                </h3>
+                <p className="text-[clamp(0.95rem,1.1vw,1.05rem)] text-secondary leading-[1.65] max-w-[65ch]">
+                  Alinhamos a arquitetura e os critérios de sucesso antes de escrever a primeira linha de código. Cada funcionalidade é entregue em homologação para que você acompanhe o projeto avançando sem surpresas de prazo ou custo.
+                </p>
               </div>
-              <h3 className="text-lg sm:text-xl font-bold text-primary mb-3">
-                Previsibilidade do início ao fim
-              </h3>
-              <p className="text-sm sm:text-base text-secondary leading-relaxed">
-                Alinhamos a arquitetura e os critérios de sucesso antes de escrever a primeira linha de código. Cada funcionalidade é entregue em homologação para que você acompanhe o projeto avançando sem surpresas de prazo ou custo.
-              </p>
-            </div>
 
-            <div className="md:pl-8">
-              <div className="font-mono text-xs font-semibold text-text-brand tracking-wider mb-2">
-                // GESTÃO DIRETA
+              <div className="md:pl-8">
+                <div className="text-[0.8rem] font-semibold text-text-brand uppercase tracking-[0.04em] mb-2 leading-[1.3]">
+                  // GESTÃO DIRETA
+                </div>
+                <h3 className="text-[clamp(1.25rem,1.8vw,1.5rem)] font-bold tracking-[-0.025em] leading-[1.2] text-primary mb-3">
+                  Sem intermediários, sem ruído
+                </h3>
+                <p className="text-[clamp(0.95rem,1.1vw,1.05rem)] text-secondary leading-[1.65] max-w-[65ch]">
+                  Você fala diretamente com a liderança técnica que planeja a arquitetura e implementa o código. Decisões são tomadas de forma ágil e registradas com transparência.
+                </p>
               </div>
-              <h3 className="text-lg sm:text-xl font-bold text-primary mb-3">
-                Sem intermediários, sem ruído
-              </h3>
-              <p className="text-sm sm:text-base text-secondary leading-relaxed">
-                Você fala diretamente com a liderança técnica que planeja a arquitetura e implementa o código. Decisões são tomadas de forma ágil e registradas com transparência.
-              </p>
             </div>
           </div>
         </SectionWrapper>

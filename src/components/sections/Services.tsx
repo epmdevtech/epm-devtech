@@ -325,10 +325,10 @@ export const Services: FC<ServicesProps> = ({ hideHeader = false }) => {
         id="servicos"
         aria-labelledby="servicos-heading"
         data-tone="base"
-        className="relative py-16 sm:py-20 md:py-24 lg:py-28 bg-surface-base text-foreground border-y border-zinc-200/70 dark:border-transparent section-wrapper transition-colors duration-200"
+        className="relative py-[clamp(4.5rem,8vw,8rem)] bg-surface-base text-foreground border-y border-zinc-200/70 dark:border-transparent section-wrapper transition-colors duration-200"
         ref={ref}
       >
-        <div className="container px-6">
+        <div className="container editorial-container">
           {!hideHeader && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -365,13 +365,13 @@ export const Services: FC<ServicesProps> = ({ hideHeader = false }) => {
                       isEven ? "order-1 lg:order-2" : "order-1 lg:order-1"
                     }`}
                   >
-                    <span className="font-mono text-xs font-semibold text-text-brand tracking-wider uppercase mb-2">
+                    <span className="text-[0.8rem] font-semibold text-text-brand tracking-[0.04em] uppercase mb-2 leading-[1.3] block">
                       {service.indexTag}
                     </span>
-                    <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-primary mb-3">
+                    <h3 className="text-[clamp(1.5rem,2.2vw,2rem)] font-bold tracking-[-0.025em] leading-[1.15] text-primary mb-3">
                       {service.title}
                     </h3>
-                    <p className="text-secondary text-sm sm:text-base leading-relaxed mb-6">
+                    <p className="text-[clamp(0.95rem,1.1vw,1.05rem)] text-secondary leading-[1.65] mb-6 max-w-[65ch]">
                       {service.description}
                     </p>
 

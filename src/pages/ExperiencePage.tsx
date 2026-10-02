@@ -103,15 +103,15 @@ export const ExperiencePage = () => {
         />
 
         {/* Bloco 1: Contextos de Negócio e Verticais (Tom: Base) */}
-        <SectionWrapper tone="base" id="contextos" className="scroll-mt-24" containerClassName="max-w-6xl mx-auto">
+        <SectionWrapper tone="base" id="contextos" className="scroll-mt-24">
           <div className="max-w-3xl mb-12">
-            <div className="font-mono text-xs font-semibold text-text-brand tracking-wider mb-2">
+            <div className="text-[0.8rem] font-semibold text-text-brand uppercase tracking-[0.04em] mb-2 leading-[1.3]">
               // MATRIZ DE VERTICAIS
             </div>
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-primary [text-wrap:balance]">
+            <h2 className="text-[clamp(2rem,3.5vw,3rem)] font-bold tracking-[-0.04em] leading-[1.1] text-primary [text-wrap:balance]">
               Contextos de negócio e verticais de atuação
             </h2>
-            <p className="text-sm sm:text-base text-secondary mt-2">
+            <p className="text-[clamp(0.95rem,1.1vw,1.05rem)] text-secondary mt-2 leading-[1.6] max-w-[65ch]">
               Arquiteturas e padrões de engenharia aplicados aos gargalos operacionais específicos de cada segmento.
             </p>
           </div>
@@ -130,7 +130,7 @@ export const ExperiencePage = () => {
                       <span className="font-mono text-xs font-semibold text-text-brand">
                         {item.num} //
                       </span>
-                      <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-primary">
+                      <h3 className="text-[clamp(1.25rem,1.8vw,1.5rem)] font-bold tracking-[-0.025em] leading-[1.2] text-primary">
                         {item.title}
                       </h3>
                       <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-brand/10 text-text-brand border border-brand/20 uppercase tracking-wider">
@@ -143,14 +143,14 @@ export const ExperiencePage = () => {
                   </div>
 
                   {/* Descrição do Problema & Solução */}
-                  <p className="text-sm sm:text-base text-secondary leading-relaxed mb-6">
+                  <p className="text-[clamp(0.95rem,1.1vw,1.05rem)] text-secondary leading-[1.65] mb-6 max-w-[65ch]">
                     {item.description}
                   </p>
                 </div>
 
                 {/* Capacidades Técnicas Inline */}
                 <div className="pt-4 border-t border-border-default/50 text-xs font-mono text-secondary leading-relaxed">
-                  <span className="text-primary font-semibold mr-1.5">Stack & Soluções:</span>
+                  <span className="text-primary font-semibold mr-1.5">Stack &amp; Soluções:</span>
                   <span>{item.stackSolutions}</span>
                 </div>
               </div>
@@ -159,12 +159,12 @@ export const ExperiencePage = () => {
         </SectionWrapper>
 
         {/* Bloco 2: Organizações e Projetos de Atuação (Tom: Alt) */}
-        <SectionWrapper tone="alt" id="organizacoes" className="scroll-mt-24" containerClassName="max-w-6xl mx-auto">
+        <SectionWrapper tone="alt" id="organizacoes" className="scroll-mt-24">
           <div className="max-w-4xl mb-10">
-            <div className="font-mono text-xs font-semibold text-text-brand tracking-wider mb-2">
+            <div className="text-[0.8rem] font-semibold text-text-brand uppercase tracking-[0.04em] mb-2 leading-[1.3]">
               // HISTÓRICO CORPORATIVO
             </div>
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-primary [text-wrap:balance]">
+            <h2 className="text-[clamp(2rem,3.5vw,3rem)] font-bold tracking-[-0.04em] leading-[1.1] text-primary [text-wrap:balance]">
               Organizações e projetos de atuação
             </h2>
 

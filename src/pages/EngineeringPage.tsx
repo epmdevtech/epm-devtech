@@ -103,17 +103,17 @@ export const EngineeringPage = () => {
         />
 
         {/* Bloco 1: Filosofia de Execução vs. Painel de Qualidade Contínua (Tom: Base) */}
-        <SectionWrapper id="filosofia-qualidade" tone="base" containerClassName="max-w-6xl mx-auto">
+        <SectionWrapper id="filosofia-qualidade" tone="base">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
             {/* Coluna da Esquerda (6 cols): Filosofia de Execução */}
             <div className="lg:col-span-6 flex flex-col justify-start">
-              <div className="font-mono text-xs font-semibold text-text-brand tracking-wider mb-2">
+              <div className="text-[0.8rem] font-semibold text-text-brand uppercase tracking-[0.04em] mb-2 leading-[1.3]">
                 // FILOSOFIA DE EXECUÇÃO
               </div>
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-primary [text-wrap:balance]">
+              <h2 className="text-[clamp(2rem,3.5vw,3rem)] font-bold tracking-[-0.04em] leading-[1.1] text-primary [text-wrap:balance]">
                 Princípios que orientam nossas decisões técnicas
               </h2>
-              <p className="text-sm sm:text-base text-secondary mt-2 mb-8 leading-relaxed">
+              <p className="text-[clamp(0.95rem,1.1vw,1.05rem)] text-secondary mt-2 mb-8 leading-[1.6] max-w-[65ch]">
                 A tecnologia é desenhada para resolver o problema do negócio com previsibilidade, sem criar passivo ou complexidade desnecessária.
               </p>
 
@@ -142,13 +142,13 @@ export const EngineeringPage = () => {
 
             {/* Coluna da Direita (6 cols): Painel de Qualidade Contínua (CI/CD Quality Gate) */}
             <div className="lg:col-span-6 flex flex-col justify-start w-full">
-              <div className="font-mono text-xs font-semibold text-text-brand tracking-wider mb-2">
+              <div className="text-[0.8rem] font-semibold text-text-brand uppercase tracking-[0.04em] mb-2 leading-[1.3]">
                 // PIPELINE DE QUALIDADE
               </div>
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-primary [text-wrap:balance]">
+              <h2 className="text-[clamp(2rem,3.5vw,3rem)] font-bold tracking-[-0.04em] leading-[1.1] text-primary [text-wrap:balance]">
                 Garantia automatizada e validação contínua
               </h2>
-              <p className="text-sm sm:text-base text-secondary mt-2 mb-8 leading-relaxed">
+              <p className="text-[clamp(0.95rem,1.1vw,1.05rem)] text-secondary mt-2 mb-8 leading-[1.6] max-w-[65ch]">
                 Cada entrega incremental é submetida a portais rigorosos de qualidade antes de ser promovida para homologação e produção.
               </p>
 

@@ -9,6 +9,25 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.96-refatoracao-experiencia-tipografica-espacial-editorial] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-096-refatoracao-experiencia-tipografica-espacial-editorial.md`**: Especificação técnica aprovada pelo PO para refatoração da experiência tipográfica, espacial e textual no padrão editorial B2B maduro (inspirado em referências como Codeminer42, Stripe e Vercel).
+- **`tasks/TASK-096-refatoracao-experiencia-tipografica-espacial-editorial.md`**: Tarefa e checklist de execução concluídos sob o protocolo Universal SDD.
+- **`reviews/QA-096.md`**: Relatório de QA com validação de 100% dos quality gates e evidências de capturas visuais responsivas em Desktop e Mobile nos temas Dark e Light.
+- **Classes Utilitárias Editoriais em `src/index.css`**: Criação de classes para tipografia e containers fluida (`.editorial-container`, `.editorial-h1`, `.editorial-h2`, `.editorial-h3`, `.editorial-body`, `.editorial-eyebrow`).
+
+### Modificado
+- **`tailwind.config.ts`**: Priorização de `Inter` na família tipográfica primária (`font-sans`).
+- **`src/components/ui/SectionWrapper.tsx`**: Adoção de padding vertical fluido `py-[clamp(4.5rem,8vw,8rem)]` e container unificado `.editorial-container`.
+- **`src/components/ui/SectionHeader.tsx`**: Eyebrow minimalista editorial sem bordas/badges (`text-[0.8rem] tracking-[0.04em] uppercase text-text-brand`), título H2 fluido (`clamp(2.25rem,4vw,3.75rem)` com leading `1.05` e tracking `-0.045em`) e descrição com measure `max-w-[65ch]`.
+- **`src/components/ui/PageHeader.tsx`**: Escala fluida em H1 (`clamp(2.5rem,5vw,4.5rem)`) e subtítulo com `max-w-[65ch]`.
+- **`src/components/sections/Hero.tsx`**: Headline H1 em escala fluida dominante (`clamp(3.25rem,6vw,5.5rem)`, leading `0.98`, tracking `-0.055em`, monocromático), subheadline com `max-w-[58ch]`, container unificado e respiro superior otimizado (`pt-24 sm:pt-28`).
+- **`src/components/sections/HomeServicesBento.tsx`**, **`HomeProcessPipeline.tsx`**, **`HomeResultsStrip.tsx`**, **`Services.tsx`**, **`Contact.tsx`**: Calibração dos cabeçalhos H3, medidas de leitura e espaçamento vertical.
+- **Páginas de rotas canônicas (`Home.tsx`, `AboutPage.tsx`, `HowWeWorkPage.tsx`, `ExperiencePage.tsx`, `FAQPage.tsx`)**: Alinhamento à experiência editorial sem alteração da paleta da marca.
+- **`src/components/ui/__tests__/SectionHeader.test.tsx`**: Sincronização dos testes unitários com as novas dimensões e tracking tipográficos.
+- **`PROJECT.md`**: Atualização do estado canônico de tipografia, container e governança.
+
 ## [0.0.95-refatoracao-esquema-cromatico-light-mode] - 2026-10-02
 
 ### Adicionado

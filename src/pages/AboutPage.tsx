@@ -125,16 +125,16 @@ export const AboutPage: React.FC = () => {
           data-tone="anchor"
           className="relative w-full pt-28 pb-16 sm:pt-36 sm:pb-20 lg:pb-24 bg-surface-anchor text-foreground transition-colors duration-200 overflow-hidden"
         >
-          <div className="container max-w-6xl mx-auto px-6 relative">
+          <div className="container editorial-container relative">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
               {/* Coluna Esquerda: Narrativa Editorial */}
               <div className="lg:col-span-7 flex flex-col items-start text-left max-w-xl xl:max-w-2xl">
                 {/* Eyebrow */}
                 <div
                   data-testid="page-eyebrow"
-                  className="inline-flex items-center gap-[7px] text-[11.5px] font-mono font-medium tracking-[0.1em] uppercase text-text-brand select-none mb-3 sm:mb-4"
+                  className="inline-flex items-center gap-2 text-[0.8rem] font-semibold tracking-[0.04em] uppercase text-text-brand select-none mb-3 sm:mb-4"
                 >
-                  <BrandChipIcon size={15} className="shrink-0" />
+                  <BrandChipIcon size={14} className="shrink-0" />
                   <span>[ QUEM SOMOS // POSICIONAMENTO ]</span>
                 </div>
 
@@ -142,13 +142,13 @@ export const AboutPage: React.FC = () => {
                 <h1
                   id="page-title"
                   tabIndex={-1}
-                  className="font-bold tracking-tight text-primary text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.12] [text-wrap:balance] outline-none focus:outline-none mb-6"
+                  className="font-bold text-primary text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.02] tracking-[-0.05em] [text-wrap:balance] outline-none focus:outline-none mb-6"
                 >
                   Transformando desafios em soluções que funcionam
                 </h1>
 
                 {/* Subtítulo Institucional */}
-                <p className="text-base sm:text-lg lg:text-xl text-secondary leading-relaxed font-normal [text-wrap:balance]">
+                <p className="text-[clamp(1rem,1.15vw,1.125rem)] text-secondary leading-[1.65] tracking-[-0.01em] font-normal [text-wrap:balance] max-w-[65ch]">
                   Unimos tecnologia, experiência e visão de negócio para criar soluções digitais que simplificam operações e geram resultados reais.
                 </p>
               </div>
@@ -162,16 +162,16 @@ export const AboutPage: React.FC = () => {
         </header>
 
         {/* Seção 2: Nossa Jornada (Tom: Base) */}
-        <SectionWrapper id="jornada" tone="base" containerClassName="max-w-6xl mx-auto">
+        <SectionWrapper id="jornada" tone="base">
             {/* Cabeçalho da Seção */}
             <div className="max-w-3xl mb-12 sm:mb-16">
-              <div className="font-mono text-xs font-semibold text-text-brand tracking-wider mb-2">
-                // EVOLUÇÃO & TRAJETÓRIA
+              <div className="text-[0.8rem] font-semibold text-text-brand uppercase tracking-[0.04em] mb-2 leading-[1.3]">
+                // EVOLUÇÃO &amp; TRAJETÓRIA
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-primary [text-wrap:balance]">
+              <h2 className="text-[clamp(2rem,3.5vw,3rem)] font-bold tracking-[-0.04em] leading-[1.1] text-primary [text-wrap:balance]">
                 Nossa jornada técnica
               </h2>
-              <p className="text-sm sm:text-base text-secondary mt-2 leading-relaxed">
+              <p className="text-[clamp(0.95rem,1.1vw,1.05rem)] text-secondary mt-2 leading-[1.6] max-w-[65ch]">
                 Da fundação técnica e arquitetura de sistemas corporativos ao desenvolvimento de soluções críticas sob medida.
               </p>
             </div>
@@ -345,16 +345,16 @@ export const AboutPage: React.FC = () => {
         </SectionWrapper>
 
         {/* Seção 3: Missão e Princípios de Engenharia (Tom: Alt) */}
-        <SectionWrapper id="principios" tone="alt" containerClassName="max-w-6xl mx-auto">
+        <SectionWrapper id="principios" tone="alt">
           {/* Cabeçalho da Seção */}
           <div className="max-w-3xl mb-12 sm:mb-16">
-            <div className="font-mono text-xs font-semibold text-text-brand tracking-wider mb-2">
-              // DIRETRIZES & COMPROMISSO
+            <div className="text-[0.8rem] font-semibold text-text-brand uppercase tracking-[0.04em] mb-2 leading-[1.3]">
+              // DIRETRIZES &amp; COMPROMISSO
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-primary [text-wrap:balance]">
+            <h2 className="text-[clamp(2rem,3.5vw,3rem)] font-bold tracking-[-0.04em] leading-[1.1] text-primary [text-wrap:balance]">
               Missão e princípios de engenharia
             </h2>
-            <p className="text-sm sm:text-base text-secondary mt-2 leading-relaxed">
+            <p className="text-[clamp(0.95rem,1.1vw,1.05rem)] text-secondary mt-2 leading-[1.6] max-w-[65ch]">
               Não vendemos modismos nem complexidade desnecessária. Cada escolha técnica existe para resolver um gargalo real e garantir a longevidade da sua operação.
             </p>
           </div>

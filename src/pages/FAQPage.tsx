@@ -146,12 +146,12 @@ export const FAQPage = () => {
         </SectionWrapper>
 
         {/* Chamada Final (Tom: Alt) */}
-        <SectionWrapper tone="alt" containerClassName="max-w-4xl mx-auto">
-          <div className="p-8 sm:p-10 rounded-2xl border border-border-default bg-surface text-center">
-            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-primary mb-3">
+        <SectionWrapper tone="alt">
+          <div className="max-w-4xl mx-auto p-8 sm:p-10 rounded-2xl border border-border-default bg-surface text-center">
+            <h2 className="text-[clamp(1.5rem,2.2vw,2rem)] font-bold tracking-[-0.025em] leading-[1.15] text-primary mb-3">
               Não encontrou a resposta para o seu cenário?
             </h2>
-            <p className="text-sm sm:text-base text-secondary max-w-xl mx-auto mb-6">
+            <p className="text-[clamp(0.95rem,1.1vw,1.05rem)] text-secondary max-w-[65ch] mx-auto mb-6 leading-[1.6]">
               Envie sua dúvida ou descreva o desafio da sua empresa. Retornamos em até 24 horas úteis com uma avaliação técnica preliminar.
             </p>
             <Button

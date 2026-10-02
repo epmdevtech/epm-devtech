@@ -91,10 +91,10 @@ export const HomeResultsStrip: FC = () => {
                 aria-hidden="true"
               />
             </div>
-            <div className="text-xs sm:text-sm font-semibold text-text-brand uppercase tracking-wider mb-1.5">
+            <div className="text-[0.8rem] font-semibold text-text-brand uppercase tracking-[0.04em] mb-1.5 leading-[1.3]">
               {s.label}
             </div>
-            <p className="text-xs sm:text-sm text-secondary leading-relaxed">
+            <p className="text-[clamp(0.875rem,0.95vw,0.95rem)] text-secondary leading-[1.6] max-w-[58ch]">
               {s.description}
             </p>
           </li>

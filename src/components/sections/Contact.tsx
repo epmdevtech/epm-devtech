@@ -143,11 +143,11 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
   };
 
   return (
-    <section id="contato" aria-labelledby="contato-heading" className="relative py-24 bg-secondary/30 overflow-hidden" ref={ref}>
+    <section id="contato" aria-labelledby="contato-heading" className="relative py-[clamp(4.5rem,8vw,8rem)] bg-secondary/30 overflow-hidden" ref={ref}>
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[128px]" />
 
-      <div className="container px-6 relative z-10">
+      <div className="container editorial-container relative z-10">
         {/* Cabeçalho Externo da Seção */}
         {!hideHeader && (
           <motion.div
@@ -175,7 +175,7 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
           {/* Lado Esquerdo: Formulário Minimalista Underline */}
           <div className="lg:col-span-7 bg-surface p-8 sm:p-10 flex flex-col justify-between">
             <div>
-              <h3 className="text-xl font-bold text-primary tracking-tight mb-6">
+              <h3 className="text-[clamp(1.25rem,1.8vw,1.5rem)] font-bold text-primary tracking-[-0.025em] leading-[1.2] mb-6">
                 Envie sua mensagem
               </h3>
 
@@ -411,7 +411,7 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
           {/* Lado Direito: Próximos Passos & Garantias (Bloco Escuro Contrastante) */}
           <div className="lg:col-span-5 bg-surface-elevated text-primary p-8 sm:p-10 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-border-default">
             <div>
-              <h3 className="text-xl font-bold text-primary tracking-tight mb-2">
+              <h3 className="text-[clamp(1.25rem,1.8vw,1.5rem)] font-bold text-primary tracking-[-0.025em] leading-[1.2] mb-2">
                 O que acontece a seguir?
               </h3>
               <p className="text-xs text-secondary leading-relaxed mb-8">
