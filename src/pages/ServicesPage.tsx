@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import PageHeader from "@/components/ui/PageHeader";
 import Services from "@/components/sections/Services";
 import { Button } from "@/components/ui/button";
@@ -48,67 +48,75 @@ export const ServicesPage = () => {
           description="Do diagnóstico técnico à sustentação: desenvolvemos sistemas web, APIs de alta concorrência e integrações de dados para resolver problemas reais de negócio."
         />
 
-        {/* Catálogo completo de serviços */}
-        <div className="pb-16 sm:pb-20">
+        {/* Catálogo completo de serviços (Z-Pattern) */}
+        <div>
           <Services hideHeader />
         </div>
 
-        {/* Bloco de Garantias e Próximos Passos */}
-        <section className="py-16 sm:py-20 border-t border-border-subtle bg-surface/30">
+        {/* Bloco de Garantias de Engenharia e CTA Final */}
+        <section className="py-16 sm:py-24 border-t border-border-default/60 bg-surface/30">
           <div className="container px-6">
-            <div className="max-w-4xl mx-auto">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-                <div className="p-5 rounded-xl border border-border/60 bg-card/60">
-                  <CheckCircle2 className="w-5 h-5 text-primary mb-3" />
-                  <div className="font-semibold text-foreground text-sm mb-1">
-                    Escopo bem alinhado
+            <div className="max-w-5xl mx-auto">
+              {/* Faixa de Garantias de Engenharia (3 Colunas Limpas) */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 pb-16 sm:pb-20 border-b border-border-default/60">
+                <div>
+                  <div className="font-mono text-xs font-semibold text-text-brand tracking-wider mb-2">
+                    [ 01 // ESCOPO ]
                   </div>
-                  <p className="text-xs text-muted-foreground leading-relaxed">
+                  <h3 className="text-base sm:text-lg font-bold text-primary mb-2">
+                    Escopo bem alinhado
+                  </h3>
+                  <p className="text-sm text-secondary leading-relaxed">
                     Critérios objetivos de aceite e validações incrementais em cada ciclo de entrega.
                   </p>
                 </div>
 
-                <div className="p-5 rounded-xl border border-border/60 bg-card/60">
-                  <CheckCircle2 className="w-5 h-5 text-primary mb-3" />
-                  <div className="font-semibold text-foreground text-sm mb-1">
-                    Código sustentável
+                <div>
+                  <div className="font-mono text-xs font-semibold text-text-brand tracking-wider mb-2">
+                    [ 02 // SUSTENTABILIDADE ]
                   </div>
-                  <p className="text-xs text-muted-foreground leading-relaxed">
+                  <h3 className="text-base sm:text-lg font-bold text-primary mb-2">
+                    Código sustentável
+                  </h3>
+                  <p className="text-sm text-secondary leading-relaxed">
                     Testes automatizados e documentação técnica para facilitar a evolução contínua da sua empresa.
                   </p>
                 </div>
 
-                <div className="p-5 rounded-xl border border-border/60 bg-card/60">
-                  <CheckCircle2 className="w-5 h-5 text-primary mb-3" />
-                  <div className="font-semibold text-foreground text-sm mb-1">
-                    Canal direto com quem faz
+                <div>
+                  <div className="font-mono text-xs font-semibold text-text-brand tracking-wider mb-2">
+                    [ 03 // COMUNICAÇÃO ]
                   </div>
-                  <p className="text-xs text-muted-foreground leading-relaxed">
+                  <h3 className="text-base sm:text-lg font-bold text-primary mb-2">
+                    Canal direto com quem faz
+                  </h3>
+                  <p className="text-sm text-secondary leading-relaxed">
                     Comunicação constante diretamente com a liderança técnica do projeto, sem ruídos.
                   </p>
                 </div>
               </div>
 
-              <div className="text-center pt-4">
-                <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground mb-4">
+              {/* Fechamento Comercial & CTA Final */}
+              <div className="text-center pt-16 sm:pt-20">
+                <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-primary mb-3">
                   Quer avaliar qual solução se encaixa no seu momento?
                 </h3>
-                <p className="text-sm sm:text-base text-muted-foreground max-w-xl mx-auto mb-8">
+                <p className="text-sm sm:text-base text-secondary max-w-xl mx-auto mb-8 leading-relaxed">
                   Agende uma conversa técnica sem compromisso para analisarmos os requisitos e a arquitetura recomendada.
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                   <Button
                     asChild
                     size="lg"
-                    className="bg-primary text-primary-foreground hover:bg-primary/90 min-h-[44px] px-8 text-sm font-medium"
+                    className="bg-brand text-on-brand hover:bg-brand-hover active:bg-brand-active min-h-[44px] px-8 text-sm font-semibold shadow-sm transition-all duration-200 hover:shadow-glow-brand hover:scale-[1.02] active:scale-[0.98]"
                   >
-                    <Link to="/contato">Falar sobre meu projeto</Link>
+                    <Link to="/contato">Iniciar diagnóstico do projeto</Link>
                   </Button>
                   <Button
                     asChild
                     variant="outline"
                     size="lg"
-                    className="min-h-[44px] px-6 text-sm font-medium border-border/80"
+                    className="min-h-[44px] px-6 text-sm font-medium border-border-default bg-surface/50 hover:bg-surface-elevated text-secondary hover:text-primary transition-colors duration-200"
                   >
                     <Link to="/como-trabalhamos" className="inline-flex items-center gap-2">
                       <span>Entenda como trabalhamos</span>

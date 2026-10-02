@@ -9,6 +9,29 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.73-servicos-redesign-editorial-zpattern] - 2026-10-01
+
+### Adicionado
+- **`specs/SPEC-073-servicos-redesign-editorial-zpattern.md`**: Especificação técnica para redesign editorial da página e seção de serviços com layout em Z-Pattern alternado, callouts de negócio integrados, faixa limpa de garantias de engenharia e CTA comercial refinado.
+- **`tasks/TASK-073-servicos-redesign-editorial-zpattern.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-073.md`**: Relatório de QA com evidências de conformidade aos quality gates.
+
+### Modificado
+- **`src/components/sections/Services.tsx`**:
+  - Eliminação da grade 2x2 com cards idênticos.
+  - Implementação de layout em Z-Pattern alternado de 12 colunas:
+    - Serviços ímpares (0 e 2): texto na esquerda (`lg:col-span-6`), mock visual na direita (`lg:col-span-6`).
+    - Serviços pares (1 e 3): mock visual na esquerda (`lg:col-span-6 lg:order-1`), texto na direita (`lg:col-span-6 lg:order-2`).
+    - Mobile: fluxo natural com texto no topo e mock visual logo abaixo.
+  - Callout de contexto de negócio com borda lateral esmeralda (`border-l-2 border-brand/60 pl-4 py-2 bg-brand/5 rounded-r-md`) com identificador `QUANDO PRECISA:`.
+  - Tags técnicas identificadoras (`01 // WEB & PORTAIS`, `02 // APIS & BACK-END`, `03 // INTEGRAÇÃO DE DADOS`, `04 // MODERNIZAÇÃO`).
+  - Containers escuros refinados para os 4 mocks técnicos (`bg-surface/80 dark:bg-zinc-950/80 border border-border-default/80 rounded-xl p-5 shadow-2xl backdrop-blur-sm`).
+- **`src/pages/ServicesPage.tsx`**:
+  - Eliminação dos 3 cards fechados e checks genéricos.
+  - Faixa de Garantias de Engenharia em 3 colunas abertas com tags monospace `[ 01 // ESCOPO ]`, `[ 02 // SUSTENTABILIDADE ]` e `[ 03 // COMUNICAÇÃO ]` em brand teal.
+  - Fechamento comercial integrado com botões `"Iniciar diagnóstico do projeto"` (`/contato`) e `"Entenda como trabalhamos →"` (`/como-trabalhamos`).
+- **`src/components/sections/__tests__/Services.test.tsx`**: Atualização da suíte de testes unitários com suporte a `motion.article` e validação das tags do Z-Pattern.
+
 ## [0.0.72-alinhamento-geometrico-pipeline] - 2026-10-01
 
 ### Adicionado

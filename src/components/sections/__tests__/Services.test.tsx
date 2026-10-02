@@ -10,6 +10,9 @@ vi.mock('framer-motion', () => ({
         div: ({ children, className }: React.HTMLAttributes<HTMLDivElement>) => (
             <div className={className} data-testid="motion-div">{children}</div>
         ),
+        article: ({ children, className }: React.HTMLAttributes<HTMLElement>) => (
+            <article className={className} data-testid="motion-article">{children}</article>
+        ),
     },
     useInView: (...args: unknown[]) => mockUseInView(...args),
 }));
@@ -32,6 +35,14 @@ describe('Services Component', () => {
         titles.forEach(title => {
             expect(screen.getByText(title)).toBeInTheDocument();
         });
+    });
+
+    it('renders Z-pattern section tags (SPEC-073)', () => {
+        render(<Services />);
+        expect(screen.getByText(/01 \/\/ WEB & PORTAIS/i)).toBeInTheDocument();
+        expect(screen.getByText(/02 \/\/ APIS & BACK-END/i)).toBeInTheDocument();
+        expect(screen.getByText(/03 \/\/ INTEGRAÇÃO DE DADOS/i)).toBeInTheDocument();
+        expect(screen.getByText(/04 \/\/ MODERNIZAÇÃO/i)).toBeInTheDocument();
     });
 
     it('renders pain trigger indicators and descriptions', () => {
