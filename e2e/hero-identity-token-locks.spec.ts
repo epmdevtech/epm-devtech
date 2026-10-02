@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Hero Visual Identity & Token Locks (SPEC-059 & SPEC-068)', () => {
+test.describe('Hero Visual Identity & Token Locks (SPEC-059, SPEC-068 & SPEC-069)', () => {
   const modes = ['dark', 'light'] as const;
 
   for (const mode of modes) {
@@ -28,7 +28,7 @@ test.describe('Hero Visual Identity & Token Locks (SPEC-059 & SPEC-068)', () => 
       const hero = page.locator('#hero');
       await expect(hero).toBeVisible();
 
-      // 1. Ausência absoluta de text-gradients artificiais em elementos tipográficos do Hero (SPEC-059 / SPEC-068)
+      // 1. Ausência absoluta de text-gradients artificiais em elementos tipográficos do Hero
       const gradientCheck = await page.evaluate(() => {
         const heroEl = document.querySelector('#hero');
         if (!heroEl) return { hasGradient: false, violators: [] };
@@ -55,26 +55,30 @@ test.describe('Hero Visual Identity & Token Locks (SPEC-059 & SPEC-068)', () => 
 
       expect(gradientCheck.hasGradient, `Elementos tipográficos com gradiente detectados: ${gradientCheck.violators.join(', ')}`).toBe(false);
 
-      // 2. Validação da remoção da divisória artificial e presença do indicador de status ativo (SPEC-068)
+      // 2. Validação da estrutura minimalista, fullscreen e remoção de badges (SPEC-069)
       const structureCheck = await page.evaluate(() => {
         const heroEl = document.querySelector('#hero')!;
         const hasDivider = !!heroEl.querySelector('[data-testid="hero-divider-line"]');
-        const hasActiveIndicator = !!heroEl.querySelector('.animate-ping');
-        return { hasDivider, hasActiveIndicator };
+        const eyebrowEl = heroEl.querySelector('[data-testid="hero-eyebrow"]')!;
+        const isEyebrowBadgeFree = !eyebrowEl.classList.contains('rounded-full') && !eyebrowEl.classList.contains('border');
+        const isFullscreen = heroEl.classList.contains('min-h-screen') || heroEl.classList.contains('min-h-[100svh]');
+        const hasSubheadline = !!heroEl.querySelector('p');
+        return { hasDivider, isEyebrowBadgeFree, isFullscreen, hasSubheadline };
       });
 
-      expect(structureCheck.hasDivider, 'Linha divisória horizontal inferior deve estar removida (SPEC-068)').toBe(false);
-      expect(structureCheck.hasActiveIndicator, 'Indicador operacional ativo deve estar presente (SPEC-068)').toBe(true);
+      expect(structureCheck.hasDivider, 'Linha divisória horizontal inferior deve estar removida').toBe(false);
+      expect(structureCheck.isEyebrowBadgeFree, 'Eyebrow deve ser tipografia limpa sem badge ao redor (SPEC-069)').toBe(true);
+      expect(structureCheck.isFullscreen, 'Hero deve possuir classes de altura total min-h-screen/min-h-[100svh] (SPEC-069)').toBe(true);
+      expect(structureCheck.hasSubheadline, 'Subheadline descritiva deve estar removida para foco na ação (SPEC-069)').toBe(false);
 
       // 3. Validação de cores, tipografia e raios computados
       const computedHeroStyles = await page.evaluate(() => {
         const heroEl = document.querySelector('#hero')!;
         const h1El = heroEl.querySelector('#hero-title')!;
-        const subheadlineEl = heroEl.querySelector('p')!;
         const eyebrowEl = heroEl.querySelector('[data-testid="hero-eyebrow"]')!;
         const buttonEl = heroEl.querySelector('a[href="/contato"], a[href="#contato"]')!;
         const linkEl = heroEl.querySelector('a[href="/servicos"], a[href="#servicos"], a[href="#sobre"]')!;
-        const activeNodeEl = (heroEl.querySelector('.animate-ping') || heroEl.querySelector('.rounded-full.bg-brand'))!;
+        const activeNodeEl = (heroEl.querySelector('.animate-pulse') || heroEl.querySelector('.rounded-full.bg-brand'))!;
 
         return {
           hero: {
@@ -83,9 +87,6 @@ test.describe('Hero Visual Identity & Token Locks (SPEC-059 & SPEC-068)', () => 
           h1: {
             color: window.getComputedStyle(h1El).color,
             fontFamily: window.getComputedStyle(h1El).fontFamily,
-          },
-          subheadline: {
-            color: window.getComputedStyle(subheadlineEl).color,
           },
           eyebrow: {
             color: window.getComputedStyle(eyebrowEl).color,
@@ -106,14 +107,12 @@ test.describe('Hero Visual Identity & Token Locks (SPEC-059 & SPEC-068)', () => 
         };
       });
 
-      // Validação das superfícies e cores conforme tokens SPEC-063 / SPEC-068
+      // Validação das superfícies e cores conforme tokens SPEC-063 / SPEC-068 / SPEC-069
       if (mode === 'dark') {
         // Dark background #0A0F10 = rgb(10, 15, 16)
         expect(computedHeroStyles.hero.bgColor).toBe('rgb(10, 15, 16)');
         // H1 text #F2F7F7 = rgb(242, 247, 247)
         expect(computedHeroStyles.h1.color).toBe('rgb(242, 247, 247)');
-        // Subheadline text-secondary rgb(157, 176, 179)
-        expect(computedHeroStyles.subheadline.color).toBe('rgb(157, 176, 179)');
         // Eyebrow mono font
         expect(computedHeroStyles.eyebrow.fontFamily.toLowerCase()).toMatch(/(geist mono|jetbrains mono|fira code|consolas|monospace)/);
         // Primary button brand teal: #2DD4BF -> rgb(45, 212, 191)
@@ -129,8 +128,6 @@ test.describe('Hero Visual Identity & Token Locks (SPEC-059 & SPEC-068)', () => 
         expect(computedHeroStyles.hero.bgColor).toBe('rgb(246, 250, 250)');
         // H1 text #0A0F10 = rgb(10, 15, 16)
         expect(computedHeroStyles.h1.color).toBe('rgb(10, 15, 16)');
-        // Subheadline text-secondary rgb(63, 85, 88)
-        expect(computedHeroStyles.subheadline.color).toBe('rgb(63, 85, 88)');
         // Primary button brand teal: #2DD4BF -> rgb(45, 212, 191)
         expect(computedHeroStyles.button.bgColor).toBe('rgb(45, 212, 191)');
         // Text on brand: #04201C -> rgb(4, 32, 28)

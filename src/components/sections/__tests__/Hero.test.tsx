@@ -10,39 +10,44 @@ const renderHero = () =>
     </MemoryRouter>
   );
 
-describe('Hero Component (B2B Engineering & Active Architecture Window — SPEC-068)', () => {
-  it('renders section with semantic accessibility labeling and unique H1', () => {
+describe('Hero Component (B2B Engineering Fullscreen & Minimalist — SPEC-069)', () => {
+  it('renders section with semantic accessibility labeling, fullscreen classes and unique H1', () => {
     renderHero();
 
     const section = document.getElementById('hero');
     expect(section).toBeInTheDocument();
     expect(section).toHaveAttribute('aria-labelledby', 'hero-title');
+    expect(section?.className).toContain('min-h-screen');
+    expect(section?.className).toContain('min-h-[100svh]');
 
     const headings = screen.getAllByRole('heading', { level: 1 });
     expect(headings).toHaveLength(1);
     expect(headings[0]).toHaveAttribute('id', 'hero-title');
   });
 
-  it('renders exact H1 and subheadline copy for B2B software engineering', () => {
+  it('renders exact H1 copy without redundant subheadline paragraph (SPEC-069)', () => {
     renderHero();
 
     const heading = screen.getByRole('heading', { level: 1 });
     expect(heading).toHaveTextContent('Engenharia de software para construir, integrar e evoluir sistemas.');
 
+    // Subheadline removed for ultra-clean direct conversion flow
     expect(
-      screen.getByText(
-        'Desenvolvemos sistemas corporativos, APIs escaláveis e integrações sob medida, além de modernizar aplicações legadas com foco em qualidade, estabilidade e evolução contínua.'
-      )
-    ).toBeInTheDocument();
+      screen.queryByText(/Desenvolvemos sistemas corporativos, APIs escaláveis/i)
+    ).not.toBeInTheDocument();
   });
 
-  it('renders contextual eyebrow with BrandChipIcon and uppercase engineering tagline', () => {
+  it('renders contextual eyebrow with BrandChipIcon without pill/badge wrapper (SPEC-069)', () => {
     renderHero();
 
     const eyebrow = screen.getByTestId('hero-eyebrow');
     expect(eyebrow).toBeInTheDocument();
     expect(eyebrow).toHaveTextContent(/ENGENHARIA DE SOFTWARE & MODERNIZAÇÃO/i);
     expect(eyebrow.querySelector('svg')).toBeInTheDocument();
+
+    // Must not have pill/badge classes
+    expect(eyebrow.className).not.toContain('rounded-full');
+    expect(eyebrow.className).not.toContain('border');
   });
 
   it('renders primary CTA pointing to /contato and secondary CTA pointing to #servicos', () => {
@@ -57,18 +62,15 @@ describe('Hero Component (B2B Engineering & Active Architecture Window — SPEC-
     expect(secondaryCta).toHaveAttribute('href', '#servicos');
   });
 
-  it('renders active operational status micro social proof below CTAs with pulsing indicator', () => {
-    const { container } = renderHero();
+  it('does not render bottom micro social proof phrase (SPEC-069)', () => {
+    renderHero();
 
     expect(
-      screen.getByText(/Sistemas em produção nos setores de energia, indústria, logística e corporativo/i)
-    ).toBeInTheDocument();
-
-    const pingDot = container.querySelector('.animate-ping');
-    expect(pingDot).toBeInTheDocument();
+      screen.queryByText(/Sistemas em produção nos setores/i)
+    ).not.toBeInTheDocument();
   });
 
-  it('renders dev-style active architecture window with layers, tech chips and aria-hidden="true"', () => {
+  it('renders dev-style active architecture window with clean status text without badge (SPEC-069)', () => {
     const { container } = renderHero();
 
     // Canvas container must be aria-hidden="true" for screen reader accessibility
@@ -96,7 +98,7 @@ describe('Hero Component (B2B Engineering & Active Architecture Window — SPEC-
     expect(canvasWrapper).toHaveTextContent('Docker');
   });
 
-  it('removes artificial horizontal divider line and static node dot (SPEC-068)', () => {
+  it('removes artificial horizontal divider line and static node dot (SPEC-068/069)', () => {
     const { container } = renderHero();
 
     expect(container.querySelector('[data-testid="hero-divider-line"]')).not.toBeInTheDocument();

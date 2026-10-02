@@ -9,6 +9,22 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.69-hero-fullscreen-minimalista] - 2026-10-01
+
+### Adicionado
+- **`specs/SPEC-069-hero-fullscreen-minimalista.md`**: Especificação técnica para Hero minimalista fullscreen (100vh), remoção de badges e foco estrito na conversão.
+- **`tasks/TASK-069-hero-fullscreen-minimalista.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-069.md`**: Relatório de QA com evidências de conformidade aos quality gates.
+
+### Modificado
+- **`src/components/sections/Hero.tsx`**:
+  - Enquadramento fullscreen adaptativo com `min-h-screen min-h-[100svh] flex flex-col justify-center`, garantindo que o Hero ocupe 100% da viewport e que a seção de serviços não apareça na primeira dobra antes da rolagem.
+  - Remoção de badge/pílula ao redor do eyebrow `ENGENHARIA DE SOFTWARE & MODERNIZAÇÃO`, exibindo tipografia técnica pura com `BrandChipIcon`.
+  - Remoção de badge/pílula ao redor de `HEALTHY / 99.9% uptime` no cabeçalho da janela dev de arquitetura.
+  - Remoção completa da subheadline descritiva e da frase de micro social proof inferior, concentrando o fluxo visual em **Eyebrow ➔ H1 ➔ CTAs**.
+- **`src/components/sections/__tests__/Hero.test.tsx`**: Atualização dos testes unitários para validar enquadramento fullscreen, ausência de subheadline e ausência de badges.
+- **`e2e/hero-identity-token-locks.spec.ts`**: Atualização dos testes E2E validando ausência de badges, altura total da viewport e conformidade de tokens.
+
 ## [0.0.68-hero-redesign-editorial-arquitetura] - 2026-10-01
 
 ### Adicionado
