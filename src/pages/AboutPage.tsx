@@ -2,7 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 import { Sparkles } from "lucide-react";
 import BrandChipIcon from "@/components/ui/BrandChipIcon";
-import EngineeringNetworkGraph from "@/components/sections/EngineeringNetworkGraph";
+import EpmConstellation from "@/components/sections/EpmConstellation";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import { SITE_CONFIG } from "@/config/site";
 import { cn } from "@/lib/utils";
@@ -126,8 +126,8 @@ export const AboutPage: React.FC = () => {
           className="relative w-full pt-28 pb-20 sm:pt-36 sm:pb-24 lg:pb-28 bg-surface-anchor text-foreground transition-colors duration-200 overflow-hidden"
         >
           <div className="container max-w-6xl mx-auto px-6 relative">
-            {/* Malha Visual de Conectividade em SVG (Network Graph) ancorada e aproximada ao conteúdo */}
-            <EngineeringNetworkGraph className="absolute -right-20 sm:-right-12 lg:-right-6 xl:right-4 top-1/2 -translate-y-1/2 w-[420px] sm:w-[520px] lg:w-[580px] xl:w-[640px] h-[360px] sm:h-[440px] lg:h-[480px] xl:h-[520px] opacity-35 sm:opacity-65 lg:opacity-90 pointer-events-none z-0" />
+            {/* Constelação Vetorial de Engenharia com Silhueta do Ícone EPM DevTech */}
+            <EpmConstellation className="absolute -right-16 sm:-right-8 lg:-right-4 xl:right-6 top-1/2 -translate-y-1/2 w-[380px] sm:w-[480px] lg:w-[560px] xl:w-[620px] h-[380px] sm:h-[480px] lg:h-[560px] xl:h-[620px] opacity-40 sm:opacity-75 lg:opacity-95 pointer-events-auto z-0" />
 
             <div className="relative z-10 max-w-2xl lg:max-w-3xl">
               {/* Eyebrow */}

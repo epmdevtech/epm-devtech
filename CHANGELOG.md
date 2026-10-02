@@ -9,6 +9,20 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.93-sobre-constelacao-silhueta-epm] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-093-sobre-constelacao-silhueta-epm.md`**: Especificação técnica aprovada pelo PO para constelação vetorial de engenharia desenhando a silhueta geométrica do ícone oficial da EPM DevTech no Hero de `/sobre`.
+- **`tasks/TASK-093-sobre-constelacao-silhueta-epm.md`**: Tarefa e checklist de execução do protocolo Universal SDD.
+- **`reviews/QA-093.md`**: Relatório de QA com validação de 100% dos quality gates e evidências de capturas visuais em Desktop Dark, Desktop Light e Mobile Dark.
+- **`src/components/sections/EpmConstellation.tsx`**: Componente vetorial interativo em SVG e Framer Motion com nós estelares luminosos, halos difusos, pulso sonar, feixes de dados em trânsito e rastreamento de mouse com realce por proximidade.
+- **`src/config/epmConstellation.ts`**: Mapeamento de coordenadas normalizadas (viewBox 0 0 600 600) para a moldura externa de tela/circuito com barramentos, chaves de código `{ }` centrais e divisor técnico `/`.
+- **`src/components/sections/__tests__/EpmConstellation.test.tsx`**: Suíte de testes unitários cobrindo renderização da silhueta, nós, arestas, mouse tracking e acessibilidade com `useReducedMotion()`.
+
+### Modificado
+- **`src/pages/AboutPage.tsx`**: Integração do componente `EpmConstellation` no Hero, proporcionando identidade de marca exclusiva, profundidade tecnológica, contraste semântico otimizado e total compatibilidade com Dark e Light Mode.
+- **`PROJECT.md`**: Atualização do estado canônico da rota `/sobre` e contadores de testes unitários (33 suítes, 201 testes).
+
 ## [0.0.92-humanizacao-completa-copywriting-b2b] - 2026-10-02
 
 ### Adicionado

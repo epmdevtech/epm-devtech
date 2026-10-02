@@ -10,19 +10,29 @@ test.describe('Hero Visual Identity & Token Locks (SPEC-059, SPEC-068 & SPEC-069
       await page.waitForLoadState('domcontentloaded');
 
       if (mode === 'light') {
-        await page.evaluate(() => {
-          document.documentElement.setAttribute('data-theme', 'light');
-          document.documentElement.classList.remove('dark');
-          document.documentElement.classList.add('light');
-        });
-        await page.waitForTimeout(300);
+        const lightThemeButton = page.locator('button[title="Tema Light"]');
+        if (await lightThemeButton.isVisible()) {
+          await lightThemeButton.click();
+        } else {
+          await page.evaluate(() => {
+            window.localStorage.setItem('theme', 'light');
+            document.documentElement.classList.remove('dark');
+            document.documentElement.classList.add('light');
+          });
+        }
+        await page.waitForTimeout(500);
       } else {
-        await page.evaluate(() => {
-          document.documentElement.setAttribute('data-theme', 'dark');
-          document.documentElement.classList.remove('light');
-          document.documentElement.classList.add('dark');
-        });
-        await page.waitForTimeout(300);
+        const darkThemeButton = page.locator('button[title="Tema Dark"]');
+        if (await darkThemeButton.isVisible()) {
+          await darkThemeButton.click();
+        } else {
+          await page.evaluate(() => {
+            window.localStorage.setItem('theme', 'dark');
+            document.documentElement.classList.remove('light');
+            document.documentElement.classList.add('dark');
+          });
+        }
+        await page.waitForTimeout(500);
       }
 
       const hero = page.locator('#hero');
