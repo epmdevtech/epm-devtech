@@ -9,6 +9,19 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.76-experiencia-remocao-linhas-duplas] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-076-experiencia-remocao-linhas-duplas.md`**: Especificação técnica para eliminação de linhas horizontais duplas na rota `/experiencia`.
+- **`tasks/TASK-076-experiencia-remocao-linhas-duplas.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-076.md`**: Relatório de QA com evidências de conformidade aos quality gates.
+
+### Modificado
+- **`src/components/sections/Authority.tsx`**: Suporte à prop opcional `className?: string`, mesclada às classes base com `cn()` e `twMerge`.
+- **`src/pages/ExperiencePage.tsx`**: Configuração de `<Authority className="border-y-0 bg-transparent py-6 sm:py-10" />`, unificando a hierarquia de divisores e removendo a segunda linha horizontal que aparecia sob o `PageHeader`.
+- **`src/components/sections/__tests__/Authority.test.tsx`**: Novo teste unitário validando a sobrescrita limpa de classes via prop `className`.
+- **`PROJECT.md`**: Atualização do total de testes unitários para 183.
+
 ## [0.0.75-experiencia-enterprise-ledger] - 2026-10-02
 
 ### Adicionado

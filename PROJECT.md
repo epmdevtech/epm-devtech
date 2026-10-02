@@ -189,7 +189,7 @@ src/
 | ScrollToTop       | ✅ Neutro / Flat | Ícone ChevronUp (20px), design utilitário neutro sem glow ou realce verde, fade suave >450px e elevação dinâmica no rodapé |
 | Cookie Banner     | ✅ Otimizado     | Lazy load assíncrono + defer timer (3.5s)  |
 | Multi-Rota & SEO  | ✅ Multi-Rota SPA | Transição de monólito one-page para SPA multi-rota com rotas canônicas independentes (`/`, `/servicos`, `/como-trabalhamos`, `/experiencia`, `/engenharia`, `/sobre`, `/contato`, `/duvidas-frequentes`), menu enxuto (5 links + 1 CTA "Fale conosco"), preservação 301 de URLs e pré-render estático HTML pós-build (SPEC-060 / SPEC-071) |
-| Testes unitários  | ✅ Implementado  | 29/29 suites, 182/182 testes passando (100% suites aprovadas) |
+| Testes unitários  | ✅ Implementado  | 29/29 suites, 183/183 testes passando (100% suites aprovadas) |
 | Testes E2E        | ✅ Implementado  | Suíte Playwright (43/43 testes passando: rotas independentes, F5 direto, SEO canônico, menu mobile acessível, Hero engenharia B2B, travas estritas de tokens dark/light e responsividade) |
 | Acessibilidade    | ✅ 100% WCAG AAA | Botão primário com contraste 12.44:1 (WCAG AAA), texto primário 17.26:1 (Dark) e 17.81:1 (Light), skip-link acessível, foco programático em `<h1>`, `aria-current="page"`, touch target ≥ 44px, zero layout shift |
 | Performance       | ✅ 100% Otimizado| Mobile Perf: 84 (+16 pontos vs baseline 68), TBT: 480ms (-77% de bloqueio), CLS: 0.000; Desktop Perf: 97, SEO: 100/100, FCP 0.5s / LCP 0.6s |
@@ -228,4 +228,4 @@ src/
 
 ---
 
-_Última atualização: 2026-10-01 | Maintainer: Elessandro Prestes Macedo_
+_Última atualização: 2026-10-02 | Maintainer: Elessandro Prestes Macedo_

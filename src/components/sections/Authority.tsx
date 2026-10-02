@@ -38,7 +38,11 @@ const metrics = [
   },
 ];
 
-const Authority = () => {
+export interface AuthorityProps {
+  className?: string;
+}
+
+const Authority: React.FC<AuthorityProps> = ({ className }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -46,7 +50,10 @@ const Authority = () => {
     <section
       id="autoridade"
       aria-labelledby="autoridade-heading"
-      className="py-14 lg:py-16 border-y border-border-subtle bg-surface/50 relative"
+      className={cn(
+        "py-14 lg:py-16 border-y border-border-subtle bg-surface/50 relative",
+        className
+      )}
       ref={ref}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

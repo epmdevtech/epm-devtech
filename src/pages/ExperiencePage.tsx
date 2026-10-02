@@ -107,7 +107,7 @@ export const ExperiencePage = () => {
 
         {/* Bloco 1: Indicadores e Métricas de Escala (Contadores com CountUp Preservados) */}
         <section id="resultados" className="scroll-mt-24">
-          <Authority />
+          <Authority className="border-y-0 bg-transparent py-6 sm:py-10" />
         </section>
 
         {/* Bloco 2: Contextos de Negócio e Verticais (Engineering Matrix 2x2) */}
