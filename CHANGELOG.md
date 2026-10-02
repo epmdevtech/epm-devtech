@@ -9,6 +9,18 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.98-correcao-atributo-r-svg-circle-constelacao] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-098-correcao-atributo-r-svg-circle-constelacao.md`**: Especificação técnica aprovada pelo PO para eliminação de erro no console referente ao atributo `r` do SVG `<circle>` / `<motion.circle>` vindo de `framer-motion.js` ao navegar para a rota `/sobre`.
+- **`tasks/TASK-098-correcao-atributo-r-svg-circle-constelacao.md`**: Tarefa e checklist de execução concluídos sob o protocolo Universal SDD.
+- **`reviews/QA-098.md`**: Relatório de QA com validação de 100% dos quality gates e teste automatizado de console comprovando 0 erros.
+
+### Modificado
+- **`src/components/sections/EpmConstellation.tsx`**: Inclusão de `r={15}` explícito e `initial={{ r: 15, opacity: ... }}` nos dois elementos `<motion.circle>` do sonar central do logo da EPM DevTech, eliminando a inicialização de atributo com valor `undefined`. Implementação de fallbacks numéricos defensivos em todos os nós (`r={haloRadius || 8}`, `r={nodeRadius || 3}` e `r={(nodeRadius || 3) * 0.45 || 1.5}`).
+- **`src/components/sections/__tests__/EpmConstellation.test.tsx`**: Adicionada asserção automatizada garantindo que 100% dos elementos `<circle>` possuem atributo `r` numérico válido (> 0) e nunca `undefined` ou `NaN`.
+- **`PROJECT.md`**: Atualização do estado do componente de Constelação e contadores de testes unitários (203 testes).
+
 ## [0.0.97-correcao-contraste-numeros-pipeline-dark-mode] - 2026-10-02
 
 ### Adicionado
