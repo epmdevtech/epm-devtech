@@ -131,15 +131,16 @@ describe('Rotas e Páginas Independentes (SPEC-060)', () => {
     expect(screen.queryByText('Precisa de engenharia sólida no seu produto ou sistema interno?')).not.toBeInTheDocument();
   });
 
-  it('AboutPage (/sobre) renderiza Executive Briefing com H1, eyebrow, compromissos de parceria, timeline e manifesto sem dados burocráticos ou CTA final redundante', () => {
+  it('AboutPage (/sobre) renderiza Hero editorial amplo com H1, eyebrow, inline trust marks, timeline e manifesto sem cards fechados, dados burocráticos ou CTA final redundante', () => {
     renderWithProviders(<AboutPage />);
     expect(screen.getByRole('heading', { level: 1, name: /Engenharia de software sob medida com visão real de negócio/i })).toBeInTheDocument();
     expect(screen.getByText(/\[ QUEM SOMOS \/\/ POSICIONAMENTO \]/i)).toBeInTheDocument();
-    expect(screen.getByText('Como atuamos com a sua equipe')).toBeInTheDocument();
-    expect(screen.getByText('Parceria Direta')).toBeInTheDocument();
+    expect(screen.getByTestId('trust-marks-strip')).toBeInTheDocument();
     expect(screen.getByText('Atendimento 100% Remoto & Nacional')).toBeInTheDocument();
-    expect(screen.getByText('Contato Direto com a Liderança Técnica')).toBeInTheDocument();
-    expect(screen.getByText('Propriedade Total do Código & Entregas Incrementais')).toBeInTheDocument();
+    expect(screen.getByText('Contato Direto com Liderança Técnica')).toBeInTheDocument();
+    expect(screen.getByText('Propriedade Integral do Código')).toBeInTheDocument();
+    expect(screen.queryByText('Como atuamos com a sua equipe')).not.toBeInTheDocument();
+    expect(screen.queryByText('Parceria Direta')).not.toBeInTheDocument();
     expect(screen.queryByText(/Elessandro Prestes Macedo/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/60\.710\.574\/0001-85/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/Toledo/i)).not.toBeInTheDocument();

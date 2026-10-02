@@ -1,12 +1,8 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
-import {
-  Globe,
-  Users,
-  ShieldCheck,
-  Sparkles,
-} from "lucide-react";
+import { Sparkles } from "lucide-react";
 import BrandChipIcon from "@/components/ui/BrandChipIcon";
+import EngineeringNetworkGraph from "@/components/sections/EngineeringNetworkGraph";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import { SITE_CONFIG } from "@/config/site";
 import { cn } from "@/lib/utils";
@@ -124,91 +120,56 @@ export const AboutPage: React.FC = () => {
       </Helmet>
 
       <div className="w-full">
-        {/* Dobra Inicial Unificada: Executive Briefing Hero (Tom: Anchor) */}
+        {/* Dobra Inicial: Hero Editorial Amplo & Malha de Conectividade em SVG (Tom: Anchor) */}
         <header
           data-tone="anchor"
-          className="relative w-full pt-28 pb-16 sm:pt-36 sm:pb-20 bg-surface-anchor text-foreground transition-colors duration-200 border-b border-border-default/60"
+          className="relative w-full pt-28 pb-20 sm:pt-36 sm:pb-24 lg:pb-28 bg-surface-anchor text-foreground transition-colors duration-200 overflow-hidden"
         >
-          <div className="container max-w-6xl mx-auto px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-              {/* Coluna 1: Posicionamento & Proposta de Valor (7 cols) */}
-              <div className="lg:col-span-7 flex flex-col justify-start">
-                <div
-                  data-testid="page-eyebrow"
-                  className="inline-flex items-center gap-[7px] text-[11.5px] font-mono font-medium tracking-[0.1em] uppercase text-text-brand select-none mb-3 sm:mb-4"
-                >
-                  <BrandChipIcon size={15} className="shrink-0" />
-                  <span>[ QUEM SOMOS // POSICIONAMENTO ]</span>
-                </div>
+          {/* Malha Visual de Conectividade em SVG (Network Graph) */}
+          <EngineeringNetworkGraph className="absolute -right-28 sm:-right-16 lg:right-0 top-1/2 -translate-y-1/2 w-[420px] sm:w-[560px] lg:w-[680px] h-[360px] sm:h-[480px] lg:h-[560px] opacity-25 sm:opacity-60 lg:opacity-85 pointer-events-none -z-0" />
 
-                <h1
-                  id="page-title"
-                  tabIndex={-1}
-                  className="font-bold tracking-tight text-primary text-3xl sm:text-4xl md:text-5xl leading-[1.15] [text-wrap:balance] outline-none focus:outline-none mb-5 sm:mb-6"
-                >
-                  Engenharia de software sob medida com{" "}
-                  <span className="text-text-brand">visão real de negócio</span>
-                </h1>
-
-                <p className="text-base sm:text-lg text-secondary leading-relaxed font-normal [text-wrap:balance]">
-                  A EPM DevTech projeta, constrói e moderniza aplicações corporativas críticas. Desenvolvemos ecossistemas sob medida para operações que exigem estabilidade contínua, integrações sem perda de dados e comunicação técnica direta, sem camadas comerciais intermediárias.
-                </p>
+          <div className="container max-w-6xl mx-auto px-6 relative z-10">
+            <div className="max-w-3xl lg:max-w-4xl">
+              {/* Eyebrow */}
+              <div
+                data-testid="page-eyebrow"
+                className="inline-flex items-center gap-[7px] text-[11.5px] font-mono font-medium tracking-[0.1em] uppercase text-text-brand select-none mb-3 sm:mb-4"
+              >
+                <BrandChipIcon size={15} className="shrink-0" />
+                <span>[ QUEM SOMOS // POSICIONAMENTO ]</span>
               </div>
 
-              {/* Coluna 2: Quadro Executivo "Compromissos de Parceria" (5 cols) */}
-              <div className="lg:col-span-5 p-6 sm:p-7 rounded-2xl border border-border-default/80 dark:border-zinc-800/80 bg-surface/90 dark:bg-zinc-950/70 shadow-xl dark:shadow-2xl backdrop-blur-md flex flex-col gap-6">
-                <div className="flex items-center justify-between pb-4 border-b border-border-default/60 dark:border-zinc-800/60">
-                  <h2 className="font-mono text-xs uppercase tracking-wider text-primary font-semibold">
-                    Como atuamos com a sua equipe
-                  </h2>
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-mono font-medium bg-brand/10 text-text-brand border border-brand/20">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand" />
-                    Parceria Direta
-                  </span>
+              {/* H1 Editorial Amplo */}
+              <h1
+                id="page-title"
+                tabIndex={-1}
+                className="font-bold tracking-tight text-primary text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.12] [text-wrap:balance] outline-none focus:outline-none mb-6"
+              >
+                Engenharia de software sob medida com{" "}
+                <span className="text-text-brand">visão real de negócio</span>
+              </h1>
+
+              {/* Parágrafo Institucional Amplo */}
+              <p className="text-base sm:text-lg lg:text-xl text-secondary leading-relaxed font-normal [text-wrap:balance]">
+                A EPM DevTech projeta, constrói e moderniza aplicações corporativas críticas. Desenvolvemos ecossistemas sob medida para operações que exigem estabilidade contínua, integrações sem perda de dados e comunicação técnica direta com quem implementa a solução.
+              </p>
+
+              {/* Faixa de Inline Trust Marks (Sem Caixas Fechadas) */}
+              <div
+                data-testid="trust-marks-strip"
+                className="flex flex-wrap gap-y-3 gap-x-6 sm:gap-x-8 mt-8 sm:mt-10 items-center text-xs sm:text-sm font-mono text-secondary"
+              >
+                <div className="inline-flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand shrink-0" />
+                  <span>Atendimento 100% Remoto & Nacional</span>
                 </div>
-
-                <div className="space-y-4 text-xs sm:text-sm text-secondary">
-                  <div className="flex items-start gap-3.5">
-                    <div className="p-2 rounded-lg bg-surface-base border border-border-default/60 dark:border-zinc-800/80 shrink-0 mt-0.5">
-                      <Globe className="w-4 h-4 text-text-brand" />
-                    </div>
-                    <div>
-                      <span className="font-semibold text-primary block text-sm mb-0.5">
-                        Atendimento 100% Remoto & Nacional
-                      </span>
-                      <p className="text-xs text-secondary leading-relaxed font-normal">
-                        Conexão ágil com empresas de qualquer região do país através de cerimônias e alinhamentos contínuos.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3.5">
-                    <div className="p-2 rounded-lg bg-surface-base border border-border-default/60 dark:border-zinc-800/80 shrink-0 mt-0.5">
-                      <Users className="w-4 h-4 text-text-brand" />
-                    </div>
-                    <div>
-                      <span className="font-semibold text-primary block text-sm mb-0.5">
-                        Contato Direto com a Liderança Técnica
-                      </span>
-                      <p className="text-xs text-secondary leading-relaxed font-normal">
-                        Você fala diretamente com quem planeja a arquitetura e implementa o código do seu projeto.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3.5">
-                    <div className="p-2 rounded-lg bg-surface-base border border-border-default/60 dark:border-zinc-800/80 shrink-0 mt-0.5">
-                      <ShieldCheck className="w-4 h-4 text-text-brand" />
-                    </div>
-                    <div>
-                      <span className="font-semibold text-primary block text-sm mb-0.5">
-                        Propriedade Total do Código & Entregas Incrementais
-                      </span>
-                      <p className="text-xs text-secondary leading-relaxed font-normal">
-                        Repositórios, documentação e infraestrutura pertencem 100% à sua empresa, com validações frequentes em homologação.
-                      </p>
-                    </div>
-                  </div>
+                <div className="inline-flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand shrink-0" />
+                  <span>Contato Direto com Liderança Técnica</span>
+                </div>
+                <div className="inline-flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand shrink-0" />
+                  <span>Propriedade Integral do Código</span>
                 </div>
               </div>
             </div>

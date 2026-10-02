@@ -9,6 +9,26 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.89-sobre-hero-editorial-network] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-089-sobre-hero-editorial-network.md`**: Especificação técnica para refatoração editorial do Hero de `/sobre` com Inline Trust Marks e malha de conectividade em SVG.
+- **`tasks/TASK-089-sobre-hero-editorial-network.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-089.md`**: Relatório de QA com validação dos quality gates e evidências de capturas de tela nos temas Dark, Light e Mobile.
+- **`src/components/sections/EngineeringNetworkGraph.tsx`**: Componente visual de malha em SVG com Framer Motion (nós e feixes interconectados pulsantes com suporte a `prefers-reduced-motion`).
+- **Faixa de Inline Trust Marks**: Três compromissos essenciais dispostos horizontalmente sem caixas fechadas (`● Atendimento 100% Remoto & Nacional`, `● Contato Direto com Liderança Técnica` e `● Propriedade Integral do Código`).
+
+### Removido
+- **`src/pages/AboutPage.tsx`**:
+  - Removido completamente o card retangular fechado lateral *"Como atuamos com a sua equipe"*, seu container escuro (`bg-zinc-950/70`), bordas e divisórias internas.
+
+### Modificado
+- **`src/pages/AboutPage.tsx`**:
+  - Layout editorial amplo (largura generosa `max-w-4xl`) integrando H1 de alto padrão tipográfico, eyebrow com `BrandChipIcon`, parágrafo institucional expandido e Inline Trust Marks.
+  - Integração do `EngineeringNetworkGraph` posicionado de forma absoluta no canto direito/fundo com profundidade visual sutil.
+- **`src/pages/__tests__/pages.test.tsx`**: Atualização dos testes unitários para validar a nova faixa de Inline Trust Marks e a ausência do card fechado.
+- **`PROJECT.md`**: Atualização do estado canônico da rota `/sobre`.
+
 ## [0.0.88-sobre-executive-briefing] - 2026-10-02
 
 ### Adicionado
