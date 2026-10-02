@@ -8,6 +8,8 @@ export interface PageHeaderProps {
   description?: React.ReactNode;
   align?: "center" | "left";
   className?: string;
+  containerClassName?: string;
+  children?: React.ReactNode;
 }
 
 export const PageHeader: React.FC<PageHeaderProps> = ({
@@ -16,27 +18,31 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
   description,
   align = "center",
   className,
+  containerClassName,
+  children,
 }) => {
   const isCenter = align === "center";
 
   return (
     <header
+      data-tone="anchor"
       className={cn(
-        "relative w-full pt-28 pb-8 sm:pt-36 sm:pb-12 border-b border-border/40 mb-12 sm:mb-16",
+        "relative w-full pt-28 pb-12 sm:pt-36 sm:pb-16 bg-surface-anchor text-foreground transition-colors duration-200",
         className
       )}
     >
       <div
         className={cn(
           "container px-6",
-          isCenter ? "text-center max-w-3xl mx-auto" : "text-left max-w-3xl"
+          isCenter ? "text-center max-w-3xl mx-auto" : "text-left max-w-3xl",
+          containerClassName
         )}
       >
         {eyebrow && (
           <div
             data-testid="page-eyebrow"
             className={cn(
-              "inline-flex items-center gap-[7px] text-[11.5px] font-mono font-medium tracking-[0.1em] uppercase text-zinc-500 dark:text-zinc-400 select-none mb-3 sm:mb-4",
+              "inline-flex items-center gap-[7px] text-[11.5px] font-mono font-medium tracking-[0.1em] uppercase text-muted select-none mb-3 sm:mb-4",
               isCenter ? "justify-center" : "justify-start"
             )}
           >
@@ -48,16 +54,18 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
         <h1
           id="page-title"
           tabIndex={-1}
-          className="font-bold tracking-tight text-foreground text-3xl sm:text-4xl md:text-5xl leading-[1.15] [text-wrap:balance] outline-none focus:outline-none"
+          className="font-bold tracking-tight text-primary text-3xl sm:text-4xl md:text-5xl leading-[1.15] [text-wrap:balance] outline-none focus:outline-none"
         >
           {title}
         </h1>
 
         {description && (
-          <p className="mt-4 sm:mt-5 text-base sm:text-lg leading-relaxed text-muted-foreground [text-wrap:balance]">
+          <p className="mt-4 sm:mt-5 text-base sm:text-lg leading-relaxed text-secondary [text-wrap:balance]">
             {description}
           </p>
         )}
+
+        {children}
       </div>
     </header>
   );

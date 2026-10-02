@@ -2,7 +2,7 @@ export const SITE_CONFIG = {
   name: "EPM DEVTECH",
   brandName: "EPM DevTech",
   description:
-    "Software house dedicada a software sob medida, APIs escaláveis e modernização de plataformas corporativas.",
+    "Engenharia de software sob medida para empresas que precisam destravar operações, integrar sistemas e construir produtos digitais robustos.",
   url: "https://epmdevtech.com.br",
   email: "elessandro@epmdevtech.com.br",
   phone: {
@@ -18,7 +18,7 @@ export const SITE_CONFIG = {
     legalName: "Elessandro Prestes Macedo Desenvolvimento de Software LTDA",
     tradeName: "EPM DEVTECH",
     cnpj: "60.710.574/0001-85",
-    location: "Toledo, Paraná.",
+    location: "Atendimento remoto em todo o Brasil",
     foundingYear: 2026,
   },
 } as const;

@@ -14,8 +14,8 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     // Verifica que o H1 do Hero está visível e correto
     const heroH1 = page.locator('#hero h1, section h1').first();
     await expect(heroH1).toBeVisible();
-    await expect(heroH1).toContainText('Desenvolvemos software');
-    await expect(heroH1).toContainText('sob medida para o seu negócio');
+    await expect(heroH1).toContainText('Engenharia de software');
+    await expect(heroH1).toContainText('construir, integrar e evoluir sistemas');
 
     // Aguarda 3 segundos para confirmar que não há re-renderização ou reload disparado
     await page.waitForTimeout(3000);
@@ -27,7 +27,7 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     expect(scrollY).toBeLessThan(150);
   });
 
-  test('Títulos de todas as seções são rigorosamente monocromáticos (sem text-gradient)', async ({ page }) => {
+  test('Títulos das seções não possuem gradientes artificiais e Hero H1 é rigorosamente monocromático (SPEC-094)', async ({ page }) => {
     await page.goto('/');
     await page.waitForLoadState('domcontentloaded');
 
@@ -36,18 +36,21 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     const count = await gradientElements.count();
     expect(count).toBe(0);
 
-    // Verifica que os headings de cada seção existem, contêm os textos padronizados e são 100% monocromáticos
+    // Valida H1 do Hero 100% monocromático sem texto bicolor (SPEC-094)
+    const heroH1 = page.locator('#hero h1').first();
+    await expect(heroH1).toBeVisible();
+    await expect(heroH1).toContainText('Engenharia de software para construir, integrar e evoluir sistemas.');
+    const heroAccent = heroH1.locator('span.text-text-brand');
+    await expect(heroAccent).toHaveCount(0);
+
+    // Verifica que os headings das demais seções são rigorosamente monocromáticos
     const expectedHeadings = [
-      { id: 'hero', text: 'Desenvolvemos software' },
-      { id: 'servicos', text: 'Soluções sob medida para operações que exigem estabilidade' },
-      { id: 'como-trabalhamos', text: 'Engenharia previsível do primeiro contato à sustentação' },
-      { id: 'autoridade', text: 'Resultados comprovados em ambientes com alta exigência de estabilidade' },
-      { id: 'sobre', text: 'Software house brasileira com atendimento remoto e liderança técnica dedicada' },
-      { id: 'contato', text: 'Vamos entender o cenário da sua empresa?' },
+      { id: 'servicos', text: 'Engenharia sob medida para os gargalos da sua operação' },
+      { id: 'como-trabalhamos', text: 'Engenharia previsível com contato direto com quem constrói' },
+      { id: 'autoridade', text: 'Resultados comprovados em operações de grande escala' },
     ];
 
     for (const item of expectedHeadings) {
-      // Rola até a seção
       await page.evaluate((id) => {
         const el = document.getElementById(id);
         if (el) el.scrollIntoView({ behavior: 'instant' });
@@ -66,11 +69,11 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     }
   });
 
-  test('Cor principal de destaque utiliza o verde da marca EPM DEVTECH (#10b981 / emerald)', async ({ page }) => {
+  test('Cor principal de destaque utiliza o verde da marca EPM DEVTECH (#2DD4BF / teal)', async ({ page }) => {
     await page.goto('/contato');
     await page.waitForLoadState('domcontentloaded');
 
-    // Botão de envio no formulário de contato (verde esmeralda oficial)
+    // Botão de envio no formulário de contato (verde-água oficial brand #2DD4BF)
     const submitButton = page.locator('button[type="submit"]').first();
     await expect(submitButton).toBeVisible({ timeout: 10000 });
 
@@ -78,32 +81,32 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
       return window.getComputedStyle(el).backgroundColor;
     });
 
-    // Verde esmeralda oficial (#10B981 / emerald-600) — formato rgb(5, 150, 105)
-    expect(btnBgColor).toMatch(/rgb\((5|16|23|24|26|36|38|39),\s*(150|155|160|161|173|175|176|185),\s*(105|107|112|114|123|124|125|129)\)/);
+    // Verde-água teal oficial (#2DD4BF / brand) — formato rgb(45, 212, 191)
+    expect(btnBgColor).toBe('rgb(45, 212, 191)');
 
-    // Garante presença do CTA principal do Hero na home direcionando para #contato
+    // Garante presença do CTA principal do Hero na home direcionando para /contato
     await page.goto('/');
     await page.waitForLoadState('domcontentloaded');
-    const heroCta = page.locator('#hero a[href="#contato"]').first();
+    const heroCta = page.locator('#hero a[href="/contato"], #hero a[href="#contato"]').first();
     await expect(heroCta).toBeVisible();
-    await expect(heroCta).toContainText('Falar sobre meu projeto');
+    await expect(heroCta).toContainText('Vamos conversar');
   });
 
-  test('Navegação e rolagem fluida por âncoras sem salto para o Hero', async ({ page }) => {
+  test('Navegação fluida a partir do Hero por cenário de negócio para rota ancorada', async ({ page }) => {
     await page.goto('/');
     await page.waitForLoadState('domcontentloaded');
 
-    // Clica no CTA secundário ("Conhecer a EPM DevTech" que aponta para #sobre)
-    const secondaryCta = page.locator('#hero a[href="#sobre"]').first();
-    await expect(secondaryCta).toBeVisible();
-    await secondaryCta.click();
+    // Clica no cenário "Criar um novo sistema, portal ou plataforma web" que aponta para /servicos#sistemas
+    const scenarioLink = page.locator('[data-testid="scenario-link-sistemas"]');
+    await expect(scenarioLink).toBeVisible();
+    await scenarioLink.click();
 
-    await page.waitForURL('**/sobre');
-    const h1 = page.locator('h1');
-    await expect(h1).toContainText('Sobre a EPM DevTech');
+    await page.waitForURL('**/servicos#sistemas');
+    const targetArticle = page.locator('#sistemas');
+    await expect(targetArticle).toBeVisible();
   });
 
-  test('TechConstellation renderiza grafo de tecnologias com interação de hover e foco', async ({ page }) => {
+  test('ArchitecturalBlueprint renderiza camadas de tecnologias com interação de foco e acessibilidade', async ({ page }) => {
     await page.goto('/engenharia');
     await page.waitForLoadState('domcontentloaded');
 
@@ -113,28 +116,32 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
       if (el) el.scrollIntoView({ behavior: 'instant' });
     });
 
-    await page.waitForTimeout(800);
+    await page.waitForTimeout(500);
 
-    const constellation = page.locator('[data-testid="tech-constellation"]');
-    await expect(constellation).toBeVisible({ timeout: 10000 });
+    const blueprint = page.locator('[data-testid="architectural-blueprint"]');
+    await expect(blueprint).toBeVisible({ timeout: 10000 });
 
-    // Valida a presença de nós chaves da constelação
-    const reactNode = page.locator('[data-testid="tech-node-React"]');
-    await expect(reactNode).toBeVisible();
+    // Valida a presença da nuvem tipográfica de especialidades
+    const techCloud = page.locator('[data-testid="tech-editorial-cloud"]');
+    await expect(techCloud).toBeVisible();
+    await expect(page.getByText('// ESPECIALIDADES & STACK')).toBeVisible();
+    await expect(page.getByText('Nossas especialidades técnicas')).toBeVisible();
+
+    // Valida nós chaves da arquitetura
+    const reactBadge = page.locator('[data-testid="tech-badge-React"]');
+    await expect(reactBadge).toBeVisible();
 
     // Valida ativação por foco via teclado (acessibilidade)
-    await reactNode.focus();
+    await reactBadge.focus();
     await page.waitForTimeout(200);
-    await expect(reactNode).toHaveAttribute('data-active', 'true');
 
-    // Valida foco e ativação em outro nó do cluster
-    const nodejsNode = page.locator('[data-testid="tech-node-Node.js"]');
-    await nodejsNode.focus();
+    // Valida foco em outro nó
+    const nodejsBadge = page.locator('[data-testid="tech-badge-Node.js"]');
+    await nodejsBadge.focus();
     await page.waitForTimeout(200);
-    await expect(nodejsNode).toHaveAttribute('data-active', 'true');
   });
 
-  test('TechConstellation exibe painel de detalhes interativo com nome e conexões ao interagir com nós', async ({ page }) => {
+  test('ArchitecturalBlueprint exibe tooltip e detalhes contextuais ao interagir com tecnologias', async ({ page }) => {
     await page.goto('/engenharia');
     await page.waitForLoadState('domcontentloaded');
 
@@ -144,23 +151,37 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
       if (el) el.scrollIntoView({ behavior: 'instant' });
     });
 
-    await page.waitForTimeout(800);
+    await page.waitForTimeout(500);
 
-    const constellation = page.locator('[data-testid="tech-constellation"]');
-    await expect(constellation).toBeVisible({ timeout: 10000 });
+    const blueprint = page.locator('[data-testid="architectural-blueprint"]');
+    await expect(blueprint).toBeVisible({ timeout: 10000 });
 
-    const detailsPanel = page.locator('[data-testid="tech-details-panel"]');
-    await expect(detailsPanel).toBeVisible();
-    await expect(detailsPanel).toContainText('Exploração Interativa do Grafo');
+    // Valida ausência da badge Certificado na AWS e presença de Core Runtime no Node.js
+    await expect(page.getByText('Certificado')).toBeHidden();
+    await expect(page.getByText('Core Runtime')).toBeVisible();
 
-    // Interage com o nó React via foco acessível
-    const reactNode = page.locator('[data-testid="tech-node-React"]');
-    await reactNode.focus();
-    await page.waitForTimeout(200);
+    // Valida abertura de tooltip em todas as 9 tecnologias (linha superior e inferior)
+    const techExpectations = [
+      { name: 'React', textMatch: /Interfaces web fluidas e modulares/i },
+      { name: 'TypeScript', textMatch: /Evita falhas em tempo de execução/i },
+      { name: 'Node.js', textMatch: /Processamento veloz de requisições/i },
+      { name: 'AWS', textMatch: /Hospedagem segura e infraestrutura em nuvem/i },
+      { name: 'Vue.js', textMatch: /Agilidade na construção de telas interativas/i },
+      { name: 'PHP', textMatch: /Linguagem estável e amplamente consolidada/i },
+      { name: 'Laravel', textMatch: /Estrutura moderna e organizada/i },
+      { name: 'Angular', textMatch: /Plataforma padronizada para grandes portais/i },
+      { name: 'Azure', textMatch: /Soluções em nuvem da Microsoft/i },
+    ];
 
-    await expect(detailsPanel).toContainText('React', { timeout: 10000 });
-    await expect(detailsPanel).toContainText('Frontend');
-    await expect(detailsPanel).toContainText('Node.js');
+    for (const tech of techExpectations) {
+      const badge = page.locator(`[data-testid="tech-badge-${tech.name}"]`);
+      await expect(badge).toBeVisible();
+      await badge.hover();
+      await page.waitForTimeout(300);
+
+      const tooltip = page.getByRole('tooltip').filter({ hasText: tech.textMatch });
+      await expect(tooltip).toBeVisible();
+    }
   });
 
   test('Logotipo adapta-se perfeitamente entre Dark e Light Mode sem container escuro artificial', async ({ page }) => {
@@ -369,7 +390,7 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     expect(await srOnlyLabels.count()).toBe(4);
     await expect(authoritySection.locator('span.sr-only').getByText('99,9% de disponibilidade')).toBeAttached();
     await expect(authoritySection.locator('span.sr-only').getByText('2.500 requisições por segundo')).toBeAttached();
-    await expect(authoritySection.locator('span.sr-only').getByText('100% de integridade')).toBeAttached();
+    await expect(authoritySection.locator('span.sr-only').getByText('100% de consistência')).toBeAttached();
     await expect(authoritySection.locator('span.sr-only').getByText('redução de 35%')).toBeAttached();
   });
 
@@ -397,6 +418,146 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     expect(await authoritySection.getByText('\u22120%', { exact: true }).count()).toBe(0);
   });
 
+  test('Sistema de Camadas Tonais (SPEC-082): Ritmo tonal e ausência de linhas divisórias em todas as rotas', async ({ page }) => {
+    const routesToTest = [
+      '/',
+      '/servicos',
+      '/como-trabalhamos',
+      '/experiencia',
+      '/engenharia',
+      '/sobre',
+      '/contato',
+      '/duvidas-frequentes',
+    ];
+
+    for (const route of routesToTest) {
+      await page.goto(route);
+      await page.waitForLoadState('domcontentloaded');
+
+      // Coleta todos os elementos de seção com data-tone dentro da página
+      const tonedElements = page.locator('[data-tone]');
+      const count = await tonedElements.count();
+      expect(count).toBeGreaterThanOrEqual(2);
+
+      // 1. A primeira seção (ou header) deve ser 'anchor'
+      const firstTone = await tonedElements.first().getAttribute('data-tone');
+      expect(firstTone).toBe('anchor');
+
+      // 2. O Footer (último elemento com data-tone) deve ser 'anchor'
+      const lastTone = await tonedElements.last().getAttribute('data-tone');
+      expect(lastTone).toBe('anchor');
+
+      // 3. Validação do ritmo: duas seções adjacentes NUNCA podem ter o mesmo tom
+      // Note: Header é fixed, então comparamos a sequência de seções do fluxo de conteúdo
+      const flowTonedElements = page.locator('main [data-tone], section[data-tone], footer[data-tone]');
+      const flowCount = await flowTonedElements.count();
+      const flowTones: string[] = [];
+      for (let i = 0; i < flowCount; i++) {
+        const tone = await flowTonedElements.nth(i).getAttribute('data-tone');
+        if (tone) flowTones.push(tone);
+      }
+
+      for (let i = 0; i < flowTones.length - 1; i++) {
+        expect(
+          flowTones[i],
+          `Em ${route}, seções adjacentes [${i}] e [${i + 1}] possuem o mesmo tom (${flowTones[i]})`
+        ).not.toBe(flowTones[i + 1]);
+      }
+
+      // 4. Ausência de linhas divisórias entre seções (border-t / border-b com border-border nas seções principais)
+      const sections = page.locator('section[data-tone]');
+      const sectionCount = await sections.count();
+      for (let i = 0; i < sectionCount; i++) {
+        const sectionClasses = (await sections.nth(i).getAttribute('class')) || '';
+        expect(sectionClasses).not.toContain('border-t border-border');
+        expect(sectionClasses).not.toContain('border-b border-border');
+      }
+    }
+  });
+
+  test('Sistema de Camadas Tonais (SPEC-082): Suporte a Dark e Light Mode com contraste e classes semânticas', async ({ page }) => {
+    await page.goto('/');
+    await page.waitForLoadState('domcontentloaded');
+
+    // Valida tokens em Dark Mode
+    const hero = page.locator('#hero');
+    await expect(hero).toHaveAttribute('data-tone', 'anchor');
+    const servicos = page.locator('#servicos');
+    await expect(servicos).toHaveAttribute('data-tone', 'base');
+
+    // Rola para o rodapé e alterna para Light Mode
+    await page.evaluate(() => {
+      const footer = document.querySelector('footer');
+      if (footer) footer.scrollIntoView({ behavior: 'instant' });
+      else window.scrollTo(0, document.body.scrollHeight);
+    });
+    await page.waitForTimeout(600);
+
+    const lightThemeButton = page.locator('button[title="Tema Light"]');
+    await expect(lightThemeButton).toBeVisible({ timeout: 10000 });
+    await lightThemeButton.click();
+    await page.waitForTimeout(400);
+
+    // Valida em Light Mode
+    await expect(hero).toHaveAttribute('data-tone', 'anchor');
+    await expect(servicos).toHaveAttribute('data-tone', 'base');
+
+    // Retorna para Dark Mode
+    const darkThemeButton = page.locator('button[title="Tema Dark"]');
+    await darkThemeButton.click();
+    await page.waitForTimeout(400);
+  });
+
+  test('Hero (SPEC-083/094): Renderiza proposta de valor, H1 monocromático, cta principal e seletor interativo de cenários', async ({ page }) => {
+    await page.goto('/');
+    await page.waitForLoadState('domcontentloaded');
+
+    // 1. Valida H1 rigorosamente monocromático (SPEC-094)
+    const heroH1 = page.locator('#hero h1');
+    await expect(heroH1).toBeVisible();
+    await expect(heroH1).toContainText('Engenharia de software para construir, integrar e evoluir sistemas.');
+    await expect(heroH1.locator('span.text-text-brand')).toHaveCount(0);
+
+    // 2. Valida subheadline editorial de proposta de valor
+    const subheadline = page.getByText(
+      'Desenvolvemos sistemas web, APIs e integrações sob medida para operações que não podem parar por instabilidade ou lentidão.'
+    );
+    await expect(subheadline).toBeVisible();
+
+    // 3. Valida CTA principal único e ausência de CTA secundário (SPEC-084)
+    const ctaPrimario = page.locator('#hero a[href="/contato"]').first();
+    await expect(ctaPrimario).toBeVisible();
+    await expect(ctaPrimario).toContainText('Vamos conversar');
+
+    const ctaSecundario = page.locator('#hero a[href="#servicos"]');
+    await expect(ctaSecundario).toHaveCount(0);
+
+    // 4. Valida ausência da faixa de confiança operacional (SPEC-084)
+    const trustStrip = page.locator('[data-testid="hero-operational-trust"]');
+    await expect(trustStrip).toHaveCount(0);
+    await expect(page.getByText('Aplicações corporativas críticas')).toHaveCount(0);
+
+    // 5. Valida Seletor Interativo de Cenários de Negócio
+    const selector = page.locator('[data-testid="hero-scenario-selector"]');
+    await expect(selector).toBeVisible();
+    await expect(selector).toContainText('Qual é o principal desafio da sua empresa hoje?');
+    await expect(selector).toContainText('Diagnóstico técnico direto');
+
+    // Valida os 4 links de cenário com navegação ancorada
+    const scenarios = [
+      { id: 'sistemas', text: 'Criar um novo sistema, portal ou plataforma corporativa', href: '/servicos#sistemas' },
+      { id: 'integracoes', text: 'Conectar sistemas isolados e acabar com retrabalho manual', href: '/servicos#integracoes' },
+      { id: 'legados', text: 'Modernizar um software legado sem interromper o dia a dia', href: '/servicos#legados' },
+      { id: 'diagnostico', text: 'Avaliar a arquitetura do meu sistema com um diagnóstico técnico', href: '/contato' },
+    ];
+
+    for (const scenario of scenarios) {
+      const scenarioLink = page.locator(`[data-testid="scenario-link-${scenario.id}"]`);
+      await expect(scenarioLink).toBeVisible();
+      await expect(scenarioLink).toContainText(scenario.text);
+      await expect(scenarioLink).toHaveAttribute('href', scenario.href);
+    }
+  });
 });
 
 

@@ -36,9 +36,9 @@ const FAQ_ITEMS: FAQItem[] = [
   },
   {
     category: "contratacao",
-    question: "A EPM DevTech atende clientes fora de Toledo (PR) ou no exterior?",
+    question: "Como funciona o atendimento remoto da EPM DevTech para empresas de diferentes regiões?",
     answer:
-      "Sim, atuamos de forma remota para empresas e instituições de qualquer região. Já participamos de soluções aplicadas em diferentes estados brasileiros, mantendo comunicação frequente, alinhamentos periódicos e acompanhamento próximo a cada etapa.",
+      "Atuamos de forma 100% remota com empresas e operações em qualquer estado do país. Nosso modelo de trabalho se baseia em comunicação direta, alinhamentos periódicos e entregas incrementais em ambiente de homologação, garantindo proximidade e acompanhamento contínuo em cada etapa do projeto.",
   },
 
   // ── Categoria: Sistemas Existentes ──────────────────────────────────
@@ -81,13 +81,13 @@ const CATEGORY_LABELS: Record<FAQItem["category"], string> = {
 
 const CATEGORY_COLORS: Record<FAQItem["category"], string> = {
   contratacao:
-    "bg-emerald-50 text-emerald-800 border-emerald-300 dark:bg-emerald-950/50 dark:text-emerald-400 dark:border-emerald-800/60",
+    "bg-brand-subtle text-text-brand border-brand/20",
   legados:
-    "bg-blue-50 text-blue-800 border-blue-300 dark:bg-blue-950/50 dark:text-blue-400 dark:border-blue-800/60",
+    "bg-accent-blue/10 text-accent-blue border-accent-blue/20",
   processo:
-    "bg-violet-50 text-violet-800 border-violet-300 dark:bg-violet-950/50 dark:text-violet-400 dark:border-violet-800/60",
+    "bg-accent-violet/10 text-accent-violet border-accent-violet/20",
   servicos:
-    "bg-teal-50 text-teal-800 border-teal-300 dark:bg-teal-950/50 dark:text-teal-400 dark:border-teal-800/60",
+    "bg-accent-amber/10 text-accent-amber border-accent-amber/20",
 };
 
 const FAQ = () => {
@@ -151,7 +151,7 @@ const FAQ = () => {
               >
                 <AccordionItem
                   value={`faq-${index}`}
-                  className="border border-zinc-200/80 dark:border-border/60 rounded-xl overflow-hidden bg-white/95 dark:bg-card/50 shadow-sm transition-colors duration-200 hover:border-primary/40 data-[state=open]:border-primary/50 data-[state=open]:bg-white dark:data-[state=open]:bg-card"
+                  className="border border-border-default rounded-xl overflow-hidden bg-surface-elevated shadow-sm transition-colors duration-200 hover:border-brand/40 data-[state=open]:border-brand/50 data-[state=open]:bg-surface-elevated"
                 >
                   <AccordionTrigger className="px-5 py-4 text-left hover:no-underline group">
                     <div className="flex items-start gap-3 w-full">
@@ -163,20 +163,20 @@ const FAQ = () => {
                         {CATEGORY_LABELS[item.category].split(" ")[0]}
                       </span>
                       {/* question */}
-                      <span className="text-sm font-semibold text-zinc-900 dark:text-foreground leading-snug group-data-[state=open]:text-primary transition-colors duration-200">
+                      <span className="text-sm font-semibold text-text-primary leading-snug group-data-[state=open]:text-text-brand transition-colors duration-200">
                         {item.question}
                       </span>
                     </div>
                   </AccordionTrigger>
 
                   <AccordionContent className="px-5 pb-5">
-                    <div className="mt-1 space-y-2 text-zinc-600 dark:text-zinc-400">
+                    <div className="mt-1 space-y-2 text-text-secondary">
                       {item.answer.split("\n").map((line, i) => (
                         <p
                           key={i}
                           className={`text-sm leading-relaxed ${
                             line.startsWith("•")
-                              ? "pl-3 font-mono text-xs sm:text-sm text-zinc-600 dark:text-zinc-400"
+                              ? "pl-3 font-mono text-xs sm:text-sm text-text-secondary"
                               : ""
                           }`}
                         >

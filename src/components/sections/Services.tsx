@@ -1,6 +1,5 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
+import { FC, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import SectionHeader from "@/components/ui/SectionHeader";
 
 /* ─── Visual Mockups ─────────────────────────────────────────── */
@@ -17,19 +16,21 @@ function MockBrowser() {
       </div>
       {/* fake nav bar */}
       <div style={{ display: "flex", gap: 8, marginBottom: 10 }}>
-        {["Home", "Sobre", "Serviços"].map(l => (
-          <div key={l} className="svc-pill">{l}</div>
+        {["Home", "Sobre", "Serviços"].map((l) => (
+          <div key={l} className="svc-pill">
+            {l}
+          </div>
         ))}
       </div>
       {/* hero block */}
       <div className="svc-block" style={{ padding: "10px 12px", marginBottom: 8 }}>
         <div className="svc-bar" style={{ width: "55%", height: 7, borderRadius: 3, marginBottom: 5 }} />
         <div className="svc-bar" style={{ width: "40%", height: 5, borderRadius: 3, marginBottom: 8 }} />
-        <div style={{ width: 60, height: 20, background: "linear-gradient(135deg,#10b981,#059669)", borderRadius: 4 }} />
+        <div style={{ width: 60, height: 20, background: "var(--accent-blue)", borderRadius: 4 }} />
       </div>
       {/* 3 card blocks */}
       <div style={{ display: "flex", gap: 6 }}>
-        {[0, 1, 2].map(i => (
+        {[0, 1, 2].map((i) => (
           <div key={i} className="svc-block" style={{ flex: 1, height: 28, borderRadius: 5 }} />
         ))}
       </div>
@@ -48,13 +49,40 @@ function MockAPI() {
   return (
     <div className="svc-mockup" style={{ fontSize: 9, lineHeight: 1.8 }}>
       <div style={{ display: "flex", gap: 5, marginBottom: 10 }}>
-        <div style={{ padding: "2px 8px", borderRadius: 4, background: "rgba(16,185,129,0.18)", color: "#10b981", fontSize: 8, fontWeight: 700 }}>GET</div>
-        <div className="svc-bar" style={{ flex: 1, height: 18, borderRadius: 4, display: "flex", alignItems: "center", paddingLeft: 8, fontSize: 8 }}>/api/v1/users</div>
+        <div
+          style={{
+            padding: "2px 8px",
+            borderRadius: 4,
+            background: "rgba(167,139,250,0.18)",
+            color: "var(--accent-violet)",
+            fontSize: 8,
+            fontWeight: 700,
+          }}
+        >
+          GET
+        </div>
+        <div
+          className="svc-bar"
+          style={{
+            flex: 1,
+            height: 18,
+            borderRadius: 4,
+            display: "flex",
+            alignItems: "center",
+            paddingLeft: 8,
+            fontSize: 8,
+          }}
+        >
+          /api/v1/users
+        </div>
       </div>
       {lines.map((l, i) => (
         <div key={i} className={`svc-code-line svc-code-${l.type}`}>
           {l.type !== "blank" && (
-            <span>{l.text}{l.value ? <span className="svc-code-value"> {l.value}</span> : null}</span>
+            <span>
+              {l.text}
+              {l.value ? <span className="svc-code-value"> {l.value}</span> : null}
+            </span>
           )}
         </div>
       ))}
@@ -69,19 +97,74 @@ function MockIntegration() {
   return (
     <div className="svc-mockup" style={{ display: "flex", flexDirection: "column", gap: 8 }}>
       <div style={{ display: "flex", justifyContent: "center", marginBottom: 4 }}>
-        <div style={{ padding: "4px 14px", borderRadius: 6, background: "rgba(16,185,129,0.18)", border: "1px solid rgba(16,185,129,0.35)", color: "#10b981", fontSize: 9, fontWeight: 700 }}>API Hub</div>
+        <div
+          style={{
+            padding: "4px 14px",
+            borderRadius: 6,
+            background: "rgba(251,191,36,0.18)",
+            border: "1px solid rgba(251,191,36,0.35)",
+            color: "var(--accent-amber)",
+            fontSize: 9,
+            fontWeight: 700,
+          }}
+        >
+          API Hub
+        </div>
       </div>
       <div style={{ display: "flex", justifyContent: "center", height: 14, alignItems: "center" }}>
-        <div style={{ width: "80%", height: 1, background: "linear-gradient(90deg, transparent, rgba(168,85,247,0.4), transparent)" }} />
+        <div
+          style={{
+            width: "80%",
+            height: 1,
+            background: "linear-gradient(90deg, transparent, rgba(251,191,36,0.4), transparent)",
+          }}
+        />
       </div>
       <div style={{ display: "flex", justifyContent: "space-around" }}>
-        {[{ label: "CRM", color: "#10b981" }, { label: "ERP", color: "#A855F7" }, { label: "Email", color: "#10b981" }, { label: "DB", color: "#f59e0b" }].map(n => (
-          <div key={n.label} style={{ padding: "3px 8px", borderRadius: 5, background: `${n.color}18`, border: `1px solid ${n.color}40`, color: n.color, fontSize: 8 }}>{n.label}</div>
+        {[
+          { label: "CRM", color: "var(--accent-blue)" },
+          { label: "ERP", color: "var(--accent-violet)" },
+          { label: "Email", color: "var(--brand)" },
+          { label: "DB", color: "var(--accent-amber)" },
+        ].map((n) => (
+          <div
+            key={n.label}
+            style={{
+              padding: "3px 8px",
+              borderRadius: 5,
+              background: "var(--bg-elevated)",
+              border: "1px solid var(--border-subtle)",
+              color: n.color,
+              fontSize: 8,
+            }}
+          >
+            {n.label}
+          </div>
         ))}
       </div>
       <div style={{ marginTop: 6, display: "flex", gap: 5 }}>
-        <div style={{ padding: "2px 7px", borderRadius: 4, background: "rgba(168,85,247,0.15)", color: "#a78bfa", fontSize: 8 }}>event.publish()</div>
-        <div style={{ padding: "2px 7px", borderRadius: 4, background: "rgba(16,185,129,0.12)", color: "#10b981", fontSize: 8 }}>webhook → OK</div>
+        <div
+          style={{
+            padding: "2px 7px",
+            borderRadius: 4,
+            background: "var(--bg-elevated)",
+            color: "var(--accent-violet)",
+            fontSize: 8,
+          }}
+        >
+          event.publish()
+        </div>
+        <div
+          style={{
+            padding: "2px 7px",
+            borderRadius: 4,
+            background: "var(--bg-elevated)",
+            color: "var(--brand)",
+            fontSize: 8,
+          }}
+        >
+          webhook → OK
+        </div>
       </div>
     </div>
   );
@@ -98,11 +181,35 @@ function MockMaintenance() {
   return (
     <div className="svc-mockup" style={{ fontSize: 8.5, lineHeight: 1.9 }}>
       <div style={{ display: "flex", gap: 4, marginBottom: 8 }}>
-        <div style={{ padding: "2px 7px", background: "rgba(239,68,68,0.1)", borderRadius: 4, color: "#ef4444", fontSize: 8, border: "1px solid rgba(239,68,68,0.2)" }}>legacy</div>
-        <div style={{ padding: "2px 7px", background: "rgba(34,197,94,0.1)", borderRadius: 4, color: "#16a34a", fontSize: 8, border: "1px solid rgba(34,197,94,0.2)" }}>refactored</div>
+        <div
+          style={{
+            padding: "2px 7px",
+            background: "rgba(248,113,113,0.1)",
+            borderRadius: 4,
+            color: "var(--danger)",
+            fontSize: 8,
+            border: "1px solid rgba(248,113,113,0.2)",
+          }}
+        >
+          legacy
+        </div>
+        <div
+          style={{
+            padding: "2px 7px",
+            background: "var(--brand-subtle)",
+            borderRadius: 4,
+            color: "var(--text-brand)",
+            fontSize: 8,
+            border: "1px solid var(--border-subtle)",
+          }}
+        >
+          refactored
+        </div>
       </div>
       {diff.map((l, i) => (
-        <div key={i} className={`svc-diff-line svc-diff-${l.type}`}>{l.text}</div>
+        <div key={i} className={`svc-diff-line svc-diff-${l.type}`}>
+          {l.text}
+        </div>
       ))}
     </div>
   );
@@ -112,44 +219,48 @@ function MockMaintenance() {
 
 const services = [
   {
+    id: "sistemas",
+    indexTag: "01 // WEB & PLATAFORMAS",
     visual: <MockBrowser />,
-    title: "Sistemas web, portais e sites institucionais",
-    trigger: "Precisa criar um sistema novo, um portal ou um site institucional que represente bem a sua empresa?",
-    problem: "Precisa criar um sistema novo, um portal ou um site institucional que represente bem a sua empresa?",
-    description: "Aplicações web sob medida, portais e sites institucionais: sistemas de gestão internos, plataformas e presença digital com foco em credibilidade, desempenho e acessibilidade.",
-    accent: "#10b981",
+    title: "Sistemas web e plataformas corporativas",
+    trigger: "Sua equipe perde tempo gerenciando processos em planilhas desconectadas ou precisa de uma plataforma própria para atender clientes e colaboradores com segurança e velocidade.",
+    description: "Desenvolvemos sistemas internos, portais e ferramentas corporativas com interfaces ágeis, fluxos intuitivos e estabilidade técnica comprovada.",
+    accent: "var(--accent-blue)",
   },
   {
+    id: "apis",
+    indexTag: "02 // APIS & ALTA PERFORMANCE",
     visual: <MockAPI />,
-    title: "APIs & back-end escalável",
-    trigger: "Seu sistema sofre com lentidão em horários de pico ou precisa centralizar regras?",
-    problem: "Seu sistema sofre com lentidão em horários de pico ou precisa centralizar regras?",
-    description: "Desenvolvimento de APIs RESTful e serviços de alta disponibilidade para sustentar aplicações, integrar operações e centralizar regras de negócio sob carga contínua.",
-    accent: "#A855F7",
+    title: "APIs e back-end de alta concorrência",
+    trigger: "O sistema atual trava ou fica lento em horários de pico, ou novos serviços precisam consumir regras de negócio com segurança e resposta em milissegundos.",
+    description: "Construímos APIs robustas e arquiteturas preparadas para absorver grandes picos de uso sem lentidão e sem indisponibilidade.",
+    accent: "var(--accent-violet)",
   },
   {
+    id: "integracoes",
+    indexTag: "03 // INTEGRAÇÃO DE DADOS",
     visual: <MockIntegration />,
-    title: "Integrações entre sistemas",
-    trigger: "Sua operação perde tempo com processos manuais porque seus sistemas não conversam?",
-    problem: "Sua operação perde tempo com processos manuais porque seus sistemas não conversam?",
-    description: "Conexão segura entre ERPs, CRMs, plataformas e serviços externos, com foco em confiabilidade e consistência dos dados.",
-    accent: "#10b981",
+    title: "Integrações de dados entre sistemas",
+    trigger: "Sua equipe gasta horas do dia redigitando informações entre ERP, CRM e ferramentas financeiras, com risco frequente de erros e inconsistências.",
+    description: "Criamos pontes automatizadas e seguras entre suas ferramentas, garantindo que os dados cheguem ao destino certo sem perdas e sem esforço manual.",
+    accent: "var(--accent-amber)",
   },
   {
+    id: "legados",
+    indexTag: "04 // MODERNIZAÇÃO",
     visual: <MockMaintenance />,
-    title: "Modernização & evolução de legados",
-    trigger: "Tem um sistema legado essencial que já não acompanha a velocidade da operação?",
-    problem: "Tem um sistema legado essencial que já não acompanha a velocidade da operação?",
-    description: "Refatoração e migração gradual de plataformas legadas, reduzindo custos de manutenção e dívida técnica, com evolução incremental e menor risco de interrupção da operação.",
-    accent: "#10b981",
+    title: "Modernização de sistemas legados",
+    trigger: "A empresa depende de um sistema antigo que ninguém tem coragem de mexer por medo de travar a operação, mas que já não acompanha as necessidades do negócio.",
+    description: "Substituímos e refatoramos módulos antigos passo a passo, garantindo que o negócio continue faturando normalmente durante toda a transição.",
+    accent: "var(--brand)",
   },
 ];
 
-interface ServicesProps {
+export interface ServicesProps {
   hideHeader?: boolean;
 }
 
-const Services: React.FC<ServicesProps> = ({ hideHeader = false }) => {
+export const Services: FC<ServicesProps> = ({ hideHeader = false }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -157,54 +268,14 @@ const Services: React.FC<ServicesProps> = ({ hideHeader = false }) => {
     <>
       <style>{`
         /* ══════════════════════════════════════════════════
-           SERVICES SECTION — Light + Dark Mode
+           SERVICES SECTION — Light + Dark Mode Mockups
         ══════════════════════════════════════════════════ */
-
-        /* ── card ── */
-        .svc-card {
-          border-radius: 14px;
-          overflow: hidden;
-          border: 1px solid hsl(var(--border));
-          background: hsl(var(--card));
-          transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.04);
-        }
-        .dark .svc-card {
-          box-shadow: 0 2px 8px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.04);
-        }
-        .svc-card:hover {
-          transform: translateY(-4px);
-          border-color: hsl(var(--primary) / 0.35);
-          box-shadow: 0 4px 16px rgba(0,0,0,0.06), 0 16px 40px rgba(0,0,0,0.06), 0 0 0 1px hsl(var(--primary) / 0.12);
-        }
-        .dark .svc-card:hover {
-          box-shadow: 0 4px 16px rgba(0,0,0,0.4), 0 16px 40px rgba(0,0,0,0.35), 0 0 0 1px hsl(var(--primary) / 0.2);
-        }
-
-        /* ── visual / mockup area ── */
-        .svc-visual-area {
-          padding: 24px 24px 20px;
-          min-height: 160px;
-          background: hsl(var(--secondary) / 0.5);
-          border-bottom: 1px solid hsl(var(--border));
-          display: flex;
-          align-items: flex-start;
-          position: relative;
-          overflow: hidden;
-        }
-        .dark .svc-visual-area {
-          background: rgba(0,0,0,0.2);
-          border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        /* ── mockup shared base ── */
         .svc-mockup {
           font-family: ui-monospace, 'Geist Mono', monospace;
           width: 100%;
           height: 100%;
         }
 
-        /* generic muted bar/block for light/dark */
         .svc-bar {
           background: hsl(var(--border));
         }
@@ -227,7 +298,6 @@ const Services: React.FC<ServicesProps> = ({ hideHeader = false }) => {
           color: hsl(var(--muted-foreground));
         }
 
-        /* API mock code lines */
         .svc-code-line { color: hsl(var(--muted-foreground)); }
         .svc-code-comment { opacity: 0.5; }
         .svc-code-response { color: #16a34a; }
@@ -243,41 +313,21 @@ const Services: React.FC<ServicesProps> = ({ hideHeader = false }) => {
         }
         .dark .svc-success-badge { color: #4ade80; }
 
-        /* Architecture layers */
-        .svc-arch-layer {
-          padding: 6px 10px;
-          border-radius: 6px;
-          background: hsl(var(--secondary) / 0.6);
-          border: 1px solid hsl(var(--border));
-          display: flex;
-          align-items: center;
-          gap: 6px;
-          color: hsl(var(--muted-foreground));
-        }
-
-        /* Diff lines */
         .svc-diff-line { padding-left: 4px; border-radius: 2px; }
         .svc-diff-remove { color: #dc2626; background: rgba(239,68,68,0.06); }
         .dark .svc-diff-remove { color: #f87171; }
         .svc-diff-add { color: #16a34a; background: rgba(34,197,94,0.06); }
         .dark .svc-diff-add { color: #4ade80; }
         .svc-diff-neutral { color: hsl(var(--muted-foreground)); opacity: 0.6; }
-
-        /* Chat bubble */
-        .svc-chat-bubble {
-          flex: 1;
-          padding: 4px 8px;
-          border-radius: 6px;
-          background: hsl(var(--secondary) / 0.5);
-          border: 1px solid hsl(var(--border));
-          color: hsl(var(--muted-foreground));
-          line-height: 1.5;
-        }
       `}</style>
 
-      <section id="servicos" aria-labelledby="servicos-heading" className="relative py-24 bg-secondary/30" ref={ref}>
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-
+      <section
+        id="servicos"
+        aria-labelledby="servicos-heading"
+        data-tone="base"
+        className="relative py-16 sm:py-20 md:py-24 lg:py-28 bg-surface-base text-foreground section-wrapper transition-colors duration-200"
+        ref={ref}
+      >
         <div className="container px-6">
           {!hideHeader && (
             <motion.div
@@ -295,60 +345,66 @@ const Services: React.FC<ServicesProps> = ({ hideHeader = false }) => {
             </motion.div>
           )}
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-            {services.map((service, index) => (
-              <motion.div
-                key={service.title}
-                className="svc-card flex flex-col h-full"
-                initial={{ opacity: 0, y: 24 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: index * 0.08 }}
-              >
-                {/* Visual area */}
-                <div className="svc-visual-area">
-                  {/* accent glow in corner */}
-                  <div style={{
-                    position: "absolute",
-                    top: -40, right: -40,
-                    width: 130, height: 130,
-                    borderRadius: "50%",
-                    background: `radial-gradient(circle, ${service.accent}15 0%, transparent 70%)`,
-                    pointerEvents: "none",
-                  }} />
-                  {service.visual}
-                </div>
+          {/* ─── Z-Pattern: Linhas Horizontais Alternadas (12 Colunas) ─── */}
+          <div className="max-w-5xl mx-auto divide-y divide-border-default/60">
+            {services.map((service, index) => {
+              const isEven = index % 2 === 1; // 1 e 3 invertidos (mock esq, texto dir)
 
-                {/* Text area */}
-                <div className="flex flex-col flex-1 p-5 sm:p-6">
-                  <h3 style={{
-                    fontFamily: "'Geist', sans-serif",
-                    fontSize: "0.95rem",
-                    fontWeight: 600,
-                    letterSpacing: "-0.015em",
-                    marginBottom: 8,
-                    color: "hsl(var(--foreground))",
-                    lineHeight: 1.3,
-                  }}>
-                    {service.title}
-                  </h3>
-                  <p style={{
-                    fontFamily: "'Geist Mono', monospace",
-                    fontSize: "0.75rem",
-                    color: "hsl(var(--muted-foreground))",
-                    lineHeight: 1.65,
-                    marginBottom: 14,
-                  }}>
-                    {service.description}
-                  </p>
-                  <p className="mt-auto pt-3.5 border-t border-border/50 text-[12.5px] leading-relaxed text-foreground font-medium">
-                    <span className="font-mono text-[10.5px] uppercase tracking-wider text-emerald-600 dark:text-emerald-400 font-semibold block mb-1">
-                      Quando precisa:
+              return (
+                <motion.article
+                  key={service.title}
+                  id={service.id}
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: index * 0.08 }}
+                  className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center py-12 lg:py-16 first:pt-0 last:pb-0"
+                >
+                  {/* Coluna de Texto */}
+                  <div
+                    className={`lg:col-span-6 flex flex-col justify-center ${
+                      isEven ? "order-1 lg:order-2" : "order-1 lg:order-1"
+                    }`}
+                  >
+                    <span className="font-mono text-xs font-semibold text-text-brand tracking-wider uppercase mb-2">
+                      {service.indexTag}
                     </span>
-                    {service.trigger}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
+                    <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-primary mb-3">
+                      {service.title}
+                    </h3>
+                    <p className="text-secondary text-sm sm:text-base leading-relaxed mb-6">
+                      {service.description}
+                    </p>
+
+                    {/* Callout de contexto de negócio com borda lateral */}
+                    <div className="border-l-2 border-brand/60 pl-4 py-2 bg-brand/5 dark:bg-brand/5 rounded-r-md">
+                      <span className="font-mono text-[11px] uppercase tracking-wider text-text-brand font-semibold block mb-1">
+                        Quando precisa:
+                      </span>
+                      <p className="text-xs sm:text-sm text-secondary font-medium leading-relaxed">
+                        {service.trigger}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Coluna Visual (Mock Técnico com fundo escuro e profundidade) */}
+                  <div
+                    className={`lg:col-span-6 flex justify-center w-full ${
+                      isEven ? "order-2 lg:order-1" : "order-2 lg:order-2"
+                    }`}
+                  >
+                    <div className="relative w-full rounded-xl border border-border-default/80 bg-surface/80 dark:bg-zinc-950/80 p-5 sm:p-6 shadow-2xl backdrop-blur-sm select-none hover:border-brand/40 transition-colors duration-300 overflow-hidden">
+                      {/* Efeito de iluminação suave em background */}
+                      <div
+                        className="absolute -top-12 -right-12 w-44 h-44 rounded-full pointer-events-none blur-3xl opacity-20"
+                        style={{ background: service.accent }}
+                        aria-hidden="true"
+                      />
+                      <div className="relative z-10">{service.visual}</div>
+                    </div>
+                  </div>
+                </motion.article>
+              );
+            })}
           </div>
         </div>
       </section>

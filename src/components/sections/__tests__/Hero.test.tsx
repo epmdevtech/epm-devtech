@@ -1,78 +1,134 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
+import { MemoryRouter } from 'react-router-dom';
 import Hero from '../Hero';
 
-describe('Hero Component (Slim & Minimalist — SPEC-059)', () => {
-  it('renders section with semantic accessibility labeling', () => {
-    render(<Hero />);
+const renderHero = () =>
+  render(
+    <MemoryRouter>
+      <Hero />
+    </MemoryRouter>
+  );
+
+describe('Hero Component (Business Scenarios Selector & B2B Decision — SPEC-083)', () => {
+  it('renders section with semantic accessibility labeling, fullscreen classes, data-tone and unique H1', () => {
+    renderHero();
 
     const section = document.getElementById('hero');
     expect(section).toBeInTheDocument();
     expect(section).toHaveAttribute('aria-labelledby', 'hero-title');
+    expect(section).toHaveAttribute('data-tone', 'anchor');
+    expect(section?.className).toContain('min-h-screen');
+    expect(section?.className).toContain('min-h-[100svh]');
 
-    const heading = screen.getByRole('heading', { level: 1 });
-    expect(heading).toHaveAttribute('id', 'hero-title');
+    const headings = screen.getAllByRole('heading', { level: 1 });
+    expect(headings).toHaveLength(1);
+    expect(headings[0]).toHaveAttribute('id', 'hero-title');
   });
 
-  it('renders exact H1 and subheadline copy for software house', () => {
-    render(<Hero />);
+  it('renders exact monochromatic H1 and editorial subheadline (SPEC-094)', () => {
+    renderHero();
 
     const heading = screen.getByRole('heading', { level: 1 });
-    expect(heading).toHaveTextContent('Desenvolvemos software sob medida para o seu negócio.');
+    expect(heading).toHaveTextContent('Engenharia de software para construir, integrar e evoluir sistemas.');
+    expect(heading.className).toContain('text-primary');
 
+    // Strictly monochromatic: no bicolored inner span
+    const accentedSpan = heading.querySelector('span');
+    expect(accentedSpan).toBeNull();
+
+    // Editorial subheadline
     expect(
-      screen.getByText('Sistemas web, APIs, integrações e soluções digitais construídas para resolver problemas reais e acompanhar a evolução da sua empresa.')
+      screen.getByText(
+        'Desenvolvemos sistemas web, APIs e integrações sob medida para operações que não podem parar por instabilidade ou lentidão.'
+      )
     ).toBeInTheDocument();
   });
 
-  it('renders minimalist eyebrow with BrandChipIcon and "Software House" tagline', () => {
-    render(<Hero />);
+  it('renders contextual eyebrow with BrandChipIcon without pill/badge wrapper', () => {
+    renderHero();
 
     const eyebrow = screen.getByTestId('hero-eyebrow');
     expect(eyebrow).toBeInTheDocument();
-    expect(eyebrow).toHaveTextContent(/Software House/i);
+    expect(eyebrow).toHaveTextContent(/ENGENHARIA DE SOFTWARE & MODERNIZAÇÃO/i);
     expect(eyebrow.querySelector('svg')).toBeInTheDocument();
+
+    // Must not have pill/badge classes
+    expect(eyebrow.className).not.toContain('rounded-full');
+    expect(eyebrow.className).not.toContain('border');
   });
 
-  it('renders primary CTA button pointing to #contato and secondary text link pointing to #sobre', () => {
-    render(<Hero />);
+  it('renders primary CTA pointing to /contato and ensures secondary CTA is absent (SPEC-084)', () => {
+    renderHero();
 
-    const primaryCta = screen.getByRole('link', { name: /Falar sobre meu projeto/i });
+    const primaryCta = screen.getByRole('link', { name: /Vamos conversar/i });
     expect(primaryCta).toBeInTheDocument();
-    expect(primaryCta).toHaveAttribute('href', '#contato');
+    expect(primaryCta).toHaveAttribute('href', '/contato');
 
-    const secondaryCta = screen.getByRole('link', { name: /Conhecer a EPM DevTech/i });
-    expect(secondaryCta).toBeInTheDocument();
-    expect(secondaryCta).toHaveAttribute('href', '#sobre');
-    // Ensure secondary action is a text link rather than a second full button
-    expect(secondaryCta.tagName.toLowerCase()).toBe('a');
+    const secondaryCta = screen.queryByRole('link', { name: /Ver soluções/i });
+    expect(secondaryCta).not.toBeInTheDocument();
   });
 
-  it('renders minimalist section transition divider with brand node', () => {
-    const { container } = render(<Hero />);
+  it('does not render operational trust strip (SPEC-084)', () => {
+    renderHero();
 
-    const dividerContainer = container.querySelector('[aria-hidden="true"].relative');
-    expect(dividerContainer).toBeInTheDocument();
-    expect(dividerContainer?.querySelector('.border-t')).toBeInTheDocument();
-    expect(dividerContainer?.querySelector('.rounded-full.bg-primary')).toBeInTheDocument();
+    const trustStrip = screen.queryByTestId('hero-operational-trust');
+    expect(trustStrip).not.toBeInTheDocument();
+    expect(screen.queryByText(/Aplicações corporativas críticas/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Energia, educação, indústria e varejo/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Retorno em até 24h úteis/i)).not.toBeInTheDocument();
   });
 
-  it('verifies that architecture diagram and telemetry noise are completely removed', () => {
-    render(<Hero />);
+  it('renders interactive business scenario selector with header, status, and 4 scenario links (SPEC-083)', () => {
+    renderHero();
 
-    // Diagram console region must NOT exist
-    expect(screen.queryByRole('region', { name: /diagrama/i })).not.toBeInTheDocument();
+    const selector = screen.getByTestId('hero-scenario-selector');
+    expect(selector).toBeInTheDocument();
+    expect(selector).toHaveTextContent('Qual é o principal desafio da sua empresa hoje?');
+    expect(selector).toHaveTextContent('Diagnóstico técnico direto');
 
-    // Diagram layers and nodes must NOT exist
-    expect(screen.queryByText(/01 \/ Borda/i)).not.toBeInTheDocument();
-    expect(screen.queryByText(/02 \/ Core/i)).not.toBeInTheDocument();
-    expect(screen.queryByText(/03 \/ Assincronia/i)).not.toBeInTheDocument();
-    expect(screen.queryByText(/04 \/ Nuvem/i)).not.toBeInTheDocument();
-    expect(screen.queryByText('Client / Edge')).not.toBeInTheDocument();
-    expect(screen.queryByText('Domain Services')).not.toBeInTheDocument();
-    expect(screen.queryByText('Event Stream')).not.toBeInTheDocument();
-    expect(screen.queryByText('Cloud & Data')).not.toBeInTheDocument();
-    expect(screen.queryByText('Edge Routing')).not.toBeInTheDocument();
-    expect(screen.queryByText('topologia://arquitetura-distribuida.epm')).not.toBeInTheDocument();
+    // Scenario 1: Sistemas / Web
+    const link1 = screen.getByTestId('scenario-link-sistemas');
+    expect(link1).toBeInTheDocument();
+    expect(link1).toHaveAttribute('href', '/servicos#sistemas');
+    expect(link1).toHaveTextContent('Criar um novo sistema, portal ou plataforma corporativa');
+
+    // Scenario 2: Integrações
+    const link2 = screen.getByTestId('scenario-link-integracoes');
+    expect(link2).toBeInTheDocument();
+    expect(link2).toHaveAttribute('href', '/servicos#integracoes');
+    expect(link2).toHaveTextContent('Conectar sistemas isolados e acabar com retrabalho manual');
+
+    // Scenario 3: Legados
+    const link3 = screen.getByTestId('scenario-link-legados');
+    expect(link3).toBeInTheDocument();
+    expect(link3).toHaveAttribute('href', '/servicos#legados');
+    expect(link3).toHaveTextContent('Modernizar um software legado sem interromper o dia a dia');
+
+    // Scenario 4: Diagnóstico
+    const link4 = screen.getByTestId('scenario-link-diagnostico');
+    expect(link4).toBeInTheDocument();
+    expect(link4).toHaveAttribute('href', '/contato');
+    expect(link4).toHaveTextContent('Avaliar a arquitetura do meu sistema com um diagnóstico técnico');
+  });
+
+  it('respects prefers-reduced-motion without throwing and renders all elements', () => {
+    const originalMatchMedia = window.matchMedia;
+    window.matchMedia = (query: string) => ({
+      matches: query.includes('prefers-reduced-motion'),
+      media: query,
+      onchange: null,
+      addListener: () => {},
+      removeListener: () => {},
+      addEventListener: () => {},
+      removeEventListener: () => {},
+      dispatchEvent: () => false,
+    });
+
+    const { container } = renderHero();
+    expect(container.querySelector('#hero')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument();
+
+    window.matchMedia = originalMatchMedia;
   });
 });

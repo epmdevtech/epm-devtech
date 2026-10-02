@@ -46,7 +46,7 @@ describe('FAQ Component', () => {
 
     // 4. Atendimento remoto
     expect(
-      screen.getByText(/A EPM DevTech atende clientes fora de Toledo \(PR\) ou no exterior\?/i)
+      screen.getByText(/Como funciona o atendimento remoto da EPM DevTech para empresas de diferentes regiões\?/i)
     ).toBeInTheDocument();
 
     // 5. Sistemas existentes

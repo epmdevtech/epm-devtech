@@ -5,14 +5,14 @@ test.describe('EPM DEVTECH — Arquitetura de Informação Multi-Rota (SPEC-060)
   const CANONICAL_ROUTES = [
     {
       path: '/',
-      expectedTitle: 'EPM DevTech | Software House e Desenvolvimento de Software Sob Medida',
-      expectedH1: 'Desenvolvemos software sob medida para o seu negócio.',
+      expectedTitle: 'EPM DevTech | Engenharia de Software Sob Medida para Empresas',
+      expectedH1: 'Engenharia de software para construir, integrar e evoluir sistemas.',
       canonicalUrl: 'https://epmdevtech.com.br/',
     },
     {
       path: '/servicos',
       expectedTitle: 'Serviços de Desenvolvimento de Software | EPM DevTech',
-      expectedH1: 'Soluções sob medida para cada estágio da sua operação',
+      expectedH1: 'Soluções de software sob medida para destravar sua empresa',
       canonicalUrl: 'https://epmdevtech.com.br/servicos',
     },
     {
@@ -35,8 +35,8 @@ test.describe('EPM DEVTECH — Arquitetura de Informação Multi-Rota (SPEC-060)
     },
     {
       path: '/sobre',
-      expectedTitle: 'Sobre a EPM DevTech | Software House em Toledo, PR',
-      expectedH1: 'Sobre a EPM DevTech',
+      expectedTitle: 'Sobre a EPM DevTech | Engenharia de Software Corporativa',
+      expectedH1: 'Transformando desafios em soluções que funcionam',
       canonicalUrl: 'https://epmdevtech.com.br/sobre',
     },
     {
@@ -91,7 +91,7 @@ test.describe('EPM DEVTECH — Arquitetura de Informação Multi-Rota (SPEC-060)
       { text: 'Como trabalhamos', href: '/como-trabalhamos' },
       { text: 'Experiência', href: '/experiencia' },
       { text: 'Engenharia', href: '/engenharia' },
-      { text: 'Sobre', href: '/sobre' },
+      { text: 'Sobre nós', href: '/sobre' },
     ];
 
     for (const item of expectedLinks) {
@@ -103,7 +103,7 @@ test.describe('EPM DEVTECH — Arquitetura de Informação Multi-Rota (SPEC-060)
     // Botão de Ação CTA único no Header
     const ctaButton = page.locator('header a[href="/contato"]').first();
     await expect(ctaButton).toBeVisible();
-    await expect(ctaButton).toContainText('Falar sobre meu projeto');
+    await expect(ctaButton).toContainText('Fale conosco');
 
     // Ao clicar em um link, navega para a rota e marca aria-current="page"
     await nav.locator('a[href="/servicos"]').click();

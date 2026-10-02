@@ -10,7 +10,7 @@ const navLinks = [
   { href: "/como-trabalhamos", label: "Como trabalhamos" },
   { href: "/experiencia", label: "Experiência" },
   { href: "/engenharia", label: "Engenharia" },
-  { href: "/sobre", label: "Sobre" },
+  { href: "/sobre", label: "Sobre nós" },
 ];
 
 export const Header = () => {
@@ -49,12 +49,13 @@ export const Header = () => {
   return (
     <>
       <header
+        data-tone="anchor"
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           mounted ? "translate-y-0" : "-translate-y-full"
         } ${
           isScrolled
-            ? "py-3 glass border-b border-border/50"
-            : "py-5 bg-transparent"
+            ? "py-3 backdrop-blur-md bg-surface-anchor/85 border-b border-border/40 shadow-xs"
+            : "py-5 bg-surface-anchor"
         }`}
       >
         <div className="container px-6">
@@ -126,7 +127,7 @@ export const Header = () => {
                       <span>{link.label}</span>
                       <span
                         className={cn(
-                          "absolute -bottom-0.5 left-0 h-0.5 bg-primary transition-all",
+                          "absolute -bottom-0.5 left-0 h-0.5 bg-brand transition-all",
                           isActive ? "w-full" : "w-0 group-hover:w-full"
                         )}
                       />
@@ -141,10 +142,10 @@ export const Header = () => {
               <Button
                 asChild
                 size="sm"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium text-xs tracking-wide shadow-xs min-h-[44px] px-4 rounded-md transition-colors"
+                className="bg-brand text-on-brand hover:bg-brand-hover active:bg-brand-active font-medium text-xs tracking-wide shadow-xs min-h-[44px] px-4 rounded-md transition-colors"
               >
-                <Link to="/contato" aria-label="Falar sobre meu projeto">
-                  Falar sobre meu projeto
+                <Link to="/contato" aria-label="Fale conosco">
+                  Fale conosco
                 </Link>
               </Button>
             </div>
@@ -154,7 +155,7 @@ export const Header = () => {
               <button
                 ref={menuToggleRef}
                 onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-                className="relative z-[60] p-2 w-11 h-11 flex flex-col items-center justify-center gap-[6px] text-foreground transition-colors outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md [-webkit-tap-highlight-color:transparent]"
+                className="relative z-[60] p-2 w-11 h-11 flex flex-col items-center justify-center gap-[6px] text-foreground transition-colors outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring rounded-md [-webkit-tap-highlight-color:transparent]"
                 aria-label={isMobileMenuOpen ? "Fechar menu" : "Abrir menu"}
                 aria-expanded={isMobileMenuOpen}
                 aria-controls="mobile-navigation"
@@ -196,7 +197,7 @@ export const Header = () => {
           <div className="flex flex-col h-full pt-6 px-6 pb-6 relative">
             <button
               onClick={closeMobileMenu}
-              className="absolute top-4 right-4 p-2 w-11 h-11 flex items-center justify-center text-foreground hover:bg-white/10 rounded-full transition-colors outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-primary z-50"
+              className="absolute top-4 right-4 p-2 w-11 h-11 flex items-center justify-center text-foreground hover:bg-surface-elevated rounded-full transition-colors outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring z-50"
               aria-label="Fechar menu"
             >
               <X className="w-6 h-6" />
@@ -212,7 +213,7 @@ export const Header = () => {
                     cn(
                       "relative group text-base font-mono font-medium uppercase tracking-widest py-3 min-h-[44px] flex items-center border-b border-border/30 transition-colors opacity-0 animate-fade-in-up",
                       isActive
-                        ? "text-primary font-semibold"
+                        ? "text-brand font-semibold"
                         : "text-muted-foreground hover:text-foreground"
                     )
                   }
@@ -231,14 +232,14 @@ export const Header = () => {
               >
                 <Button
                   asChild
-                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-medium min-h-[44px] shadow-xs text-sm"
+                  className="w-full bg-brand text-on-brand hover:bg-brand-hover active:bg-brand-active font-medium min-h-[44px] shadow-xs text-sm"
                 >
                   <Link
                     to="/contato"
                     onClick={closeMobileMenu}
-                    aria-label="Falar sobre meu projeto"
+                    aria-label="Fale conosco"
                   >
-                    Falar sobre meu projeto
+                    Fale conosco
                   </Link>
                 </Button>
               </div>

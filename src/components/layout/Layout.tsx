@@ -26,7 +26,7 @@ export const Layout = () => {
       <main
         id="conteudo-principal"
         tabIndex={-1}
-        className="flex-1 flex flex-col focus:outline-none outline-none"
+        className="flex-1 flex flex-col focus:outline-none outline-none relative z-10"
         aria-label="Conteúdo principal"
       >
         <Suspense
@@ -47,10 +47,14 @@ export const Layout = () => {
       {/* Rodapé compartilhado */}
       <Footer />
 
+      {/* Cursor customizado imediato */}
+      <Suspense fallback={null}>
+        <CursorOrb />
+      </Suspense>
+
       {/* Componentes globais diferidos */}
       <LazyRender delay={2500}>
         <Suspense fallback={null}>
-          <CursorOrb />
           <ScrollToTop />
         </Suspense>
       </LazyRender>

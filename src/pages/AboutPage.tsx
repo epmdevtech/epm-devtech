@@ -1,132 +1,398 @@
+import React from "react";
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
-import { MapPin, Building, Globe, CheckCircle2 } from "lucide-react";
-import PageHeader from "@/components/ui/PageHeader";
-import { Button } from "@/components/ui/button";
+import { Sparkles } from "lucide-react";
+import BrandChipIcon from "@/components/ui/BrandChipIcon";
+import EpmConstellation from "@/components/sections/EpmConstellation";
+import SectionWrapper from "@/components/ui/SectionWrapper";
 import { SITE_CONFIG } from "@/config/site";
+import { cn } from "@/lib/utils";
 
 const BASE_URL = SITE_CONFIG.url;
 
-export const AboutPage = () => {
+interface MilestoneItem {
+  id: string;
+  year: string;
+  tag: string;
+  title: string;
+  description: string;
+  highlight?: boolean;
+}
+
+const MILESTONES: MilestoneItem[] = [
+  {
+    id: "m1",
+    year: "2015",
+    tag: "// FUNDAMENTOS TÉCNICOS",
+    title: "Início da Trajetória & Arquitetura",
+    description:
+      "Início da atuação em engenharia de sistemas corporativos, com foco em modelagem sólida de dados e arquitetura de código sustentável.",
+  },
+  {
+    id: "m2",
+    year: "2019",
+    tag: "// OPERAÇÕES CRÍTICAS",
+    title: "Projetos de Grande Escala",
+    description:
+      "Experiência prática em projetos de missão crítica em setores regulados (energia, infraestrutura e educação), com tolerância zero a falhas.",
+  },
+  {
+    id: "m3",
+    year: "2023",
+    tag: "// CONSOLIDAÇÃO & ESCALA",
+    title: "Consolidação da Software House",
+    description:
+      "Atuação focada no desenvolvimento de APIs de alta performance, microsserviços e modernização de sistemas corporativos essenciais.",
+  },
+  {
+    id: "m4",
+    year: "Hoje",
+    tag: "// ENGENHARIA SOB MEDIDA",
+    title: "Atendimento Direto & Impacto Real",
+    description:
+      "Modelo de trabalho consultivo e direto: contato com a liderança técnica, escopo transparente e foco na resolução de gargalos reais.",
+    highlight: true,
+  },
+];
+
+interface PrincipleItem {
+  code: string;
+  title: string;
+  description: string;
+}
+
+const PRINCIPLES: PrincipleItem[] = [
+  {
+    code: "PRINCIPIO_01",
+    title: "Excelência Pragmática",
+    description:
+      "Não vendemos tecnologias da moda nem criamos complexidade desnecessária. Cada componente ou banco de dados existe para resolver uma dor concreta da operação com custo previsível.",
+  },
+  {
+    code: "PRINCIPIO_02",
+    title: "Transparência Total",
+    description:
+      "Conversas diretas entre quem decide e quem implementa. Apresentamos cenários realistas de prazo e viabilidade técnica, sem meias-palavras.",
+  },
+  {
+    code: "PRINCIPIO_03",
+    title: "Código que Pertence a Você",
+    description:
+      "Repositórios, documentação e infraestrutura pertencem integralmente à sua empresa. Escrevemos código limpo e testado para que qualquer bom desenvolvedor consiga dar continuidade.",
+  },
+  {
+    code: "PRINCIPIO_04",
+    title: "Estabilidade Operacional",
+    description:
+      "Seu negócio não pode parar. Planejamos cada entrega com testes automatizados e homologação cuidadosa para garantir alta disponibilidade no dia a dia.",
+  },
+];
+
+export const AboutPage: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Sobre a EPM DevTech | Software House em Toledo, PR</title>
+        <title>Sobre a EPM DevTech | Engenharia de Software Corporativa</title>
         <meta
           name="description"
-          content="Software house dedicada a engenharia de software sob medida, conduzida por fundador e liderança técnica com atendimento remoto em todo o Brasil."
+          content="Software house de engenharia de software sob medida para aplicações corporativas críticas, com atendimento 100% remoto em escala nacional."
         />
         <link rel="canonical" href={`${BASE_URL}/sobre`} />
         <meta
           property="og:title"
-          content="Sobre a EPM DevTech | Software House em Toledo, PR"
+          content="Sobre a EPM DevTech | Engenharia de Software Corporativa"
         />
         <meta
           property="og:description"
-          content="Software house dedicada a engenharia de software sob medida, conduzida por fundador e liderança técnica com atendimento remoto em todo o Brasil."
+          content="Software house de engenharia de software sob medida para aplicações corporativas críticas, com atendimento 100% remoto em escala nacional."
         />
         <meta property="og:url" content={`${BASE_URL}/sobre`} />
         <meta property="og:image" content={`${BASE_URL}/og-image-1200x630.png`} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Sobre a EPM DevTech | Software House em Toledo, PR"
+          content="Sobre a EPM DevTech | Engenharia de Software Corporativa"
         />
         <meta
           name="twitter:description"
-          content="Software house dedicada a engenharia de software sob medida, conduzida por fundador e liderança técnica com atendimento remoto em todo o Brasil."
+          content="Software house de engenharia de software sob medida para aplicações corporativas críticas, com atendimento 100% remoto em escala nacional."
         />
         <meta name="twitter:image" content={`${BASE_URL}/og-image-1200x630.png`} />
       </Helmet>
 
       <div className="w-full">
-        {/* Page Header */}
-        <PageHeader
-          eyebrow="INSTITUCIONAL"
-          title="Sobre a EPM DevTech"
-          description="Engenharia de software com foco em eficiência, estabilidade e evolução sustentável para operações corporativas."
-        />
-
-        {/* Bloco Institucional Principal */}
-        <section className="pb-16 sm:pb-24">
-          <div className="container px-6 max-w-5xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-              {/* Coluna 1: Missão e Posicionamento (7 cols) */}
-              <div className="lg:col-span-7 flex flex-col justify-center">
-                <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground mb-4">
-                  Engenharia de software com visão de negócio
-                </h2>
-                <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-6 font-normal">
-                  A EPM DevTech é uma software house dedicada a desenvolver e modernizar sistemas sob medida para empresas que buscam eficiência operacional, estabilidade e capacidade de evolução.
-                </p>
-                <p className="text-sm sm:text-base text-muted-foreground/90 leading-relaxed font-normal mb-6">
-                  Fundada e conduzida tecnicamente por Elessandro Prestes Macedo, que reúne mais de 9 anos de experiência prática em arquitetura de software e sistemas corporativos, a empresa atua com foco em escopo bem definido, comunicação transparente e entregas previsíveis a cada ciclo.
-                </p>
-                <p className="text-sm sm:text-base text-muted-foreground/90 leading-relaxed font-normal">
-                  Nosso modelo de trabalho prioriza código sustentável e arquitetura desacoplada, garantindo que as soluções entregues continuem fáceis de manter e preparadas para novas demandas.
-                </p>
-
-                {/* Destaque Estático de Experiência */}
-                <div className="mt-8 pt-8 border-t border-border/50 max-w-xs">
-                  <div className="text-3xl sm:text-4xl font-bold text-primary font-mono leading-none mb-2">
-                    +9
-                  </div>
-                  <div className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
-                    anos de experiência técnica da liderança
-                  </div>
+        {/* Dobra Inicial: Hero Editorial Amplo & Constelação Vetorial de Engenharia (Tom: Anchor) */}
+        <header
+          data-tone="anchor"
+          className="relative w-full pt-28 pb-16 sm:pt-36 sm:pb-20 lg:pb-24 bg-surface-anchor text-foreground transition-colors duration-200 overflow-hidden"
+        >
+          <div className="container max-w-6xl mx-auto px-6 relative">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              {/* Coluna Esquerda: Narrativa Editorial */}
+              <div className="lg:col-span-7 flex flex-col items-start text-left max-w-xl xl:max-w-2xl">
+                {/* Eyebrow */}
+                <div
+                  data-testid="page-eyebrow"
+                  className="inline-flex items-center gap-[7px] text-[11.5px] font-mono font-medium tracking-[0.1em] uppercase text-text-brand select-none mb-3 sm:mb-4"
+                >
+                  <BrandChipIcon size={15} className="shrink-0" />
+                  <span>[ QUEM SOMOS // POSICIONAMENTO ]</span>
                 </div>
+
+                {/* H1 Editorial Amplo Monocromático */}
+                <h1
+                  id="page-title"
+                  tabIndex={-1}
+                  className="font-bold tracking-tight text-primary text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.12] [text-wrap:balance] outline-none focus:outline-none mb-6"
+                >
+                  Transformando desafios em soluções que funcionam
+                </h1>
+
+                {/* Subtítulo Institucional */}
+                <p className="text-base sm:text-lg lg:text-xl text-secondary leading-relaxed font-normal [text-wrap:balance]">
+                  Unimos tecnologia, experiência e visão de negócio para criar soluções digitais que simplificam operações e geram resultados reais.
+                </p>
               </div>
 
-              {/* Coluna 2: Dados Operacionais e Institucionais (5 cols) */}
-              <div className="lg:col-span-5 p-6 sm:p-8 rounded-xl border border-border/60 bg-card/60 flex flex-col gap-6">
-                <div>
-                  <h3 className="font-semibold text-foreground text-sm uppercase font-mono tracking-wider mb-4">
-                    Como atuamos
-                  </h3>
-                  <div className="space-y-4 text-xs sm:text-sm text-muted-foreground">
-                    <div className="flex items-start gap-3">
-                      <Globe className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                      <div>
-                        <span className="font-medium text-foreground block">Atendimento 100% remoto</span>
-                        Atendemos clientes e parceiros em todo o território nacional com comunicação constante.
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-3">
-                      <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                      <div>
-                        <span className="font-medium text-foreground block">Sem intermediários comerciais</span>
-                        Contato direto com quem planeja a arquitetura e escreve o código do seu sistema.
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-3">
-                      <MapPin className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                      <div>
-                        <span className="font-medium text-foreground block">Sede da empresa</span>
-                        {SITE_CONFIG.company.location}
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-3">
-                      <Building className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                      <div>
-                        <span className="font-medium text-foreground block">Dados cadastrais</span>
-                        CNPJ: {SITE_CONFIG.company.cnpj} · EPM DevTech
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="pt-4 border-t border-border/40">
-                  <Button asChild className="w-full bg-primary text-primary-foreground hover:bg-primary/90 min-h-[44px] text-xs font-medium">
-                    <Link to="/contato">Falar sobre meu projeto</Link>
-                  </Button>
-                </div>
+              {/* Coluna Direita: Constelação Vetorial da EPM DevTech (Totalmente Isolada sem Sobreposição) */}
+              <div className="lg:col-span-5 flex justify-center lg:justify-end mt-6 lg:mt-0">
+                <EpmConstellation className="w-[300px] sm:w-[380px] lg:w-[440px] xl:w-[480px] h-[300px] sm:h-[380px] lg:h-[440px] xl:h-[480px] opacity-75 sm:opacity-85 lg:opacity-100 pointer-events-auto" />
               </div>
             </div>
           </div>
-        </section>
+        </header>
+
+        {/* Seção 2: Nossa Jornada (Tom: Base) */}
+        <SectionWrapper id="jornada" tone="base" containerClassName="max-w-6xl mx-auto">
+            {/* Cabeçalho da Seção */}
+            <div className="max-w-3xl mb-12 sm:mb-16">
+              <div className="font-mono text-xs font-semibold text-text-brand tracking-wider mb-2">
+                // EVOLUÇÃO & TRAJETÓRIA
+              </div>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-primary [text-wrap:balance]">
+                Nossa jornada técnica
+              </h2>
+              <p className="text-sm sm:text-base text-secondary mt-2 leading-relaxed">
+                Da fundação técnica e arquitetura de sistemas corporativos ao desenvolvimento de soluções críticas sob medida.
+              </p>
+            </div>
+
+            {/* Layout Desktop: Timeline Alternada Acima/Abaixo com Eixo Central */}
+            <div className="hidden md:block relative py-6">
+              {/* Eixo Central Horizontal com Acento Esmeralda/Teal */}
+              <div
+                aria-hidden="true"
+                className="absolute top-1/2 left-0 right-0 h-[2px] -translate-y-1/2 bg-gradient-to-r from-zinc-800 via-brand/60 to-zinc-800 z-0"
+              />
+
+              <div className="grid grid-cols-4 gap-6 relative z-10">
+                {MILESTONES.map((item, idx) => {
+                  const isTop = idx % 2 === 0;
+
+                  return (
+                    <div
+                      key={item.id}
+                      data-testid={`milestone-${item.id}`}
+                      className="flex flex-col items-center justify-between min-h-[440px]"
+                    >
+                      {/* Bloco Superior (se isTop: Card; se não: Espaço Vazio de Respiro) */}
+                      <div className="w-full flex flex-col justify-end flex-1 pb-4">
+                        {isTop && (
+                          <div
+                            className={cn(
+                              "w-full bg-zinc-950/90 border rounded-xl p-5 shadow-xl transition-all duration-200 hover:-translate-y-1",
+                              item.highlight
+                                ? "border-brand/60 shadow-brand/5"
+                                : "border-zinc-800/80 hover:border-brand/40"
+                            )}
+                          >
+                            <div className="flex items-center justify-between gap-2 mb-2">
+                              <span className="font-mono text-xs font-bold text-text-brand px-2 py-0.5 rounded bg-brand/10 border border-brand/20">
+                                {item.year}
+                              </span>
+                              {item.highlight && (
+                                <span className="inline-flex items-center gap-1 text-[10px] font-mono text-text-brand uppercase">
+                                  <Sparkles className="w-3 h-3" /> Foco Atual
+                                </span>
+                              )}
+                            </div>
+                            <div className="font-mono text-[10px] text-muted tracking-wider uppercase mb-1">
+                              {item.tag}
+                            </div>
+                            <h3 className="text-base font-bold text-primary mb-2">
+                              {item.title}
+                            </h3>
+                            <p className="text-xs text-secondary leading-relaxed font-normal">
+                              {item.description}
+                            </p>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Conector Vertical Superior */}
+                      {isTop && (
+                        <div
+                          aria-hidden="true"
+                          className="w-[1.5px] h-6 bg-brand/40 shrink-0"
+                        />
+                      )}
+
+                      {/* Nó Central sobre a Linha Horizontal */}
+                      <div className="relative shrink-0 flex items-center justify-center my-1">
+                        <div className="w-5 h-5 rounded-full bg-zinc-950 border-2 border-brand flex items-center justify-center shadow-lg shadow-brand/20">
+                          <div className="w-2 h-2 rounded-full bg-brand" />
+                        </div>
+                      </div>
+
+                      {/* Conector Vertical Inferior */}
+                      {!isTop && (
+                        <div
+                          aria-hidden="true"
+                          className="w-[1.5px] h-6 bg-brand/40 shrink-0"
+                        />
+                      )}
+
+                      {/* Bloco Inferior (se !isTop: Card; se não: Espaço Vazio de Respiro) */}
+                      <div className="w-full flex flex-col justify-start flex-1 pt-4">
+                        {!isTop && (
+                          <div
+                            className={cn(
+                              "w-full bg-zinc-950/90 border rounded-xl p-5 shadow-xl transition-all duration-200 hover:translate-y-1",
+                              item.highlight
+                                ? "border-brand/60 shadow-brand/5"
+                                : "border-zinc-800/80 hover:border-brand/40"
+                            )}
+                          >
+                            <div className="flex items-center justify-between gap-2 mb-2">
+                              <span className="font-mono text-xs font-bold text-text-brand px-2 py-0.5 rounded bg-brand/10 border border-brand/20">
+                                {item.year}
+                              </span>
+                              {item.highlight && (
+                                <span className="inline-flex items-center gap-1 text-[10px] font-mono text-text-brand uppercase">
+                                  <Sparkles className="w-3 h-3" /> Foco Atual
+                                </span>
+                              )}
+                            </div>
+                            <div className="font-mono text-[10px] text-muted tracking-wider uppercase mb-1">
+                              {item.tag}
+                            </div>
+                            <h3 className="text-base font-bold text-primary mb-2">
+                              {item.title}
+                            </h3>
+                            <p className="text-xs text-secondary leading-relaxed font-normal">
+                              {item.description}
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Layout Mobile: Timeline Vertical Contínua à Esquerda */}
+            <div className="block md:hidden relative pl-6 space-y-8">
+              {/* Linha Vertical Contínua */}
+              <div
+                aria-hidden="true"
+                className="absolute left-[7px] top-3 bottom-3 w-[2px] bg-gradient-to-b from-zinc-800 via-brand/60 to-zinc-800"
+              />
+
+              {MILESTONES.map((item) => (
+                <div
+                  key={`mob-${item.id}`}
+                  data-testid={`mobile-milestone-${item.id}`}
+                  className="relative pl-6"
+                >
+                  {/* Ponto / Nó */}
+                  <div
+                    aria-hidden="true"
+                    className="absolute -left-[17px] top-1.5 w-4 h-4 rounded-full bg-zinc-950 border-2 border-brand flex items-center justify-center"
+                  >
+                    <div className="w-1.5 h-1.5 rounded-full bg-brand" />
+                  </div>
+
+                  {/* Card do Marco */}
+                  <div
+                    className={cn(
+                      "bg-zinc-950/90 border rounded-xl p-5 shadow-lg",
+                      item.highlight ? "border-brand/60" : "border-zinc-800/80"
+                    )}
+                  >
+                    <div className="flex items-center justify-between gap-2 mb-2">
+                      <span className="font-mono text-xs font-bold text-text-brand px-2 py-0.5 rounded bg-brand/10 border border-brand/20">
+                        {item.year}
+                      </span>
+                      {item.highlight && (
+                        <span className="inline-flex items-center gap-1 text-[10px] font-mono text-text-brand uppercase">
+                          <Sparkles className="w-3 h-3" /> Foco Atual
+                        </span>
+                      )}
+                    </div>
+                    <div className="font-mono text-[10px] text-muted tracking-wider uppercase mb-1">
+                      {item.tag}
+                    </div>
+                    <h3 className="text-base font-bold text-primary mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs text-secondary leading-relaxed font-normal">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+        </SectionWrapper>
+
+        {/* Seção 3: Missão e Princípios de Engenharia (Tom: Alt) */}
+        <SectionWrapper id="principios" tone="alt" containerClassName="max-w-6xl mx-auto">
+          {/* Cabeçalho da Seção */}
+          <div className="max-w-3xl mb-12 sm:mb-16">
+            <div className="font-mono text-xs font-semibold text-text-brand tracking-wider mb-2">
+              // DIRETRIZES & COMPROMISSO
+            </div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-primary [text-wrap:balance]">
+              Missão e princípios de engenharia
+            </h2>
+            <p className="text-sm sm:text-base text-secondary mt-2 leading-relaxed">
+              Não vendemos modismos nem complexidade desnecessária. Cada escolha técnica existe para resolver um gargalo real e garantir a longevidade da sua operação.
+            </p>
+          </div>
+
+          {/* Tabela de Diretrizes em Formato de Manifesto Técnico */}
+          <div
+            data-testid="principles-manifesto"
+            className="border-y border-zinc-800/80 divide-y divide-zinc-800/80"
+          >
+            {PRINCIPLES.map((principle) => (
+              <div
+                key={principle.code}
+                className="py-6 sm:py-8 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start group hover:bg-zinc-950/40 transition-colors px-2 sm:px-4 rounded-lg"
+              >
+                {/* Coluna 1: Código Monospace (3 cols) */}
+                <div className="md:col-span-3 flex items-center md:items-start gap-2">
+                  <span className="font-mono text-xs font-bold text-text-brand tracking-wider">
+                    {principle.code}
+                  </span>
+                </div>
+
+                {/* Coluna 2: Título do Valor (3 cols) */}
+                <div className="md:col-span-3">
+                  <h3 className="text-base sm:text-lg font-bold text-primary tracking-tight">
+                    {principle.title}
+                  </h3>
+                </div>
+
+                {/* Coluna 3: Explicação Técnica (6 cols) */}
+                <div className="md:col-span-6">
+                  <p className="text-xs sm:text-sm text-secondary leading-relaxed font-normal">
+                    {principle.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </SectionWrapper>
       </div>
     </>
   );

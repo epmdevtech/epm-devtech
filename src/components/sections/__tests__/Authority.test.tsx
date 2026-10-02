@@ -123,4 +123,14 @@ describe('Authority / Trust Bar Component', () => {
     expect(screen.getByText('100% de integridade')).toBeInTheDocument();
     expect(screen.getByText('redução de 35%')).toBeInTheDocument();
   });
+
+  it('permite sobrescrever classes via className prop através do twMerge', () => {
+    const { container } = render(<Authority className="border-y-0 bg-transparent" />);
+    const section = container.querySelector('#autoridade');
+    expect(section).toBeInTheDocument();
+    expect(section).toHaveClass('border-y-0');
+    expect(section).toHaveClass('bg-transparent');
+    expect(section).not.toHaveClass('border-y');
+  });
 });
+

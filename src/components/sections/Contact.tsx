@@ -64,13 +64,13 @@ const nextSteps = [
     Icon: IconFastResponse,
     title: "Retorno em até 24 horas úteis",
     description:
-      "Resposta objetiva para agendarmos uma conversa.",
+      "Resposta objetiva e técnica para agendarmos uma conversa.",
   },
   {
     Icon: IconConfidentiality,
     title: "Sigilo e confidencialidade",
     description:
-      "Suas ideias, dados e regras de negócio tratados sob sigilo e proteção, com NDA quando solicitado.",
+      "Suas regras de negócio e dados tratados com confidencialidade total, com NDA quando solicitado.",
   },
 ];
 
@@ -120,7 +120,7 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
       };
 
       await emailjs.send(serviceId, templateId, templateParams);
-      toast.success("Mensagem enviada com sucesso! Retornaremos em breve.");
+      toast.success("Mensagem recebida. Retornamos em até 24 horas úteis.");
       setIsSuccess(true);
       reset();
       setTimeout(() => {
@@ -170,12 +170,12 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
           initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-xl border border-zinc-200/80 dark:border-zinc-800 grid grid-cols-1 lg:grid-cols-12 bg-card"
+          className="max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-xl border border-border-default grid grid-cols-1 lg:grid-cols-12 bg-surface"
         >
           {/* Lado Esquerdo: Formulário Minimalista Underline */}
-          <div className="lg:col-span-7 bg-white dark:bg-zinc-900 p-8 sm:p-10 flex flex-col justify-between">
+          <div className="lg:col-span-7 bg-surface p-8 sm:p-10 flex flex-col justify-between">
             <div>
-              <h3 className="text-xl font-bold text-zinc-900 dark:text-white tracking-tight mb-6">
+              <h3 className="text-xl font-bold text-primary tracking-tight mb-6">
                 Envie sua mensagem
               </h3>
 
@@ -186,7 +186,7 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
                   <div className="flex flex-col">
                     <Label
                       htmlFor="name"
-                      className="text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mb-1"
+                      className="text-xs font-medium text-muted uppercase tracking-wider mb-1"
                     >
                       Nome completo <span className="text-destructive">*</span>
                     </Label>
@@ -196,10 +196,10 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
                       autoComplete="name"
                       {...register("name")}
                       aria-invalid={!!errors.name}
-                      className={`h-auto border-0 border-b bg-transparent rounded-none px-0 py-2.5 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus-visible:ring-0 focus-visible:border-emerald-500 transition-colors shadow-none ${
+                      className={`h-auto border-0 border-b bg-transparent rounded-none px-0 py-2.5 text-sm text-primary placeholder:text-muted focus-visible:ring-0 focus-visible:border-brand transition-colors shadow-none ${
                         errors.name
                           ? "border-destructive focus-visible:border-destructive"
-                          : "border-zinc-300 dark:border-zinc-700"
+                          : "border-border-default"
                       }`}
                     />
                     {errors.name && (
@@ -211,7 +211,7 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
                   <div className="flex flex-col">
                     <Label
                       htmlFor="email"
-                      className="text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mb-1"
+                      className="text-xs font-medium text-muted uppercase tracking-wider mb-1"
                     >
                       E-mail profissional <span className="text-destructive">*</span>
                     </Label>
@@ -222,10 +222,10 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
                       autoComplete="email"
                       {...register("email")}
                       aria-invalid={!!errors.email}
-                      className={`h-auto border-0 border-b bg-transparent rounded-none px-0 py-2.5 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus-visible:ring-0 focus-visible:border-emerald-500 transition-colors shadow-none ${
+                      className={`h-auto border-0 border-b bg-transparent rounded-none px-0 py-2.5 text-sm text-primary placeholder:text-muted focus-visible:ring-0 focus-visible:border-brand transition-colors shadow-none ${
                         errors.email
                           ? "border-destructive focus-visible:border-destructive"
-                          : "border-zinc-300 dark:border-zinc-700"
+                          : "border-border-default"
                       }`}
                     />
                     {errors.email && (
@@ -240,7 +240,7 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
                   <div className="flex flex-col">
                     <Label
                       htmlFor="phone"
-                      className="text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mb-1"
+                      className="text-xs font-medium text-muted uppercase tracking-wider mb-1"
                     >
                       WhatsApp / Telefone
                     </Label>
@@ -256,10 +256,10 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
                         setValue("phone", formatted, { shouldValidate: true });
                       }}
                       aria-invalid={!!errors.phone}
-                      className={`h-auto border-0 border-b bg-transparent rounded-none px-0 py-2.5 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus-visible:ring-0 focus-visible:border-emerald-500 transition-colors shadow-none ${
+                      className={`h-auto border-0 border-b bg-transparent rounded-none px-0 py-2.5 text-sm text-primary placeholder:text-muted focus-visible:ring-0 focus-visible:border-brand transition-colors shadow-none ${
                         errors.phone
                           ? "border-destructive focus-visible:border-destructive"
-                          : "border-zinc-300 dark:border-zinc-700"
+                          : "border-border-default"
                       }`}
                     />
                     {errors.phone && (
@@ -271,7 +271,7 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
                   <div className="flex flex-col relative w-full">
                     <Label
                       htmlFor="projectType"
-                      className="text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mb-1"
+                      className="text-xs font-medium text-muted uppercase tracking-wider mb-1"
                     >
                       Desafio ou Tipo de Projeto <span className="text-destructive">*</span>
                     </Label>
@@ -283,10 +283,10 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
                     >
                       <SelectTrigger
                         id="projectType"
-                        className={`w-full h-auto border-0 border-b bg-transparent rounded-none px-0 py-2.5 text-sm text-zinc-900 dark:text-zinc-100 focus:ring-0 focus:border-emerald-500 transition-colors shadow-none ${
+                        className={`w-full h-auto border-0 border-b bg-transparent rounded-none px-0 py-2.5 text-sm text-primary focus:ring-0 focus:border-brand transition-colors shadow-none ${
                           errors.projectType
                             ? "border-destructive"
-                            : "border-zinc-300 dark:border-zinc-700"
+                            : "border-border-default"
                         }`}
                       >
                         <SelectValue placeholder="Selecione o tipo de projeto..." />
@@ -294,13 +294,13 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
                       <SelectContent
                         position="popper"
                         sideOffset={0}
-                        className="w-[var(--radix-select-trigger-width)] min-w-[var(--radix-select-trigger-width)] max-w-[var(--radix-select-trigger-width)] data-[side=bottom]:translate-y-0 z-50 shadow-lg rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 overflow-hidden p-1"
+                        className="w-[var(--radix-select-trigger-width)] min-w-[var(--radix-select-trigger-width)] max-w-[var(--radix-select-trigger-width)] data-[side=bottom]:translate-y-0 z-50 shadow-lg rounded-lg border border-border-default bg-surface overflow-hidden p-1"
                       >
                         {PROJECT_TYPES.map((type) => (
                           <SelectItem
                             key={type}
                             value={type}
-                            className="text-left px-3 py-2 text-sm truncate rounded-md cursor-pointer focus:bg-zinc-100 dark:focus:bg-zinc-800 focus:text-zinc-900 dark:focus:text-zinc-100"
+                            className="text-left px-3 py-2 text-sm truncate rounded-md cursor-pointer focus:bg-surface-elevated focus:text-primary"
                           >
                             {type}
                           </SelectItem>
@@ -318,7 +318,7 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
                   <div className="flex items-center justify-between mb-1">
                     <Label
                       htmlFor="message"
-                      className="text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider"
+                      className="text-xs font-medium text-muted uppercase tracking-wider"
                     >
                       Mensagem <span className="text-destructive">*</span>
                     </Label>
@@ -328,7 +328,7 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
                           type="button"
                           variant="ghost"
                           size="sm"
-                          className="h-6 px-2 text-xs text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100"
+                          className="h-6 px-2 text-xs text-muted hover:text-primary"
                           aria-label="Expandir mensagem"
                           title="Abrir bloco de notas para texto longo"
                         >
@@ -338,7 +338,7 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
                       </DialogTrigger>
                       <DialogContent className="max-w-[90vw] w-[800px] h-[80vh] flex flex-col p-6">
                         <DialogHeader>
-                          <DialogTitle className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">
+                          <DialogTitle className="text-2xl font-bold tracking-tight text-primary">
                             Detalhe seu Desafio
                           </DialogTitle>
                           <DialogDescription>
@@ -347,8 +347,8 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
                         </DialogHeader>
                         <div className="flex-1 min-h-0 mt-4 relative">
                           <Textarea
-                            placeholder="Conte resumidamente qual processo quer otimizar ou qual sistema pretende construir..."
-                            className="h-full resize-none text-base p-4 border-muted-foreground/20 focus-visible:ring-emerald-500/20 focus-visible:border-emerald-500"
+                            placeholder="Descreva resumidamente o desafio do seu sistema ou a demanda da sua empresa..."
+                            className="h-full resize-none text-base p-4 border-border-default focus-visible:ring-brand/20 focus-visible:border-brand"
                             {...register("message")}
                             onChange={(e) => {
                               setValue("message", e.target.value, { shouldValidate: true });
@@ -360,14 +360,14 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
                   </div>
                   <Textarea
                     id="message"
-                    placeholder="Conte resumidamente qual processo quer otimizar ou qual sistema pretende construir..."
+                    placeholder="Descreva resumidamente o desafio do seu sistema ou a demanda da sua empresa..."
                     rows={4}
                     {...register("message")}
                     aria-invalid={!!errors.message}
-                    className={`border-0 border-b bg-transparent rounded-none px-0 py-2.5 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-600 focus-visible:ring-0 focus-visible:border-emerald-500 transition-colors shadow-none resize-none ${
+                    className={`border-0 border-b bg-transparent rounded-none px-0 py-2.5 text-sm text-primary placeholder:text-muted focus-visible:ring-0 focus-visible:border-brand transition-colors shadow-none resize-none ${
                       errors.message
                         ? "border-destructive focus-visible:border-destructive"
-                        : "border-zinc-300 dark:border-zinc-700"
+                        : "border-border-default"
                     }`}
                   />
                   {errors.message && (
@@ -380,26 +380,26 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
                   <button
                     type="submit"
                     disabled={isSending || isSuccess}
-                    className={`btn-submit group inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg font-medium text-sm text-white transition-all duration-200 cursor-pointer disabled:opacity-80 disabled:cursor-not-allowed border-none w-full sm:w-auto shadow-sm ${
+                    className={`btn-submit group inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg font-semibold text-sm transition-all duration-200 cursor-pointer disabled:opacity-80 disabled:cursor-not-allowed border-none w-full sm:w-auto shadow-sm ${
                       isSuccess
-                        ? "bg-emerald-600 shadow-emerald-500/20"
-                        : "bg-emerald-600 hover:bg-emerald-500 active:scale-[0.99] hover:shadow-emerald-500/20 hover:shadow-md"
+                        ? "bg-success text-white shadow-sm"
+                        : "bg-brand text-on-brand hover:bg-brand-hover active:bg-brand-active active:scale-[0.99]"
                     }`}
                   >
                     {isSending ? (
                       <>
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                        <span>Enviando...</span>
+                        <Loader2 className="w-4 h-4 animate-spin text-on-brand" />
+                        <span className="text-on-brand">Enviando...</span>
                       </>
                     ) : isSuccess ? (
                       <>
                         <CheckCircle2 className="w-4 h-4 text-white animate-in zoom-in-50 duration-200" />
-                        <span>Mensagem Enviada!</span>
+                        <span className="text-white">Mensagem Enviada!</span>
                       </>
                     ) : (
                       <>
-                        <Send className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-                        <span>Falar sobre meu projeto</span>
+                        <Send className="w-4 h-4 text-on-brand transition-transform duration-200 group-hover:translate-x-0.5" />
+                        <span className="text-on-brand">Falar sobre meu projeto</span>
                       </>
                     )}
                   </button>
@@ -409,12 +409,12 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
           </div>
 
           {/* Lado Direito: Próximos Passos & Garantias (Bloco Escuro Contrastante) */}
-          <div className="lg:col-span-5 bg-zinc-900 text-white dark:bg-zinc-950 p-8 sm:p-10 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-zinc-800">
+          <div className="lg:col-span-5 bg-surface-elevated text-primary p-8 sm:p-10 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-border-default">
             <div>
-              <h3 className="text-xl font-bold text-white tracking-tight mb-2">
+              <h3 className="text-xl font-bold text-primary tracking-tight mb-2">
                 O que acontece a seguir?
               </h3>
-              <p className="text-xs text-zinc-400 leading-relaxed mb-8">
+              <p className="text-xs text-secondary leading-relaxed mb-8">
                 Transparência e foco técnico desde o primeiro contato:
               </p>
 
@@ -422,14 +422,14 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
               <div className="flex flex-col gap-6">
                 {nextSteps.map((item) => (
                   <div key={item.title} className="flex items-start gap-4 group">
-                    <div className="w-10 h-10 rounded-xl border border-zinc-700/80 bg-zinc-800/60 flex items-center justify-center text-zinc-300 shrink-0 group-hover:border-primary/50 group-hover:text-primary transition-colors">
+                    <div className="w-10 h-10 rounded-xl border border-border-subtle bg-surface flex items-center justify-center text-secondary shrink-0 group-hover:border-brand/50 group-hover:text-brand transition-colors">
                       <item.Icon size={20} aria-hidden="true" />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <h4 className="text-sm font-semibold text-white mb-1">
+                      <h4 className="text-sm font-semibold text-primary mb-1">
                         {item.title}
                       </h4>
-                      <p className="text-xs text-zinc-400 leading-relaxed">
+                      <p className="text-xs text-secondary leading-relaxed">
                         {item.description}
                       </p>
                     </div>
@@ -439,15 +439,15 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
             </div>
 
             {/* Chamada de Ação Rápida (Rodapé do Card Escuro) */}
-            <div className="pt-6 mt-8 border-t border-zinc-800/80 flex flex-col gap-1.5">
-              <p className="text-xs text-zinc-400">
+            <div className="pt-6 mt-8 border-t border-border-subtle flex flex-col gap-1.5">
+              <p className="text-xs text-muted">
                 Prefere atendimento imediato?
               </p>
               <a
                 href="https://wa.me/5545999178290"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors inline-flex items-center gap-1 group w-fit"
+                className="text-sm font-medium text-text-brand hover:text-brand transition-colors inline-flex items-center gap-1 group w-fit"
               >
                 <span>Chamar no WhatsApp direto →</span>
               </a>

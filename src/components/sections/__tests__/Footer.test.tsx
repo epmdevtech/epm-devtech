@@ -66,9 +66,10 @@ describe('Footer Component', () => {
     renderFooter();
     expect(screen.getAllByAltText('EPM DEVTECH').length).toBeGreaterThan(0);
     expect(
-      screen.getByText(/Software house dedicada a software sob medida, APIs escaláveis e modernização/i)
+      screen.getByText(/Engenharia de software sob medida, sistemas web e integrações corporativas/i)
     ).toBeInTheDocument();
-    expect(screen.getByText('Toledo, Paraná.')).toBeInTheDocument();
+    expect(screen.getByText(/Atendimento remoto em todo o Brasil/i)).toBeInTheDocument();
+    expect(screen.queryByText(/Toledo/i)).not.toBeInTheDocument();
 
     // Confirma que o bloco cadastral vertical foi removido da coluna 1
     expect(

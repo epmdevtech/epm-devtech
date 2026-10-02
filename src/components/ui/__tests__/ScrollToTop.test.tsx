@@ -57,7 +57,7 @@ describe('ScrollToTop Component', () => {
 
         const button = screen.getByRole('button', { name: /Voltar ao topo/i });
         expect(button).toBeInTheDocument();
-        expect(button).toHaveClass('border-zinc-200');
+        expect(button).toHaveClass('border-border-default');
         expect(button.className).not.toContain('border-emerald-500');
         expect(button.className).not.toContain('shadow-lg');
         expect(button.className).not.toContain('backdrop-blur');

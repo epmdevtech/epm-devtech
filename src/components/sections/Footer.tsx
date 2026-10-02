@@ -43,7 +43,7 @@ function ThemeSwitcher() {
     <div
       role="radiogroup"
       aria-label="Selecionar tema"
-      className="inline-flex items-center gap-0.5 p-1 rounded-lg border border-zinc-200/80 dark:border-zinc-800/80 bg-white/70 dark:bg-zinc-900/60 backdrop-blur-sm"
+      className="inline-flex items-center gap-0.5 p-1 rounded-lg border border-border-default bg-surface/80 backdrop-blur-sm"
     >
       {THEME_OPTIONS.map(({ value, label, icon: Icon }) => {
         const isActive = theme === value;
@@ -56,8 +56,8 @@ function ThemeSwitcher() {
             title={`Tema ${label}`}
             className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-medium transition-all duration-200 cursor-pointer ${
               isActive
-                ? "bg-zinc-200/80 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-sm font-semibold"
-                : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 bg-transparent"
+                ? "bg-surface-elevated text-primary shadow-sm font-semibold"
+                : "text-muted hover:text-primary bg-transparent"
             }`}
           >
             <Icon size={12} strokeWidth={2} />
@@ -76,7 +76,8 @@ const Footer = () => {
 
   return (
     <footer
-      className="border-t border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-zinc-950 pt-16 pb-10"
+      data-tone="anchor"
+      className="bg-surface-anchor text-foreground pt-16 pb-10 transition-colors duration-200"
       ref={ref}
     >
       <div className="container px-6">
@@ -115,20 +116,20 @@ const Footer = () => {
                 </Link>
               </div>
 
-              <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                {SITE_CONFIG.description}
+              <p className="text-xs text-muted leading-relaxed">
+                Engenharia de software sob medida, sistemas web e integrações corporativas.
               </p>
 
               {/* Localização */}
-              <div className="flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400">
-                <MapPin className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+              <div className="flex items-center gap-2 text-xs text-muted">
+                <MapPin className="w-4 h-4 text-brand shrink-0" />
                 <span>{SITE_CONFIG.company.location}</span>
               </div>
             </div>
 
             {/* Coluna 2: Soluções */}
             <div className="flex flex-col">
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-900 dark:text-zinc-100 mb-4">
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-primary mb-4">
                 Soluções
               </h3>
               <ul className="flex flex-col gap-2.5 list-none p-0 m-0">
@@ -136,7 +137,7 @@ const Footer = () => {
                   <li key={link.label}>
                     <Link
                       to={link.href}
-                      className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded"
+                      className="text-sm text-secondary hover:text-brand transition-colors inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring rounded"
                     >
                       {link.label}
                     </Link>
@@ -147,7 +148,7 @@ const Footer = () => {
 
             {/* Coluna 3: Navegação */}
             <div className="flex flex-col">
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-900 dark:text-zinc-100 mb-4">
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-primary mb-4">
                 Navegação
               </h3>
               <ul className="flex flex-col gap-2.5 list-none p-0 m-0">
@@ -155,7 +156,7 @@ const Footer = () => {
                   <li key={link.label}>
                     <Link
                       to={link.href}
-                      className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded"
+                      className="text-sm text-secondary hover:text-brand transition-colors inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring rounded"
                     >
                       {link.label}
                     </Link>
@@ -166,7 +167,7 @@ const Footer = () => {
 
             {/* Coluna 4: Contato Direto e Perfis Oficiais */}
             <div className="flex flex-col">
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-900 dark:text-zinc-100 mb-4">
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-primary mb-4">
                 Contato
               </h3>
               <ul className="flex flex-col gap-1 list-none p-0 m-0">
@@ -174,9 +175,9 @@ const Footer = () => {
                 <li>
                   <a
                     href={`mailto:${SITE_CONFIG.email}`}
-                    className="min-h-[44px] inline-flex items-center gap-2.5 text-sm text-zinc-600 dark:text-zinc-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded"
+                    className="min-h-[44px] inline-flex items-center gap-2.5 text-sm text-secondary hover:text-brand transition-colors group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring rounded"
                   >
-                    <Mail className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" aria-hidden="true" />
+                    <Mail className="w-4 h-4 text-brand shrink-0" aria-hidden="true" />
                     <span className="truncate">{SITE_CONFIG.email}</span>
                   </a>
                 </li>
@@ -188,9 +189,9 @@ const Footer = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="WhatsApp da EPM DevTech (abre em nova aba)"
-                    className="min-h-[44px] inline-flex items-center gap-2.5 text-sm text-zinc-600 dark:text-zinc-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded"
+                    className="min-h-[44px] inline-flex items-center gap-2.5 text-sm text-secondary hover:text-brand transition-colors group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring rounded"
                   >
-                    <Phone className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" aria-hidden="true" />
+                    <Phone className="w-4 h-4 text-brand shrink-0" aria-hidden="true" />
                     <span>WhatsApp: {SITE_CONFIG.phone.formatted}</span>
                   </a>
                 </li>
@@ -202,10 +203,10 @@ const Footer = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="LinkedIn da EPM DevTech (abre em nova aba)"
-                    className="min-h-[44px] inline-flex items-center gap-2.5 text-sm text-zinc-600 dark:text-zinc-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded"
+                    className="min-h-[44px] inline-flex items-center gap-2.5 text-sm text-secondary hover:text-brand transition-colors group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring rounded"
                   >
                     <svg
-                      className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0"
+                      className="w-4 h-4 text-brand shrink-0"
                       viewBox="0 0 24 24"
                       fill="currentColor"
                       aria-hidden="true"
@@ -223,10 +224,10 @@ const Footer = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="GitHub da EPM DevTech (abre em nova aba)"
-                    className="min-h-[44px] inline-flex items-center gap-2.5 text-sm text-zinc-600 dark:text-zinc-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded"
+                    className="min-h-[44px] inline-flex items-center gap-2.5 text-sm text-secondary hover:text-brand transition-colors group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring rounded"
                   >
                     <svg
-                      className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0"
+                      className="w-4 h-4 text-brand shrink-0"
                       viewBox="0 0 24 24"
                       fill="currentColor"
                       aria-hidden="true"
@@ -245,9 +246,9 @@ const Footer = () => {
           </div>
 
           {/* Barra Inferior (Sub-footer) */}
-          <div className="border-t border-zinc-200/60 dark:border-zinc-800/60 mt-12 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="border-t border-border-subtle mt-12 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
             {/* Lado Esquerdo: Copyright e CNPJ */}
-            <p className="text-xs text-zinc-500 dark:text-zinc-400 text-center md:text-left">
+            <p className="text-xs text-muted text-center md:text-left">
               © {currentYear} {SITE_CONFIG.name} &nbsp;·&nbsp; CNPJ {SITE_CONFIG.company.cnpj}. Todos os direitos reservados.
             </p>
 

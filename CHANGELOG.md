@@ -9,6 +9,679 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.94-alinhamento-constelacao-textos-monocromaticos-remocao-senior] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-094-alinhamento-constelacao-textos-monocromaticos-remocao-senior.md`**: Especificação técnica aprovada pelo PO para alinhamento e isolamento responsivo da constelação vetorial em `/sobre`, garantia de textos 100% monocromáticos e remoção integral da palavra "sênior".
+- **`tasks/TASK-094-alinhamento-constelacao-textos-monocromaticos-remocao-senior.md`**: Tarefa e checklist de execução concluídos sob o protocolo Universal SDD.
+- **`reviews/QA-094.md`**: Relatório de QA com validação de 100% dos quality gates e evidências de capturas visuais em Desktop Dark, Desktop Light e Mobile Dark.
+
+### Modificado
+- **`src/pages/AboutPage.tsx`**: Reestruturação do Hero em CSS Grid de 12 colunas (`grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center`), posicionando o bloco de texto editorial na coluna esquerda (7 cols, `max-w-xl xl:max-w-2xl`) e o componente `EpmConstellation` na coluna direita (5 cols), eliminando qualquer colisão ou sobreposição de texto em todas as resoluções de tela.
+- **`src/components/sections/Hero.tsx`**: Remoção do `<span className="text-text-brand">` do H1, tornando-o estritamente monocromático em `text-primary` ("Engenharia de software para construir, integrar e evoluir sistemas.") e remoção da palavra "sênior" do quarto cenário ("Avaliar a arquitetura do meu sistema com um diagnóstico técnico").
+- **`src/pages/EngineeringPage.tsx`**: Atualização da esteira de qualidade para "Validação Arquitetural Obrigatória" e "Revisão técnica de arquitetura", eliminando menção ao termo sênior.
+- **`src/components/sections/__tests__/Hero.test.tsx`**: Atualização dos testes unitários para validar H1 estritamente monocromático e novo texto do cenário de diagnóstico.
+- **`e2e/design-system-and-stability.spec.ts`**: Atualização das asserções Playwright para H1 monocromático e cenário de diagnóstico sem termo sênior.
+- **`PROJECT.md`**: Atualização do estado canônico das seções Hero, Engenharia e Sobre nós.
+
+
+### Adicionado
+- **`specs/SPEC-093-sobre-constelacao-silhueta-epm.md`**: Especificação técnica aprovada pelo PO para constelação vetorial de engenharia desenhando a silhueta geométrica do ícone oficial da EPM DevTech no Hero de `/sobre`.
+- **`tasks/TASK-093-sobre-constelacao-silhueta-epm.md`**: Tarefa e checklist de execução do protocolo Universal SDD.
+- **`reviews/QA-093.md`**: Relatório de QA com validação de 100% dos quality gates e evidências de capturas visuais em Desktop Dark, Desktop Light e Mobile Dark.
+- **`src/components/sections/EpmConstellation.tsx`**: Componente vetorial interativo em SVG e Framer Motion com nós estelares luminosos, halos difusos, pulso sonar, feixes de dados em trânsito e rastreamento de mouse com realce por proximidade.
+- **`src/config/epmConstellation.ts`**: Mapeamento de coordenadas normalizadas (viewBox 0 0 600 600) para a moldura externa de tela/circuito com barramentos, chaves de código `{ }` centrais e divisor técnico `/`.
+- **`src/components/sections/__tests__/EpmConstellation.test.tsx`**: Suíte de testes unitários cobrindo renderização da silhueta, nós, arestas, mouse tracking e acessibilidade com `useReducedMotion()`.
+
+### Modificado
+- **`src/pages/AboutPage.tsx`**: Integração do componente `EpmConstellation` no Hero, proporcionando identidade de marca exclusiva, profundidade tecnológica, contraste semântico otimizado e total compatibilidade com Dark e Light Mode.
+- **`PROJECT.md`**: Atualização do estado canônico da rota `/sobre` e contadores de testes unitários (33 suítes, 201 testes).
+
+## [0.0.92-humanizacao-completa-copywriting-b2b] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-092-humanizacao-completa-copywriting-b2b.md`**: Especificação técnica e guia de tom de voz para humanização de 100% dos textos do site com foco em decisores de negócio e dores operacionais B2B.
+- **`tasks/TASK-092-humanizacao-completa-copywriting-b2b.md`**: Tarefa e checklist de execução do protocolo Universal SDD.
+- **`reviews/QA-092.md`**: Relatório de QA com validação de 100% dos quality gates (Vitest, Playwright, ESLint, TypeScript, Build e Prerender).
+
+### Modificado
+- **`src/config/site.ts`**: Atualizada descrição canônica e localização institucional para "Atendimento remoto em todo o Brasil".
+- **`src/pages/Home.tsx` & `src/components/sections/Hero.tsx`**: Proposta de valor humanizada, H1 de forte impacto ("Engenharia de software para construir, integrar e evoluir sistemas"), subheadline editorial direta, seletor de cenários focado em dores concretas ("Qual é o principal desafio da sua empresa hoje?" com diagnóstico técnico direto).
+- **`src/components/sections/HomeServicesBento.tsx`**: 4 serviços com descrições pragmáticas de ganho operacional (Sistemas sob medida, Integrações de APIs sem perda de dados, Modernização segura de legados e Consultoria de arquitetura).
+- **`src/components/sections/HomeProcessPipeline.tsx`**: Etapas do pipeline (01 a 04) detalhadas em entregáveis tangíveis sem jargão vazio.
+- **`src/components/sections/HomeResultsStrip.tsx`**: Legendas e rótulos acessíveis humanizados para autoridade e consistência técnica.
+- **`src/pages/ServicesPage.tsx` & `src/components/sections/Services.tsx`**: H1 do PageHeader, faixa de garantias de engenharia e seções em Z-pattern estruturadas com gatilhos "Quando sua empresa precisa:".
+- **`src/pages/HowWeWorkPage.tsx` & `src/components/sections/ProcessExplorer.tsx`**: Manifesto técnico em 2 colunas e resumos executivos com critérios de saída formais por fase no explorador interativo.
+- **`src/pages/ExperiencePage.tsx`**: Descrições e desafios solucionados nas verticais de Indústria, Varejo, Educação e Energia, com nota de contexto honesta sobre projetos corporativos.
+- **`src/pages/EngineeringPage.tsx` & `src/config/architecture.ts`**: Tooltips contextuais de tecnologias (React, TypeScript, Node.js, AWS, etc.) reescritos com foco no benefício gerado para a operação do cliente.
+- **`src/pages/AboutPage.tsx`**: Marcos históricos na timeline e princípios de engenharia com sobriedade e maturidade institucional.
+- **`src/components/sections/Contact.tsx`, `src/config/faq.ts` & `src/components/sections/Footer.tsx`**: Mensagem de retorno ágil em formulário (24h úteis), FAQ sobre modelo de atendimento 100% remoto nacional e rodapé sincronizado.
+- **`scripts/prerender.js` & `index.html`**: Sincronização de metatags canônicas e HTML estático pré-renderizado para todas as 7 rotas.
+- **Testes Unitários & E2E (`pages.test.tsx`, `Hero.test.tsx`, `Services.test.tsx`, `Contact.test.tsx`, `Footer.test.tsx`, `FAQ.test.tsx`, `hero-identity-token-locks.spec.ts`, etc.)**: Sincronizadas todas as asserções de conteúdo textual e tokens para 100% de aprovação nas suítes.
+- **`PROJECT.md`**: Atualização do estado canônico do projeto com o registro da humanização B2B integral.
+
+## [0.0.91-sobre-hero-constelacao-animada-posicionamento] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-091-sobre-hero-constelacao-animada-posicionamento.md`**: Especificação técnica aprovada pelo PO para aproximação espacial e animações vivas em SVG e Framer Motion da constelação no Hero de `/sobre`.
+- **`tasks/TASK-091-sobre-hero-constelacao-animada-posicionamento.md`**: Tarefa e checklist de execução do protocolo Universal SDD.
+- **`reviews/QA-091.md`**: Relatório de QA com validação de 100% dos quality gates e evidências de capturas visuais em Desktop Dark, Desktop Light e Mobile Dark.
+- **`src/components/sections/__tests__/EngineeringNetworkGraph.test.tsx`**: Suíte de testes unitários para validar renderização SVG, elementos de conectividade, gradientes, satélites e suporte a `prefers-reduced-motion`.
+
+### Modificado
+- **`src/components/sections/EngineeringNetworkGraph.tsx`**:
+  - Implementada rotação contínua de anéis orbitais em sentidos opostos (anel interno a 42s horário e externo a 65s anti-horário).
+  - Adicionado pulso sonar expansivo contínuo a partir do Core central (`r: [10, 52]`, repetição a cada 3.2s com ondas defasadas).
+  - Implementado fluxo de pacotes de dados (`strokeDashoffset` animado nas linhas e partículas luminosas `motion.circle` viajando entre nós).
+  - Adicionada micro-flutuação orgânica (`y: [-2, 2, -2]`) e pulsação luminosa suave nos nós satélites.
+  - Suporte estrito a `useReducedMotion()`.
+- **`src/pages/AboutPage.tsx`**:
+  - Reposicionado `<EngineeringNetworkGraph>` para dentro do `container max-w-6xl mx-auto px-6 relative`, eliminando o vazio lateral em telas largas e aproximando a constelação do bloco editorial.
+- **`PROJECT.md`**: Atualização do estado canônico da rota `/sobre` e contadores de testes unitários (32 suítes, 196 testes).
+
+
+### Adicionado
+- **`specs/SPEC-090-sobre-hero-copy-monocromatico.md`**: Especificação técnica para ajuste de copywriting e tipografia 100% monocromática do Hero de `/sobre`.
+- **`tasks/TASK-090-sobre-hero-copy-monocromatico.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-090.md`**: Relatório de QA com validação dos quality gates e evidências visuais nos temas Dark, Light e Mobile.
+
+### Removido
+- **`src/pages/AboutPage.tsx`**:
+  - Excluída a faixa de Inline Trust Marks (`● Atendimento 100% Remoto & Nacional`, `● Contato Direto com Liderança Técnica` e `● Propriedade Integral do Código`).
+  - Removido o destaque verde/ciano nas palavras do H1.
+
+### Modificado
+- **`src/pages/AboutPage.tsx`**:
+  - H1 atualizado para *"Transformando desafios em soluções que funcionam"*, 100% monocromático (`text-primary`).
+  - Subtítulo atualizado para *"Unimos tecnologia, experiência e visão de negócio para criar soluções digitais que simplificam operações e geram resultados reais."*.
+- **`scripts/prerender.js`**: H1 atualizado para a rota `sobre`.
+- **`e2e/multi-route-navigation.spec.ts`**: Atualizada expectativa de H1 para `/sobre`.
+- **`src/pages/__tests__/pages.test.tsx`**: Testes unitários atualizados para validar o novo H1 e a ausência das trust marks.
+- **`PROJECT.md`**: Atualização do estado canônico da rota `/sobre`.
+
+## [0.0.89-sobre-hero-editorial-network] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-089-sobre-hero-editorial-network.md`**: Especificação técnica para refatoração editorial do Hero de `/sobre` com Inline Trust Marks e malha de conectividade em SVG.
+- **`tasks/TASK-089-sobre-hero-editorial-network.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-089.md`**: Relatório de QA com validação dos quality gates e evidências de capturas de tela nos temas Dark, Light e Mobile.
+- **`src/components/sections/EngineeringNetworkGraph.tsx`**: Componente visual de malha em SVG com Framer Motion (nós e feixes interconectados pulsantes com suporte a `prefers-reduced-motion`).
+- **Faixa de Inline Trust Marks**: Três compromissos essenciais dispostos horizontalmente sem caixas fechadas (`● Atendimento 100% Remoto & Nacional`, `● Contato Direto com Liderança Técnica` e `● Propriedade Integral do Código`).
+
+### Removido
+- **`src/pages/AboutPage.tsx`**:
+  - Removido completamente o card retangular fechado lateral *"Como atuamos com a sua equipe"*, seu container escuro (`bg-zinc-950/70`), bordas e divisórias internas.
+
+### Modificado
+- **`src/pages/AboutPage.tsx`**:
+  - Layout editorial amplo (largura generosa `max-w-4xl`) integrando H1 de alto padrão tipográfico, eyebrow com `BrandChipIcon`, parágrafo institucional expandido e Inline Trust Marks.
+  - Integração do `EngineeringNetworkGraph` posicionado de forma absoluta no canto direito/fundo com profundidade visual sutil.
+- **`src/pages/__tests__/pages.test.tsx`**: Atualização dos testes unitários para validar a nova faixa de Inline Trust Marks e a ausência do card fechado.
+- **`PROJECT.md`**: Atualização do estado canônico da rota `/sobre`.
+
+## [0.0.88-sobre-executive-briefing] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-088-sobre-executive-briefing.md`**: Especificação técnica para unificação da dobra inicial da rota `/sobre` em Executive Briefing corporativo e remoção de dados burocráticos.
+- **`tasks/TASK-088-sobre-executive-briefing.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-088.md`**: Relatório de QA com validação dos quality gates e evidências de capturas de tela nos temas Dark, Light e Mobile.
+- **Painel "Compromissos de Parceria"**: Quadro executivo com 3 pilares estratégicos de alto impacto corporativo (*Atendimento 100% Remoto & Nacional*, *Contato Direto com a Liderança Técnica* e *Propriedade Total do Código & Entregas Incrementais*), acompanhado de badge `● Parceria Direta`.
+
+### Removido
+- **`src/pages/AboutPage.tsx`**:
+  - Removido cabeçalho `PageHeader` antigo e primeira seção duplicada ("Visão & Posicionamento").
+  - Removido card burocrático contendo dados cadastrais/fiscais (CNPJ, menção à sede física de Toledo-PR e endereço fiscal).
+  - Removidas menções nominais isoladas ("Elessandro Prestes Macedo") e badge solto `+9 anos` da rota `/sobre`.
+  - Removido botão de contato redundante interno ao card.
+
+### Modificado
+- **`src/pages/AboutPage.tsx`**:
+  - Unificação da dobra inicial em um bloco integrado **Executive Briefing Hero** na camada tonal `anchor` (`bg-surface-anchor`).
+  - H1 com acento cromático no trecho-chave: *"Engenharia de software sob medida com visão real de negócio"*.
+  - Eyebrow padronizado: `[ QUEM SOMOS // POSICIONAMENTO ]` com `BrandChipIcon` em monospace ciano/esmeralda.
+  - Parágrafo Institucional B2B focado em aplicações corporativas críticas e comunicação direta sem camadas comerciais.
+  - Harmonização do ritmo de camadas tonais (SPEC-082): `anchor` (Hero) → `base` (Nossa Jornada) → `alt` (Missão & Princípios) → `anchor` (Footer).
+  - Atualização do `<Helmet>` para metadados corporativos nacionais sem referência a Toledo-PR.
+- **`scripts/prerender.js`**: Atualização do title, description e H1 pré-renderizados para a rota `sobre`.
+- **`e2e/multi-route-navigation.spec.ts`**: Atualização do teste E2E para o novo título e H1 de `/sobre`.
+- **`src/pages/__tests__/pages.test.tsx`**: Atualização dos testes unitários de `AboutPage` validando o Executive Briefing e assertando a ausência de dados burocráticos.
+- **`PROJECT.md`**: Atualização do estado canônico da rota `/sobre`.
+
+
+### Adicionado
+- **`specs/SPEC-087-remocao-ctas-finais-rotas.md`**: Especificação técnica para remoção global de seções finais de CTA redundantes em todas as rotas do projeto.
+- **`tasks/TASK-087-remocao-ctas-finais-rotas.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-087.md`**: Relatório de QA com validação dos quality gates e confirmação de estabilidade estrutural.
+
+### Removido
+- **`src/pages/ServicesPage.tsx`**: Bloco final de fechamento comercial contendo *"Quer avaliar qual solução se encaixa no seu momento?"*, botão *"Iniciar diagnóstico do projeto"* e link *"Entenda como trabalhamos →"*. A página agora encerra diretamente na Faixa de Garantias de Engenharia.
+- **`src/pages/HowWeWorkPage.tsx`**: Bloco final contendo *"Ficou com alguma dúvida sobre o processo?"*, botão *"Fale com um engenheiro"* e link *"Ver dúvidas frequentes"*. A página encerra diretamente no Manifesto Técnico de Engenharia.
+- **`src/pages/ExperiencePage.tsx`**: Bloco final contendo *"Sua empresa tem uma demanda de alta complexidade?"* e botão *"Falar sobre meu projeto"*. A página encerra diretamente no Enterprise Ledger de Organizações.
+- **`src/pages/EngineeringPage.tsx`**: Bloco final contendo *"Precisa de engenharia sólida no seu produto ou sistema interno?"* e botão *"Falar sobre meu projeto"*. A página encerra diretamente na Matriz de Camadas de Software / Nuvem Tipográfica.
+- **`src/pages/AboutPage.tsx`**: Bloco final contendo *"Pronto para construir sua próxima solução com quem entende de código?"* e botão *"Fale conosco"*. A página encerra diretamente na tabela de Missão & Princípios de Engenharia.
+
+### Modificado
+- Limpeza de imports órfãos em todos os arquivos (`Button`, `ArrowRight`, `HelpCircle`), reduzindo o bundle size de cada rota em até 10%.
+- **`src/pages/__tests__/pages.test.tsx`**: Atualização dos testes unitários para assertar a ausência dessas caixas em todas as rotas e validar elementos estruturais genuínos.
+- **`PROJECT.md`**: Atualização do estado canônico das rotas de Serviços, Como Trabalhamos, Engenharia, Experiência e Sobre nós.
+
+## [0.0.86-servicos-hero-cta] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-086-servicos-hero-cta.md`**: Especificação técnica para inclusão de botão de chamada para ação (CTA) centralizado de alta conversão no Hero da rota `/servicos`.
+- **`tasks/TASK-086-servicos-hero-cta.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-086.md`**: Relatório de QA com validação dos quality gates e evidências de capturas de tela nos temas Dark, Light e Mobile.
+
+### Modificado
+- **`src/components/ui/PageHeader.tsx`**:
+  - Inclusão das propriedades opcionais `children?: React.ReactNode` e `containerClassName?: string` em `PageHeaderProps`.
+  - Renderização de `children` preservando alinhamento semântico centralizado e retrocompatibilidade com todas as demais páginas.
+- **`src/pages/ServicesPage.tsx`**:
+  - Inserção do botão CTA centralizado *"Solicite uma conversa"* logo abaixo da descrição (`mt-8`), estilizado no verde esmeralda vibrante da marca (`bg-emerald-400 hover:bg-emerald-300`), tipografia escura de alto contraste (`text-zinc-950 font-semibold`), cantos arredondados (`rounded-xl`), glow luminoso difuso e ícone `ArrowRight` com microinteração de hover.
+  - Conexão de navegação via `<Link to="/contato">` para direcionamento canônico ao fluxo de atendimento e agendamento.
+  - Otimização para dispositivos móveis com `w-full max-w-xs sm:w-auto` e touch target mínimo de 44px (`min-h-[44px]`).
+- **`src/pages/__tests__/pages.test.tsx`**:
+  - Atualização dos testes unitários para validar a renderização de `children` em `PageHeader` e a presença/direcionamento do botão de ação em `/servicos`.
+- **`PROJECT.md`**:
+  - Atualização do estado canônico de `Services` registrando a inclusão do CTA centralizado no Hero da rota `/servicos`.
+
+## [0.0.85-metricas-home-experiencia] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-085-metricas-home-experiencia.md`**: Especificação técnica para reorganização de métricas entre a Home (`/`) e a rota `/experiencia`, migrando os contadores numéricos animados e iniciando `/experiencia` diretamente nas verticais de negócio.
+- **`tasks/TASK-085-metricas-home-experiencia.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-085.md`**: Relatório de QA com evidências de conformidade aos quality gates e capturas visuais.
+
+### Modificado
+- **`src/components/sections/HomeResultsStrip.tsx`**:
+  - Incorporação do componente de contadores numéricos animados `CountUp` acionados dinamicamente via `useInView(ref, { once: true, margin: "-50px" })`.
+  - Suporte rigoroso a `useReducedMotion` para acessibilidade.
+  - Implementação das 4 métricas técnicas consolidadas:
+    * `99,9%` | *"Disponibilidade assegurada"* | *"Em plataformas críticas de energia e educação."*
+    * `2.500 RPS` | *"Arquitetura dimensionada"* | *"Para picos de 10.000 usuários simultâneos sem gargalos."*
+    * `100%` | *"Integridade de dados"* | *"Na consolidação regulatória do setor elétrico, sem perdas."*
+    * `−35%` (com sinal de menos tipográfico `\u2212`) | *"Atividades manuais reduzidas"* | *"Automações e integrações em plataformas modernizadas."*
+  - Preservação da nota de rodapé contextual e lista semântica (`role="list"` com rótulos `aria-label`/`sr-only`).
+- **`src/pages/Home.tsx`**:
+  - Atualização do texto do link de navegação na seção de resultados para: *"Ver projetos detalhados →"* direcionando para `/experiencia`.
+- **`src/pages/ExperiencePage.tsx`**:
+  - Remoção completa do bloco superior redundante de contadores numéricos (`<Authority />` / `#resultados`).
+  - Início imediato no cabeçalho editorial `PageHeader` ("Experiência em projetos reais") conectando-se diretamente à Matriz de Verticais de Negócio (`#contextos`) e ao Ledger de Organizações (`#organizacoes`).
+  - Ajuste no ritmo do Sistema de Camadas Tonais (SPEC-082): `anchor` (Header) → `base` (`#contextos`) → `alt` (`#organizacoes`) → `base` (`#cta`) → `anchor` (Footer).
+  - Redução de bundle de 13.02 kB para 9.47 kB (-27%).
+- **`src/components/routing/ScrollManager.tsx`**:
+  - Remoção do mapeamento de hash obsoleto `"#autoridade": "/experiencia#resultados"`, permitindo que navegações para `/#autoridade` permaneçam na seção de resultados da Home.
+- **`src/components/sections/__tests__/HomeResultsStrip.test.tsx`**:
+  - Atualização dos testes unitários com mock de `useInView` e validação das 4 métricas técnicas com formatação exata.
+- **`PROJECT.md`**:
+  - Atualização do estado canônico de `Autoridade / Resultados`, `Experiência / Verticais` e contagem de testes unitários (194 testes).
+
+## [0.0.84-hero-simplificacao-copy-cta] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-084-hero-simplificacao-copy-cta.md`**: Especificação técnica para simplificação do Hero da Home (`/`), focando no CTA primário de conversão direta e removendo elementos auxiliares.
+- **`tasks/TASK-084-hero-simplificacao-copy-cta.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-084.md`**: Relatório de QA com evidências de conformidade aos quality gates e capturas de tela.
+
+### Modificado
+- **`src/components/sections/Hero.tsx`**:
+  - Remoção do botão de CTA secundário *"Ver soluções"* (`#servicos`), eliminando bifurcação e redundância com o Seletor de Cenários.
+  - Remoção da faixa de confiança operacional *"Aplicações corporativas críticas · Energia, educação, indústria e varejo · Retorno em até 24h úteis"* (`hero-operational-trust`) e respectiva borda divisória.
+  - CTA primário consolidado e destacado: botão *"Vamos conversar"* direcionando para `/contato`.
+- **`src/components/sections/__tests__/Hero.test.tsx`**: Atualização dos testes unitários para validar a presença exclusiva do botão *"Vamos conversar"* e a ausência do botão secundário e da faixa de confiança.
+- **`e2e/design-system-and-stability.spec.ts`**: Atualização do teste de ancoragem a partir do Hero para navegar via cenário de negócio e assertar ausência de elementos removidos.
+- **`PROJECT.md`**: Atualização do estado canônico da seção Hero.
+
+## [0.0.83-hero-seletor-cenarios-negocio] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-083-hero-seletor-cenarios-negocio.md`**: Especificação técnica para refatoração da seção Hero da Home (`/`), substituindo o card de topologia fictícia por um Seletor Interativo de Cenários de Negócio orientado a tomadores de decisão e copy de alto valor.
+- **`tasks/TASK-083-hero-seletor-cenarios-negocio.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-083.md`**: Relatório de QA com evidências de conformidade aos quality gates, validações de acessibilidade e capturas de tela nos modos Dark e Light.
+
+### Modificado
+- **`src/components/sections/Hero.tsx`**:
+  - H1 com acento cromático intencional no brand teal (`#2DD4BF` / `text-text-brand`) na expressão *"construir, integrar e evoluir"*.
+  - Nova subheadline orientada a decisores de negócio: *"Sistemas sob medida para empresas que precisam criar plataformas, conectar operações ou modernizar o software do seu negócio."*
+  - Faixa de confiança operacional factual com divisores sutis: *"Aplicações corporativas críticas · Energia, educação, indústria e varejo · Retorno em até 24h úteis"*.
+  - Painel interativo de decisão *"O que sua empresa precisa agora?"* com status de direcionamento técnico imediato e 4 cenários navegáveis ancorados:
+    1. *"Criar um novo sistema, portal ou plataforma web"* → `/servicos#sistemas`
+    2. *"Conectar sistemas antigos e automatizar fluxos de dados"* → `/servicos#integracoes`
+    3. *"Modernizar e refatorar um software legado sem parar a operação"* → `/servicos#legados`
+    4. *"Avaliar arquitetura e ter uma segunda opinião técnica sênior"* → `/contato`
+  - Linha condutora vertical SVG conectando os nós com animação pontual (`pathLength: 0 -> 1`), microinterações com glow esmeralda/teal no hover/focus e suporte estrito a `prefers-reduced-motion`.
+  - Compatibilidade com o Design System de Camadas Tonais (SPEC-082) em Dark e Light Mode.
+- **`src/components/sections/Services.tsx`**: Inclusão dos IDs de ancoragem semânticos (`id="sistemas"`, `id="apis"`, `id="integracoes"`, `id="legados"`) nos artigos de serviço para navegação direta vinda do seletor da Home.
+- **`src/components/sections/__tests__/Hero.test.tsx`**: Atualização completa da suíte de testes unitários validando novos títulos, CTAs, faixa de confiança operacional e navegação dos 4 cenários de negócio.
+- **`e2e/design-system-and-stability.spec.ts`**: Atualização do teste de títulos para permitir acento cromático intencional da marca no H1 do Hero, e inclusão de validação E2E completa do seletor de cenários de negócio.
+- **`PROJECT.md`**: Atualização do estado canônico da seção Hero.
+
+## [0.0.82-sistema-camadas-tonais] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-082-tonal-layering-design-system.md`**: Especificação técnica para substituição das linhas divisórias horizontais inter-seções por separação por camadas tonais (*tonal layering*) em todas as rotas e nos temas Dark e Light.
+- **`tasks/TASK-082-tonal-layering-design-system.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-082.md`**: Relatório de QA com evidências de conformidade aos quality gates e capturas visuais.
+- **`src/components/ui/SectionWrapper.tsx`**: Componente reutilizável de seção com prop explícita `tone="anchor" | "base" | "alt"`, padding vertical responsivo consistente (`py-16` a `py-28`) e container centralizado flexível.
+- **`src/components/ui/__tests__/SectionWrapper.test.tsx`**: Suíte de testes unitários para o `SectionWrapper`.
+
+### Modificado
+- **`src/index.css`**: Adição dos tokens semânticos HSL `--surface-anchor`, `--surface-base` e `--surface-alt` para os temas dark e light ($\Delta L = 3.5\%$), restauração de bordas em `forced-colors: active` e transição de background respeitando `prefers-reduced-motion`.
+- **`tailwind.config.ts`**: Mapeamento das classes semânticas utilitárias `surface-anchor`, `surface-base` e `surface-alt`.
+- **`src/components/layout/Header.tsx`**: Consumo de `surface-anchor` e aplicação de backdrop blur + borda inferior sutil exclusivamente sob scroll.
+- **`src/components/sections/Footer.tsx`**: Consumo de `surface-anchor` e remoção da linha horizontal divisória superior.
+- **`src/components/ui/PageHeader.tsx`**: Consumo de `surface-anchor` e eliminação da borda inferior `border-b border-border/40`.
+- **`src/pages/Home.tsx`**: Refatoração das seções adotando o ritmo tonal estrito `anchor -> base -> alt -> base -> alt -> base -> alt -> base -> alt -> base -> anchor` e remoção de divisores horizontais.
+- **`src/pages/ServicesPage.tsx`**: Ritmo tonal `anchor -> base -> alt -> base -> anchor` com `SectionWrapper`.
+- **`src/pages/HowWeWorkPage.tsx`**: Ritmo tonal `anchor -> base -> alt -> base -> anchor` com `SectionWrapper`.
+- **`src/pages/ExperiencePage.tsx`**: Ritmo tonal `anchor -> base -> alt -> base -> alt -> anchor` com `SectionWrapper`.
+- **`src/pages/EngineeringPage.tsx`**: Ritmo tonal `anchor -> base -> alt -> base -> anchor` com `SectionWrapper`.
+- **`src/pages/AboutPage.tsx`**: Ritmo tonal `anchor -> base -> alt -> base -> alt -> anchor` com `SectionWrapper`.
+- **`src/pages/ContactPage.tsx`**: Ritmo tonal `anchor -> base -> alt -> anchor` com `SectionWrapper`.
+- **`src/pages/FAQPage.tsx`**: Ritmo tonal `anchor -> base -> alt -> anchor` com `SectionWrapper`.
+- **`src/pages/NotFound.tsx`**: Ritmo tonal `anchor -> base -> anchor` com `SectionWrapper`.
+- **`src/components/layout/__tests__/Header.test.tsx`**: Atualização do teste de scroll para verificar classes de camadas tonais.
+- **`e2e/design-system-and-stability.spec.ts`**: Adição de testes E2E validando a ausência de linhas divisórias entre seções, ritmo tonal contínuo e alternância em Dark/Light mode em todas as 8 rotas principais.
+- **`PROJECT.md`**: Atualização do status de Design para Camadas Tonais.
+
+## [0.0.81-sobre-nos-timeline-e-manifesto] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-081-sobre-nos-timeline-e-manifesto.md`**: Especificação técnica para refatoração da rota `/sobre` com layout de Timeline Histórica Alternada e Manifesto Técnico de Engenharia, e atualização da Navbar para "Sobre nós".
+- **`tasks/TASK-081-sobre-nos-timeline-e-manifesto.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-081.md`**: Relatório de QA com evidências de conformidade aos quality gates.
+
+### Modificado
+- **`src/components/layout/Header.tsx`**: Atualização do rótulo no menu de links de `"Sobre"` para `"Sobre nós"`, preservando a rota `/sobre`.
+- **`src/pages/AboutPage.tsx`**:
+  - H1 de alto impacto: *"Engenharia de software com foco em longevidade e impacto real"*, com subtítulo editorial de contextualização do fundador Elessandro Prestes Macedo (+9 anos de experiência) e painel de transparência operacional.
+  - Seção "Nossa Jornada" com Timeline Histórica Alternada (desktop: linha horizontal com nós centrais e balões alternados acima/abaixo; mobile: timeline vertical contínua à esquerda com nós luminosos e cards empilhados).
+  - Seção "Missão e Princípios de Engenharia" em formato de Manifesto Técnico / Tabela de Diretrizes com divisores sutis (`divide-y`), eliminando os 3 cards fechados genéricos.
+  - Fechamento comercial com card técnico *"Pronto para construir sua próxima solução com quem entende de código?"* e botão CTA `"Fale conosco"` apontando para `/contato`.
+- **`src/components/layout/__tests__/Header.test.tsx`**: Atualização dos testes unitários assertando `"Sobre nós"`.
+- **`src/pages/__tests__/pages.test.tsx`**: Atualização dos testes unitários validando novo H1, fundação, timeline e manifesto na `AboutPage`.
+- **`e2e/multi-route-navigation.spec.ts`**: Atualização dos testes E2E do Playwright para validar o H1 e link `"Sobre nós"`.
+- **`scripts/prerender.js`**: Atualização do H1 canônico da rota `sobre` para pré-render estático SSR.
+- **`PROJECT.md`**: Atualização do estado canônico da rota `/sobre` e Navbar.
+
+## [0.0.80-engenharia-ajuste-aws-tooltips] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-080-engenharia-ajuste-aws-e-tooltips-inferiores.md`**: Especificação técnica para remoção da badge de certificado da AWS, correção de abertura de tooltips na linha inferior da nuvem tipográfica e formalização da regra de commits em português no SDD.
+- **`tasks/TASK-080-engenharia-ajuste-aws-e-tooltips-inferiores.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-080.md`**: Relatório de QA com evidências de conformidade aos quality gates.
+
+### Modificado
+- **`AGENTS.md` & `GEMINI.md`**: Inclusão de regra mandatória no protocolo SDD determinando que todas as mensagens de commit do Git sejam redigidas em Português do Brasil (pt-BR).
+- **`src/config/architecture.ts`**: Remoção da badge `[Certificado]` e variantes visuais associadas da AWS, mantendo estritamente a autoridade técnica com tipografia e ícone oficial.
+- **`src/components/ui/tooltip.tsx`**: Inclusão de `<TooltipPrimitive.Portal>` em `TooltipContent`, projetando balões de informação diretamente no `document.body` e eliminando colapso de dimensões (0.95px x 0.95px) gerado por transformações CSS do elemento pai.
+- **`src/components/sections/ArchitecturalBlueprint.tsx`**: Configuração de `disableHoverableContent={true}` no `TooltipProvider`, eliminando a área de retenção de hover do Radix UI que bloqueava a ativação de tooltips contíguos na navegação horizontal do mouse.
+- **`src/components/sections/__tests__/ArchitecturalBlueprint.test.tsx`**: Atualização dos testes unitários para validar a presença da badge de `Node.js [Core Runtime]` e ausência estrita de badge em AWS.
+- **`e2e/design-system-and-stability.spec.ts`**: Expansão do teste E2E para testar a abertura individual de tooltips em todas as 9 tecnologias (linha superior e inferior).
+- **`PROJECT.md`**: Atualização do status de tecnologias da rota `/engenharia`.
+
+## [0.0.79-engenharia-apresentacao-tipografica-tecnologias] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-079-engenharia-nuvem-tipografica-tecnologias.md`**: Especificação técnica aprovada para eliminação de caixas/camadas fechadas e implementação de apresentação tipográfica editorial das 9 tecnologias centrais na rota `/engenharia`.
+- **`tasks/TASK-079-engenharia-apresentacao-tipografica-tecnologias.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-079.md`**: Relatório de QA com evidências de conformidade aos quality gates.
+
+### Modificado
+- **`src/config/architecture.ts`**:
+  - Curadoria estrita mantendo exclusivamente as 9 tecnologias centrais do projeto: React, TypeScript, Vue.js, Angular, Node.js, PHP, Laravel, AWS e Azure.
+  - Remoção de 15 ferramentas operacionais, bancos de dados e mensagerias: Grafana, Prometheus, GitHub Actions, Terraform, Kubernetes, Docker, MongoDB, Oracle, MySQL, PostgreSQL, Redis, Kafka, RabbitMQ, Symfony e Tailwind CSS.
+  - Metadados tipados de escala de fonte (`sizeClass`), acentuação de cor (`accentClass`) e badges de autoridade (`AWS [Certificado]`, `Node.js [Core Runtime]`).
+- **`src/components/sections/ArchitecturalBlueprint.tsx`**:
+  - Eliminação de caixas horizontais `LAYER 01..04` em favor de uma nuvem tipográfica editorial contínua (`tech-editorial-cloud`), inspirada diretamente na referência visual.
+  - Tipografia de alto impacto (`text-2xl` a `text-5xl font-extrabold tracking-tight`), badges douradas/âmbar e brand teal inline e micro-interação de hover e tooltips contextuais.
+- **`src/components/sections/__tests__/ArchitecturalBlueprint.test.tsx`**: Atualização da suíte de testes unitários validando a presença das 9 tecnologias, badges de autoridade e ausência estrita das 15 ferramentas descontinuadas.
+- **`src/pages/__tests__/pages.test.tsx`**: Atualização das asserções de cabeçalho da rota `/engenharia`.
+- **`e2e/design-system-and-stability.spec.ts`**: Atualização dos testes E2E do Playwright para validar a nuvem tipográfica editorial e tooltips contextuais.
+- **`PROJECT.md`**: Atualização da rota `/engenharia` e status de tecnologias.
+
+
+### Adicionado
+- **`specs/SPEC-078-engenharia-tecnologias-curadoria-visual.md`**: Especificação técnica para curadoria de tecnologias e refinamento tipográfico na rota `/engenharia`.
+- **`tasks/TASK-078-engenharia-tecnologias-curadoria-visual.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-078.md`**: Relatório de QA com evidências de conformidade aos quality gates.
+
+### Modificado
+- **`src/config/architecture.ts`**:
+  - Inclusão das especialidades: Next.js, JavaScript, Python, Go, PHP, Ruby on Rails, React Native, Android, Swift e Programação com IA.
+  - Remoção de bancos de dados isolados, observabilidade, Tailwind CSS, frameworks secundários (Laravel, Symfony), mensagerias (RabbitMQ, Kafka, Redis) e orquestradores de infraestrutura.
+  - Reorganização das 4 camadas: Camada 01 (Web & Interfaces Reativas), Camada 02 (Back-end & APIs), Camada 03 (Mobile & Engenharia de IA) e Camada 04 restrita estritamente a **AWS e Azure**.
+  - Metadados de badges (`Certificado`, `Core Runtime`, `Inovação`) e marcações de destaque.
+- **`src/components/sections/ArchitecturalBlueprint.tsx`**:
+  - Refinamento tipográfico editorial com nomes destacados (`font-bold text-sm sm:text-base tracking-tight`), ícones oficiais de alta resolução e badges de autoridade.
+  - Destaque especial e ícone `Sparkles` para `Programação com IA`.
+  - Badge dourada/âmbar `[CERTIFICADO]` associada à AWS, replicando a autoridade da referência visual.
+- **`src/pages/EngineeringPage.tsx`**: Atualização do terminal de simulação CI/CD Quality Gate para 30 suites e 189 testes aprovados.
+- **`src/components/sections/__tests__/ArchitecturalBlueprint.test.tsx`**: Atualização completa da suíte de testes unitários validando presença das novas especialidades, badges e ausência dos itens descontinuados.
+- **`src/pages/__tests__/pages.test.tsx`**: Atualização das asserções de tags de camada para a rota `/engenharia`.
+- **`e2e/design-system-and-stability.spec.ts`**: Atualização dos testes E2E do Playwright validando os novos identificadores de camada e tooltips.
+- **`PROJECT.md`**: Atualização de métricas e status canônico de tecnologias da rota `/engenharia`.
+
+
+### Adicionado
+- **`specs/SPEC-077-engenharia-architectural-blueprint.md`**: Especificação técnica para redesenho da rota `/engenharia` aplicando os padrões Architectural Blueprint (Matriz de Camadas de Software) e Layout Dividido (Princípios de Engenharia vs. Terminal CI/CD Quality Gate).
+- **`tasks/TASK-077-engenharia-architectural-blueprint.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-077.md`**: Relatório de QA com evidências de conformidade aos quality gates.
+- **`src/config/architecture.ts`**: Mapeamento canônico das 4 camadas de arquitetura de software (Apresentação & Edge, Aplicação & APIs, Mensageria & Eventos, Nuvem/Dados & Observabilidade) e 25 tecnologias com descrição de propósito arquitetural e ícones oficiais.
+- **`src/components/sections/ArchitecturalBlueprint.tsx`**: Componente de rack/slot de arquitetura em 4 camadas horizontais com indicadores de status de camada (`[LAYER 0X // ...]`), badges estilizadas com logos oficiais e micro-interação contextual de tooltip ao passar o mouse.
+- **`src/components/sections/__tests__/ArchitecturalBlueprint.test.tsx`**: Suíte de testes unitários com 5 testes cobrindo renderização das camadas, badges, interações de tooltip e atributos de acessibilidade.
+
+### Modificado
+- **`src/pages/EngineeringPage.tsx`**:
+  - Reestruturação da seção de princípios de engenharia em Layout Dividido de 2 colunas: Coluna 1 com princípios numerados editorialmente (`01`, `02`, `03`) e traço esmeralda de destaque; Coluna 2 com simulação de terminal de Quality Gate contínuo (`ci-cd-quality-gate.yml`) com checks automatizados e badges esmeralda.
+  - Substituição da constelação dispersa de ícones pelo componente `<ArchitecturalBlueprint />` sob `#tecnologias`.
+  - Refinamento do fechamento comercial e CTA para diagnóstico técnico.
+- **`src/pages/__tests__/pages.test.tsx`**: Atualização dos testes unitários de `EngineeringPage` refletindo o novo Layout Dividido e o Architectural Blueprint.
+- **`e2e/design-system-and-stability.spec.ts`**: Atualização dos testes E2E 104 e 139 para inspecionar os elementos do Architectural Blueprint e tooltips na rota `/engenharia`.
+- **`PROJECT.md`**: Atualização da estrutura de diretórios, descrição da rota `/engenharia`, status de tecnologias e contagem de testes unitários para 188.
+
+
+### Adicionado
+- **`specs/SPEC-076-experiencia-remocao-linhas-duplas.md`**: Especificação técnica para eliminação de linhas horizontais duplas na rota `/experiencia`.
+- **`tasks/TASK-076-experiencia-remocao-linhas-duplas.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-076.md`**: Relatório de QA com evidências de conformidade aos quality gates.
+
+### Modificado
+- **`src/components/sections/Authority.tsx`**: Suporte à prop opcional `className?: string`, mesclada às classes base com `cn()` e `twMerge`.
+- **`src/pages/ExperiencePage.tsx`**: Configuração de `<Authority className="border-y-0 bg-transparent py-6 sm:py-10" />`, unificando a hierarquia de divisores e removendo a segunda linha horizontal que aparecia sob o `PageHeader`.
+- **`src/components/sections/__tests__/Authority.test.tsx`**: Novo teste unitário validando a sobrescrita limpa de classes via prop `className`.
+- **`PROJECT.md`**: Atualização do total de testes unitários para 183.
+
+## [0.0.75-experiencia-enterprise-ledger] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-075-experiencia-enterprise-ledger.md`**: Especificação técnica para redesenho da rota `/experiencia` aplicando os padrões Engineering Matrix para verticais e Enterprise Ledger para projetos corporativos.
+- **`tasks/TASK-075-experiencia-enterprise-ledger.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-075.md`**: Relatório de QA com evidências de conformidade aos quality gates.
+
+### Modificado
+- **`src/pages/ExperiencePage.tsx`**:
+  - Preservação estrita dos 4 contadores animados com `CountUp` na faixa de métricas (`<Authority />`).
+  - Substituição dos cards 3D isolados e mockups artificiais pela **Engineering Matrix** (Grid 2x2 com bordas internas limpas, badges de especialidade `IoT INDUSTRIAL`, `ALTA CONCORRÊNCIA`, `ESCALA NACIONAL`, `DADOS REGULATÓRIOS` e capacidades técnicas inline de `Stack & Soluções`).
+  - Reformatação da Nota de Contexto em linha editorial monospace discreta com ponto luminoso indicador em verde-água (`w-1.5 h-1.5 rounded-full bg-brand`), declarando expressamente *"Não são clientes da EPM DevTech"*.
+  - Substituição dos 3 cards fechados de organizações pelo **Enterprise Ledger** horizontal contínuo (`divide-y divide-border-default/80 border-y`) com colunas alinhadas, badges de setor e transição de hover refinada (`hover:bg-surface-elevated/40`).
+  - Refinamento do fechamento comercial e CTA para demandas de alta complexidade.
+- **`src/pages/__tests__/pages.test.tsx`**: Atualização da suíte de testes unitários validando a presença da Engineering Matrix e do Enterprise Ledger.
+
+## [0.0.74-como-trabalhamos-process-explorer] - 2026-10-01
+
+### Adicionado
+- **`specs/SPEC-074-como-trabalhamos-process-explorer.md`**: Especificação técnica para refatoração da rota `/como-trabalhamos` com Process Explorer interativo em 2 colunas, entregáveis concretos, critérios de saída, Manifesto Técnico de Engenharia e CTA de contato compacto.
+- **`tasks/TASK-074-como-trabalhamos-process-explorer.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-074.md`**: Relatório de QA com evidências de conformidade aos quality gates.
+- **`src/components/sections/ProcessExplorer.tsx`**: Componente Process Explorer com tabs verticais no desktop (`md:`), painel de detalhamento técnico com tags de entregáveis concretos e critério formal de saída por etapa, e Accordion vertical fluido no mobile.
+- **`src/components/sections/__tests__/ProcessExplorer.test.tsx`**: Suíte de testes unitários para o Process Explorer cobrindo seleção de etapas, renderização de entregáveis e acordeão mobile.
+
+### Modificado
+- **`src/pages/HowWeWorkPage.tsx`**:
+  - Integração do componente `<ProcessExplorer />` em substituição ao componente estático replicado da Home.
+  - Substituição dos 2 cards soltos de garantias pelo **Manifesto Técnico de Engenharia** estruturado em 2 colunas abertas com `md:divide-x` e badges `// GARANTIA OPERACIONAL` e `// GESTÃO DIRETA`.
+  - Reestruturação do fechamento comercial com barra compacta de FAQ e CTA ("Fale com um engenheiro" para `/contato` e "Ver dúvidas frequentes" para `/duvidas-frequentes`).
+- **`src/pages/__tests__/pages.test.tsx`**: Atualização do teste de `HowWeWorkPage` validando semântica do novo Manifesto Técnico e botões de conversão.
+
+## [0.0.73-servicos-redesign-editorial-zpattern] - 2026-10-01
+
+### Adicionado
+- **`specs/SPEC-073-servicos-redesign-editorial-zpattern.md`**: Especificação técnica para redesign editorial da página e seção de serviços com layout em Z-Pattern alternado, callouts de negócio integrados, faixa limpa de garantias de engenharia e CTA comercial refinado.
+- **`tasks/TASK-073-servicos-redesign-editorial-zpattern.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-073.md`**: Relatório de QA com evidências de conformidade aos quality gates.
+
+### Modificado
+- **`src/components/sections/Services.tsx`**:
+  - Eliminação da grade 2x2 com cards idênticos.
+  - Implementação de layout em Z-Pattern alternado de 12 colunas:
+    - Serviços ímpares (0 e 2): texto na esquerda (`lg:col-span-6`), mock visual na direita (`lg:col-span-6`).
+    - Serviços pares (1 e 3): mock visual na esquerda (`lg:col-span-6 lg:order-1`), texto na direita (`lg:col-span-6 lg:order-2`).
+    - Mobile: fluxo natural com texto no topo e mock visual logo abaixo.
+  - Callout de contexto de negócio com borda lateral esmeralda (`border-l-2 border-brand/60 pl-4 py-2 bg-brand/5 rounded-r-md`) com identificador `QUANDO PRECISA:`.
+  - Tags técnicas identificadoras (`01 // WEB & PORTAIS`, `02 // APIS & BACK-END`, `03 // INTEGRAÇÃO DE DADOS`, `04 // MODERNIZAÇÃO`).
+  - Containers escuros refinados para os 4 mocks técnicos (`bg-surface/80 dark:bg-zinc-950/80 border border-border-default/80 rounded-xl p-5 shadow-2xl backdrop-blur-sm`).
+- **`src/pages/ServicesPage.tsx`**:
+  - Eliminação dos 3 cards fechados e checks genéricos.
+  - Faixa de Garantias de Engenharia em 3 colunas abertas com tags monospace `[ 01 // ESCOPO ]`, `[ 02 // SUSTENTABILIDADE ]` e `[ 03 // COMUNICAÇÃO ]` em brand teal.
+  - Fechamento comercial integrado com botões `"Iniciar diagnóstico do projeto"` (`/contato`) e `"Entenda como trabalhamos →"` (`/como-trabalhamos`).
+- **`src/components/sections/__tests__/Services.test.tsx`**: Atualização da suíte de testes unitários com suporte a `motion.article` e validação das tags do Z-Pattern.
+
+## [0.0.72-alinhamento-geometrico-pipeline] - 2026-10-01
+
+### Adicionado
+- **`specs/SPEC-072-alinhamento-geometrico-pipeline.md`**: Especificação técnica para alinhamento geométrico rigoroso da linha do pipeline da Home e calibração do feixe Framer Motion.
+- **`tasks/TASK-072-alinhamento-geometrico-pipeline.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-072.md`**: Relatório de QA com evidências de conformidade aos quality gates.
+
+### Modificado
+- **`src/components/sections/HomeProcessPipeline.tsx`**:
+  - Ancoragem do trilho horizontal desktop corrigida de `left-[12.5%]` para `left-[18px]` (centro geométrico do nó 01) e finalização em `md:right-[calc(25%-36px)] lg:right-[calc(25%-42px)]` (centro geométrico do nó 04), eliminando o offset que iniciava a linha no vão entre os nós 01 e 02.
+  - Alinhamento vertical centralizado com `top-[17px] h-[2px]` no eixo Y dos nós de 36px.
+  - Posicionamento da linha e feixe em `z-0 pointer-events-none`.
+  - Nós circulares atualizados com `relative z-10 bg-surface dark:bg-zinc-950` garantindo oclusão sólida da linha por trás de cada círculo sem vazamento sobre a tipografia.
+  - Feixe Framer Motion calibrado em largura total (`w-full h-full`) com `initial={{ x: "-100%" }}`, `animate={{ x: "100%" }}` e `repeat: Infinity, duration: 3, ease: "easeInOut"` (e no mobile `y: ["-100%", "100%"]`).
+- **`src/components/sections/__tests__/HomeProcessPipeline.test.tsx`**: Inclusão de teste unitário validando classes de ancoragem geométrica, `z-0` no trilho e `z-10` com fundo sólido nos nós.
+
+## [0.0.71-limpeza-cta-home-padronizacao-botoes] - 2026-10-01
+
+### Adicionado
+- **`specs/SPEC-071-limpeza-cta-home-padronizacao-botoes.md`**: Especificação técnica para eliminação da seção intermediária redundante de contato na Home e padronização dos botões de ação e conversão.
+- **`tasks/TASK-071-limpeza-cta-home-padronizacao-botoes.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-071.md`**: Relatório de QA com evidências de conformidade aos quality gates.
+
+### Modificado
+- **`src/pages/Home.tsx`**: Remoção do bloco intermediário redundante `<section id="contato">` ("Vamos entender o cenário da sua empresa?"), permitindo uma transição fluida e natural da seção de Resultados para o rodapé; limpeza de imports orfãos (`Clock`, `Button`).
+- **`src/components/layout/Header.tsx`**: Padronização do botão de ação no Header desktop e gaveta móvel para `"Fale conosco"` com `aria-label="Fale conosco"`.
+- **`src/components/sections/Hero.tsx`**: Padronização do CTA primário do Hero para `"Vamos conversar"` com `aria-label="Vamos conversar sobre seu projeto"` direcionando para `/contato`, preservando o secundário `"Ver soluções"` direcionando para `#servicos`.
+- **`src/components/layout/__tests__/Header.test.tsx`**: Atualização da asserção do botão CTA para `"Fale conosco"`.
+- **`src/components/sections/__tests__/Hero.test.tsx`**: Atualização da asserção do botão CTA primário para `"Vamos conversar"`.
+- **`src/pages/__tests__/pages.test.tsx`**: Atualização para verificar ausência do bloco intermediário removido.
+- **`e2e/multi-route-navigation.spec.ts`**: Atualização do teste E2E do Header para validar `"Fale conosco"`.
+- **`e2e/design-system-and-stability.spec.ts`**: Remoção de seção `#contato` da lista de headings da Home e atualização do CTA principal do Hero para `"Vamos conversar"`.
+
+## [0.0.70-pipeline-animacao-fluxo-continuo] - 2026-10-01
+
+### Adicionado
+- **`specs/SPEC-070-pipeline-animacao-fluxo-continuo.md`**: Especificação técnica da animação contínua da esteira de engenharia no pipeline de metodologia com Framer Motion.
+- **`tasks/TASK-070-pipeline-animacao-fluxo-continuo.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-070.md`**: Relatório de QA com evidências de conformidade aos quality gates.
+
+### Modificado
+- **`src/components/sections/HomeProcessPipeline.tsx`**:
+  - Implementação de arquitetura de duas camadas na linha condutora: trilho base estático (`bg-border-subtle/80`) e feixe animado em loop contínuo de 3s (`motion.div` com gradiente `from-transparent via-brand to-transparent`).
+  - Suporte a layout responsivo: feixe horizontal da esquerda para a direita no desktop (`x: ["-100%", "300%"]`) e feixe vertical de cima para baixo no mobile (`y: ["-100%", "300%"]`).
+  - Suporte a acessibilidade com `useReducedMotion()`, pausando a animação e exibindo feixe estático sutil.
+  - Micro-interações de hover táteis nos nós circulares com halo de brilho verde-água (`shadow-[0_0_16px_rgba(45,212,191,0.3)]`) e realce de contraste no texto da descrição (`group-hover:text-foreground/90`).
+- **`src/components/sections/__tests__/HomeProcessPipeline.test.tsx`**: Suíte de testes unitários com 100% de cobertura validando nós, textos e conformidade de renderização.
+
+## [0.0.69-hero-fullscreen-minimalista] - 2026-10-01
+
+### Adicionado
+- **`specs/SPEC-069-hero-fullscreen-minimalista.md`**: Especificação técnica para Hero minimalista fullscreen (100vh), remoção de badges e foco estrito na conversão.
+- **`tasks/TASK-069-hero-fullscreen-minimalista.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-069.md`**: Relatório de QA com evidências de conformidade aos quality gates.
+
+### Modificado
+- **`src/components/sections/Hero.tsx`**:
+  - Enquadramento fullscreen adaptativo com `min-h-screen min-h-[100svh] flex flex-col justify-center`, garantindo que o Hero ocupe 100% da viewport e que a seção de serviços não apareça na primeira dobra antes da rolagem.
+  - Remoção de badge/pílula ao redor do eyebrow `ENGENHARIA DE SOFTWARE & MODERNIZAÇÃO`, exibindo tipografia técnica pura com `BrandChipIcon`.
+  - Remoção de badge/pílula ao redor de `HEALTHY / 99.9% uptime` no cabeçalho da janela dev de arquitetura.
+  - Remoção completa da subheadline descritiva e da frase de micro social proof inferior, concentrando o fluxo visual em **Eyebrow ➔ H1 ➔ CTAs**.
+- **`src/components/sections/__tests__/Hero.test.tsx`**: Atualização dos testes unitários para validar enquadramento fullscreen, ausência de subheadline e ausência de badges.
+- **`e2e/hero-identity-token-locks.spec.ts`**: Atualização dos testes E2E validando ausência de badges, altura total da viewport e conformidade de tokens.
+
+## [0.0.68-hero-redesign-editorial-arquitetura] - 2026-10-01
+
+### Adicionado
+- **`specs/SPEC-068-hero-redesign-editorial-arquitetura.md`**: Especificação do redesign completo do Hero institucional, com eliminação de divisores artificiais e introdução de janela dev interativa de arquitetura ativa.
+- **`tasks/TASK-068-hero-redesign-editorial-arquitetura.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-068.md`**: Relatório de QA com evidências de conformidade aos quality gates.
+
+### Modificado
+- **`src/components/sections/Hero.tsx`**:
+  - Remoção definitiva da linha divisória horizontal inferior e do ponto verde estático.
+  - Altura e respiro de tela aprimorados (`min-h-[85vh]`, `py-20 md:py-28`) com transição orgânica suave (`bg-gradient-to-b from-transparent to-surface/40`).
+  - Eyebrow em formato de badge cápsula refinada com `BrandChipIcon` e `ENGENHARIA DE SOFTWARE & MODERNIZAÇÃO`.
+  - H1 com kerning e impacto editorial (`text-4xl sm:text-5xl lg:text-6xl font-extrabold text-primary`).
+  - CTAs com feedback tátil e glow sutil ao hover (`hover:shadow-glow-brand hover:scale-[1.02]`).
+  - Micro social proof com indicador em tempo real pulsante (`animate-ping`) declarando estabilidade operacional em múltiplos setores.
+  - Janela Dev "Sistema & Arquitetura Ativa" (`architecture.overview.ts`), indicador `HEALTHY / 99.9% uptime`, spotlight ambiente em background e 4 camadas de arquitetura conectadas com tags coloridas temáticas (`accent-blue`, `accent-violet`, `accent-amber`, `brand`).
+- **`src/components/sections/__tests__/Hero.test.tsx`**: Atualização das asserções da suíte unitária para os novos elementos e remoção do divisor.
+- **`e2e/hero-identity-token-locks.spec.ts`**: Atualização dos testes E2E harmonizando a ausência de divisória com a presença do indicador operacional ativo e contraste semântico.
+
+## [0.0.67-stat-strip-resultados-home] - 2026-10-01
+
+### Adicionado
+- **`specs/SPEC-067-stat-strip-resultados-home.md`**: Especificação da refatoração da seção de Resultados da Home, transformando cards fechados em uma Stat Strip tipográfica editorial de alto impacto.
+- **`tasks/TASK-067-stat-strip-resultados-home.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-067.md`**: Relatório de QA com evidências de conformidade aos quality gates.
+- **`src/components/sections/HomeResultsStrip.tsx`**: Componente de Stat Strip tipográfica com:
+  - 4 métricas técnicas em escala editorial (`99,9%`, `2.500+`, `+448`, `Zero`) com tipografia monospace de grande impacto (`font-mono text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary`).
+  - Rótulos semânticos em brand teal (`text-text-brand`) e descrições objetivas em `text-secondary`.
+  - Estrutura contínua com divisores horizontais (`border-y border-border-default/60`) e separadores verticais discretos no desktop (`md:divide-x divide-border-subtle/50`).
+  - Layout responsivo fluído no mobile sem truncamento de conteúdo.
+- **`src/components/sections/__tests__/HomeResultsStrip.test.tsx`**: Suíte de testes unitários com 100% de aprovação para métricas, rótulos, descrições e divisores.
+
+### Modificado
+- **`src/pages/Home.tsx`**: Integração de `<HomeResultsStrip />` substituindo a grade de caixas fechadas, preservando o cabeçalho de seção (`SectionHeader`), nota explicativa factual com asterisco e link de navegação para `/experiencia`.
+
+## [0.0.66-pipeline-processo-home] - 2026-10-01
+
+### Adicionado
+- **`specs/SPEC-066-pipeline-processo-home.md`**: Especificação da refatoração da seção de Processo da Home, substituindo cards fechados por um Pipeline contínuo de engenharia.
+- **`tasks/TASK-066-pipeline-processo-home.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-066.md`**: Relatório de QA com evidências de conformidade aos quality gates.
+- **`src/components/sections/HomeProcessPipeline.tsx`**: Componente de Pipeline contínuo com:
+  - Lista semântica acessível `<ol>` conectando as etapas 01 a 04.
+  - Linha condutora contínua no desktop (horizontal) e mobile (vertical na lateral esquerda).
+  - Marcadores de nós (nodes) técnicos em tipografia monospace (`01`, `02`, `03`, `04`) com micro-interações de escala e glow temático em hover.
+  - Hierarquia visual limpa e descrições sem caixas fechadas isoladas.
+- **`src/components/sections/__tests__/HomeProcessPipeline.test.tsx`**: Suíte de testes unitários com 100% de aprovação para semântica, etapas, títulos e descrições.
+
+### Modificado
+- **`src/pages/Home.tsx`**: Integração do componente `<HomeProcessPipeline />` preservando o cabeçalho institucional, títulos e link canônico para `/como-trabalhamos`.
+
+## [0.0.65-bento-grid-servicos-home] - 2026-10-01
+
+### Adicionado
+- **`specs/SPEC-065-bento-grid-servicos-home.md`**: Especificação do Bento Grid de 12 colunas para a seção de Serviços da Home, substituindo a grade simétrica de 4 cards por composição editorial/técnica.
+- **`tasks/TASK-065-bento-grid-servicos-home.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-065.md`**: Relatório de QA com evidências de conformidade aos quality gates e aprovação visual pelo PO.
+- **`src/components/sections/HomeServicesBento.tsx`**: Componente modular do Bento Grid assimétrico de 12 colunas com 4 serviços:
+  - Card 1 (`col-7`): APIs e back-end (destaque principal, mock visual de terminal HTTP `POST /api/v2/transactions`, 18ms latência, 2.500+ RPS, badge pulsante "Alta Concorrência").
+  - Card 2 (`col-5`): Sistemas e portais (tags técnicas React 18/TypeScript/Tailwind CSS, garantia de arquitetura limpa e indicador 100% Type-Safe).
+  - Card 3 (`col-5`): Integrações de dados (topologia visual de conectores ERP ➔ Event Hub ➔ CRMs/APIs, badge "Sync Ativo", fila com retry e 99.9% confiabilidade).
+  - Card 4 (`col-7`): Modernização de legados (transição conceitual direta Antes/Depois via padrão Strangler Fig, badge "Zero Downtime" e evolução segura).
+- **`src/components/sections/__tests__/HomeServicesBento.test.tsx`**: Suíte de testes unitários validando renderização de títulos, descrições de negócio, micro-artefatos técnicos e acessibilidade dos links.
+
+### Modificado
+- **`src/pages/Home.tsx`**: Substituição da grade de 4 colunas simétricas pelo componente `<HomeServicesBento />`, preservando cabeçalho, títulos aprovados e link canônico para `/servicos`.
+
+## [0.0.64-correcao-contraste-textos-cursor-dark] - 2026-10-01
+
+### Adicionado
+- **`specs/SPEC-064-correcao-contraste-textos-cursor-dark.md`**: Especificação técnica para resolução de conflito de namespace de cores de texto e visibilidade do Cursor Orb no tema Dark.
+- **`tasks/TASK-064-correcao-contraste-textos-cursor-dark.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-064.md`**: Relatório de QA com rácio de contraste WCAG 2.1 (AAA/AA) e validação dos quality gates.
+
+### Corrigido
+- **Contraste de Textos no Dark Mode (`tailwind.config.ts`)**:
+  - Resolução da colisão de namespace onde `text-muted` e `text-secondary` resolviam para cores de superfície de fundo (`--bg-surface-rgb` e `--bg-elevated-rgb`), tornando eyebrows, parágrafos de cards e rodapé quase invisíveis.
+  - Inclusão explícita de `theme.extend.textColor` mapeando `primary` (#F2F7F7 a 17.26:1), `secondary` (#9DB0B3 a 9.12:1), `muted` (#71868A a 5.36:1), `brand` e `on-brand` com conformidade estrita WCAG AAA/AA.
+- **Cursor Orb Customizado (`src/components/CursorOrb.tsx`, `Layout.tsx`, `src/index.css`)**:
+  - Desacoplamento do componente `CursorOrb` do delay de 2500ms em `Layout.tsx`, ativando o ponteiro customizado imediatamente na carga da página.
+  - Elevação do empilhamento do cursor para `z-[9999]` com `pointer-events-none`, garantindo visibilidade irrestrita sobre cards, botões, modais e elementos opacos.
+  - Escopo condicional da regra CSS `cursor: none !important;` para `html.custom-cursor-active`, adicionada dinamicamente pelo `CursorOrb` apenas em ambientes com mouse (`pointer: fine`) e sem redução de movimento.
+  - Ponto de mira (dot) ampliado para 8px com preenchimento sólido `#2DD4BF` e glow nítido, além de anel reativo fluido com feedback tátil em interações.
+
+## [0.0.63-sistema-cores-tokens-temas] - 2026-10-01
+
+### Adicionado
+- **`specs/SPEC-063-sistema-cores-tokens-temas.md`**: Especificação completa da refatoração do sistema de cores, tokens semânticos em 2 camadas e temas ricos (Dark, Light, System) com contraste WCAG AAA.
+- **`tasks/TASK-063-sistema-cores-tokens-temas.md`**: Registro de execução e checklist de qualidade da tarefa SDD.
+- **`reviews/QA-063.md`**: Relatório de qualidade, matriz de contraste WCAG 2.1 e evidências dos quality gates.
+- **`docs/design-system/color-tokens-guide.md`**: Guia de uso dos tokens de cores, regra 60/30/10, catálogo de superfícies e tabela de contraste.
+
+### Modificado
+- **`src/index.css`**:
+  - Implementação da arquitetura em 2 camadas: Primitivas (Camada 1: neutral, teal, blue, violet, amber, red, green) e Semânticas (Camada 2: base, surface, elevated, overlay, border-*, text-*, brand-*, accent-*).
+  - Configuração de neutros tingidos (frio esverdeado/azulado) em vez de preto e branco puros.
+  - Suporte completo a `:root, [data-theme="light"]` e `[data-theme="dark"], .dark` com transições suaves e respeito a `prefers-reduced-motion`.
+- **`tailwind.config.ts`**:
+  - Mapeamento de tokens semânticos via `rgb(var(--*-rgb) / <alpha-value>)`.
+  - Isolamento de `backgroundColor.base` para prevenir colisão com a classe utilitária de tipografia `text-base` do Tailwind.
+  - Inclusão dos tokens semânticos `on-brand`, `brand`, `text.*`, `accent.*`, `glow-brand` e sombras.
+- **`index.html`**:
+  - Script inline anti-FOUC no `<head>` sincronizando `data-theme`, classes e `color-scheme` no frame 0.
+  - Meta tags `theme-color` adaptativas (`#0A0F10` para dark e `#F6FAFA` para light).
+  - Atualização do CSS crítico inline com a nova paleta institucional.
+- **`src/components/theme-provider.tsx`**:
+  - Suporte nativo ao atributo `data-theme`, `color-scheme`, listener de alteração no sistema e atualização dinâmica da meta tag `theme-color`.
+- **`src/components/ui/button.tsx`**:
+  - Botão primário (`variant: "default"`) com `bg-brand` (`#2DD4BF`) e `text-on-brand` (`#04201C`), alcançando contraste **12.44:1 (WCAG AAA)**.
+  - Variantes outline, secondary e ghost adaptadas para tokens semânticos.
+- **Componentes e Seções**:
+  - `Hero.tsx`, `Home.tsx`, `Header.tsx`, `Footer.tsx`, `Contact.tsx`, `Services.tsx`, `FAQ.tsx`, `Authority.tsx`, `HowWeWork.tsx`, `Differentials.tsx`: remoção de todas as classes `zinc-*` e `emerald-*`, padronizando 100% da interface em tokens semânticos.
+  - Distribuição consistente das cores de apoio nos 4 serviços (01: Blue, 02: Violet, 03: Amber, 04: Teal).
+- **Testes & E2E**:
+  - Atualização de `e2e/design-system-and-stability.spec.ts` para verificar o verde-água da marca (`rgb(45, 212, 191)`).
+  - Atualização de `e2e/hero-identity-token-locks.spec.ts` para validar as travas de tokens e ausência de gradientes com os novos tokens semânticos.
+  - 100% dos testes passando (163 unitários com 99.44% de cobertura, 43 E2E no Playwright).
+
+## [0.0.62-eliminacao-redundancias-home] - 2026-10-01
+
+### Adicionado
+- **`specs/SPEC-062-eliminacao-redundancias-home.md`**: Especificação de eliminação de redundâncias da Home baseada no princípio "Uma ideia, um lugar".
+- **`tasks/TASK-062-eliminacao-redundancias-home.md`**: Tarefa de execução e checklist de qualidade SDD.
+- **`reviews/QA-062.md`**: Relatório de qualidade com evidências de conformidade, quality gates e validações E2E.
+- **`src/pages/AboutPage.tsx`**: Adicionada a seção institucional dos 3 Pilares de Atuação ("Comunicação transparente", "Engenharia que facilita evoluir", "Foco no problema do negócio") movida da Home.
+
+### Modificado
+- **`src/components/sections/Hero.tsx`**:
+  - Padronização do CTA primário para `"Falar sobre meu projeto"` (`/contato`).
+  - CTA secundário transformado em âncora suave para a seção de serviços: `"Ver soluções"` (`#servicos`).
+  - Card "Topologia de Arquitetura" simplificado para stack visual pura de engenharia (removidas descrições longas, métricas 99,9%, 2.500+ RPS e selos).
+- **`src/pages/Home.tsx`**:
+  - Seção Serviços ("O que desenvolvemos"): 4 cards inteiros clicáveis para `/servicos` focados estritamente em problemas de negócio (≤ 14 palavras cada); título e subtítulo reescritos sem repetir "estabilidade"; link curto `"Ver todos os serviços →"`.
+  - Seção Processo ("Como trabalhamos"): compactada em stepper horizontal de 4 etapas (≤ 10 palavras cada), com diferencial de contato direto em linha única e link curto `"Ver metodologia →"`.
+  - Seção Resultados ("Experiência Prática"): consolidada como único ponto de métricas da Home, com link curto `"Ver projetos →"`.
+  - Unificação de Confiança + CTA Final: eliminação do bloco Sobre repetitivo e criação de seção comercial enxuta com linha de confiança (*"Toledo (PR) · Atendimento em todo o Brasil · 9+ anos em sistemas críticos"*), promessa de SLA (*"Resposta em até 24h úteis"*) e link discreto para `"Dúvidas frequentes →"`.
+  - Remoção completa da seção de Pilares da Home (`#diferenciais`).
+- **`src/components/sections/Footer.tsx`**:
+  - Redução da descrição institucional para 1 linha concisa: *"Engenharia de software sob medida, sistemas web e integrações corporativas."*.
+- **`src/components/CursorOrb.tsx` & `src/components/layout/Layout.tsx`**:
+  - Cursor posicionado atrás do conteúdo (`z-0`), com opacidade reduzida e desativação em dispositivos touch (`pointer: coarse`) e sob `prefers-reduced-motion: reduce`.
+- **Testes & E2E**:
+  - `src/components/sections/__tests__/Hero.test.tsx`: validação dos novos CTAs e ausência de métricas redundantes no canvas.
+  - `src/pages/__tests__/pages.test.tsx`: atualização dos headings esperados na Home.
+  - `src/components/sections/__tests__/Footer.test.tsx`: validação da nova descrição institucional de 1 linha.
+  - `e2e/design-system-and-stability.spec.ts`: atualização de títulos e navegação de âncora.
+
+## [0.0.61-hero-engenharia-software-b2b] - 2026-10-01
+
+### Adicionado
+- **`specs/SPEC-061-hero-engenharia-software-b2b.md`**: Especificação completa de refatoração do Hero com layout assimétrico de duas colunas, posicionamento de engenharia B2B e canvas de topologia arquitetural.
+- **`tasks/TASK-061-hero-engenharia-software-b2b.md`**: Registro de execução e quality gates da tarefa SDD.
+- **`reviews/QA-061.md`**: Relatório de qualidade com evidências de conformidade, métricas de viewport e homologação de testes.
+
+### Modificado
+- **`src/components/sections/Hero.tsx`**: Redesenho completo do Hero:
+  - Layout assimétrico de duas colunas ocupando ~80vh–90vh no desktop (875px em 1440x900).
+  - Eyebrow contextual com `BrandChipIcon`: `ENGENHARIA DE SOFTWARE & MODERNIZAÇÃO`.
+  - Headline comercial madura e memorável: *"Engenharia de software para construir, integrar e evoluir sistemas."*.
+  - Subheadline factual em 2 linhas detalhando desenvolvimento sob medida, APIs e modernização de legados.
+  - Duas chamadas para ação claras: CTA primário `"Falar sobre um projeto"` (`/contato`) e CTA secundário `"Conhecer soluções"` (`/servicos`).
+  - Linha de autoridade factual comprovada nos setores de energia, indústria, educação, varejo e sistemas corporativos.
+  - Canvas de Engenharia de Software no lado direito: topologia técnica de 4 camadas conectadas (Aplicações & Portais, APIs & Back-end, Barramento de Integração & Eventos, Persistência Transacional & Nuvem) com tags de tecnologias reais da stack (`React`, `TypeScript`, `Node.js`, `PHP / Laravel`, `RabbitMQ`, `PostgreSQL`, `Redis`, `AWS`, `Docker`) e `aria-hidden="true"`.
+  - Otimização responsiva para mobile com descrições recolhidas e chips compactos, eliminando rolagem desnecessária e mantendo zero overflow horizontal.
+  - Motion design sutil via Framer Motion respeitando `prefers-reduced-motion: reduce`.
+- **`src/components/sections/__tests__/Hero.test.tsx`**: Atualização da suíte de testes unitários para a nova estrutura, textos exatos, links e acessibilidade (8/8 testes passando).
+- **`e2e/hero-identity-token-locks.spec.ts`**: Atualização de seletores de CTA e divisor de transição para validação estrita de tokens canônicos.
+- **`e2e/design-system-and-stability.spec.ts`**: Atualização das asserções de H1, navegação e CTAs do Hero.
+- **`e2e/multi-route-navigation.spec.ts`**: Atualização do H1 esperado da rota raiz `/`.
+- **`PROJECT.md`**: Atualização do status canônico da seção Hero e contagem de testes.
+
 ## [0.0.60-arquitetura-informacao-multi-rota] - 2026-10-01
 
 ### Adicionado

@@ -32,7 +32,7 @@ describe('Header', () => {
       { text: 'Como trabalhamos', href: '/como-trabalhamos' },
       { text: 'Experiência', href: '/experiencia' },
       { text: 'Engenharia', href: '/engenharia' },
-      { text: 'Sobre', href: '/sobre' },
+      { text: 'Sobre nós', href: '/sobre' },
     ];
 
     expectedLinks.forEach(({ text, href }) => {
@@ -47,9 +47,9 @@ describe('Header', () => {
     expect(screen.getByText('Software House')).toBeInTheDocument();
   });
 
-  it('renderiza o botão CTA "Falar sobre meu projeto" apontando para /contato', () => {
+  it('renderiza o botão CTA "Fale conosco" apontando para /contato', () => {
     renderHeader();
-    const ctaButton = screen.getByRole('link', { name: 'Falar sobre meu projeto' });
+    const ctaButton = screen.getByRole('link', { name: 'Fale conosco' });
     expect(ctaButton).toBeInTheDocument();
     expect(ctaButton).toHaveAttribute('href', '/contato');
   });
@@ -103,12 +103,13 @@ describe('Header', () => {
   it('atualiza estilo do header ao fazer scroll', () => {
     const { container } = renderHeader();
     const header = container.querySelector('header');
-    expect(header?.className).toContain('bg-transparent');
+    expect(header?.className).toContain('bg-surface-anchor');
 
     Object.defineProperty(window, 'scrollY', { value: 50, configurable: true });
     fireEvent.scroll(window);
 
-    expect(header?.className).toContain('glass');
+    expect(header?.className).toContain('backdrop-blur-md');
+    expect(header?.className).toContain('border-b');
   });
 });
 
