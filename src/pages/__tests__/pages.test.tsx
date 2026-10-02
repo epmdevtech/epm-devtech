@@ -42,6 +42,7 @@ vi.mock('framer-motion', () => ({
       },
     }
   ),
+  AnimatePresence: ({ children }: { children: React.ReactNode }) => <>{children}</>,
   useInView: () => true,
   useReducedMotion: () => false,
 }));
@@ -85,10 +86,13 @@ describe('Rotas e Páginas Independentes (SPEC-060)', () => {
     expect(screen.getByText('Escopo bem alinhado')).toBeInTheDocument();
   });
 
-  it('HowWeWorkPage (/como-trabalhamos) renderiza H1 e metodologia', () => {
+  it('HowWeWorkPage (/como-trabalhamos) renderiza H1, metodologia e manifesto técnico', () => {
     renderWithProviders(<HowWeWorkPage />);
     expect(screen.getByRole('heading', { level: 1, name: 'Como trabalhamos' })).toBeInTheDocument();
     expect(screen.getByText('METODOLOGIA')).toBeInTheDocument();
+    expect(screen.getByText('// GARANTIA OPERACIONAL')).toBeInTheDocument();
+    expect(screen.getByText('Previsibilidade contratual e técnica')).toBeInTheDocument();
+    expect(screen.getByText('Fale com um engenheiro')).toBeInTheDocument();
   });
 
   it('ExperiencePage (/experiencia) renderiza H1, projetos autorizados e aviso ético', () => {

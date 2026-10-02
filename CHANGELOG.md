@@ -9,6 +9,22 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.74-como-trabalhamos-process-explorer] - 2026-10-01
+
+### Adicionado
+- **`specs/SPEC-074-como-trabalhamos-process-explorer.md`**: Especificação técnica para refatoração da rota `/como-trabalhamos` com Process Explorer interativo em 2 colunas, entregáveis concretos, critérios de saída, Manifesto Técnico de Engenharia e CTA de contato compacto.
+- **`tasks/TASK-074-como-trabalhamos-process-explorer.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-074.md`**: Relatório de QA com evidências de conformidade aos quality gates.
+- **`src/components/sections/ProcessExplorer.tsx`**: Componente Process Explorer com tabs verticais no desktop (`md:`), painel de detalhamento técnico com tags de entregáveis concretos e critério formal de saída por etapa, e Accordion vertical fluido no mobile.
+- **`src/components/sections/__tests__/ProcessExplorer.test.tsx`**: Suíte de testes unitários para o Process Explorer cobrindo seleção de etapas, renderização de entregáveis e acordeão mobile.
+
+### Modificado
+- **`src/pages/HowWeWorkPage.tsx`**:
+  - Integração do componente `<ProcessExplorer />` em substituição ao componente estático replicado da Home.
+  - Substituição dos 2 cards soltos de garantias pelo **Manifesto Técnico de Engenharia** estruturado em 2 colunas abertas com `md:divide-x` e badges `// GARANTIA OPERACIONAL` e `// GESTÃO DIRETA`.
+  - Reestruturação do fechamento comercial com barra compacta de FAQ e CTA ("Fale com um engenheiro" para `/contato` e "Ver dúvidas frequentes" para `/duvidas-frequentes`).
+- **`src/pages/__tests__/pages.test.tsx`**: Atualização do teste de `HowWeWorkPage` validando semântica do novo Manifesto Técnico e botões de conversão.
+
 ## [0.0.73-servicos-redesign-editorial-zpattern] - 2026-10-01
 
 ### Adicionado
