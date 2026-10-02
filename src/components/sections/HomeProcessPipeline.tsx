@@ -80,12 +80,13 @@ export const HomeProcessPipeline: FC = () => {
       {/* ─── Linha Condutora Horizontal (Desktop >= md) ─── */}
       <div
         aria-hidden="true"
-        className="hidden md:block absolute top-[17px] left-[12.5%] right-[12.5%] h-[2px] bg-border-subtle/80 overflow-hidden pointer-events-none"
+        className="hidden md:block absolute top-[17px] left-[18px] md:right-[calc(25%-36px)] lg:right-[calc(25%-42px)] h-[2px] bg-border-subtle/80 overflow-hidden pointer-events-none z-0"
       >
         {!shouldReduceMotion && (
           <motion.div
-            className="w-48 h-full bg-gradient-to-r from-transparent via-brand to-transparent will-change-transform"
-            animate={{ x: ["-100%", "300%"] }}
+            className="w-full h-full bg-gradient-to-r from-transparent via-brand to-transparent will-change-transform"
+            initial={{ x: "-100%" }}
+            animate={{ x: "100%" }}
             transition={{
               repeat: Infinity,
               duration: 3,
@@ -98,12 +99,13 @@ export const HomeProcessPipeline: FC = () => {
       {/* ─── Linha Condutora Vertical (Mobile < md) ─── */}
       <div
         aria-hidden="true"
-        className="md:hidden absolute top-[18px] bottom-[18px] left-[17px] w-[2px] bg-border-subtle/80 overflow-hidden pointer-events-none"
+        className="md:hidden absolute top-[18px] bottom-[18px] left-[17px] w-[2px] bg-border-subtle/80 overflow-hidden pointer-events-none z-0"
       >
         {!shouldReduceMotion && (
           <motion.div
-            className="h-28 w-full bg-gradient-to-b from-transparent via-brand to-transparent will-change-transform"
-            animate={{ y: ["-100%", "300%"] }}
+            className="w-full h-full bg-gradient-to-b from-transparent via-brand to-transparent will-change-transform"
+            initial={{ y: "-100%" }}
+            animate={{ y: "100%" }}
             transition={{
               repeat: Infinity,
               duration: 3,
@@ -123,7 +125,7 @@ export const HomeProcessPipeline: FC = () => {
             {/* Marcador do Nó (Node) */}
             <div className="absolute left-0 top-0 md:relative md:left-auto md:top-auto mb-3 md:mb-5">
               <div
-                className={`w-9 h-9 rounded-full bg-surface border-2 ${s.theme.nodeBorder} ${s.theme.nodeText} ${s.theme.nodeGlow} flex items-center justify-center font-mono text-xs font-bold transition-all duration-300 group-hover:scale-110 shadow-sm`}
+                className={`relative z-10 w-9 h-9 rounded-full bg-surface dark:bg-zinc-950 border-2 ${s.theme.nodeBorder} ${s.theme.nodeText} ${s.theme.nodeGlow} flex items-center justify-center font-mono text-xs font-bold transition-all duration-300 group-hover:scale-110 shadow-sm`}
               >
                 {s.step}
               </div>

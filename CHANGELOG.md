@@ -9,6 +9,22 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.72-alinhamento-geometrico-pipeline] - 2026-10-01
+
+### Adicionado
+- **`specs/SPEC-072-alinhamento-geometrico-pipeline.md`**: Especificação técnica para alinhamento geométrico rigoroso da linha do pipeline da Home e calibração do feixe Framer Motion.
+- **`tasks/TASK-072-alinhamento-geometrico-pipeline.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-072.md`**: Relatório de QA com evidências de conformidade aos quality gates.
+
+### Modificado
+- **`src/components/sections/HomeProcessPipeline.tsx`**:
+  - Ancoragem do trilho horizontal desktop corrigida de `left-[12.5%]` para `left-[18px]` (centro geométrico do nó 01) e finalização em `md:right-[calc(25%-36px)] lg:right-[calc(25%-42px)]` (centro geométrico do nó 04), eliminando o offset que iniciava a linha no vão entre os nós 01 e 02.
+  - Alinhamento vertical centralizado com `top-[17px] h-[2px]` no eixo Y dos nós de 36px.
+  - Posicionamento da linha e feixe em `z-0 pointer-events-none`.
+  - Nós circulares atualizados com `relative z-10 bg-surface dark:bg-zinc-950` garantindo oclusão sólida da linha por trás de cada círculo sem vazamento sobre a tipografia.
+  - Feixe Framer Motion calibrado em largura total (`w-full h-full`) com `initial={{ x: "-100%" }}`, `animate={{ x: "100%" }}` e `repeat: Infinity, duration: 3, ease: "easeInOut"` (e no mobile `y: ["-100%", "100%"]`).
+- **`src/components/sections/__tests__/HomeProcessPipeline.test.tsx`**: Inclusão de teste unitário validando classes de ancoragem geométrica, `z-0` no trilho e `z-10` com fundo sólido nos nós.
+
 ## [0.0.71-limpeza-cta-home-padronizacao-botoes] - 2026-10-01
 
 ### Adicionado

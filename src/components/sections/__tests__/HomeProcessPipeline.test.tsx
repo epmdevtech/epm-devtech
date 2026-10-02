@@ -66,4 +66,25 @@ describe("HomeProcessPipeline Component", () => {
 
     window.matchMedia = originalMatchMedia;
   });
+
+  it("renderiza o trilho alinhado do nó 01 ao nó 04 com z-0 e nós com z-10 (SPEC-072)", () => {
+    const { container } = render(<HomeProcessPipeline />);
+
+    // Trilho horizontal desktop
+    const desktopRail = container.querySelector(".hidden.md\\:block");
+    expect(desktopRail).toBeInTheDocument();
+    expect(desktopRail?.className).toContain("left-[18px]");
+    expect(desktopRail?.className).toContain("md:right-[calc(25%-36px)]");
+    expect(desktopRail?.className).toContain("lg:right-[calc(25%-42px)]");
+    expect(desktopRail?.className).toContain("z-0");
+
+    // Nós com z-10 e fundo sólido
+    const nodes = container.querySelectorAll(".w-9.h-9");
+    expect(nodes.length).toBe(4);
+    nodes.forEach((node) => {
+      expect(node.className).toContain("relative");
+      expect(node.className).toContain("z-10");
+      expect(node.className).toContain("dark:bg-zinc-950");
+    });
+  });
 });
