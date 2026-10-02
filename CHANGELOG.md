@@ -9,6 +9,22 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.75-experiencia-enterprise-ledger] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-075-experiencia-enterprise-ledger.md`**: Especificação técnica para redesenho da rota `/experiencia` aplicando os padrões Engineering Matrix para verticais e Enterprise Ledger para projetos corporativos.
+- **`tasks/TASK-075-experiencia-enterprise-ledger.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-075.md`**: Relatório de QA com evidências de conformidade aos quality gates.
+
+### Modificado
+- **`src/pages/ExperiencePage.tsx`**:
+  - Preservação estrita dos 4 contadores animados com `CountUp` na faixa de métricas (`<Authority />`).
+  - Substituição dos cards 3D isolados e mockups artificiais pela **Engineering Matrix** (Grid 2x2 com bordas internas limpas, badges de especialidade `IoT INDUSTRIAL`, `ALTA CONCORRÊNCIA`, `ESCALA NACIONAL`, `DADOS REGULATÓRIOS` e capacidades técnicas inline de `Stack & Soluções`).
+  - Reformatação da Nota de Contexto em linha editorial monospace discreta com ponto luminoso indicador em verde-água (`w-1.5 h-1.5 rounded-full bg-brand`), declarando expressamente *"Não são clientes da EPM DevTech"*.
+  - Substituição dos 3 cards fechados de organizações pelo **Enterprise Ledger** horizontal contínuo (`divide-y divide-border-default/80 border-y`) com colunas alinhadas, badges de setor e transição de hover refinada (`hover:bg-surface-elevated/40`).
+  - Refinamento do fechamento comercial e CTA para demandas de alta complexidade.
+- **`src/pages/__tests__/pages.test.tsx`**: Atualização da suíte de testes unitários validando a presença da Engineering Matrix e do Enterprise Ledger.
+
 ## [0.0.74-como-trabalhamos-process-explorer] - 2026-10-01
 
 ### Adicionado

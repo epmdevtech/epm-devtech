@@ -95,10 +95,14 @@ describe('Rotas e Páginas Independentes (SPEC-060)', () => {
     expect(screen.getByText('Fale com um engenheiro')).toBeInTheDocument();
   });
 
-  it('ExperiencePage (/experiencia) renderiza H1, projetos autorizados e aviso ético', () => {
+  it('ExperiencePage (/experiencia) renderiza H1, Engineering Matrix, Enterprise Ledger e aviso ético', () => {
     renderWithProviders(<ExperiencePage />);
     expect(screen.getByRole('heading', { level: 1, name: 'Experiência em projetos reais' })).toBeInTheDocument();
     expect(screen.getByText('EXPERIÊNCIA E ESCALA')).toBeInTheDocument();
+    expect(screen.getByText('// MATRIZ DE VERTICAIS')).toBeInTheDocument();
+    expect(screen.getByText('IoT INDUSTRIAL')).toBeInTheDocument();
+    expect(screen.getByText('ALTA CONCORRÊNCIA')).toBeInTheDocument();
+    expect(screen.getByText('// HISTÓRICO CORPORATIVO')).toBeInTheDocument();
     expect(screen.getByText('CAPES')).toBeInTheDocument();
     expect(screen.getByText('ONS')).toBeInTheDocument();
     expect(screen.getByText('Energia Pecém')).toBeInTheDocument();
