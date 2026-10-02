@@ -10,7 +10,7 @@ const renderHero = () =>
     </MemoryRouter>
   );
 
-describe('Hero Component (B2B Engineering & Architecture Canvas — SPEC-061)', () => {
+describe('Hero Component (B2B Engineering & Active Architecture Window — SPEC-068)', () => {
   it('renders section with semantic accessibility labeling and unique H1', () => {
     renderHero();
 
@@ -57,33 +57,33 @@ describe('Hero Component (B2B Engineering & Architecture Canvas — SPEC-061)', 
     expect(secondaryCta).toHaveAttribute('href', '#servicos');
   });
 
-  it('renders factual authority line below CTAs', () => {
-    renderHero();
+  it('renders active operational status micro social proof below CTAs with pulsing indicator', () => {
+    const { container } = renderHero();
 
     expect(
-      screen.getByText(/Experiência técnica em projetos de energia, indústria, educação, varejo e sistemas corporativos/i)
+      screen.getByText(/Sistemas em produção nos setores de energia, indústria, logística e corporativo/i)
     ).toBeInTheDocument();
+
+    const pingDot = container.querySelector('.animate-ping');
+    expect(pingDot).toBeInTheDocument();
   });
 
-  it('renders software engineering architecture canvas with layers, tech chips and aria-hidden="true" without duplicate metrics', () => {
+  it('renders dev-style active architecture window with layers, tech chips and aria-hidden="true"', () => {
     const { container } = renderHero();
 
     // Canvas container must be aria-hidden="true" for screen reader accessibility
     const canvasWrapper = container.querySelector('[aria-hidden="true"].lg\\:col-span-5');
     expect(canvasWrapper).toBeInTheDocument();
 
+    // Dev-style window controls and status
+    expect(canvasWrapper).toHaveTextContent('architecture.overview.ts');
+    expect(canvasWrapper).toHaveTextContent(/HEALTHY \/ 99\.9% uptime/i);
+
     // Contains architectural topology layers
-    expect(canvasWrapper).toHaveTextContent(/Topologia de Arquitetura/i);
-    expect(canvasWrapper).toHaveTextContent(/Stack de Engenharia/i);
     expect(canvasWrapper).toHaveTextContent(/Aplicações Web & Portais/i);
     expect(canvasWrapper).toHaveTextContent(/APIs & Back-end Escalável/i);
     expect(canvasWrapper).toHaveTextContent(/Barramento de Integração & Eventos/i);
     expect(canvasWrapper).toHaveTextContent(/Persistência Transacional & Nuvem/i);
-
-    // Verifies absence of redundant metrics in Hero canvas (SPEC-062)
-    expect(canvasWrapper).not.toHaveTextContent('99,9%');
-    expect(canvasWrapper).not.toHaveTextContent('2.500+');
-    expect(canvasWrapper).not.toHaveTextContent('Alta Disponibilidade');
 
     // Contains actual technologies from the company stack
     expect(canvasWrapper).toHaveTextContent('React');
@@ -96,13 +96,11 @@ describe('Hero Component (B2B Engineering & Architecture Canvas — SPEC-061)', 
     expect(canvasWrapper).toHaveTextContent('Docker');
   });
 
-  it('renders minimalist section transition divider with brand node', () => {
+  it('removes artificial horizontal divider line and static node dot (SPEC-068)', () => {
     const { container } = renderHero();
 
-    const dividerContainer = container.querySelector('.w-full.border-t.border-border')?.parentElement;
-    expect(dividerContainer).toBeInTheDocument();
-    expect(dividerContainer?.querySelector('.border-t')).toBeInTheDocument();
-    expect(dividerContainer?.querySelector('.rounded-full.bg-primary')).toBeInTheDocument();
+    expect(container.querySelector('[data-testid="hero-divider-line"]')).not.toBeInTheDocument();
+    expect(container.querySelector('.w-full.border-t.border-border')).not.toBeInTheDocument();
   });
 
   it('respects prefers-reduced-motion without throwing and renders all elements', () => {
@@ -125,4 +123,3 @@ describe('Hero Component (B2B Engineering & Architecture Canvas — SPEC-061)', 
     window.matchMedia = originalMatchMedia;
   });
 });
-

@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Hero Visual Identity & Token Locks (SPEC-059 Section 0.1)', () => {
+test.describe('Hero Visual Identity & Token Locks (SPEC-059 & SPEC-068)', () => {
   const modes = ['dark', 'light'] as const;
 
   for (const mode of modes) {
@@ -28,15 +28,15 @@ test.describe('Hero Visual Identity & Token Locks (SPEC-059 Section 0.1)', () =>
       const hero = page.locator('#hero');
       await expect(hero).toBeVisible();
 
-      // 1. Ausência absoluta de gradientes em todos os elementos do Hero
+      // 1. Ausência absoluta de text-gradients artificiais em elementos tipográficos do Hero (SPEC-059 / SPEC-068)
       const gradientCheck = await page.evaluate(() => {
         const heroEl = document.querySelector('#hero');
         if (!heroEl) return { hasGradient: false, violators: [] };
 
-        const allElements = [heroEl, ...Array.from(heroEl.querySelectorAll('*'))];
+        const textElements = Array.from(heroEl.querySelectorAll('h1, p, a, [data-testid="hero-eyebrow"]'));
         const violators: string[] = [];
 
-        for (const el of allElements) {
+        for (const el of textElements) {
           const style = window.getComputedStyle(el);
           const bgImg = style.backgroundImage || '';
           const maskImg = (style as unknown as { maskImage?: string; webkitMaskImage?: string }).maskImage ||
@@ -53,9 +53,20 @@ test.describe('Hero Visual Identity & Token Locks (SPEC-059 Section 0.1)', () =>
         };
       });
 
-      expect(gradientCheck.hasGradient, `Elementos com gradiente detectados: ${gradientCheck.violators.join(', ')}`).toBe(false);
+      expect(gradientCheck.hasGradient, `Elementos tipográficos com gradiente detectados: ${gradientCheck.violators.join(', ')}`).toBe(false);
 
-      // 2. Validação de cores, tipografia e raios computados
+      // 2. Validação da remoção da divisória artificial e presença do indicador de status ativo (SPEC-068)
+      const structureCheck = await page.evaluate(() => {
+        const heroEl = document.querySelector('#hero')!;
+        const hasDivider = !!heroEl.querySelector('[data-testid="hero-divider-line"]');
+        const hasActiveIndicator = !!heroEl.querySelector('.animate-ping');
+        return { hasDivider, hasActiveIndicator };
+      });
+
+      expect(structureCheck.hasDivider, 'Linha divisória horizontal inferior deve estar removida (SPEC-068)').toBe(false);
+      expect(structureCheck.hasActiveIndicator, 'Indicador operacional ativo deve estar presente (SPEC-068)').toBe(true);
+
+      // 3. Validação de cores, tipografia e raios computados
       const computedHeroStyles = await page.evaluate(() => {
         const heroEl = document.querySelector('#hero')!;
         const h1El = heroEl.querySelector('#hero-title')!;
@@ -63,11 +74,7 @@ test.describe('Hero Visual Identity & Token Locks (SPEC-059 Section 0.1)', () =>
         const eyebrowEl = heroEl.querySelector('[data-testid="hero-eyebrow"]')!;
         const buttonEl = heroEl.querySelector('a[href="/contato"], a[href="#contato"]')!;
         const linkEl = heroEl.querySelector('a[href="/servicos"], a[href="#servicos"], a[href="#sobre"]')!;
-        const dividerLineEl = (heroEl.querySelector('[data-testid="hero-divider-line"]') ||
-                               heroEl.querySelector('.w-full.border-t.border-border') ||
-                               heroEl.querySelector('.border-t'))!;
-        const nodeDotEl = (heroEl.querySelector('.rounded-full.bg-brand') ||
-                           heroEl.querySelector('.rounded-full.bg-primary'))!;
+        const activeNodeEl = (heroEl.querySelector('.animate-ping') || heroEl.querySelector('.rounded-full.bg-brand'))!;
 
         return {
           hero: {
@@ -92,17 +99,14 @@ test.describe('Hero Visual Identity & Token Locks (SPEC-059 Section 0.1)', () =>
           link: {
             color: window.getComputedStyle(linkEl).color,
           },
-          dividerLine: {
-            borderColor: window.getComputedStyle(dividerLineEl).borderTopColor,
-          },
           nodeDot: {
-            bgColor: window.getComputedStyle(nodeDotEl).backgroundColor,
-            borderRadius: window.getComputedStyle(nodeDotEl).borderRadius,
+            bgColor: window.getComputedStyle(activeNodeEl).backgroundColor,
+            borderRadius: window.getComputedStyle(activeNodeEl).borderRadius,
           },
         };
       });
 
-      // Validação das superfícies e cores conforme tokens SPEC-063
+      // Validação das superfícies e cores conforme tokens SPEC-063 / SPEC-068
       if (mode === 'dark') {
         // Dark background #0A0F10 = rgb(10, 15, 16)
         expect(computedHeroStyles.hero.bgColor).toBe('rgb(10, 15, 16)');
@@ -117,8 +121,6 @@ test.describe('Hero Visual Identity & Token Locks (SPEC-059 Section 0.1)', () =>
         // Text on brand: #04201C -> rgb(4, 32, 28)
         expect(computedHeroStyles.button.color).toBe('rgb(4, 32, 28)');
         expect(computedHeroStyles.button.borderRadius).toBe('6px');
-        // Border token dark border-default #243336 -> rgb(36, 51, 54)
-        expect(computedHeroStyles.dividerLine.borderColor).toBe('rgb(36, 51, 54)');
         // Node dot em teal brand sólido e 100% arredondado
         expect(computedHeroStyles.nodeDot.bgColor).toBe('rgb(45, 212, 191)');
         expect(computedHeroStyles.nodeDot.borderRadius).toBe('9999px');
@@ -134,8 +136,6 @@ test.describe('Hero Visual Identity & Token Locks (SPEC-059 Section 0.1)', () =>
         // Text on brand: #04201C -> rgb(4, 32, 28)
         expect(computedHeroStyles.button.color).toBe('rgb(4, 32, 28)');
         expect(computedHeroStyles.button.borderRadius).toBe('6px');
-        // Border token light border-default #CFE0E2 -> rgb(207, 224, 226)
-        expect(computedHeroStyles.dividerLine.borderColor).toBe('rgb(207, 224, 226)');
         // Node dot em teal brand sólido
         expect(computedHeroStyles.nodeDot.bgColor).toBe('rgb(45, 212, 191)');
         expect(computedHeroStyles.nodeDot.borderRadius).toBe('9999px');

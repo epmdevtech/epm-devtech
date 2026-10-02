@@ -9,6 +9,25 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.68-hero-redesign-editorial-arquitetura] - 2026-10-01
+
+### Adicionado
+- **`specs/SPEC-068-hero-redesign-editorial-arquitetura.md`**: Especificação do redesign completo do Hero institucional, com eliminação de divisores artificiais e introdução de janela dev interativa de arquitetura ativa.
+- **`tasks/TASK-068-hero-redesign-editorial-arquitetura.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-068.md`**: Relatório de QA com evidências de conformidade aos quality gates.
+
+### Modificado
+- **`src/components/sections/Hero.tsx`**:
+  - Remoção definitiva da linha divisória horizontal inferior e do ponto verde estático.
+  - Altura e respiro de tela aprimorados (`min-h-[85vh]`, `py-20 md:py-28`) com transição orgânica suave (`bg-gradient-to-b from-transparent to-surface/40`).
+  - Eyebrow em formato de badge cápsula refinada com `BrandChipIcon` e `ENGENHARIA DE SOFTWARE & MODERNIZAÇÃO`.
+  - H1 com kerning e impacto editorial (`text-4xl sm:text-5xl lg:text-6xl font-extrabold text-primary`).
+  - CTAs com feedback tátil e glow sutil ao hover (`hover:shadow-glow-brand hover:scale-[1.02]`).
+  - Micro social proof com indicador em tempo real pulsante (`animate-ping`) declarando estabilidade operacional em múltiplos setores.
+  - Janela Dev "Sistema & Arquitetura Ativa" (`architecture.overview.ts`), indicador `HEALTHY / 99.9% uptime`, spotlight ambiente em background e 4 camadas de arquitetura conectadas com tags coloridas temáticas (`accent-blue`, `accent-violet`, `accent-amber`, `brand`).
+- **`src/components/sections/__tests__/Hero.test.tsx`**: Atualização das asserções da suíte unitária para os novos elementos e remoção do divisor.
+- **`e2e/hero-identity-token-locks.spec.ts`**: Atualização dos testes E2E harmonizando a ausência de divisória com a presença do indicador operacional ativo e contraste semântico.
+
 ## [0.0.67-stat-strip-resultados-home] - 2026-10-01
 
 ### Adicionado
