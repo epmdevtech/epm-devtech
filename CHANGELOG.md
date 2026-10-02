@@ -9,7 +9,21 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
-## [0.0.93-sobre-constelacao-silhueta-epm] - 2026-10-02
+## [0.0.94-alinhamento-constelacao-textos-monocromaticos-remocao-senior] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-094-alinhamento-constelacao-textos-monocromaticos-remocao-senior.md`**: Especificação técnica aprovada pelo PO para alinhamento e isolamento responsivo da constelação vetorial em `/sobre`, garantia de textos 100% monocromáticos e remoção integral da palavra "sênior".
+- **`tasks/TASK-094-alinhamento-constelacao-textos-monocromaticos-remocao-senior.md`**: Tarefa e checklist de execução concluídos sob o protocolo Universal SDD.
+- **`reviews/QA-094.md`**: Relatório de QA com validação de 100% dos quality gates e evidências de capturas visuais em Desktop Dark, Desktop Light e Mobile Dark.
+
+### Modificado
+- **`src/pages/AboutPage.tsx`**: Reestruturação do Hero em CSS Grid de 12 colunas (`grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center`), posicionando o bloco de texto editorial na coluna esquerda (7 cols, `max-w-xl xl:max-w-2xl`) e o componente `EpmConstellation` na coluna direita (5 cols), eliminando qualquer colisão ou sobreposição de texto em todas as resoluções de tela.
+- **`src/components/sections/Hero.tsx`**: Remoção do `<span className="text-text-brand">` do H1, tornando-o estritamente monocromático em `text-primary` ("Engenharia de software para construir, integrar e evoluir sistemas.") e remoção da palavra "sênior" do quarto cenário ("Avaliar a arquitetura do meu sistema com um diagnóstico técnico").
+- **`src/pages/EngineeringPage.tsx`**: Atualização da esteira de qualidade para "Validação Arquitetural Obrigatória" e "Revisão técnica de arquitetura", eliminando menção ao termo sênior.
+- **`src/components/sections/__tests__/Hero.test.tsx`**: Atualização dos testes unitários para validar H1 estritamente monocromático e novo texto do cenário de diagnóstico.
+- **`e2e/design-system-and-stability.spec.ts`**: Atualização das asserções Playwright para H1 monocromático e cenário de diagnóstico sem termo sênior.
+- **`PROJECT.md`**: Atualização do estado canônico das seções Hero, Engenharia e Sobre nós.
+
 
 ### Adicionado
 - **`specs/SPEC-093-sobre-constelacao-silhueta-epm.md`**: Especificação técnica aprovada pelo PO para constelação vetorial de engenharia desenhando a silhueta geométrica do ícone oficial da EPM DevTech no Hero de `/sobre`.

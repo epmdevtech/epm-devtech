@@ -27,7 +27,7 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     expect(scrollY).toBeLessThan(150);
   });
 
-  test('Títulos das seções não possuem gradientes artificiais e Hero H1 possui acento visual de marca (SPEC-083)', async ({ page }) => {
+  test('Títulos das seções não possuem gradientes artificiais e Hero H1 é rigorosamente monocromático (SPEC-094)', async ({ page }) => {
     await page.goto('/');
     await page.waitForLoadState('domcontentloaded');
 
@@ -36,13 +36,12 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     const count = await gradientElements.count();
     expect(count).toBe(0);
 
-    // Valida H1 do Hero com acento cromático oficial de marca na ação (SPEC-083)
+    // Valida H1 do Hero 100% monocromático sem texto bicolor (SPEC-094)
     const heroH1 = page.locator('#hero h1').first();
     await expect(heroH1).toBeVisible();
     await expect(heroH1).toContainText('Engenharia de software para construir, integrar e evoluir sistemas.');
     const heroAccent = heroH1.locator('span.text-text-brand');
-    await expect(heroAccent).toBeVisible();
-    await expect(heroAccent).toHaveText('construir, integrar e evoluir');
+    await expect(heroAccent).toHaveCount(0);
 
     // Verifica que os headings das demais seções são rigorosamente monocromáticos
     const expectedHeadings = [
@@ -509,14 +508,15 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     await page.waitForTimeout(400);
   });
 
-  test('Hero (SPEC-083): Renderiza proposta de valor, acento cromático no H1, faixa operacional e seletor interativo de cenários', async ({ page }) => {
+  test('Hero (SPEC-083/094): Renderiza proposta de valor, H1 monocromático, cta principal e seletor interativo de cenários', async ({ page }) => {
     await page.goto('/');
     await page.waitForLoadState('domcontentloaded');
 
-    // 1. Valida H1 com acento visual no verbo de ação
+    // 1. Valida H1 rigorosamente monocromático (SPEC-094)
     const heroH1 = page.locator('#hero h1');
     await expect(heroH1).toBeVisible();
-    await expect(heroH1.locator('span.text-text-brand')).toHaveText('construir, integrar e evoluir');
+    await expect(heroH1).toContainText('Engenharia de software para construir, integrar e evoluir sistemas.');
+    await expect(heroH1.locator('span.text-text-brand')).toHaveCount(0);
 
     // 2. Valida subheadline editorial de proposta de valor
     const subheadline = page.getByText(
@@ -548,7 +548,7 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
       { id: 'sistemas', text: 'Criar um novo sistema, portal ou plataforma corporativa', href: '/servicos#sistemas' },
       { id: 'integracoes', text: 'Conectar sistemas isolados e acabar com retrabalho manual', href: '/servicos#integracoes' },
       { id: 'legados', text: 'Modernizar um software legado sem interromper o dia a dia', href: '/servicos#legados' },
-      { id: 'diagnostico', text: 'Avaliar a arquitetura do meu sistema com um olhar sênior', href: '/contato' },
+      { id: 'diagnostico', text: 'Avaliar a arquitetura do meu sistema com um diagnóstico técnico', href: '/contato' },
     ];
 
     for (const scenario of scenarios) {

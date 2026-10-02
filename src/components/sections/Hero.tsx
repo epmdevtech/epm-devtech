@@ -22,7 +22,7 @@ const SCENARIOS = [
   },
   {
     id: "diagnostico",
-    title: "Avaliar a arquitetura do meu sistema com um olhar sênior",
+    title: "Avaliar a arquitetura do meu sistema com um diagnóstico técnico",
     href: "/contato",
   },
 ];
@@ -66,14 +66,12 @@ const Hero = () => {
               <span>ENGENHARIA DE SOFTWARE &amp; MODERNIZAÇÃO</span>
             </div>
 
-            {/* Headline H1 de forte impacto com acento visual no verbo de ação */}
+            {/* Headline H1 100% monocromático em branco/primary */}
             <h1
               id="hero-title"
               className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-primary tracking-tight leading-[1.12] [text-wrap:balance] mb-6"
             >
-              Engenharia de software para{" "}
-              <span className="text-text-brand">construir, integrar e evoluir</span>{" "}
-              sistemas.
+              Engenharia de software para construir, integrar e evoluir sistemas.
             </h1>
 
             {/* Subheadline editorial de proposta de valor */}

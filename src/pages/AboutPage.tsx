@@ -120,38 +120,43 @@ export const AboutPage: React.FC = () => {
       </Helmet>
 
       <div className="w-full">
-        {/* Dobra Inicial: Hero Editorial Amplo & Malha de Conectividade em SVG (Tom: Anchor) */}
+        {/* Dobra Inicial: Hero Editorial Amplo & Constelação Vetorial de Engenharia (Tom: Anchor) */}
         <header
           data-tone="anchor"
-          className="relative w-full pt-28 pb-20 sm:pt-36 sm:pb-24 lg:pb-28 bg-surface-anchor text-foreground transition-colors duration-200 overflow-hidden"
+          className="relative w-full pt-28 pb-16 sm:pt-36 sm:pb-20 lg:pb-24 bg-surface-anchor text-foreground transition-colors duration-200 overflow-hidden"
         >
           <div className="container max-w-6xl mx-auto px-6 relative">
-            {/* Constelação Vetorial de Engenharia com Silhueta do Ícone EPM DevTech */}
-            <EpmConstellation className="absolute -right-16 sm:-right-8 lg:-right-4 xl:right-6 top-1/2 -translate-y-1/2 w-[380px] sm:w-[480px] lg:w-[560px] xl:w-[620px] h-[380px] sm:h-[480px] lg:h-[560px] xl:h-[620px] opacity-40 sm:opacity-75 lg:opacity-95 pointer-events-auto z-0" />
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              {/* Coluna Esquerda: Narrativa Editorial */}
+              <div className="lg:col-span-7 flex flex-col items-start text-left max-w-xl xl:max-w-2xl">
+                {/* Eyebrow */}
+                <div
+                  data-testid="page-eyebrow"
+                  className="inline-flex items-center gap-[7px] text-[11.5px] font-mono font-medium tracking-[0.1em] uppercase text-text-brand select-none mb-3 sm:mb-4"
+                >
+                  <BrandChipIcon size={15} className="shrink-0" />
+                  <span>[ QUEM SOMOS // POSICIONAMENTO ]</span>
+                </div>
 
-            <div className="relative z-10 max-w-2xl lg:max-w-3xl">
-              {/* Eyebrow */}
-              <div
-                data-testid="page-eyebrow"
-                className="inline-flex items-center gap-[7px] text-[11.5px] font-mono font-medium tracking-[0.1em] uppercase text-text-brand select-none mb-3 sm:mb-4"
-              >
-                <BrandChipIcon size={15} className="shrink-0" />
-                <span>[ QUEM SOMOS // POSICIONAMENTO ]</span>
+                {/* H1 Editorial Amplo Monocromático */}
+                <h1
+                  id="page-title"
+                  tabIndex={-1}
+                  className="font-bold tracking-tight text-primary text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.12] [text-wrap:balance] outline-none focus:outline-none mb-6"
+                >
+                  Transformando desafios em soluções que funcionam
+                </h1>
+
+                {/* Subtítulo Institucional */}
+                <p className="text-base sm:text-lg lg:text-xl text-secondary leading-relaxed font-normal [text-wrap:balance]">
+                  Unimos tecnologia, experiência e visão de negócio para criar soluções digitais que simplificam operações e geram resultados reais.
+                </p>
               </div>
 
-              {/* H1 Editorial Amplo Monocromático */}
-              <h1
-                id="page-title"
-                tabIndex={-1}
-                className="font-bold tracking-tight text-primary text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.12] [text-wrap:balance] outline-none focus:outline-none mb-6"
-              >
-                Transformando desafios em soluções que funcionam
-              </h1>
-
-              {/* Subtítulo Institucional */}
-              <p className="text-base sm:text-lg lg:text-xl text-secondary leading-relaxed font-normal [text-wrap:balance]">
-                Unimos tecnologia, experiência e visão de negócio para criar soluções digitais que simplificam operações e geram resultados reais.
-              </p>
+              {/* Coluna Direita: Constelação Vetorial da EPM DevTech (Totalmente Isolada sem Sobreposição) */}
+              <div className="lg:col-span-5 flex justify-center lg:justify-end mt-6 lg:mt-0">
+                <EpmConstellation className="w-[300px] sm:w-[380px] lg:w-[440px] xl:w-[480px] h-[300px] sm:h-[380px] lg:h-[440px] xl:h-[480px] opacity-75 sm:opacity-85 lg:opacity-100 pointer-events-auto" />
+              </div>
             </div>
           </div>
         </header>

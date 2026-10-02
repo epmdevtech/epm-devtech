@@ -26,17 +26,16 @@ describe('Hero Component (Business Scenarios Selector & B2B Decision — SPEC-08
     expect(headings[0]).toHaveAttribute('id', 'hero-title');
   });
 
-  it('renders exact H1 with visual chromatic accent and editorial subheadline (SPEC-083)', () => {
+  it('renders exact monochromatic H1 and editorial subheadline (SPEC-094)', () => {
     renderHero();
 
     const heading = screen.getByRole('heading', { level: 1 });
     expect(heading).toHaveTextContent('Engenharia de software para construir, integrar e evoluir sistemas.');
+    expect(heading.className).toContain('text-primary');
 
-    // Chromatic accent on action verbs
+    // Strictly monochromatic: no bicolored inner span
     const accentedSpan = heading.querySelector('span');
-    expect(accentedSpan).toBeInTheDocument();
-    expect(accentedSpan).toHaveTextContent('construir, integrar e evoluir');
-    expect(accentedSpan?.className).toContain('text-text-brand');
+    expect(accentedSpan).toBeNull();
 
     // Editorial subheadline
     expect(
@@ -110,7 +109,7 @@ describe('Hero Component (Business Scenarios Selector & B2B Decision — SPEC-08
     const link4 = screen.getByTestId('scenario-link-diagnostico');
     expect(link4).toBeInTheDocument();
     expect(link4).toHaveAttribute('href', '/contato');
-    expect(link4).toHaveTextContent('Avaliar a arquitetura do meu sistema com um olhar sênior');
+    expect(link4).toHaveTextContent('Avaliar a arquitetura do meu sistema com um diagnóstico técnico');
   });
 
   it('respects prefers-reduced-motion without throwing and renders all elements', () => {

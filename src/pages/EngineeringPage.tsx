@@ -63,8 +63,8 @@ const QUALITY_GATES: QualityGateCheck[] = [
   },
   {
     title: "Human Code Review",
-    metric: "Senior Validation Required",
-    detail: "Revisão arquitetural sênior · OWASP Top 10 · Protocolo SDD",
+    metric: "Validação Arquitetural Obrigatória",
+    detail: "Revisão técnica de arquitetura · OWASP Top 10 · Protocolo SDD",
   },
 ];
 
