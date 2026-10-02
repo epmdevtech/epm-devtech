@@ -116,11 +116,11 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     const blueprint = page.locator('[data-testid="architectural-blueprint"]');
     await expect(blueprint).toBeVisible({ timeout: 10000 });
 
-    // Valida a presença das 4 camadas horizontais
-    await expect(page.getByText('LAYER 01 // WEB & INTERFACES REATIVAS')).toBeVisible();
-    await expect(page.getByText('LAYER 02 // BACK-END, APIS & LINGUAGENS')).toBeVisible();
-    await expect(page.getByText('LAYER 03 // MOBILE & ENGENHARIA DE IA')).toBeVisible();
-    await expect(page.getByText('LAYER 04 // CLOUD & INFRAESTRUTURA ESCALÁVEL')).toBeVisible();
+    // Valida a presença da nuvem tipográfica de especialidades
+    const techCloud = page.locator('[data-testid="tech-editorial-cloud"]');
+    await expect(techCloud).toBeVisible();
+    await expect(page.getByText('// ESPECIALIDADES & STACK')).toBeVisible();
+    await expect(page.getByText('Nossas especialidades técnicas')).toBeVisible();
 
     // Valida nós chaves da arquitetura
     const reactBadge = page.locator('[data-testid="tech-badge-React"]');

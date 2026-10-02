@@ -9,7 +9,26 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
-## [0.0.78-engenharia-tecnologias-curadoria-visual] - 2026-10-02
+## [0.0.79-engenharia-apresentacao-tipografica-tecnologias] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-079-engenharia-nuvem-tipografica-tecnologias.md`**: Especificação técnica aprovada para eliminação de caixas/camadas fechadas e implementação de apresentação tipográfica editorial das 9 tecnologias centrais na rota `/engenharia`.
+- **`tasks/TASK-079-engenharia-apresentacao-tipografica-tecnologias.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-079.md`**: Relatório de QA com evidências de conformidade aos quality gates.
+
+### Modificado
+- **`src/config/architecture.ts`**:
+  - Curadoria estrita mantendo exclusivamente as 9 tecnologias centrais do projeto: React, TypeScript, Vue.js, Angular, Node.js, PHP, Laravel, AWS e Azure.
+  - Remoção de 15 ferramentas operacionais, bancos de dados e mensagerias: Grafana, Prometheus, GitHub Actions, Terraform, Kubernetes, Docker, MongoDB, Oracle, MySQL, PostgreSQL, Redis, Kafka, RabbitMQ, Symfony e Tailwind CSS.
+  - Metadados tipados de escala de fonte (`sizeClass`), acentuação de cor (`accentClass`) e badges de autoridade (`AWS [Certificado]`, `Node.js [Core Runtime]`).
+- **`src/components/sections/ArchitecturalBlueprint.tsx`**:
+  - Eliminação de caixas horizontais `LAYER 01..04` em favor de uma nuvem tipográfica editorial contínua (`tech-editorial-cloud`), inspirada diretamente na referência visual.
+  - Tipografia de alto impacto (`text-2xl` a `text-5xl font-extrabold tracking-tight`), badges douradas/âmbar e brand teal inline e micro-interação de hover e tooltips contextuais.
+- **`src/components/sections/__tests__/ArchitecturalBlueprint.test.tsx`**: Atualização da suíte de testes unitários validando a presença das 9 tecnologias, badges de autoridade e ausência estrita das 15 ferramentas descontinuadas.
+- **`src/pages/__tests__/pages.test.tsx`**: Atualização das asserções de cabeçalho da rota `/engenharia`.
+- **`e2e/design-system-and-stability.spec.ts`**: Atualização dos testes E2E do Playwright para validar a nuvem tipográfica editorial e tooltips contextuais.
+- **`PROJECT.md`**: Atualização da rota `/engenharia` e status de tecnologias.
+
 
 ### Adicionado
 - **`specs/SPEC-078-engenharia-tecnologias-curadoria-visual.md`**: Especificação técnica para curadoria de tecnologias e refinamento tipográfico na rota `/engenharia`.

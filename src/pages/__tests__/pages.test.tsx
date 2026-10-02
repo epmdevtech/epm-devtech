@@ -117,8 +117,8 @@ describe('Rotas e Páginas Independentes (SPEC-060)', () => {
     expect(screen.getByText('// FILOSOFIA DE EXECUÇÃO')).toBeInTheDocument();
     expect(screen.getByText('// PIPELINE DE QUALIDADE')).toBeInTheDocument();
     expect(screen.getByText(/quality-gate\.yml/i)).toBeInTheDocument();
-    expect(screen.getByText('// ARQUITETURA EM CAMADAS')).toBeInTheDocument();
-    expect(screen.getByText('LAYER 01 // WEB & INTERFACES REATIVAS')).toBeInTheDocument();
+    expect(screen.getByText('// ESPECIALIDADES & STACK')).toBeInTheDocument();
+    expect(screen.getByText('Nossas especialidades técnicas')).toBeInTheDocument();
   });
 
   it('AboutPage (/sobre) renderiza H1, condução pelo fundador e registro formal', () => {
