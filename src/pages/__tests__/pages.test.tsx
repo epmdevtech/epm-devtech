@@ -110,10 +110,15 @@ describe('Rotas e Páginas Independentes (SPEC-060)', () => {
     expect(screen.getByText(/Não são clientes da EPM DevTech/i)).toBeInTheDocument();
   });
 
-  it('EngineeringPage (/engenharia) renderiza H1 e pilares de engenharia', () => {
+  it('EngineeringPage (/engenharia) renderiza H1, Filosofia de Execução, Pipeline CI/CD e Architectural Blueprint', () => {
     renderWithProviders(<EngineeringPage />);
     expect(screen.getByRole('heading', { level: 1, name: 'Engenharia pensada para evoluir' })).toBeInTheDocument();
     expect(screen.getByText('ENGENHARIA DE SOFTWARE')).toBeInTheDocument();
+    expect(screen.getByText('// FILOSOFIA DE EXECUÇÃO')).toBeInTheDocument();
+    expect(screen.getByText('// PIPELINE DE QUALIDADE')).toBeInTheDocument();
+    expect(screen.getByText(/quality-gate\.yml/i)).toBeInTheDocument();
+    expect(screen.getByText('// ARQUITETURA EM CAMADAS')).toBeInTheDocument();
+    expect(screen.getByText('LAYER 01 // INTERFACE & EDGE')).toBeInTheDocument();
   });
 
   it('AboutPage (/sobre) renderiza H1, condução pelo fundador e registro formal', () => {

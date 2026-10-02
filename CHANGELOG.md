@@ -9,7 +9,25 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
-## [0.0.76-experiencia-remocao-linhas-duplas] - 2026-10-02
+## [0.0.77-engenharia-architectural-blueprint] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-077-engenharia-architectural-blueprint.md`**: Especificação técnica para redesenho da rota `/engenharia` aplicando os padrões Architectural Blueprint (Matriz de Camadas de Software) e Layout Dividido (Princípios de Engenharia vs. Terminal CI/CD Quality Gate).
+- **`tasks/TASK-077-engenharia-architectural-blueprint.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-077.md`**: Relatório de QA com evidências de conformidade aos quality gates.
+- **`src/config/architecture.ts`**: Mapeamento canônico das 4 camadas de arquitetura de software (Apresentação & Edge, Aplicação & APIs, Mensageria & Eventos, Nuvem/Dados & Observabilidade) e 25 tecnologias com descrição de propósito arquitetural e ícones oficiais.
+- **`src/components/sections/ArchitecturalBlueprint.tsx`**: Componente de rack/slot de arquitetura em 4 camadas horizontais com indicadores de status de camada (`[LAYER 0X // ...]`), badges estilizadas com logos oficiais e micro-interação contextual de tooltip ao passar o mouse.
+- **`src/components/sections/__tests__/ArchitecturalBlueprint.test.tsx`**: Suíte de testes unitários com 5 testes cobrindo renderização das camadas, badges, interações de tooltip e atributos de acessibilidade.
+
+### Modificado
+- **`src/pages/EngineeringPage.tsx`**:
+  - Reestruturação da seção de princípios de engenharia em Layout Dividido de 2 colunas: Coluna 1 com princípios numerados editorialmente (`01`, `02`, `03`) e traço esmeralda de destaque; Coluna 2 com simulação de terminal de Quality Gate contínuo (`ci-cd-quality-gate.yml`) com checks automatizados e badges esmeralda.
+  - Substituição da constelação dispersa de ícones pelo componente `<ArchitecturalBlueprint />` sob `#tecnologias`.
+  - Refinamento do fechamento comercial e CTA para diagnóstico técnico.
+- **`src/pages/__tests__/pages.test.tsx`**: Atualização dos testes unitários de `EngineeringPage` refletindo o novo Layout Dividido e o Architectural Blueprint.
+- **`e2e/design-system-and-stability.spec.ts`**: Atualização dos testes E2E 104 e 139 para inspecionar os elementos do Architectural Blueprint e tooltips na rota `/engenharia`.
+- **`PROJECT.md`**: Atualização da estrutura de diretórios, descrição da rota `/engenharia`, status de tecnologias e contagem de testes unitários para 188.
+
 
 ### Adicionado
 - **`specs/SPEC-076-experiencia-remocao-linhas-duplas.md`**: Especificação técnica para eliminação de linhas horizontais duplas na rota `/experiencia`.

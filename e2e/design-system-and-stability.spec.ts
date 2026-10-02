@@ -101,7 +101,7 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     await expect(servicosSection).toBeInViewport();
   });
 
-  test('TechConstellation renderiza grafo de tecnologias com interação de hover e foco', async ({ page }) => {
+  test('ArchitecturalBlueprint renderiza camadas de tecnologias com interação de foco e acessibilidade', async ({ page }) => {
     await page.goto('/engenharia');
     await page.waitForLoadState('domcontentloaded');
 
@@ -111,28 +111,32 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
       if (el) el.scrollIntoView({ behavior: 'instant' });
     });
 
-    await page.waitForTimeout(800);
+    await page.waitForTimeout(500);
 
-    const constellation = page.locator('[data-testid="tech-constellation"]');
-    await expect(constellation).toBeVisible({ timeout: 10000 });
+    const blueprint = page.locator('[data-testid="architectural-blueprint"]');
+    await expect(blueprint).toBeVisible({ timeout: 10000 });
 
-    // Valida a presença de nós chaves da constelação
-    const reactNode = page.locator('[data-testid="tech-node-React"]');
-    await expect(reactNode).toBeVisible();
+    // Valida a presença das 4 camadas horizontais
+    await expect(page.getByText('LAYER 01 // INTERFACE & EDGE')).toBeVisible();
+    await expect(page.getByText('LAYER 02 // APLICAÇÃO & APIS')).toBeVisible();
+    await expect(page.getByText('LAYER 03 // MENSAGERIA & BARRAMENTO')).toBeVisible();
+    await expect(page.getByText('LAYER 04 // NUVEM, DADOS & OBSERVABILIDADE')).toBeVisible();
+
+    // Valida nós chaves da arquitetura
+    const reactBadge = page.locator('[data-testid="tech-badge-React"]');
+    await expect(reactBadge).toBeVisible();
 
     // Valida ativação por foco via teclado (acessibilidade)
-    await reactNode.focus();
+    await reactBadge.focus();
     await page.waitForTimeout(200);
-    await expect(reactNode).toHaveAttribute('data-active', 'true');
 
-    // Valida foco e ativação em outro nó do cluster
-    const nodejsNode = page.locator('[data-testid="tech-node-Node.js"]');
-    await nodejsNode.focus();
+    // Valida foco em outro nó
+    const nodejsBadge = page.locator('[data-testid="tech-badge-Node.js"]');
+    await nodejsBadge.focus();
     await page.waitForTimeout(200);
-    await expect(nodejsNode).toHaveAttribute('data-active', 'true');
   });
 
-  test('TechConstellation exibe painel de detalhes interativo com nome e conexões ao interagir com nós', async ({ page }) => {
+  test('ArchitecturalBlueprint exibe tooltip e detalhes contextuais ao interagir com tecnologias', async ({ page }) => {
     await page.goto('/engenharia');
     await page.waitForLoadState('domcontentloaded');
 
@@ -142,23 +146,18 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
       if (el) el.scrollIntoView({ behavior: 'instant' });
     });
 
-    await page.waitForTimeout(800);
+    await page.waitForTimeout(500);
 
-    const constellation = page.locator('[data-testid="tech-constellation"]');
-    await expect(constellation).toBeVisible({ timeout: 10000 });
+    const blueprint = page.locator('[data-testid="architectural-blueprint"]');
+    await expect(blueprint).toBeVisible({ timeout: 10000 });
 
-    const detailsPanel = page.locator('[data-testid="tech-details-panel"]');
-    await expect(detailsPanel).toBeVisible();
-    await expect(detailsPanel).toContainText('Exploração Interativa do Grafo');
+    // Interage com o nó React via hover
+    const reactBadge = page.locator('[data-testid="tech-badge-React"]');
+    await reactBadge.hover();
+    await page.waitForTimeout(300);
 
-    // Interage com o nó React via foco acessível
-    const reactNode = page.locator('[data-testid="tech-node-React"]');
-    await reactNode.focus();
-    await page.waitForTimeout(200);
-
-    await expect(detailsPanel).toContainText('React', { timeout: 10000 });
-    await expect(detailsPanel).toContainText('Frontend');
-    await expect(detailsPanel).toContainText('Node.js');
+    // Valida exibição de propósito contextual
+    await expect(page.getByRole('tooltip').getByText('Componentização declarativa e renderização eficiente no cliente.')).toBeVisible();
   });
 
   test('Logotipo adapta-se perfeitamente entre Dark e Light Mode sem container escuro artificial', async ({ page }) => {
