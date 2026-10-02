@@ -42,12 +42,23 @@ export const ServicesPage = () => {
       </Helmet>
 
       <div className="w-full">
-        {/* Page Header padronizado (Tom: Anchor) */}
+        {/* Page Header padronizado com CTA destacado (Tom: Anchor) */}
         <PageHeader
           eyebrow="SERVIÇOS"
           title="Soluções sob medida para cada estágio da sua operação"
           description="Do diagnóstico técnico à sustentação: desenvolvemos sistemas web, APIs de alta concorrência e integrações de dados para resolver problemas reais de negócio."
-        />
+          containerClassName="max-w-4xl mx-auto"
+        >
+          <div className="mt-8 flex justify-center">
+            <Link
+              to="/contato"
+              className="group inline-flex items-center justify-center gap-2 w-full max-w-xs sm:w-auto font-semibold text-zinc-950 bg-emerald-400 hover:bg-emerald-300 px-8 py-3.5 rounded-xl shadow-[0_0_25px_rgba(52,211,153,0.25)] hover:shadow-[0_0_30px_rgba(52,211,153,0.4)] hover:scale-[1.02] active:scale-[0.98] motion-reduce:hover:scale-100 motion-reduce:transition-none transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 min-h-[44px]"
+            >
+              <span>Solicite uma conversa</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 motion-reduce:transform-none transition-transform" />
+            </Link>
+          </div>
+        </PageHeader>
 
         {/* Catálogo completo de serviços em Z-Pattern (Tom: Base) */}
         <div>

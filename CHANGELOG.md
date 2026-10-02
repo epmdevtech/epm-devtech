@@ -9,6 +9,26 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.86-servicos-hero-cta] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-086-servicos-hero-cta.md`**: Especificação técnica para inclusão de botão de chamada para ação (CTA) centralizado de alta conversão no Hero da rota `/servicos`.
+- **`tasks/TASK-086-servicos-hero-cta.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-086.md`**: Relatório de QA com validação dos quality gates e evidências de capturas de tela nos temas Dark, Light e Mobile.
+
+### Modificado
+- **`src/components/ui/PageHeader.tsx`**:
+  - Inclusão das propriedades opcionais `children?: React.ReactNode` e `containerClassName?: string` em `PageHeaderProps`.
+  - Renderização de `children` preservando alinhamento semântico centralizado e retrocompatibilidade com todas as demais páginas.
+- **`src/pages/ServicesPage.tsx`**:
+  - Inserção do botão CTA centralizado *"Solicite uma conversa"* logo abaixo da descrição (`mt-8`), estilizado no verde esmeralda vibrante da marca (`bg-emerald-400 hover:bg-emerald-300`), tipografia escura de alto contraste (`text-zinc-950 font-semibold`), cantos arredondados (`rounded-xl`), glow luminoso difuso e ícone `ArrowRight` com microinteração de hover.
+  - Conexão de navegação via `<Link to="/contato">` para direcionamento canônico ao fluxo de atendimento e agendamento.
+  - Otimização para dispositivos móveis com `w-full max-w-xs sm:w-auto` e touch target mínimo de 44px (`min-h-[44px]`).
+- **`src/pages/__tests__/pages.test.tsx`**:
+  - Atualização dos testes unitários para validar a renderização de `children` em `PageHeader` e a presença/direcionamento do botão de ação em `/servicos`.
+- **`PROJECT.md`**:
+  - Atualização do estado canônico de `Services` registrando a inclusão do CTA centralizado no Hero da rota `/servicos`.
+
 ## [0.0.85-metricas-home-experiencia] - 2026-10-02
 
 ### Adicionado

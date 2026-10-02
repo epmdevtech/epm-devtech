@@ -8,6 +8,8 @@ export interface PageHeaderProps {
   description?: React.ReactNode;
   align?: "center" | "left";
   className?: string;
+  containerClassName?: string;
+  children?: React.ReactNode;
 }
 
 export const PageHeader: React.FC<PageHeaderProps> = ({
@@ -16,6 +18,8 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
   description,
   align = "center",
   className,
+  containerClassName,
+  children,
 }) => {
   const isCenter = align === "center";
 
@@ -30,7 +34,8 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
       <div
         className={cn(
           "container px-6",
-          isCenter ? "text-center max-w-3xl mx-auto" : "text-left max-w-3xl"
+          isCenter ? "text-center max-w-3xl mx-auto" : "text-left max-w-3xl",
+          containerClassName
         )}
       >
         {eyebrow && (
@@ -59,6 +64,8 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
             {description}
           </p>
         )}
+
+        {children}
       </div>
     </header>
   );

@@ -57,17 +57,20 @@ const renderWithProviders = (ui: React.ReactElement) =>
   );
 
 describe('Rotas e Páginas Independentes (SPEC-060)', () => {
-  it('PageHeader renderiza eyebrow, H1 e descrição semântica', () => {
+  it('PageHeader renderiza eyebrow, H1, descrição semântica e children opcionais', () => {
     render(
       <PageHeader
         eyebrow="Arquitetura"
         title="Engenharia de Software"
         description="Padrões e práticas da EPM DevTech."
-      />
+      >
+        <button type="button">Ação de Teste</button>
+      </PageHeader>
     );
     expect(screen.getByText('Arquitetura')).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 1, name: 'Engenharia de Software' })).toBeInTheDocument();
     expect(screen.getByText('Padrões e práticas da EPM DevTech.')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Ação de Teste' })).toBeInTheDocument();
   });
 
   it('Home (/) renderiza hub comercial com H1 no Hero e blocos de resumo', () => {
@@ -79,10 +82,13 @@ describe('Rotas e Páginas Independentes (SPEC-060)', () => {
     expect(screen.queryByRole('heading', { level: 2, name: /Vamos entender o cenário da sua empresa\?/i })).not.toBeInTheDocument();
   });
 
-  it('ServicesPage (/servicos) renderiza H1 e conteúdo de serviços', () => {
+  it('ServicesPage (/servicos) renderiza H1, CTA de conversa e conteúdo de serviços', () => {
     renderWithProviders(<ServicesPage />);
     expect(screen.getByRole('heading', { level: 1, name: /Soluções sob medida para cada estágio da sua operação/i })).toBeInTheDocument();
     expect(screen.getByText('SERVIÇOS')).toBeInTheDocument();
+    const ctaButton = screen.getByRole('link', { name: /Solicite uma conversa/i });
+    expect(ctaButton).toBeInTheDocument();
+    expect(ctaButton).toHaveAttribute('href', '/contato');
     expect(screen.getByText('Escopo bem alinhado')).toBeInTheDocument();
   });
 
