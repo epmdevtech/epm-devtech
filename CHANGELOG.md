@@ -9,6 +9,22 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.67-stat-strip-resultados-home] - 2026-10-01
+
+### Adicionado
+- **`specs/SPEC-067-stat-strip-resultados-home.md`**: Especificação da refatoração da seção de Resultados da Home, transformando cards fechados em uma Stat Strip tipográfica editorial de alto impacto.
+- **`tasks/TASK-067-stat-strip-resultados-home.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-067.md`**: Relatório de QA com evidências de conformidade aos quality gates.
+- **`src/components/sections/HomeResultsStrip.tsx`**: Componente de Stat Strip tipográfica com:
+  - 4 métricas técnicas em escala editorial (`99,9%`, `2.500+`, `+448`, `Zero`) com tipografia monospace de grande impacto (`font-mono text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary`).
+  - Rótulos semânticos em brand teal (`text-text-brand`) e descrições objetivas em `text-secondary`.
+  - Estrutura contínua com divisores horizontais (`border-y border-border-default/60`) e separadores verticais discretos no desktop (`md:divide-x divide-border-subtle/50`).
+  - Layout responsivo fluído no mobile sem truncamento de conteúdo.
+- **`src/components/sections/__tests__/HomeResultsStrip.test.tsx`**: Suíte de testes unitários com 100% de aprovação para métricas, rótulos, descrições e divisores.
+
+### Modificado
+- **`src/pages/Home.tsx`**: Integração de `<HomeResultsStrip />` substituindo a grade de caixas fechadas, preservando o cabeçalho de seção (`SectionHeader`), nota explicativa factual com asterisco e link de navegação para `/experiencia`.
+
 ## [0.0.66-pipeline-processo-home] - 2026-10-01
 
 ### Adicionado

@@ -4,6 +4,7 @@ import { Clock } from "lucide-react";
 import Hero from "@/components/sections/Hero";
 import HomeServicesBento from "@/components/sections/HomeServicesBento";
 import HomeProcessPipeline from "@/components/sections/HomeProcessPipeline";
+import HomeResultsStrip from "@/components/sections/HomeResultsStrip";
 import BrandChipIcon from "@/components/ui/BrandChipIcon";
 import { Button } from "@/components/ui/button";
 import { SITE_CONFIG } from "@/config/site";
@@ -122,31 +123,8 @@ export const Home = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6">
-              <div className="p-5 rounded-xl border border-border-default bg-surface">
-                <div className="text-2xl sm:text-3xl font-bold text-primary font-mono mb-1">99,9%</div>
-                <div className="text-xs font-medium text-primary">Alta disponibilidade</div>
-                <p className="text-xs text-secondary mt-1">Sistemas tolerantes a falhas em produção.</p>
-              </div>
-
-              <div className="p-5 rounded-xl border border-border-default bg-surface">
-                <div className="text-2xl sm:text-3xl font-bold text-primary font-mono mb-1">2.500+</div>
-                <div className="text-xs font-medium text-primary">Requisições por segundo</div>
-                <p className="text-xs text-secondary mt-1">Back-ends sem gargalos de concorrência.</p>
-              </div>
-
-              <div className="p-5 rounded-xl border border-border-default bg-surface">
-                <div className="text-2xl sm:text-3xl font-bold text-primary font-mono mb-1">+448</div>
-                <div className="text-xs font-medium text-primary">Instituições e escolas</div>
-                <p className="text-xs text-secondary mt-1">Operações simultâneas em escala nacional.</p>
-              </div>
-
-              <div className="p-5 rounded-xl border border-border-default bg-surface">
-                <div className="text-2xl sm:text-3xl font-bold text-primary font-mono mb-1">Zero</div>
-                <div className="text-xs font-medium text-primary">Perda de dados</div>
-                <p className="text-xs text-secondary mt-1">Transações e conformidade operacional.</p>
-              </div>
-            </div>
+            {/* Stat Strip tipográfica de resultados */}
+            <HomeResultsStrip />
 
             <p className="text-xs text-muted mb-6">
               * Resultados de projetos da liderança técnica da EPM DevTech em outras empresas.
