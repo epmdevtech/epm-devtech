@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Clock } from "lucide-react";
 import Hero from "@/components/sections/Hero";
 import HomeServicesBento from "@/components/sections/HomeServicesBento";
+import HomeProcessPipeline from "@/components/sections/HomeProcessPipeline";
 import BrandChipIcon from "@/components/ui/BrandChipIcon";
 import { Button } from "@/components/ui/button";
 import { SITE_CONFIG } from "@/config/site";
@@ -91,40 +92,8 @@ export const Home = () => {
               </p>
             </div>
 
-            {/* Stepper horizontal de 4 etapas */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-              <div className="p-5 rounded-xl border border-border-default bg-surface">
-                <div className="font-mono text-xs text-accent-blue font-semibold mb-1">01 · ENTENDIMENTO</div>
-                <div className="font-semibold text-primary text-sm mb-1.5">Diagnóstico técnico</div>
-                <p className="text-xs text-secondary leading-relaxed">
-                  Alinhamento direto de objetivos, arquitetura e viabilidade do projeto.
-                </p>
-              </div>
-
-              <div className="p-5 rounded-xl border border-border-default bg-surface">
-                <div className="font-mono text-xs text-accent-violet font-semibold mb-1">02 · DEFINIÇÃO</div>
-                <div className="font-semibold text-primary text-sm mb-1.5">Escopo e arquitetura</div>
-                <p className="text-xs text-secondary leading-relaxed">
-                  Especificação detalhada, critérios de aceite e cronograma de entregas.
-                </p>
-              </div>
-
-              <div className="p-5 rounded-xl border border-border-default bg-surface">
-                <div className="font-mono text-xs text-accent-amber font-semibold mb-1">03 · DESENVOLVIMENTO</div>
-                <div className="font-semibold text-primary text-sm mb-1.5">Ciclos incrementais</div>
-                <p className="text-xs text-secondary leading-relaxed">
-                  Código testado com validações contínuas em ambiente de homologação.
-                </p>
-              </div>
-
-              <div className="p-5 rounded-xl border border-border-default bg-surface">
-                <div className="font-mono text-xs text-brand font-semibold mb-1">04 · EVOLUÇÃO</div>
-                <div className="font-semibold text-primary text-sm mb-1.5">Sustentação e escala</div>
-                <p className="text-xs text-secondary leading-relaxed">
-                  Monitoramento contínuo e suporte direto para novas demandas operacionais.
-                </p>
-              </div>
-            </div>
+            {/* Pipeline contínuo de 4 etapas */}
+            <HomeProcessPipeline />
 
             <div>
               <Link

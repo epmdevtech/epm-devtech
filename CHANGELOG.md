@@ -9,6 +9,22 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.66-pipeline-processo-home] - 2026-10-01
+
+### Adicionado
+- **`specs/SPEC-066-pipeline-processo-home.md`**: Especificação da refatoração da seção de Processo da Home, substituindo cards fechados por um Pipeline contínuo de engenharia.
+- **`tasks/TASK-066-pipeline-processo-home.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-066.md`**: Relatório de QA com evidências de conformidade aos quality gates.
+- **`src/components/sections/HomeProcessPipeline.tsx`**: Componente de Pipeline contínuo com:
+  - Lista semântica acessível `<ol>` conectando as etapas 01 a 04.
+  - Linha condutora contínua no desktop (horizontal) e mobile (vertical na lateral esquerda).
+  - Marcadores de nós (nodes) técnicos em tipografia monospace (`01`, `02`, `03`, `04`) com micro-interações de escala e glow temático em hover.
+  - Hierarquia visual limpa e descrições sem caixas fechadas isoladas.
+- **`src/components/sections/__tests__/HomeProcessPipeline.test.tsx`**: Suíte de testes unitários com 100% de aprovação para semântica, etapas, títulos e descrições.
+
+### Modificado
+- **`src/pages/Home.tsx`**: Integração do componente `<HomeProcessPipeline />` preservando o cabeçalho institucional, títulos e link canônico para `/como-trabalhamos`.
+
 ## [0.0.65-bento-grid-servicos-home] - 2026-10-01
 
 ### Adicionado
