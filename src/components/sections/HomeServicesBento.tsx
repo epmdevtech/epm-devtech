@@ -15,7 +15,7 @@ export const HomeServicesBento = () => {
       {/* ─── Card 1 (Destaque Principal: md:col-span-7) — APIs e Back-end ─── */}
       <Link
         to="/servicos"
-        className="group relative p-6 sm:p-7 rounded-xl border border-border-default bg-surface hover:border-accent-violet/50 hover:bg-surface-elevated transition-all duration-300 flex flex-col justify-between md:col-span-7 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring overflow-hidden"
+        className="group relative p-6 sm:p-7 rounded-xl border border-border-default bg-surface shadow-sm hover:border-accent-violet/50 hover:bg-surface-elevated transition-all duration-300 flex flex-col justify-between md:col-span-7 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring overflow-hidden"
         aria-label="APIs e back-end: Sistemas estáveis para processar grande volume de transações e regras complexas, sem lentidão ou quedas em momentos de pico."
       >
         {/* Glow sutil de fundo */}
@@ -88,7 +88,7 @@ export const HomeServicesBento = () => {
       {/* ─── Card 2 (md:col-span-5) — Sistemas e Portais ─── */}
       <Link
         to="/servicos"
-        className="group relative p-6 sm:p-7 rounded-xl border border-border-default bg-surface hover:border-accent-blue/50 hover:bg-surface-elevated transition-all duration-300 flex flex-col justify-between md:col-span-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring overflow-hidden"
+        className="group relative p-6 sm:p-7 rounded-xl border border-border-default bg-surface shadow-sm hover:border-accent-blue/50 hover:bg-surface-elevated transition-all duration-300 flex flex-col justify-between md:col-span-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring overflow-hidden"
         aria-label="Sistemas web e plataformas internas: Substitua planilhas confusas e controles manuais por sistemas web intuitivos, rápidos e adaptados à rotina da sua equipe."
       >
         <div
@@ -150,7 +150,7 @@ export const HomeServicesBento = () => {
       {/* ─── Card 3 (md:col-span-5) — Integrações de Dados ─── */}
       <Link
         to="/servicos"
-        className="group relative p-6 sm:p-7 rounded-xl border border-border-default bg-surface hover:border-accent-amber/50 hover:bg-surface-elevated transition-all duration-300 flex flex-col justify-between md:col-span-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring overflow-hidden"
+        className="group relative p-6 sm:p-7 rounded-xl border border-border-default bg-surface shadow-sm hover:border-accent-amber/50 hover:bg-surface-elevated transition-all duration-300 flex flex-col justify-between md:col-span-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring overflow-hidden"
         aria-label="Integrações entre sistemas: Elimine o retrabalho de redigitar dados conectando seu ERP, CRM e ferramentas externas de forma confiável e sem perda de informações."
       >
         <div
@@ -212,7 +212,7 @@ export const HomeServicesBento = () => {
       {/* ─── Card 4 (md:col-span-7) — Modernização de Legados ─── */}
       <Link
         to="/servicos"
-        className="group relative p-6 sm:p-7 rounded-xl border border-border-default bg-surface hover:border-brand/50 hover:bg-surface-elevated transition-all duration-300 flex flex-col justify-between md:col-span-7 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring overflow-hidden"
+        className="group relative p-6 sm:p-7 rounded-xl border border-border-default bg-surface shadow-sm hover:border-brand/50 hover:bg-surface-elevated transition-all duration-300 flex flex-col justify-between md:col-span-7 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring overflow-hidden"
         aria-label="Modernização de sistemas legados: Atualize sistemas antigos que travam o crescimento do seu negócio de forma gradual, sem colocar em risco a operação diária."
       >
         <div

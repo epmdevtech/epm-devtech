@@ -77,7 +77,7 @@ const Footer = () => {
   return (
     <footer
       data-tone="anchor"
-      className="bg-surface-anchor text-foreground pt-16 pb-10 transition-colors duration-200"
+      className="bg-surface-anchor text-foreground pt-16 pb-10 transition-colors duration-200 border-t border-zinc-200 dark:border-zinc-800/80"
       ref={ref}
     >
       <div className="container px-6">

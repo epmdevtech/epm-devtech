@@ -9,7 +9,26 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
-## [0.0.94-alinhamento-constelacao-textos-monocromaticos-remocao-senior] - 2026-10-02
+## [0.0.95-refatoracao-esquema-cromatico-light-mode] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-095-refatoracao-esquema-cromatico-light-mode.md`**: Especificação técnica aprovada pelo PO para refatoração do esquema cromático do Modo Claro (Light Mode) com cadência rítmica alternada e alto contraste.
+- **`tasks/TASK-095-refatoracao-esquema-cromatico-light-mode.md`**: Tarefa e checklist de execução concluídos sob o protocolo Universal SDD.
+- **`reviews/QA-095.md`**: Relatório de QA com validação de 100% dos quality gates e evidências de capturas visuais em Light Mode nas principais rotas (Home, Sobre, Serviços, Como Trabalhamos, Engenharia e Footer).
+
+### Modificado
+- **`src/index.css`**: Recalibração dos tokens semânticos do Light Mode: âncoras em branco puro (`--surface-anchor: 0 0% 100%` / `#FFFFFF`), seções intermediárias em tom gelo sutil (`--surface-base: 240 5% 98%` / `#FAFAFA` - `zinc-50`) e branco puro (`--surface-alt: 0 0% 100%`). Hierarquia de contraste WCAG AA para `--text-primary` (`#09090B` / `zinc-950`), `--text-secondary` (`#52525B` / `zinc-600`), `--text-muted` (`#71717A` / `zinc-500`) e `--text-brand` (`#0F766E` / `teal-700`).
+- **`src/components/layout/Header.tsx`**: Header em branco translúcido com desfoque e borda inferior refinada (`bg-white/80 dark:bg-surface-anchor/85 border-b border-zinc-200/80 dark:border-border/40`), e gaveta móvel em `bg-white/95 dark:bg-zinc-950/95`.
+- **`src/components/sections/Footer.tsx`**: Rodapé fixado em branco puro (`bg-surface-anchor`) com borda divisória superior nítida `border-t border-zinc-200 dark:border-zinc-800/80`.
+- **`src/components/ui/SectionWrapper.tsx`**: Adicionada borda sutil `border-y border-zinc-200/70 dark:border-transparent` para seções de tom `base` (Gelo) delimitando a alternância visual.
+- **`src/components/sections/HomeServicesBento.tsx`**: Cards em fundo branco sólido (`bg-white dark:bg-zinc-900/50`) com `shadow-sm` para destaque sobre o fundo gelo.
+- **`src/components/sections/HomeProcessPipeline.tsx`**: Trilhos em `bg-zinc-200 dark:bg-zinc-800`, linha de pulso em `via-emerald-600 dark:via-brand`, nós circulares em `bg-white dark:bg-zinc-950 border-zinc-300 dark:... text-zinc-900 dark:...`.
+- **`src/components/sections/Services.tsx`**: Delimitação sutil `border-y border-zinc-200/70 dark:border-transparent` para o bloco intermediário.
+- **`src/components/ui/__tests__/SectionWrapper.test.tsx`**: Sincronização das asserções de classe do wrapper.
+- **`e2e/hero-identity-token-locks.spec.ts`**: Atualização das asserções de estilo para validar Hero em `rgb(255, 255, 255)` e H1 em `rgb(9, 9, 11)` no Light Mode.
+- **`PROJECT.md`**: Atualização do estado canônico de Design e Light Mode, além de métricas dos testes E2E.
+
+
 
 ### Adicionado
 - **`specs/SPEC-094-alinhamento-constelacao-textos-monocromaticos-remocao-senior.md`**: Especificação técnica aprovada pelo PO para alinhamento e isolamento responsivo da constelação vetorial em `/sobre`, garantia de textos 100% monocromáticos e remoção integral da palavra "sênior".

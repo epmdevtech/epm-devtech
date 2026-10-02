@@ -134,10 +134,10 @@ test.describe('Hero Visual Identity & Token Locks (SPEC-059, SPEC-068 & SPEC-069
         expect(computedHeroStyles.nodeDot.bgColor).toBe('rgb(45, 212, 191)');
         expect(computedHeroStyles.nodeDot.borderRadius).toBe('9999px');
       } else {
-        // Light background surface-anchor rgb(229, 236, 237)
-        expect(computedHeroStyles.hero.bgColor).toMatch(/rgb\(229,\s*(236|237),\s*(237|238)\)/);
-        // H1 text #0A0F10 = rgb(10, 15, 16)
-        expect(computedHeroStyles.h1.color).toBe('rgb(10, 15, 16)');
+        // Light background surface-anchor rgb(255, 255, 255)
+        expect(computedHeroStyles.hero.bgColor).toBe('rgb(255, 255, 255)');
+        // H1 text #09090B = rgb(9, 9, 11)
+        expect(computedHeroStyles.h1.color).toBe('rgb(9, 9, 11)');
         // Primary button brand teal: #2DD4BF -> rgb(45, 212, 191)
         expect(computedHeroStyles.button.bgColor).toBe('rgb(45, 212, 191)');
         // Text on brand: #04201C -> rgb(4, 32, 28)

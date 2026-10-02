@@ -29,6 +29,7 @@ describe("SectionWrapper Component", () => {
     expect(el).toBeInTheDocument();
     expect(el).toHaveAttribute("data-tone", "base");
     expect(el.className).toContain("bg-surface-base");
+    expect(el.className).toContain("border-y");
   });
 
   it("renderiza corretamente com o tom alt", () => {

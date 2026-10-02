@@ -54,8 +54,8 @@ export const Header = () => {
           mounted ? "translate-y-0" : "-translate-y-full"
         } ${
           isScrolled
-            ? "py-3 backdrop-blur-md bg-surface-anchor/85 border-b border-border/40 shadow-xs"
-            : "py-5 bg-surface-anchor"
+            ? "py-3 backdrop-blur-md bg-white/80 dark:bg-surface-anchor/85 border-b border-zinc-200/80 dark:border-border/40 shadow-xs"
+            : "py-5 bg-surface-anchor text-foreground"
         }`}
       >
         <div className="container px-6">
@@ -192,7 +192,7 @@ export const Header = () => {
           role="dialog"
           aria-modal="true"
           aria-label="Menu de navegação"
-          className="fixed top-0 right-0 bottom-0 w-72 lg:hidden glass border-l border-border/50 shadow-2xl z-50 overflow-y-auto animate-slide-in-right"
+          className="fixed top-0 right-0 bottom-0 w-72 lg:hidden bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md border-l border-zinc-200/80 dark:border-border/50 shadow-2xl z-50 overflow-y-auto animate-slide-in-right"
         >
           <div className="flex flex-col h-full pt-6 px-6 pb-6 relative">
             <button
