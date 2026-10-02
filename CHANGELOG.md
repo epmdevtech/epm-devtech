@@ -9,6 +9,22 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.80-engenharia-ajuste-aws-tooltips] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-080-engenharia-ajuste-aws-e-tooltips-inferiores.md`**: Especificação técnica para remoção da badge de certificado da AWS, correção de abertura de tooltips na linha inferior da nuvem tipográfica e formalização da regra de commits em português no SDD.
+- **`tasks/TASK-080-engenharia-ajuste-aws-e-tooltips-inferiores.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-080.md`**: Relatório de QA com evidências de conformidade aos quality gates.
+
+### Modificado
+- **`AGENTS.md` & `GEMINI.md`**: Inclusão de regra mandatória no protocolo SDD determinando que todas as mensagens de commit do Git sejam redigidas em Português do Brasil (pt-BR).
+- **`src/config/architecture.ts`**: Remoção da badge `[Certificado]` e variantes visuais associadas da AWS, mantendo estritamente a autoridade técnica com tipografia e ícone oficial.
+- **`src/components/ui/tooltip.tsx`**: Inclusão de `<TooltipPrimitive.Portal>` em `TooltipContent`, projetando balões de informação diretamente no `document.body` e eliminando colapso de dimensões (0.95px x 0.95px) gerado por transformações CSS do elemento pai.
+- **`src/components/sections/ArchitecturalBlueprint.tsx`**: Configuração de `disableHoverableContent={true}` no `TooltipProvider`, eliminando a área de retenção de hover do Radix UI que bloqueava a ativação de tooltips contíguos na navegação horizontal do mouse.
+- **`src/components/sections/__tests__/ArchitecturalBlueprint.test.tsx`**: Atualização dos testes unitários para validar a presença da badge de `Node.js [Core Runtime]` e ausência estrita de badge em AWS.
+- **`e2e/design-system-and-stability.spec.ts`**: Expansão do teste E2E para testar a abertura individual de tooltips em todas as 9 tecnologias (linha superior e inferior).
+- **`PROJECT.md`**: Atualização do status de tecnologias da rota `/engenharia`.
+
 ## [0.0.79-engenharia-apresentacao-tipografica-tecnologias] - 2026-10-02
 
 ### Adicionado

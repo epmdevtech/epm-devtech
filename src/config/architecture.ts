@@ -50,9 +50,6 @@ export const CORE_TECHNOLOGIES: CoreTechnology[] = [
     category: "cloud",
     purpose:
       "Computação elástica distribuída, infraestrutura em nuvem resiliente, serverless e armazenamento seguro de alta disponibilidade.",
-    badge: "Certificado",
-    badgeVariant: "amber",
-    accentClass: "text-amber-500 dark:text-amber-400 hover:text-amber-300",
     sizeClass: "text-3xl sm:text-4xl md:text-5xl font-extrabold",
     icon: `${DI}/amazonwebservices/amazonwebservices-original-wordmark.svg`,
   },

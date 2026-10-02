@@ -44,10 +44,10 @@ describe("ArchitecturalBlueprint Component (Nuvem Tipográfica de Especialidades
     expect(screen.getByText("Azure")).toBeInTheDocument();
   });
 
-  it("renderiza badges de autoridade inline (AWS Certificado e Node.js Core Runtime)", () => {
+  it("renderiza badges de autoridade inline (Node.js Core Runtime) e garante ausência de badge na AWS", () => {
     render(<ArchitecturalBlueprint />);
-    expect(screen.getByText("Certificado")).toBeInTheDocument();
     expect(screen.getByText("Core Runtime")).toBeInTheDocument();
+    expect(screen.queryByText("Certificado")).not.toBeInTheDocument();
   });
 
   it("garante a remoção estrita das 15 ferramentas descontinuadas", () => {

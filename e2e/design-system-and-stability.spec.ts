@@ -151,13 +151,32 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     const blueprint = page.locator('[data-testid="architectural-blueprint"]');
     await expect(blueprint).toBeVisible({ timeout: 10000 });
 
-    // Interage com o nó React via hover
-    const reactBadge = page.locator('[data-testid="tech-badge-React"]');
-    await reactBadge.hover();
-    await page.waitForTimeout(300);
+    // Valida ausência da badge Certificado na AWS e presença de Core Runtime no Node.js
+    await expect(page.getByText('Certificado')).toBeHidden();
+    await expect(page.getByText('Core Runtime')).toBeVisible();
 
-    // Valida exibição de propósito contextual
-    await expect(page.getByRole('tooltip').getByText(/Componentização declarativa/i)).toBeVisible();
+    // Valida abertura de tooltip em todas as 9 tecnologias (linha superior e inferior)
+    const techExpectations = [
+      { name: 'React', textMatch: /Componentização declarativa/i },
+      { name: 'TypeScript', textMatch: /Tipagem estática estrita/i },
+      { name: 'Node.js', textMatch: /Runtime assíncrono e orientado a eventos/i },
+      { name: 'AWS', textMatch: /Computação elástica distribuída/i },
+      { name: 'Vue.js', textMatch: /Ecossistema progressivo e ágil/i },
+      { name: 'PHP', textMatch: /Back-end maduro e corporativo/i },
+      { name: 'Laravel', textMatch: /Framework robusto para desenvolvimento ágil/i },
+      { name: 'Angular', textMatch: /Framework corporativo opinado/i },
+      { name: 'Azure', textMatch: /Serviços corporativos de nuvem/i },
+    ];
+
+    for (const tech of techExpectations) {
+      const badge = page.locator(`[data-testid="tech-badge-${tech.name}"]`);
+      await expect(badge).toBeVisible();
+      await badge.hover();
+      await page.waitForTimeout(300);
+
+      const tooltip = page.getByRole('tooltip').filter({ hasText: tech.textMatch });
+      await expect(tooltip).toBeVisible();
+    }
   });
 
   test('Logotipo adapta-se perfeitamente entre Dark e Light Mode sem container escuro artificial', async ({ page }) => {

@@ -34,7 +34,11 @@ const ArchitecturalBlueprint: React.FC<ArchitecturalBlueprintProps> = ({
       </div>
 
       {/* Apresentação Tipográfica Editorial (Nuvem de Tecnologias) */}
-      <TooltipProvider delayDuration={150}>
+      <TooltipProvider
+        delayDuration={150}
+        skipDelayDuration={300}
+        disableHoverableContent={true}
+      >
         <div
           data-testid="tech-editorial-cloud"
           className="flex flex-wrap items-center gap-x-7 sm:gap-x-10 md:gap-x-12 gap-y-6 sm:gap-y-8 md:gap-y-10 py-6 sm:py-8"
@@ -75,7 +79,9 @@ const ArchitecturalBlueprint: React.FC<ArchitecturalBlueprintProps> = ({
               </TooltipTrigger>
               <TooltipContent
                 side="top"
-                className="max-w-xs bg-zinc-950 text-zinc-100 border border-border-default/80 p-3.5 shadow-2xl text-xs rounded-xl"
+                sideOffset={8}
+                avoidCollisions={true}
+                className="max-w-xs bg-zinc-950 text-zinc-100 border border-border-default/80 p-3.5 shadow-2xl text-xs rounded-xl pointer-events-none"
               >
                 <div className="flex items-center gap-2 font-semibold text-text-brand font-mono text-[11px] mb-1.5">
                   {tech.icon && (

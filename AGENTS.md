@@ -61,6 +61,7 @@ SPEC (draft) → Aprovação PO → TASK criada → Implementação → QA → R
 - **Sempre** preencher evidências de QA em `/reviews/`
 - **Sempre** atualizar `PROJECT.md` ao concluir uma entrega
 - **Sempre** atualizar `CHANGELOG.md` com as mudanças realizadas
+- **Sempre** escrever mensagens de commit do Git em Português do Brasil (pt-BR) (ex.: `feat(engenharia): ...`, `fix(ui): ...`, `docs: ...`). Nunca redigir mensagens de commit em inglês
 - Divergências entre SPEC e código **nunca** são resolvidas silenciosamente — geram issue ou nova SPEC
 
 ---

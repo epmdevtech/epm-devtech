@@ -74,6 +74,7 @@ Na ordem:
 - ❌ Não modificar arquivos fora do escopo da TASK ativa
 - ❌ Não fazer deploy
 - ❌ Não resolver divergências entre SPEC e código silenciosamente — reportar ao PO
+- ❌ Não escrever mensagens de commit em inglês — usar sempre Português do Brasil (pt-BR)
 
 ---
 
