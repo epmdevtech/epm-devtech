@@ -1,11 +1,9 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
-import { CheckCircle2, ArrowRight } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import PageHeader from "@/components/ui/PageHeader";
 import ArchitecturalBlueprint from "@/components/sections/ArchitecturalBlueprint";
 import SectionWrapper from "@/components/ui/SectionWrapper";
-import { Button } from "@/components/ui/button";
 import { SITE_CONFIG } from "@/config/site";
 
 const BASE_URL = SITE_CONFIG.url;
@@ -214,28 +212,6 @@ export const EngineeringPage = () => {
         {/* Bloco 2: Matriz de Camadas de Software (Tom: Alt) */}
         <SectionWrapper id="tecnologias" tone="alt" className="scroll-mt-24" containerClassName="max-w-6xl mx-auto">
           <ArchitecturalBlueprint />
-        </SectionWrapper>
-
-        {/* Bloco 3: Chamada Final para Ação (Tom: Base) */}
-        <SectionWrapper tone="base" containerClassName="max-w-3xl mx-auto text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-primary [text-wrap:balance]">
-            Precisa de engenharia sólida no seu produto ou sistema interno?
-          </h2>
-          <p className="mt-4 text-sm sm:text-base text-secondary leading-relaxed">
-            Analisamos sua arquitetura atual ou desenhamos a stack ideal para o seu próximo desafio de escala e estabilidade.
-          </p>
-          <div className="mt-8 flex justify-center">
-            <Button
-              asChild
-              size="lg"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 min-h-[44px] px-8 text-sm font-medium inline-flex items-center gap-2"
-            >
-              <Link to="/contato">
-                Falar sobre meu projeto
-                <ArrowRight className="w-4 h-4 ml-1" />
-              </Link>
-            </Button>
-          </div>
         </SectionWrapper>
       </div>
     </>

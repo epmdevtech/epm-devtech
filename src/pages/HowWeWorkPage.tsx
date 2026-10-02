@@ -1,10 +1,7 @@
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
-import { HelpCircle, ArrowRight } from "lucide-react";
 import PageHeader from "@/components/ui/PageHeader";
 import ProcessExplorer from "@/components/sections/ProcessExplorer";
 import SectionWrapper from "@/components/ui/SectionWrapper";
-import { Button } from "@/components/ui/button";
 import { SITE_CONFIG } from "@/config/site";
 
 const BASE_URL = SITE_CONFIG.url;
@@ -73,41 +70,6 @@ export const HowWeWorkPage = () => {
               <p className="text-sm sm:text-base text-secondary leading-relaxed">
                 Você conversa diretamente com a liderança técnica responsável pela arquitetura e implementação da sua solução, com alinhamentos periódicos e decisões documentadas.
               </p>
-            </div>
-          </div>
-        </SectionWrapper>
-
-        {/* Fechamento Compacto & CTA de Contato (Tom: Base) */}
-        <SectionWrapper tone="base" containerClassName="max-w-5xl mx-auto">
-          <div className="text-center max-w-3xl mx-auto">
-            <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-primary mb-3">
-              Ficou com alguma dúvida sobre o processo?
-            </h3>
-            <p className="text-sm sm:text-base text-secondary max-w-xl mx-auto mb-8 leading-relaxed">
-              Consulte as dúvidas mais comuns sobre modelos de trabalho, início de projetos e atendimento remoto.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button
-                asChild
-                size="lg"
-                className="bg-brand text-on-brand hover:bg-brand-hover active:bg-brand-active min-h-[44px] px-8 text-sm font-semibold shadow-sm transition-all duration-200 hover:shadow-glow-brand hover:scale-[1.02] active:scale-[0.98]"
-              >
-                <Link to="/contato" className="inline-flex items-center gap-2">
-                  <span>Fale com um engenheiro</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </Button>
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className="min-h-[44px] px-6 text-sm font-medium border-border-default bg-surface/50 hover:bg-surface-elevated text-secondary hover:text-primary transition-colors duration-200"
-              >
-                <Link to="/duvidas-frequentes" className="inline-flex items-center gap-2">
-                  <HelpCircle className="w-4 h-4" />
-                  <span>Ver dúvidas frequentes</span>
-                </Link>
-              </Button>
             </div>
           </div>
         </SectionWrapper>

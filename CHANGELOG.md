@@ -9,6 +9,25 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.87-remocao-ctas-finais-rotas] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-087-remocao-ctas-finais-rotas.md`**: Especificação técnica para remoção global de seções finais de CTA redundantes em todas as rotas do projeto.
+- **`tasks/TASK-087-remocao-ctas-finais-rotas.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-087.md`**: Relatório de QA com validação dos quality gates e confirmação de estabilidade estrutural.
+
+### Removido
+- **`src/pages/ServicesPage.tsx`**: Bloco final de fechamento comercial contendo *"Quer avaliar qual solução se encaixa no seu momento?"*, botão *"Iniciar diagnóstico do projeto"* e link *"Entenda como trabalhamos →"*. A página agora encerra diretamente na Faixa de Garantias de Engenharia.
+- **`src/pages/HowWeWorkPage.tsx`**: Bloco final contendo *"Ficou com alguma dúvida sobre o processo?"*, botão *"Fale com um engenheiro"* e link *"Ver dúvidas frequentes"*. A página encerra diretamente no Manifesto Técnico de Engenharia.
+- **`src/pages/ExperiencePage.tsx`**: Bloco final contendo *"Sua empresa tem uma demanda de alta complexidade?"* e botão *"Falar sobre meu projeto"*. A página encerra diretamente no Enterprise Ledger de Organizações.
+- **`src/pages/EngineeringPage.tsx`**: Bloco final contendo *"Precisa de engenharia sólida no seu produto ou sistema interno?"* e botão *"Falar sobre meu projeto"*. A página encerra diretamente na Matriz de Camadas de Software / Nuvem Tipográfica.
+- **`src/pages/AboutPage.tsx`**: Bloco final contendo *"Pronto para construir sua próxima solução com quem entende de código?"* e botão *"Fale conosco"*. A página encerra diretamente na tabela de Missão & Princípios de Engenharia.
+
+### Modificado
+- Limpeza de imports órfãos em todos os arquivos (`Button`, `ArrowRight`, `HelpCircle`), reduzindo o bundle size de cada rota em até 10%.
+- **`src/pages/__tests__/pages.test.tsx`**: Atualização dos testes unitários para assertar a ausência dessas caixas em todas as rotas e validar elementos estruturais genuínos.
+- **`PROJECT.md`**: Atualização do estado canônico das rotas de Serviços, Como Trabalhamos, Engenharia, Experiência e Sobre nós.
+
 ## [0.0.86-servicos-hero-cta] - 2026-10-02
 
 ### Adicionado

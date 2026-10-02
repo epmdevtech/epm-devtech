@@ -4,7 +4,6 @@ import { ArrowRight } from "lucide-react";
 import PageHeader from "@/components/ui/PageHeader";
 import Services from "@/components/sections/Services";
 import SectionWrapper from "@/components/ui/SectionWrapper";
-import { Button } from "@/components/ui/button";
 import { SITE_CONFIG } from "@/config/site";
 
 const BASE_URL = SITE_CONFIG.url;
@@ -104,38 +103,6 @@ export const ServicesPage = () => {
                   Comunicação constante diretamente com a liderança técnica do projeto, sem ruídos.
                 </p>
               </div>
-            </div>
-          </div>
-        </SectionWrapper>
-
-        {/* Fechamento Comercial & CTA Final (Tom: Base) */}
-        <SectionWrapper tone="base">
-          <div className="max-w-3xl mx-auto text-center">
-            <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-primary mb-3">
-              Quer avaliar qual solução se encaixa no seu momento?
-            </h3>
-            <p className="text-sm sm:text-base text-secondary max-w-xl mx-auto mb-8 leading-relaxed">
-              Agende uma conversa técnica sem compromisso para analisarmos os requisitos e a arquitetura recomendada.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button
-                asChild
-                size="lg"
-                className="bg-brand text-on-brand hover:bg-brand-hover active:bg-brand-active min-h-[44px] px-8 text-sm font-semibold shadow-sm transition-all duration-200 hover:shadow-glow-brand hover:scale-[1.02] active:scale-[0.98]"
-              >
-                <Link to="/contato">Iniciar diagnóstico do projeto</Link>
-              </Button>
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className="min-h-[44px] px-6 text-sm font-medium border-border-default bg-surface/50 hover:bg-surface-elevated text-secondary hover:text-primary transition-colors duration-200"
-              >
-                <Link to="/como-trabalhamos" className="inline-flex items-center gap-2">
-                  <span>Entenda como trabalhamos</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </Button>
             </div>
           </div>
         </SectionWrapper>

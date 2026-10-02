@@ -1,10 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
 import PageHeader from "@/components/ui/PageHeader";
 import SectionWrapper from "@/components/ui/SectionWrapper";
-import { Button } from "@/components/ui/button";
 import { getApprovedExperiences } from "@/config/experience";
 import { SITE_CONFIG } from "@/config/site";
 import {
@@ -218,28 +215,6 @@ export const ExperiencePage = () => {
                 </div>
               </div>
             ))}
-          </div>
-        </SectionWrapper>
-
-        {/* Bloco 3: Chamada Final para Contato (Tom: Base) */}
-        <SectionWrapper tone="base">
-          <div className="max-w-3xl mx-auto text-center">
-            <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-primary mb-3">
-              Sua empresa tem uma demanda de alta complexidade?
-            </h3>
-            <p className="text-sm sm:text-base text-secondary max-w-xl mx-auto mb-8 leading-relaxed">
-              Conversamos diretamente sobre requisitos de arquitetura, estabilidade e capacidade de evolução.
-            </p>
-            <Button
-              asChild
-              size="lg"
-              className="bg-brand text-on-brand hover:bg-brand-hover active:bg-brand-active min-h-[44px] px-8 text-sm font-semibold shadow-sm transition-all duration-200 hover:shadow-glow-brand hover:scale-[1.02] active:scale-[0.98]"
-            >
-              <Link to="/contato" className="inline-flex items-center gap-2">
-                <span>Falar sobre meu projeto</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </Button>
           </div>
         </SectionWrapper>
       </div>

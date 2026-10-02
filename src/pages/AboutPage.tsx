@@ -6,7 +6,6 @@ import {
   Building,
   Globe,
   CheckCircle2,
-  ArrowRight,
   Sparkles,
 } from "lucide-react";
 import PageHeader from "@/components/ui/PageHeader";
@@ -448,29 +447,6 @@ export const AboutPage: React.FC = () => {
                 </div>
               </div>
             ))}
-          </div>
-        </SectionWrapper>
-
-        {/* Seção 4: Fechamento da Página (Tom: Alt) */}
-        <SectionWrapper tone="alt" containerClassName="max-w-4xl mx-auto text-center">
-          <div className="p-8 sm:p-12 rounded-2xl border border-zinc-800/80 bg-zinc-950/70 shadow-2xl">
-            <div className="font-mono text-xs font-semibold text-text-brand tracking-wider mb-3 uppercase">
-              // CONVERSE COM A LIDERANÇA TÉCNICA
-            </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-primary [text-wrap:balance] mb-4">
-              Pronto para construir sua próxima solução com quem entende de código?
-            </h2>
-            <p className="text-sm sm:text-base text-secondary max-w-2xl mx-auto leading-relaxed mb-8">
-              Analisamos sua arquitetura atual ou desenhamos a stack ideal para seu próximo sistema corporativo, com previsibilidade e contato direto com quem programa.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-8 min-h-[46px] text-sm shadow-md">
-                <Link to="/contato" className="inline-flex items-center gap-2">
-                  <span>Fale conosco</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </Button>
-            </div>
           </div>
         </SectionWrapper>
       </div>
