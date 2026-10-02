@@ -1,16 +1,13 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
 import {
-  MapPin,
-  Building,
   Globe,
-  CheckCircle2,
+  Users,
+  ShieldCheck,
   Sparkles,
 } from "lucide-react";
-import PageHeader from "@/components/ui/PageHeader";
+import BrandChipIcon from "@/components/ui/BrandChipIcon";
 import SectionWrapper from "@/components/ui/SectionWrapper";
-import { Button } from "@/components/ui/button";
 import { SITE_CONFIG } from "@/config/site";
 import { cn } from "@/lib/utils";
 
@@ -98,127 +95,128 @@ export const AboutPage: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Sobre a EPM DevTech | Software House em Toledo, PR</title>
+        <title>Sobre a EPM DevTech | Engenharia de Software Corporativa</title>
         <meta
           name="description"
-          content="Software house dedicada a engenharia de software sob medida, conduzida por fundador e liderança técnica com atendimento remoto em todo o Brasil."
+          content="Software house de engenharia de software sob medida para aplicações corporativas críticas, com atendimento 100% remoto em escala nacional."
         />
         <link rel="canonical" href={`${BASE_URL}/sobre`} />
         <meta
           property="og:title"
-          content="Sobre a EPM DevTech | Software House em Toledo, PR"
+          content="Sobre a EPM DevTech | Engenharia de Software Corporativa"
         />
         <meta
           property="og:description"
-          content="Software house dedicada a engenharia de software sob medida, conduzida por fundador e liderança técnica com atendimento remoto em todo o Brasil."
+          content="Software house de engenharia de software sob medida para aplicações corporativas críticas, com atendimento 100% remoto em escala nacional."
         />
         <meta property="og:url" content={`${BASE_URL}/sobre`} />
         <meta property="og:image" content={`${BASE_URL}/og-image-1200x630.png`} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Sobre a EPM DevTech | Software House em Toledo, PR"
+          content="Sobre a EPM DevTech | Engenharia de Software Corporativa"
         />
         <meta
           name="twitter:description"
-          content="Software house dedicada a engenharia de software sob medida, conduzida por fundador e liderança técnica com atendimento remoto em todo o Brasil."
+          content="Software house de engenharia de software sob medida para aplicações corporativas críticas, com atendimento 100% remoto em escala nacional."
         />
         <meta name="twitter:image" content={`${BASE_URL}/og-image-1200x630.png`} />
       </Helmet>
 
       <div className="w-full">
-        {/* Page Header Padronizado */}
-        <PageHeader
-          eyebrow="SOBRE NÓS"
-          title="Engenharia de software com foco em longevidade e impacto real"
-          description="Fundada e conduzida pela liderança técnica de Elessandro Prestes Macedo (+9 anos de experiência), a EPM DevTech desenvolve e moderniza sistemas sob medida para empresas que buscam eficiência operacional, estabilidade e capacidade de evolução a longo prazo sem intermediários comerciais."
-        />
-
-        {/* Bloco Institucional & Fundador (Tom: Base) */}
-        <SectionWrapper tone="base" containerClassName="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-            {/* Coluna 1: Posicionamento Editorial (7 cols) */}
-            <div className="lg:col-span-7 flex flex-col justify-start">
-              <div className="font-mono text-xs font-semibold text-text-brand tracking-wider mb-2">
-                // VISÃO & POSICIONAMENTO
-              </div>
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-primary mb-4 [text-wrap:balance]">
-                Engenharia de software com visão de negócio
-              </h2>
-              <p className="text-base sm:text-lg text-secondary leading-relaxed mb-6 font-normal">
-                A EPM DevTech é uma software house dedicada a desenvolver e modernizar sistemas sob medida para empresas que buscam eficiência operacional, estabilidade e capacidade de evolução.
-              </p>
-              <p className="text-sm sm:text-base text-secondary/90 leading-relaxed font-normal mb-6">
-                Fundada e conduzida tecnicamente por Elessandro Prestes Macedo, que reúne mais de 9 anos de experiência prática em arquitetura de software e sistemas corporativos, a empresa atua com foco em escopo bem definido, comunicação transparente e entregas previsíveis a cada ciclo.
-              </p>
-              <p className="text-sm sm:text-base text-secondary/90 leading-relaxed font-normal">
-                Nosso modelo de trabalho prioriza código sustentável e arquitetura desacoplada, garantindo que as soluções entregues continuem fáceis de manter e preparadas para novas demandas de escala.
-              </p>
-
-              {/* Destaque Estático de Experiência */}
-              <div className="mt-8 pt-8 border-t border-border-default/60 max-w-xs">
-                <div className="text-3xl sm:text-4xl font-extrabold text-primary font-mono leading-none mb-2">
-                  +9
+        {/* Dobra Inicial Unificada: Executive Briefing Hero (Tom: Anchor) */}
+        <header
+          data-tone="anchor"
+          className="relative w-full pt-28 pb-16 sm:pt-36 sm:pb-20 bg-surface-anchor text-foreground transition-colors duration-200 border-b border-border-default/60"
+        >
+          <div className="container max-w-6xl mx-auto px-6">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+              {/* Coluna 1: Posicionamento & Proposta de Valor (7 cols) */}
+              <div className="lg:col-span-7 flex flex-col justify-start">
+                <div
+                  data-testid="page-eyebrow"
+                  className="inline-flex items-center gap-[7px] text-[11.5px] font-mono font-medium tracking-[0.1em] uppercase text-text-brand select-none mb-3 sm:mb-4"
+                >
+                  <BrandChipIcon size={15} className="shrink-0" />
+                  <span>[ QUEM SOMOS // POSICIONAMENTO ]</span>
                 </div>
-                <div className="font-mono text-xs uppercase tracking-wider text-muted">
-                  anos de experiência técnica da liderança
-                </div>
-              </div>
-            </div>
 
-            {/* Coluna 2: Dados Operacionais e Institucionais (5 cols) */}
-            <div className="lg:col-span-5 p-6 sm:p-8 rounded-xl border border-zinc-800/80 bg-zinc-950/60 shadow-xl flex flex-col gap-6">
-              <div>
-                <h3 className="font-mono font-semibold text-primary text-xs uppercase tracking-wider mb-5 flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-brand" />
-                  Transparência Operacional
-                </h3>
+                <h1
+                  id="page-title"
+                  tabIndex={-1}
+                  className="font-bold tracking-tight text-primary text-3xl sm:text-4xl md:text-5xl leading-[1.15] [text-wrap:balance] outline-none focus:outline-none mb-5 sm:mb-6"
+                >
+                  Engenharia de software sob medida com{" "}
+                  <span className="text-text-brand">visão real de negócio</span>
+                </h1>
+
+                <p className="text-base sm:text-lg text-secondary leading-relaxed font-normal [text-wrap:balance]">
+                  A EPM DevTech projeta, constrói e moderniza aplicações corporativas críticas. Desenvolvemos ecossistemas sob medida para operações que exigem estabilidade contínua, integrações sem perda de dados e comunicação técnica direta, sem camadas comerciais intermediárias.
+                </p>
+              </div>
+
+              {/* Coluna 2: Quadro Executivo "Compromissos de Parceria" (5 cols) */}
+              <div className="lg:col-span-5 p-6 sm:p-7 rounded-2xl border border-border-default/80 dark:border-zinc-800/80 bg-surface/90 dark:bg-zinc-950/70 shadow-xl dark:shadow-2xl backdrop-blur-md flex flex-col gap-6">
+                <div className="flex items-center justify-between pb-4 border-b border-border-default/60 dark:border-zinc-800/60">
+                  <h2 className="font-mono text-xs uppercase tracking-wider text-primary font-semibold">
+                    Como atuamos com a sua equipe
+                  </h2>
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-mono font-medium bg-brand/10 text-text-brand border border-brand/20">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand" />
+                    Parceria Direta
+                  </span>
+                </div>
+
                 <div className="space-y-4 text-xs sm:text-sm text-secondary">
-                  <div className="flex items-start gap-3">
-                    <Globe className="w-4 h-4 text-text-brand shrink-0 mt-0.5" />
+                  <div className="flex items-start gap-3.5">
+                    <div className="p-2 rounded-lg bg-surface-base border border-border-default/60 dark:border-zinc-800/80 shrink-0 mt-0.5">
+                      <Globe className="w-4 h-4 text-text-brand" />
+                    </div>
                     <div>
-                      <span className="font-semibold text-primary block">Atendimento 100% remoto</span>
-                      Atendemos clientes e parceiros em todo o Brasil com canais diretos e alinhamento contínuo.
+                      <span className="font-semibold text-primary block text-sm mb-0.5">
+                        Atendimento 100% Remoto & Nacional
+                      </span>
+                      <p className="text-xs text-secondary leading-relaxed font-normal">
+                        Conexão ágil com empresas de qualquer região do país através de cerimônias e alinhamentos contínuos.
+                      </p>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3">
-                    <CheckCircle2 className="w-4 h-4 text-text-brand shrink-0 mt-0.5" />
+                  <div className="flex items-start gap-3.5">
+                    <div className="p-2 rounded-lg bg-surface-base border border-border-default/60 dark:border-zinc-800/80 shrink-0 mt-0.5">
+                      <Users className="w-4 h-4 text-text-brand" />
+                    </div>
                     <div>
-                      <span className="font-semibold text-primary block">Sem intermediários comerciais</span>
-                      Contato direto com quem planeja a arquitetura e escreve o código do seu sistema.
+                      <span className="font-semibold text-primary block text-sm mb-0.5">
+                        Contato Direto com a Liderança Técnica
+                      </span>
+                      <p className="text-xs text-secondary leading-relaxed font-normal">
+                        Você fala diretamente com quem planeja a arquitetura e implementa o código do seu projeto.
+                      </p>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3">
-                    <MapPin className="w-4 h-4 text-text-brand shrink-0 mt-0.5" />
-                    <div>
-                      <span className="font-semibold text-primary block">Sede da empresa</span>
-                      {SITE_CONFIG.company.location}
+                  <div className="flex items-start gap-3.5">
+                    <div className="p-2 rounded-lg bg-surface-base border border-border-default/60 dark:border-zinc-800/80 shrink-0 mt-0.5">
+                      <ShieldCheck className="w-4 h-4 text-text-brand" />
                     </div>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <Building className="w-4 h-4 text-text-brand shrink-0 mt-0.5" />
                     <div>
-                      <span className="font-semibold text-primary block">Dados cadastrais</span>
-                      CNPJ: {SITE_CONFIG.company.cnpj} · EPM DevTech
+                      <span className="font-semibold text-primary block text-sm mb-0.5">
+                        Propriedade Total do Código & Entregas Incrementais
+                      </span>
+                      <p className="text-xs text-secondary leading-relaxed font-normal">
+                        Repositórios, documentação e infraestrutura pertencem 100% à sua empresa, com validações frequentes em homologação.
+                      </p>
                     </div>
                   </div>
                 </div>
-              </div>
-
-              <div className="pt-4 border-t border-zinc-800/60">
-                <Button asChild className="w-full bg-primary text-primary-foreground hover:bg-primary/90 min-h-[44px] text-xs font-medium">
-                  <Link to="/contato">Falar sobre meu projeto</Link>
-                </Button>
               </div>
             </div>
           </div>
-        </SectionWrapper>
+        </header>
 
-        {/* Seção 2: Nossa Jornada (Tom: Alt) */}
-        <SectionWrapper id="jornada" tone="alt" containerClassName="max-w-6xl mx-auto">
+        {/* Seção 2: Nossa Jornada (Tom: Base) */}
+        <SectionWrapper id="jornada" tone="base" containerClassName="max-w-6xl mx-auto">
             {/* Cabeçalho da Seção */}
             <div className="max-w-3xl mb-12 sm:mb-16">
               <div className="font-mono text-xs font-semibold text-text-brand tracking-wider mb-2">
@@ -400,8 +398,8 @@ export const AboutPage: React.FC = () => {
             </div>
         </SectionWrapper>
 
-        {/* Seção 3: Missão e Princípios de Engenharia (Tom: Base) */}
-        <SectionWrapper id="principios" tone="base" containerClassName="max-w-6xl mx-auto">
+        {/* Seção 3: Missão e Princípios de Engenharia (Tom: Alt) */}
+        <SectionWrapper id="principios" tone="alt" containerClassName="max-w-6xl mx-auto">
           {/* Cabeçalho da Seção */}
           <div className="max-w-3xl mb-12 sm:mb-16">
             <div className="font-mono text-xs font-semibold text-text-brand tracking-wider mb-2">

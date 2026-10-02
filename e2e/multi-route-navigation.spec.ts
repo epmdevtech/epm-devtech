@@ -35,8 +35,8 @@ test.describe('EPM DEVTECH — Arquitetura de Informação Multi-Rota (SPEC-060)
     },
     {
       path: '/sobre',
-      expectedTitle: 'Sobre a EPM DevTech | Software House em Toledo, PR',
-      expectedH1: 'Engenharia de software com foco em longevidade e impacto real',
+      expectedTitle: 'Sobre a EPM DevTech | Engenharia de Software Corporativa',
+      expectedH1: 'Engenharia de software sob medida com visão real de negócio',
       canonicalUrl: 'https://epmdevtech.com.br/sobre',
     },
     {

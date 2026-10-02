@@ -9,7 +9,34 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
-## [0.0.87-remocao-ctas-finais-rotas] - 2026-10-02
+## [0.0.88-sobre-executive-briefing] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-088-sobre-executive-briefing.md`**: Especificação técnica para unificação da dobra inicial da rota `/sobre` em Executive Briefing corporativo e remoção de dados burocráticos.
+- **`tasks/TASK-088-sobre-executive-briefing.md`**: Tarefa e checklist de execução do protocolo SDD.
+- **`reviews/QA-088.md`**: Relatório de QA com validação dos quality gates e evidências de capturas de tela nos temas Dark, Light e Mobile.
+- **Painel "Compromissos de Parceria"**: Quadro executivo com 3 pilares estratégicos de alto impacto corporativo (*Atendimento 100% Remoto & Nacional*, *Contato Direto com a Liderança Técnica* e *Propriedade Total do Código & Entregas Incrementais*), acompanhado de badge `● Parceria Direta`.
+
+### Removido
+- **`src/pages/AboutPage.tsx`**:
+  - Removido cabeçalho `PageHeader` antigo e primeira seção duplicada ("Visão & Posicionamento").
+  - Removido card burocrático contendo dados cadastrais/fiscais (CNPJ, menção à sede física de Toledo-PR e endereço fiscal).
+  - Removidas menções nominais isoladas ("Elessandro Prestes Macedo") e badge solto `+9 anos` da rota `/sobre`.
+  - Removido botão de contato redundante interno ao card.
+
+### Modificado
+- **`src/pages/AboutPage.tsx`**:
+  - Unificação da dobra inicial em um bloco integrado **Executive Briefing Hero** na camada tonal `anchor` (`bg-surface-anchor`).
+  - H1 com acento cromático no trecho-chave: *"Engenharia de software sob medida com visão real de negócio"*.
+  - Eyebrow padronizado: `[ QUEM SOMOS // POSICIONAMENTO ]` com `BrandChipIcon` em monospace ciano/esmeralda.
+  - Parágrafo Institucional B2B focado em aplicações corporativas críticas e comunicação direta sem camadas comerciais.
+  - Harmonização do ritmo de camadas tonais (SPEC-082): `anchor` (Hero) → `base` (Nossa Jornada) → `alt` (Missão & Princípios) → `anchor` (Footer).
+  - Atualização do `<Helmet>` para metadados corporativos nacionais sem referência a Toledo-PR.
+- **`scripts/prerender.js`**: Atualização do title, description e H1 pré-renderizados para a rota `sobre`.
+- **`e2e/multi-route-navigation.spec.ts`**: Atualização do teste E2E para o novo título e H1 de `/sobre`.
+- **`src/pages/__tests__/pages.test.tsx`**: Atualização dos testes unitários de `AboutPage` validando o Executive Briefing e assertando a ausência de dados burocráticos.
+- **`PROJECT.md`**: Atualização do estado canônico da rota `/sobre`.
+
 
 ### Adicionado
 - **`specs/SPEC-087-remocao-ctas-finais-rotas.md`**: Especificação técnica para remoção global de seções finais de CTA redundantes em todas as rotas do projeto.
