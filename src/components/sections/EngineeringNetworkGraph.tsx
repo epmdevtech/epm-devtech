@@ -18,36 +18,38 @@ interface GraphEdge {
   from: [number, number];
   to: [number, number];
   dashed?: boolean;
+  active?: boolean;
+  flowDelay?: number;
 }
 
 const NODES: GraphNode[] = [
-  { id: "core", cx: 340, cy: 250, r: 6, isHub: true, pulseDelay: 0 },
-  { id: "gw", cx: 450, cy: 160, r: 5, isHub: true, pulseDelay: 1.2 },
-  { id: "db", cx: 430, cy: 350, r: 5, isHub: true, pulseDelay: 2.4 },
-  { id: "s1", cx: 230, cy: 160, r: 3.5, pulseDelay: 0.8 },
-  { id: "s2", cx: 220, cy: 320, r: 3.5, pulseDelay: 1.8 },
-  { id: "s3", cx: 540, cy: 240, r: 4, pulseDelay: 3.0 },
-  { id: "s4", cx: 360, cy: 80, r: 3, pulseDelay: 2.0 },
-  { id: "s5", cx: 350, cy: 420, r: 3, pulseDelay: 1.5 },
-  { id: "s6", cx: 510, cy: 380, r: 3.5, pulseDelay: 2.8 },
-  { id: "s7", cx: 160, cy: 240, r: 2.5, pulseDelay: 0.5 },
+  { id: "core", cx: 340, cy: 250, r: 7, isHub: true, pulseDelay: 0 },
+  { id: "gw", cx: 450, cy: 160, r: 5.5, isHub: true, pulseDelay: 0.8 },
+  { id: "db", cx: 430, cy: 350, r: 5.5, isHub: true, pulseDelay: 1.6 },
+  { id: "s1", cx: 230, cy: 160, r: 3.5, pulseDelay: 0.5 },
+  { id: "s2", cx: 220, cy: 320, r: 3.5, pulseDelay: 1.2 },
+  { id: "s3", cx: 540, cy: 240, r: 4, pulseDelay: 2.0 },
+  { id: "s4", cx: 360, cy: 80, r: 3, pulseDelay: 1.8 },
+  { id: "s5", cx: 350, cy: 420, r: 3, pulseDelay: 1.0 },
+  { id: "s6", cx: 510, cy: 380, r: 3.5, pulseDelay: 2.2 },
+  { id: "s7", cx: 160, cy: 240, r: 2.5, pulseDelay: 0.3 },
 ];
 
 const EDGES: GraphEdge[] = [
-  // Interconexões centrais
-  { from: [340, 250], to: [450, 160] },
-  { from: [340, 250], to: [430, 350] },
+  // Interconexões centrais ativas
+  { from: [340, 250], to: [450, 160], active: true, flowDelay: 0 },
+  { from: [340, 250], to: [430, 350], active: true, flowDelay: 1.2 },
   { from: [450, 160], to: [430, 350], dashed: true },
-  // Satélites
-  { from: [340, 250], to: [230, 160] },
-  { from: [340, 250], to: [220, 320] },
-  { from: [450, 160], to: [540, 240] },
+  // Satélites com fluxos ativos
+  { from: [340, 250], to: [230, 160], active: true, flowDelay: 1.8 },
+  { from: [340, 250], to: [220, 320], active: true, flowDelay: 0.6 },
+  { from: [450, 160], to: [540, 240], active: true, flowDelay: 1.0 },
   { from: [430, 350], to: [540, 240] },
-  { from: [450, 160], to: [360, 80] },
+  { from: [450, 160], to: [360, 80], active: true, flowDelay: 1.5 },
   { from: [230, 160], to: [360, 80], dashed: true },
-  { from: [430, 350], to: [350, 420] },
+  { from: [430, 350], to: [350, 420], active: true, flowDelay: 2.0 },
   { from: [220, 320], to: [350, 420], dashed: true },
-  { from: [430, 350], to: [510, 380] },
+  { from: [430, 350], to: [510, 380], active: true, flowDelay: 0.4 },
   { from: [540, 240], to: [510, 380] },
   { from: [230, 160], to: [160, 240] },
   { from: [220, 320], to: [160, 240] },
@@ -70,43 +72,107 @@ export const EngineeringNetworkGraph: React.FC<EngineeringNetworkGraphProps> = (
         className="w-full h-full"
       >
         <defs>
-          {/* Gradiente de fade para a esquerda */}
-          <linearGradient id="networkFade" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="currentColor" stopOpacity="0" />
-            <stop offset="30%" stopColor="currentColor" stopOpacity="0.3" />
-            <stop offset="100%" stopColor="currentColor" stopOpacity="1" />
-          </linearGradient>
-
-          {/* Gradiente para feixes ativos */}
-          <linearGradient id="brandBeam" x1="0%" y1="0%" x2="100%" y2="100%">
+          {/* Gradiente para feixes de dados ativos */}
+          <linearGradient id="activeStream" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="#2DD4BF" stopOpacity="0.2" />
-            <stop offset="50%" stopColor="#2DD4BF" stopOpacity="0.8" />
+            <stop offset="50%" stopColor="#2DD4BF" stopOpacity="0.9" />
             <stop offset="100%" stopColor="#2DD4BF" stopOpacity="0.2" />
           </linearGradient>
+
+          {/* Gradiente radial para glow central */}
+          <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#2DD4BF" stopOpacity="0.35" />
+            <stop offset="100%" stopColor="#2DD4BF" stopOpacity="0" />
+          </radialGradient>
         </defs>
 
-        {/* Anéis orbitais concêntricos de referência técnica em torno do Core */}
-        <circle
-          cx={340}
-          cy={250}
-          r={90}
-          stroke="currentColor"
-          strokeOpacity={0.06}
-          strokeDasharray="4 6"
-          fill="none"
-        />
-        <circle
-          cx={340}
-          cy={250}
-          r={170}
-          stroke="currentColor"
-          strokeOpacity={0.04}
-          strokeDasharray="6 8"
-          fill="none"
-        />
+        {/* 1. Anéis Orbitais com Rotação Contínua e Satélites em Órbita */}
+        {/* Anel Orbital Interno: Rotação Contínua Horária */}
+        <motion.g
+          style={{ transformOrigin: "340px 250px" }}
+          animate={prefersReducedMotion ? {} : { rotate: 360 }}
+          transition={{ duration: 42, repeat: Infinity, ease: "linear" }}
+        >
+          <circle
+            cx={340}
+            cy={250}
+            r={95}
+            stroke="#2DD4BF"
+            strokeOpacity={0.16}
+            strokeDasharray="5 7"
+            strokeWidth={1}
+            fill="none"
+          />
+          {/* Ponto Satélite Orbital Luminoso no anel interno */}
+          <circle cx={435} cy={250} r={3} fill="#2DD4BF" fillOpacity={0.85} />
+          <circle cx={245} cy={250} r={2} fill="#2DD4BF" fillOpacity={0.5} />
+        </motion.g>
 
-        {/* Edges / Linhas de Conexão */}
-        <g stroke="currentColor" strokeOpacity={0.12} strokeWidth={1}>
+        {/* Anel Orbital Externo: Rotação Contínua Anti-Horária */}
+        <motion.g
+          style={{ transformOrigin: "340px 250px" }}
+          animate={prefersReducedMotion ? {} : { rotate: -360 }}
+          transition={{ duration: 65, repeat: Infinity, ease: "linear" }}
+        >
+          <circle
+            cx={340}
+            cy={250}
+            r={180}
+            stroke="currentColor"
+            strokeOpacity={0.12}
+            strokeDasharray="6 10"
+            strokeWidth={1}
+            fill="none"
+            className="text-primary"
+          />
+          {/* Pontos Satélites no anel externo */}
+          <circle cx={160} cy={250} r={2.5} fill="#2DD4BF" fillOpacity={0.7} />
+          <circle cx={520} cy={250} r={2.5} fill="#2DD4BF" fillOpacity={0.7} />
+        </motion.g>
+
+        {/* 2. Efeito Sonar / Radar Expansivo emanando do Core Central */}
+        {!prefersReducedMotion && (
+          <>
+            <motion.circle
+              cx={340}
+              cy={250}
+              r={10}
+              stroke="#2DD4BF"
+              strokeWidth={1.5}
+              fill="none"
+              animate={{
+                r: [10, 52],
+                opacity: [0.65, 0],
+              }}
+              transition={{
+                duration: 3.2,
+                repeat: Infinity,
+                ease: "easeOut",
+              }}
+            />
+            <motion.circle
+              cx={340}
+              cy={250}
+              r={10}
+              stroke="#2DD4BF"
+              strokeWidth={1}
+              fill="none"
+              animate={{
+                r: [10, 52],
+                opacity: [0.65, 0],
+              }}
+              transition={{
+                duration: 3.2,
+                repeat: Infinity,
+                ease: "easeOut",
+                delay: 1.6,
+              }}
+            />
+          </>
+        )}
+
+        {/* 3. Edges / Linhas de Conexão Base */}
+        <g stroke="currentColor" strokeOpacity={0.14} strokeWidth={1} className="text-primary">
           {EDGES.map((edge, idx) => (
             <line
               key={`edge-${idx}`}
@@ -119,57 +185,122 @@ export const EngineeringNetworkGraph: React.FC<EngineeringNetworkGraphProps> = (
           ))}
         </g>
 
-        {/* Feixe ativo de estabilidade contínua entre Core e Gateway */}
-        <motion.line
-          x1={340}
-          y1={250}
-          x2={450}
-          y2={160}
-          stroke="url(#brandBeam)"
-          strokeWidth={1.5}
-          animate={
-            prefersReducedMotion
-              ? { opacity: 0.3 }
-              : {
-                  opacity: [0.15, 0.65, 0.15],
-                }
-          }
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
+        {/* 4. Feixes Ativos com Fluxo de Dados Animado Contínuo */}
+        {EDGES.filter((edge) => edge.active).map((edge, idx) => (
+          <motion.line
+            key={`stream-${idx}`}
+            x1={edge.from[0]}
+            y1={edge.from[1]}
+            x2={edge.to[0]}
+            y2={edge.to[1]}
+            stroke="#2DD4BF"
+            strokeWidth={1.5}
+            strokeDasharray="7 28"
+            animate={
+              prefersReducedMotion
+                ? { strokeDashoffset: 0, opacity: 0.3 }
+                : {
+                    strokeDashoffset: [0, -35],
+                    opacity: [0.35, 0.85, 0.35],
+                  }
+            }
+            transition={{
+              strokeDashoffset: {
+                duration: 2.2,
+                repeat: Infinity,
+                ease: "linear",
+              },
+              opacity: {
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: edge.flowDelay || 0,
+              },
+            }}
+          />
+        ))}
 
-        {/* Feixe ativo entre Core e Persistence */}
-        <motion.line
-          x1={340}
-          y1={250}
-          x2={430}
-          y2={350}
-          stroke="url(#brandBeam)"
-          strokeWidth={1.5}
-          animate={
-            prefersReducedMotion
-              ? { opacity: 0.3 }
-              : {
-                  opacity: [0.2, 0.7, 0.2],
-                }
-          }
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1.5,
-          }}
-        />
+        {/* 5. Partículas de Pacotes de Dados Deslizando pelas Trilhas */}
+        {!prefersReducedMotion && (
+          <>
+            {/* Core -> Gateway */}
+            <motion.circle
+              r={2.5}
+              fill="#2DD4BF"
+              animate={{
+                cx: [340, 450],
+                cy: [250, 160],
+                opacity: [0, 1, 1, 0],
+              }}
+              transition={{
+                duration: 2.6,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
 
-        {/* Nodes / Pontos de Conexão */}
+            {/* Core -> Persistence */}
+            <motion.circle
+              r={2.5}
+              fill="#2DD4BF"
+              animate={{
+                cx: [340, 430],
+                cy: [250, 350],
+                opacity: [0, 1, 1, 0],
+              }}
+              transition={{
+                duration: 3.0,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 1.1,
+              }}
+            />
+
+            {/* Core -> Satélite Oeste */}
+            <motion.circle
+              r={2}
+              fill="#2DD4BF"
+              animate={{
+                cx: [340, 230],
+                cy: [250, 160],
+                opacity: [0, 1, 1, 0],
+              }}
+              transition={{
+                duration: 2.8,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 1.7,
+              }}
+            />
+
+            {/* Gateway -> Satélite Leste */}
+            <motion.circle
+              r={2}
+              fill="#2DD4BF"
+              animate={{
+                cx: [450, 540],
+                cy: [160, 240],
+                opacity: [0, 1, 1, 0],
+              }}
+              transition={{
+                duration: 2.4,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 0.7,
+              }}
+            />
+          </>
+        )}
+
+        {/* 6. Nodes / Hubs e Satélites com Micro-Respiração */}
         {NODES.map((node) => {
           if (node.isHub) {
             return (
               <g key={node.id}>
-                {/* Halo de pulsação suave em torno dos hubs */}
+                {/* Glow de fundo */}
+                <circle cx={node.cx} cy={node.cy} r={node.r + 14} fill="url(#coreGlow)" />
+
+                {/* Halo de pulsação suave */}
                 <motion.circle
                   cx={node.cx}
                   cy={node.cy}
@@ -177,21 +308,22 @@ export const EngineeringNetworkGraph: React.FC<EngineeringNetworkGraphProps> = (
                   fill="#2DD4BF"
                   animate={
                     prefersReducedMotion
-                      ? { opacity: 0.1, scale: 1 }
+                      ? { opacity: 0.12 }
                       : {
-                          opacity: [0.06, 0.22, 0.06],
-                          scale: [0.95, 1.15, 0.95],
+                          opacity: [0.08, 0.28, 0.08],
+                          scale: [0.94, 1.14, 0.94],
                         }
                   }
                   transition={{
-                    duration: 6,
+                    duration: 4.5,
                     repeat: Infinity,
                     ease: "easeInOut",
                     delay: node.pulseDelay,
                   }}
+                  style={{ transformOrigin: `${node.cx}px ${node.cy}px` }}
                 />
 
-                {/* Borda externa do nó */}
+                {/* Corpo do nó */}
                 <circle
                   cx={node.cx}
                   cy={node.cy}
@@ -199,48 +331,82 @@ export const EngineeringNetworkGraph: React.FC<EngineeringNetworkGraphProps> = (
                   fill="currentColor"
                   className="text-surface-base"
                   stroke="#2DD4BF"
-                  strokeWidth={1.5}
+                  strokeWidth={1.8}
                 />
 
-                {/* Núcleo interno luminoso */}
-                <circle cx={node.cx} cy={node.cy} r={2} fill="#2DD4BF" />
+                {/* Núcleo ativo luminoso */}
+                <motion.circle
+                  cx={node.cx}
+                  cy={node.cy}
+                  r={2.5}
+                  fill="#2DD4BF"
+                  animate={
+                    prefersReducedMotion
+                      ? { opacity: 0.9 }
+                      : {
+                          opacity: [0.7, 1, 0.7],
+                          scale: [0.9, 1.2, 0.9],
+                        }
+                  }
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: node.pulseDelay,
+                  }}
+                  style={{ transformOrigin: `${node.cx}px ${node.cy}px` }}
+                />
               </g>
             );
           }
 
           return (
-            <g key={node.id}>
-              {/* Nó satélite simples */}
+            <motion.g
+              key={node.id}
+              animate={
+                prefersReducedMotion
+                  ? {}
+                  : {
+                      y: [-2, 2, -2],
+                    }
+              }
+              transition={{
+                duration: 4 + (node.pulseDelay || 0),
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            >
+              {/* Nó satélite com borda */}
               <circle
                 cx={node.cx}
                 cy={node.cy}
                 r={node.r}
                 fill="currentColor"
-                strokeOpacity={0.2}
+                strokeOpacity={0.25}
                 stroke="currentColor"
                 strokeWidth={1}
-                className="text-secondary/60"
+                className="text-surface-base"
               />
               <motion.circle
                 cx={node.cx}
                 cy={node.cy}
-                r={1.2}
+                r={node.r - 1}
                 fill="#2DD4BF"
                 animate={
                   prefersReducedMotion
                     ? { opacity: 0.4 }
                     : {
-                        opacity: [0.2, 0.8, 0.2],
+                        opacity: [0.25, 0.85, 0.25],
                       }
                 }
                 transition={{
-                  duration: 5,
+                  duration: 3.5,
                   repeat: Infinity,
                   ease: "easeInOut",
                   delay: node.pulseDelay,
                 }}
               />
-            </g>
+            </motion.g>
           );
         })}
       </svg>

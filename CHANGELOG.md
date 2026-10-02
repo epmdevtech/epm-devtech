@@ -9,7 +9,25 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
-## [0.0.90-sobre-hero-copy-monocromatico] - 2026-10-02
+## [0.0.91-sobre-hero-constelacao-animada-posicionamento] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-091-sobre-hero-constelacao-animada-posicionamento.md`**: Especificação técnica aprovada pelo PO para aproximação espacial e animações vivas em SVG e Framer Motion da constelação no Hero de `/sobre`.
+- **`tasks/TASK-091-sobre-hero-constelacao-animada-posicionamento.md`**: Tarefa e checklist de execução do protocolo Universal SDD.
+- **`reviews/QA-091.md`**: Relatório de QA com validação de 100% dos quality gates e evidências de capturas visuais em Desktop Dark, Desktop Light e Mobile Dark.
+- **`src/components/sections/__tests__/EngineeringNetworkGraph.test.tsx`**: Suíte de testes unitários para validar renderização SVG, elementos de conectividade, gradientes, satélites e suporte a `prefers-reduced-motion`.
+
+### Modificado
+- **`src/components/sections/EngineeringNetworkGraph.tsx`**:
+  - Implementada rotação contínua de anéis orbitais em sentidos opostos (anel interno a 42s horário e externo a 65s anti-horário).
+  - Adicionado pulso sonar expansivo contínuo a partir do Core central (`r: [10, 52]`, repetição a cada 3.2s com ondas defasadas).
+  - Implementado fluxo de pacotes de dados (`strokeDashoffset` animado nas linhas e partículas luminosas `motion.circle` viajando entre nós).
+  - Adicionada micro-flutuação orgânica (`y: [-2, 2, -2]`) e pulsação luminosa suave nos nós satélites.
+  - Suporte estrito a `useReducedMotion()`.
+- **`src/pages/AboutPage.tsx`**:
+  - Reposicionado `<EngineeringNetworkGraph>` para dentro do `container max-w-6xl mx-auto px-6 relative`, eliminando o vazio lateral em telas largas e aproximando a constelação do bloco editorial.
+- **`PROJECT.md`**: Atualização do estado canônico da rota `/sobre` e contadores de testes unitários (32 suítes, 196 testes).
+
 
 ### Adicionado
 - **`specs/SPEC-090-sobre-hero-copy-monocromatico.md`**: Especificação técnica para ajuste de copywriting e tipografia 100% monocromática do Hero de `/sobre`.

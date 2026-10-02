@@ -125,11 +125,11 @@ export const AboutPage: React.FC = () => {
           data-tone="anchor"
           className="relative w-full pt-28 pb-20 sm:pt-36 sm:pb-24 lg:pb-28 bg-surface-anchor text-foreground transition-colors duration-200 overflow-hidden"
         >
-          {/* Malha Visual de Conectividade em SVG (Network Graph) */}
-          <EngineeringNetworkGraph className="absolute -right-28 sm:-right-16 lg:right-0 top-1/2 -translate-y-1/2 w-[420px] sm:w-[560px] lg:w-[680px] h-[360px] sm:h-[480px] lg:h-[560px] opacity-25 sm:opacity-60 lg:opacity-85 pointer-events-none -z-0" />
+          <div className="container max-w-6xl mx-auto px-6 relative">
+            {/* Malha Visual de Conectividade em SVG (Network Graph) ancorada e aproximada ao conteúdo */}
+            <EngineeringNetworkGraph className="absolute -right-20 sm:-right-12 lg:-right-6 xl:right-4 top-1/2 -translate-y-1/2 w-[420px] sm:w-[520px] lg:w-[580px] xl:w-[640px] h-[360px] sm:h-[440px] lg:h-[480px] xl:h-[520px] opacity-35 sm:opacity-65 lg:opacity-90 pointer-events-none z-0" />
 
-          <div className="container max-w-6xl mx-auto px-6 relative z-10">
-            <div className="max-w-3xl lg:max-w-4xl">
+            <div className="relative z-10 max-w-2xl lg:max-w-3xl">
               {/* Eyebrow */}
               <div
                 data-testid="page-eyebrow"
