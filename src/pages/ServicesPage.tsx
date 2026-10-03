@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import PageHeader from "@/components/ui/PageHeader";
 import Services from "@/components/sections/Services";
 import SectionWrapper from "@/components/ui/SectionWrapper";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 import { SITE_CONFIG } from "@/config/site";
 
 const BASE_URL = SITE_CONFIG.url;
@@ -49,13 +50,16 @@ export const ServicesPage = () => {
           containerClassName="max-w-4xl mx-auto"
         >
           <div className="mt-8 flex justify-center">
-            <Link
+            <MagneticButton
               to="/contato"
-              className="group inline-flex items-center justify-center gap-2 w-full max-w-xs sm:w-auto font-semibold text-zinc-950 bg-emerald-400 hover:bg-emerald-300 px-8 py-3.5 rounded-xl shadow-[0_0_25px_rgba(52,211,153,0.25)] hover:shadow-[0_0_30px_rgba(52,211,153,0.4)] hover:scale-[1.02] active:scale-[0.98] motion-reduce:hover:scale-100 motion-reduce:transition-none transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 min-h-[44px]"
+              size="lg"
+              variant="primary"
+              aria-label="Conversar sobre seu projeto"
+              className="w-full max-w-xs sm:w-auto font-semibold px-8 py-3.5 rounded-xl min-h-[44px]"
             >
               <span>Conversar sobre seu projeto</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 motion-reduce:transform-none transition-transform" />
-            </Link>
+              <ArrowRight className="w-4 h-4 ml-1 opacity-80" />
+            </MagneticButton>
           </div>
         </PageHeader>
 

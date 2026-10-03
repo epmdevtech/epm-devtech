@@ -7,6 +7,7 @@ import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
 import { CheckCircle2, Send, Loader2, Maximize2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -143,11 +144,11 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
   };
 
   return (
-    <section id="contato" aria-labelledby="contato-heading" className="relative py-24 bg-secondary/30 overflow-hidden" ref={ref}>
+    <section id="contato" aria-labelledby="contato-heading" className="relative py-[clamp(4.5rem,8vw,8rem)] bg-secondary/30 overflow-hidden" ref={ref}>
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[128px]" />
 
-      <div className="container px-6 relative z-10">
+      <div className="container editorial-container relative z-10">
         {/* Cabeçalho Externo da Seção */}
         {!hideHeader && (
           <motion.div
@@ -175,7 +176,7 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
           {/* Lado Esquerdo: Formulário Minimalista Underline */}
           <div className="lg:col-span-7 bg-surface p-8 sm:p-10 flex flex-col justify-between">
             <div>
-              <h3 className="text-xl font-bold text-primary tracking-tight mb-6">
+              <h3 className="text-[clamp(1.25rem,1.8vw,1.5rem)] font-bold text-primary tracking-[-0.025em] leading-[1.2] mb-6">
                 Envie sua mensagem
               </h3>
 
@@ -375,15 +376,17 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
                   )}
                 </div>
 
-                {/* Botão de Envio (Slim CTA alinhado à esquerda) */}
+                {/* Botão de Envio (Slim CTA magnético alinhado à esquerda) */}
                 <div className="pt-2">
-                  <button
+                  <MagneticButton
                     type="submit"
                     disabled={isSending || isSuccess}
-                    className={`btn-submit group inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg font-semibold text-sm transition-all duration-200 cursor-pointer disabled:opacity-80 disabled:cursor-not-allowed border-none w-full sm:w-auto shadow-sm ${
+                    variant={isSuccess ? "secondary" : "primary"}
+                    size="default"
+                    className={`btn-submit px-7 py-3 rounded-lg font-semibold text-sm w-full sm:w-auto ${
                       isSuccess
                         ? "bg-success text-white shadow-sm"
-                        : "bg-brand text-on-brand hover:bg-brand-hover active:bg-brand-active active:scale-[0.99]"
+                        : "bg-brand text-on-brand hover:bg-brand-hover active:bg-brand-active"
                     }`}
                   >
                     {isSending ? (
@@ -402,7 +405,7 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
                         <span className="text-on-brand">Falar sobre meu projeto</span>
                       </>
                     )}
-                  </button>
+                  </MagneticButton>
                 </div>
               </form>
             </div>
@@ -411,7 +414,7 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
           {/* Lado Direito: Próximos Passos & Garantias (Bloco Escuro Contrastante) */}
           <div className="lg:col-span-5 bg-surface-elevated text-primary p-8 sm:p-10 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-border-default">
             <div>
-              <h3 className="text-xl font-bold text-primary tracking-tight mb-2">
+              <h3 className="text-[clamp(1.25rem,1.8vw,1.5rem)] font-bold text-primary tracking-[-0.025em] leading-[1.2] mb-2">
                 O que acontece a seguir?
               </h3>
               <p className="text-xs text-secondary leading-relaxed mb-8">

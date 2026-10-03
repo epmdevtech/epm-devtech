@@ -103,18 +103,22 @@ export const EpmConstellation: React.FC<EpmConstellationProps> = ({
               <motion.circle
                 cx={300}
                 cy={300}
+                r={15}
                 fill="none"
                 className="stroke-teal-700/30 dark:stroke-teal-400/40"
                 strokeWidth={1.2}
+                initial={{ r: 15, opacity: 0.6 }}
                 animate={{ r: [15, 80], opacity: [0.6, 0] }}
                 transition={{ duration: 3.6, repeat: Infinity, ease: "easeOut" }}
               />
               <motion.circle
                 cx={300}
                 cy={300}
+                r={15}
                 fill="none"
                 className="stroke-teal-700/20 dark:stroke-teal-400/30"
                 strokeWidth={0.8}
+                initial={{ r: 15, opacity: 0.4 }}
                 animate={{ r: [15, 120], opacity: [0.4, 0] }}
                 transition={{ duration: 3.6, repeat: Infinity, delay: 1.8, ease: "easeOut" }}
               />
@@ -215,8 +219,9 @@ export const EpmConstellation: React.FC<EpmConstellationProps> = ({
             {CONSTELLATION_NODES.map((node, i) => {
               const prox = proximityMap.get(node.id) || 0;
               const isHovered = prox > 0;
-              const nodeRadius = node.r + (isHovered ? prox * 2.5 : 0);
-              const haloRadius = node.r * 2.8 + (isHovered ? prox * 5 : 0);
+              const nodeR = typeof node.r === "number" && !isNaN(node.r) ? node.r : 3;
+              const nodeRadius = nodeR + (isHovered ? prox * 2.5 : 0);
+              const haloRadius = nodeR * 2.8 + (isHovered ? prox * 5 : 0);
 
               return (
                 <g key={node.id} data-testid={`node-${node.id}`}>
@@ -224,7 +229,7 @@ export const EpmConstellation: React.FC<EpmConstellationProps> = ({
                   <motion.circle
                     cx={node.x}
                     cy={node.y}
-                    r={haloRadius}
+                    r={haloRadius || 8}
                     className={
                       isHovered
                         ? "fill-teal-600/35 dark:fill-teal-300/40"
@@ -242,7 +247,7 @@ export const EpmConstellation: React.FC<EpmConstellationProps> = ({
                   <motion.circle
                     cx={node.x}
                     cy={node.y}
-                    r={nodeRadius}
+                    r={nodeRadius || 3}
                     className={
                       node.isKey
                         ? "fill-teal-600 dark:fill-teal-200"
@@ -278,7 +283,7 @@ export const EpmConstellation: React.FC<EpmConstellationProps> = ({
                     <circle
                       cx={node.x}
                       cy={node.y}
-                      r={nodeRadius * 0.45}
+                      r={(nodeRadius || 3) * 0.45 || 1.5}
                       className="fill-white dark:fill-zinc-950 opacity-90"
                     />
                   )}

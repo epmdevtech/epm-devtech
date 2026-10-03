@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 import BrandChipIcon from "@/components/ui/BrandChipIcon";
 
 const SCENARIOS = [
@@ -40,7 +41,7 @@ const Hero = () => {
       id="hero"
       aria-labelledby="hero-title"
       data-tone="anchor"
-      className="relative w-full min-h-screen min-h-[100svh] flex flex-col justify-center bg-surface-anchor text-foreground pt-20 pb-12 sm:pb-16 overflow-hidden transition-colors duration-200"
+      className="relative w-full min-h-screen min-h-[100svh] flex flex-col justify-center bg-surface-anchor text-foreground pt-24 sm:pt-28 pb-12 sm:pb-16 overflow-hidden transition-colors duration-200"
     >
       {/* Glow/spotlight suave em background para profundidade técnica */}
       <div
@@ -48,7 +49,7 @@ const Hero = () => {
         aria-hidden="true"
       />
 
-      <div className="container px-6 mx-auto">
+      <div className="container editorial-container">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 xl:gap-12 items-center">
           {/* ─── Coluna Esquerda: Narrativa, Decisão & Conversão Direta ─── */}
           <motion.div
@@ -60,7 +61,7 @@ const Hero = () => {
             {/* Eyebrow contextual minimalista: tipografia técnica com ícone oficial da marca sem badge */}
             <div
               data-testid="hero-eyebrow"
-              className="inline-flex items-center gap-2 text-xs font-mono font-semibold tracking-wider uppercase text-text-brand select-none mb-6"
+              className="inline-flex items-center gap-2 text-[0.8rem] font-mono font-semibold tracking-[0.04em] uppercase text-text-brand select-none mb-6"
             >
               <BrandChipIcon size={14} className="shrink-0" />
               <span>ENGENHARIA DE SOFTWARE &amp; MODERNIZAÇÃO</span>
@@ -69,26 +70,28 @@ const Hero = () => {
             {/* Headline H1 100% monocromático em branco/primary */}
             <h1
               id="hero-title"
-              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-primary tracking-tight leading-[1.12] [text-wrap:balance] mb-6"
+              className="text-[clamp(3.25rem,6vw,5.5rem)] font-bold text-primary tracking-[-0.055em] leading-[0.98] [text-wrap:balance] mb-6"
             >
               Engenharia de software para construir, integrar e evoluir sistemas.
             </h1>
 
             {/* Subheadline editorial de proposta de valor */}
-            <p className="text-base sm:text-lg text-secondary leading-relaxed max-w-xl mb-8 font-normal">
+            <p className="text-[clamp(1rem,1.15vw,1.125rem)] text-secondary leading-[1.65] tracking-[-0.01em] max-w-[58ch] mb-8 font-normal [text-wrap:balance]">
               Desenvolvemos sistemas web, APIs e integrações sob medida para operações que não podem parar por instabilidade ou lentidão.
             </p>
 
-            {/* Ação (CTA): Primário dominante com foco na conversão direta */}
+            {/* Ação (CTA): Primário magnético dominante com foco na conversão direta */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 w-full sm:w-auto">
-              <Button
-                asChild
-                className="h-12 px-7 rounded-md bg-brand text-on-brand hover:bg-brand-hover active:bg-brand-active font-semibold text-sm sm:text-base shadow-sm min-h-[44px] transition-all duration-200 hover:shadow-glow-brand hover:scale-[1.02] active:scale-[0.98]"
+              <MagneticButton
+                to="/contato"
+                size="lg"
+                variant="primary"
+                aria-label="Vamos conversar sobre seu projeto"
+                className="w-full sm:w-auto h-12 px-7 rounded-md font-semibold text-sm sm:text-base min-h-[44px]"
               >
-                <Link to="/contato" aria-label="Vamos conversar sobre seu projeto">
-                  Vamos conversar
-                </Link>
-              </Button>
+                <span>Vamos conversar</span>
+                <ArrowUpRight className="w-4 h-4 ml-1 opacity-80" />
+              </MagneticButton>
             </div>
           </motion.div>
 

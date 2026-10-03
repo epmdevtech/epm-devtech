@@ -9,7 +9,106 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
-## [0.0.94-alinhamento-constelacao-textos-monocromaticos-remocao-senior] - 2026-10-02
+## [0.0.100-componente-magnetic-button-cta] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-100-componente-magnetic-button-cta.md`**: Especificação técnica aprovada pelo PO para implementação de componente reutilizável de botão magnético (*Magnetic Button*) baseado na mecânica clássica da Codrops / Cuberto, com 3 camadas cinemáticas de parallax e snap-back elástico.
+- **`tasks/TASK-100-componente-magnetic-button-cta.md`**: Tarefa e checklist de execução concluídos sob o protocolo Universal SDD.
+- **`reviews/QA-100.md`**: Relatório de QA com validação de 100% dos quality gates (zero erros de compilação, linting sem advertências, 221 testes unitários passando, 46 testes E2E do Playwright aprovados e conformidade estrita com travas de tokens).
+- **`src/components/ui/MagneticButton.tsx`**: Componente polimórfico (`button`, `Link` do React Router e âncora `<a>`) com 3 camadas cinemáticas independentes (Hitbox, Superfície com translação moderada, Conteúdo com translação ampliada para parallax 2.5D), expansão radial do filler a partir do ponto de entrada do cursor, retorno elástico amortecido no `mouseleave` (`ease: "elastic.out(1.1, 0.4)"`), desativação automática em telas touch (`pointer: coarse`), respeito a `prefers-reduced-motion` e anel de foco acessível (`:focus-visible`).
+- **`src/components/ui/__tests__/MagneticButton.test.tsx`**: Suíte de testes unitários cobrindo renderização polimórfica, variantes visuais, interações com mouse, redução de movimento, desabilitação e limpeza de memória.
+
+### Modificado
+- **`src/components/layout/Header.tsx`**: Substituição do CTA desktop e mobile pelo novo `<MagneticButton>`.
+- **`src/components/sections/Hero.tsx`**: Substituição do CTA primário da Home ("Vamos conversar") por `<MagneticButton>`, preservando o token semântico `text-on-brand` e raio de 6px (`rounded-md`).
+- **`src/pages/ServicesPage.tsx`**: Integração do `<MagneticButton>` no CTA de abertura ("Conversar sobre seu projeto").
+- **`src/pages/FAQPage.tsx`**: Integração do `<MagneticButton>` no CTA de encerramento ("Falar sobre meu projeto").
+- **`src/components/sections/Contact.tsx` & `src/components/ContactForm.tsx`**: Integração do `<MagneticButton>` no botão de envio do formulário de contato.
+- **`PROJECT.md`**: Atualização do catálogo de componentes e contadores de testes unitários (221 testes em 36 suítes).
+
+## [0.0.99-sistema-smooth-scroll-lenis-gsap-scroll-reveals] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-099-sistema-smooth-scroll-lenis-gsap-scroll-reveals.md`**: Especificação técnica aprovada pelo PO para implementação de sistema de rolagem suave (*smooth scroll*) com Lenis e revelações reativas acopladas à rolagem (*scroll-driven reveals*) com GSAP + ScrollTrigger, com física inercial corporativa sóbria e elegante.
+- **`tasks/TASK-099-sistema-smooth-scroll-lenis-gsap-scroll-reveals.md`**: Tarefa e checklist de execução concluídos sob o protocolo Universal SDD.
+- **`reviews/QA-099.md`**: Relatório de QA com validação de 100% dos quality gates (zero erros de compilação, linting sem advertências, 211 testes unitários passando, 46 testes E2E do Playwright aprovados e chunking otimizado).
+- **`src/components/layout/SmoothScrollProvider.tsx` & `src/hooks/useSmoothScroll.ts`**: Provedor global de rolagem suave com `lenis`, sincronização estrita de frames via `gsap.ticker` com `lagSmoothing(0)`, integração de transições de rotas SPA no React Router (`immediate: true` e `ScrollTrigger.refresh()`), suporte a hash de âncoras com offset para cabeçalho fixo, suporte defensivo a `prefers-reduced-motion` e descarte limpo (`ctx.revert()`, `lenis.destroy()`).
+- **`src/hooks/useScrollReveal.ts`**: Hook corporativo com `gsap.context()` para revelações atreladas à rolagem, suporte a parâmetros de animação configuráveis, normalização de seletores relativos (`:scope > ...`), redução de deslocamento em mobile e respeito estrito a `prefers-reduced-motion`.
+- **`src/components/layout/__tests__/SmoothScrollProvider.test.tsx`** e **`src/hooks/__tests__/useScrollReveal.test.tsx`**: Testes unitários cobrindo renderização, contexto, navegação com hash, redução de movimento vestibular e ciclo de vida de limpeza.
+
+### Modificado
+- **`package.json`**: Adicionadas as dependências `lenis` e `gsap`.
+- **`vite.config.ts`**: Configurado chunk manual `gsap-lenis` com limite e isolamento estrito (tamanho resultante do chunk: 134.78 kB bruto / 51 kB gzip).
+- **`src/components/layout/Layout.tsx`**: Encapsulado com `<SmoothScrollProvider>`.
+- **`src/components/ui/SectionHeader.tsx`**: Integrado `useScrollReveal` para revelação suave e contínua do cabeçalho de seção.
+- **`src/components/sections/HomeServicesBento.tsx`**: Integrado `useScrollReveal` com stagger nos cards de serviços.
+- **`src/components/sections/HomeProcessPipeline.tsx`**: Integrado `useScrollReveal` com stagger nas 4 etapas do processo.
+- **`src/setupTests.ts`**: Adicionados mocks defensivos de `window.matchMedia`, `ResizeObserver` e `window.scrollTo` para o ambiente jsdom.
+- **`PROJECT.md`**: Atualização do stack frontend, contadores de testes unitários (211 testes em 35 suítes) e descrição do módulo de Smooth Scroll & Scroll Reveals.
+
+## [0.0.98-correcao-atributo-r-svg-circle-constelacao] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-098-correcao-atributo-r-svg-circle-constelacao.md`**: Especificação técnica aprovada pelo PO para eliminação de erro no console referente ao atributo `r` do SVG `<circle>` / `<motion.circle>` vindo de `framer-motion.js` ao navegar para a rota `/sobre`.
+- **`tasks/TASK-098-correcao-atributo-r-svg-circle-constelacao.md`**: Tarefa e checklist de execução concluídos sob o protocolo Universal SDD.
+- **`reviews/QA-098.md`**: Relatório de QA com validação de 100% dos quality gates e teste automatizado de console comprovando 0 erros.
+
+### Modificado
+- **`src/components/sections/EpmConstellation.tsx`**: Inclusão de `r={15}` explícito e `initial={{ r: 15, opacity: ... }}` nos dois elementos `<motion.circle>` do sonar central do logo da EPM DevTech, eliminando a inicialização de atributo com valor `undefined`. Implementação de fallbacks numéricos defensivos em todos os nós (`r={haloRadius || 8}`, `r={nodeRadius || 3}` e `r={(nodeRadius || 3) * 0.45 || 1.5}`).
+- **`src/components/sections/__tests__/EpmConstellation.test.tsx`**: Adicionada asserção automatizada garantindo que 100% dos elementos `<circle>` possuem atributo `r` numérico válido (> 0) e nunca `undefined` ou `NaN`.
+- **`PROJECT.md`**: Atualização do estado do componente de Constelação e contadores de testes unitários (203 testes).
+
+## [0.0.97-correcao-contraste-numeros-pipeline-dark-mode] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-097-correcao-contraste-numeros-pipeline-dark-mode.md`**: Especificação técnica aprovada pelo PO para correção de contraste e visibilidade dos números das etapas do pipeline no Modo Escuro (Dark Mode).
+- **`tasks/TASK-097-correcao-contraste-numeros-pipeline-dark-mode.md`**: Tarefa e checklist de execução concluídos sob o protocolo Universal SDD.
+- **`reviews/QA-097.md`**: Relatório de QA com validação de 100% dos quality gates e captura de tela demonstrando nitidez dos números das etapas no Dark Mode.
+
+### Modificado
+- **`src/components/sections/HomeProcessPipeline.tsx`**: Eliminação de classes dinâmicas concatenadas com prefixo `dark:${...}` no elemento circular dos nós. Declaração de classes completas e estáticas para Dark e Light mode nos tokens das 4 etapas (`dark:text-accent-blue`, `dark:text-accent-violet`, `dark:text-accent-amber`, `dark:text-text-brand` e bordas iluminadas temáticas), garantindo varredura estática pelo Tailwind CSS e contraste WCAG AAA (8.4:1 a 12.8:1) sobre `dark:bg-zinc-950`.
+- **`src/components/sections/__tests__/HomeProcessPipeline.test.tsx`**: Adicionada asserção automatizada garantindo presença das classes estáticas de modo escuro nos 4 nós técnicos.
+- **`PROJECT.md`**: Atualização do estado do componente de Pipeline e métricas de testes.
+
+## [0.0.96-refatoracao-experiencia-tipografica-espacial-editorial] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-096-refatoracao-experiencia-tipografica-espacial-editorial.md`**: Especificação técnica aprovada pelo PO para refatoração da experiência tipográfica, espacial e textual no padrão editorial B2B maduro (inspirado em referências como Codeminer42, Stripe e Vercel).
+- **`tasks/TASK-096-refatoracao-experiencia-tipografica-espacial-editorial.md`**: Tarefa e checklist de execução concluídos sob o protocolo Universal SDD.
+- **`reviews/QA-096.md`**: Relatório de QA com validação de 100% dos quality gates e evidências de capturas visuais responsivas em Desktop e Mobile nos temas Dark e Light.
+- **Classes Utilitárias Editoriais em `src/index.css`**: Criação de classes para tipografia e containers fluida (`.editorial-container`, `.editorial-h1`, `.editorial-h2`, `.editorial-h3`, `.editorial-body`, `.editorial-eyebrow`).
+
+### Modificado
+- **`tailwind.config.ts`**: Priorização de `Inter` na família tipográfica primária (`font-sans`).
+- **`src/components/ui/SectionWrapper.tsx`**: Adoção de padding vertical fluido `py-[clamp(4.5rem,8vw,8rem)]` e container unificado `.editorial-container`.
+- **`src/components/ui/SectionHeader.tsx`**: Eyebrow minimalista editorial sem bordas/badges (`text-[0.8rem] tracking-[0.04em] uppercase text-text-brand`), título H2 fluido (`clamp(2.25rem,4vw,3.75rem)` com leading `1.05` e tracking `-0.045em`) e descrição com measure `max-w-[65ch]`.
+- **`src/components/ui/PageHeader.tsx`**: Escala fluida em H1 (`clamp(2.5rem,5vw,4.5rem)`) e subtítulo com `max-w-[65ch]`.
+- **`src/components/sections/Hero.tsx`**: Headline H1 em escala fluida dominante (`clamp(3.25rem,6vw,5.5rem)`, leading `0.98`, tracking `-0.055em`, monocromático), subheadline com `max-w-[58ch]`, container unificado e respiro superior otimizado (`pt-24 sm:pt-28`).
+- **`src/components/sections/HomeServicesBento.tsx`**, **`HomeProcessPipeline.tsx`**, **`HomeResultsStrip.tsx`**, **`Services.tsx`**, **`Contact.tsx`**: Calibração dos cabeçalhos H3, medidas de leitura e espaçamento vertical.
+- **Páginas de rotas canônicas (`Home.tsx`, `AboutPage.tsx`, `HowWeWorkPage.tsx`, `ExperiencePage.tsx`, `FAQPage.tsx`)**: Alinhamento à experiência editorial sem alteração da paleta da marca.
+- **`src/components/ui/__tests__/SectionHeader.test.tsx`**: Sincronização dos testes unitários com as novas dimensões e tracking tipográficos.
+- **`PROJECT.md`**: Atualização do estado canônico de tipografia, container e governança.
+
+## [0.0.95-refatoracao-esquema-cromatico-light-mode] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-095-refatoracao-esquema-cromatico-light-mode.md`**: Especificação técnica aprovada pelo PO para refatoração do esquema cromático do Modo Claro (Light Mode) com cadência rítmica alternada e alto contraste.
+- **`tasks/TASK-095-refatoracao-esquema-cromatico-light-mode.md`**: Tarefa e checklist de execução concluídos sob o protocolo Universal SDD.
+- **`reviews/QA-095.md`**: Relatório de QA com validação de 100% dos quality gates e evidências de capturas visuais em Light Mode nas principais rotas (Home, Sobre, Serviços, Como Trabalhamos, Engenharia e Footer).
+
+### Modificado
+- **`src/index.css`**: Recalibração dos tokens semânticos do Light Mode: âncoras em branco puro (`--surface-anchor: 0 0% 100%` / `#FFFFFF`), seções intermediárias em tom gelo sutil (`--surface-base: 240 5% 98%` / `#FAFAFA` - `zinc-50`) e branco puro (`--surface-alt: 0 0% 100%`). Hierarquia de contraste WCAG AA para `--text-primary` (`#09090B` / `zinc-950`), `--text-secondary` (`#52525B` / `zinc-600`), `--text-muted` (`#71717A` / `zinc-500`) e `--text-brand` (`#0F766E` / `teal-700`).
+- **`src/components/layout/Header.tsx`**: Header em branco translúcido com desfoque e borda inferior refinada (`bg-white/80 dark:bg-surface-anchor/85 border-b border-zinc-200/80 dark:border-border/40`), e gaveta móvel em `bg-white/95 dark:bg-zinc-950/95`.
+- **`src/components/sections/Footer.tsx`**: Rodapé fixado em branco puro (`bg-surface-anchor`) com borda divisória superior nítida `border-t border-zinc-200 dark:border-zinc-800/80`.
+- **`src/components/ui/SectionWrapper.tsx`**: Adicionada borda sutil `border-y border-zinc-200/70 dark:border-transparent` para seções de tom `base` (Gelo) delimitando a alternância visual.
+- **`src/components/sections/HomeServicesBento.tsx`**: Cards em fundo branco sólido (`bg-white dark:bg-zinc-900/50`) com `shadow-sm` para destaque sobre o fundo gelo.
+- **`src/components/sections/HomeProcessPipeline.tsx`**: Trilhos em `bg-zinc-200 dark:bg-zinc-800`, linha de pulso em `via-emerald-600 dark:via-brand`, nós circulares em `bg-white dark:bg-zinc-950 border-zinc-300 dark:... text-zinc-900 dark:...`.
+- **`src/components/sections/Services.tsx`**: Delimitação sutil `border-y border-zinc-200/70 dark:border-transparent` para o bloco intermediário.
+- **`src/components/ui/__tests__/SectionWrapper.test.tsx`**: Sincronização das asserções de classe do wrapper.
+- **`e2e/hero-identity-token-locks.spec.ts`**: Atualização das asserções de estilo para validar Hero em `rgb(255, 255, 255)` e H1 em `rgb(9, 9, 11)` no Light Mode.
+- **`PROJECT.md`**: Atualização do estado canônico de Design e Light Mode, além de métricas dos testes E2E.
+
+
 
 ### Adicionado
 - **`specs/SPEC-094-alinhamento-constelacao-textos-monocromaticos-remocao-senior.md`**: Especificação técnica aprovada pelo PO para alinhamento e isolamento responsivo da constelação vetorial em `/sobre`, garantia de textos 100% monocromáticos e remoção integral da palavra "sênior".

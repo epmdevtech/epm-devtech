@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { X } from "lucide-react";
 import { Typewriter } from "@/components/ui/typewriter";
 import { Button } from "@/components/ui/button";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
@@ -54,8 +55,8 @@ export const Header = () => {
           mounted ? "translate-y-0" : "-translate-y-full"
         } ${
           isScrolled
-            ? "py-3 backdrop-blur-md bg-surface-anchor/85 border-b border-border/40 shadow-xs"
-            : "py-5 bg-surface-anchor"
+            ? "py-3 backdrop-blur-md bg-white/80 dark:bg-surface-anchor/85 border-b border-zinc-200/80 dark:border-border/40 shadow-xs"
+            : "py-5 bg-surface-anchor text-foreground"
         }`}
       >
         <div className="container px-6">
@@ -137,17 +138,17 @@ export const Header = () => {
               ))}
             </nav>
 
-            {/* Desktop CTA (1 botão de ação) */}
+            {/* Desktop CTA (1 botão de ação magnético) */}
             <div className="hidden lg:flex items-center justify-end shrink-0">
-              <Button
-                asChild
+              <MagneticButton
+                to="/contato"
                 size="sm"
-                className="bg-brand text-on-brand hover:bg-brand-hover active:bg-brand-active font-medium text-xs tracking-wide shadow-xs min-h-[44px] px-4 rounded-md transition-colors"
+                variant="primary"
+                aria-label="Fale conosco"
+                className="text-xs font-semibold uppercase tracking-wider min-h-[44px] px-4 rounded-lg"
               >
-                <Link to="/contato" aria-label="Fale conosco">
-                  Fale conosco
-                </Link>
-              </Button>
+                Fale conosco
+              </MagneticButton>
             </div>
 
             {/* Mobile Menu Trigger */}
@@ -192,7 +193,7 @@ export const Header = () => {
           role="dialog"
           aria-modal="true"
           aria-label="Menu de navegação"
-          className="fixed top-0 right-0 bottom-0 w-72 lg:hidden glass border-l border-border/50 shadow-2xl z-50 overflow-y-auto animate-slide-in-right"
+          className="fixed top-0 right-0 bottom-0 w-72 lg:hidden bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md border-l border-zinc-200/80 dark:border-border/50 shadow-2xl z-50 overflow-y-auto animate-slide-in-right"
         >
           <div className="flex flex-col h-full pt-6 px-6 pb-6 relative">
             <button
@@ -230,18 +231,16 @@ export const Header = () => {
                   animationFillMode: "forwards",
                 }}
               >
-                <Button
-                  asChild
-                  className="w-full bg-brand text-on-brand hover:bg-brand-hover active:bg-brand-active font-medium min-h-[44px] shadow-xs text-sm"
+                <MagneticButton
+                  to="/contato"
+                  variant="primary"
+                  size="default"
+                  onClick={closeMobileMenu}
+                  aria-label="Fale conosco"
+                  className="w-full min-h-[44px] text-sm font-semibold"
                 >
-                  <Link
-                    to="/contato"
-                    onClick={closeMobileMenu}
-                    aria-label="Fale conosco"
-                  >
-                    Fale conosco
-                  </Link>
-                </Button>
+                  Fale conosco
+                </MagneticButton>
               </div>
             </nav>
           </div>

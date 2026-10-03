@@ -1,6 +1,7 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import BrandChipIcon from "@/components/ui/BrandChipIcon";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 export interface SectionHeaderProps {
   id?: string;
@@ -32,8 +33,16 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
   const isH1 = as === "h1";
   const isCenter = align === "center";
 
+  const headerRef = useScrollReveal<HTMLElement>({
+    selector: "[data-testid='section-eyebrow'], h1, h2, p",
+    stagger: 0.08,
+    y: 20,
+    duration: 0.65,
+  });
+
   return (
     <header
+      ref={headerRef}
       className={cn(
         "relative w-full mb-12 sm:mb-16",
         isCenter ? "text-center max-w-3xl mx-auto" : "text-left max-w-2xl",
@@ -44,11 +53,11 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
         <div
           data-testid="section-eyebrow"
           className={cn(
-            "inline-flex items-center gap-[7px] text-[11.5px] font-medium tracking-[0.1em] uppercase text-muted select-none mb-2.5 sm:mb-3",
+            "inline-flex items-center gap-2 text-[0.8rem] font-semibold tracking-[0.04em] text-text-brand uppercase leading-[1.3] select-none mb-3",
             taglineClassName
           )}
         >
-          <BrandChipIcon size={15} className="shrink-0" />
+          <BrandChipIcon size={14} className="shrink-0" />
           <span>{tagline}</span>
         </div>
       )}
@@ -57,11 +66,12 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
         <HeadingTag
           id={id}
           className={cn(
-            "font-bold tracking-tight text-primary [text-wrap:balance]",
+            "font-bold text-primary [text-wrap:balance]",
             isH1
-              ? "text-4xl sm:text-5xl lg:text-6xl leading-[1.15] mb-5 sm:mb-6"
-              : "text-3xl sm:text-4xl lg:text-[2.65rem] lg:leading-[1.18] max-w-3xl mx-auto",
-            subtitle ? "mb-3.5 sm:mb-4" : "mb-0",
+              ? "text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.02] tracking-[-0.05em] mb-5 sm:mb-6"
+              : "text-[clamp(2.25rem,4vw,3.75rem)] leading-[1.05] tracking-[-0.045em] max-w-[20ch] sm:max-w-3xl",
+            isCenter && !isH1 && "mx-auto",
+            subtitle ? "mb-4 sm:mb-5" : "mb-0",
             titleClassName
           )}
         >
@@ -72,7 +82,8 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
       {subtitle && (
         <p
           className={cn(
-            "font-normal text-base sm:text-lg leading-relaxed text-secondary max-w-2xl mx-auto [text-wrap:balance]",
+            "text-[clamp(1rem,1.15vw,1.125rem)] font-normal leading-[1.65] tracking-[-0.01em] text-secondary max-w-[65ch] [text-wrap:balance]",
+            isCenter && "mx-auto",
             subtitleClassName
           )}
         >

@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/sections/Footer";
 import ScrollManager from "@/components/routing/ScrollManager";
+import SmoothScrollProvider from "@/components/layout/SmoothScrollProvider";
 import { LazyRender } from "@/components/LazyRender";
 
 const CursorOrb = lazy(() => import("@/components/CursorOrb"));
@@ -10,7 +11,8 @@ const ScrollToTop = lazy(() => import("@/components/ui/ScrollToTop"));
 
 export const Layout = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-background text-foreground relative selection:bg-primary/20 selection:text-primary">
+    <SmoothScrollProvider>
+      <div className="min-h-screen flex flex-col bg-background text-foreground relative selection:bg-primary/20 selection:text-primary">
       {/* Acessibilidade: Skip Link para teclado e leitores de tela */}
       <a href="#conteudo-principal" className="skip-to-content">
         Pular para o conteúdo
@@ -59,6 +61,7 @@ export const Layout = () => {
         </Suspense>
       </LazyRender>
     </div>
+    </SmoothScrollProvider>
   );
 };
 

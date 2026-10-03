@@ -100,35 +100,35 @@ textarea:-webkit-autofill:active {
     --teal-800: #115E59;
     --teal-950: #04201C;
 
-    /* Camada 2: Semânticas (Light) */
-    --surface-anchor: 190 18% 91.5%;
-    --surface-anchor-rgb: 229 237 238;
-    --surface-base: 190 18% 95.0%;
-    --surface-base-rgb: 240 245 245;
-    --surface-alt: 190 18% 98.5%;
-    --surface-alt-rgb: 250 252 252;
+    /* Camada 2: Semânticas (Light Mode Refatorado - SPEC-095) */
+    --surface-anchor: 0 0% 100%;
+    --surface-anchor-rgb: 255 255 255;
+    --surface-base: 240 5% 98%;
+    --surface-base-rgb: 250 250 250;
+    --surface-alt: 0 0% 100%;
+    --surface-alt-rgb: 255 255 255;
 
-    --bg-base-rgb: 246 250 250;
-    --bg-base: #F6FAFA;
+    --bg-base-rgb: 255 255 255;
+    --bg-base: #FFFFFF;
     --bg-surface-rgb: 255 255 255;
     --bg-surface: #FFFFFF;
     --bg-elevated-rgb: 255 255 255;
     --bg-elevated: #FFFFFF;
-    --bg-overlay: rgba(246, 250, 250, 0.85);
+    --bg-overlay: rgba(255, 255, 255, 0.85);
 
-    --border-subtle-rgb: 227 237 238;
-    --border-subtle: #E3EDEE;
-    --border-default-rgb: 207 224 226;
-    --border-default: #CFE0E2;
-    --border-strong-rgb: 173 200 203;
-    --border-strong: #ADC8CB;
+    --border-subtle-rgb: 244 244 245;
+    --border-subtle: #F4F4F5;
+    --border-default-rgb: 228 228 231;
+    --border-default: #E4E4E7;
+    --border-strong-rgb: 212 212 216;
+    --border-strong: #D4D4D8;
 
-    --text-primary-rgb: 10 15 16;
-    --text-primary: #0A0F10;
-    --text-secondary-rgb: 63 85 88;
-    --text-secondary: #3F5558;
-    --text-muted-rgb: 92 113 117;
-    --text-muted: #5C7175;
+    --text-primary-rgb: 9 9 11;
+    --text-primary: #09090B;
+    --text-secondary-rgb: 82 82 91;
+    --text-secondary: #52525B;
+    --text-muted-rgb: 113 113 122;
+    --text-muted: #71717A;
     --text-on-brand-rgb: 4 32 28;
     --text-on-brand: #04201C;
     --text-brand-rgb: 15 118 110;
@@ -350,5 +350,59 @@ textarea:-webkit-autofill:active {
   footer,
   .section-wrapper {
     transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   SISTEMA EDITORIAL DE TIPOGRAFIA E ESPAÇAMENTO (SPEC-096)
+   Inspirado no padrão editorial B2B (Codeminer42, Stripe, Vercel)
+───────────────────────────────────────────────────────────── */
+@layer components {
+  .editorial-container {
+    width: min(100% - 32px, 1280px);
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  @media (min-width: 640px) {
+    .editorial-container {
+      width: min(100% - 48px, 1280px);
+    }
+  }
+}
+
+@layer utilities {
+  .editorial-h1 {
+    font-size: clamp(3.25rem, 6vw, 5.5rem);
+    font-weight: 700;
+    line-height: 0.98;
+    letter-spacing: -0.055em;
+  }
+  .editorial-h2 {
+    font-size: clamp(2.25rem, 4vw, 3.75rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.045em;
+  }
+  .editorial-h3 {
+    font-size: clamp(1.35rem, 2.2vw, 2rem);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+  }
+  .editorial-body {
+    font-size: clamp(1rem, 1.15vw, 1.125rem);
+    font-weight: 400;
+    line-height: 1.65;
+    letter-spacing: -0.01em;
+  }
+  .editorial-eyebrow {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 1.3;
+    text-transform: uppercase;
   }
 }

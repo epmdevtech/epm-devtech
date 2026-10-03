@@ -101,4 +101,21 @@ describe("EpmConstellation Component", () => {
     const svg = container.querySelector("svg");
     expect(svg).toBeInTheDocument();
   });
+
+  it("assegura que todos os elementos circle possuem atributo r numérico válido e nunca undefined (SPEC-098)", () => {
+    mockReducedMotion = false;
+    const { container } = render(<EpmConstellation />);
+    const circles = container.querySelectorAll("circle");
+
+    expect(circles.length).toBeGreaterThan(0);
+    circles.forEach((circle) => {
+      const rAttr = circle.getAttribute("r");
+      expect(rAttr, "Atributo r não deve ser nulo nem vazio").toBeTruthy();
+      expect(rAttr).not.toBe("undefined");
+      expect(rAttr).not.toBe("NaN");
+      const rNum = parseFloat(rAttr!);
+      expect(isNaN(rNum), `Atributo r (${rAttr}) deve ser numérico válido`).toBe(false);
+      expect(rNum).toBeGreaterThan(0);
+    });
+  });
 });

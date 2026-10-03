@@ -49,14 +49,14 @@ export const Home = () => {
         {/* ─── Bloco 1: O que Desenvolvemos (Tom: Base) ─── */}
         <SectionWrapper id="servicos" tone="base" className="scroll-mt-24">
           <div className="max-w-3xl mb-10">
-            <div className="inline-flex items-center gap-[7px] text-[11.5px] font-mono font-medium tracking-[0.1em] uppercase text-muted select-none mb-3">
-              <BrandChipIcon size={15} className="shrink-0" />
+            <div className="inline-flex items-center gap-2 text-[0.8rem] font-semibold tracking-[0.04em] uppercase text-text-brand select-none mb-3">
+              <BrandChipIcon size={14} className="shrink-0" />
               <span>O QUE DESENVOLVEMOS</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-primary [text-wrap:balance]">
+            <h2 className="text-[clamp(2.25rem,4vw,3.75rem)] font-bold text-primary leading-[1.05] tracking-[-0.045em] [text-wrap:balance]">
               Engenharia sob medida para os gargalos da sua operação
             </h2>
-            <p className="mt-3 text-base text-secondary leading-relaxed">
+            <p className="mt-3 text-[clamp(1rem,1.15vw,1.125rem)] text-secondary leading-[1.65] tracking-[-0.01em] max-w-[65ch]">
               Soluções práticas para substituir processos manuais, conectar ferramentas isoladas e modernizar softwares essenciais da sua empresa.
             </p>
           </div>
@@ -77,14 +77,14 @@ export const Home = () => {
         {/* ─── Bloco 2: Processo (Tom: Alt) ─── */}
         <SectionWrapper id="como-trabalhamos" tone="alt" className="scroll-mt-24">
           <div className="max-w-3xl mb-10">
-            <div className="inline-flex items-center gap-[7px] text-[11.5px] font-mono font-medium tracking-[0.1em] uppercase text-muted select-none mb-3">
-              <BrandChipIcon size={15} className="shrink-0" />
+            <div className="inline-flex items-center gap-2 text-[0.8rem] font-semibold tracking-[0.04em] uppercase text-text-brand select-none mb-3">
+              <BrandChipIcon size={14} className="shrink-0" />
               <span>PROCESSO E PREVISIBILIDADE</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-primary [text-wrap:balance]">
+            <h2 className="text-[clamp(2.25rem,4vw,3.75rem)] font-bold text-primary leading-[1.05] tracking-[-0.045em] [text-wrap:balance]">
               Engenharia previsível com contato direto com quem constrói
             </h2>
-            <p className="mt-3 text-base text-secondary leading-relaxed">
+            <p className="mt-3 text-[clamp(1rem,1.15vw,1.125rem)] text-secondary leading-[1.65] tracking-[-0.01em] max-w-[65ch]">
               Alinhamentos objetivos, entregas frequentes em homologação e zero intermediários comerciais.
             </p>
           </div>
@@ -105,14 +105,14 @@ export const Home = () => {
         {/* ─── Bloco 3: Resultados (Tom: Base) ─── */}
         <SectionWrapper id="autoridade" tone="base" className="scroll-mt-24">
           <div className="max-w-3xl mb-10">
-            <div className="inline-flex items-center gap-[7px] text-[11.5px] font-mono font-medium tracking-[0.1em] uppercase text-muted select-none mb-3">
-              <BrandChipIcon size={15} className="shrink-0" />
+            <div className="inline-flex items-center gap-2 text-[0.8rem] font-semibold tracking-[0.04em] uppercase text-text-brand select-none mb-3">
+              <BrandChipIcon size={14} className="shrink-0" />
               <span>EXPERIÊNCIA PRÁTICA</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-primary [text-wrap:balance]">
+            <h2 className="text-[clamp(2.25rem,4vw,3.75rem)] font-bold text-primary leading-[1.05] tracking-[-0.045em] [text-wrap:balance]">
               Resultados comprovados em operações de grande escala
             </h2>
-            <p className="mt-3 text-base text-secondary leading-relaxed">
+            <p className="mt-3 text-[clamp(1rem,1.15vw,1.125rem)] text-secondary leading-[1.65] tracking-[-0.01em] max-w-[65ch]">
               Métricas consolidadas em ambientes com exigência máxima de estabilidade, volume e conformidade regulatória.
             </p>
           </div>

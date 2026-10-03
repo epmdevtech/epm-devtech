@@ -25,6 +25,7 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 import { formatBrazilianPhone, validateBrazilianPhone } from "@/lib/phone";
 
 export const PROJECT_TYPES = [
@@ -287,10 +288,12 @@ export const ContactForm: React.FC<ContactFormProps> = ({
 
         {/* Botão de Envio com estados de carregamento e confirmação */}
         <div className="pt-2">
-          <Button
+          <MagneticButton
             type="submit"
             disabled={isSubmitting || isSuccess}
-            className={`w-full sm:w-auto min-w-[180px] transition-all duration-200 ${
+            variant={isSuccess ? "secondary" : "primary"}
+            size="default"
+            className={`w-full sm:w-auto min-w-[180px] font-semibold text-sm ${
               isSuccess ? "bg-success hover:bg-success text-white" : ""
             }`}
           >
@@ -310,7 +313,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                 <span>Enviar Mensagem</span>
               </>
             )}
-          </Button>
+          </MagneticButton>
         </div>
       </form>
     </Form>

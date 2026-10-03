@@ -15,20 +15,20 @@ describe("SectionHeader Component", () => {
     const tagline = screen.getByText("Serviços");
     expect(tagline).toBeInTheDocument();
     expect(tagline.parentElement).toHaveClass("uppercase");
-    expect(tagline.parentElement).toHaveClass("text-muted");
-    expect(tagline.parentElement).toHaveClass("tracking-[0.1em]");
+    expect(tagline.parentElement).toHaveClass("text-text-brand");
+    expect(tagline.parentElement).toHaveClass("tracking-[0.04em]");
     expect(tagline.parentElement).not.toHaveClass("bg-emerald-50");
 
     // Verifica presença do ícone de chip da marca
     const svgIcon = tagline.parentElement?.querySelector("svg");
     expect(svgIcon).toBeInTheDocument();
-    expect(svgIcon).toHaveAttribute("width", "15");
-    expect(svgIcon).toHaveAttribute("height", "15");
+    expect(svgIcon).toHaveAttribute("width", "14");
+    expect(svgIcon).toHaveAttribute("height", "14");
 
     const heading = screen.getByRole("heading", { level: 2 });
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveClass("font-bold");
-    expect(heading).toHaveClass("text-3xl");
+    expect(heading).toHaveClass("text-[clamp(2.25rem,4vw,3.75rem)]");
     expect(heading).toHaveClass("text-primary");
     expect(heading).toHaveTextContent("Da primeira reunião ao deploy em produção");
 
@@ -61,9 +61,7 @@ describe("SectionHeader Component", () => {
     const heading = screen.getByRole("heading", { level: 1 });
     expect(heading).toBeInTheDocument();
     expect(heading).toHaveClass("font-bold");
-    expect(heading).toHaveClass("text-4xl");
-    expect(heading).toHaveClass("sm:text-5xl");
-    expect(heading).toHaveClass("lg:text-6xl");
+    expect(heading).toHaveClass("text-[clamp(2.5rem,5vw,4.5rem)]");
   });
 
   it("renderiza alinhamento à esquerda quando align='left'", () => {

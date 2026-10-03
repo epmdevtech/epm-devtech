@@ -13,7 +13,7 @@ export interface SectionWrapperProps extends React.HTMLAttributes<HTMLElement> {
 
 const TONE_CLASSES: Record<SectionTone, string> = {
   anchor: "bg-surface-anchor text-foreground",
-  base: "bg-surface-base text-foreground",
+  base: "bg-surface-base text-foreground border-y border-zinc-200/70 dark:border-transparent",
   alt: "bg-surface-alt text-foreground",
 };
 
@@ -35,14 +35,14 @@ export const SectionWrapper = React.forwardRef<HTMLElement, SectionWrapperProps>
         ref={ref as React.Ref<HTMLDivElement>}
         data-tone={tone}
         className={cn(
-          "w-full transition-colors duration-200 py-16 sm:py-20 md:py-24 lg:py-28 section-wrapper",
+          "w-full transition-colors duration-200 py-[clamp(4.5rem,8vw,8rem)] section-wrapper",
           TONE_CLASSES[tone],
           className
         )}
         {...props}
       >
         {container ? (
-          <div className={cn("container px-6", containerClassName)}>
+          <div className={cn("container editorial-container", containerClassName)}>
             {children}
           </div>
         ) : (
