@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 import BrandChipIcon from "@/components/ui/BrandChipIcon";
 
 const SCENARIOS = [
@@ -79,16 +80,18 @@ const Hero = () => {
               Desenvolvemos sistemas web, APIs e integrações sob medida para operações que não podem parar por instabilidade ou lentidão.
             </p>
 
-            {/* Ação (CTA): Primário dominante com foco na conversão direta */}
+            {/* Ação (CTA): Primário magnético dominante com foco na conversão direta */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 w-full sm:w-auto">
-              <Button
-                asChild
-                className="h-12 px-7 rounded-md bg-brand text-on-brand hover:bg-brand-hover active:bg-brand-active font-semibold text-sm sm:text-base shadow-sm min-h-[44px] transition-all duration-200 hover:shadow-glow-brand hover:scale-[1.02] active:scale-[0.98]"
+              <MagneticButton
+                to="/contato"
+                size="lg"
+                variant="primary"
+                aria-label="Vamos conversar sobre seu projeto"
+                className="w-full sm:w-auto h-12 px-7 rounded-md font-semibold text-sm sm:text-base min-h-[44px]"
               >
-                <Link to="/contato" aria-label="Vamos conversar sobre seu projeto">
-                  Vamos conversar
-                </Link>
-              </Button>
+                <span>Vamos conversar</span>
+                <ArrowUpRight className="w-4 h-4 ml-1 opacity-80" />
+              </MagneticButton>
             </div>
           </motion.div>
 

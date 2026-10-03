@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { X } from "lucide-react";
 import { Typewriter } from "@/components/ui/typewriter";
 import { Button } from "@/components/ui/button";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
@@ -137,17 +138,17 @@ export const Header = () => {
               ))}
             </nav>
 
-            {/* Desktop CTA (1 botão de ação) */}
+            {/* Desktop CTA (1 botão de ação magnético) */}
             <div className="hidden lg:flex items-center justify-end shrink-0">
-              <Button
-                asChild
+              <MagneticButton
+                to="/contato"
                 size="sm"
-                className="bg-brand text-on-brand hover:bg-brand-hover active:bg-brand-active font-medium text-xs tracking-wide shadow-xs min-h-[44px] px-4 rounded-md transition-colors"
+                variant="primary"
+                aria-label="Fale conosco"
+                className="text-xs font-semibold uppercase tracking-wider min-h-[44px] px-4 rounded-lg"
               >
-                <Link to="/contato" aria-label="Fale conosco">
-                  Fale conosco
-                </Link>
-              </Button>
+                Fale conosco
+              </MagneticButton>
             </div>
 
             {/* Mobile Menu Trigger */}
@@ -230,18 +231,16 @@ export const Header = () => {
                   animationFillMode: "forwards",
                 }}
               >
-                <Button
-                  asChild
-                  className="w-full bg-brand text-on-brand hover:bg-brand-hover active:bg-brand-active font-medium min-h-[44px] shadow-xs text-sm"
+                <MagneticButton
+                  to="/contato"
+                  variant="primary"
+                  size="default"
+                  onClick={closeMobileMenu}
+                  aria-label="Fale conosco"
+                  className="w-full min-h-[44px] text-sm font-semibold"
                 >
-                  <Link
-                    to="/contato"
-                    onClick={closeMobileMenu}
-                    aria-label="Fale conosco"
-                  >
-                    Fale conosco
-                  </Link>
-                </Button>
+                  Fale conosco
+                </MagneticButton>
               </div>
             </nav>
           </div>

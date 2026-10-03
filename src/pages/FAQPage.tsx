@@ -10,6 +10,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 import { FAQ_ITEMS, CATEGORY_LABELS, FAQItem } from "@/config/faq";
 import { SITE_CONFIG } from "@/config/site";
 import { cn } from "@/lib/utils";
@@ -154,13 +155,15 @@ export const FAQPage = () => {
             <p className="text-[clamp(0.95rem,1.1vw,1.05rem)] text-secondary max-w-[65ch] mx-auto mb-6 leading-[1.6]">
               Envie sua dúvida ou descreva o desafio da sua empresa. Retornamos em até 24 horas úteis com uma avaliação técnica preliminar.
             </p>
-            <Button
-              asChild
+            <MagneticButton
+              to="/contato"
               size="lg"
-              className="bg-brand text-on-brand hover:bg-brand-hover active:bg-brand-active min-h-[44px] px-8 text-sm font-semibold"
+              variant="primary"
+              aria-label="Falar sobre meu projeto"
+              className="min-h-[44px] px-8 text-sm font-semibold rounded-xl"
             >
-              <Link to="/contato">Falar sobre meu projeto</Link>
-            </Button>
+              Falar sobre meu projeto
+            </MagneticButton>
           </div>
         </SectionWrapper>
       </div>

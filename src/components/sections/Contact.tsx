@@ -7,6 +7,7 @@ import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
 import { CheckCircle2, Send, Loader2, Maximize2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -375,15 +376,17 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
                   )}
                 </div>
 
-                {/* Botão de Envio (Slim CTA alinhado à esquerda) */}
+                {/* Botão de Envio (Slim CTA magnético alinhado à esquerda) */}
                 <div className="pt-2">
-                  <button
+                  <MagneticButton
                     type="submit"
                     disabled={isSending || isSuccess}
-                    className={`btn-submit group inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg font-semibold text-sm transition-all duration-200 cursor-pointer disabled:opacity-80 disabled:cursor-not-allowed border-none w-full sm:w-auto shadow-sm ${
+                    variant={isSuccess ? "secondary" : "primary"}
+                    size="default"
+                    className={`btn-submit px-7 py-3 rounded-lg font-semibold text-sm w-full sm:w-auto ${
                       isSuccess
                         ? "bg-success text-white shadow-sm"
-                        : "bg-brand text-on-brand hover:bg-brand-hover active:bg-brand-active active:scale-[0.99]"
+                        : "bg-brand text-on-brand hover:bg-brand-hover active:bg-brand-active"
                     }`}
                   >
                     {isSending ? (
@@ -402,7 +405,7 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
                         <span className="text-on-brand">Falar sobre meu projeto</span>
                       </>
                     )}
-                  </button>
+                  </MagneticButton>
                 </div>
               </form>
             </div>

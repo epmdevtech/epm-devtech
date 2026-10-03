@@ -9,6 +9,23 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.100-componente-magnetic-button-cta] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-100-componente-magnetic-button-cta.md`**: Especificação técnica aprovada pelo PO para implementação de componente reutilizável de botão magnético (*Magnetic Button*) baseado na mecânica clássica da Codrops / Cuberto, com 3 camadas cinemáticas de parallax e snap-back elástico.
+- **`tasks/TASK-100-componente-magnetic-button-cta.md`**: Tarefa e checklist de execução concluídos sob o protocolo Universal SDD.
+- **`reviews/QA-100.md`**: Relatório de QA com validação de 100% dos quality gates (zero erros de compilação, linting sem advertências, 221 testes unitários passando, 46 testes E2E do Playwright aprovados e conformidade estrita com travas de tokens).
+- **`src/components/ui/MagneticButton.tsx`**: Componente polimórfico (`button`, `Link` do React Router e âncora `<a>`) com 3 camadas cinemáticas independentes (Hitbox, Superfície com translação moderada, Conteúdo com translação ampliada para parallax 2.5D), expansão radial do filler a partir do ponto de entrada do cursor, retorno elástico amortecido no `mouseleave` (`ease: "elastic.out(1.1, 0.4)"`), desativação automática em telas touch (`pointer: coarse`), respeito a `prefers-reduced-motion` e anel de foco acessível (`:focus-visible`).
+- **`src/components/ui/__tests__/MagneticButton.test.tsx`**: Suíte de testes unitários cobrindo renderização polimórfica, variantes visuais, interações com mouse, redução de movimento, desabilitação e limpeza de memória.
+
+### Modificado
+- **`src/components/layout/Header.tsx`**: Substituição do CTA desktop e mobile pelo novo `<MagneticButton>`.
+- **`src/components/sections/Hero.tsx`**: Substituição do CTA primário da Home ("Vamos conversar") por `<MagneticButton>`, preservando o token semântico `text-on-brand` e raio de 6px (`rounded-md`).
+- **`src/pages/ServicesPage.tsx`**: Integração do `<MagneticButton>` no CTA de abertura ("Conversar sobre seu projeto").
+- **`src/pages/FAQPage.tsx`**: Integração do `<MagneticButton>` no CTA de encerramento ("Falar sobre meu projeto").
+- **`src/components/sections/Contact.tsx` & `src/components/ContactForm.tsx`**: Integração do `<MagneticButton>` no botão de envio do formulário de contato.
+- **`PROJECT.md`**: Atualização do catálogo de componentes e contadores de testes unitários (221 testes em 36 suítes).
+
 ## [0.0.99-sistema-smooth-scroll-lenis-gsap-scroll-reveals] - 2026-10-02
 
 ### Adicionado
