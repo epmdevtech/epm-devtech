@@ -13,19 +13,31 @@ describe('Button Component (Design System & Engineering Chamfer)', () => {
   it('aplica corretamente a variante "chamfer" com utilitário de chanfro e estilos de marca', () => {
     render(<Button variant="chamfer">Ação Principal</Button>);
     const button = screen.getByRole('button', { name: /Ação Principal/i });
-    expect(button).toHaveClass('btn-chamfer', 'bg-brand', 'text-on-brand');
+    expect(button).toHaveClass('btn-bevel-4', 'btn-chamfer', 'bg-brand', 'text-on-brand');
+  });
+
+  it('aplica corretamente a variante "bevel" idêntica a "chamfer"', () => {
+    render(<Button variant="bevel">Ação Bevel</Button>);
+    const button = screen.getByRole('button', { name: /Ação Bevel/i });
+    expect(button).toHaveClass('btn-bevel-4', 'bg-brand', 'text-on-brand');
   });
 
   it('aplica corretamente a variante "chamfer-outline"', () => {
     render(<Button variant="chamfer-outline">Ação Secundária</Button>);
     const button = screen.getByRole('button', { name: /Ação Secundária/i });
-    expect(button).toHaveClass('btn-chamfer', 'border-zinc-800', 'text-zinc-200');
+    expect(button).toHaveClass('btn-bevel-4', 'btn-chamfer', 'border-zinc-800', 'text-zinc-200');
+  });
+
+  it('aplica corretamente a variante "bevel-outline"', () => {
+    render(<Button variant="bevel-outline">Ação Bevel Outline</Button>);
+    const button = screen.getByRole('button', { name: /Ação Bevel Outline/i });
+    expect(button).toHaveClass('btn-bevel-4', 'border-zinc-800', 'text-zinc-200');
   });
 
   it('aplica corretamente a variante "chamfer-gradient"', () => {
     render(<Button variant="chamfer-gradient">Ação Gradiente</Button>);
     const button = screen.getByRole('button', { name: /Ação Gradiente/i });
-    expect(button).toHaveClass('btn-chamfer', 'bg-gradient-to-r');
+    expect(button).toHaveClass('btn-bevel-4', 'btn-chamfer', 'bg-gradient-to-r');
   });
 
   it('suporta tamanhos sm, md, lg e default', () => {

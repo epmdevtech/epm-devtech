@@ -25,13 +25,15 @@ export interface MagneticButtonProps
   /** Deprecated: Raio de captura proporcional */
   triggerRadius?: number;
   /** Variante visual de cor e acabamento */
-  variant?: "primary" | "chamfer" | "chamfer-outline" | "outline" | "ghost" | "secondary";
+  variant?: "primary" | "chamfer" | "bevel" | "chamfer-outline" | "bevel-outline" | "outline" | "ghost" | "secondary";
   /** Rota interna do React Router (renderiza como Link quando presente) */
   to?: string;
   /** Link externo ou âncora (renderiza como <a> quando presente) */
   href?: string;
   /** Tamanho do botão */
   size?: "default" | "sm" | "md" | "lg" | "icon";
+  /** Variante do sombreamento extrudado chanfrado */
+  shadowVariant?: "default" | "white" | "brand" | "none";
   onHoverStart?: () => void;
   onHoverEnd?: () => void;
   target?: string;
@@ -49,6 +51,7 @@ export const MagneticButton = forwardRef<HTMLElement, MagneticButtonProps>(
       maxTravelY = 8,
       triggerRadius,
       variant = "primary",
+      shadowVariant = "default",
       size = "default",
       type = "button",
       to,
@@ -176,13 +179,17 @@ export const MagneticButton = forwardRef<HTMLElement, MagneticButtonProps>(
       return () => ctx.revert();
     }, [strength, proximityMargin, maxTravelX, maxTravelY, disabled]);
 
-    // Variações de estilo alinhadas à EPM DevTech (Engineering Chamfer)
+    // Variações de estilo alinhadas à EPM DevTech (Full Bevel / 4-Corner Chamfer)
     const variantStyles = {
       primary:
         "border-brand bg-brand text-on-brand font-semibold shadow-[0_0_20px_rgba(45,212,191,0.2)] hover:border-brand/90",
       chamfer:
         "border-brand bg-brand text-on-brand font-semibold shadow-[0_0_20px_-4px_rgba(45,212,191,0.35)] hover:border-brand/90 active:scale-[0.98]",
+      bevel:
+        "border-brand bg-brand text-on-brand font-semibold shadow-[0_0_20px_-4px_rgba(45,212,191,0.35)] hover:border-brand/90 active:scale-[0.98]",
       "chamfer-outline":
+        "border-zinc-800 bg-zinc-950/80 text-zinc-200 hover:border-brand/60 hover:text-white backdrop-blur-sm active:scale-[0.98]",
+      "bevel-outline":
         "border-zinc-800 bg-zinc-950/80 text-zinc-200 hover:border-brand/60 hover:text-white backdrop-blur-sm active:scale-[0.98]",
       outline:
         "border-zinc-800 bg-zinc-950/60 text-zinc-200 hover:border-brand/50 hover:text-white backdrop-blur-sm",
@@ -200,7 +207,10 @@ export const MagneticButton = forwardRef<HTMLElement, MagneticButtonProps>(
       icon: "p-3 text-sm",
     };
 
+    const bevelClass = size === "sm" ? "btn-bevel-4-sm" : "btn-bevel-4";
+
     const buttonClasses = cn(
+      bevelClass,
       "btn-chamfer group relative inline-flex items-center justify-center overflow-hidden rounded-md border transition-colors duration-200",
       "will-change-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand select-none",
       sizeStyles[size] || sizeStyles.default,
@@ -210,7 +220,32 @@ export const MagneticButton = forwardRef<HTMLElement, MagneticButtonProps>(
     );
 
     const isFullWidth = className?.includes("w-full");
-    const isOutlineVariant = variant === "outline" || variant === "chamfer-outline";
+    const isOutlineVariant =
+      variant === "outline" ||
+      variant === "chamfer-outline" ||
+      variant === "bevel-outline";
+
+    const isBevelVariant =
+      variant === "primary" ||
+      variant === "chamfer" ||
+      variant === "bevel" ||
+      variant === "chamfer-outline" ||
+      variant === "bevel-outline";
+
+    const getShadowClass = () => {
+      if (shadowVariant === "none" || !isBevelVariant) return "";
+      if (shadowVariant === "white") return "btn-bevel-shadow-white";
+      if (shadowVariant === "brand") return "btn-bevel-shadow-brand";
+      return size === "sm" ? "btn-bevel-shadow-sm" : "btn-bevel-shadow";
+    };
+
+    const shadowClass = getShadowClass();
+
+    const areaWrapperClasses = cn(
+      "inline-block",
+      isFullWidth && "w-full",
+      shadowClass
+    );
 
     const content = (
       <>
@@ -238,7 +273,7 @@ export const MagneticButton = forwardRef<HTMLElement, MagneticButtonProps>(
 
     if (to && !disabled) {
       return (
-        <div ref={areaRef} className={cn("inline-block", isFullWidth && "w-full")}>
+        <div ref={areaRef} className={areaWrapperClasses}>
           <Link
             ref={(node) => {
               btnRef.current = node;
@@ -259,7 +294,7 @@ export const MagneticButton = forwardRef<HTMLElement, MagneticButtonProps>(
 
     if (href && !disabled) {
       return (
-        <div ref={areaRef} className={cn("inline-block", isFullWidth && "w-full")}>
+        <div ref={areaRef} className={areaWrapperClasses}>
           <a
             ref={(node) => {
               btnRef.current = node;
@@ -279,7 +314,7 @@ export const MagneticButton = forwardRef<HTMLElement, MagneticButtonProps>(
     }
 
     return (
-      <div ref={areaRef} className={cn("inline-block", isFullWidth && "w-full")}>
+      <div ref={areaRef} className={areaWrapperClasses}>
         <button
           ref={(node) => {
             btnRef.current = node;

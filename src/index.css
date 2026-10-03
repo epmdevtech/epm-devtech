@@ -406,12 +406,151 @@ textarea:-webkit-autofill:active {
     text-transform: uppercase;
   }
 
-  /* Chanfro de precisão no canto superior direito (SPEC-103) */
+  /* Chanfro simétrico nos 4 cantos (Octógono de precisão - Full Bevel / 4-Corner Chamfer - corte de 12px) (SPEC-104) */
+  .btn-bevel-4,
   .btn-chamfer {
-    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
+    clip-path: polygon(
+      12px 0%,
+      calc(100% - 12px) 0%,
+      100% 12px,
+      100% calc(100% - 12px),
+      calc(100% - 12px) 100%,
+      12px 100%,
+      0% calc(100% - 12px),
+      0% 12px
+    );
   }
-  /* Chanfro duplo equilibrado (superior direito + inferior esquerdo) (SPEC-103) */
+
+  /* Versão para botões menores / compactos (corte de 8px) (SPEC-104) */
+  .btn-bevel-4-sm,
+  .btn-chamfer-sm {
+    clip-path: polygon(
+      8px 0%,
+      calc(100% - 8px) 0%,
+      100% 8px,
+      100% calc(100% - 8px),
+      calc(100% - 8px) 100%,
+      8px 100%,
+      0% calc(100% - 8px),
+      0% 8px
+    );
+  }
+
+  /* Chanfro duplo equilibrado (superior direito + inferior esquerdo) */
   .btn-chamfer-dual {
     clip-path: polygon(12px 0, calc(100% - 12px) 0, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+  }
+
+  /* Sombreamento chanfrado em camadas e traço contínuo em 8 lados (SPEC-104) */
+  .btn-bevel-shadow {
+    filter: 
+      drop-shadow(1px 0px 0px #ffffff)
+      drop-shadow(-1px 0px 0px #ffffff)
+      drop-shadow(0px 1px 0px #ffffff)
+      drop-shadow(0px -1px 0px #ffffff)
+      drop-shadow(5px 5px 0px #ffffff);
+    transition: filter 0.15s ease, transform 0.15s ease;
+  }
+  .btn-bevel-shadow:active {
+    transform: translate(2px, 2px);
+    filter: 
+      drop-shadow(1px 0px 0px #ffffff)
+      drop-shadow(-1px 0px 0px #ffffff)
+      drop-shadow(0px 1px 0px #ffffff)
+      drop-shadow(0px -1px 0px #ffffff)
+      drop-shadow(3px 3px 0px #ffffff);
+  }
+
+  :root:not(.dark) .btn-bevel-shadow {
+    filter: 
+      drop-shadow(1px 0px 0px #04201c)
+      drop-shadow(-1px 0px 0px #04201c)
+      drop-shadow(0px 1px 0px #04201c)
+      drop-shadow(0px -1px 0px #04201c)
+      drop-shadow(5px 5px 0px #04201c);
+  }
+  :root:not(.dark) .btn-bevel-shadow:active {
+    filter: 
+      drop-shadow(1px 0px 0px #04201c)
+      drop-shadow(-1px 0px 0px #04201c)
+      drop-shadow(0px 1px 0px #04201c)
+      drop-shadow(0px -1px 0px #04201c)
+      drop-shadow(3px 3px 0px #04201c);
+  }
+
+  /* Versão para botões compactos (sm) */
+  .btn-bevel-shadow-sm {
+    filter: 
+      drop-shadow(1px 0px 0px #ffffff)
+      drop-shadow(-1px 0px 0px #ffffff)
+      drop-shadow(0px 1px 0px #ffffff)
+      drop-shadow(0px -1px 0px #ffffff)
+      drop-shadow(3px 3px 0px #ffffff);
+    transition: filter 0.15s ease, transform 0.15s ease;
+  }
+  .btn-bevel-shadow-sm:active {
+    transform: translate(1px, 1px);
+    filter: 
+      drop-shadow(1px 0px 0px #ffffff)
+      drop-shadow(-1px 0px 0px #ffffff)
+      drop-shadow(0px 1px 0px #ffffff)
+      drop-shadow(0px -1px 0px #ffffff)
+      drop-shadow(2px 2px 0px #ffffff);
+  }
+  :root:not(.dark) .btn-bevel-shadow-sm {
+    filter: 
+      drop-shadow(1px 0px 0px #04201c)
+      drop-shadow(-1px 0px 0px #04201c)
+      drop-shadow(0px 1px 0px #04201c)
+      drop-shadow(0px -1px 0px #04201c)
+      drop-shadow(3px 3px 0px #04201c);
+  }
+  :root:not(.dark) .btn-bevel-shadow-sm:active {
+    filter: 
+      drop-shadow(1px 0px 0px #04201c)
+      drop-shadow(-1px 0px 0px #04201c)
+      drop-shadow(0px 1px 0px #04201c)
+      drop-shadow(0px -1px 0px #04201c)
+      drop-shadow(2px 2px 0px #04201c);
+  }
+
+  /* Versão com branco absoluto (idêntica à captura de referência) */
+  .btn-bevel-shadow-white {
+    filter: 
+      drop-shadow(1px 0px 0px #ffffff)
+      drop-shadow(-1px 0px 0px #ffffff)
+      drop-shadow(0px 1px 0px #ffffff)
+      drop-shadow(0px -1px 0px #ffffff)
+      drop-shadow(5px 5px 0px #ffffff);
+    transition: filter 0.15s ease, transform 0.15s ease;
+  }
+  .btn-bevel-shadow-white:active {
+    transform: translate(2px, 2px);
+    filter: 
+      drop-shadow(1px 0px 0px #ffffff)
+      drop-shadow(-1px 0px 0px #ffffff)
+      drop-shadow(0px 1px 0px #ffffff)
+      drop-shadow(0px -1px 0px #ffffff)
+      drop-shadow(3px 3px 0px #ffffff);
+  }
+
+  /* Versão com cores institucionais da marca (Teal / Emerald) */
+  .btn-bevel-shadow-brand {
+    filter: 
+      drop-shadow(1px 0px 0px #2dd4bf)
+      drop-shadow(-1px 0px 0px #2dd4bf)
+      drop-shadow(0px 1px 0px #2dd4bf)
+      drop-shadow(0px -1px 0px #2dd4bf)
+      drop-shadow(5px 5px 0px rgba(45, 212, 191, 0.9));
+    transition: filter 0.15s ease, transform 0.15s ease;
+  }
+  .btn-bevel-shadow-brand:active {
+    transform: translate(2px, 2px);
+    filter: 
+      drop-shadow(1px 0px 0px #2dd4bf)
+      drop-shadow(-1px 0px 0px #2dd4bf)
+      drop-shadow(0px 1px 0px #2dd4bf)
+      drop-shadow(0px -1px 0px #2dd4bf)
+      drop-shadow(3px 3px 0px rgba(45, 212, 191, 0.9));
   }
 }

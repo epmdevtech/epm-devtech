@@ -93,11 +93,30 @@ describe('MagneticButton Component', () => {
     expect(screen.getByRole('button')).toHaveClass('bg-zinc-800');
 
     rerender(<MagneticButton variant="chamfer">Chamfer</MagneticButton>);
-    expect(screen.getByRole('button')).toHaveClass('btn-chamfer', 'bg-brand');
+    expect(screen.getByRole('button')).toHaveClass('btn-bevel-4', 'btn-chamfer', 'bg-brand');
+    expect(container.querySelector('.inline-block')).toHaveClass('btn-bevel-shadow');
+
+    rerender(<MagneticButton variant="bevel">Bevel</MagneticButton>);
+    expect(screen.getByRole('button')).toHaveClass('btn-bevel-4', 'bg-brand');
+    expect(container.querySelector('.inline-block')).toHaveClass('btn-bevel-shadow');
 
     rerender(<MagneticButton variant="chamfer-outline">Chamfer Outline</MagneticButton>);
-    expect(screen.getByRole('button')).toHaveClass('btn-chamfer', 'border-zinc-800');
+    expect(screen.getByRole('button')).toHaveClass('btn-bevel-4', 'btn-chamfer', 'border-zinc-800');
     expect(container.querySelector('.translate-y-full')).toBeInTheDocument();
+    expect(container.querySelector('.inline-block')).toHaveClass('btn-bevel-shadow');
+
+    rerender(<MagneticButton size="sm">Compact</MagneticButton>);
+    expect(screen.getByRole('button')).toHaveClass('btn-bevel-4-sm');
+    expect(container.querySelector('.inline-block')).toHaveClass('btn-bevel-shadow-sm');
+
+    rerender(<MagneticButton shadowVariant="white">White Shadow</MagneticButton>);
+    expect(container.querySelector('.inline-block')).toHaveClass('btn-bevel-shadow-white');
+
+    rerender(<MagneticButton shadowVariant="brand">Brand Shadow</MagneticButton>);
+    expect(container.querySelector('.inline-block')).toHaveClass('btn-bevel-shadow-brand');
+
+    rerender(<MagneticButton shadowVariant="none">No Shadow</MagneticButton>);
+    expect(container.querySelector('.inline-block')).not.toHaveClass('btn-bevel-shadow');
   });
 
   it('gerencia aproximação magnética com margem restrita de 20px e desengate imediato (breakout)', () => {

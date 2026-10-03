@@ -9,6 +9,22 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.104-geometria-full-bevel-4-cantos] - 2026-10-03
+
+### Adicionado
+- **`specs/SPEC-104-geometria-full-bevel-4-cantos.md`**: Especificação técnica aprovada para a transição para a geometria "Full Bevel / 4-Corner Chamfer" (Octógono Simétrico de Engenharia com corte chanfrado a 45º em todos os 4 cantos) e implementação do sombreamento chanfrado em camadas com traço contínuo em 8 lados.
+- **`tasks/TASK-104-geometria-full-bevel-4-cantos.md`**: Tarefa e checklist de execução concluídos sob o protocolo Universal SDD.
+- **`reviews/QA-104.md`**: Relatório de QA com validação integral dos quality gates (0 erros TypeScript, 0 erros ESLint, 233 testes unitários no Vitest com 99.18% de cobertura geral, 46 testes Playwright E2E aprovados e build de produção com pré-renderização estática de 7 rotas).
+- **Utilitários de Sombreamento Chanfrado em Camadas em `src/index.css`**: Adicionados `.btn-bevel-shadow`, `.btn-bevel-shadow-sm`, `.btn-bevel-shadow-white` e `.btn-bevel-shadow-brand` gerando traço contínuo nítido de 1px ao redor de todos os 8 lados e sombra rígida extrudada a 45º no canto inferior direito (`5px 5px 0px` / `3px 3px 0px`) com translação mecânica no clique (`:active`).
+
+### Modificado
+- **`src/index.css`**: Implementados `.btn-bevel-4` e `.btn-bevel-4-sm` (polígono simétrico de 8 pontos com corte chanfrado a 45º nos 4 cantos) e unificado `.btn-chamfer` como alias.
+- **`src/components/ui/button.tsx`**: Atualizadas as variantes `chamfer`, `chamfer-outline` e `chamfer-gradient` para a geometria `.btn-bevel-4`, adicionando os aliases `bevel` e `bevel-outline`.
+- **`src/components/ui/MagneticButton.tsx`**: Adoção nativa da geometria octogonal `.btn-bevel-4` (e `.btn-bevel-4-sm` para botões compactos), aplicação automática do sombreamento `.btn-bevel-shadow` no wrapper geométrico `areaRef`, mantendo a sombra sincronizada em tempo real com a cinemática física do GSAP, e adição da prop `shadowVariant`.
+- **`src/components/ui/__tests__/MagneticButton.test.tsx`**: Testes expandidos para validação do sombreamento chanfrado, classes `.btn-bevel-shadow`, `.btn-bevel-shadow-sm`, `.btn-bevel-shadow-white`, `.btn-bevel-shadow-brand` e desativação com `shadowVariant="none"`.
+- **`src/components/ui/__tests__/button.test.tsx`**: Validação das variantes `bevel` e `bevel-outline`.
+- **`PROJECT.md`**: Atualização canônica de componentes, design system e métricas de testes (233 testes unitários aprovados em 37 suítes).
+
 ## [0.0.103-padronizacao-botoes-engineering-chamfer] - 2026-10-03
 
 ### Adicionado
