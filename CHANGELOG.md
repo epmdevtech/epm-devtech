@@ -9,7 +9,22 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
-## [0.0.101-refatoracao-definitiva-magnetic-button] - 2026-10-03
+## [0.0.102-recalibracao-ux-magnetic-button] - 2026-10-03
+
+### Adicionado
+- **`specs/SPEC-102-recalibracao-ux-magnetic-button.md`**: Especificação técnica aprovada para recalibração cinemática e de usabilidade do `MagneticButton`, eliminando o comportamento invasivo de *cursor hijacking* através de margem estrita de proximidade e trava física de deslocamento.
+- **`tasks/TASK-102-recalibracao-ux-magnetic-button.md`**: Tarefa e checklist de execução sob o protocolo Universal SDD.
+- **`reviews/QA-102.md`**: Relatório de QA com validação integral dos quality gates (0 erros TypeScript, 0 erros ESLint, 224 testes unitários no Vitest com 99.18% de cobertura, 46 testes Playwright E2E e build de produção com pré-renderização estática).
+
+### Modificado
+- **`src/components/ui/MagneticButton.tsx`**: Recalibração de UX:
+  * Substituição do trigger radius baseado na largura do botão por margem de proximidade fixa de `20px` (`proximityMargin = 20`) além das bordas físicas.
+  * Clamping mecânico rígido com limites máximos de translação: `maxTravelX = 12px`, `maxTravelY = 8px` e texto interno limitado a `±4.2px` (`-clampedX * 0.35`).
+  * Mecânica de desengate imediato (*breakout*): soltura imediata do cursor ao ultrapassar a margem de 20px com retorno amortecido suave à posição de repouso `(0, 0)`.
+  * Força atenuada padrão (`strength = 0.15`) e interpolação ágil do GSAP (`0.38s`, `ease: "power2.out"`), prevenindo sensações de oscilação elástica ou gelatina.
+- **`src/components/ui/__tests__/MagneticButton.test.tsx`**: Atualização e expansão da suíte de testes unitários para validar a detecção de borda dentro/fora da margem de 20px, desengate imediato (*breakout*) e clamping estrito do deslocamento nos eixos X e Y.
+- **`PROJECT.md`**: Atualização dos registros canônicos de componentes e métricas de testes (224 testes unitários em 36 suítes).
+
 
 ### Adicionado
 - **`specs/SPEC-101-refatoracao-definitiva-magnetic-button.md`**: Especificação técnica aprovada para a refatoração e implementação definitiva do componente `MagneticButton`, imune a oscilações no scroll, com container geométrico fixo (`areaRef`), isolamento com GSAP 3 `gsap.context()`, transição vertical Codrops do texto (`swapText`) e suporte polimórfico a navegação SPA.

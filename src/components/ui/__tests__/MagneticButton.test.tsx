@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, act } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
+import gsap from 'gsap';
 import MagneticButton from '../MagneticButton';
 
 describe('MagneticButton Component', () => {
@@ -92,7 +93,7 @@ describe('MagneticButton Component', () => {
     expect(screen.getByRole('button')).toHaveClass('bg-zinc-800');
   });
 
-  it('gerencia aproximação magnética e aciona callbacks onHoverStart e onHoverEnd', () => {
+  it('gerencia aproximação magnética com margem restrita de 20px e desengate imediato (breakout)', () => {
     const onHoverStart = vi.fn();
     const onHoverEnd = vi.fn();
 
@@ -100,8 +101,8 @@ describe('MagneticButton Component', () => {
       <MagneticButton
         onHoverStart={onHoverStart}
         onHoverEnd={onHoverEnd}
-        strength={0.3}
-        triggerRadius={0.8}
+        strength={0.15}
+        proximityMargin={20}
       >
         Interativo
       </MagneticButton>
@@ -111,6 +112,7 @@ describe('MagneticButton Component', () => {
     expect(area).toBeInTheDocument();
 
     // Mock das dimensões do container fixo (área de referência)
+    // Box: left=100, right=300, top=100, bottom=150. Margem 20px: X in [80, 320], Y in [80, 170]
     vi.spyOn(area, 'getBoundingClientRect').mockReturnValue({
       left: 100,
       top: 100,
@@ -125,7 +127,7 @@ describe('MagneticButton Component', () => {
 
     const button = screen.getByRole('button');
 
-    // 1. Move o mouse para dentro do raio de atração (centro é 200, 125; raio é 200 * 0.8 = 160)
+    // 1. Cursor dentro da margem de proximidade (210, 130) -> ativa
     act(() => {
       window.dispatchEvent(
         new MouseEvent('mousemove', {
@@ -138,12 +140,12 @@ describe('MagneticButton Component', () => {
     expect(onHoverStart).toHaveBeenCalled();
     expect(button.getAttribute('data-hover')).toBe('true');
 
-    // 2. Move o mouse para longe (fora do raio de captura)
+    // 2. Cursor ultrapassa a margem restrita de 20px (clientX = 325 > 320) -> desengata imediatamente (breakout)
     act(() => {
       window.dispatchEvent(
         new MouseEvent('mousemove', {
-          clientX: 600,
-          clientY: 600,
+          clientX: 325,
+          clientY: 130,
         })
       );
     });
@@ -151,7 +153,7 @@ describe('MagneticButton Component', () => {
     expect(onHoverEnd).toHaveBeenCalled();
     expect(button.getAttribute('data-hover')).toBe('false');
 
-    // 3. Testa mouseleave do document.documentElement
+    // 3. Retorna para dentro da margem e testa mouseleave da janela
     act(() => {
       window.dispatchEvent(
         new MouseEvent('mousemove', {
@@ -166,6 +168,73 @@ describe('MagneticButton Component', () => {
       document.documentElement.dispatchEvent(new MouseEvent('mouseleave'));
     });
     expect(button.getAttribute('data-hover')).toBe('false');
+  });
+
+  it('aplica clamping estrito de deslocamento (X <= maxTravelX, Y <= maxTravelY)', () => {
+    const quickToCalls: { prop: string; fn: ReturnType<typeof vi.fn> }[] = [];
+    const originalQuickTo = gsap.quickTo;
+
+    vi.spyOn(gsap, 'quickTo').mockImplementation((target, prop, opts) => {
+      const realQuickTo = originalQuickTo(target, prop, opts);
+      const fn = vi.fn((val: number) => realQuickTo(val));
+      quickToCalls.push({ prop, fn });
+      return fn as unknown as ReturnType<typeof gsap.quickTo>;
+    });
+
+    const { container } = render(
+      <MagneticButton
+        strength={0.15}
+        proximityMargin={20}
+        maxTravelX={12}
+        maxTravelY={8}
+      >
+        Clamping Test
+      </MagneticButton>
+    );
+
+    const area = container.querySelector('.inline-block') as HTMLElement;
+    vi.spyOn(area, 'getBoundingClientRect').mockReturnValue({
+      left: 100,
+      top: 100,
+      width: 200,
+      height: 50,
+      right: 300,
+      bottom: 150,
+      x: 100,
+      y: 100,
+      toJSON: () => {},
+    });
+
+    // Centro da área: X = 200, Y = 125
+    // Posição do cursor no canto da margem: X = 320 (deltaX = 120), Y = 170 (deltaY = 45)
+    // rawDeltaX = 120 * 0.15 = 18px -> deve travar em maxTravelX = 12px
+    // rawDeltaY = 45 * 0.15 = 6.75px -> abaixo de maxTravelY = 8px
+    act(() => {
+      window.dispatchEvent(
+        new MouseEvent('mousemove', {
+          clientX: 320,
+          clientY: 170,
+        })
+      );
+    });
+
+    // Os dois primeiros registros são btnX e btnY
+    const btnXFn = quickToCalls[0]?.fn;
+    const btnYFn = quickToCalls[1]?.fn;
+    const textXFn = quickToCalls[2]?.fn;
+    const textYFn = quickToCalls[3]?.fn;
+
+    expect(btnXFn).toHaveBeenCalled();
+    const lastX = btnXFn.mock.calls.at(-1)?.[0];
+    expect(lastX).toBe(12); // Travado no limite estrito de 12px (não 18px)
+
+    expect(btnYFn).toHaveBeenCalled();
+    const lastY = btnYFn.mock.calls.at(-1)?.[0];
+    expect(lastY).toBe(6.75); // Dentro da margem de 8px
+
+    // Texto compensa no sentido oposto com -clampedX * 0.35 e -clampedY * 0.35
+    expect(textXFn).toHaveBeenCalledWith(-12 * 0.35);
+    expect(textYFn).toHaveBeenCalledWith(-6.75 * 0.35);
   });
 
   it('respeita prefers-reduced-motion e não inicia efeitos magnéticos', () => {

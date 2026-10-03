@@ -14,9 +14,15 @@ import { cn } from "@/lib/utils";
 export interface MagneticButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
-  /** Intensidade do deslocamento magnético (0 a 1). Padrão: 0.28 */
+  /** Intensidade do deslocamento magnético (0 a 1). Padrão: 0.15 */
   strength?: number;
-  /** Raio de captura como múltiplo da largura do botão. Padrão: 0.75 */
+  /** Margem de proximidade em pixels além das bordas do botão. Padrão: 20 */
+  proximityMargin?: number;
+  /** Deslocamento máximo permitido no eixo X em pixels. Padrão: 12 */
+  maxTravelX?: number;
+  /** Deslocamento máximo permitido no eixo Y em pixels. Padrão: 8 */
+  maxTravelY?: number;
+  /** Deprecated: Raio de captura proporcional */
   triggerRadius?: number;
   /** Variante visual de cor e acabamento */
   variant?: "primary" | "outline" | "ghost" | "secondary";
@@ -37,8 +43,11 @@ export const MagneticButton = forwardRef<HTMLElement, MagneticButtonProps>(
     {
       children,
       className,
-      strength = 0.28,
-      triggerRadius = 0.75,
+      strength = 0.15,
+      proximityMargin = 20,
+      maxTravelX = 12,
+      maxTravelY = 8,
+      triggerRadius,
       variant = "primary",
       size = "default",
       type = "button",
@@ -82,7 +91,7 @@ export const MagneticButton = forwardRef<HTMLElement, MagneticButtonProps>(
 
       // Isolamento GSAP para controle de ciclo de vida e cleanup sem memory leak
       const ctx = gsap.context(() => {
-        const opts = { duration: 0.55, ease: "power3.out" };
+        const opts = { duration: 0.38, ease: "power2.out" };
         const btnX = gsap.quickTo(btn, "x", opts);
         const btnY = gsap.quickTo(btn, "y", opts);
         const textX = gsap.quickTo(text, "x", opts);
@@ -121,19 +130,35 @@ export const MagneticButton = forwardRef<HTMLElement, MagneticButtonProps>(
 
         const onMove = (e: MouseEvent) => {
           // getBoundingClientRect é relativo à viewport: NÃO somar scrollX/scrollY
-          const r = area.getBoundingClientRect();
-          const dx = e.clientX - (r.left + r.width / 2);
-          const dy = e.clientY - (r.top + r.height / 2);
+          const rect = area.getBoundingClientRect();
 
-          if (Math.hypot(dx, dy) < r.width * triggerRadius) {
+          // Limites da caixa com a margem restrita de proximidade
+          const isInProximity =
+            e.clientX >= rect.left - proximityMargin &&
+            e.clientX <= rect.right + proximityMargin &&
+            e.clientY >= rect.top - proximityMargin &&
+            e.clientY <= rect.bottom + proximityMargin;
+
+          if (isInProximity) {
             if (!isHovering) enter();
-            btnX(dx * strength);
-            btnY(dy * strength);
-            // O texto compensa no sentido oposto, criando sensação de profundidade 2.5D
-            textX(-dx * strength * 0.5);
-            textY(-dy * strength * 0.5);
+
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+
+            const rawDeltaX = (e.clientX - centerX) * strength;
+            const rawDeltaY = (e.clientY - centerY) * strength;
+
+            // Trava de deslocamento máximo (clamping rígido)
+            const clampedX = Math.max(-maxTravelX, Math.min(maxTravelX, rawDeltaX));
+            const clampedY = Math.max(-maxTravelY, Math.min(maxTravelY, rawDeltaY));
+
+            btnX(clampedX);
+            btnY(clampedY);
+            // O texto compensa no sentido oposto com amortecimento 2.5D suave (máximo ±4.2px)
+            textX(-clampedX * 0.35);
+            textY(-clampedY * 0.35);
           } else if (isHovering) {
-            leave();
+            leave(); // Solta imediatamente assim que cruza a margem de proximidade
           }
         };
 
@@ -149,7 +174,7 @@ export const MagneticButton = forwardRef<HTMLElement, MagneticButtonProps>(
       }, area);
 
       return () => ctx.revert();
-    }, [strength, triggerRadius, disabled]);
+    }, [strength, proximityMargin, maxTravelX, maxTravelY, disabled]);
 
     // Variações de estilo alinhadas à EPM DevTech
     const variantStyles = {
