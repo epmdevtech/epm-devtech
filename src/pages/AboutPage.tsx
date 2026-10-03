@@ -1,9 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Sparkles } from "lucide-react";
 import BrandChipIcon from "@/components/ui/BrandChipIcon";
 import EpmConstellation from "@/components/sections/EpmConstellation";
 import SectionWrapper from "@/components/ui/SectionWrapper";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 import { SITE_CONFIG } from "@/config/site";
 import { cn } from "@/lib/utils";
 
@@ -88,6 +90,8 @@ const PRINCIPLES: PrincipleItem[] = [
 ];
 
 export const AboutPage: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <Helmet>
@@ -148,9 +152,23 @@ export const AboutPage: React.FC = () => {
                 </h1>
 
                 {/* Subtítulo Institucional */}
-                <p className="text-[clamp(1rem,1.15vw,1.125rem)] text-secondary leading-[1.65] tracking-[-0.01em] font-normal [text-wrap:balance] max-w-[65ch]">
+                <p className="text-[clamp(1rem,1.15vw,1.125rem)] text-secondary leading-[1.65] tracking-[-0.01em] font-normal [text-wrap:balance] max-w-[65ch] mb-8">
                   Unimos tecnologia, experiência e visão de negócio para criar soluções digitais que simplificam operações e geram resultados reais.
                 </p>
+
+                {/* CTA Institucional Chamfer */}
+                <div className="flex items-center">
+                  <MagneticButton
+                    to="/contato"
+                    variant="chamfer"
+                    size="md"
+                    onClick={() => navigate("/contato")}
+                    aria-label="Fale conosco"
+                    className="min-h-[44px] font-semibold"
+                  >
+                    Fale conosco
+                  </MagneticButton>
+                </div>
               </div>
 
               {/* Coluna Direita: Constelação Vetorial da EPM DevTech (Totalmente Isolada sem Sobreposição) */}

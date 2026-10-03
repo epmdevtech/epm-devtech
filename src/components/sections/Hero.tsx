@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -29,6 +29,7 @@ const SCENARIOS = [
 ];
 
 const Hero = () => {
+  const navigate = useNavigate();
   const shouldReduceMotion = useReducedMotion();
 
   const transitionConfig = {
@@ -84,13 +85,16 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 w-full sm:w-auto">
               <MagneticButton
                 to="/contato"
+                variant="chamfer"
                 size="lg"
-                variant="primary"
+                onClick={() => navigate("/contato")}
                 aria-label="Vamos conversar sobre seu projeto"
                 className="w-full sm:w-auto h-12 px-7 rounded-md font-semibold text-sm sm:text-base min-h-[44px]"
               >
-                <span>Vamos conversar</span>
-                <ArrowUpRight className="w-4 h-4 ml-1 opacity-80" />
+                <span className="inline-flex items-center">
+                  <span>Vamos conversar</span>
+                  <ArrowUpRight className="w-4 h-4 ml-1 opacity-80" />
+                </span>
               </MagneticButton>
             </div>
           </motion.div>

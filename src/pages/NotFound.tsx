@@ -35,7 +35,7 @@ export const NotFound = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Button asChild size="default" className="min-h-[44px] w-full sm:w-auto">
+            <Button asChild variant="chamfer" size="default" className="min-h-[44px] w-full sm:w-auto">
               <Link to="/" className="inline-flex items-center gap-2">
                 <Home className="w-4 h-4" />
                 <span>Página inicial</span>
@@ -43,9 +43,9 @@ export const NotFound = () => {
             </Button>
             <Button
               asChild
-              variant="outline"
+              variant="chamfer-outline"
               size="default"
-              className="min-h-[44px] w-full sm:w-auto border-border/80"
+              className="min-h-[44px] w-full sm:w-auto"
             >
               <Link to="/servicos" className="inline-flex items-center gap-2">
                 <Code2 className="w-4 h-4" />

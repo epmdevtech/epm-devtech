@@ -9,6 +9,75 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.104-geometria-full-bevel-4-cantos] - 2026-10-03
+
+### Adicionado
+- **`specs/SPEC-104-geometria-full-bevel-4-cantos.md`**: Especificação técnica aprovada para a transição para a geometria "Full Bevel / 4-Corner Chamfer" (Octógono Simétrico de Engenharia com corte chanfrado a 45º em todos os 4 cantos) e implementação do sombreamento chanfrado em camadas com traço contínuo em 8 lados.
+- **`tasks/TASK-104-geometria-full-bevel-4-cantos.md`**: Tarefa e checklist de execução concluídos sob o protocolo Universal SDD.
+- **`reviews/QA-104.md`**: Relatório de QA com validação integral dos quality gates (0 erros TypeScript, 0 erros ESLint, 233 testes unitários no Vitest com 99.18% de cobertura geral, 46 testes Playwright E2E aprovados e build de produção com pré-renderização estática de 7 rotas).
+- **Utilitários de Sombreamento Chanfrado em Camadas em `src/index.css`**: Adicionados `.btn-bevel-shadow`, `.btn-bevel-shadow-sm`, `.btn-bevel-shadow-white` e `.btn-bevel-shadow-brand` gerando traço contínuo nítido de 1px ao redor de todos os 8 lados e sombra rígida extrudada a 45º no canto inferior direito (`5px 5px 0px` / `3px 3px 0px`) com translação mecânica no clique (`:active`).
+
+### Modificado
+- **`src/index.css`**: Implementados `.btn-bevel-4` e `.btn-bevel-4-sm` (polígono simétrico de 8 pontos com corte chanfrado a 45º nos 4 cantos) e unificado `.btn-chamfer` como alias.
+- **`src/components/ui/button.tsx`**: Atualizadas as variantes `chamfer`, `chamfer-outline` e `chamfer-gradient` para a geometria `.btn-bevel-4`, adicionando os aliases `bevel` e `bevel-outline`.
+- **`src/components/ui/MagneticButton.tsx`**: Adoção nativa da geometria octogonal `.btn-bevel-4` (e `.btn-bevel-4-sm` para botões compactos), aplicação automática do sombreamento `.btn-bevel-shadow` no wrapper geométrico `areaRef`, mantendo a sombra sincronizada em tempo real com a cinemática física do GSAP, e adição da prop `shadowVariant`.
+- **`src/components/ui/__tests__/MagneticButton.test.tsx`**: Testes expandidos para validação do sombreamento chanfrado, classes `.btn-bevel-shadow`, `.btn-bevel-shadow-sm`, `.btn-bevel-shadow-white`, `.btn-bevel-shadow-brand` e desativação com `shadowVariant="none"`.
+- **`src/components/ui/__tests__/button.test.tsx`**: Validação das variantes `bevel` e `bevel-outline`.
+- **`PROJECT.md`**: Atualização canônica de componentes, design system e métricas de testes (233 testes unitários aprovados em 37 suítes).
+
+## [0.0.103-padronizacao-botoes-engineering-chamfer] - 2026-10-03
+
+### Adicionado
+- **`specs/SPEC-103-padronizacao-botoes-engineering-chamfer.md`**: Especificação técnica aprovada para a padronização visual global dos botões de ação e CTAs do ecossistema EPM DevTech com a geometria técnica autoral "Engineering Chamfer" (3 cantos arredondados e canto superior direito chanfrado a 45º via `clip-path`).
+- **`tasks/TASK-103-padronizacao-botoes-engineering-chamfer.md`**: Tarefa e checklist de execução concluídos sob o protocolo Universal SDD.
+- **`reviews/QA-103.md`**: Relatório de QA com validação integral dos quality gates (0 erros TypeScript, 0 erros ESLint, 231 testes unitários no Vitest com 99.18% de cobertura geral, 46 testes Playwright E2E aprovados e build de produção com pré-renderização estática).
+- **`src/components/ui/__tests__/button.test.tsx`**: Suíte de testes unitários para o componente base `Button` cobrindo variantes `chamfer`, `chamfer-outline`, `chamfer-gradient`, tamanhos (`sm`, `md`, `lg`, `default`), `asChild` com Slot e disparos de evento.
+
+### Modificado
+- **`src/index.css`**: Adicionados utilitários `.btn-chamfer` e `.btn-chamfer-dual` na camada `@layer utilities` com polígonos CSS de precisão a 45º.
+- **`src/components/ui/button.tsx`**: Adicionadas as variantes `chamfer` (fundo sólido `bg-brand`, texto `text-on-brand`, sombra e scale active), `chamfer-outline` (fundo translúcido escuro, borda sutil, hover esmeralda/ciano e backdrop-blur) e `chamfer-gradient`, além do tamanho `md` (`h-10 px-6 py-2.5`).
+- **`src/components/ui/MagneticButton.tsx`**: Herança padrão da geometria `.btn-chamfer` e `rounded-md`, adição das variantes `chamfer` e `chamfer-outline`, tamanho `md` e adaptação da cortina filler animada.
+- **`src/components/layout/Header.tsx`**: Botão CTA desktop e drawer mobile padronizados com `variant="chamfer"`.
+- **`src/components/sections/Hero.tsx`**: CTA primário "Vamos conversar" atualizado com `variant="chamfer"` e `size="lg"`, mantendo estritamente os tokens de marca e regras de conversão.
+- **`src/pages/ServicesPage.tsx`**: CTA principal da página de serviços atualizado com `variant="chamfer"` e `size="lg"`.
+- **`src/pages/AboutPage.tsx`**: Integrado CTA institucional no hero editorial com `variant="chamfer"` e `size="md"`.
+- **`src/pages/FAQPage.tsx`**: CTA final da página de dúvidas atualizado com `variant="chamfer"`.
+- **`src/pages/NotFound.tsx`**: Botões da página 404 padronizados com `variant="chamfer"` e `variant="chamfer-outline"`.
+- **`src/components/ContactForm.tsx` & `src/components/sections/Contact.tsx`**: Botões de envio de formulário padronizados com `variant="chamfer"`.
+- **`src/components/ui/__tests__/MagneticButton.test.tsx`**: Testes expandidos para as novas variantes `chamfer` e `chamfer-outline`.
+- **`PROJECT.md`**: Atualização do catálogo canônico e contadores de testes unitários (231 testes em 37 suítes).
+
+
+### Adicionado
+- **`specs/SPEC-102-recalibracao-ux-magnetic-button.md`**: Especificação técnica aprovada para recalibração cinemática e de usabilidade do `MagneticButton`, eliminando o comportamento invasivo de *cursor hijacking* através de margem estrita de proximidade e trava física de deslocamento.
+- **`tasks/TASK-102-recalibracao-ux-magnetic-button.md`**: Tarefa e checklist de execução sob o protocolo Universal SDD.
+- **`reviews/QA-102.md`**: Relatório de QA com validação integral dos quality gates (0 erros TypeScript, 0 erros ESLint, 224 testes unitários no Vitest com 99.18% de cobertura, 46 testes Playwright E2E e build de produção com pré-renderização estática).
+
+### Modificado
+- **`src/components/ui/MagneticButton.tsx`**: Recalibração de UX:
+  * Substituição do trigger radius baseado na largura do botão por margem de proximidade fixa de `20px` (`proximityMargin = 20`) além das bordas físicas.
+  * Clamping mecânico rígido com limites máximos de translação: `maxTravelX = 12px`, `maxTravelY = 8px` e texto interno limitado a `±4.2px` (`-clampedX * 0.35`).
+  * Mecânica de desengate imediato (*breakout*): soltura imediata do cursor ao ultrapassar a margem de 20px com retorno amortecido suave à posição de repouso `(0, 0)`.
+  * Força atenuada padrão (`strength = 0.15`) e interpolação ágil do GSAP (`0.38s`, `ease: "power2.out"`), prevenindo sensações de oscilação elástica ou gelatina.
+- **`src/components/ui/__tests__/MagneticButton.test.tsx`**: Atualização e expansão da suíte de testes unitários para validar a detecção de borda dentro/fora da margem de 20px, desengate imediato (*breakout*) e clamping estrito do deslocamento nos eixos X e Y.
+- **`PROJECT.md`**: Atualização dos registros canônicos de componentes e métricas de testes (224 testes unitários em 36 suítes).
+
+
+### Adicionado
+- **`specs/SPEC-101-refatoracao-definitiva-magnetic-button.md`**: Especificação técnica aprovada para a refatoração e implementação definitiva do componente `MagneticButton`, imune a oscilações no scroll, com container geométrico fixo (`areaRef`), isolamento com GSAP 3 `gsap.context()`, transição vertical Codrops do texto (`swapText`) e suporte polimórfico a navegação SPA.
+- **`tasks/TASK-101-refatoracao-definitiva-magnetic-button.md`**: Tarefa e checklist de execução sob o protocolo Universal SDD.
+- **`reviews/QA-101.md`**: Relatório de QA com validação integral dos quality gates (0 erros TypeScript, 0 erros ESLint, 223 testes unitários no Vitest com 99.18% de cobertura, 46 testes Playwright E2E e build de produção com pré-renderização estática).
+
+### Modificado
+- **`src/components/ui/MagneticButton.tsx`**: Refatoração estrutural com referência geométrica estática sem transform (`areaRef`), cálculo viewport-relative imune a rolagem (`getBoundingClientRect()` vs `clientX`/`clientY`), física 2.5D oposta para o texto interno, transição vertical com timeline GSAP (`swapText`), cortina filler dinâmica para variante `outline`, suporte polimórfico a `<button>`, `<Link to="...">` e `<a href="...">`, além de variantes corporativas `primary` (token `bg-brand` #2DD4BF e `text-on-brand` #04201C), `outline`, `ghost` e `secondary`.
+- **`src/components/ui/__tests__/MagneticButton.test.tsx`**: Atualização e expansão da suíte de testes unitários para cobrir a cinemática de aproximação, callbacks `onHoverStart`/`onHoverEnd`, variantes de estilo, bypass para `prefers-reduced-motion` e touch screens, desabilitação e limpeza de memória.
+- **`src/components/layout/Header.tsx`**: Integração do botão de contato desktop e mobile utilizando o `MagneticButton` com `variant="primary"` e acionamento por navegação.
+- **`src/components/sections/Hero.tsx`**: Atualização do CTA primário "Vamos conversar" com navegação via `onClick` e preservação dos tokens de identidade visual.
+- **`src/pages/ServicesPage.tsx`**: Atualização do CTA principal de Serviços com `MagneticButton`.
+- **`src/pages/FAQPage.tsx`**: Atualização do CTA final de dúvidas com `MagneticButton`.
+- **`src/setupTests.ts`**: Adição de polyfills seguros para `requestAnimationFrame`/`cancelAnimationFrame` e encerramento de intervalos residuais do `ScrollTrigger` via `afterEach`.
+- **`PROJECT.md`**: Atualização dos registros canônicos de componentes e métricas de testes (223 testes unitários em 36 suítes).
+
 ## [0.0.100-componente-magnetic-button-cta] - 2026-10-02
 
 ### Adicionado
