@@ -1,314 +1,268 @@
-import React, {
-  useRef,
+import {
   useEffect,
+  useRef,
   forwardRef,
   useImperativeHandle,
-  ReactNode,
+  type ButtonHTMLAttributes,
+  type ReactNode,
+  type MouseEventHandler,
 } from "react";
 import { Link } from "react-router-dom";
-import { gsap } from "gsap";
+import gsap from "gsap";
 import { cn } from "@/lib/utils";
 
-export interface MagneticButtonProps {
-  /** Rota interna do React Router (quando fornecido, renderiza como Link) */
-  to?: string;
-  /** Link externo ou âncora (quando fornecido, renderiza como âncora <a>) */
-  href?: string;
-  /** Tipo de botão HTML (padrão: "button") */
-  type?: "button" | "submit" | "reset";
-  /** Variante visual de estilo */
+export interface MagneticButtonProps
+  extends ButtonHTMLAttributes<HTMLButtonElement> {
+  children: ReactNode;
+  /** Intensidade do deslocamento magnético (0 a 1). Padrão: 0.28 */
+  strength?: number;
+  /** Raio de captura como múltiplo da largura do botão. Padrão: 0.75 */
+  triggerRadius?: number;
+  /** Variante visual de cor e acabamento */
   variant?: "primary" | "outline" | "ghost" | "secondary";
+  /** Rota interna do React Router (renderiza como Link quando presente) */
+  to?: string;
+  /** Link externo ou âncora (renderiza como <a> quando presente) */
+  href?: string;
   /** Tamanho do botão */
   size?: "default" | "sm" | "lg" | "icon";
-  /** Força do magnetismo da camada de superfície (padrão: 0.3) */
-  strength?: number;
-  /** Força do parallax do texto/conteúdo interno (padrão: 0.55) */
-  textStrength?: number;
-  /** Classes CSS adicionais */
-  className?: string;
-  /** Se o botão está desabilitado */
-  disabled?: boolean;
-  /** Handler de clique */
-  onClick?: React.MouseEventHandler<HTMLElement>;
-  /** Atributo de acessibilidade */
-  "aria-label"?: string;
-  /** Target de links externos */
+  onHoverStart?: () => void;
+  onHoverEnd?: () => void;
   target?: string;
-  /** Rel de links externos */
   rel?: string;
-  /** Identificador de teste */
-  "data-testid"?: string;
-  /** Elementos filhos */
-  children: ReactNode;
 }
 
-const variantStyles: Record<string, string> = {
-  primary:
-    "bg-brand text-on-brand font-semibold shadow-sm hover:shadow-md border-0 active:scale-[0.98]",
-  outline:
-    "border border-border-default bg-surface/90 text-primary font-medium hover:border-brand/40 hover:bg-surface-elevated shadow-xs",
-  ghost:
-    "bg-transparent text-primary hover:bg-surface-elevated font-medium",
-  secondary:
-    "bg-surface-elevated border border-border-default text-primary font-medium hover:bg-surface hover:border-brand/30 shadow-xs",
-};
-
-const sizeStyles: Record<string, string> = {
-  default: "h-11 px-5 py-2.5 text-sm rounded-xl gap-2",
-  sm: "h-9 px-4 py-2 text-xs rounded-lg gap-1.5",
-  lg: "h-12 px-7 py-3 text-base rounded-xl gap-2.5",
-  icon: "h-10 w-10 p-0 rounded-xl justify-center",
-};
-
-const fillerColorByVariant: Record<string, string> = {
-  primary: "bg-emerald-300/40 dark:bg-emerald-300/30",
-  outline: "bg-brand/15 dark:bg-brand/20",
-  ghost: "bg-primary/10",
-  secondary: "bg-brand/15 dark:bg-brand/20",
-};
-
-/**
- * MagneticButton
- * ──────────────
- * Componente corporativo reutilizável de botão magnético com física de parallax multi-camada
- * e snap-back elástico, inspirado na referência clássica da Codrops / Cuberto.
- *
- * Características:
- * - 3 camadas independentes (Hitbox, Superfície com translação moderada, Conteúdo com translação acentuada).
- * - Efeito de expansão do filler a partir do ponto de entrada do cursor.
- * - Desativação automática e sem custo em dispositivos sensíveis ao toque (touch).
- * - Suporte estrito a `prefers-reduced-motion` e anel de foco acessível (:focus-visible).
- */
 export const MagneticButton = forwardRef<HTMLElement, MagneticButtonProps>(
-  (
+  function MagneticButton(
     {
-      to,
-      href,
-      type = "button",
+      children,
+      className,
+      strength = 0.28,
+      triggerRadius = 0.75,
       variant = "primary",
       size = "default",
-      strength = 0.3,
-      textStrength = 0.55,
-      className,
+      type = "button",
+      to,
+      href,
+      target,
+      rel,
       disabled,
+      onHoverStart,
+      onHoverEnd,
       onClick,
-      children,
-      ...restProps
+      ...props
     },
     ref
-  ) => {
-    const rootRef = useRef<HTMLElement | null>(null);
-    const surfaceRef = useRef<HTMLDivElement | null>(null);
-    const contentRef = useRef<HTMLDivElement | null>(null);
-    const fillerRef = useRef<HTMLSpanElement | null>(null);
+  ) {
+    // Container fixo de referência geométrica: não recebe transform para evitar realimentação no cálculo
+    const areaRef = useRef<HTMLDivElement>(null);
+    const btnRef = useRef<HTMLElement | null>(null);
+    const textRef = useRef<HTMLSpanElement>(null);
+    const innerRef = useRef<HTMLSpanElement>(null);
 
-    useImperativeHandle(ref, () => rootRef.current as HTMLElement);
+    useImperativeHandle(ref, () => btnRef.current as HTMLElement);
+
+    const cbRef = useRef({ onHoverStart, onHoverEnd });
+    cbRef.current = { onHoverStart, onHoverEnd };
 
     useEffect(() => {
-      const rootEl = rootRef.current;
-      const surfaceEl = surfaceRef.current;
-      const contentEl = contentRef.current;
-      const fillerEl = fillerRef.current;
+      const area = areaRef.current;
+      const btn = btnRef.current;
+      const text = textRef.current;
+      const inner = innerRef.current;
+      if (!area || !btn || !text || !inner || disabled) return;
 
-      if (!rootEl || !surfaceEl || !contentEl || disabled) return;
+      // Desativação em touch ou com "prefers-reduced-motion" ativo
+      const isClient = typeof window !== "undefined" && typeof window.matchMedia === "function";
+      const canHover = isClient && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+      const reduceMotion = isClient && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (!canHover || reduceMotion) return;
 
-      // 1. Checagem de acessibilidade e dispositivos touch
-      const isTouch =
-        typeof window !== "undefined" &&
-        typeof window.matchMedia === "function" &&
-        window.matchMedia("(pointer: coarse)").matches;
+      let isHovering = false;
 
-      const prefersReducedMotion =
-        typeof window !== "undefined" &&
-        typeof window.matchMedia === "function" &&
-        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-      if (isTouch || prefersReducedMotion) {
-        return;
-      }
-
-      // 2. Cria contexto GSAP isolado para descarte determinístico
+      // Isolamento GSAP para controle de ciclo de vida e cleanup sem memory leak
       const ctx = gsap.context(() => {
-        // QuickTo interpoladores para manipulação fluida e rápida a 60/120fps
-        const setSurfaceX = gsap.quickTo(surfaceEl, "x", {
-          duration: 0.35,
-          ease: "power3.out",
-        });
-        const setSurfaceY = gsap.quickTo(surfaceEl, "y", {
-          duration: 0.35,
-          ease: "power3.out",
-        });
-        const setContentX = gsap.quickTo(contentEl, "x", {
-          duration: 0.35,
-          ease: "power3.out",
-        });
-        const setContentY = gsap.quickTo(contentEl, "y", {
-          duration: 0.35,
-          ease: "power3.out",
-        });
+        const opts = { duration: 0.55, ease: "power3.out" };
+        const btnX = gsap.quickTo(btn, "x", opts);
+        const btnY = gsap.quickTo(btn, "y", opts);
+        const textX = gsap.quickTo(text, "x", opts);
+        const textY = gsap.quickTo(text, "y", opts);
 
-        const handleMouseEnter = (e: MouseEvent) => {
-          if (!fillerEl) return;
-          const rect = rootEl.getBoundingClientRect();
-          const relX = e.clientX - rect.left;
-          const relY = e.clientY - rect.top;
-
-          // Posiciona e expande o filler a partir do ponto de entrada do cursor
-          gsap.set(fillerEl, {
-            left: relX,
-            top: relY,
-            xPercent: -50,
-            yPercent: -50,
-            scale: 0,
-            opacity: 1,
-          });
-
-          const maxDim = Math.max(rect.width, rect.height) * 2.2;
-          gsap.set(fillerEl, { width: maxDim, height: maxDim });
-
-          gsap.to(fillerEl, {
-            scale: 1,
-            duration: 0.5,
-            ease: "power2.out",
-            overwrite: "auto",
-          });
+        // Efeito de transição vertical do texto característico da Codrops
+        const swapText = (dir: 1 | -1) => {
+          gsap.killTweensOf(inner);
+          gsap
+            .timeline()
+            .to(inner, { duration: 0.14, ease: "power2.in", opacity: 0, yPercent: -18 * dir })
+            .fromTo(
+              inner,
+              { yPercent: 60 * dir, opacity: 0 },
+              { duration: 0.22, ease: "expo.out", opacity: 1, yPercent: 0 }
+            );
         };
 
-        const handleMouseMove = (e: MouseEvent) => {
-          const rect = rootEl.getBoundingClientRect();
-          const centerX = rect.left + rect.width / 2;
-          const centerY = rect.top + rect.height / 2;
-
-          const deltaX = e.clientX - centerX;
-          const deltaY = e.clientY - centerY;
-
-          // Aplica deslocamento relativo nas 2 camadas
-          setSurfaceX(deltaX * strength);
-          setSurfaceY(deltaY * strength);
-          setContentX(deltaX * textStrength);
-          setContentY(deltaY * textStrength);
+        const enter = () => {
+          isHovering = true;
+          btn.dataset.hover = "true";
+          swapText(1);
+          cbRef.current.onHoverStart?.();
         };
 
-        const handleMouseLeave = () => {
-          // Snap-back elástico suave ao retornar à posição de repouso
-          gsap.to([surfaceEl, contentEl], {
-            x: 0,
-            y: 0,
-            duration: 0.75,
-            ease: "elastic.out(1.1, 0.4)",
-            overwrite: "auto",
-          });
+        const leave = () => {
+          isHovering = false;
+          btn.dataset.hover = "false";
+          btnX(0);
+          btnY(0);
+          textX(0);
+          textY(0);
+          swapText(-1);
+          cbRef.current.onHoverEnd?.();
+        };
 
-          if (fillerEl) {
-            gsap.to(fillerEl, {
-              opacity: 0,
-              duration: 0.35,
-              ease: "power2.out",
-              overwrite: "auto",
-            });
+        const onMove = (e: MouseEvent) => {
+          // getBoundingClientRect é relativo à viewport: NÃO somar scrollX/scrollY
+          const r = area.getBoundingClientRect();
+          const dx = e.clientX - (r.left + r.width / 2);
+          const dy = e.clientY - (r.top + r.height / 2);
+
+          if (Math.hypot(dx, dy) < r.width * triggerRadius) {
+            if (!isHovering) enter();
+            btnX(dx * strength);
+            btnY(dy * strength);
+            // O texto compensa no sentido oposto, criando sensação de profundidade 2.5D
+            textX(-dx * strength * 0.5);
+            textY(-dy * strength * 0.5);
+          } else if (isHovering) {
+            leave();
           }
         };
 
-        rootEl.addEventListener("mouseenter", handleMouseEnter);
-        rootEl.addEventListener("mousemove", handleMouseMove);
-        rootEl.addEventListener("mouseleave", handleMouseLeave);
+        const onWindowLeave = () => isHovering && leave();
+
+        window.addEventListener("mousemove", onMove, { passive: true });
+        document.documentElement.addEventListener("mouseleave", onWindowLeave);
 
         return () => {
-          rootEl.removeEventListener("mouseenter", handleMouseEnter);
-          rootEl.removeEventListener("mousemove", handleMouseMove);
-          rootEl.removeEventListener("mouseleave", handleMouseLeave);
+          window.removeEventListener("mousemove", onMove);
+          document.documentElement.removeEventListener("mouseleave", onWindowLeave);
         };
-      }, rootEl);
+      }, area);
 
-      return () => {
-        ctx.revert();
-      };
-    }, [disabled, strength, textStrength]);
+      return () => ctx.revert();
+    }, [strength, triggerRadius, disabled]);
 
-    const surfaceClasses = cn(
-      "relative inline-flex items-center justify-center overflow-hidden transition-colors select-none",
-      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-      variantStyles[variant] || variantStyles.primary,
+    // Variações de estilo alinhadas à EPM DevTech
+    const variantStyles = {
+      primary:
+        "border-brand bg-brand text-on-brand font-semibold shadow-[0_0_20px_rgba(45,212,191,0.2)] hover:border-brand/90",
+      outline:
+        "border-zinc-800 bg-zinc-950/60 text-zinc-200 hover:border-brand/50 hover:text-white backdrop-blur-sm",
+      ghost:
+        "border-transparent bg-transparent text-zinc-400 hover:text-white hover:bg-zinc-900/40",
+      secondary:
+        "border-zinc-700 bg-zinc-800 text-zinc-200 hover:bg-zinc-700 hover:text-white",
+    };
+
+    const sizeStyles = {
+      default: "px-8 py-3.5 text-sm md:text-base",
+      sm: "px-6 py-2.5 text-xs md:text-sm",
+      lg: "px-8 py-4 text-base md:text-lg",
+      icon: "p-3 text-sm",
+    };
+
+    const buttonClasses = cn(
+      "group relative inline-flex items-center justify-center overflow-hidden rounded-full border transition-colors duration-200",
+      "will-change-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand select-none",
       sizeStyles[size] || sizeStyles.default,
+      variantStyles[variant] || variantStyles.primary,
       disabled && "opacity-50 pointer-events-none cursor-not-allowed",
       className
     );
 
-    const innerContent = (
-      <>
-        {/* Camada de Superfície com Efeito de Preenchimento / Hover Filler */}
-        <div
-          ref={surfaceRef}
-          aria-hidden="true"
-          className="absolute inset-0 pointer-events-none rounded-[inherit] overflow-hidden"
-        >
-          <span
-            ref={fillerRef}
-            className={cn(
-              "pointer-events-none absolute rounded-full opacity-0 will-change-transform",
-              fillerColorByVariant[variant] || fillerColorByVariant.primary
-            )}
-          />
-        </div>
+    const isFullWidth = className?.includes("w-full");
 
-        {/* Camada de Conteúdo (Texto + Ícone com Parallax Ampliado) */}
+    const content = (
+      <>
+        {/* Camada Filler: cortina de preenchimento que sobe no hover */}
+        {variant === "outline" && (
+          <span
+            aria-hidden
+            className="absolute inset-0 translate-y-full rounded-[50%_50%_0_0] bg-brand transition-transform duration-500 ease-out group-data-[hover=true]:translate-y-0 group-data-[hover=true]:rounded-none pointer-events-none"
+          />
+        )}
+
         <span
-          ref={contentRef}
-          className="relative z-10 flex items-center justify-center gap-[inherit] pointer-events-none will-change-transform"
+          ref={textRef}
+          className={cn(
+            "relative block transition-colors duration-200 pointer-events-none",
+            variant === "outline" ? "group-data-[hover=true]:text-zinc-950" : ""
+          )}
         >
-          {children}
+          <span ref={innerRef} className="block pointer-events-none">
+            {children}
+          </span>
         </span>
       </>
     );
 
-    // ─── Renderização como Link Interno (React Router) ───
     if (to && !disabled) {
       return (
-        <Link
-          to={to}
-          ref={(node) => {
-            rootRef.current = node;
-          }}
-          className={cn("group inline-block no-underline", surfaceClasses)}
-          onClick={onClick as React.MouseEventHandler<HTMLAnchorElement>}
-          {...(restProps as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
-        >
-          {innerContent}
-        </Link>
+        <div ref={areaRef} className={cn("inline-block", isFullWidth && "w-full")}>
+          <Link
+            ref={(node) => {
+              btnRef.current = node;
+            }}
+            to={to}
+            data-hover="false"
+            className={cn("no-underline", buttonClasses)}
+            onClick={onClick as MouseEventHandler<HTMLAnchorElement>}
+            target={target}
+            rel={rel}
+            {...(props as unknown as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
+          >
+            {content}
+          </Link>
+        </div>
       );
     }
 
-    // ─── Renderização como Âncora / Link Externo ───
     if (href && !disabled) {
       return (
-        <a
-          href={href}
-          ref={(node) => {
-            rootRef.current = node;
-          }}
-          className={cn("group inline-block no-underline", surfaceClasses)}
-          onClick={onClick as React.MouseEventHandler<HTMLAnchorElement>}
-          {...(restProps as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
-        >
-          {innerContent}
-        </a>
+        <div ref={areaRef} className={cn("inline-block", isFullWidth && "w-full")}>
+          <a
+            ref={(node) => {
+              btnRef.current = node;
+            }}
+            href={href}
+            data-hover="false"
+            className={cn("no-underline", buttonClasses)}
+            onClick={onClick as MouseEventHandler<HTMLAnchorElement>}
+            target={target}
+            rel={rel}
+            {...(props as unknown as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
+          >
+            {content}
+          </a>
+        </div>
       );
     }
 
-    // ─── Renderização Padrão como Botão ───
     return (
-      <button
-        ref={(node) => {
-          rootRef.current = node;
-        }}
-        type={type}
-        disabled={disabled}
-        className={cn("group", surfaceClasses)}
-        onClick={onClick}
-        {...(restProps as React.ButtonHTMLAttributes<HTMLButtonElement>)}
-      >
-        {innerContent}
-      </button>
+      <div ref={areaRef} className={cn("inline-block", isFullWidth && "w-full")}>
+        <button
+          ref={(node) => {
+            btnRef.current = node;
+          }}
+          type={type}
+          disabled={disabled}
+          data-hover="false"
+          className={buttonClasses}
+          onClick={onClick}
+          {...props}
+        >
+          {content}
+        </button>
+      </div>
     );
   }
 );

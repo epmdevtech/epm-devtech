@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PageHeader from "@/components/ui/PageHeader";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import {
@@ -31,6 +31,7 @@ const CATEGORY_COLORS: Record<FAQItem["category"], string> = {
 type FilterCategory = "todas" | FAQItem["category"];
 
 export const FAQPage = () => {
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState<FilterCategory>("todas");
 
   const filteredItems =
@@ -157,8 +158,8 @@ export const FAQPage = () => {
             </p>
             <MagneticButton
               to="/contato"
-              size="lg"
               variant="primary"
+              onClick={() => navigate("/contato")}
               aria-label="Falar sobre meu projeto"
               className="min-h-[44px] px-8 text-sm font-semibold rounded-xl"
             >

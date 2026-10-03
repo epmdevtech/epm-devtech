@@ -9,6 +9,23 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.101-refatoracao-definitiva-magnetic-button] - 2026-10-03
+
+### Adicionado
+- **`specs/SPEC-101-refatoracao-definitiva-magnetic-button.md`**: Especificação técnica aprovada para a refatoração e implementação definitiva do componente `MagneticButton`, imune a oscilações no scroll, com container geométrico fixo (`areaRef`), isolamento com GSAP 3 `gsap.context()`, transição vertical Codrops do texto (`swapText`) e suporte polimórfico a navegação SPA.
+- **`tasks/TASK-101-refatoracao-definitiva-magnetic-button.md`**: Tarefa e checklist de execução sob o protocolo Universal SDD.
+- **`reviews/QA-101.md`**: Relatório de QA com validação integral dos quality gates (0 erros TypeScript, 0 erros ESLint, 223 testes unitários no Vitest com 99.18% de cobertura, 46 testes Playwright E2E e build de produção com pré-renderização estática).
+
+### Modificado
+- **`src/components/ui/MagneticButton.tsx`**: Refatoração estrutural com referência geométrica estática sem transform (`areaRef`), cálculo viewport-relative imune a rolagem (`getBoundingClientRect()` vs `clientX`/`clientY`), física 2.5D oposta para o texto interno, transição vertical com timeline GSAP (`swapText`), cortina filler dinâmica para variante `outline`, suporte polimórfico a `<button>`, `<Link to="...">` e `<a href="...">`, além de variantes corporativas `primary` (token `bg-brand` #2DD4BF e `text-on-brand` #04201C), `outline`, `ghost` e `secondary`.
+- **`src/components/ui/__tests__/MagneticButton.test.tsx`**: Atualização e expansão da suíte de testes unitários para cobrir a cinemática de aproximação, callbacks `onHoverStart`/`onHoverEnd`, variantes de estilo, bypass para `prefers-reduced-motion` e touch screens, desabilitação e limpeza de memória.
+- **`src/components/layout/Header.tsx`**: Integração do botão de contato desktop e mobile utilizando o `MagneticButton` com `variant="primary"` e acionamento por navegação.
+- **`src/components/sections/Hero.tsx`**: Atualização do CTA primário "Vamos conversar" com navegação via `onClick` e preservação dos tokens de identidade visual.
+- **`src/pages/ServicesPage.tsx`**: Atualização do CTA principal de Serviços com `MagneticButton`.
+- **`src/pages/FAQPage.tsx`**: Atualização do CTA final de dúvidas com `MagneticButton`.
+- **`src/setupTests.ts`**: Adição de polyfills seguros para `requestAnimationFrame`/`cancelAnimationFrame` e encerramento de intervalos residuais do `ScrollTrigger` via `afterEach`.
+- **`PROJECT.md`**: Atualização dos registros canônicos de componentes e métricas de testes (223 testes unitários em 36 suítes).
+
 ## [0.0.100-componente-magnetic-button-cta] - 2026-10-02
 
 ### Adicionado

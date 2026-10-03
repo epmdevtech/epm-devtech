@@ -19,6 +19,11 @@ vi.mock('@/components/LazyRender', () => ({
   LazyRender: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
 }));
 
+vi.mock('@/components/layout/SmoothScrollProvider', () => ({
+  default: ({ children }: { children: React.ReactNode }) => <>{children}</>,
+  SmoothScrollProvider: ({ children }: { children: React.ReactNode }) => <>{children}</>,
+}));
+
 describe('Layout Component', () => {
   it('renderiza skip-link acessível, Header, main com Outlet, ScrollManager e Footer', () => {
     render(

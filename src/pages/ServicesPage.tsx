@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import PageHeader from "@/components/ui/PageHeader";
 import Services from "@/components/sections/Services";
@@ -10,6 +10,7 @@ import { SITE_CONFIG } from "@/config/site";
 const BASE_URL = SITE_CONFIG.url;
 
 export const ServicesPage = () => {
+  const navigate = useNavigate();
   return (
     <>
       <Helmet>
@@ -52,13 +53,15 @@ export const ServicesPage = () => {
           <div className="mt-8 flex justify-center">
             <MagneticButton
               to="/contato"
-              size="lg"
               variant="primary"
+              onClick={() => navigate("/contato")}
               aria-label="Conversar sobre seu projeto"
               className="w-full max-w-xs sm:w-auto font-semibold px-8 py-3.5 rounded-xl min-h-[44px]"
             >
-              <span>Conversar sobre seu projeto</span>
-              <ArrowRight className="w-4 h-4 ml-1 opacity-80" />
+              <span className="inline-flex items-center">
+                <span>Conversar sobre seu projeto</span>
+                <ArrowRight className="w-4 h-4 ml-1 opacity-80" />
+              </span>
             </MagneticButton>
           </div>
         </PageHeader>

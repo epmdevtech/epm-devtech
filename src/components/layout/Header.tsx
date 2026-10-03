@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { X } from "lucide-react";
 import { Typewriter } from "@/components/ui/typewriter";
 import { Button } from "@/components/ui/button";
@@ -15,6 +15,7 @@ const navLinks = [
 ];
 
 export const Header = () => {
+  const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -142,10 +143,10 @@ export const Header = () => {
             <div className="hidden lg:flex items-center justify-end shrink-0">
               <MagneticButton
                 to="/contato"
-                size="sm"
                 variant="primary"
+                className="px-6 py-2.5 text-sm"
+                onClick={() => navigate("/contato")}
                 aria-label="Fale conosco"
-                className="text-xs font-semibold uppercase tracking-wider min-h-[44px] px-4 rounded-lg"
               >
                 Fale conosco
               </MagneticButton>
@@ -234,10 +235,12 @@ export const Header = () => {
                 <MagneticButton
                   to="/contato"
                   variant="primary"
-                  size="default"
-                  onClick={closeMobileMenu}
-                  aria-label="Fale conosco"
                   className="w-full min-h-[44px] text-sm font-semibold"
+                  onClick={() => {
+                    closeMobileMenu();
+                    navigate("/contato");
+                  }}
+                  aria-label="Fale conosco"
                 >
                   Fale conosco
                 </MagneticButton>

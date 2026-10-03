@@ -1,14 +1,28 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, act } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
 import MagneticButton from '../MagneticButton';
 
 describe('MagneticButton Component', () => {
+  const originalMatchMedia = window.matchMedia;
+
   beforeEach(() => {
     vi.clearAllMocks();
+    // Padrão com suporte a hover fino (desktop) para testes cinemáticos
+    window.matchMedia = vi.fn().mockImplementation((query: string) => ({
+      matches: query.includes('(hover: hover) and (pointer: fine)'),
+      media: query,
+      onchange: null,
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+    }));
   });
 
   afterEach(() => {
+    window.matchMedia = originalMatchMedia;
     vi.restoreAllMocks();
   });
 
@@ -47,48 +61,114 @@ describe('MagneticButton Component', () => {
     expect(anchor).toBeInTheDocument();
     expect(anchor).toHaveAttribute('href', '#contato');
     expect(anchor).toHaveAttribute('target', '_blank');
+    expect(anchor).toHaveAttribute('rel', 'noopener noreferrer');
   });
 
-  it('aplica corretamente as variantes de estilo', () => {
-    const { rerender } = render(
+  it('executa a função onClick quando clicado', () => {
+    const handleClick = vi.fn();
+    render(<MagneticButton onClick={handleClick}>Clique aqui</MagneticButton>);
+
+    const button = screen.getByRole('button', { name: /Clique aqui/i });
+    fireEvent.click(button);
+    expect(handleClick).toHaveBeenCalledTimes(1);
+  });
+
+  it('aplica corretamente as variantes de estilo institucional', () => {
+    const { rerender, container } = render(
       <MagneticButton variant="primary">Primary</MagneticButton>
     );
     expect(screen.getByRole('button')).toHaveClass('bg-brand');
+    expect(container.querySelector('.translate-y-full')).not.toBeInTheDocument();
 
     rerender(<MagneticButton variant="outline">Outline</MagneticButton>);
-    expect(screen.getByRole('button')).toHaveClass('border');
+    expect(screen.getByRole('button')).toHaveClass('border-zinc-800');
+    // Cortina filler deve existir na variante outline
+    expect(container.querySelector('.translate-y-full')).toBeInTheDocument();
 
     rerender(<MagneticButton variant="ghost">Ghost</MagneticButton>);
     expect(screen.getByRole('button')).toHaveClass('bg-transparent');
+
+    rerender(<MagneticButton variant="secondary">Secondary</MagneticButton>);
+    expect(screen.getByRole('button')).toHaveClass('bg-zinc-800');
   });
 
-  it('gerencia eventos de mouseenter, mousemove e mouseleave com cálculos magnéticos', () => {
-    render(<MagneticButton>Botão Magnético</MagneticButton>);
+  it('gerencia aproximação magnética e aciona callbacks onHoverStart e onHoverEnd', () => {
+    const onHoverStart = vi.fn();
+    const onHoverEnd = vi.fn();
 
-    const button = screen.getByRole('button');
+    const { container } = render(
+      <MagneticButton
+        onHoverStart={onHoverStart}
+        onHoverEnd={onHoverEnd}
+        strength={0.3}
+        triggerRadius={0.8}
+      >
+        Interativo
+      </MagneticButton>
+    );
 
-    // Simula getBoundingClientRect do botão
-    vi.spyOn(button, 'getBoundingClientRect').mockReturnValue({
+    const area = container.querySelector('.inline-block') as HTMLElement;
+    expect(area).toBeInTheDocument();
+
+    // Mock das dimensões do container fixo (área de referência)
+    vi.spyOn(area, 'getBoundingClientRect').mockReturnValue({
       left: 100,
       top: 100,
-      width: 160,
-      height: 48,
-      right: 260,
-      bottom: 148,
+      width: 200,
+      height: 50,
+      right: 300,
+      bottom: 150,
       x: 100,
       y: 100,
       toJSON: () => {},
     });
 
-    expect(() => {
-      fireEvent.mouseEnter(button, { clientX: 180, clientY: 124 });
-      fireEvent.mouseMove(button, { clientX: 200, clientY: 130 });
-      fireEvent.mouseLeave(button);
-    }).not.toThrow();
+    const button = screen.getByRole('button');
+
+    // 1. Move o mouse para dentro do raio de atração (centro é 200, 125; raio é 200 * 0.8 = 160)
+    act(() => {
+      window.dispatchEvent(
+        new MouseEvent('mousemove', {
+          clientX: 210,
+          clientY: 130,
+        })
+      );
+    });
+
+    expect(onHoverStart).toHaveBeenCalled();
+    expect(button.getAttribute('data-hover')).toBe('true');
+
+    // 2. Move o mouse para longe (fora do raio de captura)
+    act(() => {
+      window.dispatchEvent(
+        new MouseEvent('mousemove', {
+          clientX: 600,
+          clientY: 600,
+        })
+      );
+    });
+
+    expect(onHoverEnd).toHaveBeenCalled();
+    expect(button.getAttribute('data-hover')).toBe('false');
+
+    // 3. Testa mouseleave do document.documentElement
+    act(() => {
+      window.dispatchEvent(
+        new MouseEvent('mousemove', {
+          clientX: 205,
+          clientY: 125,
+        })
+      );
+    });
+    expect(button.getAttribute('data-hover')).toBe('true');
+
+    act(() => {
+      document.documentElement.dispatchEvent(new MouseEvent('mouseleave'));
+    });
+    expect(button.getAttribute('data-hover')).toBe('false');
   });
 
-  it('respeita prefers-reduced-motion e monta o componente sem registrar interpolações', () => {
-    const originalMatchMedia = window.matchMedia;
+  it('respeita prefers-reduced-motion e não inicia efeitos magnéticos', () => {
     window.matchMedia = vi.fn().mockImplementation((query: string) => ({
       matches: query.includes('prefers-reduced-motion'),
       media: query,
@@ -100,17 +180,62 @@ describe('MagneticButton Component', () => {
       dispatchEvent: vi.fn(),
     }));
 
-    render(<MagneticButton>Reduced Motion Button</MagneticButton>);
-    const button = screen.getByRole('button');
-    expect(button).toBeInTheDocument();
+    const onHoverStart = vi.fn();
+    render(
+      <MagneticButton onHoverStart={onHoverStart}>
+        Reduced Motion Button
+      </MagneticButton>
+    );
 
-    window.matchMedia = originalMatchMedia;
+    act(() => {
+      window.dispatchEvent(
+        new MouseEvent('mousemove', {
+          clientX: 100,
+          clientY: 100,
+        })
+      );
+    });
+
+    expect(onHoverStart).not.toHaveBeenCalled();
+  });
+
+  it('desativa efeitos em dispositivos touch (hover: none)', () => {
+    window.matchMedia = vi.fn().mockImplementation((query: string) => ({
+      matches: false, // canHover será false
+      media: query,
+      onchange: null,
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+    }));
+
+    const onHoverStart = vi.fn();
+    render(
+      <MagneticButton onHoverStart={onHoverStart}>
+        Touch Screen Button
+      </MagneticButton>
+    );
+
+    act(() => {
+      window.dispatchEvent(
+        new MouseEvent('mousemove', {
+          clientX: 100,
+          clientY: 100,
+        })
+      );
+    });
+
+    expect(onHoverStart).not.toHaveBeenCalled();
   });
 
   it('desabilita o botão quando disabled={true}', () => {
     const handleClick = vi.fn();
+    const onHoverStart = vi.fn();
+
     render(
-      <MagneticButton disabled onClick={handleClick}>
+      <MagneticButton disabled onClick={handleClick} onHoverStart={onHoverStart}>
         Desabilitado
       </MagneticButton>
     );
@@ -121,6 +246,16 @@ describe('MagneticButton Component', () => {
 
     fireEvent.click(button);
     expect(handleClick).not.toHaveBeenCalled();
+
+    act(() => {
+      window.dispatchEvent(
+        new MouseEvent('mousemove', {
+          clientX: 100,
+          clientY: 100,
+        })
+      );
+    });
+    expect(onHoverStart).not.toHaveBeenCalled();
   });
 
   it('desmonta o componente e limpa o contexto GSAP sem erros', () => {
