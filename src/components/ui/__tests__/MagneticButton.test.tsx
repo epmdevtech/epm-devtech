@@ -91,6 +91,13 @@ describe('MagneticButton Component', () => {
 
     rerender(<MagneticButton variant="secondary">Secondary</MagneticButton>);
     expect(screen.getByRole('button')).toHaveClass('bg-zinc-800');
+
+    rerender(<MagneticButton variant="chamfer">Chamfer</MagneticButton>);
+    expect(screen.getByRole('button')).toHaveClass('btn-chamfer', 'bg-brand');
+
+    rerender(<MagneticButton variant="chamfer-outline">Chamfer Outline</MagneticButton>);
+    expect(screen.getByRole('button')).toHaveClass('btn-chamfer', 'border-zinc-800');
+    expect(container.querySelector('.translate-y-full')).toBeInTheDocument();
   });
 
   it('gerencia aproximação magnética com margem restrita de 20px e desengate imediato (breakout)', () => {

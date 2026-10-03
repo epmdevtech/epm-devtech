@@ -405,4 +405,13 @@ textarea:-webkit-autofill:active {
     line-height: 1.3;
     text-transform: uppercase;
   }
+
+  /* Chanfro de precisão no canto superior direito (SPEC-103) */
+  .btn-chamfer {
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
+  }
+  /* Chanfro duplo equilibrado (superior direito + inferior esquerdo) (SPEC-103) */
+  .btn-chamfer-dual {
+    clip-path: polygon(12px 0, calc(100% - 12px) 0, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+  }
 }

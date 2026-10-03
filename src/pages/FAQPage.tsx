@@ -158,10 +158,11 @@ export const FAQPage = () => {
             </p>
             <MagneticButton
               to="/contato"
-              variant="primary"
+              variant="chamfer"
+              size="default"
               onClick={() => navigate("/contato")}
               aria-label="Falar sobre meu projeto"
-              className="min-h-[44px] px-8 text-sm font-semibold rounded-xl"
+              className="min-h-[44px] px-8 text-sm font-semibold rounded-md"
             >
               Falar sobre meu projeto
             </MagneticButton>

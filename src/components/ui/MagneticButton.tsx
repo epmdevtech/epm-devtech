@@ -25,13 +25,13 @@ export interface MagneticButtonProps
   /** Deprecated: Raio de captura proporcional */
   triggerRadius?: number;
   /** Variante visual de cor e acabamento */
-  variant?: "primary" | "outline" | "ghost" | "secondary";
+  variant?: "primary" | "chamfer" | "chamfer-outline" | "outline" | "ghost" | "secondary";
   /** Rota interna do React Router (renderiza como Link quando presente) */
   to?: string;
   /** Link externo ou âncora (renderiza como <a> quando presente) */
   href?: string;
   /** Tamanho do botão */
-  size?: "default" | "sm" | "lg" | "icon";
+  size?: "default" | "sm" | "md" | "lg" | "icon";
   onHoverStart?: () => void;
   onHoverEnd?: () => void;
   target?: string;
@@ -176,10 +176,14 @@ export const MagneticButton = forwardRef<HTMLElement, MagneticButtonProps>(
       return () => ctx.revert();
     }, [strength, proximityMargin, maxTravelX, maxTravelY, disabled]);
 
-    // Variações de estilo alinhadas à EPM DevTech
+    // Variações de estilo alinhadas à EPM DevTech (Engineering Chamfer)
     const variantStyles = {
       primary:
         "border-brand bg-brand text-on-brand font-semibold shadow-[0_0_20px_rgba(45,212,191,0.2)] hover:border-brand/90",
+      chamfer:
+        "border-brand bg-brand text-on-brand font-semibold shadow-[0_0_20px_-4px_rgba(45,212,191,0.35)] hover:border-brand/90 active:scale-[0.98]",
+      "chamfer-outline":
+        "border-zinc-800 bg-zinc-950/80 text-zinc-200 hover:border-brand/60 hover:text-white backdrop-blur-sm active:scale-[0.98]",
       outline:
         "border-zinc-800 bg-zinc-950/60 text-zinc-200 hover:border-brand/50 hover:text-white backdrop-blur-sm",
       ghost:
@@ -191,12 +195,13 @@ export const MagneticButton = forwardRef<HTMLElement, MagneticButtonProps>(
     const sizeStyles = {
       default: "px-8 py-3.5 text-sm md:text-base",
       sm: "px-6 py-2.5 text-xs md:text-sm",
+      md: "px-7 py-3 text-sm md:text-base",
       lg: "px-8 py-4 text-base md:text-lg",
       icon: "p-3 text-sm",
     };
 
     const buttonClasses = cn(
-      "group relative inline-flex items-center justify-center overflow-hidden rounded-full border transition-colors duration-200",
+      "btn-chamfer group relative inline-flex items-center justify-center overflow-hidden rounded-md border transition-colors duration-200",
       "will-change-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand select-none",
       sizeStyles[size] || sizeStyles.default,
       variantStyles[variant] || variantStyles.primary,
@@ -205,14 +210,15 @@ export const MagneticButton = forwardRef<HTMLElement, MagneticButtonProps>(
     );
 
     const isFullWidth = className?.includes("w-full");
+    const isOutlineVariant = variant === "outline" || variant === "chamfer-outline";
 
     const content = (
       <>
         {/* Camada Filler: cortina de preenchimento que sobe no hover */}
-        {variant === "outline" && (
+        {isOutlineVariant && (
           <span
             aria-hidden
-            className="absolute inset-0 translate-y-full rounded-[50%_50%_0_0] bg-brand transition-transform duration-500 ease-out group-data-[hover=true]:translate-y-0 group-data-[hover=true]:rounded-none pointer-events-none"
+            className="absolute inset-0 translate-y-full bg-brand transition-transform duration-500 ease-out group-data-[hover=true]:translate-y-0 pointer-events-none"
           />
         )}
 
@@ -220,7 +226,7 @@ export const MagneticButton = forwardRef<HTMLElement, MagneticButtonProps>(
           ref={textRef}
           className={cn(
             "relative block transition-colors duration-200 pointer-events-none",
-            variant === "outline" ? "group-data-[hover=true]:text-zinc-950" : ""
+            isOutlineVariant ? "group-data-[hover=true]:text-zinc-950" : ""
           )}
         >
           <span ref={innerRef} className="block pointer-events-none">

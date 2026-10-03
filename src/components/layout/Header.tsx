@@ -143,8 +143,8 @@ export const Header = () => {
             <div className="hidden lg:flex items-center justify-end shrink-0">
               <MagneticButton
                 to="/contato"
-                variant="primary"
-                className="px-6 py-2.5 text-sm"
+                variant="chamfer"
+                size="sm"
                 onClick={() => navigate("/contato")}
                 aria-label="Fale conosco"
               >
@@ -234,7 +234,7 @@ export const Header = () => {
               >
                 <MagneticButton
                   to="/contato"
-                  variant="primary"
+                  variant="chamfer"
                   className="w-full min-h-[44px] text-sm font-semibold"
                   onClick={() => {
                     closeMobileMenu();

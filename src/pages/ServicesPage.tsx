@@ -53,10 +53,11 @@ export const ServicesPage = () => {
           <div className="mt-8 flex justify-center">
             <MagneticButton
               to="/contato"
-              variant="primary"
+              variant="chamfer"
+              size="lg"
               onClick={() => navigate("/contato")}
               aria-label="Conversar sobre seu projeto"
-              className="w-full max-w-xs sm:w-auto font-semibold px-8 py-3.5 rounded-xl min-h-[44px]"
+              className="w-full max-w-xs sm:w-auto font-semibold px-8 py-3.5 rounded-md min-h-[44px]"
             >
               <span className="inline-flex items-center">
                 <span>Conversar sobre seu projeto</span>

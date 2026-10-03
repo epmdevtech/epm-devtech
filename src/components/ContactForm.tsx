@@ -291,7 +291,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
           <MagneticButton
             type="submit"
             disabled={isSubmitting || isSuccess}
-            variant={isSuccess ? "secondary" : "primary"}
+            variant={isSuccess ? "secondary" : "chamfer"}
             size="default"
             className={`w-full sm:w-auto min-w-[180px] font-semibold text-sm ${
               isSuccess ? "bg-success hover:bg-success text-white" : ""

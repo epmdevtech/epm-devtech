@@ -381,9 +381,9 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
                   <MagneticButton
                     type="submit"
                     disabled={isSending || isSuccess}
-                    variant={isSuccess ? "secondary" : "primary"}
+                    variant={isSuccess ? "secondary" : "chamfer"}
                     size="default"
-                    className={`btn-submit px-7 py-3 rounded-lg font-semibold text-sm w-full sm:w-auto ${
+                    className={`btn-submit px-7 py-3 rounded-md font-semibold text-sm w-full sm:w-auto ${
                       isSuccess
                         ? "bg-success text-white shadow-sm"
                         : "bg-brand text-on-brand hover:bg-brand-hover active:bg-brand-active"

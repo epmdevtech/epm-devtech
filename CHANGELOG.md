@@ -9,7 +9,28 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
-## [0.0.102-recalibracao-ux-magnetic-button] - 2026-10-03
+## [0.0.103-padronizacao-botoes-engineering-chamfer] - 2026-10-03
+
+### Adicionado
+- **`specs/SPEC-103-padronizacao-botoes-engineering-chamfer.md`**: Especificação técnica aprovada para a padronização visual global dos botões de ação e CTAs do ecossistema EPM DevTech com a geometria técnica autoral "Engineering Chamfer" (3 cantos arredondados e canto superior direito chanfrado a 45º via `clip-path`).
+- **`tasks/TASK-103-padronizacao-botoes-engineering-chamfer.md`**: Tarefa e checklist de execução concluídos sob o protocolo Universal SDD.
+- **`reviews/QA-103.md`**: Relatório de QA com validação integral dos quality gates (0 erros TypeScript, 0 erros ESLint, 231 testes unitários no Vitest com 99.18% de cobertura geral, 46 testes Playwright E2E aprovados e build de produção com pré-renderização estática).
+- **`src/components/ui/__tests__/button.test.tsx`**: Suíte de testes unitários para o componente base `Button` cobrindo variantes `chamfer`, `chamfer-outline`, `chamfer-gradient`, tamanhos (`sm`, `md`, `lg`, `default`), `asChild` com Slot e disparos de evento.
+
+### Modificado
+- **`src/index.css`**: Adicionados utilitários `.btn-chamfer` e `.btn-chamfer-dual` na camada `@layer utilities` com polígonos CSS de precisão a 45º.
+- **`src/components/ui/button.tsx`**: Adicionadas as variantes `chamfer` (fundo sólido `bg-brand`, texto `text-on-brand`, sombra e scale active), `chamfer-outline` (fundo translúcido escuro, borda sutil, hover esmeralda/ciano e backdrop-blur) e `chamfer-gradient`, além do tamanho `md` (`h-10 px-6 py-2.5`).
+- **`src/components/ui/MagneticButton.tsx`**: Herança padrão da geometria `.btn-chamfer` e `rounded-md`, adição das variantes `chamfer` e `chamfer-outline`, tamanho `md` e adaptação da cortina filler animada.
+- **`src/components/layout/Header.tsx`**: Botão CTA desktop e drawer mobile padronizados com `variant="chamfer"`.
+- **`src/components/sections/Hero.tsx`**: CTA primário "Vamos conversar" atualizado com `variant="chamfer"` e `size="lg"`, mantendo estritamente os tokens de marca e regras de conversão.
+- **`src/pages/ServicesPage.tsx`**: CTA principal da página de serviços atualizado com `variant="chamfer"` e `size="lg"`.
+- **`src/pages/AboutPage.tsx`**: Integrado CTA institucional no hero editorial com `variant="chamfer"` e `size="md"`.
+- **`src/pages/FAQPage.tsx`**: CTA final da página de dúvidas atualizado com `variant="chamfer"`.
+- **`src/pages/NotFound.tsx`**: Botões da página 404 padronizados com `variant="chamfer"` e `variant="chamfer-outline"`.
+- **`src/components/ContactForm.tsx` & `src/components/sections/Contact.tsx`**: Botões de envio de formulário padronizados com `variant="chamfer"`.
+- **`src/components/ui/__tests__/MagneticButton.test.tsx`**: Testes expandidos para as novas variantes `chamfer` e `chamfer-outline`.
+- **`PROJECT.md`**: Atualização do catálogo canônico e contadores de testes unitários (231 testes em 37 suítes).
+
 
 ### Adicionado
 - **`specs/SPEC-102-recalibracao-ux-magnetic-button.md`**: Especificação técnica aprovada para recalibração cinemática e de usabilidade do `MagneticButton`, eliminando o comportamento invasivo de *cursor hijacking* através de margem estrita de proximidade e trava física de deslocamento.

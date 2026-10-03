@@ -85,7 +85,8 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 w-full sm:w-auto">
               <MagneticButton
                 to="/contato"
-                variant="primary"
+                variant="chamfer"
+                size="lg"
                 onClick={() => navigate("/contato")}
                 aria-label="Vamos conversar sobre seu projeto"
                 className="w-full sm:w-auto h-12 px-7 rounded-md font-semibold text-sm sm:text-base min-h-[44px]"
