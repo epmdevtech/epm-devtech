@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Cpu, Code2, Database, RefreshCw, ArrowRight, CheckCircle2, ShieldCheck, Activity } from "lucide-react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 /**
  * HomeServicesBento
@@ -10,8 +11,15 @@ import { Cpu, Code2, Database, RefreshCw, ArrowRight, CheckCircle2, ShieldCheck,
  * aos tokens semânticos em 2 camadas (Dark/Light/System) e WCAG AAA/AA.
  */
 export const HomeServicesBento = () => {
+  const bentoRef = useScrollReveal<HTMLDivElement>({
+    selector: ":scope > a",
+    stagger: 0.12,
+    y: 30,
+    duration: 0.7,
+  });
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-6 mb-8">
+    <div ref={bentoRef} className="grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-6 mb-8">
       {/* ─── Card 1 (Destaque Principal: md:col-span-7) — APIs e Back-end ─── */}
       <Link
         to="/servicos"

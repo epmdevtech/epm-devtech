@@ -50,6 +50,8 @@ A página apresenta serviços, tecnologias, diferenciais, projetos de autoridade
 | Zod               | ^3.25.76   | Validação de schemas                 |
 | EmailJS           | ^4.4.1     | Envio de e-mails pelo cliente        |
 | next-themes       | ^0.3.0     | Dark/Light mode                      |
+| lenis             | ^1.1.20    | Rolagem suave corporativa (smooth scroll) |
+| gsap              | ^3.12.7    | Animações acopladas ao scroll (ScrollTrigger) |
 
 ### Infraestrutura
 | Tecnologia        | Versão     | Papel                                |
@@ -191,9 +193,10 @@ src/
 | ScrollToTop       | ✅ Neutro / Flat | Ícone ChevronUp (20px), design utilitário neutro sem glow ou realce verde, fade suave >450px e elevação dinâmica no rodapé |
 | Cookie Banner     | ✅ Otimizado     | Lazy load assíncrono + defer timer (3.5s)  |
 | Multi-Rota & SEO  | ✅ Multi-Rota SPA | Transição de monólito one-page para SPA multi-rota com rotas canônicas independentes (`/`, `/servicos`, `/como-trabalhamos`, `/experiencia`, `/engenharia`, `/sobre`, `/contato`, `/duvidas-frequentes`), menu enxuto (5 links + 1 CTA "Fale conosco"), preservação 301 de URLs e pré-render estático HTML pós-build (SPEC-060 / SPEC-071) |
+| Smooth Scroll & Scroll Reveals | ✅ Lenis + GSAP ScrollTrigger | Sistema global de rolagem suave com `Lenis` integrado ao loop de animação de alta performance do GSAP (`gsap.ticker` com `lagSmoothing(0)`), sincronizado com `ScrollTrigger.update`, reset imediato em transições de rota, âncoras com offset de cabeçalho fixo, suporte estrito a `prefers-reduced-motion` e hook `useScrollReveal` com `gsap.context()` para revelações sóbrias escalonadas em cabeçalhos, bento grid de serviços e etapas do pipeline (SPEC-099). |
 | Copywriting & UX Writing | ✅ Humanização B2B Integral | Auditoria e reescrita de 100% dos textos do site (Home, Serviços, Como Trabalhamos, Experiência, Engenharia, Sobre nós, Contato, FAQ, Rodapé e metadados). Foco estrito em dores operacionais concretas (gargalos de processos, lentidão, retrabalho com planilhas manuais, riscos de legados), pragmatismo técnico e comunicação direta de liderança técnica com decisores de negócio. Eliminação de jargões vazios, sem clichês de marketing, posicionamento 100% remoto em escala nacional e zero dados cadastrais burocráticos no corpo do site. (SPEC-092) |
-| Testes unitários  | ✅ Implementado  | 33/33 suites, 203/203 testes passando (100% suites aprovadas) |
-| Testes E2E        | ✅ Implementado  | Suíte Playwright completa (53 testes passando entre multi-rota, design system, tokens, constelação, light mode e estabilidade) |
+| Testes unitários  | ✅ Implementado  | 35/35 suites, 211/211 testes passando (100% suites aprovadas, cobertura geral 98.95%) |
+| Testes E2E        | ✅ Implementado  | Suíte Playwright completa (46/46 testes aprovados cobrindo multi-rota, design system, tokens, constelação, light mode e estabilidade) |
 | Acessibilidade    | ✅ 100% WCAG AAA | Botão primário com contraste 12.44:1 (WCAG AAA), texto primário 17.26:1 (Dark) e 17.81:1 (Light), skip-link acessível, foco programático em `<h1>`, `aria-current="page"`, touch target ≥ 44px, zero layout shift |
 | Performance       | ✅ 100% Otimizado| Mobile Perf: 84 (+16 pontos vs baseline 68), TBT: 480ms (-77% de bloqueio), CLS: 0.000; Desktop Perf: 97, SEO: 100/100, FCP 0.5s / LCP 0.6s |
 | Proxy Odontologia | ✅ Implementado  | `/odontologia-demo` → proxy reverso Vercel para `dentistry-demo.elessandrodev.workers.dev` com 4 headers AppSec (SPEC-044) |

@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 interface ProcessStep {
   step: string;
@@ -74,6 +75,12 @@ const steps: ProcessStep[] = [
  */
 export const HomeProcessPipeline: FC = () => {
   const shouldReduceMotion = useReducedMotion();
+  const pipelineRef = useScrollReveal<HTMLOListElement>({
+    selector: ":scope > li",
+    stagger: 0.12,
+    y: 24,
+    duration: 0.65,
+  });
 
   return (
     <div className="relative mb-8">
@@ -116,7 +123,7 @@ export const HomeProcessPipeline: FC = () => {
       </div>
 
       {/* Lista ordenada acessível de etapas */}
-      <ol className="grid grid-cols-1 md:grid-cols-4 gap-6 lg:gap-8 relative z-10">
+      <ol ref={pipelineRef} className="grid grid-cols-1 md:grid-cols-4 gap-6 lg:gap-8 relative z-10">
         {steps.map((s) => (
           <li
             key={s.step}

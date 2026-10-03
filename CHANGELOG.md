@@ -9,6 +9,26 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.99-sistema-smooth-scroll-lenis-gsap-scroll-reveals] - 2026-10-02
+
+### Adicionado
+- **`specs/SPEC-099-sistema-smooth-scroll-lenis-gsap-scroll-reveals.md`**: Especificação técnica aprovada pelo PO para implementação de sistema de rolagem suave (*smooth scroll*) com Lenis e revelações reativas acopladas à rolagem (*scroll-driven reveals*) com GSAP + ScrollTrigger, com física inercial corporativa sóbria e elegante.
+- **`tasks/TASK-099-sistema-smooth-scroll-lenis-gsap-scroll-reveals.md`**: Tarefa e checklist de execução concluídos sob o protocolo Universal SDD.
+- **`reviews/QA-099.md`**: Relatório de QA com validação de 100% dos quality gates (zero erros de compilação, linting sem advertências, 211 testes unitários passando, 46 testes E2E do Playwright aprovados e chunking otimizado).
+- **`src/components/layout/SmoothScrollProvider.tsx` & `src/hooks/useSmoothScroll.ts`**: Provedor global de rolagem suave com `lenis`, sincronização estrita de frames via `gsap.ticker` com `lagSmoothing(0)`, integração de transições de rotas SPA no React Router (`immediate: true` e `ScrollTrigger.refresh()`), suporte a hash de âncoras com offset para cabeçalho fixo, suporte defensivo a `prefers-reduced-motion` e descarte limpo (`ctx.revert()`, `lenis.destroy()`).
+- **`src/hooks/useScrollReveal.ts`**: Hook corporativo com `gsap.context()` para revelações atreladas à rolagem, suporte a parâmetros de animação configuráveis, normalização de seletores relativos (`:scope > ...`), redução de deslocamento em mobile e respeito estrito a `prefers-reduced-motion`.
+- **`src/components/layout/__tests__/SmoothScrollProvider.test.tsx`** e **`src/hooks/__tests__/useScrollReveal.test.tsx`**: Testes unitários cobrindo renderização, contexto, navegação com hash, redução de movimento vestibular e ciclo de vida de limpeza.
+
+### Modificado
+- **`package.json`**: Adicionadas as dependências `lenis` e `gsap`.
+- **`vite.config.ts`**: Configurado chunk manual `gsap-lenis` com limite e isolamento estrito (tamanho resultante do chunk: 134.78 kB bruto / 51 kB gzip).
+- **`src/components/layout/Layout.tsx`**: Encapsulado com `<SmoothScrollProvider>`.
+- **`src/components/ui/SectionHeader.tsx`**: Integrado `useScrollReveal` para revelação suave e contínua do cabeçalho de seção.
+- **`src/components/sections/HomeServicesBento.tsx`**: Integrado `useScrollReveal` com stagger nos cards de serviços.
+- **`src/components/sections/HomeProcessPipeline.tsx`**: Integrado `useScrollReveal` com stagger nas 4 etapas do processo.
+- **`src/setupTests.ts`**: Adicionados mocks defensivos de `window.matchMedia`, `ResizeObserver` e `window.scrollTo` para o ambiente jsdom.
+- **`PROJECT.md`**: Atualização do stack frontend, contadores de testes unitários (211 testes em 35 suítes) e descrição do módulo de Smooth Scroll & Scroll Reveals.
+
 ## [0.0.98-correcao-atributo-r-svg-circle-constelacao] - 2026-10-02
 
 ### Adicionado

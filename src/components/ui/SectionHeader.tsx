@@ -1,6 +1,7 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import BrandChipIcon from "@/components/ui/BrandChipIcon";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 export interface SectionHeaderProps {
   id?: string;
@@ -32,8 +33,16 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
   const isH1 = as === "h1";
   const isCenter = align === "center";
 
+  const headerRef = useScrollReveal<HTMLElement>({
+    selector: "[data-testid='section-eyebrow'], h1, h2, p",
+    stagger: 0.08,
+    y: 20,
+    duration: 0.65,
+  });
+
   return (
     <header
+      ref={headerRef}
       className={cn(
         "relative w-full mb-12 sm:mb-16",
         isCenter ? "text-center max-w-3xl mx-auto" : "text-left max-w-2xl",

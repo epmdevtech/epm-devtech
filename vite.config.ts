@@ -97,6 +97,7 @@ export default defineConfig(({ mode }) => ({
             id.includes('use-sidecar')
           ) return 'radix';
 
+          if (id.includes('gsap') || id.includes('lenis')) return 'gsap-lenis';
           if (id.includes('lucide-react')) return 'icons';
           if (id.includes('@emailjs')) return 'emailjs';
           if (id.includes('@tanstack')) return 'tanstack';
