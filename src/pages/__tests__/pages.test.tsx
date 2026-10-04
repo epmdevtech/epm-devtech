@@ -82,18 +82,18 @@ describe('Rotas e Páginas Independentes (SPEC-060)', () => {
     expect(screen.queryByRole('heading', { level: 2, name: /Vamos entender o cenário da sua empresa\?/i })).not.toBeInTheDocument();
   });
 
-  it('ServicesPage (/servicos) renderiza H1, CTA de conversa e conteúdo de serviços sem CTA final redundante', () => {
+  it('ServicesPage (/services) renderiza H1, CTA de conversa e conteúdo de serviços sem CTA final redundante', () => {
     renderWithProviders(<ServicesPage />);
     expect(screen.getByRole('heading', { level: 1, name: /Soluções de software sob medida para destravar sua empresa/i })).toBeInTheDocument();
     expect(screen.getByText('SERVIÇOS')).toBeInTheDocument();
     const ctaButton = screen.getByRole('link', { name: /Conversar sobre seu projeto/i });
     expect(ctaButton).toBeInTheDocument();
-    expect(ctaButton).toHaveAttribute('href', '/contato');
+    expect(ctaButton).toHaveAttribute('href', '/contact');
     expect(screen.getByText('Escopo e metas claras')).toBeInTheDocument();
     expect(screen.queryByText('Iniciar diagnóstico do projeto')).not.toBeInTheDocument();
   });
 
-  it('HowWeWorkPage (/como-trabalhamos) renderiza H1, metodologia e manifesto técnico sem CTA final redundante', () => {
+  it('HowWeWorkPage (/how-we-work) renderiza H1, metodologia e manifesto técnico sem CTA final redundante', () => {
     renderWithProviders(<HowWeWorkPage />);
     expect(screen.getByRole('heading', { level: 1, name: 'Como trabalhamos' })).toBeInTheDocument();
     expect(screen.getByText('METODOLOGIA')).toBeInTheDocument();
@@ -103,7 +103,7 @@ describe('Rotas e Páginas Independentes (SPEC-060)', () => {
     expect(screen.queryByText('Fale com um engenheiro')).not.toBeInTheDocument();
   });
 
-  it('ExperiencePage (/experiencia) renderiza H1, Engineering Matrix, Enterprise Ledger e aviso ético sem CTA final redundante', () => {
+  it('ExperiencePage (/experience) renderiza H1, Engineering Matrix, Enterprise Ledger e aviso ético sem CTA final redundante', () => {
     renderWithProviders(<ExperiencePage />);
     expect(screen.getByRole('heading', { level: 1, name: 'Experiência em projetos reais' })).toBeInTheDocument();
     expect(screen.getByText('EXPERIÊNCIA E ESCALA')).toBeInTheDocument();
@@ -119,7 +119,7 @@ describe('Rotas e Páginas Independentes (SPEC-060)', () => {
     expect(screen.queryByText('Sua empresa tem uma demanda de alta complexidade?')).not.toBeInTheDocument();
   });
 
-  it('EngineeringPage (/engenharia) renderiza H1, Filosofia de Execução, Pipeline CI/CD e Architectural Blueprint sem CTA final redundante', () => {
+  it('EngineeringPage (/engineering) renderiza H1, Filosofia de Execução, Pipeline CI/CD e Architectural Blueprint sem CTA final redundante', () => {
     renderWithProviders(<EngineeringPage />);
     expect(screen.getByRole('heading', { level: 1, name: 'Engenharia pensada para evoluir' })).toBeInTheDocument();
     expect(screen.getByText('ENGENHARIA DE SOFTWARE')).toBeInTheDocument();
@@ -131,7 +131,7 @@ describe('Rotas e Páginas Independentes (SPEC-060)', () => {
     expect(screen.queryByText('Precisa de engenharia sólida no seu produto ou sistema interno?')).not.toBeInTheDocument();
   });
 
-  it('AboutPage (/sobre) renderiza Hero editorial monocromático com H1, subtítulo, timeline e manifesto sem trust marks, dados burocráticos ou CTA final redundante', () => {
+  it('AboutPage (/about) renderiza Hero editorial monocromático com H1, subtítulo, timeline e manifesto sem trust marks, dados burocráticos ou CTA final redundante', () => {
     renderWithProviders(<AboutPage />);
     expect(screen.getByRole('heading', { level: 1, name: 'Transformando desafios em soluções que funcionam' })).toBeInTheDocument();
     expect(screen.getByText(/\[ QUEM SOMOS \/\/ POSICIONAMENTO \]/i)).toBeInTheDocument();
@@ -152,14 +152,14 @@ describe('Rotas e Páginas Independentes (SPEC-060)', () => {
     expect(screen.queryByText('Pronto para construir sua próxima solução com quem entende de código?')).not.toBeInTheDocument();
   });
 
-  it('ContactPage (/contato) renderiza H1 e formulário de contato', () => {
+  it('ContactPage (/contact) renderiza H1 e formulário de contato', () => {
     renderWithProviders(<ContactPage />);
     expect(screen.getByRole('heading', { level: 1, name: 'Fale sobre seu projeto' })).toBeInTheDocument();
     expect(screen.getByText('CONTATO')).toBeInTheDocument();
     expect(screen.getByTestId('mock-contact')).toBeInTheDocument();
   });
 
-  it('FAQPage (/duvidas-frequentes) renderiza H1 e perguntas frequentes', () => {
+  it('FAQPage (/faq) renderiza H1 e perguntas frequentes', () => {
     renderWithProviders(<FAQPage />);
     expect(screen.getByRole('heading', { level: 1, name: 'Dúvidas frequentes' })).toBeInTheDocument();
     expect(screen.getByText('FAQ')).toBeInTheDocument();

@@ -7,11 +7,11 @@ import { MagneticButton } from "@/components/ui/MagneticButton";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { href: "/servicos", label: "Serviços" },
-  { href: "/como-trabalhamos", label: "Como trabalhamos" },
-  { href: "/experiencia", label: "Experiência" },
-  { href: "/engenharia", label: "Engenharia" },
-  { href: "/sobre", label: "Sobre nós" },
+  { href: "/services", label: "Serviços" },
+  { href: "/how-we-work", label: "Como trabalhamos" },
+  { href: "/experience", label: "Experiência" },
+  { href: "/engineering", label: "Engenharia" },
+  { href: "/about", label: "Sobre nós" },
 ];
 
 export const Header = () => {
@@ -142,10 +142,10 @@ export const Header = () => {
             {/* Desktop CTA (1 botão de ação magnético) */}
             <div className="hidden lg:flex items-center justify-end shrink-0">
               <MagneticButton
-                to="/contato"
+                to="/contact"
                 variant="chamfer"
                 size="sm"
-                onClick={() => navigate("/contato")}
+                onClick={() => navigate("/contact")}
                 aria-label="Fale conosco"
               >
                 Fale conosco
@@ -233,12 +233,12 @@ export const Header = () => {
                 }}
               >
                 <MagneticButton
-                  to="/contato"
+                  to="/contact"
                   variant="chamfer"
                   className="w-full min-h-[44px] text-sm font-semibold"
                   onClick={() => {
                     closeMobileMenu();
-                    navigate("/contato");
+                    navigate("/contact");
                   }}
                   aria-label="Fale conosco"
                 >

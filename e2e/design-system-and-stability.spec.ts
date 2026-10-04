@@ -70,7 +70,7 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
   });
 
   test('Cor principal de destaque utiliza o verde da marca EPM DEVTECH (#2DD4BF / teal)', async ({ page }) => {
-    await page.goto('/contato');
+    await page.goto('/contact');
     await page.waitForLoadState('domcontentloaded');
 
     // Botão de envio no formulário de contato (verde-água oficial brand #2DD4BF)
@@ -84,10 +84,10 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     // Verde-água teal oficial (#2DD4BF / brand) — formato rgb(45, 212, 191)
     expect(btnBgColor).toBe('rgb(45, 212, 191)');
 
-    // Garante presença do CTA principal do Hero na home direcionando para /contato
+    // Garante presença do CTA principal do Hero na home direcionando para /contact
     await page.goto('/');
     await page.waitForLoadState('domcontentloaded');
-    const heroCta = page.locator('#hero a[href="/contato"], #hero a[href="#contato"]').first();
+    const heroCta = page.locator('#hero a[href="/contact"], #hero a[href="#contato"]').first();
     await expect(heroCta).toBeVisible();
     await expect(heroCta).toContainText('Vamos conversar');
   });
@@ -96,18 +96,18 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     await page.goto('/');
     await page.waitForLoadState('domcontentloaded');
 
-    // Clica no cenário "Criar um novo sistema, portal ou plataforma web" que aponta para /servicos#sistemas
+    // Clica no cenário "Criar um novo sistema, portal ou plataforma web" que aponta para /services#sistemas
     const scenarioLink = page.locator('[data-testid="scenario-link-sistemas"]');
     await expect(scenarioLink).toBeVisible();
     await scenarioLink.click();
 
-    await page.waitForURL('**/servicos#sistemas');
+    await page.waitForURL('**/services#sistemas');
     const targetArticle = page.locator('#sistemas');
     await expect(targetArticle).toBeVisible();
   });
 
   test('ArchitecturalBlueprint renderiza camadas de tecnologias com interação de foco e acessibilidade', async ({ page }) => {
-    await page.goto('/engenharia');
+    await page.goto('/engineering');
     await page.waitForLoadState('domcontentloaded');
 
     // Rola até a seção de tecnologias
@@ -142,7 +142,7 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
   });
 
   test('ArchitecturalBlueprint exibe tooltip e detalhes contextuais ao interagir com tecnologias', async ({ page }) => {
-    await page.goto('/engenharia');
+    await page.goto('/engineering');
     await page.waitForLoadState('domcontentloaded');
 
     // Rola até a seção de tecnologias
@@ -262,12 +262,12 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
 
   test('Abertura do dropdown de tipo de projeto não causa layout shift no menu superior (Header fixo)', async ({ page }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
-    await page.goto('/contato');
+    await page.goto('/contact');
     await page.waitForLoadState('domcontentloaded');
     await page.waitForTimeout(600);
 
     const header = page.locator('header.fixed');
-    const contatoLink = page.locator('header.fixed a[href="/contato"]').first();
+    const contatoLink = page.locator('header.fixed a[href="/contact"]').first();
     const trigger = page.locator('#projectType');
 
     // Medições antes do clique
@@ -421,13 +421,13 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
   test('Sistema de Camadas Tonais (SPEC-082): Ritmo tonal e ausência de linhas divisórias em todas as rotas', async ({ page }) => {
     const routesToTest = [
       '/',
-      '/servicos',
-      '/como-trabalhamos',
-      '/experiencia',
-      '/engenharia',
-      '/sobre',
-      '/contato',
-      '/duvidas-frequentes',
+      '/services',
+      '/how-we-work',
+      '/experience',
+      '/engineering',
+      '/about',
+      '/contact',
+      '/faq',
     ];
 
     for (const route of routesToTest) {
@@ -525,7 +525,7 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     await expect(subheadline).toBeVisible();
 
     // 3. Valida CTA principal único e ausência de CTA secundário (SPEC-084)
-    const ctaPrimario = page.locator('#hero a[href="/contato"]').first();
+    const ctaPrimario = page.locator('#hero a[href="/contact"]').first();
     await expect(ctaPrimario).toBeVisible();
     await expect(ctaPrimario).toContainText('Vamos conversar');
 
@@ -545,10 +545,10 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
 
     // Valida os 4 links de cenário com navegação ancorada
     const scenarios = [
-      { id: 'sistemas', text: 'Criar um novo sistema, portal ou plataforma corporativa', href: '/servicos#sistemas' },
-      { id: 'integracoes', text: 'Conectar sistemas isolados e acabar com retrabalho manual', href: '/servicos#integracoes' },
-      { id: 'legados', text: 'Modernizar um software legado sem interromper o dia a dia', href: '/servicos#legados' },
-      { id: 'diagnostico', text: 'Avaliar a arquitetura do meu sistema com um diagnóstico técnico', href: '/contato' },
+      { id: 'sistemas', text: 'Criar um novo sistema, portal ou plataforma corporativa', href: '/services#sistemas' },
+      { id: 'integracoes', text: 'Conectar sistemas isolados e acabar com retrabalho manual', href: '/services#integracoes' },
+      { id: 'legados', text: 'Modernizar um software legado sem interromper o dia a dia', href: '/services#legados' },
+      { id: 'diagnostico', text: 'Avaliar a arquitetura do meu sistema com um diagnóstico técnico', href: '/contact' },
     ];
 
     for (const scenario of scenarios) {

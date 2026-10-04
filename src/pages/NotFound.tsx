@@ -47,7 +47,7 @@ export const NotFound = () => {
               size="default"
               className="min-h-[44px] w-full sm:w-auto"
             >
-              <Link to="/servicos" className="inline-flex items-center gap-2">
+              <Link to="/services" className="inline-flex items-center gap-2">
                 <Code2 className="w-4 h-4" />
                 <span>Ver serviços</span>
               </Link>
@@ -58,7 +58,7 @@ export const NotFound = () => {
               size="default"
               className="min-h-[44px] w-full sm:w-auto text-muted-foreground hover:text-foreground"
             >
-              <Link to="/contato" className="inline-flex items-center gap-2">
+              <Link to="/contact" className="inline-flex items-center gap-2">
                 <Mail className="w-4 h-4" />
                 <span>Fale conosco</span>
               </Link>

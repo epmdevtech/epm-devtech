@@ -77,13 +77,13 @@ export const ExperiencePage = () => {
           name="description"
           content="Indicadores de escala, estabilidade de 99,9% uptime e experiência prática em indústria, varejo, educação e energia."
         />
-        <link rel="canonical" href={`${BASE_URL}/experiencia`} />
+        <link rel="canonical" href={`${BASE_URL}/experience`} />
         <meta property="og:title" content="Experiência em Projetos Reais | EPM DevTech" />
         <meta
           property="og:description"
           content="Indicadores de escala, estabilidade de 99,9% uptime e experiência prática em indústria, varejo, educação e energia."
         />
-        <meta property="og:url" content={`${BASE_URL}/experiencia`} />
+        <meta property="og:url" content={`${BASE_URL}/experience`} />
         <meta property="og:image" content={`${BASE_URL}/og-image-1200x630.png`} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Experiência em Projetos Reais | EPM DevTech" />

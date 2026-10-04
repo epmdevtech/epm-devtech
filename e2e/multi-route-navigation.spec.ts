@@ -10,46 +10,46 @@ test.describe('EPM DEVTECH — Arquitetura de Informação Multi-Rota (SPEC-060)
       canonicalUrl: 'https://epmdevtech.com.br/',
     },
     {
-      path: '/servicos',
+      path: '/services',
       expectedTitle: 'Serviços de Desenvolvimento de Software | EPM DevTech',
       expectedH1: 'Soluções de software sob medida para destravar sua empresa',
-      canonicalUrl: 'https://epmdevtech.com.br/servicos',
+      canonicalUrl: 'https://epmdevtech.com.br/services',
     },
     {
-      path: '/como-trabalhamos',
+      path: '/how-we-work',
       expectedTitle: 'Como Trabalhamos | EPM DevTech',
       expectedH1: 'Como trabalhamos',
-      canonicalUrl: 'https://epmdevtech.com.br/como-trabalhamos',
+      canonicalUrl: 'https://epmdevtech.com.br/how-we-work',
     },
     {
-      path: '/experiencia',
+      path: '/experience',
       expectedTitle: 'Experiência em Projetos Reais | EPM DevTech',
       expectedH1: 'Experiência em projetos reais',
-      canonicalUrl: 'https://epmdevtech.com.br/experiencia',
+      canonicalUrl: 'https://epmdevtech.com.br/experience',
     },
     {
-      path: '/engenharia',
+      path: '/engineering',
       expectedTitle: 'Engenharia e Tecnologias | EPM DevTech',
       expectedH1: 'Engenharia pensada para evoluir',
-      canonicalUrl: 'https://epmdevtech.com.br/engenharia',
+      canonicalUrl: 'https://epmdevtech.com.br/engineering',
     },
     {
-      path: '/sobre',
+      path: '/about',
       expectedTitle: 'Sobre a EPM DevTech | Engenharia de Software Corporativa',
       expectedH1: 'Transformando desafios em soluções que funcionam',
-      canonicalUrl: 'https://epmdevtech.com.br/sobre',
+      canonicalUrl: 'https://epmdevtech.com.br/about',
     },
     {
-      path: '/contato',
+      path: '/contact',
       expectedTitle: 'Fale Sobre Seu Projeto | EPM DevTech',
       expectedH1: 'Fale sobre seu projeto',
-      canonicalUrl: 'https://epmdevtech.com.br/contato',
+      canonicalUrl: 'https://epmdevtech.com.br/contact',
     },
     {
-      path: '/duvidas-frequentes',
+      path: '/faq',
       expectedTitle: 'Dúvidas Frequentes | EPM DevTech',
       expectedH1: 'Dúvidas frequentes',
-      canonicalUrl: 'https://epmdevtech.com.br/duvidas-frequentes',
+      canonicalUrl: 'https://epmdevtech.com.br/faq',
     },
   ];
 
@@ -87,11 +87,11 @@ test.describe('EPM DEVTECH — Arquitetura de Informação Multi-Rota (SPEC-060)
     await expect(nav).toBeVisible();
 
     const expectedLinks = [
-      { text: 'Serviços', href: '/servicos' },
-      { text: 'Como trabalhamos', href: '/como-trabalhamos' },
-      { text: 'Experiência', href: '/experiencia' },
-      { text: 'Engenharia', href: '/engenharia' },
-      { text: 'Sobre nós', href: '/sobre' },
+      { text: 'Serviços', href: '/services' },
+      { text: 'Como trabalhamos', href: '/how-we-work' },
+      { text: 'Experiência', href: '/experience' },
+      { text: 'Engenharia', href: '/engineering' },
+      { text: 'Sobre nós', href: '/about' },
     ];
 
     for (const item of expectedLinks) {
@@ -101,14 +101,14 @@ test.describe('EPM DEVTECH — Arquitetura de Informação Multi-Rota (SPEC-060)
     }
 
     // Botão de Ação CTA único no Header
-    const ctaButton = page.locator('header a[href="/contato"]').first();
+    const ctaButton = page.locator('header a[href="/contact"]').first();
     await expect(ctaButton).toBeVisible();
     await expect(ctaButton).toContainText('Fale conosco');
 
     // Ao clicar em um link, navega para a rota e marca aria-current="page"
-    await nav.locator('a[href="/servicos"]').click();
-    await page.waitForURL('**/servicos');
-    const activeLink = nav.locator('a[href="/servicos"]');
+    await nav.locator('a[href="/services"]').click();
+    await page.waitForURL('**/services');
+    const activeLink = nav.locator('a[href="/services"]');
     await expect(activeLink).toHaveAttribute('aria-current', 'page');
   });
 
@@ -132,17 +132,17 @@ test.describe('EPM DEVTECH — Arquitetura de Informação Multi-Rota (SPEC-060)
     await menuButton.click();
     await expect(drawer).toBeVisible();
 
-    const mobileLink = drawer.locator('a[href="/como-trabalhamos"]');
+    const mobileLink = drawer.locator('a[href="/how-we-work"]');
     await mobileLink.click();
-    await page.waitForURL('**/como-trabalhamos');
+    await page.waitForURL('**/how-we-work');
     await expect(drawer).toBeHidden();
   });
 
   test('Redirecionamento de hashes legados na home para novas rotas', async ({ page }) => {
     await page.goto('/#servicos');
     await page.waitForLoadState('domcontentloaded');
-    await page.waitForURL('**/servicos');
-    expect(page.url()).toContain('/servicos');
+    await page.waitForURL('**/services');
+    expect(page.url()).toContain('/services');
   });
 
   test('Página 404 em português com links de recuperação e noindex', async ({ page }) => {
@@ -158,15 +158,15 @@ test.describe('EPM DEVTECH — Arquitetura de Informação Multi-Rota (SPEC-060)
     const homeLink = page.locator('a[href="/"]');
     await expect(homeLink.first()).toBeVisible();
 
-    const servicosLink = page.locator('a[href="/servicos"]');
+    const servicosLink = page.locator('a[href="/services"]');
     await expect(servicosLink.first()).toBeVisible();
 
-    const contatoLink = page.locator('a[href="/contato"]');
+    const contatoLink = page.locator('a[href="/contact"]');
     await expect(contatoLink.first()).toBeVisible();
   });
 
   test('Aviso ético de experiência profissional é exibido e declara não-clientes da EPM', async ({ page }) => {
-    await page.goto('/experiencia');
+    await page.goto('/experience');
     await page.waitForLoadState('domcontentloaded');
 
     const disclaimer = page.locator('text=Não são clientes da EPM DevTech');

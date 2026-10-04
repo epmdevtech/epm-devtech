@@ -61,13 +61,13 @@ describe("HomeServicesBento Component", () => {
     expect(screen.getByText(/Padrão Strangler Fig aplicado/i)).toBeInTheDocument();
   });
 
-  it("todos os 4 cards possuem links acessíveis direcionando para /servicos", () => {
+  it("todos os 4 cards possuem links acessíveis direcionando para /services", () => {
     renderComponent();
 
     const links = screen.getAllByRole("link");
     expect(links.length).toBe(4);
     links.forEach((link) => {
-      expect(link).toHaveAttribute("href", "/servicos");
+      expect(link).toHaveAttribute("href", "/services");
       expect(link).toHaveAttribute("aria-label");
     });
   });

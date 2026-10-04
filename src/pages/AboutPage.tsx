@@ -100,7 +100,7 @@ export const AboutPage: React.FC = () => {
           name="description"
           content="Software house de engenharia de software sob medida para aplicações corporativas críticas, com atendimento 100% remoto em escala nacional."
         />
-        <link rel="canonical" href={`${BASE_URL}/sobre`} />
+        <link rel="canonical" href={`${BASE_URL}/about`} />
         <meta
           property="og:title"
           content="Sobre a EPM DevTech | Engenharia de Software Corporativa"
@@ -109,7 +109,7 @@ export const AboutPage: React.FC = () => {
           property="og:description"
           content="Software house de engenharia de software sob medida para aplicações corporativas críticas, com atendimento 100% remoto em escala nacional."
         />
-        <meta property="og:url" content={`${BASE_URL}/sobre`} />
+        <meta property="og:url" content={`${BASE_URL}/about`} />
         <meta property="og:image" content={`${BASE_URL}/og-image-1200x630.png`} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
@@ -159,10 +159,10 @@ export const AboutPage: React.FC = () => {
                 {/* CTA Institucional Chamfer */}
                 <div className="flex items-center">
                   <MagneticButton
-                    to="/contato"
+                    to="/contact"
                     variant="chamfer"
                     size="md"
-                    onClick={() => navigate("/contato")}
+                    onClick={() => navigate("/contact")}
                     aria-label="Fale conosco"
                     className="min-h-[44px] font-semibold"
                   >

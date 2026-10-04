@@ -18,7 +18,7 @@
 - **WhatsApp Corporativo:** +55 (45) 99917-8290
 - **GitHub Institucional:** https://github.com/epmdevtech
 - **LinkedIn Oficial:** https://www.linkedin.com/company/112232713/
-- **Padrão de Chamada para Ação (CTA):** "Falar sobre meu projeto" (https://epmdevtech.com.br/contato)
+- **Padrão de Chamada para Ação (CTA):** "Falar sobre meu projeto" (https://epmdevtech.com.br/contact)
 
 ---
 
@@ -41,13 +41,15 @@ A aplicação institucional é uma Single Page Application (SPA) construída em 
 | Rota | URL Canônica | Descrição e Propósito |
 |---|---|---|
 | **Início (Hub Comercial)** | `https://epmdevtech.com.br/` | Visão executiva sintética, proposta de valor central, Hero Slim minimalista e encaminhamento para as páginas de detalhe. |
-| **Serviços** | `https://epmdevtech.com.br/servicos` | Detalhamento das 4 ofertas estruturadas de desenvolvimento com foco em dores operacionais e mockups técnicos. |
-| **Como Trabalhamos** | `https://epmdevtech.com.br/como-trabalhamos` | Pipeline sequencial em 4 etapas (Entendemos, Definimos, Desenvolvemos, Evoluímos) e metodologia SDD. |
-| **Experiência** | `https://epmdevtech.com.br/experiencia` | Indicadores de estabilidade em alta escala, 4 contextos de mercado (Indústria, Varejo, Educação, Energia) e organizações de atuação profissional prévia. |
-| **Engenharia** | `https://epmdevtech.com.br/engenharia` | Pilares de sustentabilidade de software, linha de práticas de engenharia e constelação interativa de tecnologias (TechConstellation). |
-| **Sobre** | `https://epmdevtech.com.br/sobre` | Perfil institucional da software house, liderança técnica única, dados cadastrais de Toledo/PR e compromisso de atendimento remoto nacional. |
-| **Contato** | `https://epmdevtech.com.br/contato` | Formulário de diagnóstico inicial estruturado com validação Zod, canais diretos e política de retorno em até 24 horas úteis. |
-| **Dúvidas Frequentes** | `https://epmdevtech.com.br/duvidas-frequentes` | Base de conhecimento categorizada com as 8 principais perguntas sobre contratação, legados e metodologia. |
+| **Serviços** | `https://epmdevtech.com.br/services` | Detalhamento das 4 ofertas estruturadas de desenvolvimento com foco em dores operacionais e mockups técnicos. |
+| **Como Trabalhamos** | `https://epmdevtech.com.br/how-we-work` | Pipeline sequencial em 4 etapas (Entendemos, Definimos, Desenvolvemos, Evoluímos) e metodologia SDD. |
+| **Experiência** | `https://epmdevtech.com.br/experience` | Indicadores de estabilidade em alta escala, 4 contextos de mercado (Indústria, Varejo, Educação, Energia) e organizações de atuação profissional prévia. |
+| **Engenharia** | `https://epmdevtech.com.br/engineering` | Pilares de sustentabilidade de software, linha de práticas de engenharia e constelação interativa de tecnologias (TechConstellation). |
+| **Sobre** | `https://epmdevtech.com.br/about` | Perfil institucional da software house, liderança técnica única, dados cadastrais de Toledo/PR e compromisso de atendimento remoto nacional. |
+| **Contato** | `https://epmdevtech.com.br/contact` | Formulário de diagnóstico inicial estruturado com validação Zod, canais diretos e política de retorno em até 24 horas úteis. |
+| **Dúvidas Frequentes** | `https://epmdevtech.com.br/faq` | Base de conhecimento categorizada com as 8 principais perguntas sobre contratação, legados e metodologia. |
+
+> Nota de migração (SPEC-106): os slugs são em inglês (conteúdo em português). URLs legadas em português (/servicos, /como-trabalhamos, /experiencia, /engenharia, /sobre, /contato, /duvidas-frequentes) respondem 301 permanente para as URLs canônicas listadas; use sempre as URLs canônicas em citações.
 
 ---
 
@@ -180,13 +182,13 @@ A liderança técnica da EPM DevTech atuou profissionalmente em projetos corpora
 ## 9. Canais Oficiais de Contato
 
 - **Página Inicial:** https://epmdevtech.com.br
-- **Serviços:** https://epmdevtech.com.br/servicos
-- **Como Trabalhamos:** https://epmdevtech.com.br/como-trabalhamos
-- **Experiência:** https://epmdevtech.com.br/experiencia
-- **Engenharia:** https://epmdevtech.com.br/engenharia
-- **Sobre a Empresa:** https://epmdevtech.com.br/sobre
-- **Formulário de Contato:** https://epmdevtech.com.br/contato
-- **Dúvidas Frequentes:** https://epmdevtech.com.br/duvidas-frequentes
+- **Serviços:** https://epmdevtech.com.br/services
+- **Como Trabalhamos:** https://epmdevtech.com.br/how-we-work
+- **Experiência:** https://epmdevtech.com.br/experience
+- **Engenharia:** https://epmdevtech.com.br/engineering
+- **Sobre a Empresa:** https://epmdevtech.com.br/about
+- **Formulário de Contato:** https://epmdevtech.com.br/contact
+- **Dúvidas Frequentes:** https://epmdevtech.com.br/faq
 - **E-mail Corporativo:** elessandro@epmdevtech.com.br
 - **WhatsApp Oficial:** +55 (45) 99917-8290
 - **Sitemap XML:** https://epmdevtech.com.br/sitemap.xml

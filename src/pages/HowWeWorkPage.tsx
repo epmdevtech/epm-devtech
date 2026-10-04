@@ -15,13 +15,13 @@ export const HowWeWorkPage = () => {
           name="description"
           content="Processo estruturado em 4 etapas: Entendemos, Definimos, Desenvolvemos e Evoluímos. Engenharia com previsibilidade e escopo bem alinhado."
         />
-        <link rel="canonical" href={`${BASE_URL}/como-trabalhamos`} />
+        <link rel="canonical" href={`${BASE_URL}/how-we-work`} />
         <meta property="og:title" content="Como Trabalhamos | EPM DevTech" />
         <meta
           property="og:description"
           content="Processo estruturado em 4 etapas: Entendemos, Definimos, Desenvolvemos e Evoluímos. Engenharia com previsibilidade e escopo bem alinhado."
         />
-        <meta property="og:url" content={`${BASE_URL}/como-trabalhamos`} />
+        <meta property="og:url" content={`${BASE_URL}/how-we-work`} />
         <meta property="og:image" content={`${BASE_URL}/og-image-1200x630.png`} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Como Trabalhamos | EPM DevTech" />

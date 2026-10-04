@@ -25,7 +25,7 @@ const NavigationTestHarness = () => {
   return (
     <>
       <ScrollManager />
-      <button onClick={() => navigate('/sobre')}>Ir para Sobre</button>
+      <button onClick={() => navigate('/about')}>Ir para Sobre</button>
     </>
   );
 };
@@ -61,7 +61,7 @@ describe('ScrollManager Component', () => {
     document.body.appendChild(el);
 
     render(
-      <MemoryRouter initialEntries={['/experiencia#contextos']}>
+      <MemoryRouter initialEntries={['/experience#contextos']}>
         <ScrollManager />
       </MemoryRouter>
     );

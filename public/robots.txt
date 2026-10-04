@@ -72,6 +72,10 @@ Allow: /llms.txt
 Allow: /llms-full.txt
 Allow: /sitemap.xml
 
+# URLs legadas em portugues (/servicos, /como-trabalhamos, /experiencia, /engenharia, /sobre,
+# /contato, /duvidas-frequentes) respondem 301 para as rotas em ingles e NAO devem ser bloqueadas,
+# para que os crawlers sigam os redirecionamentos e transfiram a autoridade de dominio.
+
 # Sitemap e Metadados para IA
 Sitemap: https://epmdevtech.com.br/sitemap.xml
 

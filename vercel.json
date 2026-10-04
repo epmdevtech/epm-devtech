@@ -1,12 +1,65 @@
 {
   "redirects": [
-    { "source": "/setores", "destination": "/experiencia", "permanent": true },
-    { "source": "/autoridade", "destination": "/experiencia", "permanent": true },
-    { "source": "/diferenciais", "destination": "/engenharia", "permanent": true },
-    { "source": "/tecnologias", "destination": "/engenharia", "permanent": true },
-    { "source": "/faq", "destination": "/duvidas-frequentes", "permanent": true }
+    {
+      "source": "/servicos",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/como-trabalhamos",
+      "destination": "/how-we-work",
+      "permanent": true
+    },
+    {
+      "source": "/experiencia",
+      "destination": "/experience",
+      "permanent": true
+    },
+    {
+      "source": "/engenharia",
+      "destination": "/engineering",
+      "permanent": true
+    },
+    {
+      "source": "/sobre",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/contato",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/duvidas-frequentes",
+      "destination": "/faq",
+      "permanent": true
+    },
+    {
+      "source": "/setores",
+      "destination": "/experience",
+      "permanent": true
+    },
+    {
+      "source": "/autoridade",
+      "destination": "/experience",
+      "permanent": true
+    },
+    {
+      "source": "/diferenciais",
+      "destination": "/engineering",
+      "permanent": true
+    },
+    {
+      "source": "/tecnologias",
+      "destination": "/engineering",
+      "permanent": true
+    }
   ],
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
   ]
 }

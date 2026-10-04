@@ -9,22 +9,22 @@ const SCENARIOS = [
   {
     id: "sistemas",
     title: "Criar um novo sistema, portal ou plataforma corporativa",
-    href: "/servicos#sistemas",
+    href: "/services#sistemas",
   },
   {
     id: "integracoes",
     title: "Conectar sistemas isolados e acabar com retrabalho manual",
-    href: "/servicos#integracoes",
+    href: "/services#integracoes",
   },
   {
     id: "legados",
     title: "Modernizar um software legado sem interromper o dia a dia",
-    href: "/servicos#legados",
+    href: "/services#legados",
   },
   {
     id: "diagnostico",
     title: "Avaliar a arquitetura do meu sistema com um diagnóstico técnico",
-    href: "/contato",
+    href: "/contact",
   },
 ];
 
@@ -84,10 +84,10 @@ const Hero = () => {
             {/* Ação (CTA): Primário magnético dominante com foco na conversão direta */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 w-full sm:w-auto">
               <MagneticButton
-                to="/contato"
+                to="/contact"
                 variant="chamfer"
                 size="lg"
-                onClick={() => navigate("/contato")}
+                onClick={() => navigate("/contact")}
                 aria-label="Vamos conversar sobre seu projeto"
                 className="w-full sm:w-auto h-12 px-7 rounded-md font-semibold text-sm sm:text-base min-h-[44px]"
               >
