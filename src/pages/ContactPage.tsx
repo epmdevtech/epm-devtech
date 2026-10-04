@@ -20,13 +20,13 @@ export const ContactPage = () => {
           name="description"
           content="Inicie seu projeto de software com a EPM DevTech. Retorno em até 24 horas úteis com avaliação técnica e diagnóstico preliminar."
         />
-        <link rel="canonical" href={`${BASE_URL}/contato`} />
+        <link rel="canonical" href={`${BASE_URL}/contact`} />
         <meta property="og:title" content="Fale Sobre Seu Projeto | EPM DevTech" />
         <meta
           property="og:description"
           content="Inicie seu projeto de software com a EPM DevTech. Retorno em até 24 horas úteis com avaliação técnica e diagnóstico preliminar."
         />
-        <meta property="og:url" content={`${BASE_URL}/contato`} />
+        <meta property="og:url" content={`${BASE_URL}/contact`} />
         <meta property="og:image" content={`${BASE_URL}/og-image-1200x630.png`} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Fale Sobre Seu Projeto | EPM DevTech" />
@@ -84,7 +84,7 @@ export const ContactPage = () => {
 
           <div className="text-center">
             <Link
-              to="/duvidas-frequentes"
+              to="/faq"
               className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline group"
             >
               <span>Ver todas as 8 dúvidas frequentes</span>

@@ -86,8 +86,8 @@ test.describe('Hero Visual Identity & Token Locks (SPEC-059, SPEC-068 & SPEC-069
         const heroEl = document.querySelector('#hero')!;
         const h1El = heroEl.querySelector('#hero-title')!;
         const eyebrowEl = heroEl.querySelector('[data-testid="hero-eyebrow"]')!;
-        const buttonEl = heroEl.querySelector('a[href="/contato"], a[href="#contato"]')!;
-        const linkEl = heroEl.querySelector('a[href^="/servicos"], a[href="#servicos"], a[href="#sobre"]');
+        const buttonEl = heroEl.querySelector('a[href="/contact"], a[href="#contato"]')!;
+        const linkEl = heroEl.querySelector('a[href^="/services"], a[href="#servicos"], a[href="#sobre"]');
         const activeNodeEl = (heroEl.querySelector('.animate-pulse') || heroEl.querySelector('.rounded-full.bg-brand'))!;
 
         return {

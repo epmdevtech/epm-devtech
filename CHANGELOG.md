@@ -9,6 +9,26 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.106-rotas-slugs-ingles] - 2026-10-03
+
+### Adicionado
+- **`specs/SPEC-106-*.md`**, **`tasks/TASK-106-*.md`** e **`reviews/QA-106.md`**: especificação aprovada (D1 = `/about`, D2 = `/faq`), tarefa e QA.
+- **`src/config/routes.ts`**: fonte única de rotas canônicas (`ROUTES`) e mapa de redirects legados (`LEGACY_REDIRECTS`).
+- **Testes**: `routes.test.ts` (consistência com `vercel.json`, sitemap, prerender e llms) e `App.redirects.test.tsx` (11 redirects legados, rota nova e 404).
+
+### Modificado
+- **Rotas/slugs em inglês** (conteúdo permanece em pt-BR): `/services`, `/how-we-work`, `/experience`, `/engineering`, `/about`, `/contact`, `/faq`.
+- **`src/App.tsx`**: rotas via `ROUTES` e `<Navigate replace>` para todos os slugs legados.
+- **Links internos, canonicals e `og:url`**: Header, Footer, Hero, HomeServicesBento, Home, NotFound, páginas e `ScrollManager`.
+- **`vercel.json`**: 11 redirects 301 permanentes diretos (sem cadeias), incluindo `/duvidas-frequentes` → `/faq`.
+- **`scripts/prerender.js`**: gera `dist/<rota-em-inglês>/index.html`.
+- **SEO/LLMO**: `sitemap.xml` (URLs novas, `lastmod` 2026-10-03), `robots.txt` (nota de não bloqueio dos legados), `llms.txt`/`llms-full.txt` (URLs novas + nota de migração), JSON-LD em `index.html`.
+- **Testes unitários e E2E** atualizados para as novas rotas; **`PROJECT.md`** atualizado.
+
+### Observações
+- O componente legado `src/pages/Index.tsx` (one-page, sem uso no roteador) e seu teste não foram alterados (fora do escopo).
+- `npx tsc` reporta erros pré-existentes em `MagneticButton.tsx` e `use-idle.ts`, não relacionados a esta entrega.
+
 ## [0.0.105-constelacao-interativa-inspector] - 2026-10-03
 
 ### Adicionado

@@ -19,7 +19,7 @@ export const ServicesPage = () => {
           name="description"
           content="Do diagnóstico técnico à sustentação: desenvolvemos sistemas web, APIs de alta concorrência e integrações de dados para resolver gargalos operacionais reais."
         />
-        <link rel="canonical" href={`${BASE_URL}/servicos`} />
+        <link rel="canonical" href={`${BASE_URL}/services`} />
         <meta
           property="og:title"
           content="Serviços de Desenvolvimento de Software | EPM DevTech"
@@ -28,7 +28,7 @@ export const ServicesPage = () => {
           property="og:description"
           content="Do diagnóstico técnico à sustentação: desenvolvemos sistemas web, APIs de alta concorrência e integrações de dados para resolver gargalos operacionais reais."
         />
-        <meta property="og:url" content={`${BASE_URL}/servicos`} />
+        <meta property="og:url" content={`${BASE_URL}/services`} />
         <meta property="og:image" content={`${BASE_URL}/og-image-1200x630.png`} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
@@ -52,10 +52,10 @@ export const ServicesPage = () => {
         >
           <div className="mt-8 flex justify-center">
             <MagneticButton
-              to="/contato"
+              to="/contact"
               variant="chamfer"
               size="lg"
-              onClick={() => navigate("/contato")}
+              onClick={() => navigate("/contact")}
               aria-label="Conversar sobre seu projeto"
               className="w-full max-w-xs sm:w-auto font-semibold px-8 py-3.5 rounded-md min-h-[44px]"
             >

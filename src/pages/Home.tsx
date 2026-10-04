@@ -66,7 +66,7 @@ export const Home = () => {
 
           <div>
             <Link
-              to="/servicos"
+              to="/services"
               className="inline-flex items-center gap-1.5 text-sm font-medium text-text-brand hover:underline group"
             >
               <span>Ver todos os serviços →</span>
@@ -94,7 +94,7 @@ export const Home = () => {
 
           <div>
             <Link
-              to="/como-trabalhamos"
+              to="/how-we-work"
               className="inline-flex items-center gap-1.5 text-sm font-medium text-text-brand hover:underline group"
             >
               <span>Ver como trabalhamos →</span>
@@ -126,7 +126,7 @@ export const Home = () => {
 
           <div>
             <Link
-              to="/experiencia"
+              to="/experience"
               className="inline-flex items-center gap-1.5 text-sm font-medium text-text-brand hover:underline group"
             >
               <span>Conhecer nossa experiência →</span>

@@ -39,7 +39,7 @@ describe('MagneticButton Component', () => {
   it('renderiza como Link do React Router quando a prop "to" é fornecida', () => {
     render(
       <MemoryRouter initialEntries={['/']}>
-        <MagneticButton to="/contato" aria-label="Ir para contato">
+        <MagneticButton to="/contact" aria-label="Ir para contato">
           Iniciar Projeto
         </MagneticButton>
       </MemoryRouter>
@@ -47,7 +47,7 @@ describe('MagneticButton Component', () => {
 
     const link = screen.getByRole('link', { name: /Ir para contato/i });
     expect(link).toBeInTheDocument();
-    expect(link).toHaveAttribute('href', '/contato');
+    expect(link).toHaveAttribute('href', '/contact');
     expect(link.tagName.toLowerCase()).toBe('a');
   });
 

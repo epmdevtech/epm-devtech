@@ -47,13 +47,13 @@ export const FAQPage = () => {
           name="description"
           content="Respostas claras sobre início de projetos, modelos contratuais, modernização de sistemas legados e atuação técnica remota."
         />
-        <link rel="canonical" href={`${BASE_URL}/duvidas-frequentes`} />
+        <link rel="canonical" href={`${BASE_URL}/faq`} />
         <meta property="og:title" content="Dúvidas Frequentes | EPM DevTech" />
         <meta
           property="og:description"
           content="Respostas claras sobre início de projetos, modelos contratuais, modernização de sistemas legados e atuação técnica remota."
         />
-        <meta property="og:url" content={`${BASE_URL}/duvidas-frequentes`} />
+        <meta property="og:url" content={`${BASE_URL}/faq`} />
         <meta property="og:image" content={`${BASE_URL}/og-image-1200x630.png`} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Dúvidas Frequentes | EPM DevTech" />
@@ -157,10 +157,10 @@ export const FAQPage = () => {
               Envie sua dúvida ou descreva o desafio da sua empresa. Retornamos em até 24 horas úteis com uma avaliação técnica preliminar.
             </p>
             <MagneticButton
-              to="/contato"
+              to="/contact"
               variant="chamfer"
               size="default"
-              onClick={() => navigate("/contato")}
+              onClick={() => navigate("/contact")}
               aria-label="Falar sobre meu projeto"
               className="min-h-[44px] px-8 text-sm font-semibold rounded-md"
             >

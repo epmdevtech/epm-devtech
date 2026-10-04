@@ -77,13 +77,13 @@ export const EngineeringPage = () => {
           name="description"
           content="Decisões pragmáticas de arquitetura, stack em camadas e esteira de qualidade contínua com homologação automatizada."
         />
-        <link rel="canonical" href={`${BASE_URL}/engenharia`} />
+        <link rel="canonical" href={`${BASE_URL}/engineering`} />
         <meta property="og:title" content="Engenharia e Tecnologias | EPM DevTech" />
         <meta
           property="og:description"
           content="Decisões pragmáticas de arquitetura, stack em camadas e esteira de qualidade contínua com homologação automatizada."
         />
-        <meta property="og:url" content={`${BASE_URL}/engenharia`} />
+        <meta property="og:url" content={`${BASE_URL}/engineering`} />
         <meta property="og:image" content={`${BASE_URL}/og-image-1200x630.png`} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Engenharia e Tecnologias | EPM DevTech" />

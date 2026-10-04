@@ -28,11 +28,11 @@ describe('Header', () => {
     expect(desktopNav).toBeInTheDocument();
 
     const expectedLinks = [
-      { text: 'Serviços', href: '/servicos' },
-      { text: 'Como trabalhamos', href: '/como-trabalhamos' },
-      { text: 'Experiência', href: '/experiencia' },
-      { text: 'Engenharia', href: '/engenharia' },
-      { text: 'Sobre nós', href: '/sobre' },
+      { text: 'Serviços', href: '/services' },
+      { text: 'Como trabalhamos', href: '/how-we-work' },
+      { text: 'Experiência', href: '/experience' },
+      { text: 'Engenharia', href: '/engineering' },
+      { text: 'Sobre nós', href: '/about' },
     ];
 
     expectedLinks.forEach(({ text, href }) => {
@@ -47,11 +47,11 @@ describe('Header', () => {
     expect(screen.getByText('Software House')).toBeInTheDocument();
   });
 
-  it('renderiza o botão CTA "Fale conosco" apontando para /contato', () => {
+  it('renderiza o botão CTA "Fale conosco" apontando para /contact', () => {
     renderHeader();
     const ctaButton = screen.getByRole('link', { name: 'Fale conosco' });
     expect(ctaButton).toBeInTheDocument();
-    expect(ctaButton).toHaveAttribute('href', '/contato');
+    expect(ctaButton).toHaveAttribute('href', '/contact');
   });
 
   it('abre e fecha o menu mobile ao clicar no botão hamburger', () => {
@@ -93,7 +93,7 @@ describe('Header', () => {
     expect(screen.getByRole('dialog', { name: 'Menu de navegação' })).toBeInTheDocument();
 
     const mobileNav = screen.getByRole('navigation', { name: /Navegação móvel/i });
-    const mobileLink = mobileNav.querySelector('a[href="/servicos"]');
+    const mobileLink = mobileNav.querySelector('a[href="/services"]');
     expect(mobileLink).toBeInTheDocument();
     fireEvent.click(mobileLink!);
 

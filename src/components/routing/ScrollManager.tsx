@@ -2,14 +2,14 @@ import { useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const LEGACY_HASH_MAP: Record<string, string> = {
-  "#servicos": "/servicos",
-  "#como-trabalhamos": "/como-trabalhamos",
-  "#diferenciais": "/engenharia",
-  "#tecnologias": "/engenharia#tecnologias",
-  "#setores": "/experiencia#contextos",
-  "#sobre": "/sobre",
-  "#faq": "/duvidas-frequentes",
-  "#contato": "/contato",
+  "#servicos": "/services",
+  "#como-trabalhamos": "/how-we-work",
+  "#diferenciais": "/engineering",
+  "#tecnologias": "/engineering#tecnologias",
+  "#setores": "/experience#contextos",
+  "#sobre": "/about",
+  "#faq": "/faq",
+  "#contato": "/contact",
 };
 
 export const ScrollManager = () => {
@@ -17,7 +17,7 @@ export const ScrollManager = () => {
   const navigate = useNavigate();
   const isFirstRender = useRef(true);
 
-  // 1. Redirecionamento de hashes legados na home (ex: /#servicos -> /servicos)
+  // 1. Redirecionamento de hashes legados na home (ex: /#servicos -> /services)
   useEffect(() => {
     if (pathname === "/" && hash && hash in LEGACY_HASH_MAP) {
       const destination = LEGACY_HASH_MAP[hash];

@@ -20,49 +20,49 @@ const BASE_URL = "https://epmdevtech.com.br";
 /** @type {Array<{ path: string, title: string, description: string, h1: string }>} */
 const ROUTES = [
   {
-    path: "servicos",
+    path: "services",
     title: "Serviços de Desenvolvimento de Software | EPM DevTech",
     description:
       "Do diagnóstico técnico à sustentação: desenvolvemos sistemas web, APIs de alta concorrência e integrações de dados para resolver gargalos operacionais reais.",
     h1: "Soluções de software sob medida para destravar sua empresa",
   },
   {
-    path: "como-trabalhamos",
+    path: "how-we-work",
     title: "Como Trabalhamos | EPM DevTech",
     description:
       "Processo estruturado em 4 etapas: Entendemos, Definimos, Desenvolvemos e Evoluímos. Engenharia com previsibilidade e escopo bem alinhado.",
     h1: "Como trabalhamos",
   },
   {
-    path: "experiencia",
+    path: "experience",
     title: "Experiência em Projetos Reais | EPM DevTech",
     description:
       "Indicadores de escala, estabilidade de 99,9% uptime e experiência prática em indústria, varejo, educação e energia.",
     h1: "Experiência em projetos reais",
   },
   {
-    path: "engenharia",
+    path: "engineering",
     title: "Engenharia e Tecnologias | EPM DevTech",
     description:
       "Pilares de engenharia sólida, práticas recomendadas e constelação de tecnologias orientadas a desempenho, manutenção e segurança.",
     h1: "Engenharia pensada para evoluir",
   },
   {
-    path: "sobre",
+    path: "about",
     title: "Sobre a EPM DevTech | Engenharia de Software Corporativa",
     description:
       "Software house de engenharia de software sob medida para aplicações corporativas críticas, com atendimento 100% remoto em escala nacional.",
     h1: "Transformando desafios em soluções que funcionam",
   },
   {
-    path: "contato",
+    path: "contact",
     title: "Fale Sobre Seu Projeto | EPM DevTech",
     description:
       "Inicie seu projeto de software com a EPM DevTech. Retorno em até 24 horas úteis com avaliação técnica e diagnóstico preliminar.",
     h1: "Fale sobre seu projeto",
   },
   {
-    path: "duvidas-frequentes",
+    path: "faq",
     title: "Dúvidas Frequentes | EPM DevTech",
     description:
       "Respostas claras sobre início de projetos, modelos contratuais, modernização de sistemas legados e atuação técnica remota.",

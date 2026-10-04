@@ -29,10 +29,10 @@ describe('NotFound Page', () => {
     expect(homeLink).toHaveAttribute('href', '/');
 
     const servicesLink = screen.getByRole('link', { name: /Ver serviços/i });
-    expect(servicesLink).toHaveAttribute('href', '/servicos');
+    expect(servicesLink).toHaveAttribute('href', '/services');
 
     const contactLink = screen.getByRole('link', { name: /Fale conosco/i });
-    expect(contactLink).toHaveAttribute('href', '/contato');
+    expect(contactLink).toHaveAttribute('href', '/contact');
   });
 
   it('registra o erro 404 no console com o pathname acessado', () => {

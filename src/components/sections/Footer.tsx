@@ -14,20 +14,20 @@ import { LegalLinks } from "@/components/legal/LegalModals";
 import { SITE_CONFIG } from "@/config/site";
 
 const SOLUTIONS_LINKS = [
-  { label: "Sistemas, portais e plataformas", href: "/servicos" },
-  { label: "APIs e back-end escalável", href: "/servicos" },
-  { label: "Integrações entre sistemas", href: "/servicos" },
-  { label: "Modernização de legados", href: "/servicos" },
+  { label: "Sistemas, portais e plataformas", href: "/services" },
+  { label: "APIs e back-end escalável", href: "/services" },
+  { label: "Integrações entre sistemas", href: "/services" },
+  { label: "Modernização de legados", href: "/services" },
 ];
 
 const NAVIGATION_LINKS = [
-  { label: "Serviços", href: "/servicos" },
-  { label: "Como trabalhamos", href: "/como-trabalhamos" },
-  { label: "Experiência", href: "/experiencia" },
-  { label: "Engenharia", href: "/engenharia" },
-  { label: "Sobre a empresa", href: "/sobre" },
-  { label: "Dúvidas frequentes", href: "/duvidas-frequentes" },
-  { label: "Falar sobre meu projeto", href: "/contato" },
+  { label: "Serviços", href: "/services" },
+  { label: "Como trabalhamos", href: "/how-we-work" },
+  { label: "Experiência", href: "/experience" },
+  { label: "Engenharia", href: "/engineering" },
+  { label: "Sobre a empresa", href: "/about" },
+  { label: "Dúvidas frequentes", href: "/faq" },
+  { label: "Falar sobre meu projeto", href: "/contact" },
 ];
 
 const THEME_OPTIONS = [

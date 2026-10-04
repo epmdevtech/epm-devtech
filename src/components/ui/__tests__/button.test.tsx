@@ -57,12 +57,12 @@ describe('Button Component (Design System & Engineering Chamfer)', () => {
   it('renderiza como elemento filho quando asChild={true}', () => {
     render(
       <Button asChild variant="chamfer">
-        <a href="/contato">Link Chamfer</a>
+        <a href="/contact">Link Chamfer</a>
       </Button>
     );
     const link = screen.getByRole('link', { name: /Link Chamfer/i });
     expect(link).toBeInTheDocument();
-    expect(link).toHaveAttribute('href', '/contato');
+    expect(link).toHaveAttribute('href', '/contact');
     expect(link).toHaveClass('btn-chamfer');
   });
 

@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LazyRender } from "@/components/LazyRender";
 import Layout from "@/components/layout/Layout";
+import { LEGACY_REDIRECTS, ROUTES } from "@/config/routes";
 
 import Home from "@/pages/Home";
 
@@ -34,21 +35,20 @@ export const App = () => (
         <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
           <Routes>
             <Route element={<Layout />}>
-              <Route path="/" element={<Home />} />
-              <Route path="/servicos" element={<ServicesPage />} />
-              <Route path="/como-trabalhamos" element={<HowWeWorkPage />} />
-              <Route path="/experiencia" element={<ExperiencePage />} />
-              <Route path="/engenharia" element={<EngineeringPage />} />
-              <Route path="/sobre" element={<AboutPage />} />
-              <Route path="/contato" element={<ContactPage />} />
-              <Route path="/duvidas-frequentes" element={<FAQPage />} />
+              <Route path={ROUTES.home} element={<Home />} />
+              <Route path={ROUTES.services} element={<ServicesPage />} />
+              <Route path={ROUTES.howWeWork} element={<HowWeWorkPage />} />
+              <Route path={ROUTES.experience} element={<ExperiencePage />} />
+              <Route path={ROUTES.engineering} element={<EngineeringPage />} />
+              <Route path={ROUTES.about} element={<AboutPage />} />
+              <Route path={ROUTES.contact} element={<ContactPage />} />
+              <Route path={ROUTES.faq} element={<FAQPage />} />
 
-              {/* Redirecionamentos de rotas antigas no cliente (fallback para ambiente local) */}
-              <Route path="/setores" element={<Navigate to="/experiencia" replace />} />
-              <Route path="/autoridade" element={<Navigate to="/experiencia" replace />} />
-              <Route path="/diferenciais" element={<Navigate to="/engenharia" replace />} />
-              <Route path="/tecnologias" element={<Navigate to="/engenharia" replace />} />
-              <Route path="/faq" element={<Navigate to="/duvidas-frequentes" replace />} />
+              {/* Redirecionamentos de rotas legadas (slugs em português) no cliente.
+                  O 301 real para crawlers é servido pelo edge da Vercel (vercel.json). */}
+              {Object.entries(LEGACY_REDIRECTS).map(([from, to]) => (
+                <Route key={from} path={from} element={<Navigate to={to} replace />} />
+              ))}
 
               {/* Rota 404 (Catch-All) */}
               <Route path="*" element={<NotFound />} />
