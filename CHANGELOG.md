@@ -9,6 +9,19 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.105-constelacao-interativa-inspector] - 2026-10-03
+
+### Adicionado
+- **`specs/SPEC-105-constelacao-interativa-inspector-praticas.md`**, **`tasks/TASK-105-*.md`** e **`reviews/QA-105.md`**: especificação aprovada, tarefa e relatório de QA do Constellation Inspector.
+- **`src/data/constellationPractices.ts`**: `ConstellationPractice`, `PRACTICES_DATA` (4 práticas mapeadas a `core_center`, `bra_l_tip`, `bra_r_tip`, `t_mid`) e `nodeIndexOf`.
+- **`src/components/sections/constellation/`**: `ConstellationInspector`, `ConstellationNode`, `PracticeCard`, `ActiveNodeHighlight`, `useConstellationInspector`, `ConstellationEdgesLayer`, `ConstellationNodesLayer`, `ConstellationDefs` e testes (16 novos testes).
+- Popover com `@radix-ui/react-popover` controlado: hover intent 120/150 ms, pin por clique/toque, foco por teclado, Esc, setas ←/→, hit areas ≥ 44px, card com chanfro 45° (`corner-top-right-shape: bevel` + fallback `clip-path`) e `prefers-reduced-motion`.
+
+### Modificado
+- **`EpmConstellation.tsx`**: camadas SVG memoizadas (hover de nó não re-renderiza arestas/nós), handlers de proximidade movidos ao contêiner, `aria-hidden` restrito ao `<svg>` quando `interactive=true`. Visual do logotipo inalterado sem nó ativo.
+- **`EpmConstellation.test.tsx`**: ajustado para o novo posicionamento de `aria-hidden`.
+- **`PROJECT.md`**: estado atualizado (38 suites, 249 testes, 99,05% de cobertura).
+
 ## [0.0.104-geometria-full-bevel-4-cantos] - 2026-10-03
 
 ### Adicionado

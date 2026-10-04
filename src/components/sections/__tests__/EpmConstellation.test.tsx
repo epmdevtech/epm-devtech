@@ -28,10 +28,12 @@ describe("EpmConstellation Component", () => {
     const container = screen.getByTestId("epm-constellation-container");
     expect(container).toBeInTheDocument();
     expect(container).toHaveClass("custom-test-class");
-    expect(container).toHaveAttribute("aria-hidden", "true");
+    // SPEC-105: com nós interativos, o aria-hidden fica restrito ao <svg> decorativo
+    expect(container).not.toHaveAttribute("aria-hidden");
 
     const svg = container.querySelector("svg");
     expect(svg).toBeInTheDocument();
+    expect(svg).toHaveAttribute("aria-hidden", "true");
     expect(svg).toHaveAttribute("viewBox", "0 0 600 600");
     expect(svg).toHaveAttribute("role", "presentation");
   });
