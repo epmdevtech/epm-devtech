@@ -142,6 +142,9 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
   });
 
   test('ArchitecturalBlueprint exibe tooltip e detalhes contextuais ao interagir com tecnologias', async ({ page }) => {
+    await page.addInitScript(() => {
+      localStorage.setItem('cookie-consent', 'accepted');
+    });
     await page.goto('/engineering');
     await page.waitForLoadState('domcontentloaded');
 

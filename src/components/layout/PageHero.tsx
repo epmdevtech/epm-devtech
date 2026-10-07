@@ -13,6 +13,7 @@ export interface PageHeroProps {
   primaryCta?: React.ReactNode;
   isVisualInteractive?: boolean;
   className?: string;
+  visualClassName?: string;
 }
 
 /**
@@ -33,6 +34,7 @@ export const PageHero: React.FC<PageHeroProps> = ({
   primaryCta,
   isVisualInteractive = false,
   className,
+  visualClassName,
 }) => {
   const heroRef = useScrollReveal<HTMLElement>({
     selector: "[data-testid='page-eyebrow'], #page-title, [id$='-title'], p, .page-hero-cta, [data-testid='page-hero-visual']",
@@ -100,7 +102,10 @@ export const PageHero: React.FC<PageHeroProps> = ({
           <div
             data-testid="page-hero-visual"
             {...(!isVisualInteractive ? { "aria-hidden": "true" } : {})}
-            className="lg:col-span-5 flex items-center justify-center relative w-full aspect-square max-w-[460px] mx-auto z-10"
+            className={cn(
+              "lg:col-span-5 flex items-center justify-center relative w-full aspect-square max-w-[460px] mx-auto z-10",
+              visualClassName
+            )}
           >
             {visual}
           </div>

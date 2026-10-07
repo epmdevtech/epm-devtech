@@ -12,36 +12,36 @@
     "viewport": "1024x768",
     "width": 1024,
     "viewportHeight": 768,
-    "heroHeight": 768,
-    "viewportRatioPercent": 100,
-    "servicosTop": 768,
+    "heroHeight": 775,
+    "viewportRatioPercent": 100.9,
+    "servicosTop": 775,
     "servicosVisibleAboveFold": false
   },
   {
     "viewport": "768x1024",
     "width": 768,
     "viewportHeight": 1024,
-    "heroHeight": 1024,
-    "viewportRatioPercent": 100,
-    "servicosTop": 1024,
+    "heroHeight": 1043,
+    "viewportRatioPercent": 101.9,
+    "servicosTop": 1043,
     "servicosVisibleAboveFold": false
   },
   {
     "viewport": "390x844",
     "width": 390,
     "viewportHeight": 844,
-    "heroHeight": 1122,
-    "viewportRatioPercent": 132.9,
-    "servicosTop": 1122,
+    "heroHeight": 1161,
+    "viewportRatioPercent": 137.6,
+    "servicosTop": 1161,
     "servicosVisibleAboveFold": false
   },
   {
     "viewport": "320x640",
     "width": 320,
     "viewportHeight": 640,
-    "heroHeight": 1285,
-    "viewportRatioPercent": 200.7,
-    "servicosTop": 1285,
+    "heroHeight": 1312,
+    "viewportRatioPercent": 205,
+    "servicosTop": 1312,
     "servicosVisibleAboveFold": false
   }
 ]

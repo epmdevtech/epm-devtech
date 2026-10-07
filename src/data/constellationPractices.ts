@@ -26,37 +26,37 @@ export const PRACTICES_DATA: ConstellationPractice[] = [
   {
     id: "core-arch",
     nodeIndex: nodeIndexOf("core_center"), // Núcleo central
-    category: "NÚCLEO & ARQUITETURA",
-    title: "Sistemas Web e Plataformas Corporativas",
+    category: "VALOR DE NEGÓCIO",
+    title: "Sistemas Desenhados para o Seu Crescimento",
     description:
-      "Desenvolvimento modular desenhado para crescer sem criar gargalos técnicos ou reescritas de código.",
-    tags: ["Clean Code", "Escalabilidade", "Alta Disponibilidade"],
+      "Construímos software corporativo sob medida com base sólida para acompanhar a expansão da sua empresa sem exigir reconstruções futuras.",
+    tags: ["Alta Eficiência", "Escalabilidade", "Retorno do Investimento"],
   },
   {
     id: "data-integrations",
     nodeIndex: nodeIndexOf("bra_l_tip"), // Ponta da chave esquerda {
-    category: "FLUXO & CONEXÃO",
-    title: "Integrações de Dados & Mensageria",
+    category: "CONEXÃO & EFICIÊNCIA",
+    title: "Integração Contínua entre os Seus Sistemas",
     description:
-      "Comunicação contínua entre ERPs, sistemas legados e APIs de alto volume com garantia de entrega e zero perda de transações.",
-    tags: ["RabbitMQ", "REST APIs", "Webhooks"],
+      "Fim do trabalho manual e das planilhas isoladas: conectamos seu ERP, canais de venda e nuvem com sincronismo em tempo real e zero perda de dados.",
+    tags: ["Zero Retrabalho", "Dados Sincronizados", "Conexão Segura"],
   },
   {
     id: "critical-ops",
     nodeIndex: nodeIndexOf("bra_r_tip"), // Ponta da chave direita }
-    category: "CONFIABILIDADE",
-    title: "Operações Críticas & Telemetria",
+    category: "CONTINUIDADE OPERACIONAL",
+    title: "Operações Protegidas e Sem Interrupções",
     description:
-      "Monitoramento em tempo real e integridade regulatória para plataformas que operam 24/7.",
-    tags: ["Observabilidade", "PostgreSQL", "Docker"],
+      "Garantia de estabilidade para que sua empresa não perca vendas nem atrase entregas durante picos de demanda ou fechamentos mensais.",
+    tags: ["Alta Disponibilidade", "Segurança de Dados", "Operação 24/7"],
   },
   {
     id: "modernization",
     nodeIndex: nodeIndexOf("t_mid"), // Topo da moldura
-    category: "EVOLUÇÃO",
-    title: "Modernização Incremental de Legados",
+    category: "EVOLUÇÃO SEGURA",
+    title: "Modernização Sem Parar o Faturamento",
     description:
-      "Substituição e refatoração segura de rotinas antigas sem paralisar o faturamento ou a operação da empresa.",
-    tags: ["Refatoração", "Microsserviços", "CI/CD"],
+      "Atualizamos processos antigos e sistemas legados de forma gradual e segura, mantendo as operações e o faturamento 100% ativos.",
+    tags: ["Transição Suave", "Redução de Custos", "Evolução Contínua"],
   },
 ];

@@ -3,141 +3,115 @@ import React from "react";
 /**
  * ServicesHeroVisual
  * ──────────────────
- * Artefato visual técnico autoral para o Hero de Serviços (/services).
- * Representa um barramento de microsserviços e roteador de alta concorrência
- * em placa de circuito impresso (PCB) com trilhas em 45º, nós de barramento e telemetria.
+ * Artefato visual para o Hero de Serviços (/services).
+ * Grid Tipográfico Técnico Aberto (Architectural Spec Grid — SPEC-113):
+ * Elimina containers e cards fechados, respirando diretamente no fundo da página
+ * através de hairlines de 1px, marcações milimétricas e 3 faixas de especificação técnica.
  */
 export const ServicesHeroVisual: React.FC = () => {
+  const SPECS = [
+    {
+      code: "01 // PLATAFORMAS & SISTEMAS WEB",
+      category: "APLICAÇÕES CORPORATIVAS",
+      title: "Plataformas Web & Portais Internos",
+      desc: "Sistemas modulares com alta velocidade de resposta, interfaces focadas na produtividade operacional e suporte a grande volume de acessos simultâneos.",
+      tags: ["Alta Adoção", "Zero Fricção", "Escala Horizontal"],
+      accent: "#2DD4BF",
+    },
+    {
+      code: "02 // INTEGRAÇÕES CRÍTICAS & APIs",
+      category: "CONECTIVIDADE EMPRESARIAL",
+      title: "Integrações de Dados & Conectores",
+      desc: "Conexão robusta entre ERPs, sistemas legados, APIs financeiras e nuvem, eliminando redundância manual com garantia estrita de entrega.",
+      tags: ["Zero Perda de Dados", "Event Stream", "Sincronizado"],
+      accent: "#06B6D4",
+    },
+    {
+      code: "03 // MODERNIZAÇÃO DE SISTEMAS LEGADOS",
+      category: "EVOLUÇÃO CONTÍNUA",
+      title: "Modernização & Refatoração Segura",
+      desc: "Substituição e desacoplamento gradual de softwares legados através do padrão Stranguler Fig, mantendo o faturamento ativo a cada dia.",
+      tags: ["Sem Paradas", "Redução de Passivo", "Arquitetura Limpa"],
+      accent: "#10B981",
+    },
+  ];
+
   return (
     <div
       aria-hidden="true"
-      className="relative w-full h-full max-w-[420px] max-h-[420px] rounded-2xl border border-zinc-800/80 bg-zinc-950/70 dark:bg-zinc-950/80 backdrop-blur-md p-6 shadow-2xl flex flex-col justify-between overflow-hidden select-none"
+      className="relative w-full h-full flex flex-col justify-between select-none py-2"
     >
-      {/* Glow de fundo */}
-      <div className="pointer-events-none absolute -right-12 -top-12 w-48 h-48 rounded-full bg-emerald-500/10 blur-3xl" />
-      <div className="pointer-events-none absolute -left-12 -bottom-12 w-48 h-48 rounded-full bg-cyan-500/10 blur-3xl" />
+      {/* Luz focal difusa ao fundo */}
+      <div className="pointer-events-none absolute -right-8 -top-8 w-60 h-60 rounded-full bg-emerald-500/10 blur-3xl" />
+      <div className="pointer-events-none absolute -left-8 -bottom-8 w-60 h-60 rounded-full bg-cyan-500/10 blur-3xl" />
 
-      {/* Top Header do Artefato HUD */}
-      <div className="flex items-center justify-between pb-3 border-b border-zinc-800/60 font-mono text-[11px] text-zinc-400">
+      {/* Régua Técnica Superior com Marcadores Milimétricos */}
+      <div className="border-b border-zinc-800/80 dark:border-zinc-800/80 border-zinc-300 pb-3 flex items-center justify-between font-mono text-[11px]">
         <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="text-zinc-200 font-semibold tracking-wider">SVC-BUS // ROUTER</span>
+          <span className="text-emerald-400 font-bold tracking-wider">+ [SPEC_GRID // 01-03]</span>
+          <span className="text-zinc-500 hidden sm:inline">|</span>
+          <span className="text-zinc-400 hidden sm:inline">ESPECIFICAÇÕES ARQUITETURAIS</span>
         </div>
-        <span className="text-[10px] text-emerald-400/90 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded">
-          LATENCY &lt; 14ms
-        </span>
+        <div className="flex items-center gap-2">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="text-zinc-300 font-medium">PRONTO PARA ESCALA</span>
+        </div>
       </div>
 
-      {/* Centro: SVG do Microcircuito de Barramento */}
-      <div className="relative flex-1 my-3 flex items-center justify-center">
-        <svg
-          viewBox="0 0 320 200"
-          className="w-full h-full max-h-[200px]"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          {/* Grade de fundo do circuito */}
-          <pattern id="svcGrid" width="20" height="20" patternUnits="userSpaceOnUse">
-            <circle cx="2" cy="2" r="0.8" fill="#2DD4BF" fillOpacity="0.15" />
-          </pattern>
-          <rect width="320" height="200" fill="url(#svcGrid)" />
+      {/* Grid Aberto em 3 Faixas de Especificação Técnica com Hairlines */}
+      <div className="my-4 divide-y divide-zinc-800/60 dark:divide-zinc-800/60 divide-zinc-200/80">
+        {SPECS.map((spec) => (
+          <div
+            key={spec.code}
+            className="py-3.5 group transition-colors duration-200 first:pt-1 last:pb-1"
+          >
+            {/* Linha do Código Técnico e Categoria */}
+            <div className="flex items-center justify-between text-[10.5px] font-mono mb-1.5">
+              <span
+                className="font-bold tracking-wider"
+                style={{ color: spec.accent }}
+              >
+                {spec.code}
+              </span>
+              <span className="text-zinc-500 tracking-wider text-[9.5px]">
+                {spec.category}
+              </span>
+            </div>
 
-          {/* Gradientes dos barramentos */}
-          <defs>
-            <linearGradient id="traceGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#10B981" stopOpacity="0.8" />
-              <stop offset="100%" stopColor="#06B6D4" stopOpacity="0.3" />
-            </linearGradient>
-            <linearGradient id="chipGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#18181B" />
-              <stop offset="100%" stopColor="#09090B" />
-            </linearGradient>
-          </defs>
+            {/* Título da Especificação */}
+            <h3 className="text-sm sm:text-[15px] font-bold text-zinc-100 dark:text-zinc-100 text-zinc-900 tracking-tight leading-snug">
+              {spec.title}
+            </h3>
 
-          {/* Trilhas em 45º / 90º conectando os 4 canais ao núcleo */}
-          {/* Top-Left: Web Platforms */}
-          <path d="M 40 40 L 100 40 L 130 75" stroke="#10B981" strokeWidth="1.5" strokeOpacity="0.6" strokeDasharray="3 3" />
-          <circle cx="40" cy="40" r="3.5" fill="#10B981" />
-          <circle cx="40" cy="40" r="7" stroke="#10B981" strokeOpacity="0.3" />
+            {/* Descrição Técnica Aberta */}
+            <p className="text-[11.5px] text-zinc-400 dark:text-zinc-400 text-zinc-600 mt-1 leading-relaxed">
+              {spec.desc}
+            </p>
 
-          {/* Bottom-Left: Legacy Modernization */}
-          <path d="M 40 160 L 100 160 L 130 125" stroke="#06B6D4" strokeWidth="1.5" strokeOpacity="0.6" />
-          <circle cx="40" cy="160" r="3.5" fill="#06B6D4" />
-          <circle cx="40" cy="160" r="7" stroke="#06B6D4" strokeOpacity="0.3" />
-
-          {/* Top-Right: High-Performance APIs */}
-          <path d="M 280 40 L 220 40 L 190 75" stroke="#06B6D4" strokeWidth="1.5" strokeOpacity="0.6" />
-          <circle cx="280" cy="40" r="3.5" fill="#06B6D4" />
-          <circle cx="280" cy="40" r="7" stroke="#06B6D4" strokeOpacity="0.3" />
-
-          {/* Bottom-Right: Data Integrations */}
-          <path d="M 280 160 L 220 160 L 190 125" stroke="#10B981" strokeWidth="1.5" strokeOpacity="0.6" strokeDasharray="3 3" />
-          <circle cx="280" cy="160" r="3.5" fill="#10B981" />
-          <circle cx="280" cy="160" r="7" stroke="#10B981" strokeOpacity="0.3" />
-
-          {/* Chip Central Chanfrado (IC Microcontroller) */}
-          <rect
-            x="120"
-            y="65"
-            width="80"
-            height="70"
-            rx="6"
-            fill="url(#chipGrad)"
-            stroke="#2DD4BF"
-            strokeWidth="1.5"
-            strokeOpacity="0.8"
-          />
-
-          {/* Pinos do Chip Central */}
-          <line x1="120" y1="80" x2="114" y2="80" stroke="#2DD4BF" strokeWidth="1.5" />
-          <line x1="120" y1="95" x2="114" y2="95" stroke="#2DD4BF" strokeWidth="1.5" />
-          <line x1="120" y1="110" x2="114" y2="110" stroke="#2DD4BF" strokeWidth="1.5" />
-          <line x1="120" y1="120" x2="114" y2="120" stroke="#2DD4BF" strokeWidth="1.5" />
-
-          <line x1="200" y1="80" x2="206" y2="80" stroke="#2DD4BF" strokeWidth="1.5" />
-          <line x1="200" y1="95" x2="206" y2="95" stroke="#2DD4BF" strokeWidth="1.5" />
-          <line x1="200" y1="110" x2="206" y2="110" stroke="#2DD4BF" strokeWidth="1.5" />
-          <line x1="200" y1="120" x2="206" y2="120" stroke="#2DD4BF" strokeWidth="1.5" />
-
-          {/* Inscrição Monospace Central */}
-          <text x="160" y="93" fill="#E4E4E7" fontSize="8.5" fontFamily="monospace" fontWeight="bold" textAnchor="middle">
-            EPM CORE
-          </text>
-          <text x="160" y="108" fill="#2DD4BF" fontSize="7" fontFamily="monospace" textAnchor="middle">
-            GATEWAY 2.5K
-          </text>
-          <circle cx="160" cy="120" r="2" fill="#10B981" className="animate-ping" />
-        </svg>
-
-        {/* Labels flutuantes em volta dos 4 canais */}
-        <span className="absolute top-1 left-2 font-mono text-[9.5px] text-zinc-300 bg-zinc-900/90 border border-zinc-800 px-1.5 py-0.5 rounded">
-          01 // WEB APPS
-        </span>
-        <span className="absolute top-1 right-2 font-mono text-[9.5px] text-zinc-300 bg-zinc-900/90 border border-zinc-800 px-1.5 py-0.5 rounded">
-          02 // HIGH-TPS API
-        </span>
-        <span className="absolute bottom-1 left-2 font-mono text-[9.5px] text-zinc-300 bg-zinc-900/90 border border-zinc-800 px-1.5 py-0.5 rounded">
-          03 // LEGACY BRIDGE
-        </span>
-        <span className="absolute bottom-1 right-2 font-mono text-[9.5px] text-zinc-300 bg-zinc-900/90 border border-zinc-800 px-1.5 py-0.5 rounded">
-          04 // DATA PIPELINE
-        </span>
+            {/* Micro Badges Técnicos Abertos */}
+            <div className="mt-2.5 flex flex-wrap items-center gap-2">
+              {spec.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="font-mono text-[9.5px] text-zinc-400 dark:text-zinc-400 text-zinc-500 bg-zinc-800/40 dark:bg-zinc-800/50 border border-zinc-700/50 dark:border-zinc-800 px-2 py-0.5 rounded"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
 
-      {/* Footer com Leituras Técnicas */}
-      <div className="pt-3 border-t border-zinc-800/60 grid grid-cols-3 gap-2 font-mono text-[10px] text-zinc-400">
-        <div>
-          <span className="text-zinc-400 block text-[9px]">THROUGHPUT</span>
-          <span className="text-zinc-200 font-semibold">2.500 req/s</span>
+      {/* Régua Técnica Inferior com Coordenadas e Conclusão Operacional */}
+      <div className="border-t border-zinc-800/80 dark:border-zinc-800/80 border-zinc-300 pt-3 flex items-center justify-between font-mono text-[10.5px] text-zinc-400">
+        <div className="flex items-center gap-2 text-zinc-300">
+          <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+          <span>Retorno Operacional Mensurável</span>
         </div>
-        <div>
-          <span className="text-zinc-400 block text-[9px]">UPTIME SLA</span>
-          <span className="text-emerald-400 font-semibold">99.9%</span>
-        </div>
-        <div>
-          <span className="text-zinc-400 block text-[9px]">ISOLATION</span>
-          <span className="text-cyan-400 font-semibold">STRICT</span>
-        </div>
+        <span className="text-zinc-500 tracking-widest hidden sm:inline">
+          ESTRUTURA ABERTA // CAD_V3
+        </span>
       </div>
     </div>
   );

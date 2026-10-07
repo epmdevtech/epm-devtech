@@ -166,15 +166,15 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
           </motion.div>
         )}
 
-        {/* Container Principal: Split Card Unificado */}
+        {/* Container Principal: Painel Tipográfico Integrado Aberto */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-xl border border-border-default grid grid-cols-1 lg:grid-cols-12 bg-surface"
+          className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12"
         >
-          {/* Lado Esquerdo: Formulário Minimalista Underline */}
-          <div className="lg:col-span-7 bg-surface p-8 sm:p-10 flex flex-col justify-between">
+          {/* Lado Esquerdo: Formulário Minimalista Integrado ao Fundo */}
+          <div className="lg:col-span-7 flex flex-col justify-between">
             <div>
               <h3 className="text-[clamp(1.25rem,1.8vw,1.5rem)] font-bold text-primary tracking-[-0.025em] leading-[1.2] mb-6">
                 Envie sua mensagem
@@ -407,8 +407,8 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
             </div>
           </div>
 
-          {/* Lado Direito: Próximos Passos & Garantias (Bloco Escuro Contrastante) */}
-          <div className="lg:col-span-5 bg-surface-elevated text-primary p-8 sm:p-10 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-border-default">
+          {/* Lado Direito: Próximos Passos & Garantias (Painel Aberto) */}
+          <div className="lg:col-span-5 text-primary flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-zinc-800/60 dark:border-zinc-800/60 border-zinc-200/80 pt-10 lg:pt-0 lg:pl-10">
             <div>
               <h3 className="text-[clamp(1.25rem,1.8vw,1.5rem)] font-bold text-primary tracking-[-0.025em] leading-[1.2] mb-2">
                 O que acontece a seguir?

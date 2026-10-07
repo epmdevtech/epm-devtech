@@ -9,6 +9,38 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.113-direcoes-de-arte-editoriais-heros] - 2026-10-07
+
+### Adicionado
+- **`specs/SPEC-113-direcoes-de-arte-editoriais-heros.md`**, **`tasks/TASK-113-direcoes-de-arte-editoriais-heros.md`** e **`reviews/QA-113.md`**: Especificação técnica aprovada, checklist de implementação e relatório de QA para eliminação do padrão mecânico de cards fechados (`bg-zinc-900 border rounded-xl shadow-lg`) e adoção de direções de arte autorais e abertas nos Heros das rotas.
+- **Malha Vetorial Contínua (Integrated Circuit Mesh SVG)** (`src/components/sections/Hero.tsx`):
+  - Remoção de qualquer card delimitador ou caixa opaca à direita.
+  - Malha vetorial aberta em SVG com trilhas de circuito finíssimas, nós de solda e acento em `emerald-400`/`brand`, réguas técnicas de telemetria ("Operação em Tempo Real · 100% Ativa", "Estabilidade 99.98%") e conexões diretas aos 4 nós de cenários corporativos.
+- **Architectural Spec Grid Aberto** (`src/components/layout/hero-visuals/ServicesHeroVisual.tsx`):
+  - Grid de linhas finas (hairlines de 1px) respirando no fundo da página com coordenadas `[SPEC_GRID // 01-03]` e 3 faixas abertas com especificações: `01 // PLATAFORMAS & SISTEMAS WEB`, `02 // INTEGRAÇÕES CRÍTICAS & APIs`, `03 // MODERNIZAÇÃO DE SISTEMAS LEGADOS`.
+- **Régua de Precisão de Engenharia (Execution Timeline Sequence)** (`src/components/layout/hero-visuals/HowWeWorkHeroVisual.tsx`):
+  - Régua horizontal de precisão milimétrica em SVG com escala graduada de ticks e pulso luminoso contínuo conectando as 4 etapas de execução: `[01] DIAGNÓSTICO ESTRATÉGICO`, `[02] ARQUITETURA RESILIENTE`, `[03] CICLOS INCREMENTAIS`, `[04] PRODUÇÃO COM ZERO INTERRUPÇÃO`.
+- **Composição Tipográfica Display de Métricas (Large-Scale Performance Index)** (`src/components/layout/hero-visuals/ExperienceHeroVisual.tsx`):
+  - Números monumentais de escala display (`99.98%`, `0`) com linhas de cota técnica CAD de tolerância milimétrica (`±0.01%`) e faixa aberta de setores críticos atendidos (Fintech, Logística, Supply Chain, Saúde e Energia).
+- **Blueprint Arquitetural Isométrico em Linha Fina CAD** (`src/components/layout/hero-visuals/EngineeringHeroVisual.tsx`):
+  - Planta baixa vetorial isométrica em linhas finíssimas e sem fundos escuros opacos, revelando as 4 camadas de software (`01 // GATEWAY`, `02 // SERVICES`, `03 // EVENT STREAM`, `04 // DATA`).
+- **Painel Tipográfico Integrado & Formulário Aberto** (`src/components/layout/hero-visuals/ContactHeroVisual.tsx` & `src/components/sections/Contact.tsx`):
+  - Hero com canal P2P aberto conectando Decisor e Liderança Técnica.
+  - Eliminação da caixa/card flutuante opaca ao redor do formulário de contato, integrando os campos de preenchimento underline (`border-b`) diretamente ao fundo da página com separação por hairlines.
+
+### Modificado
+- **`src/components/layout/PageHero.tsx`**: Adicionada propriedade opcional `visualClassName` para permitir máxima flexibilidade geométrica a composições abertas.
+- **`src/components/layout/__tests__/PageHero.test.tsx`**: Atualização dos testes unitários para validar as novas diretrizes abertas e réguas de precisão da SPEC-113 (7/7 testes OK).
+- **Quality Gates**:
+  - 41/41 suítes Vitest aprovadas (275/275 testes unitários passando).
+  - 46/46 testes Playwright E2E aprovados.
+  - 0 erros no ESLint e build estático validado.
+
+## [0.0.112-heros-dashboard-cards-negocio] - 2026-10-07
+
+### Adicionado
+- **`specs/SPEC-112-heros-dashboard-cards-negocio.md`** e **`tasks/TASK-112-heros-dashboard-cards-negocio.md`**: Especificação técnica aprovada e checklist para transição dos artefatos puramente orientados a código para métricas executivas de estabilidade e negócio.
+
 ## [0.0.111-page-hero-split-e-artefatos-visuais] - 2026-10-07
 
 ### Adicionado
