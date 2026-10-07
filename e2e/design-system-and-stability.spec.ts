@@ -89,7 +89,7 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     await page.waitForLoadState('domcontentloaded');
     const heroCta = page.locator('#hero a[href="/contact"], #hero a[href="#contato"]').first();
     await expect(heroCta).toBeVisible();
-    await expect(heroCta).toContainText('Vamos conversar');
+    await expect(heroCta).toContainText('VAMOS CONVERSAR');
   });
 
   test('Navegação fluida a partir do Hero por cenário de negócio para rota ancorada', async ({ page }) => {
@@ -524,12 +524,12 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
     );
     await expect(subheadline).toBeVisible();
 
-    // 3. Valida CTA principal único e ausência de CTA secundário (SPEC-084)
+    // 3. Valida CTA principal único e ausência de CTA secundário (SPEC-108)
     const ctaPrimario = page.locator('#hero a[href="/contact"]').first();
     await expect(ctaPrimario).toBeVisible();
-    await expect(ctaPrimario).toContainText('Vamos conversar');
+    await expect(ctaPrimario).toContainText('VAMOS CONVERSAR');
 
-    const ctaSecundario = page.locator('#hero a[href="#servicos"]');
+    const ctaSecundario = page.locator('#hero a[href="/services"]');
     await expect(ctaSecundario).toHaveCount(0);
 
     // 4. Valida ausência da faixa de confiança operacional (SPEC-084)

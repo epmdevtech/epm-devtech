@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
-import { CheckCircle2, Send, Loader2, Maximize2 } from "lucide-react";
+import { CheckCircle2, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import SectionHeader from "@/components/ui/SectionHeader";
@@ -63,9 +63,9 @@ const nextSteps = [
   },
   {
     Icon: IconFastResponse,
-    title: "Retorno em até 24 horas úteis",
+    title: "Atendimento consultivo direto",
     description:
-      "Resposta objetiva e técnica para agendarmos uma conversa.",
+      "Entraremos em contato para entender o cenário técnico e agendar uma conversa.",
   },
   {
     Icon: IconConfidentiality,
@@ -121,7 +121,7 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
       };
 
       await emailjs.send(serviceId, templateId, templateParams);
-      toast.success("Mensagem recebida. Retornamos em até 24 horas úteis.");
+      toast.success("Mensagem recebida. Entraremos em contato para entender o cenário técnico e agendar uma conversa.");
       setIsSuccess(true);
       reset();
       setTimeout(() => {
@@ -160,8 +160,8 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
             <SectionHeader
               id="contato-heading"
               tagline="Contato"
-              title="Fale sobre seu projeto"
-              subtitle="Conte o que sua empresa precisa. Vamos entender o cenário e avaliar como a EPM DevTech pode ajudar."
+              title="Vamos conversar sobre como podemos apoiar você e seu projeto"
+              subtitle="Assim que recebermos sua mensagem, entraremos em contato para entender o cenário técnico e agendar uma conversa."
             />
           </motion.div>
         )}
@@ -329,12 +329,11 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
                           type="button"
                           variant="ghost"
                           size="sm"
-                          className="h-6 px-2 text-xs text-muted hover:text-primary"
+                          className="h-6 px-2 text-xs text-muted hover:text-primary uppercase tracking-wider font-semibold"
                           aria-label="Expandir mensagem"
                           title="Abrir bloco de notas para texto longo"
                         >
-                          <Maximize2 className="w-3 h-3 mr-1.5" />
-                          Expandir
+                          EXPANDIR
                         </Button>
                       </DialogTrigger>
                       <DialogContent className="max-w-[90vw] w-[800px] h-[80vh] flex flex-col p-6">
@@ -383,7 +382,7 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
                     disabled={isSending || isSuccess}
                     variant={isSuccess ? "secondary" : "chamfer"}
                     size="default"
-                    className={`btn-submit px-7 py-3 rounded-md font-semibold text-sm w-full sm:w-auto ${
+                    className={`btn-submit px-8 py-3.5 rounded-md font-semibold text-sm w-full sm:w-auto ${
                       isSuccess
                         ? "bg-success text-white shadow-sm"
                         : "bg-brand text-on-brand hover:bg-brand-hover active:bg-brand-active"
@@ -400,10 +399,7 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
                         <span className="text-white">Mensagem Enviada!</span>
                       </>
                     ) : (
-                      <>
-                        <Send className="w-4 h-4 text-on-brand transition-transform duration-200 group-hover:translate-x-0.5" />
-                        <span className="text-on-brand">Falar sobre meu projeto</span>
-                      </>
+                      <span className="text-on-brand uppercase tracking-[0.04em] font-semibold">ENVIAR MENSAGEM</span>
                     )}
                   </MagneticButton>
                 </div>
@@ -441,19 +437,33 @@ const Contact: React.FC<ContactProps> = ({ hideHeader = false }) => {
               </div>
             </div>
 
-            {/* Chamada de Ação Rápida (Rodapé do Card Escuro) */}
-            <div className="pt-6 mt-8 border-t border-border-subtle flex flex-col gap-1.5">
-              <p className="text-xs text-muted">
-                Prefere atendimento imediato?
-              </p>
-              <a
-                href="https://wa.me/5545999178290"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm font-medium text-text-brand hover:text-brand transition-colors inline-flex items-center gap-1 group w-fit"
-              >
-                <span>Chamar no WhatsApp direto →</span>
-              </a>
+            {/* Chamada de Contato Direto (Rodapé do Card Escuro) */}
+            <div className="pt-6 mt-8 border-t border-border-subtle flex flex-col gap-4">
+              <div className="flex flex-col gap-1">
+                <p className="text-xs text-muted">
+                  Prefere e-mail? Escreva diretamente para
+                </p>
+                <a
+                  href="mailto:elessandro@epmdevtech.com.br"
+                  className="text-sm font-medium text-text-brand hover:text-brand transition-colors inline-flex items-center gap-1.5 group w-fit"
+                >
+                  <span>elessandro@epmdevtech.com.br</span>
+                </a>
+              </div>
+
+              <div className="flex flex-col gap-1">
+                <p className="text-xs text-muted">
+                  Prefere atendimento imediato?
+                </p>
+                <a
+                  href="https://wa.me/5545999178290"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-medium text-text-brand hover:text-brand transition-colors inline-flex items-center gap-1 group w-fit"
+                >
+                  <span>Chamar no WhatsApp direto</span>
+                </a>
+              </div>
             </div>
           </div>
         </motion.div>

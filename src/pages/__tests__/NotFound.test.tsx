@@ -25,13 +25,13 @@ describe('NotFound Page', () => {
         </MemoryRouter>
       </HelmetProvider>
     );
-    const homeLink = screen.getByRole('link', { name: /Página inicial/i });
+    const homeLink = screen.getByRole('link', { name: /PÁGINA INICIAL/i });
     expect(homeLink).toHaveAttribute('href', '/');
 
-    const servicesLink = screen.getByRole('link', { name: /Ver serviços/i });
+    const servicesLink = screen.getByRole('link', { name: /VER SOLUÇÕES/i });
     expect(servicesLink).toHaveAttribute('href', '/services');
 
-    const contactLink = screen.getByRole('link', { name: /Fale conosco/i });
+    const contactLink = screen.getByRole('link', { name: /FALE COMIGO/i });
     expect(contactLink).toHaveAttribute('href', '/contact');
   });
 

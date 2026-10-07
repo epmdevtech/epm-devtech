@@ -92,7 +92,7 @@ describe('FAQ Component', () => {
   it('renders bottom CTA linking to #contato', () => {
     render(<FAQ />);
 
-    const cta = screen.getByRole('link', { name: /Falar sobre meu projeto →/i });
+    const cta = screen.getByRole('link', { name: /VAMOS CONVERSAR/i });
     expect(cta).toHaveAttribute('href', '#contato');
   });
 

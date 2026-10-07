@@ -58,14 +58,14 @@ describe('Hero Component (Business Scenarios Selector & B2B Decision — SPEC-08
     expect(eyebrow.className).not.toContain('border');
   });
 
-  it('renders primary CTA pointing to /contact and ensures secondary CTA is absent (SPEC-084)', () => {
+  it('renders single primary CTA pointing to /contact and ensures secondary CTA is absent (SPEC-108)', () => {
     renderHero();
 
     const primaryCta = screen.getByRole('link', { name: /Vamos conversar/i });
     expect(primaryCta).toBeInTheDocument();
     expect(primaryCta).toHaveAttribute('href', '/contact');
 
-    const secondaryCta = screen.queryByRole('link', { name: /Ver soluções/i });
+    const secondaryCta = screen.queryByRole('link', { name: /Conheça as soluções/i });
     expect(secondaryCta).not.toBeInTheDocument();
   });
 

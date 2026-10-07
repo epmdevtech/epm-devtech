@@ -1,12 +1,20 @@
 import { Helmet } from "react-helmet-async";
-import PageHeader from "@/components/ui/PageHeader";
+import PageHero from "@/components/layout/PageHero";
+import HowWeWorkHeroVisual from "@/components/layout/hero-visuals/HowWeWorkHeroVisual";
 import ProcessExplorer from "@/components/sections/ProcessExplorer";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import { SITE_CONFIG } from "@/config/site";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const BASE_URL = SITE_CONFIG.url;
 
 export const HowWeWorkPage = () => {
+  const manifestoRef = useScrollReveal<HTMLDivElement>({
+    selector: ":scope > div",
+    stagger: 0.1,
+    y: 24,
+    duration: 0.65,
+  });
   return (
     <>
       <Helmet>
@@ -33,11 +41,12 @@ export const HowWeWorkPage = () => {
       </Helmet>
 
       <div className="w-full">
-        {/* Page Header (Tom: Anchor) */}
-        <PageHeader
+        {/* Page Hero Split 60/40 com Artefato Visual Técnico (Tom: Anchor) */}
+        <PageHero
           eyebrow="METODOLOGIA"
           title="Como trabalhamos"
           description="Um processo transparente e previsível para transformar problemas operacionais em sistemas confiáveis, com validações frequentes e comunicação direta."
+          visual={<HowWeWorkHeroVisual />}
         />
 
         {/* Process Explorer Interativo (Tom: Base) */}
@@ -48,7 +57,7 @@ export const HowWeWorkPage = () => {
         {/* Manifesto Técnico de Engenharia (Tom: Alt) */}
         <SectionWrapper tone="alt">
           <div className="max-w-5xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 md:divide-x md:divide-border-subtle">
+            <div ref={manifestoRef} className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 md:divide-x md:divide-border-subtle">
               <div className="md:pr-8">
                 <div className="text-[0.8rem] font-semibold text-text-brand uppercase tracking-[0.04em] mb-2 leading-[1.3]">
                   // GARANTIA OPERACIONAL

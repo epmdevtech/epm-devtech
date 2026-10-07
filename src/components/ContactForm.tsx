@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
-import { Loader2, Send, CheckCircle2 } from "lucide-react";
+import { Loader2, CheckCircle2 } from "lucide-react";
 
 import {
   Form,
@@ -308,10 +308,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                 <span>Mensagem Enviada!</span>
               </>
             ) : (
-              <>
-                <Send className="mr-2 h-4 w-4" />
-                <span>Enviar Mensagem</span>
-              </>
+              <span>ENVIAR MENSAGEM</span>
             )}
           </MagneticButton>
         </div>

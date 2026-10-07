@@ -75,7 +75,7 @@ const SEO_META: Record<string, SeoMeta> = {
   contato: {
     title: "Contato | EPM DevTech",
     description:
-      "Fale sobre seu projeto com a EPM DevTech. Retorno em até 24 horas úteis para entender seu cenário e avaliar soluções.",
+      "Fale sobre seu projeto com a EPM DevTech. Entraremos em contato para entender o cenário técnico e agendar uma conversa.",
   },
 };
 

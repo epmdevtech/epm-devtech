@@ -123,8 +123,8 @@ describe('Contact Component', () => {
   it('renders the contact header', () => {
     render(<Contact />);
     expect(screen.getByText('Contato')).toBeInTheDocument();
-    expect(screen.getByText('Fale sobre seu projeto')).toBeInTheDocument();
-    expect(screen.getByText(/Conte o que sua empresa precisa/i)).toBeInTheDocument();
+    expect(screen.getByText('Vamos conversar sobre como podemos apoiar você e seu projeto')).toBeInTheDocument();
+    expect(screen.getByText(/Assim que recebermos sua mensagem, entraremos em contato/i)).toBeInTheDocument();
   });
 
   it('renders next steps and guarantees in dark side of unified card', () => {
@@ -140,9 +140,9 @@ describe('Contact Component', () => {
       screen.getByText(/Avaliamos seu cenário, gargalos e viabilidade arquitetural logo no primeiro contato/i)
     ).toBeInTheDocument();
 
-    expect(screen.getByText('Retorno em até 24 horas úteis')).toBeInTheDocument();
+    expect(screen.getByText('Atendimento consultivo direto')).toBeInTheDocument();
     expect(
-      screen.getByText(/Resposta objetiva e técnica para agendarmos uma conversa/i)
+      screen.getByText('Entraremos em contato para entender o cenário técnico e agendar uma conversa.')
     ).toBeInTheDocument();
 
     expect(screen.getByText('Sigilo e confidencialidade')).toBeInTheDocument();
@@ -150,9 +150,15 @@ describe('Contact Component', () => {
       screen.getByText(/Suas regras de negócio e dados tratados com confidencialidade total, com NDA quando solicitado/i)
     ).toBeInTheDocument();
 
+    // Alternativa direta por e-mail
+    expect(screen.getByText('Prefere e-mail? Escreva diretamente para')).toBeInTheDocument();
+    const emailLink = screen.getByRole('link', { name: 'elessandro@epmdevtech.com.br' });
+    expect(emailLink).toBeInTheDocument();
+    expect(emailLink).toHaveAttribute('href', 'mailto:elessandro@epmdevtech.com.br');
+
     // Chamada de ação rápida WhatsApp
     expect(screen.getByText('Prefere atendimento imediato?')).toBeInTheDocument();
-    const whatsappLink = screen.getByRole('link', { name: /Chamar no WhatsApp direto →/i });
+    const whatsappLink = screen.getByRole('link', { name: /Chamar no WhatsApp direto/i });
     expect(whatsappLink).toBeInTheDocument();
     expect(whatsappLink).toHaveAttribute('href', 'https://wa.me/5545999178290');
   });
@@ -165,12 +171,12 @@ describe('Contact Component', () => {
     expect(screen.getByLabelText(/WhatsApp \/ Telefone/i)).toBeInTheDocument();
     expect(screen.getAllByText(/Tipo de projeto/i).length).toBeGreaterThan(0);
     expect(screen.getAllByLabelText(/Mensagem/i).length).toBeGreaterThan(0);
-    expect(screen.getByRole('button', { name: /Falar sobre meu projeto/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Enviar mensagem/i })).toBeInTheDocument();
   });
 
   it('shows validation errors when submitting empty form', async () => {
     render(<Contact />);
-    fireEvent.submit(screen.getByRole('button', { name: /Falar sobre meu projeto/i }));
+    fireEvent.submit(screen.getByRole('button', { name: /Enviar mensagem/i }));
 
     await waitFor(() => {
       expect(screen.getByText(/Informe seu nome completo/i)).toBeInTheDocument();
@@ -201,7 +207,7 @@ describe('Contact Component', () => {
 
     expect(phoneInput.value).toBe('(11) 99999-8888');
 
-    fireEvent.submit(screen.getByRole('button', { name: /Falar sobre meu projeto/i }));
+    fireEvent.submit(screen.getByRole('button', { name: /Enviar mensagem/i }));
 
     await waitFor(() => {
       expect(emailjs.send).toHaveBeenCalledTimes(1);
@@ -214,7 +220,7 @@ describe('Contact Component', () => {
     render(<Contact />);
     fillValidForm();
 
-    fireEvent.submit(screen.getByRole('button', { name: /Falar sobre meu projeto/i }));
+    fireEvent.submit(screen.getByRole('button', { name: /Enviar mensagem/i }));
 
     await waitFor(() => {
       expect(mockToastError).toHaveBeenCalledWith(
@@ -232,12 +238,12 @@ describe('Contact Component', () => {
     render(<Contact />);
     fillValidForm();
 
-    fireEvent.submit(screen.getByRole('button', { name: /Falar sobre meu projeto/i }));
+    fireEvent.submit(screen.getByRole('button', { name: /Enviar mensagem/i }));
 
     await waitFor(() => {
       expect(emailjs.send).toHaveBeenCalledTimes(1);
       expect(mockToastSuccess).toHaveBeenCalledWith(
-        expect.stringContaining('Mensagem recebida. Retornamos em até 24 horas úteis.')
+        expect.stringContaining('Mensagem recebida')
       );
       expect(screen.getByRole('button', { name: /Mensagem Enviada!/i })).toBeInTheDocument();
     });
@@ -254,7 +260,7 @@ describe('Contact Component', () => {
     render(<Contact />);
     fillValidForm();
 
-    fireEvent.submit(screen.getByRole('button', { name: /Falar sobre meu projeto/i }));
+    fireEvent.submit(screen.getByRole('button', { name: /Enviar mensagem/i }));
 
     await waitFor(() => {
       expect(mockToastError).toHaveBeenCalledWith(
@@ -277,7 +283,7 @@ describe('Contact Component', () => {
     render(<Contact />);
     fillValidForm();
 
-    fireEvent.submit(screen.getByRole('button', { name: /Falar sobre meu projeto/i }));
+    fireEvent.submit(screen.getByRole('button', { name: /Enviar mensagem/i }));
 
     await waitFor(() => {
       expect(screen.getByText('Enviando...')).toBeInTheDocument();
@@ -291,7 +297,7 @@ describe('Contact Component', () => {
   // ── Microinterações: Botão de Envio ────────────────────────────────────────
   it('aplica efeitos de hover e press no botão sem lançar erros', () => {
     render(<Contact />);
-    const button = screen.getByRole('button', { name: /Falar sobre meu projeto/i });
+    const button = screen.getByRole('button', { name: /Enviar mensagem/i });
 
     expect(() => {
       fireEvent.mouseEnter(button);

@@ -7,6 +7,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { CORE_TECHNOLOGIES } from "@/config/architecture";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 export interface ArchitecturalBlueprintProps {
   className?: string;
@@ -15,6 +16,10 @@ export interface ArchitecturalBlueprintProps {
 const ArchitecturalBlueprint: React.FC<ArchitecturalBlueprintProps> = ({
   className,
 }) => {
+  const cloudRef = useScrollReveal<HTMLDivElement>({
+    y: 16,
+    duration: 0.5,
+  });
   return (
     <div
       data-testid="architectural-blueprint"
@@ -40,6 +45,7 @@ const ArchitecturalBlueprint: React.FC<ArchitecturalBlueprintProps> = ({
         disableHoverableContent={true}
       >
         <div
+          ref={cloudRef}
           data-testid="tech-editorial-cloud"
           className="flex flex-wrap items-center gap-x-7 sm:gap-x-10 md:gap-x-12 gap-y-6 sm:gap-y-8 md:gap-y-10 py-6 sm:py-8"
         >

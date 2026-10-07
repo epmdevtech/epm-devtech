@@ -9,6 +9,120 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.111-page-hero-split-e-artefatos-visuais] - 2026-10-07
+
+### Adicionado
+- **`specs/SPEC-111-page-hero-split-e-artefatos-visuais.md`**, **`tasks/TASK-111-page-hero-split-e-artefatos-visuais.md`** e **`reviews/QA-111.md`**: Especificação técnica aprovada, checklist de implementação e relatório de QA para unificação dos Heros multi-rota em layout split 60/40 com artefatos visuais autorais dedicados.
+- **Componente Base Reutilizável `PageHero.tsx`** (`src/components/layout/PageHero.tsx`):
+  - Layout assimétrico split (60% editorial / 40% visual em desktop) com iluminação difusa esmeralda/ciano em segundo plano.
+  - Acessibilidade WCAG estrita com H1 programático (`#page-title` / `#hero-title`), `aria-labelledby`, transição tonal de superfície `data-tone="anchor"` pura (sem divisores artificiais de borda) e container visual com `aria-hidden` automático.
+  - Suporte à exibição de CTAs primários magnéticos chanfrados nos 4 cantos (`btn-bevel-4`) e integração ao hook de animações por rolagem (`useScrollReveal`).
+- **5 Novos Artefatos Visuais Técnicos Autorais** (`src/components/layout/hero-visuals/`):
+  - `ServicesHeroVisual.tsx`: Barramento de microsserviços em circuito impresso (PCB) com trilhas em 45º, status de roteador e telemetria de latência (`< 14ms`) e throughput (`2.500 req/s`).
+  - `HowWeWorkHeroVisual.tsx`: Esteira sequencial com os 4 portais de validação de qualidade determinística (`01 DIAGNOSE`, `02 SPEC`, `03 BUILD`, `04 EVOLVE`).
+  - `ExperienceHeroVisual.tsx`: Painel HUD industrial de cluster corporativo com disponibilidade de `99,9% uptime`, `2.500 req/s` de pico suportado e osciloscópio SVG de estabilidade.
+  - `EngineeringHeroVisual.tsx`: Processador de arquitetura central `EPM-CORE 64-BIT SYNC` com 4 diodos de qualidade determinística e diretrizes Clean Architecture / SOLID / OWASP.
+  - `ContactHeroVisual.tsx`: Conexão direta handshake P2P (`SYN/ACK ESTABLISHED`) conectando o decisor diretamente à liderança técnica sem intermediários.
+- **Testes Unitários**:
+  - `src/components/layout/__tests__/PageHero.test.tsx`: 7 novos testes unitários cobrindo layout split, acessibilidade, renderização de CTAs e integridade dos 5 artefatos visuais.
+
+### Modificado
+- **Integração nas 7 Rotas Canônicas**:
+  - `src/components/sections/Hero.tsx` (`/`): Migrado para `PageHero`, preservando `id="hero"`, H1 monocromático da marca e o seletor interativo `BusinessScenarioSelector`.
+  - `src/pages/ServicesPage.tsx` (`/services`): Substituição de `PageHeader` por `PageHero` com `ServicesHeroVisual` e CTA primário `"VAMOS CONVERSAR"`.
+  - `src/pages/HowWeWorkPage.tsx` (`/how-we-work`): Substituição de `PageHeader` por `PageHero` com `HowWeWorkHeroVisual`.
+  - `src/pages/ExperiencePage.tsx` (`/experience`): Substituição de `PageHeader` por `PageHero` com `ExperienceHeroVisual`.
+  - `src/pages/EngineeringPage.tsx` (`/engineering`): Substituição de `PageHeader` por `PageHero` com `EngineeringHeroVisual`.
+  - `src/pages/AboutPage.tsx` (`/about`): Substituição de header por `PageHero` com `EpmConstellation` vetorial interativa.
+  - `src/pages/ContactPage.tsx` (`/contact`): Substituição de `PageHeader` por `PageHero` com `ContactHeroVisual`.
+- **`src/components/sections/ArchitecturalBlueprint.tsx`**:
+  - Refatoração do `useScrollReveal` para atuar no bloco da nuvem técnica sem interceptar os botões individuais, prevenindo conflito de CSS transforms com o `hover:scale` do Tailwind e garantindo o funcionamento estável dos tooltips do Radix.
+- **Quality Gates**:
+  - 41/41 suítes Vitest aprovadas (275 testes unitários passando).
+  - 46/46 testes E2E Playwright aprovados.
+  - 0 erros no ESLint e build pré-renderizado estático validado.
+
+
+## [0.0.110-scroll-reveal-rotas-e-botoes-tipograficos] - 2026-10-07
+
+### Adicionado
+- **`specs/SPEC-110-scroll-reveal-rotas-e-botoes-tipograficos.md`**, **`tasks/TASK-110-scroll-reveal-rotas-e-botoes-tipograficos.md`** e **`reviews/QA-110.md`**: Especificação técnica aprovada, checklist de tarefa e relatório de QA para padronização global de animações de revelação por rolagem (Scroll Reveal), eliminação de ícones decorativos em botões e definição do e-mail oficial.
+- **Scroll Reveal em Rotas Internas**:
+  - `src/components/ui/PageHeader.tsx`: Animação de entrada escalonada (`opacity: 0 -> 1`, `y: 20 -> 0`, `stagger: 0.08`, `duration: 0.65`) ativada automaticamente para todos os cabeçalhos de rotas (`/services`, `/how-we-work`, `/experience`, `/engineering`, `/contact`, `/faq`).
+  - `src/pages/ServicesPage.tsx`: Grade de garantias de engenharia com `useScrollReveal` (`selector: ":scope > div"`, `stagger: 0.1`, `y: 24`).
+  - `src/pages/HowWeWorkPage.tsx` & `src/components/sections/ProcessExplorer.tsx`: Animação por rolagem no explorer de etapas e no manifesto de engenharia.
+  - `src/pages/ExperiencePage.tsx`: Animação por rolagem no grid 2x2 de verticais e nas linhas do enterprise ledger corporativo.
+  - `src/pages/EngineeringPage.tsx` & `src/components/sections/ArchitecturalBlueprint.tsx`: Animação da lista de princípios, janela do terminal CI/CD, nuvem tipográfica de tecnologias centrais e CTA final.
+  - `src/pages/AboutPage.tsx`: Animação no hero editorial monocromático, timeline de marcos da jornada (`[data-testid^='milestone-']`), manifesto técnico e Bottom CTA.
+  - `src/pages/ContactPage.tsx`: Animação na grade de cards de perguntas frequentes de apoio.
+
+### Modificado
+- **Botões Estritamente Tipográficos e Editoriais**:
+  - Remoção de todos os ícones decorativos internos (`→`, `ArrowRight`, `ArrowUpRight`, `ChevronRight`, `Send`, `Maximize2`, `Home`, `Code2`, `Mail`) em botões e CTAs de `Hero.tsx`, `ServicesPage.tsx`, `FAQ.tsx`, `HomeServicesBento.tsx`, `ProcessExplorer.tsx`, `Contact.tsx`, `ContactForm.tsx`, `ContactPage.tsx` e `NotFound.tsx`.
+- **E-mail Oficial de Contato**:
+  - Atualizado para `elessandro@epmdevtech.com.br` (`mailto:elessandro@epmdevtech.com.br`) na seção/página de contato (`Contact.tsx`) e atualizadas as asserções em `Contact.test.tsx`.
+  - Expurgo de menções residuais a promessas de "24h úteis" em `FAQ.tsx`, `config/faq.ts`, `FAQPage.tsx` e `Index.tsx`.
+- **Testes & Quality Gates**:
+  - 40/40 suítes Vitest aprovadas (268 testes unitários passando, 99.07% de cobertura de código).
+  - 46/46 testes E2E Playwright aprovados.
+  - ESLint com zero erros e build pré-renderizado estático validado.
+- **`PROJECT.md`**: Atualizado o estado canônico do projeto.
+
+## [0.0.109-humanizacao-contato-e-foco-editorial-engenharia] - 2026-10-07
+
+### Adicionado
+- **`specs/SPEC-109-humanizacao-contato-e-foco-editorial-engenharia.md`**, **`tasks/TASK-109-humanizacao-contato-e-foco-editorial-engenharia.md`** e **`reviews/QA-109.md`**: Especificação técnica aprovada, tarefa e relatório de QA para humanização da página/seção de contato e foco editorial na rota de engenharia.
+- Bloco editorial de contato direto por e-mail em `src/components/sections/Contact.tsx` ("Prefere e-mail? Escreva diretamente para" `contato@epmdevtech.com.br`).
+- Seção de fechamento comercial e Bottom CTA em `src/pages/EngineeringPage.tsx` com botão `VAMOS CONVERSAR` direcionando para `/contact`.
+
+### Modificado
+- **`src/components/sections/Contact.tsx`**:
+  - Título editorial dominante atualizado para `"Vamos conversar sobre como podemos apoiar você e seu projeto"`.
+  - Subtítulo atualizado para `"Assim que recebermos sua mensagem, entraremos em contato para entender o cenário técnico e agendar uma conversa."`.
+  - Expurgo definitivo de promessas artificiais de prazo comercial ("retornamos em 24h", "24 horas úteis") do bloco informativo e do feedback de envio (`toast.success`).
+  - Botão de envio atualizado para `"ENVIAR MENSAGEM"` com caixa alta obrigatória (`uppercase tracking-[0.04em] font-semibold`) e chanfro simétrico (`btn-bevel-4`).
+- **`src/pages/ContactPage.tsx`**: Alinhamento de título e descrição de cabeçalho editorial e remoção de menções a 24h nos metadados.
+- **`src/pages/EngineeringPage.tsx`**: Remoção definitiva do botão de CTA do topo (`VER TECNOLOGIAS`) no `PageHeader`, preservando foco estrito na documentação editorial e autoridade técnica.
+- **`scripts/prerender.js`**: Atualização do HTML pré-renderizado de `/contact` expurgando menções a 24h e alinhando H1.
+- **Testes**: Atualização de testes unitários (`Contact.test.tsx`, `pages.test.tsx`) e da suíte E2E multi-rota (`multi-route-navigation.spec.ts`).
+- **`PROJECT.md`**: Atualizado o estado canônico do projeto.
+
+## [0.0.108-refatoracao-ctas-hero-home-e-sobre] - 2026-10-07
+
+### Adicionado
+- **`specs/SPEC-108-refatoracao-ctas-hero-home-e-sobre.md`**, **`tasks/TASK-108-refatoracao-ctas-hero-home-e-sobre.md`** e **`reviews/QA-108.md`**: Especificação técnica aprovada, tarefa e relatório de QA para refatoração e foco dos CTAs no Hero da Home e na rota Sobre Nós.
+- Seção de fechamento comercial e Bottom CTA em `src/pages/AboutPage.tsx` com botão `VAMOS CONVERSAR` direcionando para `/contact`.
+
+### Modificado
+- **`src/components/sections/Hero.tsx`**: CTA primário único atualizado para `"VAMOS CONVERSAR"` (`uppercase tracking-[0.04em] font-semibold`, `btn-bevel-4`) e remoção definitiva do botão secundário `"CONHEÇA AS SOLUÇÕES"`, garantindo foco singular de conversão.
+- **`src/pages/AboutPage.tsx`**: Remoção definitiva do botão de CTA da primeira dobra (Hero), conferindo respiro editorial à narrativa e à constelação interativa `EpmConstellation`, sem redundância com o botão fixo da Navbar.
+- **Testes**: Atualização das asserções de CTA no teste unitário `Hero.test.tsx` e na suíte E2E do Playwright (`design-system-and-stability.spec.ts`).
+- **`PROJECT.md`**: Atualizado o estado canônico do projeto.
+
+## [0.0.107-padronizacao-copy-estilo-botoes-ctas-uppercase] - 2026-10-07
+
+### Adicionado
+- **`specs/SPEC-107-padronizacao-copy-estilo-botoes-ctas-uppercase.md`**, **`tasks/TASK-107-padronizacao-copy-estilo-botoes-ctas-uppercase.md`** e **`reviews/QA-107.md`**: Especificação técnica aprovada, tarefa e relatório de QA para padronização de redação comercial B2B e estilo dos botões e CTAs em caixa alta (uppercase).
+- Botão CTA secundário no Hero da Home (`CONHEÇA AS SOLUÇÕES`) em variante outline direcionando para `/services`.
+- Botão de exploração técnica no PageHeader de Engenharia (`VER TECNOLOGIAS`) direcionando para `#tecnologias`.
+
+### Modificado
+- **`src/components/ui/MagneticButton.tsx`**: Estilo base atualizado com `uppercase tracking-wider font-semibold` e escalas de padding/fonte refinadas (`sm: px-5 py-2.5`, `lg: px-8 py-3.5`).
+- **Padronização de redação e botões em todos os pontos de contato**:
+  - `Header.tsx`: "FALE COMIGO" (desktop e gaveta móvel).
+  - `Hero.tsx`: "FALE COMIGO" e "CONHEÇA AS SOLUÇÕES".
+  - `Home.tsx`: "VER SOLUÇÕES", "COMO TRABALHAMOS", "VER EXPERIÊNCIA" e "CONHEÇA A EPM DEVTECH".
+  - `HomeServicesBento.tsx`: "VER DETALHES" nos 4 cards bento.
+  - `AboutPage.tsx`: "FALE COMIGO".
+  - `ServicesPage.tsx`: "VAMOS CONVERSAR".
+  - `Contact.tsx`: "SOLICITAR ORÇAMENTO" (com remoção de aria-label estático para refletir feedback de envio acessível).
+  - `ContactForm.tsx`: "ENVIAR MENSAGEM".
+  - `FAQPage.tsx`: "VAMOS CONVERSAR".
+  - `FAQ.tsx`: "VAMOS CONVERSAR →".
+  - `NotFound.tsx`: "PÁGINA INICIAL", "VER SOLUÇÕES", "FALE COMIGO".
+- **Testes**: Atualização de asserções em suítes unitárias e E2E Playwright (`design-system-and-stability.spec.ts`, `multi-route-navigation.spec.ts`).
+- **`PROJECT.md`**: Registrada padronização de CTAs e cobertura de 99,06%.
+
 ## [0.0.106-rotas-slugs-ingles] - 2026-10-03
 
 ### Adicionado

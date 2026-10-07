@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { ChevronDown, CheckCircle2, ShieldCheck, ArrowRight } from "lucide-react";
+import { ChevronDown, CheckCircle2, ShieldCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   IconProcessUnderstand,
@@ -9,6 +9,7 @@ import {
   IconProcessEvolve,
   type IconProps,
 } from "@/components/icons";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 export interface ProcessStep {
   step: string;
@@ -95,6 +96,10 @@ export const ProcessExplorer: React.FC<ProcessExplorerProps> = ({ className }) =
   const [activeStepIndex, setActiveStepIndex] = useState(0);
   const [mobileExpandedIndex, setMobileExpandedIndex] = useState<number | null>(0);
   const shouldReduceMotion = useReducedMotion();
+  const explorerRef = useScrollReveal<HTMLDivElement>({
+    y: 24,
+    duration: 0.65,
+  });
 
   const currentStep = PROCESS_STEPS[activeStepIndex];
 
@@ -103,7 +108,7 @@ export const ProcessExplorer: React.FC<ProcessExplorerProps> = ({ className }) =
   };
 
   return (
-    <div className={cn("w-full", className)}>
+    <div ref={explorerRef} className={cn("w-full", className)}>
       {/* ── Visualização Desktop (>= md) ── */}
       <div className="hidden md:grid md:grid-cols-12 gap-8 items-start">
         {/* Coluna da Esquerda: Seletor Vertical das 4 Etapas */}
@@ -159,18 +164,6 @@ export const ProcessExplorer: React.FC<ProcessExplorerProps> = ({ className }) =
                   >
                     {step.title}
                   </span>
-                </div>
-
-                <div
-                  className={cn(
-                    "w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 shrink-0",
-                    isActive
-                      ? "bg-brand/10 text-text-brand"
-                      : "text-tertiary opacity-0 group-hover:opacity-100 group-hover:text-secondary",
-                  )}
-                  aria-hidden="true"
-                >
-                  <ArrowRight className="w-4 h-4" />
                 </div>
               </button>
             );

@@ -42,7 +42,7 @@ test.describe('EPM DEVTECH — Arquitetura de Informação Multi-Rota (SPEC-060)
     {
       path: '/contact',
       expectedTitle: 'Fale Sobre Seu Projeto | EPM DevTech',
-      expectedH1: 'Fale sobre seu projeto',
+      expectedH1: 'Vamos conversar sobre como podemos apoiar você e seu projeto',
       canonicalUrl: 'https://epmdevtech.com.br/contact',
     },
     {
@@ -103,7 +103,7 @@ test.describe('EPM DEVTECH — Arquitetura de Informação Multi-Rota (SPEC-060)
     // Botão de Ação CTA único no Header
     const ctaButton = page.locator('header a[href="/contact"]').first();
     await expect(ctaButton).toBeVisible();
-    await expect(ctaButton).toContainText('Fale conosco');
+    await expect(ctaButton).toContainText('FALE COMIGO');
 
     // Ao clicar em um link, navega para a rota e marca aria-current="page"
     await nav.locator('a[href="/services"]').click();

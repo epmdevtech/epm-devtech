@@ -1,16 +1,23 @@
 import { Helmet } from "react-helmet-async";
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
-import PageHeader from "@/components/ui/PageHeader";
+import PageHero from "@/components/layout/PageHero";
+import ServicesHeroVisual from "@/components/layout/hero-visuals/ServicesHeroVisual";
 import Services from "@/components/sections/Services";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { SITE_CONFIG } from "@/config/site";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const BASE_URL = SITE_CONFIG.url;
 
 export const ServicesPage = () => {
   const navigate = useNavigate();
+  const guaranteesRef = useScrollReveal<HTMLDivElement>({
+    selector: ":scope > div",
+    stagger: 0.1,
+    y: 24,
+    duration: 0.65,
+  });
   return (
     <>
       <Helmet>
@@ -43,29 +50,27 @@ export const ServicesPage = () => {
       </Helmet>
 
       <div className="w-full">
-        {/* Page Header padronizado com CTA destacado (Tom: Anchor) */}
-        <PageHeader
+        {/* Page Hero Split 60/40 com Artefato Visual Técnico (Tom: Anchor) */}
+        <PageHero
           eyebrow="SERVIÇOS"
           title="Soluções de software sob medida para destravar sua empresa"
           description="Do diagnóstico técnico à sustentação: desenvolvemos sistemas web, APIs de alta concorrência e integrações de dados para resolver gargalos operacionais reais."
-          containerClassName="max-w-4xl mx-auto"
-        >
-          <div className="mt-8 flex justify-center">
-            <MagneticButton
-              to="/contact"
-              variant="chamfer"
-              size="lg"
-              onClick={() => navigate("/contact")}
-              aria-label="Conversar sobre seu projeto"
-              className="w-full max-w-xs sm:w-auto font-semibold px-8 py-3.5 rounded-md min-h-[44px]"
-            >
-              <span className="inline-flex items-center">
-                <span>Conversar sobre seu projeto</span>
-                <ArrowRight className="w-4 h-4 ml-1 opacity-80" />
-              </span>
-            </MagneticButton>
-          </div>
-        </PageHeader>
+          primaryCta={
+            <div className="flex items-center w-full sm:w-auto">
+              <MagneticButton
+                to="/contact"
+                variant="chamfer"
+                size="lg"
+                onClick={() => navigate("/contact")}
+                aria-label="VAMOS CONVERSAR"
+                className="w-full max-w-xs sm:w-auto font-semibold px-8 py-3.5 rounded-md min-h-[44px]"
+              >
+                VAMOS CONVERSAR
+              </MagneticButton>
+            </div>
+          }
+          visual={<ServicesHeroVisual />}
+        />
 
         {/* Catálogo completo de serviços em Z-Pattern (Tom: Base) */}
         <div>
@@ -75,7 +80,7 @@ export const ServicesPage = () => {
         {/* Faixa de Garantias de Engenharia (Tom: Alt) */}
         <SectionWrapper tone="alt">
           <div className="max-w-5xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+            <div ref={guaranteesRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
               <div>
                 <div className="font-mono text-xs font-semibold text-text-brand tracking-wider mb-2">
                   [ 01 // ESCOPO ]

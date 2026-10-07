@@ -146,9 +146,9 @@ export const Header = () => {
                 variant="chamfer"
                 size="sm"
                 onClick={() => navigate("/contact")}
-                aria-label="Fale conosco"
+                aria-label="Fale comigo"
               >
-                Fale conosco
+                FALE COMIGO
               </MagneticButton>
             </div>
 
@@ -240,9 +240,9 @@ export const Header = () => {
                     closeMobileMenu();
                     navigate("/contact");
                   }}
-                  aria-label="Fale conosco"
+                  aria-label="Fale comigo"
                 >
-                  Fale conosco
+                  FALE COMIGO
                 </MagneticButton>
               </div>
             </nav>
