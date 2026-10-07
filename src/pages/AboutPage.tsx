@@ -1,12 +1,10 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Sparkles } from "lucide-react";
 import BrandChipIcon from "@/components/ui/BrandChipIcon";
 import PageHero from "@/components/layout/PageHero";
 import EpmConstellation from "@/components/sections/EpmConstellation";
 import SectionWrapper from "@/components/ui/SectionWrapper";
-import { MagneticButton } from "@/components/ui/MagneticButton";
 import { SITE_CONFIG } from "@/config/site";
 import { cn } from "@/lib/utils";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
@@ -92,7 +90,6 @@ const PRINCIPLES: PrincipleItem[] = [
 ];
 
 export const AboutPage: React.FC = () => {
-  const navigate = useNavigate();
   const journeyRef = useScrollReveal<HTMLDivElement>({
     selector: "[data-testid^='milestone-']",
     stagger: 0.1,
@@ -102,10 +99,6 @@ export const AboutPage: React.FC = () => {
   const principlesRef = useScrollReveal<HTMLDivElement>({
     selector: ":scope > div",
     stagger: 0.08,
-    y: 20,
-    duration: 0.65,
-  });
-  const bottomCtaRef = useScrollReveal<HTMLDivElement>({
     y: 20,
     duration: 0.65,
   });
@@ -384,28 +377,6 @@ export const AboutPage: React.FC = () => {
                 </div>
               </div>
             ))}
-          </div>
-        </SectionWrapper>
-
-        {/* Seção 4: Fechamento / Conversão Comercial (Tom: Base) */}
-        <SectionWrapper id="sobre-cta" tone="base">
-          <div ref={bottomCtaRef} className="max-w-2xl mx-auto text-center py-6">
-            <h2 className="text-xl sm:text-2xl font-bold text-primary mb-3">
-              Vamos conversar sobre o seu próximo projeto?
-            </h2>
-            <p className="text-sm text-secondary mb-6 max-w-lg mx-auto">
-              Converse diretamente com a liderança técnica da EPM DevTech para avaliar desafios e viabilidade arquitetural.
-            </p>
-            <MagneticButton
-              to="/contact"
-              variant="chamfer"
-              size="default"
-              onClick={() => navigate("/contact")}
-              aria-label="Vamos conversar"
-              className="min-h-[44px] px-8 text-sm font-semibold rounded-md uppercase tracking-[0.04em]"
-            >
-              VAMOS CONVERSAR
-            </MagneticButton>
           </div>
         </SectionWrapper>
       </div>

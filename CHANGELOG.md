@@ -9,6 +9,24 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.114-remocao-secao-bottom-cta-sobre-nos-e-engenharia] - 2026-10-07
+
+### Removido
+- **Seção Intermediária de Bottom CTA em `/about`** (`src/pages/AboutPage.tsx`):
+  - Remoção completa do bloco `<SectionWrapper id="sobre-cta" tone="base">` contendo o banner "Vamos conversar sobre o seu próximo projeto?", o subtítulo "Converse diretamente com a liderança técnica da EPM DevTech para avaliar desafios e viabilidade arquitetural." e o botão "VAMOS CONVERSAR".
+  - Eliminação de redundância visual e espaço vazio antes do rodapé, harmonizando o encerramento da rota após o Manifesto Técnico diretamente para o Footer (`anchor -> base -> alt -> anchor`).
+  - Limpeza de dependências e hooks órfãos: remoção de `useNavigate`, `MagneticButton` e da referência `bottomCtaRef`.
+- **Seção Intermediária de Bottom CTA em `/engineering`** (`src/pages/EngineeringPage.tsx`):
+  - Remoção completa do bloco `<SectionWrapper id="engenharia-cta" tone="base">` contendo o banner "Vamos conversar sobre a engenharia do seu projeto?", o subtítulo "Converse diretamente com quem projeta e implementa o código para desenhar uma arquitetura sólida e escalável." e o botão "VAMOS CONVERSAR".
+  - Eliminação de redundância visual antes do rodapé, harmonizando o encerramento da rota após a Matriz de Especialidades Técnicas diretamente para o Footer (`anchor -> base -> alt -> anchor`).
+  - Limpeza de dependências e hooks órfãos: remoção de `useNavigate`, `MagneticButton` e da referência `bottomCtaRef`.
+
+### Modificado
+- **`src/pages/__tests__/pages.test.tsx`**: Atualização do teste de `EngineeringPage` validando a ausência do botão CTA de fechamento redundante.
+
+### Adicionado
+- **`specs/SPEC-114-remocao-secao-bottom-cta-sobre-nos.md`**, **`tasks/TASK-114-remocao-secao-bottom-cta-sobre-nos.md`** e **`reviews/QA-114.md`**: Especificação técnica aprovada, checklist de tarefas e relatório de QA confirmando 100% dos quality gates aprovados (Vitest, ESLint, Vite build e Playwright E2E).
+
 ## [0.0.113-direcoes-de-arte-editoriais-heros] - 2026-10-07
 
 ### Adicionado
