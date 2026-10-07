@@ -1,6 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
-import PageHeader from "@/components/ui/PageHeader";
+import PageHero from "@/components/layout/PageHero";
+import ExperienceHeroVisual from "@/components/layout/hero-visuals/ExperienceHeroVisual";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import { getApprovedExperiences } from "@/config/experience";
 import { SITE_CONFIG } from "@/config/site";
@@ -11,6 +12,7 @@ import {
   IconSectorEnergy,
   type IconProps,
 } from "@/components/icons";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const BASE_URL = SITE_CONFIG.url;
 
@@ -68,6 +70,18 @@ const VERTICALS: VerticalItem[] = [
 
 export const ExperiencePage = () => {
   const approvedExperiences = getApprovedExperiences();
+  const verticalsRef = useScrollReveal<HTMLDivElement>({
+    selector: ":scope > div",
+    stagger: 0.08,
+    y: 24,
+    duration: 0.65,
+  });
+  const ledgerRef = useScrollReveal<HTMLDivElement>({
+    selector: ":scope > div",
+    stagger: 0.06,
+    y: 16,
+    duration: 0.6,
+  });
 
   return (
     <>
@@ -95,11 +109,12 @@ export const ExperiencePage = () => {
       </Helmet>
 
       <div className="w-full">
-        {/* Page Header (Tom: Anchor) */}
-        <PageHeader
+        {/* Page Hero Split 60/40 com Artefato Visual Técnico (Tom: Anchor) */}
+        <PageHero
           eyebrow="EXPERIÊNCIA E ESCALA"
           title="Experiência em projetos reais"
           description="Conhecimento construído em operações reais com requisitos rigorosos de estabilidade, integração e volume de dados."
+          visual={<ExperienceHeroVisual />}
         />
 
         {/* Bloco 1: Contextos de Negócio e Verticais (Tom: Base) */}
@@ -117,7 +132,7 @@ export const ExperiencePage = () => {
           </div>
 
           {/* Engineering Matrix: Grid 2x2 com bordas internas limpas */}
-          <div className="grid grid-cols-1 md:grid-cols-2 border border-border-default/80 rounded-2xl overflow-hidden bg-surface/40 dark:bg-zinc-950/40 divide-y md:divide-y-0 divide-border-default/80 md:[&>*:nth-child(even)]:border-l md:[&>*:nth-child(even)]:border-border-default/80 md:[&>*:nth-child(n+3)]:border-t md:[&>*:nth-child(n+3)]:border-border-default/80">
+          <div ref={verticalsRef} className="grid grid-cols-1 md:grid-cols-2 border border-border-default/80 rounded-2xl overflow-hidden bg-surface/40 dark:bg-zinc-950/40 divide-y md:divide-y-0 divide-border-default/80 md:[&>*:nth-child(even)]:border-l md:[&>*:nth-child(even)]:border-border-default/80 md:[&>*:nth-child(n+3)]:border-t md:[&>*:nth-child(n+3)]:border-border-default/80">
             {VERTICALS.map((item) => (
               <div
                 key={item.num}
@@ -178,7 +193,7 @@ export const ExperiencePage = () => {
           </div>
 
           {/* Enterprise Ledger: Tabela / Linhas Horizontais Elegantes */}
-          <div className="divide-y divide-border-default/80 border-y border-border-default/80">
+          <div ref={ledgerRef} className="divide-y divide-border-default/80 border-y border-border-default/80">
             {approvedExperiences.map((exp) => (
               <div
                 key={exp.organization}

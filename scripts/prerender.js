@@ -58,8 +58,8 @@ const ROUTES = [
     path: "contact",
     title: "Fale Sobre Seu Projeto | EPM DevTech",
     description:
-      "Inicie seu projeto de software com a EPM DevTech. Retorno em até 24 horas úteis com avaliação técnica e diagnóstico preliminar.",
-    h1: "Fale sobre seu projeto",
+      "Inicie seu projeto de software com a EPM DevTech. Entraremos em contato para entender o cenário técnico e agendar uma conversa.",
+    h1: "Vamos conversar sobre como podemos apoiar você e seu projeto",
   },
   {
     path: "faq",

@@ -28,7 +28,7 @@ export const FAQ_ITEMS: FAQItem[] = [
     category: "contratacao",
     question: "Como funciona o primeiro contato, o diagnóstico inicial e o tempo de retorno?",
     answer:
-      "Nosso retorno ocorre em até 24 horas úteis após o envio da sua mensagem. Agendamos uma conversa inicial para entender seu contexto, avaliar o volume esperado, regras de negócio e integrações necessárias, apresentando uma visão transparente sobre viabilidade e opções de arquitetura sem compromisso.",
+      "Assim que recebemos sua mensagem, agendamos uma conversa inicial para entender seu contexto, avaliar o volume esperado, regras de negócio e integrações necessárias, apresentando uma visão transparente sobre viabilidade e opções de arquitetura sem compromisso.",
     isHighlight: true,
   },
   {

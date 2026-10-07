@@ -154,17 +154,17 @@ export const FAQPage = () => {
               Não encontrou a resposta para o seu cenário?
             </h2>
             <p className="text-[clamp(0.95rem,1.1vw,1.05rem)] text-secondary max-w-[65ch] mx-auto mb-6 leading-[1.6]">
-              Envie sua dúvida ou descreva o desafio da sua empresa. Retornamos em até 24 horas úteis com uma avaliação técnica preliminar.
+              Envie sua dúvida ou descreva o desafio da sua empresa. Entraremos em contato para entender o cenário técnico e agendar uma conversa.
             </p>
             <MagneticButton
               to="/contact"
               variant="chamfer"
               size="default"
               onClick={() => navigate("/contact")}
-              aria-label="Falar sobre meu projeto"
-              className="min-h-[44px] px-8 text-sm font-semibold rounded-md"
+              aria-label="Vamos conversar"
+              className="min-h-[44px] px-8 text-sm font-semibold rounded-md uppercase tracking-[0.04em]"
             >
-              Falar sobre meu projeto
+              VAMOS CONVERSAR
             </MagneticButton>
           </div>
         </SectionWrapper>

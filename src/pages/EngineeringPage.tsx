@@ -1,10 +1,14 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { CheckCircle2 } from "lucide-react";
-import PageHeader from "@/components/ui/PageHeader";
+import PageHero from "@/components/layout/PageHero";
+import EngineeringHeroVisual from "@/components/layout/hero-visuals/EngineeringHeroVisual";
 import ArchitecturalBlueprint from "@/components/sections/ArchitecturalBlueprint";
 import SectionWrapper from "@/components/ui/SectionWrapper";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 import { SITE_CONFIG } from "@/config/site";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const BASE_URL = SITE_CONFIG.url;
 
@@ -69,6 +73,22 @@ const QUALITY_GATES: QualityGateCheck[] = [
 ];
 
 export const EngineeringPage = () => {
+  const navigate = useNavigate();
+  const principlesRef = useScrollReveal<HTMLDivElement>({
+    selector: ".group",
+    stagger: 0.08,
+    y: 20,
+    duration: 0.65,
+  });
+  const terminalRef = useScrollReveal<HTMLDivElement>({
+    y: 24,
+    duration: 0.7,
+  });
+  const bottomCtaRef = useScrollReveal<HTMLDivElement>({
+    y: 20,
+    duration: 0.65,
+  });
+
   return (
     <>
       <Helmet>
@@ -95,11 +115,12 @@ export const EngineeringPage = () => {
       </Helmet>
 
       <div className="w-full">
-        {/* Page Header Padronizado */}
-        <PageHeader
+        {/* Page Hero Split 60/40 com Artefato Visual Técnico (Tom: Anchor) */}
+        <PageHero
           eyebrow="ENGENHARIA DE SOFTWARE"
           title="Engenharia pensada para evoluir"
           description="Decisões pragmáticas de arquitetura, código sustentável e rotinas de qualidade automatizadas para garantir que seu software continue rápido e seguro por muitos anos."
+          visual={<EngineeringHeroVisual />}
         />
 
         {/* Bloco 1: Filosofia de Execução vs. Painel de Qualidade Contínua (Tom: Base) */}
@@ -118,7 +139,7 @@ export const EngineeringPage = () => {
               </p>
 
               {/* Lista Editorial de Princípios com Borda Lateral */}
-              <div className="space-y-7">
+              <div ref={principlesRef} className="space-y-7">
                 {PRINCIPLES.map((item) => (
                   <div key={item.num} className="group">
                     <div className="flex items-center gap-2 mb-1.5">
@@ -153,7 +174,7 @@ export const EngineeringPage = () => {
               </p>
 
               {/* Janela de Terminal CI/CD */}
-              <div className="w-full rounded-2xl border border-border-default/80 bg-zinc-950 shadow-2xl overflow-hidden font-mono text-xs">
+              <div ref={terminalRef} className="w-full rounded-2xl border border-border-default/80 bg-zinc-950 shadow-2xl overflow-hidden font-mono text-xs">
                 {/* Barra de Topo do Terminal */}
                 <div className="flex items-center justify-between px-4 py-3 bg-zinc-900/90 border-b border-zinc-800">
                   <div className="flex items-center gap-2">
@@ -212,6 +233,28 @@ export const EngineeringPage = () => {
         {/* Bloco 2: Matriz de Camadas de Software (Tom: Alt) */}
         <SectionWrapper id="tecnologias" tone="alt" className="scroll-mt-24" containerClassName="max-w-6xl mx-auto">
           <ArchitecturalBlueprint />
+        </SectionWrapper>
+
+        {/* Bloco 3: Fechamento / Conversão Comercial (Tom: Base) */}
+        <SectionWrapper id="engenharia-cta" tone="base">
+          <div ref={bottomCtaRef} className="max-w-2xl mx-auto text-center py-6">
+            <h2 className="text-xl sm:text-2xl font-bold text-primary mb-3">
+              Vamos conversar sobre a engenharia do seu projeto?
+            </h2>
+            <p className="text-sm text-secondary mb-6 max-w-lg mx-auto">
+              Converse diretamente com quem projeta e implementa o código para desenhar uma arquitetura sólida e escalável.
+            </p>
+            <MagneticButton
+              to="/contact"
+              variant="chamfer"
+              size="default"
+              onClick={() => navigate("/contact")}
+              aria-label="Vamos conversar"
+              className="min-h-[44px] px-8 text-sm font-semibold rounded-md uppercase tracking-[0.04em]"
+            >
+              VAMOS CONVERSAR
+            </MagneticButton>
+          </div>
         </SectionWrapper>
       </div>
     </>

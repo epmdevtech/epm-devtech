@@ -201,9 +201,9 @@ export const MagneticButton = forwardRef<HTMLElement, MagneticButtonProps>(
 
     const sizeStyles = {
       default: "px-8 py-3.5 text-sm md:text-base",
-      sm: "px-6 py-2.5 text-xs md:text-sm",
+      sm: "px-5 py-2.5 text-xs md:text-sm",
       md: "px-7 py-3 text-sm md:text-base",
-      lg: "px-8 py-4 text-base md:text-lg",
+      lg: "px-8 py-3.5 text-sm md:text-base",
       icon: "p-3 text-sm",
     };
 
@@ -211,7 +211,7 @@ export const MagneticButton = forwardRef<HTMLElement, MagneticButtonProps>(
 
     const buttonClasses = cn(
       bevelClass,
-      "btn-chamfer group relative inline-flex items-center justify-center overflow-hidden rounded-md border transition-colors duration-200",
+      "btn-chamfer group relative inline-flex items-center justify-center overflow-hidden rounded-md border transition-colors duration-200 uppercase tracking-wider font-semibold",
       "will-change-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand select-none",
       sizeStyles[size] || sizeStyles.default,
       variantStyles[variant] || variantStyles.primary,
@@ -281,7 +281,7 @@ export const MagneticButton = forwardRef<HTMLElement, MagneticButtonProps>(
             to={to}
             data-hover="false"
             className={cn("no-underline", buttonClasses)}
-            onClick={onClick as MouseEventHandler<HTMLAnchorElement>}
+            onClick={onClick as unknown as MouseEventHandler<HTMLAnchorElement>}
             target={target}
             rel={rel}
             {...(props as unknown as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
@@ -302,7 +302,7 @@ export const MagneticButton = forwardRef<HTMLElement, MagneticButtonProps>(
             href={href}
             data-hover="false"
             className={cn("no-underline", buttonClasses)}
-            onClick={onClick as MouseEventHandler<HTMLAnchorElement>}
+            onClick={onClick as unknown as MouseEventHandler<HTMLAnchorElement>}
             target={target}
             rel={rel}
             {...(props as unknown as React.AnchorHTMLAttributes<HTMLAnchorElement>)}

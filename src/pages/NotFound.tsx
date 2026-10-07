@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Home, Code2, Mail } from "lucide-react";
 
 export const NotFound = () => {
   const location = useLocation();
@@ -35,32 +34,29 @@ export const NotFound = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Button asChild variant="chamfer" size="default" className="min-h-[44px] w-full sm:w-auto">
-              <Link to="/" className="inline-flex items-center gap-2">
-                <Home className="w-4 h-4" />
-                <span>Página inicial</span>
+            <Button asChild variant="chamfer" size="default" className="min-h-[44px] w-full sm:w-auto uppercase tracking-wider font-semibold">
+              <Link to="/">
+                <span>PÁGINA INICIAL</span>
               </Link>
             </Button>
             <Button
               asChild
               variant="chamfer-outline"
               size="default"
-              className="min-h-[44px] w-full sm:w-auto"
+              className="min-h-[44px] w-full sm:w-auto uppercase tracking-wider font-semibold"
             >
-              <Link to="/services" className="inline-flex items-center gap-2">
-                <Code2 className="w-4 h-4" />
-                <span>Ver serviços</span>
+              <Link to="/services">
+                <span>VER SOLUÇÕES</span>
               </Link>
             </Button>
             <Button
               asChild
               variant="ghost"
               size="default"
-              className="min-h-[44px] w-full sm:w-auto text-muted-foreground hover:text-foreground"
+              className="min-h-[44px] w-full sm:w-auto text-muted-foreground hover:text-foreground uppercase tracking-wider font-semibold"
             >
-              <Link to="/contact" className="inline-flex items-center gap-2">
-                <Mail className="w-4 h-4" />
-                <span>Fale conosco</span>
+              <Link to="/contact">
+                <span>FALE COMIGO</span>
               </Link>
             </Button>
           </div>

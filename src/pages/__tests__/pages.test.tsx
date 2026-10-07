@@ -86,7 +86,7 @@ describe('Rotas e Páginas Independentes (SPEC-060)', () => {
     renderWithProviders(<ServicesPage />);
     expect(screen.getByRole('heading', { level: 1, name: /Soluções de software sob medida para destravar sua empresa/i })).toBeInTheDocument();
     expect(screen.getByText('SERVIÇOS')).toBeInTheDocument();
-    const ctaButton = screen.getByRole('link', { name: /Conversar sobre seu projeto/i });
+    const ctaButton = screen.getByRole('link', { name: /VAMOS CONVERSAR/i });
     expect(ctaButton).toBeInTheDocument();
     expect(ctaButton).toHaveAttribute('href', '/contact');
     expect(screen.getByText('Escopo e metas claras')).toBeInTheDocument();
@@ -119,7 +119,7 @@ describe('Rotas e Páginas Independentes (SPEC-060)', () => {
     expect(screen.queryByText('Sua empresa tem uma demanda de alta complexidade?')).not.toBeInTheDocument();
   });
 
-  it('EngineeringPage (/engineering) renderiza H1, Filosofia de Execução, Pipeline CI/CD e Architectural Blueprint sem CTA final redundante', () => {
+  it('EngineeringPage (/engineering) renderiza H1, Filosofia de Execução, Pipeline CI/CD e Architectural Blueprint com CTA de fechamento', () => {
     renderWithProviders(<EngineeringPage />);
     expect(screen.getByRole('heading', { level: 1, name: 'Engenharia pensada para evoluir' })).toBeInTheDocument();
     expect(screen.getByText('ENGENHARIA DE SOFTWARE')).toBeInTheDocument();
@@ -128,7 +128,8 @@ describe('Rotas e Páginas Independentes (SPEC-060)', () => {
     expect(screen.getByText(/quality-gate\.yml/i)).toBeInTheDocument();
     expect(screen.getByText('// ESPECIALIDADES & STACK')).toBeInTheDocument();
     expect(screen.getByText('Nossas especialidades técnicas')).toBeInTheDocument();
-    expect(screen.queryByText('Precisa de engenharia sólida no seu produto ou sistema interno?')).not.toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: /VER TECNOLOGIAS/i })).not.toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /VAMOS CONVERSAR/i })).toBeInTheDocument();
   });
 
   it('AboutPage (/about) renderiza Hero editorial monocromático com H1, subtítulo, timeline e manifesto sem trust marks, dados burocráticos ou CTA final redundante', () => {
@@ -154,7 +155,7 @@ describe('Rotas e Páginas Independentes (SPEC-060)', () => {
 
   it('ContactPage (/contact) renderiza H1 e formulário de contato', () => {
     renderWithProviders(<ContactPage />);
-    expect(screen.getByRole('heading', { level: 1, name: 'Fale sobre seu projeto' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1, name: 'Vamos conversar sobre como podemos apoiar você e seu projeto' })).toBeInTheDocument();
     expect(screen.getByText('CONTATO')).toBeInTheDocument();
     expect(screen.getByTestId('mock-contact')).toBeInTheDocument();
   });

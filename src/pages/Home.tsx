@@ -67,9 +67,9 @@ export const Home = () => {
           <div>
             <Link
               to="/services"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-text-brand hover:underline group"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold uppercase tracking-[0.04em] text-text-brand hover:underline group"
             >
-              <span>Ver todos os serviços →</span>
+              <span>VER SOLUÇÕES</span>
             </Link>
           </div>
         </SectionWrapper>
@@ -95,9 +95,9 @@ export const Home = () => {
           <div>
             <Link
               to="/how-we-work"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-text-brand hover:underline group"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold uppercase tracking-[0.04em] text-text-brand hover:underline group"
             >
-              <span>Ver como trabalhamos →</span>
+              <span>COMO TRABALHAMOS</span>
             </Link>
           </div>
         </SectionWrapper>
@@ -124,12 +124,19 @@ export const Home = () => {
             * Resultados alcançados pela liderança técnica em projetos de missão crítica em outras organizações.
           </p>
 
-          <div>
+          <div className="flex flex-wrap items-center gap-4 sm:gap-6">
             <Link
               to="/experience"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-text-brand hover:underline group"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold uppercase tracking-[0.04em] text-text-brand hover:underline group"
             >
-              <span>Conhecer nossa experiência →</span>
+              <span>VER EXPERIÊNCIA</span>
+            </Link>
+            <span className="text-border-subtle" aria-hidden="true">•</span>
+            <Link
+              to="/about"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold uppercase tracking-[0.04em] text-text-brand hover:underline group"
+            >
+              <span>CONHEÇA A EPM DEVTECH</span>
             </Link>
           </div>
         </SectionWrapper>

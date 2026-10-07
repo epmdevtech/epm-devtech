@@ -3,11 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Sparkles } from "lucide-react";
 import BrandChipIcon from "@/components/ui/BrandChipIcon";
+import PageHero from "@/components/layout/PageHero";
 import EpmConstellation from "@/components/sections/EpmConstellation";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { SITE_CONFIG } from "@/config/site";
 import { cn } from "@/lib/utils";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const BASE_URL = SITE_CONFIG.url;
 
@@ -91,6 +93,22 @@ const PRINCIPLES: PrincipleItem[] = [
 
 export const AboutPage: React.FC = () => {
   const navigate = useNavigate();
+  const journeyRef = useScrollReveal<HTMLDivElement>({
+    selector: "[data-testid^='milestone-']",
+    stagger: 0.1,
+    y: 24,
+    duration: 0.65,
+  });
+  const principlesRef = useScrollReveal<HTMLDivElement>({
+    selector: ":scope > div",
+    stagger: 0.08,
+    y: 20,
+    duration: 0.65,
+  });
+  const bottomCtaRef = useScrollReveal<HTMLDivElement>({
+    y: 20,
+    duration: 0.65,
+  });
 
   return (
     <>
@@ -124,60 +142,16 @@ export const AboutPage: React.FC = () => {
       </Helmet>
 
       <div className="w-full">
-        {/* Dobra Inicial: Hero Editorial Amplo & Constelação Vetorial de Engenharia (Tom: Anchor) */}
-        <header
-          data-tone="anchor"
-          className="relative w-full pt-28 pb-16 sm:pt-36 sm:pb-20 lg:pb-24 bg-surface-anchor text-foreground transition-colors duration-200 overflow-hidden"
-        >
-          <div className="container editorial-container relative">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-              {/* Coluna Esquerda: Narrativa Editorial */}
-              <div className="lg:col-span-7 flex flex-col items-start text-left max-w-xl xl:max-w-2xl">
-                {/* Eyebrow */}
-                <div
-                  data-testid="page-eyebrow"
-                  className="inline-flex items-center gap-2 text-[0.8rem] font-semibold tracking-[0.04em] uppercase text-text-brand select-none mb-3 sm:mb-4"
-                >
-                  <BrandChipIcon size={14} className="shrink-0" />
-                  <span>[ QUEM SOMOS // POSICIONAMENTO ]</span>
-                </div>
-
-                {/* H1 Editorial Amplo Monocromático */}
-                <h1
-                  id="page-title"
-                  tabIndex={-1}
-                  className="font-bold text-primary text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.02] tracking-[-0.05em] [text-wrap:balance] outline-none focus:outline-none mb-6"
-                >
-                  Transformando desafios em soluções que funcionam
-                </h1>
-
-                {/* Subtítulo Institucional */}
-                <p className="text-[clamp(1rem,1.15vw,1.125rem)] text-secondary leading-[1.65] tracking-[-0.01em] font-normal [text-wrap:balance] max-w-[65ch] mb-8">
-                  Unimos tecnologia, experiência e visão de negócio para criar soluções digitais que simplificam operações e geram resultados reais.
-                </p>
-
-                {/* CTA Institucional Chamfer */}
-                <div className="flex items-center">
-                  <MagneticButton
-                    to="/contact"
-                    variant="chamfer"
-                    size="md"
-                    onClick={() => navigate("/contact")}
-                    aria-label="Fale conosco"
-                    className="min-h-[44px] font-semibold"
-                  >
-                    Fale conosco
-                  </MagneticButton>
-                </div>
-              </div>
-
-              {/* Coluna Direita: Constelação Vetorial da EPM DevTech (Totalmente Isolada sem Sobreposição) */}
-              <div className="lg:col-span-5 flex justify-center lg:justify-end mt-6 lg:mt-0">
-                <EpmConstellation className="w-[300px] sm:w-[380px] lg:w-[440px] xl:w-[480px] h-[300px] sm:h-[380px] lg:h-[440px] xl:h-[480px] opacity-75 sm:opacity-85 lg:opacity-100 pointer-events-auto" />
-              </div>
-            </div>
-          </div>
-        </header>
+        {/* Dobra Inicial: Page Hero Split 60/40 com Constelação Vetorial (Tom: Anchor) */}
+        <PageHero
+          eyebrow="[ QUEM SOMOS // POSICIONAMENTO ]"
+          title="Transformando desafios em soluções que funcionam"
+          description="Unimos tecnologia, experiência e visão de negócio para criar soluções digitais que simplificam operações e geram resultados reais."
+          isVisualInteractive={true}
+          visual={
+            <EpmConstellation className="w-[300px] sm:w-[380px] lg:w-[440px] xl:w-[480px] h-[300px] sm:h-[380px] lg:h-[440px] xl:h-[480px] opacity-75 sm:opacity-85 lg:opacity-100 pointer-events-auto" />
+          }
+        />
 
         {/* Seção 2: Nossa Jornada (Tom: Base) */}
         <SectionWrapper id="jornada" tone="base">
@@ -195,7 +169,7 @@ export const AboutPage: React.FC = () => {
             </div>
 
             {/* Layout Desktop: Timeline Alternada Acima/Abaixo com Eixo Central */}
-            <div className="hidden md:block relative py-6">
+            <div ref={journeyRef} className="hidden md:block relative py-6">
               {/* Eixo Central Horizontal com Acento Esmeralda/Teal */}
               <div
                 aria-hidden="true"
@@ -379,6 +353,7 @@ export const AboutPage: React.FC = () => {
 
           {/* Tabela de Diretrizes em Formato de Manifesto Técnico */}
           <div
+            ref={principlesRef}
             data-testid="principles-manifesto"
             className="border-y border-zinc-800/80 divide-y divide-zinc-800/80"
           >
@@ -409,6 +384,28 @@ export const AboutPage: React.FC = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </SectionWrapper>
+
+        {/* Seção 4: Fechamento / Conversão Comercial (Tom: Base) */}
+        <SectionWrapper id="sobre-cta" tone="base">
+          <div ref={bottomCtaRef} className="max-w-2xl mx-auto text-center py-6">
+            <h2 className="text-xl sm:text-2xl font-bold text-primary mb-3">
+              Vamos conversar sobre o seu próximo projeto?
+            </h2>
+            <p className="text-sm text-secondary mb-6 max-w-lg mx-auto">
+              Converse diretamente com a liderança técnica da EPM DevTech para avaliar desafios e viabilidade arquitetural.
+            </p>
+            <MagneticButton
+              to="/contact"
+              variant="chamfer"
+              size="default"
+              onClick={() => navigate("/contact")}
+              aria-label="Vamos conversar"
+              className="min-h-[44px] px-8 text-sm font-semibold rounded-md uppercase tracking-[0.04em]"
+            >
+              VAMOS CONVERSAR
+            </MagneticButton>
           </div>
         </SectionWrapper>
       </div>

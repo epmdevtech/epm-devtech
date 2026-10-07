@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Cpu, Code2, Database, RefreshCw, ArrowRight, CheckCircle2, ShieldCheck, Activity } from "lucide-react";
+import { Cpu, Code2, Database, RefreshCw, CheckCircle2, ShieldCheck, Activity } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 /**
@@ -87,9 +87,8 @@ export const HomeServicesBento = () => {
           </div>
         </div>
 
-        <div className="mt-5 pt-3.5 border-t border-border-subtle/70 flex items-center justify-between text-xs font-medium text-muted group-hover:text-primary transition-colors">
-          <span>Entenda como desenhamos APIs</span>
-          <ArrowRight className="w-4 h-4 text-accent-violet group-hover:translate-x-1 transition-transform" />
+        <div className="mt-5 pt-3.5 border-t border-border-subtle/70 flex items-center justify-between text-xs font-semibold uppercase tracking-[0.04em] text-muted group-hover:text-primary transition-colors">
+          <span>VER DETALHES</span>
         </div>
       </Link>
 
@@ -149,9 +148,8 @@ export const HomeServicesBento = () => {
           </div>
         </div>
 
-        <div className="mt-5 pt-3.5 border-t border-border-subtle/70 flex items-center justify-between text-xs font-medium text-muted group-hover:text-primary transition-colors">
-          <span>Ver soluções em plataformas web</span>
-          <ArrowRight className="w-4 h-4 text-accent-blue group-hover:translate-x-1 transition-transform" />
+        <div className="mt-5 pt-3.5 border-t border-border-subtle/70 flex items-center justify-between text-xs font-semibold uppercase tracking-[0.04em] text-muted group-hover:text-primary transition-colors">
+          <span>VER DETALHES</span>
         </div>
       </Link>
 
@@ -211,9 +209,8 @@ export const HomeServicesBento = () => {
           </div>
         </div>
 
-        <div className="mt-5 pt-3.5 border-t border-border-subtle/70 flex items-center justify-between text-xs font-medium text-muted group-hover:text-primary transition-colors">
-          <span>Ver conectores e pipelines</span>
-          <ArrowRight className="w-4 h-4 text-accent-amber group-hover:translate-x-1 transition-transform" />
+        <div className="mt-5 pt-3.5 border-t border-border-subtle/70 flex items-center justify-between text-xs font-semibold uppercase tracking-[0.04em] text-muted group-hover:text-primary transition-colors">
+          <span>VER DETALHES</span>
         </div>
       </Link>
 
@@ -281,9 +278,8 @@ export const HomeServicesBento = () => {
           </div>
         </div>
 
-        <div className="mt-5 pt-3.5 border-t border-border-subtle/70 flex items-center justify-between text-xs font-medium text-muted group-hover:text-primary transition-colors">
-          <span>Conhecer o processo de modernização</span>
-          <ArrowRight className="w-4 h-4 text-text-brand group-hover:translate-x-1 transition-transform" />
+        <div className="mt-5 pt-3.5 border-t border-border-subtle/70 flex items-center justify-between text-xs font-semibold uppercase tracking-[0.04em] text-muted group-hover:text-primary transition-colors">
+          <span>VER DETALHES</span>
         </div>
       </Link>
     </div>

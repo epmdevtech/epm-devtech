@@ -1,16 +1,24 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { ArrowRight, HelpCircle } from "lucide-react";
-import PageHeader from "@/components/ui/PageHeader";
+import { HelpCircle } from "lucide-react";
+import PageHero from "@/components/layout/PageHero";
+import ContactHeroVisual from "@/components/layout/hero-visuals/ContactHeroVisual";
 import Contact from "@/components/sections/Contact";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import { getHighlightFAQs } from "@/config/faq";
 import { SITE_CONFIG } from "@/config/site";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const BASE_URL = SITE_CONFIG.url;
 
 export const ContactPage = () => {
   const highlightFAQs = getHighlightFAQs();
+  const faqCardsRef = useScrollReveal<HTMLDivElement>({
+    selector: ":scope > div",
+    stagger: 0.08,
+    y: 20,
+    duration: 0.6,
+  });
 
   return (
     <>
@@ -18,13 +26,13 @@ export const ContactPage = () => {
         <title>Fale Sobre Seu Projeto | EPM DevTech</title>
         <meta
           name="description"
-          content="Inicie seu projeto de software com a EPM DevTech. Retorno em até 24 horas úteis com avaliação técnica e diagnóstico preliminar."
+          content="Inicie seu projeto de software com a EPM DevTech. Entraremos em contato para entender o cenário técnico e agendar uma conversa."
         />
         <link rel="canonical" href={`${BASE_URL}/contact`} />
         <meta property="og:title" content="Fale Sobre Seu Projeto | EPM DevTech" />
         <meta
           property="og:description"
-          content="Inicie seu projeto de software com a EPM DevTech. Retorno em até 24 horas úteis com avaliação técnica e diagnóstico preliminar."
+          content="Inicie seu projeto de software com a EPM DevTech. Entraremos em contato para entender o cenário técnico e agendar uma conversa."
         />
         <meta property="og:url" content={`${BASE_URL}/contact`} />
         <meta property="og:image" content={`${BASE_URL}/og-image-1200x630.png`} />
@@ -32,17 +40,18 @@ export const ContactPage = () => {
         <meta name="twitter:title" content="Fale Sobre Seu Projeto | EPM DevTech" />
         <meta
           name="twitter:description"
-          content="Inicie seu projeto de software com a EPM DevTech. Retorno em até 24 horas úteis com avaliação técnica e diagnóstico preliminar."
+          content="Inicie seu projeto de software com a EPM DevTech. Entraremos em contato para entender o cenário técnico e agendar uma conversa."
         />
         <meta name="twitter:image" content={`${BASE_URL}/og-image-1200x630.png`} />
       </Helmet>
 
       <div className="w-full">
-        {/* Page Header (Tom: Anchor) */}
-        <PageHeader
+        {/* Page Hero Split 60/40 com Artefato Visual Técnico (Tom: Anchor) */}
+        <PageHero
           eyebrow="CONTATO"
-          title="Fale sobre seu projeto"
-          description="Conte o que sua empresa precisa. Retornamos em até 24 horas úteis com um diagnóstico técnico preliminar e opções de abordagem."
+          title="Vamos conversar sobre como podemos apoiar você e seu projeto"
+          description="Assim que recebermos sua mensagem, entraremos em contato para entender o cenário técnico e agendar uma conversa."
+          visual={<ContactHeroVisual />}
         />
 
         {/* Formulário e Canais Diretos (Tom: Base) */}
@@ -64,7 +73,7 @@ export const ContactPage = () => {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div ref={faqCardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             {highlightFAQs.map((faq) => (
               <div
                 key={faq.id}
@@ -88,7 +97,6 @@ export const ContactPage = () => {
               className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline group"
             >
               <span>Ver todas as 8 dúvidas frequentes</span>
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
         </SectionWrapper>

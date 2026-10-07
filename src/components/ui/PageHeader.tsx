@@ -1,6 +1,7 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import BrandChipIcon from "@/components/ui/BrandChipIcon";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 export interface PageHeaderProps {
   eyebrow?: string;
@@ -22,9 +23,16 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
   children,
 }) => {
   const isCenter = align === "center";
+  const headerRef = useScrollReveal<HTMLElement>({
+    selector: "[data-testid='page-eyebrow'], #page-title, p, .page-header-cta",
+    stagger: 0.08,
+    y: 20,
+    duration: 0.65,
+  });
 
   return (
     <header
+      ref={headerRef}
       data-tone="anchor"
       className={cn(
         "relative w-full pt-28 pb-12 sm:pt-36 sm:pb-16 bg-surface-anchor text-foreground transition-colors duration-200",
