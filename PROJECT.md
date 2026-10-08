@@ -208,6 +208,7 @@ src/
 | Acessibilidade    | ✅ 100% WCAG AAA | Botão primário com contraste 12.44:1 (WCAG AAA), texto primário 17.26:1 (Dark) e 17.81:1 (Light), skip-link acessível, foco programático em `<h1>`, `aria-current="page"`, touch target ≥ 44px, zero layout shift |
 | Performance       | ✅ 100% Otimizado| Mobile Perf: 84 (+16 pontos vs baseline 68), TBT: 480ms (-77% de bloqueio), CLS: 0.000; Desktop Perf: 97, SEO: 100/100, FCP 0.5s / LCP 0.6s |
 | Proxy Odontologia | ✅ Implementado  | `/odontologia-demo` → proxy reverso Vercel para `dentistry-demo.elessandrodev.workers.dev` com 4 headers AppSec (SPEC-044) |
+| OG Image Odontologia | ✅ Ativo Estático na Raiz | Imagem `og-odontologia.jpg` servida estaticamente em `epmdevtech.com.br/og-odontologia.jpg` com `Cache-Control`, `Content-Type` e `Access-Control-Allow-Origin: *`, isolada dos rewrites SPA da Vercel para assegurar `content-length` e preview sem falhas no WhatsApp (SPEC-115) |
 | URLs em inglês    | ✅ Slugs EN + 301 | Migração de todos os slugs para inglês (`/services`, `/how-we-work`, `/experience`, `/engineering`, `/about`, `/contact`, `/faq`) com conteúdo em pt-BR, 301 diretos na Vercel, `Navigate` legado no cliente, canonicals, prerender, `sitemap.xml`, `robots.txt`, `llms.txt`/`llms-full.txt` atualizados (SPEC-106) |
 | CTAs e Botões em Uppercase | ✅ Padronização B2B & Caixa Alta | Padronização integral da hierarquia verbal B2B de conversão e formatação de botões de ação e CTAs estritamente em CAIXA ALTA (UPPERCASE) com kerning refinado (`tracking-[0.04em]` a `tracking-wider`) e peso `font-semibold`. Base de `MagneticButton.tsx` configurada por padrão com `uppercase tracking-wider font-semibold` e escalas de tamanho refinadas (`sm: px-5 py-2.5`, `lg: px-8 py-3.5`). Na Home (`Hero.tsx`), CTA primário único 'VAMOS CONVERSAR' com remoção do botão secundário para foco cognitivo total; nas rotas Sobre Nós (`AboutPage.tsx`) e Engenharia (`EngineeringPage.tsx`), fluxo 100% editorial e encerramento limpo após os blocos de autoridade com condução natural para o Footer sem Bottom CTAs redundantes (SPEC-114). Na seção e página de Contato (`Contact.tsx` e `ContactForm.tsx`), botão de submissão 'ENVIAR MENSAGEM' com expurgo de prazos artificiais de resposta (SPEC-109). Demais pontos de contato: "FALE COMIGO" (Header, 404), "VER DETALHES" (4 cards Bento de serviços), "VAMOS CONVERSAR" (ServicesPage, FAQPage, FAQ da Home), "VER SOLUÇÕES", "COMO TRABALHAMOS", "VER EXPERIÊNCIA", "CONHEÇA A EPM DEVTECH" e "PÁGINA INICIAL". |
 | i18n              | ❌ Não iniciado  | Não planejado na versão atual              |
@@ -245,4 +246,4 @@ src/
 
 ---
 
-_Última atualização: 2026-10-07 | Maintainer: Elessandro Prestes Macedo_
+_Última atualização: 2026-10-08 | Maintainer: Elessandro Prestes Macedo_

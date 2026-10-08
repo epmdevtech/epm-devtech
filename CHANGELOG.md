@@ -9,6 +9,23 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.115-servir-og-image-odontologia-estatico] - 2026-10-08
+
+### Adicionado
+- **Ativo Estático `og-odontologia.jpg`** (`public/og-odontologia.jpg`):
+  - Inclusão da imagem Open Graph otimizada (JPEG 1200x630, 74.755 bytes / ~74.8 KB) para compartilhamento social.
+  - Servida nativamente a partir da raiz pública da Vercel (`https://epmdevtech.com.br/og-odontologia.jpg`), contornando proxies e garantindo a emissão de `content-length` e `content-type: image/jpeg` para bots de redes sociais e crawlers como o WhatsApp (`WhatsApp/2.23.20.0`).
+- **Especificações e Relatórios SDD**:
+  - `specs/SPEC-115-servir-og-image-odontologia-estatico.md`
+  - `tasks/TASK-115-servir-og-image-odontologia-estatico.md`
+  - `reviews/QA-115.md`
+
+### Modificado
+- **Roteamento e Cabeçalhos Vercel** (`vercel.json`):
+  - Adicionado bloco `headers` para `/og-odontologia.jpg` configurando `Content-Type: image/jpeg`, `Cache-Control: public, max-age=86400` e `Access-Control-Allow-Origin: *` (ocorrência única).
+  - Atualizada regra de rewrite genérico de SPA de `/(.*)` para `/((?!og-odontologia\\.jpg).*)`, impedindo que o SPA Vite intercepte a requisição do arquivo estático.
+- **`PROJECT.md`**: Atualização do estado canônico com a nova entrada de ativo estático de Open Graph.
+
 ## [0.0.114-remocao-secao-bottom-cta-sobre-nos-e-engenharia] - 2026-10-07
 
 ### Removido
