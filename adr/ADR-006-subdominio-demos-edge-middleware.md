@@ -3,7 +3,8 @@
 **Status:** ✅ Aceito  
 **Data:** 2026-09-22  
 **Decisores:** Elessandro Prestes Macedo  
-**Contexto:** TASK-044 / SPEC-044
+**Contexto:** TASK-044 / SPEC-044  
+> **Nota de Evolução (2026-10-13):** Este padrão foi expandido para múltiplos subdomínios (incluindo `brs.epmdevtech.com.br`) com suporte a streaming de body e reescrita de redirects pelo [ADR-008](ADR-008-proxy-reverso-multi-subdominios-edge-middleware.md).
 
 ---
 

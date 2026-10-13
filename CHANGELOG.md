@@ -9,7 +9,28 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
-## [0.0.115-servir-og-image-odontologia-estatico] - 2026-10-08
+## [0.0.116-proxy-reverso-multi-subdominios-edge-middleware] - 2026-10-13
+
+### Adicionado
+- **Proxy Reverso Multi-Subdomínios via Vercel Edge Middleware** (`middleware.ts`):
+  - Suporte extensível a múltiplos subdomínios dedicados via mapa declarativo `PROXIES`:
+    - `odontologia.epmdevtech.com.br` → `dentistry-demo.elessandrodev.workers.dev`
+    - `brs.epmdevtech.com.br` → `brs-automotive-repair.elessandrodev.workers.dev`
+  - Encaminhamento completo de métodos e payloads não-GET/HEAD com streaming de body (`duplex: "half"`), habilitando suporte a SSR, APIs e submissão de formulários nos Workers.
+  - Repasse e reescrita de cabeçalhos de encaminhamento (`x-forwarded-host: <url.hostname>`, `x-forwarded-proto: https`) e remoção do cabeçalho `host` original do cliente.
+  - Captura manual de respostas com redirecionamento (`redirect: "manual"`) e reescrita do cabeçalho `Location` para manter o usuário no domínio público `*.epmdevtech.com.br` sem expor a URL técnica de `workers.dev`.
+  - Injeção padronizada de 4 cabeçalhos de segurança corporativos (AppSec) em todas as respostas dos subdomínios proxyados (`X-Content-Type-Options: nosniff`, `X-Frame-Options: SAMEORIGIN`, `Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy: camera=(), microphone=(), geolocation=()`).
+- **Suíte de Testes Unitários Automatizados** (`src/__tests__/middleware.test.ts`):
+  - 7 testes unitários cobrindo bypass para o site principal, proxy para odontologia e brs, repasse de corpo com `duplex: "half"`, reescrita de `Location` e preservação de links externos.
+- **Documentação Arquitetural e Governança SDD**:
+  - `specs/SPEC-116-proxy-reverso-multi-subdominios-edge-middleware.md`
+  - `tasks/TASK-116-proxy-reverso-multi-subdominios-edge-middleware.md`
+  - `adr/ADR-008-proxy-reverso-multi-subdominios-edge-middleware.md`
+  - Atualização com nota cruzada em `adr/ADR-006-subdominio-demos-edge-middleware.md`
+  - `reviews/QA-116.md`
+
+### Modificado
+- **`PROJECT.md`**: Atualização do estado canônico com a nova funcionalidade de proxy reverso multi-subdomínios e inclusão dos ADR-006 e ADR-008 na matriz de decisões arquiteturais.
 
 ### Adicionado
 - **Ativo Estático `og-odontologia.jpg`** (`public/og-odontologia.jpg`):
