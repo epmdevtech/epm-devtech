@@ -9,6 +9,36 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+## [0.0.117-scroll-horizontal-como-trabalhamos] - 2026-10-16
+
+### Adicionado
+- **Narrativa Horizontal Nativa na Rota `/how-we-work`** (`src/components/sections/HowWeWorkHorizontal.tsx`):
+  - Seção de scroll horizontal das 4 etapas (`01 ENTENDIMENTO` → `04 EVOLUÇÃO`) controlada pelo scroll vertical, implementada exclusivamente com **CSS nativo de scroll-driven animations** (`position: sticky` + `animation-timeline: view()` + `animation-range: contain 0% contain 100%`), sem GSAP, Framer Motion ou Lenis novos e sem dependências novas.
+  - Altura da seção derivada da geometria real dos painéis (`calc(100vh + 4*panel-w + 3*gap + 2*edge - 100vw)`), eliminando `500vh` arbitrário e deslocamento horizontal excedente.
+  - Cada painel exibe número, categoria, título, mensagem, elemento visual SVG autoral, entregáveis concretos e critério de saída — conteúdo comercial integralmente preservado.
+  - Semântica acessível: `<ol aria-label="Etapas do processo de trabalho">`, `h2` `sr-only` e barra de progresso decorativa (`aria-hidden`).
+  - Fallback vertical legível em viewports < 1024px, sob `prefers-reduced-motion: reduce` e em navegadores sem suporte a `animation-timeline`.
+- **Suíte de Testes Unitários** (`src/components/sections/__tests__/HowWeWorkHorizontal.test.tsx`): 8 testes cobrindo lista ordenada, título acessível, títulos, categorias, mensagens, entregáveis, critérios de saída e numeração das etapas.
+- **Suíte E2E Dedicada** (`e2e/how-we-work-horizontal.spec.ts`): 5 testes cobrindo acesso direto/H1 único, progressão horizontal com retorno ao fluxo vertical e ausência de overflow, CTA para `/contact`, fallback em movimento reduzido e layout mobile vertical.
+- **Documentação Arquitetural e Governança SDD**:
+  - `specs/SPEC-117-scroll-horizontal-como-trabalhamos.md`
+  - `tasks/TASK-117-scroll-horizontal-como-trabalhamos.md`
+  - `adr/ADR-009-scroll-horizontal-css-nativo.md`
+  - `reviews/QA-117.md`
+  - `reviews/REVIEW-117-scroll-horizontal-como-trabalhamos.md`
+
+### Modificado
+- **`src/pages/HowWeWorkPage.tsx`**: substituição do `ProcessExplorer` pela seção `HowWeWorkHorizontal` (Parte B, `tone="base"`, `container={false}`, `!py-0`) e reintrodução de um CTA único e discreto para `/contact` (`MagneticButton` — "Falar sobre meu projeto") ao fim do manifesto.
+- **`src/pages/__tests__/pages.test.tsx`**: teste da rota `/how-we-work` atualizado para validar o CTA aprovado (link para `/contact`) em vez da ausência de CTA.
+- **`PROJECT.md`**: atualização do estado canônico (rota, seção Como Trabalhamos, contagem de testes e matriz de ADRs com o ADR-009).
+
+### Removido
+- **`src/components/sections/ProcessExplorer.tsx`** e **`src/components/sections/__tests__/ProcessExplorer.test.tsx`**: dead code substituído pela narrativa horizontal (nenhum outro consumidor).
+
+### Observações
+- **Divergência registrada:** a SPEC-087 havia removido o CTA final da rota `/how-we-work`; a SPEC-117 o reintroduz de forma única e discreta (link para `/contact`), conforme solicitação explícita do Product Owner.
+- **Limitação conhecida:** `animation-timeline: view()` tem suporte parcial (Chromium 115+; suporte ausente/parcial em Safari e Firefox na data desta entrega). Nesses navegadores, o fallback vertical é apresentado automaticamente.
+
 ## [0.0.116-proxy-reverso-multi-subdominios-edge-middleware] - 2026-10-13
 
 ### Adicionado
