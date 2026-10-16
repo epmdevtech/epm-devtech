@@ -93,13 +93,15 @@ describe('Rotas e Páginas Independentes (SPEC-060)', () => {
     expect(screen.queryByText('Iniciar diagnóstico do projeto')).not.toBeInTheDocument();
   });
 
-  it('HowWeWorkPage (/how-we-work) renderiza H1, metodologia e manifesto técnico sem CTA final redundante', () => {
+  it('HowWeWorkPage (/how-we-work) renderiza H1, metodologia, manifesto técnico e CTA único para contato', () => {
     renderWithProviders(<HowWeWorkPage />);
     expect(screen.getByRole('heading', { level: 1, name: 'Como trabalhamos' })).toBeInTheDocument();
     expect(screen.getByText('METODOLOGIA')).toBeInTheDocument();
     expect(screen.getByText('// GARANTIA OPERACIONAL')).toBeInTheDocument();
     expect(screen.getByText('Previsibilidade do início ao fim')).toBeInTheDocument();
     expect(screen.getByText('Sem intermediários, sem ruído')).toBeInTheDocument();
+    const cta = screen.getByRole('link', { name: /Falar sobre meu projeto/i });
+    expect(cta).toHaveAttribute('href', '/contact');
     expect(screen.queryByText('Fale com um engenheiro')).not.toBeInTheDocument();
   });
 

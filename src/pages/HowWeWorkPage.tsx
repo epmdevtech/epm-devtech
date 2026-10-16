@@ -1,8 +1,9 @@
 import { Helmet } from "react-helmet-async";
 import PageHero from "@/components/layout/PageHero";
 import HowWeWorkHeroVisual from "@/components/layout/hero-visuals/HowWeWorkHeroVisual";
-import ProcessExplorer from "@/components/sections/ProcessExplorer";
+import HowWeWorkHorizontal from "@/components/sections/HowWeWorkHorizontal";
 import SectionWrapper from "@/components/ui/SectionWrapper";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 import { SITE_CONFIG } from "@/config/site";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
@@ -49,9 +50,9 @@ export const HowWeWorkPage = () => {
           visual={<HowWeWorkHeroVisual />}
         />
 
-        {/* Process Explorer Interativo (Tom: Base) */}
-        <SectionWrapper tone="base" containerClassName="max-w-6xl mx-auto">
-          <ProcessExplorer />
+        {/* Narrativa Horizontal das 4 etapas, conduzida pelo scroll vertical (Tom: Base) */}
+        <SectionWrapper tone="base" container={false} className="!py-0">
+          <HowWeWorkHorizontal />
         </SectionWrapper>
 
         {/* Manifesto Técnico de Engenharia (Tom: Alt) */}
@@ -81,6 +82,13 @@ export const HowWeWorkPage = () => {
                   Você fala diretamente com a liderança técnica que planeja a arquitetura e implementa o código. Decisões são tomadas de forma ágil e registradas com transparência.
                 </p>
               </div>
+            </div>
+
+            {/* CTA final — contato direto (mecanismo de contato existente) */}
+            <div className="mt-12 md:mt-14 flex justify-center">
+              <MagneticButton to="/contact" variant="chamfer" size="lg">
+                Falar sobre meu projeto
+              </MagneticButton>
             </div>
           </div>
         </SectionWrapper>
