@@ -12,6 +12,7 @@ const navLinks = [
   { href: "/experience", label: "Experiência" },
   { href: "/engineering", label: "Engenharia" },
   { href: "/about", label: "Sobre nós" },
+  { href: "/blog", label: "Blog" },
 ];
 
 export const Header = () => {
@@ -106,10 +107,10 @@ export const Header = () => {
               </div>
             </Link>
 
-            {/* Desktop Navigation (5 links enxutos) */}
+            {/* Desktop Navigation (6 links enxutos) */}
             <nav
               aria-label="Navegação principal"
-              className="hidden lg:flex items-center gap-5 xl:gap-8"
+              className="hidden lg:flex items-center gap-4 xl:gap-6"
             >
               {navLinks.map((link) => (
                 <NavLink

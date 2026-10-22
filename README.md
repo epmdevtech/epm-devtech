@@ -40,7 +40,7 @@ O projeto adota uma stack moderna, tipada e com foco em acessibilidade (WCAG 2.2
    ```bash
    npm run dev
    ```
-   Acesse a aplicação em `http://localhost:8070`.
+   Acesse a aplicação em `http://localhost:5213`.
 
 ---
 
@@ -54,7 +54,7 @@ O projeto adota uma stack moderna, tipada e com foco em acessibilidade (WCAG 2.2
    ```
 
 2. **Acessar:**
-   Abra `http://localhost:8070` no navegador.
+   Abra `http://localhost:5213` no navegador.
 
 3. **Encerrar containers:**
    ```bash

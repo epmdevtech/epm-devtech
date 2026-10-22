@@ -2,6 +2,8 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import { LEGACY_REDIRECTS, ROUTES } from "@/config/routes";
+import { PRERENDER_ROUTES, SITE_ROUTES } from "../../../scripts/site-routes.js";
+import { buildSitemapXml } from "../../../scripts/generate-sitemap.js";
 
 const root = resolve(__dirname, "../../..");
 const readRoot = (file: string) => readFileSync(resolve(root, file), "utf-8");
@@ -19,6 +21,7 @@ describe("routes (SPEC-106)", () => {
       "/about",
       "/contact",
       "/faq",
+      "/blog",
     ]);
   });
 
@@ -30,26 +33,30 @@ describe("routes (SPEC-106)", () => {
   });
 
   it("vercel.json espelha LEGACY_REDIRECTS com 301 permanente e sem cadeias", () => {
-    const { redirects } = JSON.parse(readRoot("vercel.json")) as {
+    const { redirects, rewrites } = JSON.parse(readRoot("vercel.json")) as {
       redirects: { source: string; destination: string; permanent: boolean }[];
+      rewrites?: unknown;
     };
     const asMap = Object.fromEntries(redirects.map((r) => [r.source, r.destination]));
     expect(asMap).toEqual(LEGACY_REDIRECTS);
     expect(redirects.every((r) => r.permanent)).toBe(true);
     expect(redirects.some((r) => r.source in asMap && r.destination in asMap)).toBe(false);
+    expect(rewrites).toBeUndefined();
   });
 
-  it("sitemap.xml lista apenas URLs canônicas novas", () => {
-    const sitemap = readRoot("public/sitemap.xml");
+  it("sitemap é gerado a partir da fonte única de rotas", () => {
+    expect(SITE_ROUTES.map((r) => r.path)).toEqual(canonicalPaths);
+
+    const sitemap = buildSitemapXml(SITE_ROUTES);
     const locs = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((m) => m[1]);
     const expected = canonicalPaths.map((p) => `https://epmdevtech.com.br${p}`);
+
     expect(locs.sort()).toEqual(expected.sort());
+    expect(sitemap).not.toContain("<lastmod>");
   });
 
-  it("prerender.js gera as rotas em inglês", () => {
-    const script = readRoot("scripts/prerender.js");
-    const paths = [...script.matchAll(/path: "([^"]+)"/g)].map((m) => `/${m[1]}`);
-    expect(paths.sort()).toEqual(canonicalPaths.filter((p) => p !== "/").sort());
+  it("prerender.js gera as rotas em inglês a partir da fonte única", () => {
+    expect(PRERENDER_ROUTES.map((r) => r.path)).toEqual(canonicalPaths.filter((p) => p !== "/"));
   });
 
   it("llms.txt e llms-full.txt referenciam URLs canônicas novas", () => {

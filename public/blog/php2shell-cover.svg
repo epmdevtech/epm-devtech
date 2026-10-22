@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">PHP2Shell — alerta de segurança</title>
+  <desc id="desc">Ilustração escura com grade técnica, escudo e os identificadores CVE-2026-109618 e CVE-2026-109619.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#04100e" />
+      <stop offset="0.55" stop-color="#071a18" />
+      <stop offset="1" stop-color="#0b1220" />
+    </linearGradient>
+    <radialGradient id="glowTeal" cx="0.2" cy="0.15" r="0.8">
+      <stop offset="0" stop-color="#2dd4bf" stop-opacity="0.28" />
+      <stop offset="1" stop-color="#2dd4bf" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="glowAmber" cx="0.9" cy="0.25" r="0.7">
+      <stop offset="0" stop-color="#f59e0b" stop-opacity="0.2" />
+      <stop offset="1" stop-color="#f59e0b" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#2dd4bf" stroke-opacity="0.09" stroke-width="1" />
+    </pattern>
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="10" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <rect width="1200" height="630" fill="url(#glowTeal)" />
+  <rect width="1200" height="630" fill="url(#glowAmber)" />
+  <rect width="1200" height="630" fill="url(#grid)" />
+
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace">
+    <text x="80" y="112" fill="#2dd4bf" font-size="20" font-weight="700" letter-spacing="6">SECURITY ADVISORY</text>
+    <text x="80" y="230" fill="#f4f4f5" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="94" font-weight="800" letter-spacing="-4">PHP2Shell</text>
+    <text x="80" y="292" fill="#a1a1aa" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="30" font-weight="500">Duas falhas críticas no PHP.</text>
+    <text x="80" y="334" fill="#a1a1aa" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="30" font-weight="500">Execução remota de código sem autenticação.</text>
+  </g>
+
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="18" font-weight="600">
+    <rect x="80" y="392" width="294" height="46" rx="23" fill="#2dd4bf" fill-opacity="0.1" stroke="#2dd4bf" stroke-opacity="0.45" />
+    <text x="104" y="421" fill="#5eead4">CVE-2026-109618</text>
+    <rect x="394" y="392" width="294" height="46" rx="23" fill="#f59e0b" fill-opacity="0.08" stroke="#f59e0b" stroke-opacity="0.4" />
+    <text x="418" y="421" fill="#fbbf24">CVE-2026-109619</text>
+  </g>
+
+  <g transform="translate(878 148)">
+    <circle cx="120" cy="120" r="112" fill="#0f2a27" fill-opacity="0.55" stroke="#2dd4bf" stroke-opacity="0.2" />
+    <path d="M120 24 212 60v82c0 58-38 104-92 124-54-20-92-66-92-124V60Z" fill="#071a18" stroke="#2dd4bf" stroke-opacity="0.75" stroke-width="3" filter="url(#softGlow)" />
+    <path d="M120 70 162 92v58c0 33-18 58-42 69-24-11-42-36-42-69V92Z" fill="#2dd4bf" fill-opacity="0.08" stroke="#2dd4bf" stroke-opacity="0.45" />
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace">
+      <text x="98" y="140" fill="#5eead4" font-size="32" font-weight="700">$_</text>
+      <circle cx="156" cy="130" r="20" fill="#f59e0b" fill-opacity="0.16" stroke="#f59e0b" stroke-opacity="0.6" />
+      <text x="156" y="138" fill="#fbbf24" font-size="24" font-weight="800" text-anchor="middle">!</text>
+    </g>
+  </g>
+
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace">
+    <line x1="80" y1="528" x2="1120" y2="528" stroke="#ffffff" stroke-opacity="0.12" />
+    <text x="80" y="572" fill="#71717a" font-size="17" letter-spacing="2">EPM DEVTECH · ENGENHARIA DE SOFTWARE</text>
+    <text x="1120" y="572" fill="#71717a" font-size="17" text-anchor="end" letter-spacing="2">BLOG TÉCNICO</text>
+  </g>
+</svg>

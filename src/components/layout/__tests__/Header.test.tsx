@@ -20,7 +20,7 @@ describe('Header', () => {
     vi.clearAllMocks();
   });
 
-  it('renderiza logo e os 5 links de navegação previstos na SPEC-060', () => {
+  it('renderiza logo e os 6 links de navegação previstos na SPEC-060', () => {
     renderHeader();
     expect(screen.getAllByAltText('EPM DEVTECH').length).toBeGreaterThan(0);
 
@@ -33,6 +33,7 @@ describe('Header', () => {
       { text: 'Experiência', href: '/experience' },
       { text: 'Engenharia', href: '/engineering' },
       { text: 'Sobre nós', href: '/about' },
+      { text: 'Blog', href: '/blog' },
     ];
 
     expectedLinks.forEach(({ text, href }) => {

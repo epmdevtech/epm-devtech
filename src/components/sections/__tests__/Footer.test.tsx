@@ -94,6 +94,7 @@ describe('Footer Component', () => {
     expect(screen.getByText('Como trabalhamos')).toBeInTheDocument();
     expect(screen.getByText('Sobre a empresa')).toBeInTheDocument();
     expect(screen.getByText('Dúvidas frequentes')).toBeInTheDocument();
+    expect(screen.getByText('Blog')).toBeInTheDocument();
     expect(screen.getByText('Falar sobre meu projeto')).toBeInTheDocument();
 
     // Coluna 4: Contato

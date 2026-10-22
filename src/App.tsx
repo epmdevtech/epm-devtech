@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LazyRender } from "@/components/LazyRender";
 import Layout from "@/components/layout/Layout";
-import { LEGACY_REDIRECTS, ROUTES } from "@/config/routes";
+import { BLOG_POST_PATH, LEGACY_REDIRECTS, ROUTES } from "@/config/routes";
 
 import Home from "@/pages/Home";
 
@@ -17,6 +17,8 @@ const EngineeringPage = lazy(() => import("@/pages/EngineeringPage"));
 const AboutPage = lazy(() => import("@/pages/AboutPage"));
 const ContactPage = lazy(() => import("@/pages/ContactPage"));
 const FAQPage = lazy(() => import("@/pages/FAQPage"));
+const BlogPage = lazy(() => import("@/pages/BlogPage"));
+const BlogPostPage = lazy(() => import("@/pages/BlogPostPage"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
 
 // Overlays e analytics carregados de forma diferida
@@ -43,6 +45,8 @@ export const App = () => (
               <Route path={ROUTES.about} element={<AboutPage />} />
               <Route path={ROUTES.contact} element={<ContactPage />} />
               <Route path={ROUTES.faq} element={<FAQPage />} />
+              <Route path={ROUTES.blog} element={<BlogPage />} />
+              <Route path={BLOG_POST_PATH} element={<BlogPostPage />} />
 
               {/* Redirecionamentos de rotas legadas (slugs em português) no cliente.
                   O 301 real para crawlers é servido pelo edge da Vercel (vercel.json). */}

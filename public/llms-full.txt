@@ -48,6 +48,7 @@ A aplicação institucional é uma Single Page Application (SPA) construída em 
 | **Sobre** | `https://epmdevtech.com.br/about` | Perfil institucional da software house, liderança técnica única, dados cadastrais de Toledo/PR e compromisso de atendimento remoto nacional. |
 | **Contato** | `https://epmdevtech.com.br/contact` | Formulário de diagnóstico inicial estruturado com validação Zod, canais diretos e política de retorno em até 24 horas úteis. |
 | **Dúvidas Frequentes** | `https://epmdevtech.com.br/faq` | Base de conhecimento categorizada com as 8 principais perguntas sobre contratação, legados e metodologia. |
+| **Blog** | `https://epmdevtech.com.br/blog` | Artigos técnicos sobre engenharia de software, arquitetura, segurança e dados, com conteúdo versionado e HTML estático. |
 
 > Nota de migração (SPEC-106): os slugs são em inglês (conteúdo em português). URLs legadas em português (/servicos, /como-trabalhamos, /experiencia, /engenharia, /sobre, /contato, /duvidas-frequentes) respondem 301 permanente para as URLs canônicas listadas; use sempre as URLs canônicas em citações.
 

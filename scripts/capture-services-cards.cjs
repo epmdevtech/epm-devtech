@@ -27,7 +27,7 @@ const themes = ['dark', 'light'];
       });
       const page = await context.newPage();
 
-      await page.goto('http://localhost:8070/', { waitUntil: 'networkidle' });
+      await page.goto('http://localhost:5213/', { waitUntil: 'networkidle' });
 
       // Set theme
       await page.evaluate((t) => {

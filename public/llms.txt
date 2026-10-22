@@ -34,6 +34,7 @@ A aplicação opera como uma Single Page Application (SPA) multi-rota com navega
 6. **[Sobre](https://epmdevtech.com.br/about):** Perfil institucional da software house, liderança técnica única, dados cadastrais de Toledo/PR e compromisso de transparência.
 7. **[Contato](https://epmdevtech.com.br/contact):** Formulário técnico para solicitação de diagnóstico preliminar, canais diretos e compromisso de retorno em até 24 horas úteis.
 8. **[Dúvidas Frequentes](https://epmdevtech.com.br/faq):** 8 respostas diretas e transparentes sobre contratação, sistemas existentes, metodologia e escopo.
+9. **[Blog](https://epmdevtech.com.br/blog):** Artigos técnicos sobre engenharia de software, arquitetura, segurança e dados.
 
 Nota de migração (SPEC-106): os slugs são em inglês (conteúdo em português). As URLs legadas em português (/servicos, /como-trabalhamos, /experiencia, /engenharia, /sobre, /contato, /duvidas-frequentes) respondem 301 permanente para as URLs canônicas acima; use sempre as URLs canônicas em citações.
 

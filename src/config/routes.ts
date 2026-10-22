@@ -15,7 +15,11 @@ export const ROUTES = {
   about: "/about",
   contact: "/contact",
   faq: "/faq",
+  blog: "/blog",
 } as const;
+
+/** Padrão da rota de artigo; não entra em `ROUTES` porque não é uma URL canônica fixa. */
+export const BLOG_POST_PATH = "/blog/:slug";
 
 export type RoutePath = (typeof ROUTES)[keyof typeof ROUTES];
 

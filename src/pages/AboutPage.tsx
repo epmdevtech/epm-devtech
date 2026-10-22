@@ -166,7 +166,7 @@ export const AboutPage: React.FC = () => {
               {/* Eixo Central Horizontal com Acento Esmeralda/Teal */}
               <div
                 aria-hidden="true"
-                className="absolute top-1/2 left-0 right-0 h-[2px] -translate-y-1/2 bg-gradient-to-r from-zinc-800 via-brand/60 to-zinc-800 z-0"
+                className="absolute top-1/2 left-0 right-0 h-[2px] -translate-y-1/2 bg-gradient-to-r from-border-strong via-brand/60 to-border-strong z-0"
               />
 
               <div className="grid grid-cols-4 gap-6 relative z-10">
@@ -184,10 +184,10 @@ export const AboutPage: React.FC = () => {
                         {isTop && (
                           <div
                             className={cn(
-                              "w-full bg-zinc-950/90 border rounded-xl p-5 shadow-xl transition-all duration-200 hover:-translate-y-1",
+                              "w-full bg-surface border rounded-xl p-5 shadow-sm transition-all duration-200 hover:-translate-y-1 dark:shadow-xl",
                               item.highlight
                                 ? "border-brand/60 shadow-brand/5"
-                                : "border-zinc-800/80 hover:border-brand/40"
+                                : "border-border-default hover:border-brand/40"
                             )}
                           >
                             <div className="flex items-center justify-between gap-2 mb-2">
@@ -223,7 +223,7 @@ export const AboutPage: React.FC = () => {
 
                       {/* Nó Central sobre a Linha Horizontal */}
                       <div className="relative shrink-0 flex items-center justify-center my-1">
-                        <div className="w-5 h-5 rounded-full bg-zinc-950 border-2 border-brand flex items-center justify-center shadow-lg shadow-brand/20">
+                        <div className="w-5 h-5 rounded-full bg-surface border-2 border-brand flex items-center justify-center shadow-lg shadow-brand/20">
                           <div className="w-2 h-2 rounded-full bg-brand" />
                         </div>
                       </div>
@@ -241,10 +241,10 @@ export const AboutPage: React.FC = () => {
                         {!isTop && (
                           <div
                             className={cn(
-                              "w-full bg-zinc-950/90 border rounded-xl p-5 shadow-xl transition-all duration-200 hover:translate-y-1",
+                              "w-full bg-surface border rounded-xl p-5 shadow-sm transition-all duration-200 hover:translate-y-1 dark:shadow-xl",
                               item.highlight
                                 ? "border-brand/60 shadow-brand/5"
-                                : "border-zinc-800/80 hover:border-brand/40"
+                                : "border-border-default hover:border-brand/40"
                             )}
                           >
                             <div className="flex items-center justify-between gap-2 mb-2">
@@ -280,7 +280,7 @@ export const AboutPage: React.FC = () => {
               {/* Linha Vertical Contínua */}
               <div
                 aria-hidden="true"
-                className="absolute left-[7px] top-3 bottom-3 w-[2px] bg-gradient-to-b from-zinc-800 via-brand/60 to-zinc-800"
+                className="absolute left-[7px] top-3 bottom-3 w-[2px] bg-gradient-to-b from-border-strong via-brand/60 to-border-strong"
               />
 
               {MILESTONES.map((item) => (
@@ -292,7 +292,7 @@ export const AboutPage: React.FC = () => {
                   {/* Ponto / Nó */}
                   <div
                     aria-hidden="true"
-                    className="absolute -left-[17px] top-1.5 w-4 h-4 rounded-full bg-zinc-950 border-2 border-brand flex items-center justify-center"
+                    className="absolute -left-[17px] top-1.5 w-4 h-4 rounded-full bg-surface border-2 border-brand flex items-center justify-center"
                   >
                     <div className="w-1.5 h-1.5 rounded-full bg-brand" />
                   </div>
@@ -300,8 +300,8 @@ export const AboutPage: React.FC = () => {
                   {/* Card do Marco */}
                   <div
                     className={cn(
-                      "bg-zinc-950/90 border rounded-xl p-5 shadow-lg",
-                      item.highlight ? "border-brand/60" : "border-zinc-800/80"
+                      "bg-surface border rounded-xl p-5 shadow-sm dark:shadow-lg",
+                      item.highlight ? "border-brand/60" : "border-border-default"
                     )}
                   >
                     <div className="flex items-center justify-between gap-2 mb-2">
@@ -348,12 +348,12 @@ export const AboutPage: React.FC = () => {
           <div
             ref={principlesRef}
             data-testid="principles-manifesto"
-            className="border-y border-zinc-800/80 divide-y divide-zinc-800/80"
+            className="border-y border-border-default divide-y divide-border-default"
           >
             {PRINCIPLES.map((principle) => (
               <div
                 key={principle.code}
-                className="py-6 sm:py-8 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start group hover:bg-zinc-950/40 transition-colors px-2 sm:px-4 rounded-lg"
+                className="py-6 sm:py-8 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start group hover:bg-surface-elevated transition-colors px-2 sm:px-4 rounded-lg"
               >
                 {/* Coluna 1: Código Monospace (3 cols) */}
                 <div className="md:col-span-3 flex items-center md:items-start gap-2">

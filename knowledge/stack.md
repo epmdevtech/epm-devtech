@@ -36,7 +36,7 @@ interface HeroProps {
 
 ## Vite
 
-- Dev server na porta `8070`
+- Dev server na porta `5213`
 - HMR (Hot Module Replacement) habilitado
 - Bundle splitting manual em `vite.config.ts`
 - Alias `@/` configurado via `path.resolve`
