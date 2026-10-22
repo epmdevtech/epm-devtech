@@ -34,7 +34,7 @@ const sizes = [16, 20, 24, 32];
   const page = await context.newPage();
 
   // Abre a aplicação local
-  await page.goto('http://localhost:8070/', { waitUntil: 'networkidle' });
+  await page.goto('http://localhost:5213/', { waitUntil: 'networkidle' });
 
   // Injeta uma página de prévia dinâmica com a grade completa de ícones em Dark e Light
   const previewHtml = await page.evaluate(({ icons, sizes }) => {
@@ -80,7 +80,7 @@ const sizes = [16, 20, 24, 32];
   fs.writeFileSync(htmlPath, previewHtml, 'utf8');
 
   // Agora acessa via Playwright para capturar renderização das SVGs reais da página
-  await page.goto('http://localhost:8070/', { waitUntil: 'networkidle' });
+  await page.goto('http://localhost:5213/', { waitUntil: 'networkidle' });
 
   // Coleta os SVGs renderizados dos ícones presentes na página
   const iconSvgs = await page.evaluate(() => {

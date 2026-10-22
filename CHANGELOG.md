@@ -9,6 +9,76 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ## [Unreleased]
 
+### Adicionado
+- **Correções P0 pré-blog (TASK-119 / SPEC-118)**:
+  - `scripts/site-routes.js`: fonte única dos metadados das 8 rotas canônicas.
+  - `scripts/generate-sitemap.js`: geração de `dist/sitemap.xml` sem `lastmod` inventado.
+  - `scripts/generate-404.js`: geração de `dist/404.html` com conteúdo visível, `noindex` e sem canonical/OG/Twitter/JSON-LD.
+  - `scripts/faq-schema.js`: JSON-LD `FAQPage` gerado a partir de `src/config/faq.json`.
+  - `src/config/faq.json`: fonte única do conteúdo do FAQ.
+  - `adr/ADR-010-estrategia-renderizacao-blog.md`: decisão de injeção estática + `createRoot` com teste de paridade.
+  - `src/config/__tests__/p0-artifacts.test.ts`: testes de 404, metadados, sitemap e FAQ.
+  - `reviews/QA-119.md` e `reviews/REVIEW-119-correcoes-p0-pre-blog.md`.
+- **Blog técnico (TASK-118 / SPEC-118 / ADR-010)**:
+  - `content/blog/soft-404-em-spa-react.md`: artigo inicial publicado sobre soft 404 em SPA e posteriormente substituído.
+  - `content/blog/php2shell-vulnerabilidades-criticas-php.md`: artigo publicado sobre PHP2Shell, CVE-2026-109618 e CVE-2026-109619 (1.203 palavras, 7 min).
+  - `public/blog/php2shell-cover.svg`: capa 1200×630 do novo artigo.
+  - `src/components/blog/BlogNewsCarousel.tsx`: carrossel de notícias na Home, com card em destaque para um artigo, setas acessíveis para múltiplos e link para `/blog`.
+  - `src/components/blog/__tests__/BlogNewsCarousel.test.tsx`: cobertura dos estados de um e múltiplos artigos.
+  - **Header:** link "Blog" ao lado de "Sobre nós", com menu desktop de 6 links + 1 CTA validado em 1024px.
+  - `scripts/blog/`: pipeline de conteúdo com `gray-matter` + `markdown-it`, validação de frontmatter, manifesto, HTML estático e geração de artefatos.
+  - `scripts/serve-dist.js`: servidor estático local para validar `dist/` com status 404 real.
+  - `src/components/blog/`: `BlogCard`, `BlogPostMeta`, `ArticleContent` e `BlogEmptyState`.
+  - `src/pages/BlogPage.tsx` e `src/pages/BlogPostPage.tsx`: rotas `/blog` e `/blog/:slug`.
+  - `src/lib/blog/`: tipos e leitura do manifesto gerado.
+  - `docs/blog-publicacao.md`: guia de publicação de artigos.
+  - `reviews/QA-118.md` e `reviews/REVIEW-118-blog-tecnico.md`.
+  - Testes: `articles.test.ts`, `BlogPages.test.tsx`, `blog-navigation.spec.ts`, `blog-production.spec.ts` e `blog-parity.spec.ts` (paridade HTML estático x React).
+
+### Modificado
+- **`src/pages/AboutPage.tsx`**: cards, nós e linha da seção "Nossa Jornada Técnica" migrados para tokens semânticos (`bg-surface`, `border-border-default`, `text-primary/secondary/muted`), corrigindo o contraste no modo light; seção de princípios alinhada aos mesmos tokens.
+- **`e2e/design-system-and-stability.spec.ts`**: novo teste de contraste WCAG AA dos cards da jornada em `/about` no modo light.
+- **`src/pages/Home.tsx`**: seção `#blog` com `BlogNewsCarousel` e os até 5 artigos mais recentes.
+- **`src/components/blog/BlogCard.tsx`**: capa opcional no card da listagem.
+- **`src/pages/BlogPostPage.tsx` e `scripts/blog/render-static.js`**: CTA de contato removido do fechamento do artigo; mantido apenas "Voltar para o blog".
+- **Testes e docs do blog**: fixtures, E2E, `docs/blog-publicacao.md`, `PROJECT.md`, `TASK-118`, `QA-118` e `REVIEW-118` atualizados para o novo artigo e o carrossel.
+- **`vercel.json`**: removido o rewrite catch-all que devolvia HTTP 200 para rotas inexistentes.
+- **`scripts/prerender.js`**: consome `site-routes.js`, gera sitemap e injeta `FAQPage` apenas em `/faq`.
+- **`index.html`**: `og:image` duplicado removido; `twitter:image` adicionado; `robots` fora do controle do Helmet; `FAQPage` global removido.
+- **`package.json`**: build inclui `generate-404.js`; `geist` removido; `react-router-dom` atualizado para `^6.30.6`; `tailwindcss-animate` movido para devDependencies.
+- **`package-lock.json`**: árvore atualizada; `next` e `sharp` removidos.
+- **`tsconfig.app.json`**: `resolveJsonModule` habilitado.
+- **`PROJECT.md`**: estado canônico atualizado com sitemap/404, dependências, blog implementado e ADR-010.
+- **`src/config/routes.ts` e `src/App.tsx`**: rotas `/blog` e `/blog/:slug` com carregamento lazy.
+- **`src/components/sections/Footer.tsx`**: link "Blog" na navegação do rodapé.
+- **`src/index.css`**: estilos `.article-prose` para o corpo dos artigos.
+- **`scripts/site-routes.js` e `scripts/prerender.js`**: metadados de `/blog`, injeção da listagem/artigo, sitemap com artigos e `lastmod`.
+- **`scripts/generate-sitemap.js`**: suporte a `lastmod` por rota.
+- **`package.json`**: scripts `predev`, `pretest`, `pretest:coverage`, `pretest:watch`, `blog:build` e `pretest:e2e`; dependências de build `gray-matter` e `markdown-it`.
+- **`playwright.config.ts`**: projetos `chromium` (dev) e `production` (dist em `5214`), com servidor estático.
+- **`public/llms.txt` e `public/llms-full.txt`**: referência ao blog.
+- **`src/config/__tests__/routes.test.ts` e `src/components/sections/__tests__/Footer.test.tsx`**: cobertura das novas rotas/link.
+- **`.gitignore`**: `src/generated/` fora do controle de versão.
+- **`vite.config.ts`, `playwright.config.ts`, `docker-compose.yml`, `README.md`, `knowledge/stack.md`**: porta local `5213` e preview `5214`.
+
+### Removido
+- **`content/blog/soft-404-em-spa-react.md`**: substituído pelo artigo de PHP2Shell.
+- **CTA de contato no artigo**: removido do React e do HTML estático para evitar duplicidade com o CTA global.
+- **`public/sitemap.xml`**: substituído pela geração no build.
+- **`geist`**: dependência não utilizada que forçava `next`/`sharp` na árvore de produção.
+- **`FAQPage` global**: substituído por schema específico de `/faq`.
+
+### Segurança
+- **Auditoria de produção**: reduzida de 17 vulnerabilidades (1 critical, 11 high, 5 moderate) para 2 moderadas (`react-router`/`react-router-dom`), sem `critical` ou `high`.
+- **Auditoria completa**: 28 ocorrências após as dependências de build do blog (1 low, 12 moderate, 12 high, 3 critical), concentradas em ferramentas de desenvolvimento; produção permanece com 2 moderadas. Nenhuma correção `--force` foi aplicada.
+
+### Observações
+- O status 404 real deve ser confirmado no primeiro preview da Vercel; a validação local usou servidor estático equivalente.
+- A migração de `react-router` para 7.x permanece como dívida separada (correção das 2 ocorrências moderadas restantes).
+- O blog não tem CMS, busca, filtros, tags, paginação, comentários ou syntax highlighting no MVP. O carrossel da Home é renderizado no cliente e exibe até 5 artigos.
+- A aprovação humana do REVIEW-118 e a confirmação do 404 real no primeiro preview da Vercel seguem pendentes.
+
+
 ## [0.0.117-scroll-horizontal-como-trabalhamos] - 2026-10-16
 
 ### Adicionado
@@ -904,6 +974,8 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 - **`reviews/QA-071.md`**: Relatório de QA com evidências de conformidade aos quality gates.
 
 ### Modificado
+- **`src/pages/AboutPage.tsx`**: cards, nós e linha da seção "Nossa Jornada Técnica" migrados para tokens semânticos (`bg-surface`, `border-border-default`, `text-primary/secondary/muted`), corrigindo o contraste no modo light; seção de princípios alinhada aos mesmos tokens.
+- **`e2e/design-system-and-stability.spec.ts`**: novo teste de contraste WCAG AA dos cards da jornada em `/about` no modo light.
 - **`src/pages/Home.tsx`**: Remoção do bloco intermediário redundante `<section id="contato">` ("Vamos entender o cenário da sua empresa?"), permitindo uma transição fluida e natural da seção de Resultados para o rodapé; limpeza de imports orfãos (`Clock`, `Button`).
 - **`src/components/layout/Header.tsx`**: Padronização do botão de ação no Header desktop e gaveta móvel para `"Fale conosco"` com `aria-label="Fale conosco"`.
 - **`src/components/sections/Hero.tsx`**: Padronização do CTA primário do Hero para `"Vamos conversar"` com `aria-label="Vamos conversar sobre seu projeto"` direcionando para `/contato`, preservando o secundário `"Ver soluções"` direcionando para `#servicos`.
@@ -977,6 +1049,8 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 - **`src/components/sections/__tests__/HomeResultsStrip.test.tsx`**: Suíte de testes unitários com 100% de aprovação para métricas, rótulos, descrições e divisores.
 
 ### Modificado
+- **`src/pages/AboutPage.tsx`**: cards, nós e linha da seção "Nossa Jornada Técnica" migrados para tokens semânticos (`bg-surface`, `border-border-default`, `text-primary/secondary/muted`), corrigindo o contraste no modo light; seção de princípios alinhada aos mesmos tokens.
+- **`e2e/design-system-and-stability.spec.ts`**: novo teste de contraste WCAG AA dos cards da jornada em `/about` no modo light.
 - **`src/pages/Home.tsx`**: Integração de `<HomeResultsStrip />` substituindo a grade de caixas fechadas, preservando o cabeçalho de seção (`SectionHeader`), nota explicativa factual com asterisco e link de navegação para `/experiencia`.
 
 ## [0.0.66-pipeline-processo-home] - 2026-10-01
@@ -993,6 +1067,8 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 - **`src/components/sections/__tests__/HomeProcessPipeline.test.tsx`**: Suíte de testes unitários com 100% de aprovação para semântica, etapas, títulos e descrições.
 
 ### Modificado
+- **`src/pages/AboutPage.tsx`**: cards, nós e linha da seção "Nossa Jornada Técnica" migrados para tokens semânticos (`bg-surface`, `border-border-default`, `text-primary/secondary/muted`), corrigindo o contraste no modo light; seção de princípios alinhada aos mesmos tokens.
+- **`e2e/design-system-and-stability.spec.ts`**: novo teste de contraste WCAG AA dos cards da jornada em `/about` no modo light.
 - **`src/pages/Home.tsx`**: Integração do componente `<HomeProcessPipeline />` preservando o cabeçalho institucional, títulos e link canônico para `/como-trabalhamos`.
 
 ## [0.0.65-bento-grid-servicos-home] - 2026-10-01
@@ -1009,6 +1085,8 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 - **`src/components/sections/__tests__/HomeServicesBento.test.tsx`**: Suíte de testes unitários validando renderização de títulos, descrições de negócio, micro-artefatos técnicos e acessibilidade dos links.
 
 ### Modificado
+- **`src/pages/AboutPage.tsx`**: cards, nós e linha da seção "Nossa Jornada Técnica" migrados para tokens semânticos (`bg-surface`, `border-border-default`, `text-primary/secondary/muted`), corrigindo o contraste no modo light; seção de princípios alinhada aos mesmos tokens.
+- **`e2e/design-system-and-stability.spec.ts`**: novo teste de contraste WCAG AA dos cards da jornada em `/about` no modo light.
 - **`src/pages/Home.tsx`**: Substituição da grade de 4 colunas simétricas pelo componente `<HomeServicesBento />`, preservando cabeçalho, títulos aprovados e link canônico para `/servicos`.
 
 ## [0.0.64-correcao-contraste-textos-cursor-dark] - 2026-10-01

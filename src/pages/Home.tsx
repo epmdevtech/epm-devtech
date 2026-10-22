@@ -4,11 +4,14 @@ import Hero from "@/components/sections/Hero";
 import HomeServicesBento from "@/components/sections/HomeServicesBento";
 import HomeProcessPipeline from "@/components/sections/HomeProcessPipeline";
 import HomeResultsStrip from "@/components/sections/HomeResultsStrip";
+import { BlogNewsCarousel } from "@/components/blog/BlogNewsCarousel";
+import { BLOG_MANIFEST } from "@/lib/blog/manifest";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import BrandChipIcon from "@/components/ui/BrandChipIcon";
 import { SITE_CONFIG } from "@/config/site";
 
 const BASE_URL = SITE_CONFIG.url;
+const NEWS_ARTICLES = BLOG_MANIFEST.articles.slice(0, 5);
 
 export const Home = () => {
   return (
@@ -140,6 +143,13 @@ export const Home = () => {
             </Link>
           </div>
         </SectionWrapper>
+
+        {/* ─── Bloco 4: Notícias do blog (Tom: Alt) ─── */}
+        {NEWS_ARTICLES.length > 0 && (
+          <SectionWrapper id="blog" tone="alt" className="scroll-mt-24">
+            <BlogNewsCarousel articles={NEWS_ARTICLES} />
+          </SectionWrapper>
+        )}
       </div>
     </>
   );

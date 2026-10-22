@@ -27,6 +27,7 @@ const NAVIGATION_LINKS = [
   { label: "Engenharia", href: "/engineering" },
   { label: "Sobre a empresa", href: "/about" },
   { label: "Dúvidas frequentes", href: "/faq" },
+  { label: "Blog", href: "/blog" },
   { label: "Falar sobre meu projeto", href: "/contact" },
 ];
 

@@ -561,6 +561,56 @@ test.describe('EPM DEVTECH — Padronização Visual & Estabilidade', () => {
       await expect(scenarioLink).toHaveAttribute('href', scenario.href);
     }
   });
+
+  test('Sobre (light): cards da jornada mantêm contraste WCAG AA', async ({ page }) => {
+    await page.addInitScript(() => localStorage.setItem('vite-ui-theme', 'light'));
+    await page.goto('/about');
+    await page.waitForLoadState('domcontentloaded');
+
+    const journey = page.locator('#jornada');
+    await journey.scrollIntoViewIfNeeded();
+    const card = journey.locator('[data-testid="milestone-m1"] .bg-surface.rounded-xl');
+    await expect(card).toBeVisible();
+
+    const contrast = await card.evaluate((element) => {
+      const parseRgb = (value: string) =>
+        value.match(/\d+/g)?.slice(0, 3).map(Number) ?? [0, 0, 0];
+
+      const luminance = ([r, g, b]: number[]) => {
+        const channels = [r, g, b].map((channel) => {
+          const normalized = channel / 255;
+          return normalized <= 0.03928
+            ? normalized / 12.92
+            : ((normalized + 0.055) / 1.055) ** 2.4;
+        });
+        return 0.2126 * channels[0] + 0.7152 * channels[1] + 0.0722 * channels[2];
+      };
+
+      const ratio = (foreground: string, background: string) => {
+        const lighter = Math.max(luminance(parseRgb(foreground)), luminance(parseRgb(background)));
+        const darker = Math.min(luminance(parseRgb(foreground)), luminance(parseRgb(background)));
+        return (lighter + 0.05) / (darker + 0.05);
+      };
+
+      const background = getComputedStyle(element).backgroundColor;
+      const title = getComputedStyle(element.querySelector('h3')!).color;
+      const description = getComputedStyle(element.querySelector('p')!).color;
+      const tag = getComputedStyle(element.querySelector('.text-muted')!).color;
+
+      return {
+        background,
+        backgroundLuminance: luminance(parseRgb(background)),
+        titleRatio: ratio(title, background),
+        descriptionRatio: ratio(description, background),
+        tagRatio: ratio(tag, background),
+      };
+    });
+
+    expect(contrast.backgroundLuminance).toBeGreaterThan(0.7);
+    expect(contrast.titleRatio).toBeGreaterThanOrEqual(4.5);
+    expect(contrast.descriptionRatio).toBeGreaterThanOrEqual(4.5);
+    expect(contrast.tagRatio).toBeGreaterThanOrEqual(4.5);
+  });
 });
 
 

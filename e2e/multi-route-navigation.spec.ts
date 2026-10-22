@@ -78,8 +78,8 @@ test.describe('EPM DEVTECH — Arquitetura de Informação Multi-Rota (SPEC-060)
     });
   }
 
-  test('Header desktop renderiza menu enxuto com 5 links + 1 CTA em botão', async ({ page }) => {
-    await page.setViewportSize({ width: 1440, height: 900 });
+  test('Header desktop renderiza 6 links + 1 CTA sem colisão em 1024px', async ({ page }) => {
+    await page.setViewportSize({ width: 1024, height: 900 });
     await page.goto('/');
     await page.waitForLoadState('domcontentloaded');
 
@@ -92,6 +92,7 @@ test.describe('EPM DEVTECH — Arquitetura de Informação Multi-Rota (SPEC-060)
       { text: 'Experiência', href: '/experience' },
       { text: 'Engenharia', href: '/engineering' },
       { text: 'Sobre nós', href: '/about' },
+      { text: 'Blog', href: '/blog' },
     ];
 
     for (const item of expectedLinks) {

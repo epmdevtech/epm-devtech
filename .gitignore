@@ -37,3 +37,6 @@ test-results/
 playwright-report/
 screenshots/
 .vercel
+
+# Artefatos gerados do blog (recriados em dev/test/build)
+src/generated/

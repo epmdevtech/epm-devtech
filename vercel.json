@@ -74,11 +74,5 @@
         }
       ]
     }
-  ],
-  "rewrites": [
-    {
-      "source": "/((?!og-odontologia\\.jpg).*)",
-      "destination": "/index.html"
-    }
   ]
 }

@@ -32,9 +32,10 @@ function viteDeferCss(): Plugin {
 export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
-    port: 8070,
+    port: 5213,
+    strictPort: true,
     hmr: {
-      clientPort: 8070,
+      clientPort: 5213,
       overlay: false,
     },
     watch: {
@@ -51,6 +52,11 @@ export default defineConfig(({ mode }) => ({
         '**/*.log',
       ],
     },
+  },
+  preview: {
+    host: "::",
+    port: 5214,
+    strictPort: true,
   },
   plugins: [react(), viteDeferCss(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {

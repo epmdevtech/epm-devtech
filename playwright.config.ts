@@ -12,20 +12,34 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   reporter: 'list',
   use: {
-    baseURL: process.env.PLAYWRIGHT_TEST_BASE_URL || 'http://localhost:8070',
+    baseURL: process.env.PLAYWRIGHT_TEST_BASE_URL || 'http://localhost:5213',
     trace: 'on-first-retry',
     viewport: { width: 1280, height: 720 },
   },
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { ...devices['Desktop Chrome'], baseURL: 'http://localhost:5213' },
+      testIgnore: /blog-(production|parity)\.spec\.ts/,
+    },
+    {
+      name: 'production',
+      use: { ...devices['Desktop Chrome'], baseURL: 'http://localhost:5214' },
+      testMatch: /blog-(production|parity)\.spec\.ts/,
     },
   ],
-  webServer: {
-    command: 'npm run dev -- --port 8070',
-    port: 8070,
-    reuseExistingServer: true,
-    timeout: 120 * 1000,
-  },
+  webServer: [
+    {
+      command: 'npm run dev -- --port 5213',
+      port: 5213,
+      reuseExistingServer: true,
+      timeout: 120 * 1000,
+    },
+    {
+      command: 'node scripts/serve-dist.js 5214',
+      port: 5214,
+      reuseExistingServer: true,
+      timeout: 120 * 1000,
+    },
+  ],
 });

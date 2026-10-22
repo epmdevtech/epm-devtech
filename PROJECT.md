@@ -43,7 +43,7 @@ A página apresenta serviços, tecnologias, diferenciais, projetos de autoridade
 | Tailwind CSS      | ^3.4.17    | Estilização via utilitários          |
 | shadcn/ui         | —          | Componentes acessíveis (Radix UI)    |
 | Framer Motion     | ^12.29.2   | Animações e transições               |
-| React Router DOM  | ^6.30.1    | Roteamento SPA                       |
+| React Router DOM  | ^6.30.6    | Roteamento SPA                       |
 | React Helmet Async| ^3.0.0     | Gerenciamento de SEO/meta            |
 | TanStack Query    | ^5.83.0    | Gerenciamento de estado assíncrono   |
 | React Hook Form   | ^7.61.1    | Gerenciamento de formulários         |
@@ -87,6 +87,8 @@ Single Page Application (SPA) multi-rota desacoplada com rotas independentes, hu
 | `/about`       | `AboutPage.tsx`       | Institucional com liderança técnica e dados                 |
 | `/contact`     | `ContactPage.tsx`     | Formulário de contato, canais e SLA                         |
 | `/faq`         | `FAQPage.tsx`         | 8 perguntas categorizadas (fonte única)                     |
+| `/blog`        | `BlogPage.tsx`        | Listagem de artigos técnicos publicados                     |
+| `/blog/:slug`  | `BlogPostPage.tsx`    | Artigo técnico com metadados e BlogPosting                  |
 | `/*`           | `NotFound.tsx`        | Página 404 em português com links de resgate                |
 
 ### Redirecionamentos 301 (Edge / Vercel) — SPEC-106
@@ -120,9 +122,10 @@ src/
 ├── components/
 │   ├── layout/
 │   │   ├── Layout.tsx          # Shell persistente com skip-link, Header, Outlet e Footer
-│   │   └── Header.tsx          # Menu enxuto (5 links + 1 botão CTA)
+│   │   └── Header.tsx          # Menu enxuto (6 links + 1 botão CTA)
 │   ├── routing/
 │   │   └── ScrollManager.tsx   # Foco e rolagem acessível entre rotas
+│   ├── blog/                   # BlogCard, BlogPostMeta, ArticleContent e BlogEmptyState
 │   ├── sections/
 │   │   ├── Hero.tsx
 │   │   ├── Authority.tsx
@@ -143,7 +146,9 @@ src/
 │   └── theme-provider.tsx
 ├── hooks/
 ├── lib/
+│   ├── blog/                   # Tipos e leitura do manifesto gerado
 │   └── buildConstellationLayout.ts
+├── generated/                  # Manifesto e artigos gerados (ignorado no Git)
 ├── pages/
 │   ├── Home.tsx                # Homepage curta como hub comercial
 │   ├── ServicesPage.tsx        # /services
@@ -153,16 +158,27 @@ src/
 │   ├── AboutPage.tsx           # /about
 │   ├── ContactPage.tsx         # /contact
 │   ├── FAQPage.tsx             # /faq
+│   ├── BlogPage.tsx            # /blog
+│   ├── BlogPostPage.tsx        # /blog/:slug
 │   └── NotFound.tsx            # 404 em português
 └── test/
     ├── setup.ts
     └── example.test.ts
 ```
 
+### Blog Técnico (SPEC-118 / ADR-010)
+- Conteúdo versionado em `content/blog/*.md` com frontmatter YAML validado no build.
+- `scripts/blog/build.js` gera `src/generated/blog-manifest.json` e `src/generated/blog/<slug>.json` antes do Vite; `src/generated/` é ignorado no Git.
+- A listagem e o corpo do artigo são injetados no HTML estático pelo prerender; o cliente usa os mesmos artefatos e `createRoot`.
+- O parser Markdown (`gray-matter` + `markdown-it`) roda apenas no build, com `html: false` e links externos `noopener noreferrer`.
+- Rascunhos (`draft: true`) não entram na listagem, no artigo, no sitemap nem no prerender.
+- A paridade entre HTML estático e React é validada por E2E de produção.
+
 ### Padrões de Carregamento e SEO
 - **Home**, **Layout** e **Header**: carregamento imediato na raiz (LCP instantâneo sem layout shift)
 - Subrotas independentes: `React.lazy` + `Suspense` sob demanda
 - Pré-render estático multi-rota via `scripts/prerender.js` gerando `dist/<rota>/index.html` pré-populado com `<title>`, `<meta name="description">`, `<link rel="canonical">`, Open Graph e H1 para crawlers e scrapers sem JavaScript.
+- `scripts/prerender.js` também gera `dist/sitemap.xml` a partir da fonte única `scripts/site-routes.js` e `scripts/generate-404.js` gera `dist/404.html` com status 404 real na Vercel.
 
 ---
 
@@ -170,6 +186,10 @@ src/
 
 - Meta tags dinâmicas por rota via `react-helmet-async`
 - Pré-render estático no pós-build para scrapers de redes sociais e SEO bot
+- Sitemap gerado no build a partir de fonte única, com `lastmod` real apenas em artigos publicados
+- 404 real via `dist/404.html` e ausência de rewrite catch-all no `vercel.json`
+- Blog com `/blog`, `/blog/:slug`, `BlogPosting`, canonical e Open Graph `article` por artigo
+- `FAQPage` JSON-LD restrito a `/faq`, gerado a partir de `src/config/faq.json`
 - URL canônica individual por rota (`data-rh="true"`)
 - Open Graph e Twitter Cards específicos por página
 - Skip-to-content link para acessibilidade (`#conteudo-principal`)
@@ -193,18 +213,21 @@ src/
 | Experiência / Verticais | ✅ Início Editorial Direto & Verticais | Na rota dedicada `/experience` (`ExperiencePage.tsx`), início direto no cabeçalho editorial (`PageHero`: "Experiência em projetos reais" com `ExperienceHeroVisual`) eliminando a faixa superior redundante de contadores numéricos (migrados para a Home); conexão fluida imediata com a Matriz de Verticais 2x2 (`#contextos`) com badges de especialidade técnica (`IoT INDUSTRIAL`, `ALTA CONCORRÊNCIA`, etc.) e capacidades técnicas inline; Enterprise Ledger corporativo contínuo (`#organizacoes`) com linhas elegantes e hover suave para projetos de grande escala (`CAPES`, `ONS`, `Energia Pecém`), nota de contexto editorial com ponto luminoso verde-água e encerramento limpo direto no Footer sem bloco repetitivo de contato. Ritmo de camadas tonais perfeitamente preservado: `anchor -> base -> alt -> anchor`. (SPEC-075 / SPEC-082 / SPEC-085 / SPEC-087 / SPEC-111) |
 | Home / Layout     | ✅ Enxuto & Fluido | Remoção do bloco intermediário redundante de contato ("Vamos entender o cenário da sua empresa?") na Home, conectando a seção de Resultados diretamente ao rodapé. Padronização de CTAs: "Fale comigo" no Header (desktop e gaveta móvel), "VAMOS CONVERSAR" no Hero e rota canônica `/contact` para formulário (SPEC-071 / SPEC-108 / SPEC-111) |
 | Sectors           | ✅ Refatorado    | Título "Experiência em diferentes contextos", 4 cards 3D isomórficos com ícones conceituais autorais e sem setas direcionais (falsa affordance removida) na Home |
-| About / Sobre nós | ✅ Editorial Monocromático & Silhueta EPM DevTech | Na rota dedicada `/about` (`AboutPage.tsx`), Hero editorial estruturado em grid responsivo de 12 colunas na camada `anchor`: coluna esquerda (7 cols) com H1 100% monocromático em branco/primary ("Transformando desafios em soluções que funcionam"), tag monospace `[ QUEM SOMOS // POSICIONAMENTO ]` com `BrandChipIcon` e subtítulo institucional focado em soluções que simplificam operações e geram resultados reais; coluna direita (5 cols) acomodando o componente visual `EpmConstellation` com isolamento completo e respiro generoso, sem colisão ou sobreposição de texto em nenhum breakpoint (desktop, tablet ou mobile). Componente desenha a silhueta geométrica do ícone oficial da EPM DevTech com nós estelares luminosos, halos difusos, pulso sonar, trânsito de dados e rastreamento de mouse, com atributos SVG `r` estritamente definidos eliminando avisos de console Na SPEC-105, os nós-chave (núcleo, pontas das chaves `{ }` e topo da moldura) tornaram-se um **Constellation Inspector** interativo: hover (120 ms/150 ms), clique/toque (pinned), teclado (Tab, Enter/Espaço, ←/→, Esc) e popover Radix com card de prática (bevel 45°, `prefers-reduced-motion`), dados editáveis em `src/data/constellationPractices.ts` (SPEC-055 / SPEC-081 / SPEC-087 / SPEC-088 / SPEC-089 / SPEC-090 / SPEC-091 / SPEC-093 / SPEC-094 / SPEC-098 / SPEC-105 / SPEC-111). Seção "Nossa Jornada" (`tone="base"`) com timeline histórica e seção "Missão e Princípios de Engenharia" (`tone="alt"`) em Manifesto Técnico, com alternância no ritmo de camadas tonais (`anchor -> base -> alt -> anchor`) e encerramento direto no Footer. |
+| About / Sobre nós | ✅ Editorial Monocromático & Silhueta EPM DevTech | Na rota dedicada `/about` (`AboutPage.tsx`), Hero editorial estruturado em grid responsivo de 12 colunas na camada `anchor`: coluna esquerda (7 cols) com H1 100% monocromático em branco/primary ("Transformando desafios em soluções que funcionam"), tag monospace `[ QUEM SOMOS // POSICIONAMENTO ]` com `BrandChipIcon` e subtítulo institucional focado em soluções que simplificam operações e geram resultados reais; coluna direita (5 cols) acomodando o componente visual `EpmConstellation` com isolamento completo e respiro generoso, sem colisão ou sobreposição de texto em nenhum breakpoint (desktop, tablet ou mobile). Componente desenha a silhueta geométrica do ícone oficial da EPM DevTech com nós estelares luminosos, halos difusos, pulso sonar, trânsito de dados e rastreamento de mouse, com atributos SVG `r` estritamente definidos eliminando avisos de console Na SPEC-105, os nós-chave (núcleo, pontas das chaves `{ }` e topo da moldura) tornaram-se um **Constellation Inspector** interativo: hover (120 ms/150 ms), clique/toque (pinned), teclado (Tab, Enter/Espaço, ←/→, Esc) e popover Radix com card de prática (bevel 45°, `prefers-reduced-motion`), dados editáveis em `src/data/constellationPractices.ts` (SPEC-055 / SPEC-081 / SPEC-087 / SPEC-088 / SPEC-089 / SPEC-090 / SPEC-091 / SPEC-093 / SPEC-094 / SPEC-098 / SPEC-105 / SPEC-111). Seção "Nossa Jornada" (`tone="base"`) com timeline histórica e seção "Missão e Princípios de Engenharia" (`tone="alt"`) em Manifesto Técnico, com alternância no ritmo de camadas tonais (`anchor -> base -> alt -> anchor`) e encerramento direto no Footer. No modo light, cards, nós e linha da jornada usam tokens semânticos (`bg-surface`, `border-border-default`, `text-primary/secondary/muted`), com contraste WCAG AA coberto por E2E. |
 | FAQ               | ✅ Condensado    | 8 perguntas essenciais, pergunta de sites institucionais alocada na categoria "servicos", abas em sentence case e tokens semânticos |
 | Contact           | ✅ Humanização Editorial & Contato Direto | Título editorial dominante "Vamos conversar sobre como podemos apoiar você e seu projeto", texto de apoio consultivo sem promessas artificiais de prazo (expurgo de 24h), bloco alternativo de e-mail direto (`elessandro@epmdevtech.com.br`), botão de submissão "ENVIAR MENSAGEM" (`uppercase tracking-[0.04em] font-semibold` com `btn-bevel-4`) e próximos passos focados em atendimento consultivo direto com `ContactHeroVisual`. (SPEC-109 / SPEC-111) |
 | Footer            | ✅ Refatorado    | Links corporativos sincronizados via `site.ts`, LinkedIn e GitHub oficiais na coluna Contato com ícones SVG monocromáticos (20px) e touch target ≥ 44px; descrição factual "dedicada a..." (SPEC-057) |
 | ScrollToTop       | ✅ Neutro / Flat | Ícone ChevronUp (20px), design utilitário neutro sem glow ou realce verde, fade suave >450px e elevação dinâmica no rodapé |
 | Cookie Banner     | ✅ Otimizado     | Lazy load assíncrono + defer timer (3.5s)  |
-| Multi-Rota & SEO  | ✅ Multi-Rota SPA | Transição de monólito one-page para SPA multi-rota com rotas canônicas independentes (`/`, `/services`, `/how-we-work`, `/experience`, `/engineering`, `/about`, `/contact`, `/faq`), menu enxuto (5 links + 1 CTA "Fale comigo"), preservação 301 de URLs e pré-render estático HTML pós-build (SPEC-060 / SPEC-071) |
+| Multi-Rota & SEO  | ✅ Multi-Rota SPA | Transição de monólito one-page para SPA multi-rota com rotas canônicas independentes (`/`, `/services`, `/how-we-work`, `/experience`, `/engineering`, `/about`, `/contact`, `/faq`, `/blog`, `/blog/:slug`), menu enxuto (6 links + 1 CTA "Fale comigo"), preservação 301 de URLs e pré-render estático HTML pós-build (SPEC-060 / SPEC-071 / SPEC-118) |
 | Smooth Scroll & Scroll Reveals | ✅ Lenis + GSAP ScrollTrigger Global | Sistema global de rolagem suave com `Lenis` integrado ao loop de animação de alta performance do GSAP (`gsap.ticker` com `lagSmoothing(0)`), sincronizado com `ScrollTrigger.update`, reset imediato em transições de rota, âncoras com offset de cabeçalho fixo, suporte estrito a `prefers-reduced-motion` e hook `useScrollReveal` com `gsap.context()` para revelações sóbrias escalonadas em todas as rotas e páginas do site (`/`, `/services`, `/how-we-work`, `/experience`, `/engineering`, `/about`, `/contact`), abrangendo cabeçalhos unificados via `PageHero`, matrizes de serviços, pipeline explorer, manifestos de engenharia, grades de verticais, enterprise ledgers, terminais CI/CD, nuvem técnica e cards de FAQ (SPEC-099 / SPEC-110 / SPEC-111). |
 | Magnetic Buttons & CTAs | ✅ Full Bevel 4 Cantos & Botões Estritamente Tipográficos | Geometria de engenharia "Full Bevel / 4-Corner Chamfer" (Octógono Simétrico de 8 lados com corte a 45º nos 4 cantos via `.btn-bevel-4` e `.btn-bevel-4-sm`), com traço contínuo de 1px ao redor de todos os 8 lados e sombreamento rígido extrudado em camadas (`.btn-bevel-shadow` / `.btn-bevel-shadow-sm` / `.btn-bevel-shadow-white` / `.btn-bevel-shadow-brand`). Variantes sólidas (`bevel`/`chamfer`) e contornadas (`bevel-outline`/`chamfer-outline`). Componente reutilizável `MagneticButton` com geometria de referência estática imune a scroll da viewport, margem de proximidade restrita (20px fixos além das bordas físicas), clamping rígido de deslocamento mecânico (X ≤ 12px, Y ≤ 8px, texto ≤ 4.2px), desengate imediato (breakout), força atenuada (`strength = 0.15`) e interpolação ágil GSAP (`0.38s`, `power2.out`). Suporte polimórfico a `<button>`, `<Link>` e `<a>`, desativação automática em telas touch (`pointer: coarse`), suporte a `prefers-reduced-motion`, efeito tátil de compressão mecânica no clique (`:active`), e anel de foco acessível (:focus-visible). Remoção completa de ícones e setas decorativas internas (estritamente tipográficos, sólidos e editoriais) em todos os botões e CTAs do site (SPEC-100 / SPEC-101 / SPEC-102 / SPEC-103 / SPEC-104 / SPEC-110). |
 | Copywriting & UX Writing | ✅ Humanização B2B Integral & E-mail Oficial | Auditoria e reescrita de 100% dos textos do site (Home, Serviços, Como Trabalhamos, Experiência, Engenharia, Sobre nós, Contato, FAQ, Rodapé e metadados). Foco estrito em dores operacionais concretas (gargalos de processos, lentidão, retrabalho com planilhas manuais, riscos de legados), pragmatismo técnico e comunicação direta de liderança técnica com decisores de negócio. Canal oficial direto de e-mail padronizado como `elessandro@epmdevtech.com.br` com expurgo total de prazos artificiais pré-fabricados (ex: "24h úteis"). Eliminação de jargões vazios, sem clichês de marketing, posicionamento 100% remoto em escala nacional e zero dados cadastrais burocráticos no corpo do site. (SPEC-092 / SPEC-109 / SPEC-110) |
-| Testes unitários  | ✅ Implementado  | 42/42 suites, 285/285 testes passando (cobertura geral 99.12%) |
-| Testes E2E        | ✅ Implementado  | Suíte Playwright completa (51/51 testes aprovados cobrindo multi-rota, design system, tokens, constelação, light mode, travas de identidade, estabilidade e scroll horizontal da rota `/how-we-work`) |
+| Sitemap & 404 | ✅ Fonte Única & 404 Real | `scripts/site-routes.js` centraliza os metadados das 8 rotas; `scripts/prerender.js` gera `dist/sitemap.xml` (com `lastmod` apenas em artigos) e `scripts/generate-404.js` gera `dist/404.html` com `noindex`, sem canonical/OG/Twitter/JSON-LD e com conteúdo visível. O rewrite catch-all foi removido do `vercel.json`; rotas desconhecidas passam a receber 404 na Vercel. `FAQPage` é específico de `/faq` e usa `src/config/faq.json` como fonte única (TASK-119 / SPEC-118). |
+| Dependências | ✅ Cadeia Crítica Removida | `geist` removido; `next` e `sharp` fora da árvore de produção; `react-router-dom` 6.30.6; `tailwindcss-animate` reclassificado como devDependency. Auditoria de produção reduzida de 17 (1 critical) para 2 ocorrências moderadas de `react-router`/`react-router-dom`, cuja correção integral exige 7.x (major, fora do escopo). |
+| Blog | ✅ Implementado (SPEC-118 / ADR-010) | `/blog` e `/blog/:slug` com Markdown versionado em `content/blog/`, frontmatter validado, manifesto gerado antes do Vite, listagem e corpo do artigo no HTML estático, `BlogPosting`, `article:published_time`, canonical e OG por artigo, sitemap com `lastmod`, 404 real para slug inexistente, estado vazio e link no footer. Artigo publicado: "PHP2Shell: duas vulnerabilidades críticas no PHP exigem atenção imediata" (7 min, capa SVG). Carrossel de notícias na home com até 5 artigos, card em destaque quando há um único post, navegação acessível e sem CTA de contato no fechamento do artigo. Paridade HTML/React coberta por E2E de produção. Pendente de aprovação humana do REVIEW-118 e confirmação do 404 no primeiro preview da Vercel. |
+| Testes unitários  | ✅ Implementado  | 46/46 suites, 307/307 testes passando (statements/linhas 99,11%; branches 87,54%; funções 87,00%) |
+| Testes E2E        | ✅ Implementado  | Suíte Playwright completa (64/64 testes aprovados: 57 no dev server e 7 no build de produção, incluindo blog, carrossel da home, paridade HTML/React, 404 real, mobile/teclado e contraste AA no Sobre em modo light) |
 | Acessibilidade    | ✅ 100% WCAG AAA | Botão primário com contraste 12.44:1 (WCAG AAA), texto primário 17.26:1 (Dark) e 17.81:1 (Light), skip-link acessível, foco programático em `<h1>`, `aria-current="page"`, touch target ≥ 44px, zero layout shift |
 | Performance       | ✅ 100% Otimizado| Mobile Perf: 84 (+16 pontos vs baseline 68), TBT: 480ms (-77% de bloqueio), CLS: 0.000; Desktop Perf: 97, SEO: 100/100, FCP 0.5s / LCP 0.6s |
 | Proxy Multi-Subdomínios | ✅ Implementado | Edge Middleware com mapa declarativo `PROXIES` roteando `odontologia.epmdevtech.com.br` e `brs.epmdevtech.com.br` para Cloudflare Workers, streaming de body (`duplex: "half"`), rewrite de header `Location` para evitar vazamento de `workers.dev` e injeção de 4 headers AppSec (SPEC-044 / SPEC-116 / ADR-006 / ADR-008) |
@@ -238,6 +261,7 @@ src/
 | ADR-007 | Slugs de URL em inglês com 301 legados               | ✅ Aceito     |
 | ADR-008 | Proxy reverso multi-subdomínios via Edge Middleware  | ✅ Aceito     |
 | ADR-009 | Scroll horizontal com CSS nativo (`animation-timeline: view()`) | ✅ Aceito     |
+| ADR-010 | Blog: injeção estática + `createRoot` com teste de paridade | ✅ Aceito     |
 
 ---
 
@@ -246,7 +270,8 @@ src/
 | Tarefa | Descrição | Data Agendada | Status |
 |---|---|---|---|
 | VERIF-001 | 1. Verificar indexação e status de Sucesso do `sitemap.xml` no Google Search Console (janela de 24h)<br>2. Avaliar necessidade de inclusão explícita da tag `<meta name="theme-color">` no `<head>` do `index.html` | 2026-09-08 | ✅ Concluído |
+| REVIEW-118 | Aprovação humana do blog técnico e confirmação do 404 real no primeiro preview da Vercel | 2026-10-22 | ⏳ Pendente |
 
 ---
 
-_Última atualização: 2026-10-13 | Maintainer: Elessandro Prestes Macedo_
+_Última atualização: 2026-10-22 | Maintainer: Elessandro Prestes Macedo_

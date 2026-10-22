@@ -20,7 +20,7 @@ npm install
 
 # Inicie o servidor de desenvolvimento
 npm run dev
-# Acesse: http://localhost:8070
+# Acesse: http://localhost:5213
 ```
 
 ### Via Docker (recomendado)
@@ -28,7 +28,7 @@ npm run dev
 ```bash
 # No diretório raiz do projeto
 docker-compose up -d
-# Acesse: http://localhost:8070
+# Acesse: http://localhost:5213
 
 # Para parar
 docker-compose down
@@ -56,6 +56,17 @@ npm run test:watch
 ```bash
 npm run build
 ```
+
+O build gera o blog e executa o prerender. Para validar o `dist/` com status 404 real:
+
+```bash
+node scripts/serve-dist.js 5214
+# Acesse: http://localhost:5214
+```
+
+## Blog
+
+Artigos ficam em `content/blog/*.md`. Consulte `docs/blog-publicacao.md` para frontmatter, validação e publicação.
 
 ---
 
